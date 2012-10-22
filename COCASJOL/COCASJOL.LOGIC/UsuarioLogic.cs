@@ -32,7 +32,8 @@ namespace COCASJOL.LOGIC
 
         #region Insert
 
-        public void InsertarUsuario(string USR_USERNAME,
+        public void InsertarUsuario
+            (string USR_USERNAME,
             string USR_NOMBRE,
             string USR_APELLIDO,
             int USR_CEDULA,
@@ -77,7 +78,8 @@ namespace COCASJOL.LOGIC
 
         #region Update
 
-        public void ActualizarUsuario(string USR_USERNAME,
+        public void ActualizarUsuario
+            (string USR_USERNAME,
             string USR_NOMBRE,
             string USR_APELLIDO,
             int USR_CEDULA,

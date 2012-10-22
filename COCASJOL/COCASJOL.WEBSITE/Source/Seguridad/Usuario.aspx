@@ -14,6 +14,14 @@
         var EditWindow = null;
         var EditForm = null;
 
+        var AlertSelMsgTitle = "Atención";
+        var AlertSelMsg = "Debe seleccionar 1 elemento";
+
+        var ConfirmMsgTitle = "Usuario";
+        var ConfirmUpdate = "Seguro desea modificar el usuario?";
+        var ConfirmDelete = "Seguro desea eliminar el usuario?";
+
+
         var PageX = {
             _index: 0,
 
@@ -30,17 +38,9 @@
             },
 
             insert: function () {
-                if (!AddForm.getForm().isValid()) {
-                    Ext.net.Notification.show({
-                        iconCls: "icon-exclamation",
-                        html: "Form is invalid",
-                        title: "Error"
-                    });
+                var fields = AddForm.getForm().getFieldValues(false, "dataIndex");
 
-                    return false;
-                }
-
-                Grid.insertRecord(0, AddForm.getForm().getFieldValues(false, "dataIndex"));
+                Grid.insertRecord(0, fields, false);
                 AddForm.getForm().reset();
             },
 
@@ -70,7 +70,7 @@
                     this.open();
                 } else {
                     var msg = Ext.Msg;
-                    Ext.Msg.alert('Atención', 'Debe seleccionar 1 elemento');
+                    Ext.Msg.alert(AlertSelMsgTitle, AlertSelMsg);
                 }
             },
 
@@ -102,25 +102,24 @@
                     return;
                 }
 
-                if (!EditForm.getForm().isValid()) {
-                    Ext.net.Notification.show({
-                        iconCls: "icon-exclamation",
-                        html: "Form is invalid",
-                        title: "Error"
-                    });
-                    return false;
-                }
-
-                EditForm.getForm().updateRecord(EditForm.record);
+                Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
+                    if (btn == 'yes') {
+                        EditForm.getForm().updateRecord(EditForm.record);
+                    }
+                });
             },
 
             remove: function () {
                 if (Grid.getSelectionModel().hasSelection()) {
-                    var record = Grid.getSelectionModel().getSelected();
-                    Grid.deleteRecord(record);
+                    Ext.Msg.confirm(ConfirmMsgTitle, ConfirmDelete, function (btn, text) {
+                        if (btn == 'yes') {
+                            var record = Grid.getSelectionModel().getSelected();
+                            Grid.deleteRecord(record);
+                        }
+                    });
                 } else {
                     var msg = Ext.Msg;
-                    Ext.Msg.alert('Atención', 'Debe seleccionar 1 elemento');
+                    Ext.Msg.alert(AlertSelMsgTitle, AlertSelMsg);
                 }
             }
         };
@@ -139,7 +138,8 @@
                 TypeName="COCASJOL.LOGIC.UsuarioLogic"
                 SelectMethod="GetUsuarios"
                 InsertMethod="InsertarUsuario"
-                DeleteMethod="EliminarUsuario">
+                UpdateMethod="ActualizarUsuario"
+                DeleteMethod="EliminarUsuario" >
                 <InsertParameters>
                     <asp:Parameter Name="USR_USERNAME"          Type="String" />
                     <asp:Parameter Name="USR_NOMBRE"            Type="String" />
@@ -176,13 +176,12 @@
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
             <Items>
-                <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Usuarios"
-                    Icon="Group" Layout="Fit">
+                <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Usuarios" Icon="Group" Layout="Fit">
                     <Items>
                         <ext:GridPanel ID="UsuariosGridP" runat="server" AutoExpandColumn="USR_NOMBRE" Height="300"
                             Title="Usuarios" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
                             <Store>
-                                <ext:Store ID="UsuariosSt" runat="server" DataSourceID="UsuariosDS" AutoSave="true">
+                                <ext:Store ID="UsuariosSt" runat="server" DataSourceID="UsuariosDS" AutoSave="true" SkipIdForNewRecords="false">
                                     <Reader>
                                         <ext:JsonReader IDProperty="USR_USERNAME">
                                             <Fields>
@@ -281,9 +280,9 @@
                                                 <ext:TextField runat="server" ID="AddNombreTxt"             DataIndex="USR_NOMBRE"          LabelAlign="Right" FieldLabel="Nombre" AnchorHorizontal="90%" AllowBlank="false"></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddApellidoTxt"           DataIndex="USR_APELLIDO"        LabelAlign="Right" FieldLabel="Apellido" AnchorHorizontal="90%" AllowBlank="false"></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddCedulaTxt"             DataIndex="USR_CEDULA"          LabelAlign="Right" FieldLabel="Cedula" AnchorHorizontal="90%" AllowBlank="false"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddEmailTxt"              DataIndex="USR_CORREO"          LabelAlign="Right" FieldLabel="Email" AnchorHorizontal="90%"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddEmailTxt"              DataIndex="USR_CORREO"          LabelAlign="Right" FieldLabel="Email" AnchorHorizontal="90%" Vtype="email" ></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddPuestoTxt"             DataIndex="USR_PUESTO"          LabelAlign="Right" FieldLabel="Puesto" AnchorHorizontal="90%"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddPasswordTxt"           DataIndex="USR_PASSWORD"        LabelAlign="Right" FieldLabel="Clave" AnchorHorizontal="90%" InputType="Password"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddPasswordTxt"           DataIndex="USR_PASSWORD"        LabelAlign="Right" FieldLabel="Clave" AnchorHorizontal="90%" InputType="Password" ></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddCreatedByTxt"          DataIndex="CREADO_POR"          LabelAlign="Right" FieldLabel="Creado por" AnchorHorizontal="90%" Hidden="true" ></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddCreatedDateTxt"        DataIndex="FECHA_CREACION"      LabelAlign="Right" FieldLabel="Fecha de Creacion" AnchorHorizontal="90%" Hidden="true" ></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddModifiedByTxt"         DataIndex="MODIFICADO_POR"      LabelAlign="Right" FieldLabel="Modificado por" AnchorHorizontal="90%" Hidden="true" ></ext:TextField>
@@ -335,7 +334,7 @@
                                                 <ext:TextField runat="server" ID="EditNombreTxt"        DataIndex="USR_NOMBRE"          LabelAlign="Right" FieldLabel="Nombre" AnchorHorizontal="90%" AllowBlank="false"></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditApellidoTxt"      DataIndex="USR_APELLIDO"        LabelAlign="Right" FieldLabel="Apellido" AnchorHorizontal="90%" AllowBlank="false"></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditCedulaTxt"        DataIndex="USR_CEDULA"          LabelAlign="Right" FieldLabel="Cedula" AnchorHorizontal="90%" AllowBlank="false"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditEmailTxt"         DataIndex="USR_CORREO"          LabelAlign="Right" FieldLabel="Email" AnchorHorizontal="90%"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditEmailTxt"         DataIndex="USR_CORREO"          LabelAlign="Right" FieldLabel="Email" AnchorHorizontal="90%" Vtype="email" ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditPuestoTxt"        DataIndex="USR_PUESTO"          LabelAlign="Right" FieldLabel="Puesto" AnchorHorizontal="90%"></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditPasswordTxt"      DataIndex="USR_PASSWORD"        LabelAlign="Right" FieldLabel="Clave" AnchorHorizontal="90%" InputType="Password"></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditCreatedByTxt"     DataIndex="CREADO_POR"          LabelAlign="Right" FieldLabel="Creado_por" AnchorHorizontal="90%" Hidden="true" ></ext:TextField>
