@@ -9,6 +9,7 @@
     <title></title>
     <script type="text/javascript">
         var Grid = null;
+        var GridStore = null;
         var AddWindow = null;
         var AddForm = null;
         var EditWindow = null;
@@ -27,6 +28,7 @@
 
             setReferences: function () {
                 Grid = UsuariosGridP;
+                GridStore = UsuariosSt;
                 AddWindow = AgregarUsuarioWin;
                 AddForm = AddUsuarioFormP
                 EditWindow = EditarUsuarioWin;
@@ -121,6 +123,11 @@
                     var msg = Ext.Msg;
                     Ext.Msg.alert(AlertSelMsgTitle, AlertSelMsg);
                 }
+            },
+
+            keyUpEvent: function (sender, e) {
+                if (e.getKey() == 13) 
+                    GridStore.reload();
             }
         };
     </script>
@@ -140,6 +147,19 @@
                 InsertMethod="InsertarUsuario"
                 UpdateMethod="ActualizarUsuario"
                 DeleteMethod="EliminarUsuario" >
+                <SelectParameters>
+                    <asp:ControlParameter Name="USR_USERNAME"       Type="String"   ControlID="f_USR_USERNAME"  PropertyName="Text" />
+                    <asp:ControlParameter Name="USR_NOMBRE"         Type="String"   ControlID="f_USR_NOMBRE"    PropertyName="Text" />
+                    <asp:ControlParameter Name="USR_APELLIDO"       Type="String"   ControlID="f_USR_APELLIDO"  PropertyName="Text" />
+                    <asp:ControlParameter Name="USR_CEDULA"         Type="Int32"    ControlID="f_USR_CEDULA"    PropertyName="Text" />
+                    <asp:ControlParameter Name="USR_CORREO"         Type="String"   ControlID="f_USR_CORREO"    PropertyName="Text" />
+                    <asp:ControlParameter Name="USR_PUESTO"         Type="String"   ControlID="f_USR_PUESTO"    PropertyName="Text" />
+                    <asp:ControlParameter Name="USR_PASSWORD"       Type="String"   ControlID="nullHdn"         PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="CREADO_POR"         Type="String"   ControlID="nullHdn"         PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_CREACION"     Type="DateTime" ControlID="nullHdn"         PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="MODIFICADO_POR"     Type="String"   ControlID="nullHdn"         PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_MODIFICACION" Type="DateTime" ControlID="nullHdn"         PropertyName="Text" DefaultValue="" />
+                </SelectParameters>
                 <InsertParameters>
                     <asp:Parameter Name="USR_USERNAME"          Type="String" />
                     <asp:Parameter Name="USR_NOMBRE"            Type="String" />
@@ -149,9 +169,9 @@
                     <asp:Parameter Name="USR_PUESTO"            Type="String" />
                     <asp:Parameter Name="USR_PASSWORD"          Type="String" />
                     <asp:Parameter Name="CREADO_POR"            Type="String" />
-                    <asp:Parameter Name="FECHA_CREACION"        Type="String" />
+                    <asp:Parameter Name="FECHA_CREACION"        Type="DateTime" />
                     <asp:Parameter Name="MODIFICADO_POR"        Type="String" />
-                    <asp:Parameter Name="FECHA_MODIFICACION"    Type="String" />
+                    <asp:Parameter Name="FECHA_MODIFICACION"    Type="DateTime" />
                 </InsertParameters>
                 <UpdateParameters>
                     <asp:Parameter Name="USR_USERNAME"          Type="String" />
@@ -162,14 +182,16 @@
                     <asp:Parameter Name="USR_PUESTO"            Type="String" />
                     <asp:Parameter Name="USR_PASSWORD"          Type="String" />
                     <asp:Parameter Name="CREADO_POR"            Type="String" />
-                    <asp:Parameter Name="FECHA_CREACION"        Type="String" />
+                    <asp:Parameter Name="FECHA_CREACION"        Type="DateTime" />
                     <asp:Parameter Name="MODIFICADO_POR"        Type="String" />
-                    <asp:Parameter Name="FECHA_MODIFICACION"    Type="String" />
+                    <asp:Parameter Name="FECHA_MODIFICACION"    Type="DateTime" />
                 </UpdateParameters>
                 <DeleteParameters>
                     <asp:Parameter Name="USR_USERNAME" Type="String" />
                 </DeleteParameters>
         </asp:ObjectDataSource>
+        <ext:Hidden ID="nullHdn" runat="server" >
+        </ext:Hidden>
 
         <ext:Hidden ID="LoggedUserHdn" runat="server" >
         </ext:Hidden>
@@ -193,9 +215,9 @@
                                                 <ext:RecordField Name="USR_PUESTO"          />
                                                 <ext:RecordField Name="USR_PASSWORD"        />
                                                 <ext:RecordField Name="CREADO_POR"          />
-                                                <ext:RecordField Name="FECHA_CREACION"      />
+                                                <ext:RecordField Name="FECHA_CREACION"      Type="Date" />
                                                 <ext:RecordField Name="MODIFICADO_POR"      />
-                                                <ext:RecordField Name="FECHA_MODIFICACION"  />
+                                                <ext:RecordField Name="FECHA_MODIFICACION"  Type="Date" />
                                             </Fields>
                                         </ext:JsonReader>
                                     </Reader>
@@ -209,7 +231,6 @@
                                     <ext:Column DataIndex="USR_CEDULA"   Header="Cedula" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="USR_CORREO"   Header="Email" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="USR_PUESTO"   Header="Puesto" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="USR_PASSWORD" Header="Password" Sortable="true"></ext:Column>
                                 </Columns>
                             </ColumnModel>
                             <SelectionModel>
@@ -237,6 +258,70 @@
                                     </Items>
                                 </ext:Toolbar>
                             </TopBar>
+                            <View>
+                                <ext:GridView ID="GridView1" runat="server">
+                                    <HeaderRows>
+                                        <ext:HeaderRow>
+                                            <Columns>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="f_USR_USERNAME" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <Listeners>
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                            </Listeners>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="f_USR_NOMBRE" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <Listeners>
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                            </Listeners>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="f_USR_APELLIDO" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <Listeners>
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                            </Listeners>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="f_USR_CEDULA" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <Listeners>
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                            </Listeners>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="f_USR_CORREO" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <Listeners>
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                            </Listeners>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="f_USR_PUESTO" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <Listeners>
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                            </Listeners>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                            </Columns>
+                                        </ext:HeaderRow>
+                                    </HeaderRows>
+                                </ext:GridView>
+                            </View>
                             <BottomBar>
                                 <ext:PagingToolbar ID="PagingToolbar1" runat="server" PageSize="20" StoreID="UsuariosSt" />
                             </BottomBar>

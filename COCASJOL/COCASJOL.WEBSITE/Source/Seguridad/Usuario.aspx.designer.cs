@@ -40,6 +40,15 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         protected global::System.Web.UI.WebControls.ObjectDataSource UsuariosDS;
         
         /// <summary>
+        /// nullHdn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden nullHdn;
+        
+        /// <summary>
         /// LoggedUserHdn control.
         /// </summary>
         /// <remarks>
@@ -128,6 +137,69 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button EliminarUsuarioBtn;
+        
+        /// <summary>
+        /// GridView1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.GridView GridView1;
+        
+        /// <summary>
+        /// f_USR_USERNAME control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField f_USR_USERNAME;
+        
+        /// <summary>
+        /// f_USR_NOMBRE control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField f_USR_NOMBRE;
+        
+        /// <summary>
+        /// f_USR_APELLIDO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField f_USR_APELLIDO;
+        
+        /// <summary>
+        /// f_USR_CEDULA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField f_USR_CEDULA;
+        
+        /// <summary>
+        /// f_USR_CORREO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField f_USR_CORREO;
+        
+        /// <summary>
+        /// f_USR_PUESTO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField f_USR_PUESTO;
         
         /// <summary>
         /// PagingToolbar1 control.

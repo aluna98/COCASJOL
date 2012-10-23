@@ -28,6 +28,70 @@ namespace COCASJOL.LOGIC
             }
         }
 
+
+
+        public IQueryable GetUsuarios
+            (string USR_USERNAME,
+            string USR_NOMBRE,
+            string USR_APELLIDO,
+            int USR_CEDULA,
+            string USR_CORREO,
+            string USR_PUESTO,
+            string USR_PASSWORD,
+            string CREADO_POR,
+            DateTime FECHA_CREACION,
+            string MODIFICADO_POR,
+            DateTime FECHA_MODIFICACION)
+        {
+            colinasEntities db = null;
+            try
+            {
+                db = new colinasEntities();
+
+                var query = from usr in db.usuarios
+                            where
+                            (string.IsNullOrEmpty(USR_USERNAME) ? true : usr.USR_USERNAME.Contains(USR_USERNAME)) &&
+                            (string.IsNullOrEmpty(USR_NOMBRE) ? true : usr.USR_NOMBRE.Contains(USR_NOMBRE)) &&
+                            (string.IsNullOrEmpty(USR_APELLIDO) ? true : usr.USR_APELLIDO.Contains(USR_APELLIDO)) &&
+                            (USR_CEDULA == 0 ? true : usr.USR_CEDULA.Equals(USR_CEDULA)) &&
+                            (string.IsNullOrEmpty(USR_CORREO) ? true : usr.USR_CORREO.Contains(USR_CORREO)) &&
+                            (string.IsNullOrEmpty(USR_PUESTO) ? true : usr.USR_PUESTO.Contains(USR_PUESTO)) &&
+                            (string.IsNullOrEmpty(USR_PASSWORD) ? true : usr.USR_PASSWORD.Contains(USR_PASSWORD)) &&
+                            (string.IsNullOrEmpty(CREADO_POR) ? true : usr.CREADO_POR.Contains(CREADO_POR)) &&
+                            (default(DateTime) == FECHA_CREACION ? true : usr.FECHA_CREACION == FECHA_CREACION) &&
+                            (string.IsNullOrEmpty(MODIFICADO_POR) ? true : usr.MODIFICADO_POR == MODIFICADO_POR) &&
+                            (default(DateTime) == FECHA_MODIFICACION ? true : usr.FECHA_MODIFICACION == FECHA_MODIFICACION)
+                            select usr;
+
+                return query;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public IQueryable GetUsuarios(string USR_USERNAME)
+        {
+            colinasEntities db = null;
+            try
+            {
+                db = new colinasEntities();
+
+                var query = from usr in db.usuarios
+                            where string.IsNullOrEmpty(USR_USERNAME) ? true : usr.USR_USERNAME.Contains(USR_USERNAME)
+                            select usr;
+
+                return query;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         #endregion
 
         #region Insert
@@ -41,9 +105,9 @@ namespace COCASJOL.LOGIC
             string USR_PUESTO,
             string USR_PASSWORD,
             string CREADO_POR,
-            string FECHA_CREACION,
+            DateTime FECHA_CREACION,
             string MODIFICADO_POR,
-            string FECHA_MODIFICACION)
+            DateTime FECHA_MODIFICACION)
         {
             colinasEntities db = null;
             try
@@ -87,9 +151,9 @@ namespace COCASJOL.LOGIC
             string USR_PUESTO,
             string USR_PASSWORD,
             string CREADO_POR,
-            string FECHA_CREACION,
+            DateTime FECHA_CREACION,
             string MODIFICADO_POR,
-            string FECHA_MODIFICACION)
+            DateTime FECHA_MODIFICACION)
         {
             colinasEntities db = null;
             try
@@ -110,11 +174,11 @@ namespace COCASJOL.LOGIC
                 user.USR_PUESTO = USR_PUESTO;
                 user.USR_PASSWORD = USR_PASSWORD;
                 user.CREADO_POR = CREADO_POR;
-                user.FECHA_CREACION = DateTime.Parse(FECHA_CREACION);
+                user.FECHA_CREACION = FECHA_CREACION;
                 user.MODIFICADO_POR = MODIFICADO_POR;
                 user.FECHA_MODIFICACION = DateTime.Now;
 
-                db.SaveChanges();
+                //db.SaveChanges();
                 db.Dispose();
             }
             catch (Exception ex)
