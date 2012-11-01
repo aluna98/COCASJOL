@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using System.Data;
+using System.Data.Objects;
 
 namespace COCASJOL.LOGIC
 {
@@ -15,12 +16,12 @@ namespace COCASJOL.LOGIC
 
         public IQueryable GetUsuarios()
         {
-            colinasEntities db = null;
             try
             {
-                db = new colinasEntities();
-
-                return db.usuarios;
+                using (var db = new colinasEntities())
+                {
+                    return db.usuarios;
+                }
             }
             catch (Exception ex)
             {
@@ -28,13 +29,11 @@ namespace COCASJOL.LOGIC
             }
         }
 
-
-
-        public IQueryable GetUsuarios
+        public List<usuario> GetUsuarios
             (string USR_USERNAME,
             string USR_NOMBRE,
             string USR_APELLIDO,
-            int USR_CEDULA,
+            string USR_CEDULA,
             string USR_CORREO,
             string USR_PUESTO,
             string USR_PASSWORD,
@@ -43,27 +42,27 @@ namespace COCASJOL.LOGIC
             string MODIFICADO_POR,
             DateTime FECHA_MODIFICACION)
         {
-            colinasEntities db = null;
             try
             {
-                db = new colinasEntities();
+                using (var db = new colinasEntities())
+                {
+                    var query = from usr in db.usuarios
+                                where
+                                (string.IsNullOrEmpty(USR_USERNAME) ? true : usr.USR_USERNAME.Contains(USR_USERNAME)) &&
+                                (string.IsNullOrEmpty(USR_NOMBRE) ? true : usr.USR_NOMBRE.Contains(USR_NOMBRE)) &&
+                                (string.IsNullOrEmpty(USR_APELLIDO) ? true : usr.USR_APELLIDO.Contains(USR_APELLIDO)) &&
+                                (string.IsNullOrEmpty(USR_CEDULA) ? true : usr.USR_CEDULA.Equals(USR_CEDULA)) &&
+                                (string.IsNullOrEmpty(USR_CORREO) ? true : usr.USR_CORREO.Contains(USR_CORREO)) &&
+                                (string.IsNullOrEmpty(USR_PUESTO) ? true : usr.USR_PUESTO.Contains(USR_PUESTO)) &&
+                                (string.IsNullOrEmpty(USR_PASSWORD) ? true : usr.USR_PASSWORD.Contains(USR_PASSWORD)) &&
+                                (string.IsNullOrEmpty(CREADO_POR) ? true : usr.CREADO_POR.Contains(CREADO_POR)) &&
+                                (default(DateTime) == FECHA_CREACION ? true : usr.FECHA_CREACION == FECHA_CREACION) &&
+                                (string.IsNullOrEmpty(MODIFICADO_POR) ? true : usr.MODIFICADO_POR == MODIFICADO_POR) &&
+                                (default(DateTime) == FECHA_MODIFICACION ? true : usr.FECHA_MODIFICACION == FECHA_MODIFICACION)
+                                select usr;
 
-                var query = from usr in db.usuarios
-                            where
-                            (string.IsNullOrEmpty(USR_USERNAME) ? true : usr.USR_USERNAME.Contains(USR_USERNAME)) &&
-                            (string.IsNullOrEmpty(USR_NOMBRE) ? true : usr.USR_NOMBRE.Contains(USR_NOMBRE)) &&
-                            (string.IsNullOrEmpty(USR_APELLIDO) ? true : usr.USR_APELLIDO.Contains(USR_APELLIDO)) &&
-                            (USR_CEDULA == 0 ? true : usr.USR_CEDULA.Equals(USR_CEDULA)) &&
-                            (string.IsNullOrEmpty(USR_CORREO) ? true : usr.USR_CORREO.Contains(USR_CORREO)) &&
-                            (string.IsNullOrEmpty(USR_PUESTO) ? true : usr.USR_PUESTO.Contains(USR_PUESTO)) &&
-                            (string.IsNullOrEmpty(USR_PASSWORD) ? true : usr.USR_PASSWORD.Contains(USR_PASSWORD)) &&
-                            (string.IsNullOrEmpty(CREADO_POR) ? true : usr.CREADO_POR.Contains(CREADO_POR)) &&
-                            (default(DateTime) == FECHA_CREACION ? true : usr.FECHA_CREACION == FECHA_CREACION) &&
-                            (string.IsNullOrEmpty(MODIFICADO_POR) ? true : usr.MODIFICADO_POR == MODIFICADO_POR) &&
-                            (default(DateTime) == FECHA_MODIFICACION ? true : usr.FECHA_MODIFICACION == FECHA_MODIFICACION)
-                            select usr;
-
-                return query;
+                    return query.ToList<usuario>();
+                }
 
             }
             catch (Exception ex)
@@ -72,19 +71,50 @@ namespace COCASJOL.LOGIC
             }
         }
 
-        public IQueryable GetUsuarios(string USR_USERNAME)
+        public List<rol> GetRoles(string USR_USERNAME, string ROL_ID, string ROL_NOMBRE, string ROL_DESCRIPCION)
         {
-            colinasEntities db = null;
             try
             {
-                db = new colinasEntities();
+                using (var db = new colinasEntities())
+                {
+                    var query = from r in db.rols
+                                from u in r.usuarios
+                                where u.USR_USERNAME == USR_USERNAME
+                                select r;
 
-                var query = from usr in db.usuarios
-                            where string.IsNullOrEmpty(USR_USERNAME) ? true : usr.USR_USERNAME.Contains(USR_USERNAME)
-                            select usr;
+                    var filter = from rls in query
+                                 where string.IsNullOrEmpty(ROL_ID) ? true : rls.ROL_ID == Int32.Parse(ROL_ID) ||
+                                 string.IsNullOrEmpty(ROL_NOMBRE) ? true : rls.ROL_NOMBRE.Contains(ROL_NOMBRE) ||
+                                 string.IsNullOrEmpty(ROL_DESCRIPCION) ? true : rls.ROL_DESCRIPCION.Contains(ROL_DESCRIPCION)
+                                 select rls;
 
-                return query;
 
+
+                    return filter.ToList<rol>();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public List<rol> GetRolesNoDeUsuario(string USR_USERNAME, string ROL_ID, string ROL_NOMBRE, string ROL_DESCRIPCION)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    var query = db.GetRolesNoDeUsuario(USR_USERNAME);
+
+                    var filter = from rls in query
+                                 where string.IsNullOrEmpty(ROL_ID) ? true : rls.ROL_ID == Int32.Parse(ROL_ID) ||
+                                 string.IsNullOrEmpty(ROL_NOMBRE) ? true : rls.ROL_NOMBRE.Contains(ROL_NOMBRE) ||
+                                 string.IsNullOrEmpty(ROL_DESCRIPCION) ? true : rls.ROL_DESCRIPCION.Contains(ROL_DESCRIPCION)
+                                 select rls;
+                    
+                    return filter.ToList<rol>();
+                }
             }
             catch (Exception ex)
             {
@@ -100,7 +130,7 @@ namespace COCASJOL.LOGIC
             (string USR_USERNAME,
             string USR_NOMBRE,
             string USR_APELLIDO,
-            int USR_CEDULA,
+            string USR_CEDULA,
             string USR_CORREO,
             string USR_PUESTO,
             string USR_PASSWORD,
@@ -108,32 +138,60 @@ namespace COCASJOL.LOGIC
             DateTime FECHA_CREACION,
             string MODIFICADO_POR,
             DateTime FECHA_MODIFICACION)
-        {
-            colinasEntities db = null;
+        {            
             try
             {
-                usuario user = new usuario();
-                user.USR_USERNAME = USR_USERNAME;
-                user.USR_NOMBRE = USR_NOMBRE;
-                user.USR_APELLIDO = USR_APELLIDO;
-                user.USR_CEDULA = USR_CEDULA;
-                user.USR_CORREO = USR_CORREO;
-                user.USR_PUESTO = USR_PUESTO;
-                user.USR_PASSWORD = USR_PASSWORD;
-                user.CREADO_POR = CREADO_POR;
-                user.FECHA_CREACION = DateTime.Today;
-                user.MODIFICADO_POR = CREADO_POR;
-                user.FECHA_MODIFICACION = user.FECHA_CREACION;
+                using (var db = new colinasEntities())
+                {
+                    usuario user = new usuario();
+                    user.USR_USERNAME = USR_USERNAME;
+                    user.USR_NOMBRE = USR_NOMBRE;
+                    user.USR_APELLIDO = USR_APELLIDO;
+                    user.USR_CEDULA = USR_CEDULA;
+                    user.USR_CORREO = USR_CORREO;
+                    user.USR_PUESTO = USR_PUESTO;
+                    user.USR_PASSWORD = USR_PASSWORD;
+                    user.CREADO_POR = CREADO_POR;
+                    user.FECHA_CREACION = DateTime.Today;
+                    user.MODIFICADO_POR = CREADO_POR;
+                    user.FECHA_MODIFICACION = user.FECHA_CREACION;
 
-                db = new colinasEntities();
-                db.usuarios.AddObject(user);
-                db.SaveChanges();
-                db.Dispose();
+                    db.usuarios.AddObject(user);
+                    db.SaveChanges();
+                }
             }
             catch (Exception ex)
             {
-                if (db != null)
-                    db.Dispose();
+                throw;
+            }
+        }
+
+        public void InsertarRoles(string USR_USERNAME, List<string> roles)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    var query = from u in db.usuarios
+                                where u.USR_USERNAME == USR_USERNAME
+                                select u;
+
+                    usuario user = query.First();
+
+                    foreach (string rolStr in roles)
+                    {
+                        int rol_id = Convert.ToInt32(rolStr);
+                        var r = db.GetObjectByKey(new EntityKey("colinasEntities.roles", "ROL_ID", rol_id));
+
+                        rol rolEntity = (rol)r;
+                        user.roles.Add(rolEntity);
+                    }
+
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
                 throw;
             }
         }
@@ -146,7 +204,7 @@ namespace COCASJOL.LOGIC
             (string USR_USERNAME,
             string USR_NOMBRE,
             string USR_APELLIDO,
-            int USR_CEDULA,
+            string USR_CEDULA,
             string USR_CORREO,
             string USR_PUESTO,
             string USR_PASSWORD,
@@ -155,36 +213,34 @@ namespace COCASJOL.LOGIC
             string MODIFICADO_POR,
             DateTime FECHA_MODIFICACION)
         {
-            colinasEntities db = null;
             try
             {
-                db = new colinasEntities();
+                using (var db = new colinasEntities())
+                {
 
-                var query = from usr in db.usuarios
-                            where usr.USR_USERNAME == USR_USERNAME
-                            select usr;
+                    var query = from usr in db.usuarios
+                                where usr.USR_USERNAME == USR_USERNAME
+                                select usr;
 
-                usuario user = query.First();
+                    usuario user = query.First();
 
-                user.USR_USERNAME = USR_USERNAME;
-                user.USR_NOMBRE = USR_NOMBRE;
-                user.USR_APELLIDO = USR_APELLIDO;
-                user.USR_CEDULA = USR_CEDULA;
-                user.USR_CORREO = USR_CORREO;
-                user.USR_PUESTO = USR_PUESTO;
-                user.USR_PASSWORD = USR_PASSWORD;
-                user.CREADO_POR = CREADO_POR;
-                user.FECHA_CREACION = FECHA_CREACION;
-                user.MODIFICADO_POR = MODIFICADO_POR;
-                user.FECHA_MODIFICACION = DateTime.Now;
+                    user.USR_USERNAME = USR_USERNAME;
+                    user.USR_NOMBRE = USR_NOMBRE;
+                    user.USR_APELLIDO = USR_APELLIDO;
+                    user.USR_CEDULA = USR_CEDULA;
+                    user.USR_CORREO = USR_CORREO;
+                    user.USR_PUESTO = USR_PUESTO;
+                    user.USR_PASSWORD = USR_PASSWORD;
+                    user.CREADO_POR = CREADO_POR;
+                    user.FECHA_CREACION = FECHA_CREACION;
+                    user.MODIFICADO_POR = MODIFICADO_POR;
+                    user.FECHA_MODIFICACION = DateTime.Now;
 
-                //db.SaveChanges();
-                db.Dispose();
+                    db.SaveChanges();
+                }
             }
             catch (Exception ex)
             {
-                if (db != null)
-                    db.Dispose();
                 throw;
             }
         }
@@ -195,26 +251,54 @@ namespace COCASJOL.LOGIC
 
         public void EliminarUsuario(string USR_USERNAME)
         {
-            colinasEntities db = null;
             try
             {
-                db = new colinasEntities();
+                using (var db = new colinasEntities())
+                {
 
-                var query = from usr in db.usuarios
-                            where usr.USR_USERNAME == USR_USERNAME
-                            select usr;
+                    var query = from usr in db.usuarios
+                                where usr.USR_USERNAME == USR_USERNAME
+                                select usr;
 
-                usuario user = query.First();
+                    usuario user = query.First();
 
-                db.DeleteObject(user);
+                    db.DeleteObject(user);
 
-                db.SaveChanges();
-                db.Dispose();
+                    db.SaveChanges();
+                }
             }
             catch (Exception ex)
             {
-                if (db != null)
-                    db.Dispose();
+                throw;
+            }
+        }
+
+        public void EliminarRoles(string USR_USERNAME, List<string> roles)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    var query = from u in db.usuarios
+                                where u.USR_USERNAME == USR_USERNAME
+                                select u;
+
+                    usuario user = query.First();
+
+                    foreach(string rolStr in roles)
+                    {
+                        int rol_id = Convert.ToInt32(rolStr);
+                        var r = db.GetObjectByKey(new EntityKey("colinasEntities.roles", "ROL_ID", rol_id));
+
+                        rol rolEntity = (rol)r;
+                        user.roles.Remove(rolEntity);
+                    }
+
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
                 throw;
             }
         }
