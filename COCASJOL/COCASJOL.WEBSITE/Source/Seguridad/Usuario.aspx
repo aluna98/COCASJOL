@@ -43,7 +43,20 @@
 
                 Grid.insertRecord(0, fields, false);
                 AddForm.getForm().reset();
-            },            
+            },
+
+            insertRol: function () {
+                if (RolesNoDeUsuarioGridP.getSelectionModel().hasSelection()) {
+                    Ext.Msg.confirm('Agregar Roles', 'Seguro desea agregar estos roles?', function (btn, text) {
+                        if (btn == 'yes') {
+                            Ext.net.DirectMethods.AddRolesAddRolBtn_Click({ success: function () { RolesDeUsuarioSt.reload(); RolesNoDeUsuarioSt.reload(); Ext.Msg.alert('Agregar Roles', 'Roles agregado exitosamente.'); } }, { eventMask: { showMask: true, target: 'customtarget', customTarget: RolesNoDeUsuarioGridP} }, { failure: function () { Ext.Msg.alert('Agregar Roles', 'Error al agregar roles.'); } });
+                        }
+                    });
+                } else {
+                    var msg = Ext.Msg;
+                    Ext.Msg.alert(AlertSelMsgTitle, AlertSelMsg);
+                }
+            },
 
             getIndex: function () {
                 return this._index;
@@ -124,11 +137,36 @@
                 }
             },
 
+            removeRol: function () {
+                if (RolesDeUsuarioGridP.getSelectionModel().hasSelection()) {
+                    Ext.Msg.confirm('Eliminar Roles', 'Seguro desea eliminar estos roles?', function (btn, text) {
+                        if (btn == 'yes') {
+                            Ext.net.DirectMethods.EditUsuarioDeleteRolBtn_Click({ success: function () { RolesDeUsuarioSt.reload(); Ext.Msg.alert('Eliminar Roles', 'Roles eliminados exitosamente.'); } }, { eventMask: { showMask: true, target: 'customtarget', customTarget: RolesDeUsuarioGridP} }, { failure: function () { Ext.Msg.alert('Eliminar Roles', 'Error al eliminar roles.'); } });
+                        }
+                    });
+                } else {
+                    var msg = Ext.Msg;
+                    Ext.Msg.alert(AlertSelMsgTitle, AlertSelMsg);
+                }
+            },
+
             keyUpEvent: function (sender, e) {
                 if (e.getKey() == 13)
                     GridStore.reload();
             }
         };
+
+        var HideButtons = function () {
+            EditPreviousBtn.hide();
+            EditNextBtn.hide();
+            EditGuardarBtn.hide();
+        }
+
+        var ShowButtons = function () {
+            EditPreviousBtn.show();
+            EditNextBtn.show();
+            EditGuardarBtn.show();
+        }
     </script>
 </head>
 <body>
@@ -251,7 +289,7 @@
                                         </ext:Button>
                                         <ext:Button ID="EliminarUsuarioBtn" runat="server" Text="Eliminar" Icon="UserDelete">
                                             <Listeners>
-                                                <Click Handler="PageX.remove()" />
+                                                <Click Handler="PageX.remove();" />
                                             </Listeners>
                                         </ext:Button>
                                         <ext:ToolbarFill />
@@ -328,7 +366,7 @@
                             <LoadMask ShowMask="true" />
                             <SaveMask ShowMask="true" />
                             <Listeners>
-                                <RowDblClick Handler="PageX.edit()" />
+                                <RowDblClick Handler="PageX.edit();" />
                             </Listeners>
                         </ext:GridPanel>
                     </Items>
@@ -361,17 +399,17 @@
                                     <Items>
                                         <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                             <Items>
-                                                <ext:TextField runat="server" ID="AddUsernameTxt"           DataIndex="USR_USERNAME"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre de Usuario" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddNombreTxt"             DataIndex="USR_NOMBRE"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddApellidoTxt"           DataIndex="USR_APELLIDO"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Apellido" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddCedulaTxt"             DataIndex="USR_CEDULA"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cedula" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddEmailTxt"              DataIndex="USR_CORREO"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Email" Vtype="email" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddPuestoTxt"             DataIndex="USR_PUESTO"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Puesto" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddPasswordTxt"           DataIndex="USR_PASSWORD"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Clave" InputType="Password" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddCreatedByTxt"          DataIndex="CREADO_POR"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado por" Hidden="true" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddCreatedDateTxt"        DataIndex="FECHA_CREACION"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddModifiedByTxt"         DataIndex="MODIFICADO_POR"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddModificationDateTxt"   DataIndex="FECHA_MODIFICACION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Modificacion" Hidden="true" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddUsernameTxt"         DataIndex="USR_USERNAME"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre de Usuario" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddNombreTxt"           DataIndex="USR_NOMBRE"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddApellidoTxt"         DataIndex="USR_APELLIDO"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Apellido" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddCedulaTxt"           DataIndex="USR_CEDULA"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cedula" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddEmailTxt"            DataIndex="USR_CORREO"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Email" Vtype="email" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddPuestoTxt"           DataIndex="USR_PUESTO"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Puesto" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddPasswordTxt"         DataIndex="USR_PASSWORD"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Clave" InputType="Password" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddCreatedByTxt"        DataIndex="CREADO_POR"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado por" Hidden="true" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddCreatedDateTxt"      DataIndex="FECHA_CREACION"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddModifiedByTxt"       DataIndex="MODIFICADO_POR"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddModificationDateTxt" DataIndex="FECHA_MODIFICACION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Modificacion" Hidden="true" ></ext:TextField>
                                             </Items>
                                         </ext:Panel>
                                     </Items>
@@ -412,26 +450,33 @@
                             <Items>
                                 <ext:Panel ID="Panel12" runat="server" Title="Información" Layout="AnchorLayout" AutoHeight="True"
                                     Resizable="false">
+                                    <Listeners>
+                                        <Activate Handler="ShowButtons();" />
+                                    </Listeners>
                                     <Items>
                                         <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                             <Items>
-                                                <ext:TextField runat="server" ID="EditUsernameTxt"      DataIndex="USR_USERNAME"        LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre de Usuario" AllowBlank="false" ReadOnly="true"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditNombreTxt"        DataIndex="USR_NOMBRE"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditApellidoTxt"      DataIndex="USR_APELLIDO"        LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Apellido" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditCedulaTxt"        DataIndex="USR_CEDULA"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cedula" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditEmailTxt"         DataIndex="USR_CORREO"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Email" Vtype="email" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditPuestoTxt"        DataIndex="USR_PUESTO"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Puesto" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditPasswordTxt"      DataIndex="USR_PASSWORD"        LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Clave" InputType="Password" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditCreatedByTxt"     DataIndex="CREADO_POR"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditCreationDateTxt"  DataIndex="FECHA_CREACION"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditModifiedByTxt"    DataIndex="MODIFICADO_POR"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditModificationDate" DataIndex="FECHA_MODIFICACION"  LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Modificacion" Hidden="true" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditUsernameTxt"      DataIndex="USR_USERNAME"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre de Usuario" AllowBlank="false" ReadOnly="true"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditNombreTxt"        DataIndex="USR_NOMBRE"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditApellidoTxt"      DataIndex="USR_APELLIDO"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Apellido" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditCedulaTxt"        DataIndex="USR_CEDULA"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cedula" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditEmailTxt"         DataIndex="USR_CORREO"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Email" Vtype="email" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditPuestoTxt"        DataIndex="USR_PUESTO"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Puesto" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditPasswordTxt"      DataIndex="USR_PASSWORD"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Clave" InputType="Password" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditCreatedByTxt"     DataIndex="CREADO_POR"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditCreationDateTxt"  DataIndex="FECHA_CREACION"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditModifiedByTxt"    DataIndex="MODIFICADO_POR"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditModificationDate" DataIndex="FECHA_MODIFICACION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Modificacion" Hidden="true" ></ext:TextField>
                                             </Items>
                                         </ext:Panel>
                                     </Items>
                                 </ext:Panel>
                                 <ext:Panel ID="Panel14" runat="server" Title="Roles" Layout="AnchorLayout" AutoHeight="True"
                                     Resizable="false">
+                                    <Listeners>
+                                        <Activate Handler="HideButtons(); Ext.getCmp('RolesDeUsuarioGridP').getSelectionModel().clearSelections();" />
+                                        <Deactivate Handler="#{RolesDeUsuarioSt}.removeAll();" />
+                                    </Listeners>
                                     <Items>
                                         <ext:Panel ID="Panel16" runat="server" Frame="false" Padding="5" Layout="AnchorLayout"
                                             Border="false">
@@ -513,11 +558,14 @@
                                                                     </Listeners>
                                                                 </ext:Button>
                                                                 <ext:Button ID="EditUsuarioDeleteRolBtn" runat="server" Text="Eliminar" Icon="CogDelete">
-                                                                    <DirectEvents>
+                                                                    <%--<DirectEvents>
                                                                         <Click OnEvent="EditUsuarioDeleteRolBtn_Click">
                                                                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{RolesDeUsuarioGridP}" />
                                                                         </Click>
-                                                                    </DirectEvents>
+                                                                    </DirectEvents>--%>
+                                                                    <Listeners>
+                                                                        <Click Handler="PageX.removeRol();" />
+                                                                    </Listeners>
                                                                 </ext:Button>
                                                             </Items>
                                                         </ext:Toolbar>
@@ -560,8 +608,7 @@
             Width="400" Layout="FormLayout" AutoHeight="True" Resizable="false" Shadow="None"
             X="30" Y="70" Modal="true">
             <Listeners>
-                <Show Handler="Ext.getCmp('RolesNoDeUsuarioGridP').getSelectionModel().clearSelections()" />
-                <Hide Handler="#{RolesDeUsuarioSt}.reload()" />
+                <Show Handler="Ext.getCmp('RolesNoDeUsuarioGridP').getSelectionModel().clearSelections();" />
             </Listeners>
             <Items>
                 <ext:FormPanel ID="FormPanel1" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right">
@@ -638,11 +685,9 @@
                                         <ext:Toolbar ID="Toolbar3" runat="server">
                                             <Items>
                                                 <ext:Button ID="AddRolesAddRolBtn" runat="server" Text="Agregar" Icon="CogAdd">
-                                                    <DirectEvents>
-                                                        <Click OnEvent="AddRolesAddRolBtn_Click">
-                                                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{RolesNoDeUsuarioGridP}" />
-                                                        </Click>
-                                                    </DirectEvents>
+                                                    <Listeners>
+                                                        <Click Handler="PageX.insertRol();" />
+                                                    </Listeners>
                                                 </ext:Button>
                                             </Items>
                                         </ext:Toolbar>

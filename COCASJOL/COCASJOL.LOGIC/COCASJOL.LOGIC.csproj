@@ -48,7 +48,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Colinas.edmx</DependentUpon>
     </Compile>
+    <Compile Include="PrivilegioLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RolLogic.cs" />
     <Compile Include="UsuarioLogic.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -350,7 +350,7 @@ namespace COCASJOL.LOGIC
         /// No Metadata Documentation available.
         /// </summary>
         /// <param name="nROL_ID">No Metadata Documentation available.</param>
-        public ObjectResult<rol> GetPrivilegiosNoDeRol(Nullable<global::System.Int32> nROL_ID)
+        public ObjectResult<privilegio> GetPrivilegiosNoDeRol(Nullable<global::System.Int32> nROL_ID)
         {
             ObjectParameter nROL_IDParameter;
             if (nROL_ID.HasValue)
@@ -362,14 +362,14 @@ namespace COCASJOL.LOGIC
                 nROL_IDParameter = new ObjectParameter("nROL_ID", typeof(global::System.Int32));
             }
     
-            return base.ExecuteFunction<rol>("GetPrivilegiosNoDeRol", nROL_IDParameter);
+            return base.ExecuteFunction<privilegio>("GetPrivilegiosNoDeRol", nROL_IDParameter);
         }
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         /// <param name="mergeOption"></param>
         /// <param name="nROL_ID">No Metadata Documentation available.</param>
-        public ObjectResult<rol> GetPrivilegiosNoDeRol(Nullable<global::System.Int32> nROL_ID, MergeOption mergeOption)
+        public ObjectResult<privilegio> GetPrivilegiosNoDeRol(Nullable<global::System.Int32> nROL_ID, MergeOption mergeOption)
         {
             ObjectParameter nROL_IDParameter;
             if (nROL_ID.HasValue)
@@ -381,7 +381,7 @@ namespace COCASJOL.LOGIC
                 nROL_IDParameter = new ObjectParameter("nROL_ID", typeof(global::System.Int32));
             }
     
-            return base.ExecuteFunction<rol>("GetPrivilegiosNoDeRol", mergeOption, nROL_IDParameter);
+            return base.ExecuteFunction<privilegio>("GetPrivilegiosNoDeRol", mergeOption, nROL_IDParameter);
         }
     
         /// <summary>

@@ -5,10 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-using Ext.Net;
-
 using System.Data;
 using System.Data.Objects;
+using Ext.Net;
 using COCASJOL.LOGIC;
 
 namespace COCASJOL.WEBSITE.Source.Seguridad
@@ -28,6 +27,12 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
             }
         }
 
+        protected void RolesDeUsuarioDS_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        {
+            if (!this.IsPostBack)
+                e.Cancel = true;
+        }
+
         #region Roles
 
         protected void RolesDeUsuarioSt_Refresh(object sender, StoreRefreshDataEventArgs e)
@@ -35,27 +40,23 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
             string user = this.EditUsernameTxt.Text;
 
             UsuarioLogic usuariologic = new UsuarioLogic();
-            this.RolesDeUsuarioSt.DataSource = usuariologic.GetRoles(user, this.f_ROL_ID.Text, this.f_ROL_NOMBRE.Text, this.f_ROL_DESCRIPCION.Text);
+            int rol_id = string.IsNullOrEmpty(this.f_ROL_ID.Text) ? 0 : Convert.ToInt32(this.f_ROL_ID.Text);
+            this.RolesDeUsuarioSt.DataSource = usuariologic.GetRoles(user, rol_id, this.f_ROL_NOMBRE.Text, this.f_ROL_DESCRIPCION.Text);
             this.RolesDeUsuarioSt.DataBind();
         }
 
-        protected void RolesDeUsuarioDS_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
-        {
-            if (!this.IsPostBack)
-                e.Cancel = true;
-        }
-
-        protected void EditUsuarioDeleteRolBtn_Click(object sender, DirectEventArgs e)
+        [DirectMethod]
+        public void EditUsuarioDeleteRolBtn_Click()
         {
             UsuarioLogic usuariologica = new UsuarioLogic();
 
             string user = this.EditUsernameTxt.Text;
 
-            List<string> roles = new List<string>();
+            List<int> roles = new List<int>();
 
             foreach (SelectedRow row in this.RolesDeUsuarioSelectionM.SelectedRows)
             {
-                roles.Add(row.RecordID);
+                roles.Add(Convert.ToInt32(row.RecordID));
             }
 
             usuariologica.EliminarRoles(user, roles);
@@ -68,23 +69,24 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
             string user = this.EditUsernameTxt.Text;
 
             UsuarioLogic usuariologica = new UsuarioLogic();
-            this.RolesNoDeUsuarioSt.DataSource = usuariologica.GetRolesNoDeUsuario(user, this.f2_ROL_ID.Text, this.f2_ROL_NOMBRE.Text, this.f2_ROL_DESCRIPCION.Text);
+            int rol_id = string.IsNullOrEmpty(this.f2_ROL_ID.Text) ? 0 : Convert.ToInt32(this.f2_ROL_ID.Text);
+            this.RolesNoDeUsuarioSt.DataSource = usuariologica.GetRolesNoDeUsuario(user, rol_id, this.f2_ROL_NOMBRE.Text, this.f2_ROL_DESCRIPCION.Text);
             this.RolesNoDeUsuarioSt.DataBind();
         }
 
-        protected void AddRolesAddRolBtn_Click(object sender, DirectEventArgs e)
+        [DirectMethod]
+        public void AddRolesAddRolBtn_Click()
         {
-            UsuarioLogic usuariologica = new UsuarioLogic();
-
             string user = this.EditUsernameTxt.Text;
 
-            List<string> roles = new List<string>();
+            List<int> roles = new List<int>();
 
             foreach (SelectedRow row in this.RolesNoDeUsuarioSelectionM.SelectedRows)
             {
-                roles.Add(row.RecordID);
+                roles.Add(Convert.ToInt32(row.RecordID));
             }
 
+            UsuarioLogic usuariologica = new UsuarioLogic();
             usuariologica.InsertarRoles(user, roles);
 
             this.RolesNoDeUsuarioSelectionM.ClearSelections();

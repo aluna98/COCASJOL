@@ -59,6 +59,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Source\Seguridad\Privilegio.aspx" />
+    <Content Include="Source\Seguridad\Rol.aspx" />
     <Content Include="Source\Seguridad\Usuario.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -75,6 +77,20 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Source\Seguridad\Privilegio.aspx.cs">
+      <DependentUpon>Privilegio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Seguridad\Privilegio.aspx.designer.cs">
+      <DependentUpon>Privilegio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Seguridad\Rol.aspx.cs">
+      <DependentUpon>Rol.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Seguridad\Rol.aspx.designer.cs">
+      <DependentUpon>Rol.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Source\Seguridad\Usuario.aspx.cs">
       <DependentUpon>Usuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

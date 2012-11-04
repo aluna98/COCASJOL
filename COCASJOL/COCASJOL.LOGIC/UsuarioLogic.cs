@@ -57,7 +57,7 @@ namespace COCASJOL.LOGIC
                                 (string.IsNullOrEmpty(USR_PASSWORD) ? true : usr.USR_PASSWORD.Contains(USR_PASSWORD)) &&
                                 (string.IsNullOrEmpty(CREADO_POR) ? true : usr.CREADO_POR.Contains(CREADO_POR)) &&
                                 (default(DateTime) == FECHA_CREACION ? true : usr.FECHA_CREACION == FECHA_CREACION) &&
-                                (string.IsNullOrEmpty(MODIFICADO_POR) ? true : usr.MODIFICADO_POR == MODIFICADO_POR) &&
+                                (string.IsNullOrEmpty(MODIFICADO_POR) ? true : usr.MODIFICADO_POR.Contains(MODIFICADO_POR)) &&
                                 (default(DateTime) == FECHA_MODIFICACION ? true : usr.FECHA_MODIFICACION == FECHA_MODIFICACION)
                                 select usr;
 
@@ -71,7 +71,7 @@ namespace COCASJOL.LOGIC
             }
         }
 
-        public List<rol> GetRoles(string USR_USERNAME, string ROL_ID, string ROL_NOMBRE, string ROL_DESCRIPCION)
+        public List<rol> GetRoles(string USR_USERNAME, int ROL_ID, string ROL_NOMBRE, string ROL_DESCRIPCION)
         {
             try
             {
@@ -83,12 +83,11 @@ namespace COCASJOL.LOGIC
                                 select r;
 
                     var filter = from rls in query
-                                 where string.IsNullOrEmpty(ROL_ID) ? true : rls.ROL_ID == Int32.Parse(ROL_ID) ||
-                                 string.IsNullOrEmpty(ROL_NOMBRE) ? true : rls.ROL_NOMBRE.Contains(ROL_NOMBRE) ||
-                                 string.IsNullOrEmpty(ROL_DESCRIPCION) ? true : rls.ROL_DESCRIPCION.Contains(ROL_DESCRIPCION)
+                                 where
+                                 (ROL_ID.Equals(0) ? true : rls.ROL_ID.Equals(ROL_ID)) &&
+                                 (string.IsNullOrEmpty(ROL_NOMBRE) ? true : rls.ROL_NOMBRE.Contains(ROL_NOMBRE)) &&
+                                 (string.IsNullOrEmpty(ROL_DESCRIPCION) ? true : rls.ROL_DESCRIPCION.Contains(ROL_DESCRIPCION))
                                  select rls;
-
-
 
                     return filter.ToList<rol>();
                 }
@@ -99,7 +98,7 @@ namespace COCASJOL.LOGIC
             }
         }
 
-        public List<rol> GetRolesNoDeUsuario(string USR_USERNAME, string ROL_ID, string ROL_NOMBRE, string ROL_DESCRIPCION)
+        public List<rol> GetRolesNoDeUsuario(string USR_USERNAME, int ROL_ID, string ROL_NOMBRE, string ROL_DESCRIPCION)
         {
             try
             {
@@ -108,9 +107,10 @@ namespace COCASJOL.LOGIC
                     var query = db.GetRolesNoDeUsuario(USR_USERNAME);
 
                     var filter = from rls in query
-                                 where string.IsNullOrEmpty(ROL_ID) ? true : rls.ROL_ID == Int32.Parse(ROL_ID) ||
-                                 string.IsNullOrEmpty(ROL_NOMBRE) ? true : rls.ROL_NOMBRE.Contains(ROL_NOMBRE) ||
-                                 string.IsNullOrEmpty(ROL_DESCRIPCION) ? true : rls.ROL_DESCRIPCION.Contains(ROL_DESCRIPCION)
+                                 where
+                                 (ROL_ID.Equals(0) ? true : rls.ROL_ID.Equals(ROL_ID)) &&
+                                 (string.IsNullOrEmpty(ROL_NOMBRE) ? true : rls.ROL_NOMBRE.Contains(ROL_NOMBRE)) &&
+                                 (string.IsNullOrEmpty(ROL_DESCRIPCION) ? true : rls.ROL_DESCRIPCION.Contains(ROL_DESCRIPCION))
                                  select rls;
                     
                     return filter.ToList<rol>();
@@ -166,7 +166,7 @@ namespace COCASJOL.LOGIC
             }
         }
 
-        public void InsertarRoles(string USR_USERNAME, List<string> roles)
+        public void InsertarRoles(string USR_USERNAME, List<int> roles)
         {
             try
             {
@@ -178,10 +178,9 @@ namespace COCASJOL.LOGIC
 
                     usuario user = query.First();
 
-                    foreach (string rolStr in roles)
+                    foreach (int rol_id in roles)
                     {
-                        int rol_id = Convert.ToInt32(rolStr);
-                        var r = db.GetObjectByKey(new EntityKey("colinasEntities.roles", "ROL_ID", rol_id));
+                        var r = db.GetObjectByKey(new EntityKey("colinasEntities.rols", "ROL_ID", rol_id));
 
                         rol rolEntity = (rol)r;
                         user.roles.Add(rolEntity);
@@ -273,7 +272,7 @@ namespace COCASJOL.LOGIC
             }
         }
 
-        public void EliminarRoles(string USR_USERNAME, List<string> roles)
+        public void EliminarRoles(string USR_USERNAME, List<int> roles)
         {
             try
             {
@@ -285,10 +284,9 @@ namespace COCASJOL.LOGIC
 
                     usuario user = query.First();
 
-                    foreach(string rolStr in roles)
+                    foreach(int rol_id in roles)
                     {
-                        int rol_id = Convert.ToInt32(rolStr);
-                        var r = db.GetObjectByKey(new EntityKey("colinasEntities.roles", "ROL_ID", rol_id));
+                        var r = db.GetObjectByKey(new EntityKey("colinasEntities.rols", "ROL_ID", rol_id));
 
                         rol rolEntity = (rol)r;
                         user.roles.Remove(rolEntity);
