@@ -8,7 +8,6 @@
         <EntityContainer Name="colinasModelStoreContainer">
           <EntitySet Name="beneficiario_x_socio" EntityType="colinasModel.Store.beneficiario_x_socio" Schema="colinas" store:Type="Tables" />
           <EntitySet Name="codigo" EntityType="colinasModel.Store.codigo" Schema="colinas" store:Type="Tables" />
-          <EntitySet Name="insumos" EntityType="colinasModel.Store.insumos" Schema="colinas" store:Type="Tables" />
           <EntitySet Name="inventario" EntityType="colinasModel.Store.inventario" Schema="colinas" store:Type="Tables" />
           <EntitySet Name="nota_de_peso" EntityType="colinasModel.Store.nota_de_peso" Schema="colinas" store:Type="Tables" />
           <EntitySet Name="nota_detalle" EntityType="colinasModel.Store.nota_detalle" Schema="colinas" store:Type="Tables" />
@@ -76,14 +75,6 @@
           </Key>
           <Property Name="CODIGO_LETRA" Nullable="false" MaxLength="1" Type="char" />
           <Property Name="CODIGO_NUMERO" Nullable="false" Type="int" />
-        </EntityType>
-        <EntityType Name="insumos">
-          <Key>
-            <PropertyRef Name="INSUMO_ID" />
-          </Key>
-          <Property Name="INSUMO_ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="INSUMO_NOMBRE" Nullable="false" MaxLength="45" Type="varchar" />
-          <Property Name="INSUMO_DESCRIPCION" MaxLength="100" Type="varchar" />
         </EntityType>
         <EntityType Name="inventario">
           <Key>
@@ -406,7 +397,6 @@
           <FunctionImport Name="GetRolesNoDeUsuario" EntitySet="rols" ReturnType="Collection(colinasModel.rol)">
           <Parameter Name="strUSR_USERNAME" Type="String" Mode="In" />
           </FunctionImport>
-          <EntitySet Name="insumos" EntityType="colinasModel.insumo" />
         </EntityContainer>
         <EntityType Name="beneficiario_x_socio">
           <Key>
@@ -643,14 +633,6 @@
           <End Role="roles" Type="colinasModel.rol" Multiplicity="*" />
           <End Role="usuarios" Type="colinasModel.usuario" Multiplicity="*" />
         </Association>
-        <EntityType Name="insumo">
-          <Key>
-            <PropertyRef Name="INSUMO_ID" />
-          </Key>
-          <Property Name="INSUMO_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
-          <Property Name="INSUMO_NOMBRE" Nullable="false" Type="String" />
-          <Property Name="INSUMO_DESCRIPCION" Type="String" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -786,15 +768,6 @@
           </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="GetPrivilegiosNoDeRol" FunctionName="colinasModel.Store.GetPrivilegiosNoDeRol" />
           <FunctionImportMapping FunctionImportName="GetRolesNoDeUsuario" FunctionName="colinasModel.Store.GetRolesNoDeUsuario" />
-          <EntitySetMapping Name="insumos">
-            <EntityTypeMapping TypeName="colinasModel.insumo">
-              <MappingFragment StoreEntitySet="insumos">
-                <ScalarProperty Name="INSUMO_DESCRIPCION" ColumnName="INSUMO_DESCRIPCION" />
-                <ScalarProperty Name="INSUMO_NOMBRE" ColumnName="INSUMO_NOMBRE" />
-                <ScalarProperty Name="INSUMO_ID" ColumnName="INSUMO_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -858,7 +831,6 @@
           <ConnectorPoint PointX="9.5" PointY="2.62474609375" />
           <ConnectorPoint PointX="10.25" PointY="2.62474609375" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="colinasModel.insumo" PointX="5.375" PointY="8.75" Width="1.5" Height="1.5956835937500031" />
       </Diagram>
     </Diagrams>
   </Designer>

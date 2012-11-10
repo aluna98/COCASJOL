@@ -252,22 +252,6 @@ namespace COCASJOL.LOGIC
             }
         }
         private ObjectSet<usuario> _usuarios;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<insumo> insumos
-        {
-            get
-            {
-                if ((_insumos == null))
-                {
-                    _insumos = base.CreateObjectSet<insumo>("insumos");
-                }
-                return _insumos;
-            }
-        }
-        private ObjectSet<insumo> _insumos;
 
         #endregion
 
@@ -359,14 +343,6 @@ namespace COCASJOL.LOGIC
         public void AddTousuarios(usuario usuario)
         {
             base.AddObject("usuarios", usuario);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the insumos EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToinsumos(insumo insumo)
-        {
-            base.AddObject("insumos", insumo);
         }
 
         #endregion
@@ -786,113 +762,6 @@ namespace COCASJOL.LOGIC
         private global::System.Int32 _CODIGO_NUMERO;
         partial void OnCODIGO_NUMEROChanging(global::System.Int32 value);
         partial void OnCODIGO_NUMEROChanged();
-
-        #endregion
-
-    
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="colinasModel", Name="insumo")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class insumo : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new insumo object.
-        /// </summary>
-        /// <param name="iNSUMO_ID">Initial value of the INSUMO_ID property.</param>
-        /// <param name="iNSUMO_NOMBRE">Initial value of the INSUMO_NOMBRE property.</param>
-        public static insumo Createinsumo(global::System.Int32 iNSUMO_ID, global::System.String iNSUMO_NOMBRE)
-        {
-            insumo insumo = new insumo();
-            insumo.INSUMO_ID = iNSUMO_ID;
-            insumo.INSUMO_NOMBRE = iNSUMO_NOMBRE;
-            return insumo;
-        }
-
-        #endregion
-
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 INSUMO_ID
-        {
-            get
-            {
-                return _INSUMO_ID;
-            }
-            set
-            {
-                if (_INSUMO_ID != value)
-                {
-                    OnINSUMO_IDChanging(value);
-                    ReportPropertyChanging("INSUMO_ID");
-                    _INSUMO_ID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("INSUMO_ID");
-                    OnINSUMO_IDChanged();
-                }
-            }
-        }
-        private global::System.Int32 _INSUMO_ID;
-        partial void OnINSUMO_IDChanging(global::System.Int32 value);
-        partial void OnINSUMO_IDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String INSUMO_NOMBRE
-        {
-            get
-            {
-                return _INSUMO_NOMBRE;
-            }
-            set
-            {
-                OnINSUMO_NOMBREChanging(value);
-                ReportPropertyChanging("INSUMO_NOMBRE");
-                _INSUMO_NOMBRE = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("INSUMO_NOMBRE");
-                OnINSUMO_NOMBREChanged();
-            }
-        }
-        private global::System.String _INSUMO_NOMBRE;
-        partial void OnINSUMO_NOMBREChanging(global::System.String value);
-        partial void OnINSUMO_NOMBREChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String INSUMO_DESCRIPCION
-        {
-            get
-            {
-                return _INSUMO_DESCRIPCION;
-            }
-            set
-            {
-                OnINSUMO_DESCRIPCIONChanging(value);
-                ReportPropertyChanging("INSUMO_DESCRIPCION");
-                _INSUMO_DESCRIPCION = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("INSUMO_DESCRIPCION");
-                OnINSUMO_DESCRIPCIONChanged();
-            }
-        }
-        private global::System.String _INSUMO_DESCRIPCION;
-        partial void OnINSUMO_DESCRIPCIONChanging(global::System.String value);
-        partial void OnINSUMO_DESCRIPCIONChanged();
 
         #endregion
 
