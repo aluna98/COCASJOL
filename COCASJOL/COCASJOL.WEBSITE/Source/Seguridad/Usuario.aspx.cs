@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.Objects;
 using Ext.Net;
-using COCASJOL.LOGIC;
+using COCASJOL.LOGIC.Security;
 
 namespace COCASJOL.WEBSITE.Source.Seguridad
 {

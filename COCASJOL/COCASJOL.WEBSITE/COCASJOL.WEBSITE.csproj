@@ -35,7 +35,7 @@
   <ItemGroup>
     <Reference Include="Ext.Net, Version=1.5.0.0, Culture=neutral, PublicKeyToken=2e12ce3d0176cd87, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Ext.NET.Pro.1.5.0\lib\Ext.Net.dll</HintPath>
+      <HintPath>..\Dependencies\Ext.NET.Community.1.5.0\lib\Ext.Net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -58,8 +58,15 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\gear_in.png" />
+    <Content Include="Images\group.png" />
+    <Content Include="Source\Desktop.aspx" />
+    <Content Include="Source\Default.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Source\Seguridad\Privilegio.aspx" />
+    <Content Include="Images\desktop.jpg" />
+    <Content Include="Images\grid48x48.png" />
+    <Content Include="Images\vista_start_button.gif" />
+    <Content Include="Images\window48x48.png" />
     <Content Include="Source\Seguridad\Rol.aspx" />
     <Content Include="Source\Seguridad\Usuario.aspx" />
     <Content Include="Web.config">
@@ -71,19 +78,21 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="XML\Privilegios.xml" />
+    <Content Include="XML\Privilegios.xsl" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Source\Desktop.aspx.cs">
+      <DependentUpon>Desktop.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Desktop.aspx.designer.cs">
+      <DependentUpon>Desktop.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Source\Seguridad\Privilegio.aspx.cs">
-      <DependentUpon>Privilegio.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Source\Seguridad\Privilegio.aspx.designer.cs">
-      <DependentUpon>Privilegio.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Source\Seguridad\Rol.aspx.cs">
       <DependentUpon>Rol.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

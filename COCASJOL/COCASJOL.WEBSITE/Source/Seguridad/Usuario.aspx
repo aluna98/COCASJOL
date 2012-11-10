@@ -179,7 +179,7 @@
         </ext:ResourceManager>
 
         <asp:ObjectDataSource ID="UsuariosDS" runat="server"
-                TypeName="COCASJOL.LOGIC.UsuarioLogic"
+                TypeName="COCASJOL.LOGIC.Security.UsuarioLogic"
                 SelectMethod="GetUsuarios"
                 InsertMethod="InsertarUsuario"
                 UpdateMethod="ActualizarUsuario"

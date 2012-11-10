@@ -4,56 +4,57 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="colinasModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" Alias="Self" Namespace="colinasModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5">
         <EntityContainer Name="colinasModelStoreContainer">
-          <EntitySet Name="beneficiario_x_socio" EntityType="colinasModel.Store.beneficiario_x_socio" store:Type="Tables" Schema="colinas" />
-          <EntitySet Name="codigo" EntityType="colinasModel.Store.codigo" store:Type="Tables" Schema="colinas" />
-          <EntitySet Name="inventario" EntityType="colinasModel.Store.inventario" store:Type="Tables" Schema="colinas" />
-          <EntitySet Name="nota_de_peso" EntityType="colinasModel.Store.nota_de_peso" store:Type="Tables" Schema="colinas" />
-          <EntitySet Name="nota_detalle" EntityType="colinasModel.Store.nota_detalle" store:Type="Tables" Schema="colinas" />
-          <EntitySet Name="privilegios" EntityType="colinasModel.Store.privilegios" store:Type="Tables" Schema="colinas" />
-          <EntitySet Name="privilegios_x_roles" EntityType="colinasModel.Store.privilegios_x_roles" store:Type="Tables" Schema="colinas" />
-          <EntitySet Name="roles" EntityType="colinasModel.Store.roles" store:Type="Tables" Schema="colinas" />
-          <EntitySet Name="roles_x_usuarios" EntityType="colinasModel.Store.roles_x_usuarios" store:Type="Tables" Schema="colinas" />
-          <EntitySet Name="socios" EntityType="colinasModel.Store.socios" store:Type="Tables" Schema="colinas" />
-          <EntitySet Name="socios_generales" EntityType="colinasModel.Store.socios_generales" store:Type="Tables" Schema="colinas" />
-          <EntitySet Name="socios_produccion" EntityType="colinasModel.Store.socios_produccion" store:Type="Tables" Schema="colinas" />
-          <EntitySet Name="usuarios" EntityType="colinasModel.Store.usuarios" store:Type="Tables" Schema="colinas" />
+          <EntitySet Name="beneficiario_x_socio" EntityType="colinasModel.Store.beneficiario_x_socio" Schema="colinas" store:Type="Tables" />
+          <EntitySet Name="codigo" EntityType="colinasModel.Store.codigo" Schema="colinas" store:Type="Tables" />
+          <EntitySet Name="insumos" EntityType="colinasModel.Store.insumos" Schema="colinas" store:Type="Tables" />
+          <EntitySet Name="inventario" EntityType="colinasModel.Store.inventario" Schema="colinas" store:Type="Tables" />
+          <EntitySet Name="nota_de_peso" EntityType="colinasModel.Store.nota_de_peso" Schema="colinas" store:Type="Tables" />
+          <EntitySet Name="nota_detalle" EntityType="colinasModel.Store.nota_detalle" Schema="colinas" store:Type="Tables" />
+          <EntitySet Name="privilegios" EntityType="colinasModel.Store.privilegios" Schema="colinas" store:Type="Tables" />
+          <EntitySet Name="privilegios_x_roles" EntityType="colinasModel.Store.privilegios_x_roles" Schema="colinas" store:Type="Tables" />
+          <EntitySet Name="roles" EntityType="colinasModel.Store.roles" Schema="colinas" store:Type="Tables" />
+          <EntitySet Name="roles_x_usuarios" EntityType="colinasModel.Store.roles_x_usuarios" Schema="colinas" store:Type="Tables" />
+          <EntitySet Name="socios" EntityType="colinasModel.Store.socios" Schema="colinas" store:Type="Tables" />
+          <EntitySet Name="socios_generales" EntityType="colinasModel.Store.socios_generales" Schema="colinas" store:Type="Tables" />
+          <EntitySet Name="socios_produccion" EntityType="colinasModel.Store.socios_produccion" Schema="colinas" store:Type="Tables" />
+          <EntitySet Name="usuarios" EntityType="colinasModel.Store.usuarios" Schema="colinas" store:Type="Tables" />
           <AssociationSet Name="FK_BENEFICIARIO_X_SOCIO_socios" Association="colinasModel.Store.FK_BENEFICIARIO_X_SOCIO_socios">
-            <End Role="socios" EntitySet="socios" />
-            <End Role="beneficiario_x_socio" EntitySet="beneficiario_x_socio" />
+            <End EntitySet="socios" Role="socios" />
+            <End EntitySet="beneficiario_x_socio" Role="beneficiario_x_socio" />
           </AssociationSet>
           <AssociationSet Name="FK_INVENTARIO_socios" Association="colinasModel.Store.FK_INVENTARIO_socios">
-            <End Role="socios" EntitySet="socios" />
-            <End Role="inventario" EntitySet="inventario" />
+            <End EntitySet="socios" Role="socios" />
+            <End EntitySet="inventario" Role="inventario" />
           </AssociationSet>
           <AssociationSet Name="FK_NOTA_DE_PESO_socios" Association="colinasModel.Store.FK_NOTA_DE_PESO_socios">
-            <End Role="socios" EntitySet="socios" />
-            <End Role="nota_de_peso" EntitySet="nota_de_peso" />
+            <End EntitySet="socios" Role="socios" />
+            <End EntitySet="nota_de_peso" Role="nota_de_peso" />
           </AssociationSet>
           <AssociationSet Name="PRIV_ID_ROL_fk" Association="colinasModel.Store.PRIV_ID_ROL_fk">
-            <End Role="privilegios" EntitySet="privilegios" />
-            <End Role="privilegios_x_roles" EntitySet="privilegios_x_roles" />
+            <End EntitySet="privilegios" Role="privilegios" />
+            <End EntitySet="privilegios_x_roles" Role="privilegios_x_roles" />
           </AssociationSet>
           <AssociationSet Name="ROL_ID_PRIV_fk" Association="colinasModel.Store.ROL_ID_PRIV_fk">
-            <End Role="roles" EntitySet="roles" />
-            <End Role="privilegios_x_roles" EntitySet="privilegios_x_roles" />
+            <End EntitySet="roles" Role="roles" />
+            <End EntitySet="privilegios_x_roles" Role="privilegios_x_roles" />
           </AssociationSet>
           <AssociationSet Name="ROL_ID_USR_fk" Association="colinasModel.Store.ROL_ID_USR_fk">
-            <End Role="roles" EntitySet="roles" />
-            <End Role="roles_x_usuarios" EntitySet="roles_x_usuarios" />
+            <End EntitySet="roles" Role="roles" />
+            <End EntitySet="roles_x_usuarios" Role="roles_x_usuarios" />
           </AssociationSet>
           <AssociationSet Name="SOCIO_ID_FK" Association="colinasModel.Store.SOCIO_ID_FK">
-            <End Role="socios" EntitySet="socios" />
-            <End Role="socios_generales" EntitySet="socios_generales" />
+            <End EntitySet="socios" Role="socios" />
+            <End EntitySet="socios_generales" Role="socios_generales" />
           </AssociationSet>
           <AssociationSet Name="SOCIOS_ID_FK2" Association="colinasModel.Store.SOCIOS_ID_FK2">
-            <End Role="socios" EntitySet="socios" />
-            <End Role="socios_produccion" EntitySet="socios_produccion" />
+            <End EntitySet="socios" Role="socios" />
+            <End EntitySet="socios_produccion" Role="socios_produccion" />
           </AssociationSet>
           <AssociationSet Name="USR_USERNAME_ROL_fk" Association="colinasModel.Store.USR_USERNAME_ROL_fk">
-            <End Role="usuarios" EntitySet="usuarios" />
-            <End Role="roles_x_usuarios" EntitySet="roles_x_usuarios" />
+            <End EntitySet="usuarios" Role="usuarios" />
+            <End EntitySet="roles_x_usuarios" Role="roles_x_usuarios" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="beneficiario_x_socio">
@@ -61,63 +62,71 @@
             <PropertyRef Name="SOCIO_ID" />
             <PropertyRef Name="BENEFICIARIO_IDENTIFICACION" />
           </Key>
-          <Property Name="SOCIO_ID" Type="varchar" Nullable="false" MaxLength="5" />
-          <Property Name="BENEFICIARIO_IDENTIFICACION" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="BENEFICIARIO_NOMBRE" Type="varchar" Nullable="false" MaxLength="180" />
-          <Property Name="BENEFICIARIO_PARENTEZCO" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="SOCIO_ID" Nullable="false" MaxLength="5" Type="varchar" />
+          <Property Name="BENEFICIARIO_IDENTIFICACION" Nullable="false" MaxLength="20" Type="varchar" />
+          <Property Name="BENEFICIARIO_NOMBRE" Nullable="false" MaxLength="180" Type="varchar" />
+          <Property Name="BENEFICIARIO_PARENTEZCO" Nullable="false" MaxLength="50" Type="varchar" />
           <Property Name="BENEFICIARIO_NACIMIENTO" Type="date" />
-          <Property Name="BENEFICIARIO_LUGAR_NACIMIENTO" Type="varchar" MaxLength="180" />
-          <Property Name="BENEFICIARIO_PORCENTAJE" Type="decimal" Precision="3" Scale="2" />
+          <Property Name="BENEFICIARIO_LUGAR_NACIMIENTO" MaxLength="180" Type="varchar" />
+          <Property Name="BENEFICIARIO_PORCENTAJE" Precision="3" Scale="2" Type="decimal" />
         </EntityType>
         <EntityType Name="codigo">
           <Key>
             <PropertyRef Name="CODIGO_LETRA" />
           </Key>
-          <Property Name="CODIGO_LETRA" Type="char" Nullable="false" MaxLength="1" />
-          <Property Name="CODIGO_NUMERO" Type="int" Nullable="false" />
+          <Property Name="CODIGO_LETRA" Nullable="false" MaxLength="1" Type="char" />
+          <Property Name="CODIGO_NUMERO" Nullable="false" Type="int" />
+        </EntityType>
+        <EntityType Name="insumos">
+          <Key>
+            <PropertyRef Name="INSUMO_ID" />
+          </Key>
+          <Property Name="INSUMO_ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="INSUMO_NOMBRE" Nullable="false" MaxLength="45" Type="varchar" />
+          <Property Name="INSUMO_DESCRIPCION" MaxLength="100" Type="varchar" />
         </EntityType>
         <EntityType Name="inventario">
           <Key>
             <PropertyRef Name="SOCIO_ID" />
             <PropertyRef Name="INVENTARIO_TIPO" />
           </Key>
-          <Property Name="SOCIO_ID" Type="varchar" Nullable="false" MaxLength="5" />
-          <Property Name="INVENTARIO_TIPO" Type="int" Nullable="false" />
-          <Property Name="INVENTARIO_CANTIDAD" Type="decimal" Scale="4" />
+          <Property Name="SOCIO_ID" Nullable="false" MaxLength="5" Type="varchar" />
+          <Property Name="INVENTARIO_TIPO" Nullable="false" Type="int" />
+          <Property Name="INVENTARIO_CANTIDAD" Scale="4" Type="decimal" />
         </EntityType>
         <EntityType Name="nota_de_peso">
           <Key>
             <PropertyRef Name="NOTA_ID" />
           </Key>
-          <Property Name="NOTA_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NOTA_ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
           <Property Name="NOTA_FECHA" Type="date" />
-          <Property Name="SOCIO_ID" Type="varchar" Nullable="false" MaxLength="5" />
-          <Property Name="NOTA_TIPO_CAFE" Type="decimal" Nullable="false" Precision="11" />
-          <Property Name="NOTA_TOTAL_RECIBIDO" Type="decimal" Nullable="false" Precision="5" Scale="4" />
-          <Property Name="NOTA_PORCENTAJE_DESCUENTO" Type="decimal" Nullable="false" Precision="4" Scale="3" />
-          <Property Name="NOTA_PORCENTAJE_HUMEDAD" Type="decimal" Nullable="false" Precision="4" Scale="3" />
+          <Property Name="SOCIO_ID" Nullable="false" MaxLength="5" Type="varchar" />
+          <Property Name="NOTA_TIPO_CAFE" Nullable="false" Precision="11" Type="decimal" />
+          <Property Name="NOTA_TOTAL_RECIBIDO" Nullable="false" Precision="5" Scale="4" Type="decimal" />
+          <Property Name="NOTA_PORCENTAJE_DESCUENTO" Nullable="false" Precision="4" Scale="3" Type="decimal" />
+          <Property Name="NOTA_PORCENTAJE_HUMEDAD" Nullable="false" Precision="4" Scale="3" Type="decimal" />
         </EntityType>
         <EntityType Name="nota_detalle">
           <Key>
             <PropertyRef Name="DETALLE_ID" />
             <PropertyRef Name="NOTA_ID" />
           </Key>
-          <Property Name="DETALLE_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="NOTA_ID" Type="int" Nullable="false" />
+          <Property Name="DETALLE_ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="NOTA_ID" Nullable="false" Type="int" />
           <Property Name="DETALLE_CANTIDAD_SACOS" Type="int" />
-          <Property Name="DETALLE_PESO" Type="decimal" Scale="2" />
+          <Property Name="DETALLE_PESO" Scale="2" Type="decimal" />
         </EntityType>
         <EntityType Name="privilegios">
           <Key>
             <PropertyRef Name="PRIV_ID" />
           </Key>
-          <Property Name="PRIV_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="PRIV_NOMBRE" Type="varchar" Nullable="false" MaxLength="45" />
-          <Property Name="PRIV_DESCRIPCION" Type="varchar" MaxLength="100" />
-          <Property Name="PRIV_LLAVE" Type="varchar" Nullable="false" MaxLength="10" />
-          <Property Name="CREADO_POR" Type="varchar" Nullable="false" MaxLength="45" />
-          <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
-          <Property Name="MODIFICADO_POR" Type="varchar" MaxLength="45" />
+          <Property Name="PRIV_ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="PRIV_NOMBRE" Nullable="false" MaxLength="45" Type="varchar" />
+          <Property Name="PRIV_DESCRIPCION" MaxLength="100" Type="varchar" />
+          <Property Name="PRIV_LLAVE" Nullable="false" MaxLength="10" Type="varchar" />
+          <Property Name="CREADO_POR" Nullable="false" MaxLength="45" Type="varchar" />
+          <Property Name="FECHA_CREACION" Nullable="false" Type="date" />
+          <Property Name="MODIFICADO_POR" MaxLength="45" Type="varchar" />
           <Property Name="FECHA_MODIFICACION" Type="date" />
         </EntityType>
         <EntityType Name="privilegios_x_roles">
@@ -125,19 +134,19 @@
             <PropertyRef Name="PRIV_ID" />
             <PropertyRef Name="ROL_ID" />
           </Key>
-          <Property Name="PRIV_ID" Type="int" Nullable="false" />
-          <Property Name="ROL_ID" Type="int" Nullable="false" />
+          <Property Name="PRIV_ID" Nullable="false" Type="int" />
+          <Property Name="ROL_ID" Nullable="false" Type="int" />
         </EntityType>
         <EntityType Name="roles">
           <Key>
             <PropertyRef Name="ROL_ID" />
           </Key>
-          <Property Name="ROL_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="ROL_NOMBRE" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="ROL_DESCRIPCION" Type="varchar" MaxLength="100" />
-          <Property Name="CREADO_POR" Type="varchar" Nullable="false" MaxLength="45" />
-          <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
-          <Property Name="MODIFICADO_POR" Type="varchar" MaxLength="45" />
+          <Property Name="ROL_ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="ROL_NOMBRE" Nullable="false" MaxLength="20" Type="varchar" />
+          <Property Name="ROL_DESCRIPCION" MaxLength="100" Type="varchar" />
+          <Property Name="CREADO_POR" Nullable="false" MaxLength="45" Type="varchar" />
+          <Property Name="FECHA_CREACION" Nullable="false" Type="date" />
+          <Property Name="MODIFICADO_POR" MaxLength="45" Type="varchar" />
           <Property Name="FECHA_MODIFICACION" Type="date" />
         </EntityType>
         <EntityType Name="roles_x_usuarios">
@@ -145,85 +154,85 @@
             <PropertyRef Name="USR_USERNAME" />
             <PropertyRef Name="ROL_ID" />
           </Key>
-          <Property Name="USR_USERNAME" Type="varchar" Nullable="false" MaxLength="15" />
-          <Property Name="ROL_ID" Type="int" Nullable="false" />
+          <Property Name="USR_USERNAME" Nullable="false" MaxLength="15" Type="varchar" />
+          <Property Name="ROL_ID" Nullable="false" Type="int" />
         </EntityType>
         <EntityType Name="socios">
           <Key>
             <PropertyRef Name="SOCIOS_ID" />
           </Key>
-          <Property Name="SOCIOS_ID" Type="varchar" Nullable="false" MaxLength="5" />
-          <Property Name="SOCIOS_PRIMER_NOMBRE" Type="varchar" Nullable="false" MaxLength="45" />
-          <Property Name="SOCIOS_SEGUNDO_NOMBRE" Type="varchar" Nullable="false" MaxLength="45" />
-          <Property Name="SOCIOS_PRIMER_APELLIDO" Type="varchar" Nullable="false" MaxLength="45" />
-          <Property Name="SOCIOS_SEGUNDO_APELLIDO" Type="varchar" Nullable="false" MaxLength="45" />
-          <Property Name="SOCIOS_RESIDENCIA" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="SOCIOS_ESTADO_CIVIL" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="SOCIOS_LUGAR_DE_NACIMIENTO" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="SOCIOS_FECHA_DE_NACIMIENTO" Type="date" Nullable="false" />
-          <Property Name="SOCIOS_NIVEL_EDUCATIVO" Type="varchar" Nullable="false" MaxLength="45" />
-          <Property Name="SOCIOS_IDENTIDAD" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="SOCIOS_PROFESION" Type="varchar" Nullable="false" MaxLength="45" />
-          <Property Name="SOCIOS_RTN" Type="int" Nullable="false" />
-          <Property Name="SOCIOS_TELEFONO" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="SOCIOS_LUGAR_DE_EMISION" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="SOCIOS_FECHA_DE_EMISION" Type="date" Nullable="false" />
-          <Property Name="CREADO_POR" Type="varchar" Nullable="false" MaxLength="45" />
-          <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
-          <Property Name="MODIFICADO_POR" Type="varchar" MaxLength="45" />
+          <Property Name="SOCIOS_ID" Nullable="false" MaxLength="5" Type="varchar" />
+          <Property Name="SOCIOS_PRIMER_NOMBRE" Nullable="false" MaxLength="45" Type="varchar" />
+          <Property Name="SOCIOS_SEGUNDO_NOMBRE" Nullable="false" MaxLength="45" Type="varchar" />
+          <Property Name="SOCIOS_PRIMER_APELLIDO" Nullable="false" MaxLength="45" Type="varchar" />
+          <Property Name="SOCIOS_SEGUNDO_APELLIDO" Nullable="false" MaxLength="45" Type="varchar" />
+          <Property Name="SOCIOS_RESIDENCIA" Nullable="false" MaxLength="100" Type="varchar" />
+          <Property Name="SOCIOS_ESTADO_CIVIL" Nullable="false" MaxLength="20" Type="varchar" />
+          <Property Name="SOCIOS_LUGAR_DE_NACIMIENTO" Nullable="false" MaxLength="100" Type="varchar" />
+          <Property Name="SOCIOS_FECHA_DE_NACIMIENTO" Nullable="false" Type="date" />
+          <Property Name="SOCIOS_NIVEL_EDUCATIVO" Nullable="false" MaxLength="45" Type="varchar" />
+          <Property Name="SOCIOS_IDENTIDAD" Nullable="false" MaxLength="20" Type="varchar" />
+          <Property Name="SOCIOS_PROFESION" Nullable="false" MaxLength="45" Type="varchar" />
+          <Property Name="SOCIOS_RTN" Nullable="false" Type="int" />
+          <Property Name="SOCIOS_TELEFONO" Nullable="false" MaxLength="20" Type="varchar" />
+          <Property Name="SOCIOS_LUGAR_DE_EMISION" Nullable="false" MaxLength="100" Type="varchar" />
+          <Property Name="SOCIOS_FECHA_DE_EMISION" Nullable="false" Type="date" />
+          <Property Name="CREADO_POR" Nullable="false" MaxLength="45" Type="varchar" />
+          <Property Name="FECHA_CREACION" Nullable="false" Type="date" />
+          <Property Name="MODIFICADO_POR" MaxLength="45" Type="varchar" />
           <Property Name="FECHA_MODIFICACION" Type="date" />
-          <Property Name="SOCIOS_ESTATUS" Type="binary" MaxLength="1" />
+          <Property Name="SOCIOS_ESTATUS" MaxLength="1" Type="binary" />
         </EntityType>
         <EntityType Name="socios_generales">
           <Key>
             <PropertyRef Name="SOCIOS_ID" />
           </Key>
-          <Property Name="SOCIOS_ID" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="SOCIOS_ID" Nullable="false" MaxLength="5" Type="varchar" />
           <Property Name="GENERAL_CARNET_IHCAFE" Type="int" />
-          <Property Name="GENERAL_ORGANIZACION_SECUNDARIA" Type="varchar" MaxLength="45" />
-          <Property Name="GENERAL_NUMERO_CARNET" Type="varchar" MaxLength="45" />
-          <Property Name="GENERAL_EMPRESA_LABORA" Type="varchar" MaxLength="45" />
-          <Property Name="GENERAL_EMPRESA_CARGO" Type="varchar" MaxLength="45" />
-          <Property Name="GENERAL_EMPRESA_DIRECCION" Type="varchar" MaxLength="100" />
-          <Property Name="GENERAL_EMPRESA_TELEFONO" Type="varchar" MaxLength="20" />
+          <Property Name="GENERAL_ORGANIZACION_SECUNDARIA" MaxLength="45" Type="varchar" />
+          <Property Name="GENERAL_NUMERO_CARNET" MaxLength="45" Type="varchar" />
+          <Property Name="GENERAL_EMPRESA_LABORA" MaxLength="45" Type="varchar" />
+          <Property Name="GENERAL_EMPRESA_CARGO" MaxLength="45" Type="varchar" />
+          <Property Name="GENERAL_EMPRESA_DIRECCION" MaxLength="100" Type="varchar" />
+          <Property Name="GENERAL_EMPRESA_TELEFONO" MaxLength="20" Type="varchar" />
         </EntityType>
         <EntityType Name="socios_produccion">
           <Key>
             <PropertyRef Name="SOCIOS_ID" />
           </Key>
-          <Property Name="SOCIOS_ID" Type="varchar" Nullable="false" MaxLength="5" />
-          <Property Name="PRODUCCION_UBICACION_FINCA" Type="varchar" MaxLength="100" />
-          <Property Name="PRODUCCION_AREA" Type="varchar" MaxLength="20" />
-          <Property Name="PRODUCCION_VARIEDAD" Type="varchar" MaxLength="20" />
-          <Property Name="PRODUCCION_ALTURA" Type="varchar" MaxLength="20" />
-          <Property Name="PRODUCCION_DISTANCIA" Type="varchar" MaxLength="20" />
+          <Property Name="SOCIOS_ID" Nullable="false" MaxLength="5" Type="varchar" />
+          <Property Name="PRODUCCION_UBICACION_FINCA" MaxLength="100" Type="varchar" />
+          <Property Name="PRODUCCION_AREA" MaxLength="20" Type="varchar" />
+          <Property Name="PRODUCCION_VARIEDAD" MaxLength="20" Type="varchar" />
+          <Property Name="PRODUCCION_ALTURA" MaxLength="20" Type="varchar" />
+          <Property Name="PRODUCCION_DISTANCIA" MaxLength="20" Type="varchar" />
           <Property Name="PRODUCCION_ANUAL" Type="int" />
-          <Property Name="PRODUCCION_BENEFICIO_PROPIO" Type="varchar" MaxLength="10" />
-          <Property Name="PRODUCCION_ANALISIS_SUELO" Type="varchar" MaxLength="10" />
-          <Property Name="PRODUCCION_TIPO_INSUMOS" Type="varchar" MaxLength="100" />
+          <Property Name="PRODUCCION_BENEFICIO_PROPIO" MaxLength="10" Type="varchar" />
+          <Property Name="PRODUCCION_ANALISIS_SUELO" MaxLength="10" Type="varchar" />
+          <Property Name="PRODUCCION_TIPO_INSUMOS" MaxLength="100" Type="varchar" />
           <Property Name="PRODUCCION_MANZANAS_CULTIVADAS" Type="int" />
         </EntityType>
         <EntityType Name="usuarios">
           <Key>
             <PropertyRef Name="USR_USERNAME" />
           </Key>
-          <Property Name="USR_USERNAME" Type="varchar" Nullable="false" MaxLength="15" />
-          <Property Name="USR_NOMBRE" Type="varchar" Nullable="false" MaxLength="45" />
-          <Property Name="USR_APELLIDO" Type="varchar" Nullable="false" MaxLength="45" />
-          <Property Name="USR_CEDULA" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="USR_CORREO" Type="varchar" MaxLength="30" />
-          <Property Name="USR_PUESTO" Type="varchar" MaxLength="30" />
-          <Property Name="USR_PASSWORD" Type="varchar" MaxLength="20" />
-          <Property Name="CREADO_POR" Type="varchar" Nullable="false" MaxLength="45" />
-          <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
-          <Property Name="MODIFICADO_POR" Type="varchar" MaxLength="45" />
+          <Property Name="USR_USERNAME" Nullable="false" MaxLength="15" Type="varchar" />
+          <Property Name="USR_NOMBRE" Nullable="false" MaxLength="45" Type="varchar" />
+          <Property Name="USR_APELLIDO" Nullable="false" MaxLength="45" Type="varchar" />
+          <Property Name="USR_CEDULA" Nullable="false" MaxLength="20" Type="varchar" />
+          <Property Name="USR_CORREO" MaxLength="30" Type="varchar" />
+          <Property Name="USR_PUESTO" MaxLength="30" Type="varchar" />
+          <Property Name="USR_PASSWORD" MaxLength="20" Type="varchar" />
+          <Property Name="CREADO_POR" Nullable="false" MaxLength="45" Type="varchar" />
+          <Property Name="FECHA_CREACION" Nullable="false" Type="date" />
+          <Property Name="MODIFICADO_POR" MaxLength="45" Type="varchar" />
           <Property Name="FECHA_MODIFICACION" Type="date" />
         </EntityType>
         <Association Name="FK_BENEFICIARIO_X_SOCIO_socios">
-          <End Role="socios" Type="colinasModel.Store.socios" Multiplicity="1">
+          <End Type="colinasModel.Store.socios" Multiplicity="1" Role="socios">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="beneficiario_x_socio" Type="colinasModel.Store.beneficiario_x_socio" Multiplicity="*" />
+          <End Type="colinasModel.Store.beneficiario_x_socio" Multiplicity="*" Role="beneficiario_x_socio" />
           <ReferentialConstraint>
             <Principal Role="socios">
               <PropertyRef Name="SOCIOS_ID" />
@@ -234,10 +243,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_INVENTARIO_socios">
-          <End Role="socios" Type="colinasModel.Store.socios" Multiplicity="1">
+          <End Type="colinasModel.Store.socios" Multiplicity="1" Role="socios">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="inventario" Type="colinasModel.Store.inventario" Multiplicity="*" />
+          <End Type="colinasModel.Store.inventario" Multiplicity="*" Role="inventario" />
           <ReferentialConstraint>
             <Principal Role="socios">
               <PropertyRef Name="SOCIOS_ID" />
@@ -248,10 +257,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_NOTA_DE_PESO_socios">
-          <End Role="socios" Type="colinasModel.Store.socios" Multiplicity="1">
+          <End Type="colinasModel.Store.socios" Multiplicity="1" Role="socios">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="nota_de_peso" Type="colinasModel.Store.nota_de_peso" Multiplicity="*" />
+          <End Type="colinasModel.Store.nota_de_peso" Multiplicity="*" Role="nota_de_peso" />
           <ReferentialConstraint>
             <Principal Role="socios">
               <PropertyRef Name="SOCIOS_ID" />
@@ -262,10 +271,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="PRIV_ID_ROL_fk">
-          <End Role="privilegios" Type="colinasModel.Store.privilegios" Multiplicity="1">
+          <End Type="colinasModel.Store.privilegios" Multiplicity="1" Role="privilegios">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="privilegios_x_roles" Type="colinasModel.Store.privilegios_x_roles" Multiplicity="*" />
+          <End Type="colinasModel.Store.privilegios_x_roles" Multiplicity="*" Role="privilegios_x_roles" />
           <ReferentialConstraint>
             <Principal Role="privilegios">
               <PropertyRef Name="PRIV_ID" />
@@ -276,10 +285,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="ROL_ID_PRIV_fk">
-          <End Role="roles" Type="colinasModel.Store.roles" Multiplicity="1">
+          <End Type="colinasModel.Store.roles" Multiplicity="1" Role="roles">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="privilegios_x_roles" Type="colinasModel.Store.privilegios_x_roles" Multiplicity="*" />
+          <End Type="colinasModel.Store.privilegios_x_roles" Multiplicity="*" Role="privilegios_x_roles" />
           <ReferentialConstraint>
             <Principal Role="roles">
               <PropertyRef Name="ROL_ID" />
@@ -290,10 +299,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="ROL_ID_USR_fk">
-          <End Role="roles" Type="colinasModel.Store.roles" Multiplicity="1">
+          <End Type="colinasModel.Store.roles" Multiplicity="1" Role="roles">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="roles_x_usuarios" Type="colinasModel.Store.roles_x_usuarios" Multiplicity="*" />
+          <End Type="colinasModel.Store.roles_x_usuarios" Multiplicity="*" Role="roles_x_usuarios" />
           <ReferentialConstraint>
             <Principal Role="roles">
               <PropertyRef Name="ROL_ID" />
@@ -304,8 +313,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="SOCIO_ID_FK">
-          <End Role="socios" Type="colinasModel.Store.socios" Multiplicity="1" />
-          <End Role="socios_generales" Type="colinasModel.Store.socios_generales" Multiplicity="0..1" />
+          <End Type="colinasModel.Store.socios" Multiplicity="1" Role="socios" />
+          <End Type="colinasModel.Store.socios_generales" Multiplicity="0..1" Role="socios_generales" />
           <ReferentialConstraint>
             <Principal Role="socios">
               <PropertyRef Name="SOCIOS_ID" />
@@ -316,8 +325,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="SOCIOS_ID_FK2">
-          <End Role="socios" Type="colinasModel.Store.socios" Multiplicity="1" />
-          <End Role="socios_produccion" Type="colinasModel.Store.socios_produccion" Multiplicity="0..1" />
+          <End Type="colinasModel.Store.socios" Multiplicity="1" Role="socios" />
+          <End Type="colinasModel.Store.socios_produccion" Multiplicity="0..1" Role="socios_produccion" />
           <ReferentialConstraint>
             <Principal Role="socios">
               <PropertyRef Name="SOCIOS_ID" />
@@ -328,10 +337,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="USR_USERNAME_ROL_fk">
-          <End Role="usuarios" Type="colinasModel.Store.usuarios" Multiplicity="1">
+          <End Type="colinasModel.Store.usuarios" Multiplicity="1" Role="usuarios">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="roles_x_usuarios" Type="colinasModel.Store.roles_x_usuarios" Multiplicity="*" />
+          <End Type="colinasModel.Store.roles_x_usuarios" Multiplicity="*" Role="roles_x_usuarios" />
           <ReferentialConstraint>
             <Principal Role="usuarios">
               <PropertyRef Name="USR_USERNAME" />
@@ -347,8 +356,7 @@
         <Function Name="GetRolesNoDeUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="colinas">
           <Parameter Name="strUSR_USERNAME" Type="varchar" Mode="In" />
         </Function>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="colinasModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -393,11 +401,12 @@
             <End Role="usuarios" EntitySet="usuarios" />
           </AssociationSet>
           <FunctionImport Name="GetPrivilegiosNoDeRol" EntitySet="privilegios" ReturnType="Collection(colinasModel.privilegio)">
-            <Parameter Name="nROL_ID" Mode="In" Type="Int32" />
+          <Parameter Name="nROL_ID" Type="Int32" Mode="In" />
           </FunctionImport>
           <FunctionImport Name="GetRolesNoDeUsuario" EntitySet="rols" ReturnType="Collection(colinasModel.rol)">
-            <Parameter Name="strUSR_USERNAME" Mode="In" Type="String" />
+          <Parameter Name="strUSR_USERNAME" Type="String" Mode="In" />
           </FunctionImport>
+          <EntitySet Name="insumos" EntityType="colinasModel.insumo" />
         </EntityContainer>
         <EntityType Name="beneficiario_x_socio">
           <Key>
@@ -634,6 +643,14 @@
           <End Role="roles" Type="colinasModel.rol" Multiplicity="*" />
           <End Role="usuarios" Type="colinasModel.usuario" Multiplicity="*" />
         </Association>
+        <EntityType Name="insumo">
+          <Key>
+            <PropertyRef Name="INSUMO_ID" />
+          </Key>
+          <Property Name="INSUMO_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="INSUMO_NOMBRE" Nullable="false" Type="String" />
+          <Property Name="INSUMO_DESCRIPCION" Type="String" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -769,6 +786,15 @@
           </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="GetPrivilegiosNoDeRol" FunctionName="colinasModel.Store.GetPrivilegiosNoDeRol" />
           <FunctionImportMapping FunctionImportName="GetRolesNoDeUsuario" FunctionName="colinasModel.Store.GetRolesNoDeUsuario" />
+          <EntitySetMapping Name="insumos">
+            <EntityTypeMapping TypeName="colinasModel.insumo">
+              <MappingFragment StoreEntitySet="insumos">
+                <ScalarProperty Name="INSUMO_DESCRIPCION" ColumnName="INSUMO_DESCRIPCION" />
+                <ScalarProperty Name="INSUMO_NOMBRE" ColumnName="INSUMO_NOMBRE" />
+                <ScalarProperty Name="INSUMO_ID" ColumnName="INSUMO_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -832,6 +858,7 @@
           <ConnectorPoint PointX="9.5" PointY="2.62474609375" />
           <ConnectorPoint PointX="10.25" PointY="2.62474609375" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="colinasModel.insumo" PointX="5.375" PointY="8.75" Width="1.5" Height="1.5956835937500031" />
       </Diagram>
     </Diagrams>
   </Designer>

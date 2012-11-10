@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<privilegios>
+    <privilege>
+        <key>LOGIN</key>
+        <name>Login</name>
+        <description>Acceso al sistema.</description>
+    </privilege>
+    <privilege>
+        <key>SYS_USER</key>
+        <name>Seguridad Usuarios</name>
+        <description>Acceso a la pantalla de usuarios seguridad.</description>
+    </privilege>
+</privilegios>
