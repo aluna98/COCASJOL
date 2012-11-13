@@ -27,7 +27,13 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
             }
         }
 
-        #region Roles
+        protected void RolDS_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        {
+            if (!this.IsPostBack)
+                e.Cancel = true;
+        }
+
+        #region Privilegios
 
         protected void PrivilegiosDeRolSt_Refresh(object sender, StoreRefreshDataEventArgs e)
         {

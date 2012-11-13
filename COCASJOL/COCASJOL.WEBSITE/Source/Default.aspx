@@ -1,6 +1,7 @@
 <%@ Page Language="C#" %>
 
 <%@ Register assembly="Ext.Net" namespace="Ext.Net" tagprefix="ext" %>
+<%@ Import Namespace="COCASJOL.LOGIC.Security" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -12,10 +13,14 @@
     <script runat="server">
         protected void Button1_Click(object sender, DirectEventArgs e)
         {
-            // Do some Authentication...
-            
-            // Then user send to application
-            Response.Redirect("Desktop.aspx");
+            UsuarioLogic usuarioLogic = new UsuarioLogic();
+            if (usuarioLogic.Autenticar(this.txtUsername.Text, this.txtPassword.Text))
+            {
+                Window1.Close();
+                Response.Redirect("Desktop.aspx");
+            }
+            else
+                X.Msg.Alert("Inicio de Sesión", "El nombre de usuario o contraseña son incorrectos.").Show();
         }
     </script>
 </head>
@@ -42,8 +47,7 @@
                     runat="server" 
                     FieldLabel="Usuario" 
                     AllowBlank="false"
-                    BlankText="Your username is required."
-                    Text="Demo"
+                    BlankText="Se requiere su nombre de usuario."
                     />
                 <ext:TextField 
                     ID="txtPassword" 
@@ -51,15 +55,14 @@
                     InputType="Password" 
                     FieldLabel="Clave" 
                     AllowBlank="false" 
-                    BlankText="Your password is required."
-                    Text="Demo"
+                    BlankText="Se requiere su clave."
                     />
             </Items>
             <Buttons>
                 <ext:Button ID="Button1" runat="server" Text="Login" Icon="Accept">
                     <DirectEvents>
-                        <Click OnEvent="Button1_Click" Success="Window1.close();">
-                            <EventMask ShowMask="true" Msg="Verifying..." MinDelay="1000" />
+                        <Click OnEvent="Button1_Click">
+                            <EventMask ShowMask="true" Msg="Verificando..." MinDelay="1000" />
                         </Click>
                     </DirectEvents>
                 </ext:Button>

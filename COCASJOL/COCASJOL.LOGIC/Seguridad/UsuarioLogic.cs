@@ -314,7 +314,32 @@ namespace COCASJOL.LOGIC.Security
 
         #region Methods
 
-        //public bool
+        public bool Autenticar(string USR_USERNAME, string USR_PASSWORD)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    db.usuarios.MergeOption = MergeOption.NoTracking;
+
+                    Object u = null;
+                    EntityKey k = new EntityKey("colinasEntities.usuarios", "USR_USERNAME", USR_USERNAME);
+
+                    if (db.TryGetObjectByKey(k, out u))
+                    {
+                        usuario usr = (usuario)u;
+                        if (usr.USR_PASSWORD.CompareTo(USR_PASSWORD) == 0)
+                            return true;
+                    }
+
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         #endregion
     }

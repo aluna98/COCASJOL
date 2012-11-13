@@ -183,7 +183,7 @@
                 SelectMethod="GetRoles"
                 InsertMethod="InsertarRol"
                 UpdateMethod="ActualizarRol"
-                DeleteMethod="EliminarRol" >
+                DeleteMethod="EliminarRol" onselecting="RolDS_Selecting" >
                 <SelectParameters>
                     <asp:ControlParameter Name="ROL_ID"             Type="Int32"    ControlID="f_ROL_ID"          PropertyName="Text" />
                     <asp:ControlParameter Name="ROL_NOMBRE"         Type="String"   ControlID="f_ROL_NOMBRE"      PropertyName="Text" />

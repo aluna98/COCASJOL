@@ -70,6 +70,7 @@
                 var desk = app.getDesktop();
 
                 var w = desk.createWindow({
+                    iconCls: 'icon-' + ico,
                     title: title,
                     width: 1000,
                     height: 600,

@@ -27,7 +27,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
             }
         }
 
-        protected void RolesDeUsuarioDS_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        protected void UsuarioDS_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
         {
             if (!this.IsPostBack)
                 e.Cancel = true;
