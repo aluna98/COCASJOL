@@ -120,7 +120,6 @@
             BackgroundColor="Black" 
             ShortcutTextColor="White" >
             <Listeners>
-                <%--<ShortcutClick Handler="var d=#{MyDesktop}.getDesktop(); if(id == 'scTile'){d.tile();}else if(id == 'scCascade'){d.cascade();}" />--%>
                 <ShortcutClick Handler="ShorcutClickHandler(#{MyDesktop}, id);" />
             </Listeners>
 

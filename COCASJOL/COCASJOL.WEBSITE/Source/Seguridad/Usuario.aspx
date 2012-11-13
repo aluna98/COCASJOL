@@ -183,7 +183,8 @@
                 SelectMethod="GetUsuarios"
                 InsertMethod="InsertarUsuario"
                 UpdateMethod="ActualizarUsuario"
-                DeleteMethod="EliminarUsuario" >
+                DeleteMethod="EliminarUsuario" 
+            onselecting="RolesDeUsuarioDS_Selecting" >
                 <SelectParameters>
                     <asp:ControlParameter Name="USR_USERNAME"       Type="String"   ControlID="f_USR_USERNAME"  PropertyName="Text" />
                     <asp:ControlParameter Name="USR_NOMBRE"         Type="String"   ControlID="f_USR_NOMBRE"    PropertyName="Text" />
