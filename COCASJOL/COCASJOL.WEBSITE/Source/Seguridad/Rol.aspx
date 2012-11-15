@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
+<head runat="server">
     <title></title>
     <script type="text/javascript">
         var Grid = null;
@@ -284,11 +284,11 @@
                                             <Columns>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="f_ROL_ID" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                        <ext:NumberField ID="f_ROL_ID" runat="server" EnableKeyEvents="true" Icon="Find">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
-                                                        </ext:TextField>
+                                                        </ext:NumberField>
                                                     </Component>
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
@@ -353,7 +353,7 @@
                                     <Items>
                                         <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                             <Items>
-                                                <ext:TextField runat="server" ID="AddIdTxt"               DataIndex="ROL_ID"             LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Rol" AllowBlank="false" Text="0" IndicatorIcon="BulletRed" Hidden="true"></ext:TextField>
+                                                <ext:NumberField runat="server" ID="AddIdTxt"               DataIndex="ROL_ID"             LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Rol" AllowBlank="false" Text="0" IndicatorIcon="BulletRed" Hidden="true" ReadOnly="true"></ext:NumberField>
                                                 <ext:TextField runat="server" ID="AddNombreTxt"           DataIndex="ROL_NOMBRE"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddDescripcionTxt"      DataIndex="ROL_DESCRIPCION"    LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción"></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddCreatedByTxt"        DataIndex="CREADO_POR"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado por" Hidden="true" ></ext:TextField>
@@ -406,7 +406,7 @@
                                     <Items>
                                         <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                             <Items>
-                                                <ext:TextField runat="server" ID="EditIdTxt"            DataIndex="ROL_ID"             LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Rol" AllowBlank="false" ReadOnly="true" IndicatorIcon="BulletRed"></ext:TextField>
+                                                <ext:NumberField runat="server" ID="EditIdTxt"            DataIndex="ROL_ID"             LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Rol" AllowBlank="false" ReadOnly="true" IndicatorIcon="BulletRed"></ext:NumberField>
                                                 <ext:TextField runat="server" ID="EditNombreTxt"        DataIndex="ROL_NOMBRE"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditDescripcionTxt"   DataIndex="ROL_DESCRIPCION"    LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción"></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditCreatedByTxt"     DataIndex="CREADO_POR"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
@@ -463,11 +463,11 @@
                                                                         <ext:HeaderColumn />
                                                                         <ext:HeaderColumn Cls="x-small-editor">
                                                                             <Component>
-                                                                                <ext:TextField ID="f_PRIV_ID" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                                                <ext:NumberField ID="f_PRIV_ID" runat="server" EnableKeyEvents="true" Icon="Find">
                                                                                     <Listeners>
                                                                                         <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                                                     </Listeners>
-                                                                                </ext:TextField>
+                                                                                </ext:NumberField>
                                                                             </Component>
                                                                         </ext:HeaderColumn>
                                                                         <ext:HeaderColumn Cls="x-small-editor">
@@ -601,11 +601,11 @@
                                                         <ext:HeaderColumn />
                                                         <ext:HeaderColumn Cls="x-small-editor">
                                                             <Component>
-                                                                <ext:TextField ID="f2_PRIV_ID" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                                <ext:NumberField ID="f2_PRIV_ID" runat="server" EnableKeyEvents="true" Icon="Find">
                                                                     <Listeners>
                                                                         <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                                     </Listeners>
-                                                                </ext:TextField>
+                                                                </ext:NumberField>
                                                             </Component>
                                                         </ext:HeaderColumn>
                                                         <ext:HeaderColumn Cls="x-small-editor">

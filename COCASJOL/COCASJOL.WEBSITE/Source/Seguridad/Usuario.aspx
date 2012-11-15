@@ -516,11 +516,11 @@
                                                                         <ext:HeaderColumn />
                                                                         <ext:HeaderColumn Cls="x-small-editor">
                                                                             <Component>
-                                                                                <ext:TextField ID="f_ROL_ID" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                                                <ext:NumberField ID="f_ROL_ID" runat="server" EnableKeyEvents="true" Icon="Find">
                                                                                     <Listeners>
                                                                                         <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                                                     </Listeners>
-                                                                                </ext:TextField>
+                                                                                </ext:NumberField>
                                                                             </Component>
                                                                         </ext:HeaderColumn>
                                                                         <ext:HeaderColumn Cls="x-small-editor">
@@ -559,11 +559,6 @@
                                                                     </Listeners>
                                                                 </ext:Button>
                                                                 <ext:Button ID="EditUsuarioDeleteRolBtn" runat="server" Text="Eliminar" Icon="CogDelete">
-                                                                    <%--<DirectEvents>
-                                                                        <Click OnEvent="EditUsuarioDeleteRolBtn_Click">
-                                                                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{RolesDeUsuarioGridP}" />
-                                                                        </Click>
-                                                                    </DirectEvents>--%>
                                                                     <Listeners>
                                                                         <Click Handler="PageX.removeRol();" />
                                                                     </Listeners>
@@ -648,11 +643,11 @@
                                                         <ext:HeaderColumn />
                                                         <ext:HeaderColumn Cls="x-small-editor">
                                                             <Component>
-                                                                <ext:TextField ID="f2_ROL_ID" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                                <ext:NumberField ID="f2_ROL_ID" runat="server" EnableKeyEvents="true" Icon="Find">
                                                                     <Listeners>
                                                                         <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                                     </Listeners>
-                                                                </ext:TextField>
+                                                                </ext:NumberField>
                                                             </Component>
                                                         </ext:HeaderColumn>
                                                         <ext:HeaderColumn Cls="x-small-editor">

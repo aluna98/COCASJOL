@@ -22,7 +22,7 @@ namespace COCASJOL.WEBSITE
         protected void Logout_Click(object sender, DirectEventArgs e)
         {
             // Logout from Authenticated Session
-            this.Response.Redirect("Default.aspx");
+            this.Response.Redirect("~/Default.aspx");
         }
     }
 }

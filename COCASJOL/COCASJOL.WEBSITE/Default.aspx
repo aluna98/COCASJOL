@@ -17,7 +17,7 @@
             if (usuarioLogic.Autenticar(this.txtUsername.Text, this.txtPassword.Text))
             {
                 Window1.Close();
-                Response.Redirect("Desktop.aspx");
+                Response.Redirect("~/Source/Desktop.aspx");
             }
             else
                 X.Msg.Alert("Inicio de Sesión", "El nombre de usuario o contraseña son incorrectos.").Show();
@@ -38,7 +38,6 @@
             Title="Login"
             Draggable="false"
             Width="350"
-            Modal="true"
             Padding="5"
             Layout="Form">
             <Items>

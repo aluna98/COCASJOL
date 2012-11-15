@@ -83,6 +83,7 @@
                     autoLoad: {
                         url: url,
                         mode: "iframe",
+                        scripts: true,
                         showMask: true
                     }
                 });
@@ -94,17 +95,27 @@
             }
         };
 
+        var WindowX = {
+            usuarios: function (app) {
+                DesktopX.createDynamicWindow(app, 'user', 'Usuarios', 'Seguridad/Usuario.aspx');
+            },
+
+            roles: function (app) {
+                DesktopX.createDynamicWindow(app, 'cog', 'Roles', 'Seguridad/Rol.aspx');
+            }
+        };
 
         var ShorcutClickHandler = function (app, id) {
-            var d = app.getDesktop(); 
-            if(id == 'scTile') {
+            var d = app.getDesktop();
+
+            if (id == 'scTile') {
                 d.tile();
             } else if (id == 'scCascade') {
                 d.cascade();
             } else if (id == 'scUsuarios') {
-                DesktopX.createDynamicWindow(app, 'group', 'Usuarios', 'Seguridad/Usuario.aspx');
+                WindowX.usuarios(app);
             } else if (id == 'scRoles') {
-                DesktopX.createDynamicWindow(app, 'cog', 'Roles', 'Seguridad/Rol.aspx');
+                WindowX.roles(app);
             }
         };
     </script>
@@ -127,16 +138,16 @@
             <StartButton Text="Start" IconCls="start-button" />
             <Modules>                
                 <ext:DesktopModule ModuleID="UsuariosModule">
-                    <Launcher ID="UsuariosLauncher" runat="server" Text="Usuarios" Icon="Group" >
+                    <Launcher ID="UsuariosLauncher" runat="server" Text="Usuarios" Icon="User" >
                         <Listeners>
-                            <Click Handler="DesktopX.createDynamicWindow(#{MyDesktop}, 'group', 'Usuarios', 'Seguridad/Usuario.aspx');" />
+                            <Click Handler="WindowX.usuarios(#{MyDesktop});" />
                         </Listeners>
                     </Launcher>
                 </ext:DesktopModule>
                 <ext:DesktopModule ModuleID="RolesModule">
                     <Launcher ID="RolesLauncher" runat="server" Text="Roles" Icon="Cog" >
                         <Listeners>
-                            <Click Handler="DesktopX.createDynamicWindow(#{MyDesktop}, 'cog', 'Roles', 'Seguridad/Rol.aspx');" />
+                            <Click Handler="WindowX.roles(#{MyDesktop});" />
                         </Listeners>
                     </Launcher>
                 </ext:DesktopModule>
@@ -163,23 +174,21 @@
                             </Click>
                         </DirectEvents>
                     </ext:MenuItem>
-                    
                     <%--<ext:MenuSeparator />--%>
-                    
                 </ToolItems>                
                 <Items>
                     <ext:MenuItem ID="MenuItem4" runat="server" Text="All" Icon="Folder" HideOnClick="false">
                         <Menu>
                             <ext:Menu ID="Menu2" runat="server">
                                 <Items>
-                                    <ext:MenuItem Text="Usuarios" Icon="Group">
+                                    <ext:MenuItem Text="Usuarios" Icon="User">
                                         <Listeners>
-                                            <Click Handler="DesktopX.createDynamicWindow(#{MyDesktop}, 'group', 'Usuarios', 'Seguridad/Usuario.aspx');" />
+                                            <Click Handler="WindowX.usuarios(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
                                     <ext:MenuItem Text="Roles" Icon="Cog">
                                         <Listeners>
-                                            <Click Handler="DesktopX.createDynamicWindow(#{MyDesktop}, 'cog', 'Roles', 'Seguridad/Rol.aspx');" />
+                                            <Click Handler="WindowX.roles(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
                                 </Items>

@@ -13,15 +13,6 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
     public partial class Rol {
         
         /// <summary>
-        /// Head1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
-        
-        /// <summary>
         /// form1 control.
         /// </summary>
         /// <remarks>
@@ -163,7 +154,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField f_ROL_ID;
+        protected global::Ext.Net.NumberField f_ROL_ID;
         
         /// <summary>
         /// f_ROL_NOMBRE control.
@@ -244,7 +235,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField AddIdTxt;
+        protected global::Ext.Net.NumberField AddIdTxt;
         
         /// <summary>
         /// AddNombreTxt control.
@@ -361,7 +352,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField EditIdTxt;
+        protected global::Ext.Net.NumberField EditIdTxt;
         
         /// <summary>
         /// EditNombreTxt control.
@@ -469,7 +460,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField f_PRIV_ID;
+        protected global::Ext.Net.NumberField f_PRIV_ID;
         
         /// <summary>
         /// f_PRIV_LLAVE control.
@@ -631,7 +622,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField f2_PRIV_ID;
+        protected global::Ext.Net.NumberField f2_PRIV_ID;
         
         /// <summary>
         /// f2_PRIV_LLAVE control.

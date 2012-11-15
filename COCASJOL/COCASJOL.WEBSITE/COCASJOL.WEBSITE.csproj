@@ -61,7 +61,7 @@
     <Content Include="Images\gear_in.png" />
     <Content Include="Images\group.png" />
     <Content Include="Source\Desktop.aspx" />
-    <Content Include="Source\Default.aspx" />
+    <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Images\desktop.jpg" />
     <Content Include="Images\grid48x48.png" />
@@ -123,12 +123,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>29146</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost/COCASJOL</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

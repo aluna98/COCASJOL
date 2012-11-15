@@ -559,7 +559,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField f_ROL_ID;
+        protected global::Ext.Net.NumberField f_ROL_ID;
         
         /// <summary>
         /// f_ROL_NOMBRE control.
@@ -712,7 +712,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField f2_ROL_ID;
+        protected global::Ext.Net.NumberField f2_ROL_ID;
         
         /// <summary>
         /// f2_ROL_NOMBRE control.
