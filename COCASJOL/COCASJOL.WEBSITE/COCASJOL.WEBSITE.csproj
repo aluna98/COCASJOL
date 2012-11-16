@@ -58,6 +58,7 @@
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="ExpiredSession.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="Images\background1.jpg" />
     <Content Include="Images\cocasjol_start_button.gif" />
     <Content Include="Images\desktop.jpg" />
@@ -91,6 +92,9 @@
     </Compile>
     <Compile Include="ExpiredSession.aspx.designer.cs">
       <DependentUpon>ExpiredSession.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\Desktop.aspx.cs">
