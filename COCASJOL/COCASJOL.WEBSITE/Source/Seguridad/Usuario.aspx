@@ -174,12 +174,12 @@
     <div>
         <ext:ResourceManager ID="ResourceManager1" runat="server">
             <Listeners>
-                <DocumentReady Handler="PageX.setReferences()" />
+                <DocumentReady Handler="PageX.setReferences();" />
             </Listeners>
         </ext:ResourceManager>
 
         <asp:ObjectDataSource ID="UsuariosDS" runat="server"
-                TypeName="COCASJOL.LOGIC.Security.UsuarioLogic"
+                TypeName="COCASJOL.LOGIC.Seguridad.UsuarioLogic"
                 SelectMethod="GetUsuarios"
                 InsertMethod="InsertarUsuario"
                 UpdateMethod="ActualizarUsuario"

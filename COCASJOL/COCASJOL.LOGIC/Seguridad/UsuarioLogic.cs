@@ -6,7 +6,7 @@ using System.Text;
 using System.Data;
 using System.Data.Objects;
 
-namespace COCASJOL.LOGIC.Security
+namespace COCASJOL.LOGIC.Seguridad
 {
     public class UsuarioLogic
     {
@@ -81,10 +81,10 @@ namespace COCASJOL.LOGIC.Security
             {
                 using (var db = new colinasEntities())
                 {
-                    db.rols.MergeOption = MergeOption.NoTracking;//optimizacion
+                    db.roles.MergeOption = MergeOption.NoTracking;//optimizacion
                     db.usuarios.MergeOption = MergeOption.NoTracking;//optimizacion
 
-                    var query = from r in db.rols.Include("usuarios")
+                    var query = from r in db.roles.Include("usuarios")
                                 from u in r.usuarios
                                 where u.USR_USERNAME == USR_USERNAME
                                 select r;
@@ -111,7 +111,7 @@ namespace COCASJOL.LOGIC.Security
             {
                 using (var db = new colinasEntities())
                 {
-                    db.rols.MergeOption = MergeOption.NoTracking;//optimizacion
+                    db.roles.MergeOption = MergeOption.NoTracking;//optimizacion
 
                     var query = db.GetRolesNoDeUsuario(USR_USERNAME);
 
@@ -181,15 +181,15 @@ namespace COCASJOL.LOGIC.Security
             {
                 using (var db = new colinasEntities())
                 {
-                    var query = from u in db.usuarios
-                                where u.USR_USERNAME == USR_USERNAME
-                                select u;
+                    EntityKey k = new EntityKey("colinasEntities.usuarios", "USR_USERNAME", USR_USERNAME);
 
-                    usuario user = query.First();
+                    var u = db.GetObjectByKey(k);
+
+                    usuario user = (usuario)u;
 
                     foreach (int rol_id in roles)
                     {
-                        var r = db.GetObjectByKey(new EntityKey("colinasEntities.rols", "ROL_ID", rol_id));
+                        var r = db.GetObjectByKey(new EntityKey("colinasEntities.roles", "ROL_ID", rol_id));
 
                         rol rolEntity = (rol)r;
                         user.roles.Add(rolEntity);
@@ -225,12 +225,11 @@ namespace COCASJOL.LOGIC.Security
             {
                 using (var db = new colinasEntities())
                 {
+                    EntityKey k = new EntityKey("colinasEntities.usuarios", "USR_USERNAME", USR_USERNAME);
 
-                    var query = from usr in db.usuarios
-                                where usr.USR_USERNAME == USR_USERNAME
-                                select usr;
+                    var u = db.GetObjectByKey(k);
 
-                    usuario user = query.First();
+                    usuario user = (usuario)u;
 
                     user.USR_USERNAME = USR_USERNAME;
                     user.USR_NOMBRE = USR_NOMBRE;
@@ -263,12 +262,11 @@ namespace COCASJOL.LOGIC.Security
             {
                 using (var db = new colinasEntities())
                 {
+                    EntityKey k = new EntityKey("colinasEntities.usuarios", "USR_USERNAME", USR_USERNAME);
 
-                    var query = from usr in db.usuarios
-                                where usr.USR_USERNAME == USR_USERNAME
-                                select usr;
+                    var u = db.GetObjectByKey(k);
 
-                    usuario user = query.First();
+                    usuario user = (usuario)u;
 
                     db.DeleteObject(user);
 
@@ -287,15 +285,15 @@ namespace COCASJOL.LOGIC.Security
             {
                 using (var db = new colinasEntities())
                 {
-                    var query = from u in db.usuarios
-                                where u.USR_USERNAME == USR_USERNAME
-                                select u;
+                    EntityKey k = new EntityKey("colinasEntities.usuarios", "USR_USERNAME", USR_USERNAME);
 
-                    usuario user = query.First();
+                    var u = db.GetObjectByKey(k);
+
+                    usuario user = (usuario)u;
 
                     foreach(int rol_id in roles)
                     {
-                        var r = db.GetObjectByKey(new EntityKey("colinasEntities.rols", "ROL_ID", rol_id));
+                        var r = db.GetObjectByKey(new EntityKey("colinasEntities.roles", "ROL_ID", rol_id));
 
                         rol rolEntity = (rol)r;
                         user.roles.Remove(rolEntity);

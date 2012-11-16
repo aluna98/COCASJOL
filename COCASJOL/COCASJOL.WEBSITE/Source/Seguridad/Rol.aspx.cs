@@ -8,21 +8,19 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.Objects;
 using Ext.Net;
-using COCASJOL.LOGIC.Security;
+
+using COCASJOL.LOGIC.Seguridad;
+using COCASJOL.LOGIC.Web;
 
 namespace COCASJOL.WEBSITE.Source.Seguridad
 {
-    public partial class Rol : System.Web.UI.Page
+    public partial class Rol : COCASJOLBASE //System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!X.IsAjaxRequest)
             {
-                string loggedUsr = "DEVELOPER";
-
-#if !DEBUG
-                loggedUsr = Session["username"] as string;
-#endif
+                string loggedUsr = Session["username"] as string;
                 this.LoggedUserHdn.Text = loggedUsr;
             }
         }

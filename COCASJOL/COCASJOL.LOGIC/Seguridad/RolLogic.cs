@@ -6,7 +6,7 @@ using System.Text;
 using System.Data;
 using System.Data.Objects;
 
-namespace COCASJOL.LOGIC.Security
+namespace COCASJOL.LOGIC.Seguridad
 {
     public class RolLogic
     {
@@ -20,7 +20,7 @@ namespace COCASJOL.LOGIC.Security
             {
                 using (var db = new colinasEntities())
                 {
-                    return db.rols;
+                    return db.roles;
                 }
             }
             catch (Exception ex)
@@ -42,7 +42,7 @@ namespace COCASJOL.LOGIC.Security
             {
                 using (var db = new colinasEntities())
                 {
-                    var query = from rls in db.rols
+                    var query = from rls in db.roles
                                 where
                                 (ROL_ID.Equals(0) ? true : rls.ROL_ID.Equals(ROL_ID)) &&
                                 (string.IsNullOrEmpty(ROL_NOMBRE) ? true : rls.ROL_NOMBRE.Contains(ROL_NOMBRE)) &&
@@ -142,7 +142,7 @@ namespace COCASJOL.LOGIC.Security
                     role.MODIFICADO_POR = CREADO_POR;
                     role.FECHA_MODIFICACION = role.FECHA_CREACION;
 
-                    db.rols.AddObject(role);
+                    db.roles.AddObject(role);
                     db.SaveChanges();
                 }
             }
@@ -158,11 +158,11 @@ namespace COCASJOL.LOGIC.Security
             {
                 using (var db = new colinasEntities())
                 {
-                    var query = from r in db.rols
-                                where r.ROL_ID == ROL_ID
-                                select r;
+                    EntityKey k = new EntityKey("colinasEntities.roles", "ROL_ID", ROL_ID);
 
-                    rol role = query.First();
+                    var r = db.GetObjectByKey(k);
+
+                    rol role = (rol)r;
 
                     foreach (int priv_id in lprivilegios)
                     {
@@ -199,11 +199,11 @@ namespace COCASJOL.LOGIC.Security
                 using (var db = new colinasEntities())
                 {
 
-                    var query = from rl in db.rols
-                                where rl.ROL_ID == ROL_ID
-                                select rl;
+                    EntityKey k = new EntityKey("colinasEntities.roles", "ROL_ID", ROL_ID);
 
-                    rol role = query.First();
+                    var r = db.GetObjectByKey(k);
+
+                    rol role = (rol)r;
 
                     role.ROL_ID = ROL_ID;
                     role.ROL_NOMBRE = ROL_NOMBRE;
@@ -233,11 +233,11 @@ namespace COCASJOL.LOGIC.Security
                 using (var db = new colinasEntities())
                 {
 
-                    var query = from rl in db.rols
-                                where rl.ROL_ID == ROL_ID
-                                select rl;
+                    EntityKey k = new EntityKey("colinasEntities.roles", "ROL_ID", ROL_ID);
 
-                    rol role = query.First();
+                    var r = db.GetObjectByKey(k);
+
+                    rol role = (rol)r;
 
                     db.DeleteObject(role);
 
@@ -256,11 +256,11 @@ namespace COCASJOL.LOGIC.Security
             {
                 using (var db = new colinasEntities())
                 {
-                    var query = from r in db.rols
-                                where r.ROL_ID == ROL_ID
-                                select r;
+                    EntityKey k = new EntityKey("colinasEntities.roles", "ROL_ID", ROL_ID);
 
-                    rol role = query.First();
+                    var r = db.GetObjectByKey(k);
+
+                    rol role = (rol)r;
 
                     foreach (int priv_id in lprivilegios)
                     {

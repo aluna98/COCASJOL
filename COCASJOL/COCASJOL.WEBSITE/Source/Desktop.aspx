@@ -10,7 +10,7 @@
     
     <style type="text/css">        
         .start-button {
-            background-image: url(../Images/vista_start_button.gif) !important;
+            background-image: url(../Images/cocasjol_start_button.gif) !important;
         }
         
         .shortcut-icon {
@@ -25,6 +25,12 @@
         }
         
         .icon-usuarios {
+            background-image: url(../Images/user.png) !important;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../Images/user.png", sizingMethod="scale");
+        }
+        
+        .icon-socios
+        {
             background-image: url(../Images/group.png) !important;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../Images/group.png", sizingMethod="scale");
         }
@@ -102,6 +108,10 @@
 
             roles: function (app) {
                 DesktopX.createDynamicWindow(app, 'cog', 'Roles', 'Seguridad/Rol.aspx');
+            },
+
+            socios: function(app){
+                DesktopX.createDynamicWindow(app, 'group', 'Socios', 'Socios/Socios.aspx');
             }
         };
 
@@ -116,6 +126,8 @@
                 WindowX.usuarios(app);
             } else if (id == 'scRoles') {
                 WindowX.roles(app);
+            } else if (id == 'scSocios') {
+                WindowX.socios(app);
             }
         };
     </script>
@@ -135,7 +147,7 @@
                 <ShortcutClick Handler="ShorcutClickHandler(#{MyDesktop}, id);" />
             </Listeners>
 
-            <StartButton Text="Start" IconCls="start-button" />
+            <StartButton Text="Inicio" IconCls="start-button" />
             <Modules>                
                 <ext:DesktopModule ModuleID="UsuariosModule">
                     <Launcher ID="UsuariosLauncher" runat="server" Text="Usuarios" Icon="User" >
@@ -151,6 +163,13 @@
                         </Listeners>
                     </Launcher>
                 </ext:DesktopModule>
+                <ext:DesktopModule ModuleID="SociosModule">
+                    <Launcher ID="SociosLauncher" runat="server" Text="Socios" Icon="Group" >
+                        <Listeners>
+                            <Click Handler="WindowX.socios(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
             </Modules>  
             
             <Shortcuts>
@@ -158,6 +177,7 @@
                 <ext:DesktopShortcut ShortcutID="scRoles" Text="Roles" IconCls="shortcut-icon icon-roles" />
                 <ext:DesktopShortcut ShortcutID="scTile" Text="Tile windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-90" />
                 <ext:DesktopShortcut ShortcutID="scCascade" Text="Cascade windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-170" />
+                <ext:DesktopShortcut ShortcutID="scSocios" Text="Socios" IconCls="shortcut-icon icon-socios" />
             </Shortcuts>            
             
             <StartMenu Height="400" Width="300" ToolsWidth="127" Title="Start Menu">
