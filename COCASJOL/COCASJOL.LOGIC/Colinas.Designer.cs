@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -21,10 +22,10 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "privilegios_x_roles", "privilegios", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.privilegio), "roles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.rol))]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "SOCIO_ID_FK", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "socio_general", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.socio_general), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "SOCIOS_ID_FK2", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "socio_produccion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.socio_produccion), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "roles_x_usuarios", "rol", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.rol), "usuarios", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.usuario))]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "FK_BENEFICIARIO_X_SOCIO_socios", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "beneficiario_x_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.beneficiario_x_socio), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "FK_INVENTARIO_socios", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "inventario", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.inventario), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "FK_NOTA_DE_PESO_socios", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.nota_de_peso), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "roles_x_usuarios", "rol", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.rol), "usuarios", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.usuario))]
 
 #endregion
 
@@ -191,22 +192,6 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<usuario> usuarios
-        {
-            get
-            {
-                if ((_usuarios == null))
-                {
-                    _usuarios = base.CreateObjectSet<usuario>("usuarios");
-                }
-                return _usuarios;
-            }
-        }
-        private ObjectSet<usuario> _usuarios;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<beneficiario_x_socio> beneficiario_x_socio
         {
             get
@@ -251,8 +236,25 @@ namespace COCASJOL.LOGIC
             }
         }
         private ObjectSet<nota_de_peso> _nota_de_peso;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<usuario> usuarios
+        {
+            get
+            {
+                if ((_usuarios == null))
+                {
+                    _usuarios = base.CreateObjectSet<usuario>("usuarios");
+                }
+                return _usuarios;
+            }
+        }
+        private ObjectSet<usuario> _usuarios;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -312,14 +314,6 @@ namespace COCASJOL.LOGIC
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the usuarios EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTousuarios(usuario usuario)
-        {
-            base.AddObject("usuarios", usuario);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the beneficiario_x_socio EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddTobeneficiario_x_socio(beneficiario_x_socio beneficiario_x_socio)
@@ -342,8 +336,17 @@ namespace COCASJOL.LOGIC
         {
             base.AddObject("nota_de_peso", nota_de_peso);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the usuarios EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTousuarios(usuario usuario)
+        {
+            base.AddObject("usuarios", usuario);
+        }
 
         #endregion
+
         #region Function Imports
     
         /// <summary>
@@ -423,11 +426,11 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -458,6 +461,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -635,6 +639,7 @@ namespace COCASJOL.LOGIC
         partial void OnBENEFICIARIO_PORCENTAJEChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -677,6 +682,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -703,6 +709,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -757,6 +764,7 @@ namespace COCASJOL.LOGIC
         partial void OnCODIGO_NUMEROChanged();
 
         #endregion
+
     
     }
     
@@ -784,6 +792,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -889,6 +898,7 @@ namespace COCASJOL.LOGIC
         partial void OninventariocolChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -931,6 +941,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -965,6 +976,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1139,6 +1151,7 @@ namespace COCASJOL.LOGIC
         partial void OnNOTA_PORCENTAJE_HUMEDADChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1181,6 +1194,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1207,6 +1221,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1312,6 +1327,7 @@ namespace COCASJOL.LOGIC
         partial void OnDETALLE_PESOChanged();
 
         #endregion
+
     
     }
     
@@ -1345,6 +1361,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1543,6 +1560,7 @@ namespace COCASJOL.LOGIC
         partial void OnFECHA_MODIFICACIONChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1569,6 +1587,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1599,6 +1618,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1773,6 +1793,7 @@ namespace COCASJOL.LOGIC
         partial void OnFECHA_MODIFICACIONChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1821,6 +1842,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1879,6 +1901,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2389,6 +2412,7 @@ namespace COCASJOL.LOGIC
         partial void OnSOCIOS_ESTATUSChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2535,6 +2559,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2559,6 +2584,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2757,6 +2783,7 @@ namespace COCASJOL.LOGIC
         partial void OnGENERAL_EMPRESA_TELEFONOChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2799,6 +2826,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2823,6 +2851,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3093,6 +3122,7 @@ namespace COCASJOL.LOGIC
         partial void OnPRODUCCION_MANZANAS_CULTIVADASChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -3135,6 +3165,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3154,21 +3185,24 @@ namespace COCASJOL.LOGIC
         /// <param name="uSR_NOMBRE">Initial value of the USR_NOMBRE property.</param>
         /// <param name="uSR_APELLIDO">Initial value of the USR_APELLIDO property.</param>
         /// <param name="uSR_CEDULA">Initial value of the USR_CEDULA property.</param>
+        /// <param name="uSR_PASSWORD">Initial value of the USR_PASSWORD property.</param>
         /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
         /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
-        public static usuario Createusuario(global::System.String uSR_USERNAME, global::System.String uSR_NOMBRE, global::System.String uSR_APELLIDO, global::System.String uSR_CEDULA, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
+        public static usuario Createusuario(global::System.String uSR_USERNAME, global::System.String uSR_NOMBRE, global::System.String uSR_APELLIDO, global::System.String uSR_CEDULA, global::System.String uSR_PASSWORD, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
         {
             usuario usuario = new usuario();
             usuario.USR_USERNAME = uSR_USERNAME;
             usuario.USR_NOMBRE = uSR_NOMBRE;
             usuario.USR_APELLIDO = uSR_APELLIDO;
             usuario.USR_CEDULA = uSR_CEDULA;
+            usuario.USR_PASSWORD = uSR_PASSWORD;
             usuario.CREADO_POR = cREADO_POR;
             usuario.FECHA_CREACION = fECHA_CREACION;
             return usuario;
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3321,7 +3355,7 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String USR_PASSWORD
         {
@@ -3333,7 +3367,7 @@ namespace COCASJOL.LOGIC
             {
                 OnUSR_PASSWORDChanging(value);
                 ReportPropertyChanging("USR_PASSWORD");
-                _USR_PASSWORD = StructuralObject.SetValidValue(value, true);
+                _USR_PASSWORD = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("USR_PASSWORD");
                 OnUSR_PASSWORDChanged();
             }
@@ -3439,6 +3473,7 @@ namespace COCASJOL.LOGIC
         partial void OnFECHA_MODIFICACIONChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -3465,8 +3500,10 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
     }
 
     #endregion
+
     
 }

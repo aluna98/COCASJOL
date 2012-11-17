@@ -69,6 +69,7 @@
     <Content Include="Images\user.png" />
     <Content Include="Images\vista_start_button.gif" />
     <Content Include="Images\window48x48.png" />
+    <Content Include="Scripts\md5.js" />
     <Content Include="Source\Desktop.aspx" />
     <Content Include="Source\Seguridad\Rol.aspx" />
     <Content Include="Source\Seguridad\Usuario.aspx" />
@@ -139,12 +140,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>3219</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost/COCASJOL</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

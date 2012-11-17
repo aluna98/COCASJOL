@@ -7,6 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <script type="text/javascript" src="../../Scripts/md5.js"></script>
     <script type="text/javascript">
         var Grid = null;
         var GridStore = null;
@@ -39,6 +40,7 @@
             },
 
             insert: function () {
+                AddPasswordTxt.setValue(faultylabs.MD5(AddPasswordTxt.getValue()));
                 var fields = AddForm.getForm().getFieldValues(false, "dataIndex");
 
                 Grid.insertRecord(0, fields, false);
@@ -387,11 +389,11 @@
             Shadow="None"
             Modal="true"
             X="10" Y="30">
+            <Listeners>
+                <Show Handler="#{AddUsuarioFormP}.getForm().reset();" />
+            </Listeners>
             <Items>
                 <ext:FormPanel ID="AddUsuarioFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true">
-                    <Listeners>
-                        <Show Handler="this.getForm().reset();" />
-                    </Listeners>
                     <Items>
                         <ext:TabPanel ID="TabPanel1" runat="server">
                             <Items>
@@ -443,9 +445,6 @@
             X="10" Y="30">
             <Items>
                 <ext:FormPanel ID="EditarUsuarioFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true">
-                    <Listeners>
-                        <Show Handler="this.getForm().reset();" />
-                    </Listeners>
                     <Items>
                         <ext:TabPanel ID="TabPanel11" runat="server">
                             <Items>
@@ -463,7 +462,7 @@
                                                 <ext:TextField runat="server" ID="EditCedulaTxt"        DataIndex="USR_CEDULA"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cedula" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditEmailTxt"         DataIndex="USR_CORREO"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Email" Vtype="email" ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditPuestoTxt"        DataIndex="USR_PUESTO"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Puesto" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditPasswordTxt"      DataIndex="USR_PASSWORD"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Clave" InputType="Password" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditPasswordTxt"      DataIndex="USR_PASSWORD"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Clave" InputType="Password" AllowBlank="false" IndicatorIcon="BulletRed" Hidden="true" ReadOnly="true"></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditCreatedByTxt"     DataIndex="CREADO_POR"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditCreationDateTxt"  DataIndex="FECHA_CREACION"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditModifiedByTxt"    DataIndex="MODIFICADO_POR"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>

@@ -23,14 +23,16 @@
             position: relative !important;
           }
     </style>
-    
+    <script type="text/javascript" src="Scripts/md5.js"></script>
     <script type="text/javascript">
         var validate = function () {
             if (!Ext.getCmp('txtUsername').validate() || !Ext.getCmp('txtPassword').validate()) {
                 Ext.Msg.alert('Login', 'El nombre de usuario y contraseña son necesarios.');
                 return;
-            } else
-                Ext.net.DirectMethods.Button1_Click({ eventMask: { showMask: true} });
+            } else {
+                txtPassword.setValue(faultylabs.MD5(txtPassword.getValue()));
+                Ext.net.DirectMethods.Button1_Click({ eventMask: { showMask: true } });
+            }
         };
 
         var KeyUpEvent = function (sender, e) {
