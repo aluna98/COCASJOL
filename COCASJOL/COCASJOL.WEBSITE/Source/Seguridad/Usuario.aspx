@@ -78,6 +78,24 @@
                 }
             },
 
+            editPassword: function () {
+                if (Grid.getSelectionModel().hasSelection()) {
+                    var record = Grid.getSelectionModel().getSelected();
+                    var index = Grid.store.indexOf(record);
+                    this.setIndex(index);
+
+                    rec = this.getRecord();
+
+                    if (rec != null) {
+                        CambiarClaveWin.show();
+                        FormPanel2.getForm().loadRecord(rec);
+                        FormPanel2.record = rec;
+                    }
+                } else {
+                    Ext.Msg.alert(AlertSelMsgTitle, AlertSelMsg);
+                }
+            },
+
             edit: function () {
                 if (Grid.getSelectionModel().hasSelection()) {
                     var record = Grid.getSelectionModel().getSelected();
@@ -85,7 +103,6 @@
                     this.setIndex(index);
                     this.open();
                 } else {
-                    var msg = Ext.Msg;
                     Ext.Msg.alert(AlertSelMsgTitle, AlertSelMsg);
                 }
             },
@@ -121,6 +138,17 @@
                 Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
                     if (btn == 'yes') {
                         EditForm.getForm().updateRecord(EditForm.record);
+                    }
+                });
+            },
+
+            updatePassword: function () {
+                Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
+                    if (btn == 'yes') {
+                        var encrypted = faultylabs.MD5(CambiarClaveConfirmarTxt.getValue());
+                        CambiarClaveTxt.setValue(encrypted);
+                        CambiarClaveConfirmarTxt.setValue(encrypted);
+                        Ext.net.DirectMethods.CambiarClaveGuardarBtn_Click({ success: function () { Ext.Msg.alert('Cambiar Contraseña', 'Contraseña actualizada exitosamente.'); } }, { eventMask: { showMask: true, target: 'customtarget', customTarget: FormPanel2} });
                     }
                 });
             },
@@ -262,6 +290,9 @@
                                             </Fields>
                                         </ext:JsonReader>
                                     </Reader>
+                                    <Listeners>
+                                        <CommitDone Handler="Ext.Msg.alert('Guardar', 'Datos Guardados Exitosamente.');" />
+                                    </Listeners>
                                 </ext:Store>
                             </Store>
                             <ColumnModel>
@@ -290,12 +321,16 @@
                                                 <Click Handler="PageX.edit();" />
                                             </Listeners>
                                         </ext:Button>
+                                        <ext:Button ID="CambiarClaveBtn" runat="server" Text="Cambiar Contraseña" Icon="Key">
+                                            <Listeners>
+                                                <Click Handler="PageX.editPassword();" />
+                                            </Listeners>
+                                        </ext:Button>
                                         <ext:Button ID="EliminarUsuarioBtn" runat="server" Text="Eliminar" Icon="UserDelete">
                                             <Listeners>
                                                 <Click Handler="PageX.remove();" />
                                             </Listeners>
                                         </ext:Button>
-                                        <ext:ToolbarFill />
                                     </Items>
                                 </ext:Toolbar>
                             </TopBar>
@@ -695,6 +730,38 @@
                             </Items>
                         </ext:Panel>
                     </Items>
+                </ext:FormPanel>
+            </Items>
+        </ext:Window>
+    
+        <ext:Window ID="CambiarClaveWin" runat="server" Hidden="true" Icon="CogAdd" Title="Cambiar Contraseña"
+            Width="400" Layout="FormLayout" AutoHeight="True" Resizable="false" Shadow="None"
+            X="30" Y="70" Modal="true">
+            <Listeners>
+                <Show Handler="#{FormPanel2}.getForm().reset();" />
+            </Listeners>
+            <Items>
+                <ext:FormPanel ID="FormPanel2" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true">
+                    <Items>
+                        <ext:Panel ID="Panel4" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
+                            <Items>
+                                <ext:TextField runat="server" ID="CambiarClaveUsernameTxt"  DataIndex="USR_USERNAME"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre de Usuario" AllowBlank="false" Hidden="true" ReadOnly="true"></ext:TextField>
+                                <ext:TextField runat="server" ID="CambiarClaveTxt"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nueva Contraseña"     InputType="Password" AllowBlank="false" ></ext:TextField>
+                                <ext:TextField runat="server" ID="CambiarClaveConfirmarTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Confirmar Contraseña" InputType="Password" AllowBlank="false" Vtype="password" MsgTarget="Side" >
+                                    <CustomConfig>
+                                        <ext:ConfigItem Name="initialPassField" Value="#{CambiarClaveTxt}" Mode="Value" />
+                                    </CustomConfig>
+                                </ext:TextField>
+                            </Items>
+                        </ext:Panel>
+                    </Items>
+                    <Buttons>
+                        <ext:Button ID="CambiarClaveGuardarBtn" runat="server" Text="Guardar" Icon="Disk" FormBind="true">
+                            <Listeners>
+                                <Click Handler="PageX.updatePassword();" />
+                            </Listeners>
+                        </ext:Button>
+                    </Buttons>
                 </ext:FormPanel>
             </Items>
         </ext:Window>

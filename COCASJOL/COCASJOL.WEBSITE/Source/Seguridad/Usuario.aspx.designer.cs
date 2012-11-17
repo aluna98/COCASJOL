@@ -130,6 +130,15 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         protected global::Ext.Net.Button EditarUsuarioBtn;
         
         /// <summary>
+        /// CambiarClaveBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button CambiarClaveBtn;
+        
+        /// <summary>
         /// EliminarUsuarioBtn control.
         /// </summary>
         /// <remarks>
@@ -767,5 +776,68 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.PagingToolbar PagingToolbar4;
+        
+        /// <summary>
+        /// CambiarClaveWin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Window CambiarClaveWin;
+        
+        /// <summary>
+        /// FormPanel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FormPanel FormPanel2;
+        
+        /// <summary>
+        /// Panel4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Panel4;
+        
+        /// <summary>
+        /// CambiarClaveUsernameTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField CambiarClaveUsernameTxt;
+        
+        /// <summary>
+        /// CambiarClaveTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField CambiarClaveTxt;
+        
+        /// <summary>
+        /// CambiarClaveConfirmarTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField CambiarClaveConfirmarTxt;
+        
+        /// <summary>
+        /// CambiarClaveGuardarBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button CambiarClaveGuardarBtn;
     }
 }

@@ -31,6 +31,22 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                 e.Cancel = true;
         }
 
+        #region Usuarios
+
+        [DirectMethod]
+        public void CambiarClaveGuardarBtn_Click()
+        {
+            string user = this.CambiarClaveUsernameTxt.Text;
+
+            UsuarioLogic usuariologic = new UsuarioLogic();
+
+            usuariologic.ActualizarClave(user, this.CambiarClaveConfirmarTxt.Text, this.LoggedUserHdn.Text);
+            this.FormPanel2.Reset();
+            this.CambiarClaveWin.Hide();
+        }
+
+        #endregion
+
         #region Roles
 
         protected void RolesDeUsuarioSt_Refresh(object sender, StoreRefreshDataEventArgs e)

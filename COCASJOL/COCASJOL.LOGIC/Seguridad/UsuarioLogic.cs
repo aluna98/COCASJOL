@@ -252,6 +252,31 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        public void ActualizarClave(string USR_USERNAME, string USR_PASSWORD, string MODIFICADO_POR)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    EntityKey k = new EntityKey("colinasEntities.usuarios", "USR_USERNAME", USR_USERNAME);
+
+                    var u = db.GetObjectByKey(k);
+
+                    usuario user = (usuario)u;
+
+                    user.USR_PASSWORD = USR_PASSWORD;
+                    user.MODIFICADO_POR = MODIFICADO_POR;
+                    user.FECHA_MODIFICACION = DateTime.Now;
+
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         #endregion
 
         #region Delete

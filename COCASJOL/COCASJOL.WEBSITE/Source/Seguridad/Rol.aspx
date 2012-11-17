@@ -273,7 +273,6 @@
                                                 <Click Handler="PageX.remove();" />
                                             </Listeners>
                                         </ext:Button>
-                                        <ext:ToolbarFill />
                                     </Items>
                                 </ext:Toolbar>
                             </TopBar>
