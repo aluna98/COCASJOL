@@ -11,39 +11,39 @@
     
     <style type="text/css">        
         .start-button {
-            background-image: url(../Images/cocasjol_start_button.gif) !important;
+            background-image: url(../resources/images/cocasjol_start_button.gif) !important;
         }
         
         .shortcut-icon {
             width: 48px;
             height: 48px;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../Images/window.png", sizingMethod="scale");
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/window.png", sizingMethod="scale");
         }
         
         .icon-grid48 {
             background-image: url(../Images/grid48x48.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../Images/grid48x48.png", sizingMethod="scale");
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/grid48x48.png", sizingMethod="scale");
         }
         
         .icon-usuarios {
             background-image: url(../Images/user.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../Images/user.png", sizingMethod="scale");
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/user.png", sizingMethod="scale");
         }
         
         .icon-socios
         {
             background-image: url(../Images/group.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../Images/group.png", sizingMethod="scale");
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/group.png", sizingMethod="scale");
         }
         
         .icon-roles {
             background-image: url(../Images/gear_in.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../Images/gear_in.png", sizingMethod="scale");
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/gear_in.png", sizingMethod="scale");
         }
         
         .icon-window48 {
             background-image: url(../Images/window48x48.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../Images/window48x48.png", sizingMethod="scale");
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/window48x48.png", sizingMethod="scale");
         }
     </style>
     

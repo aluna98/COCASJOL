@@ -14,7 +14,7 @@
     <style type="text/css">
         /*body
           {
-              background-image: url('Images/login.jpg') !important;
+              background-image: url('resources/images/login.jpg') !important;
               background-position: center;
               background-repeat: no-repeat;
           }*/
@@ -91,7 +91,7 @@
             </Listeners>
         </ext:ResourceManager>
         <div id="bg">
-        <img src="Images/login.jpg" alt="" />
+        <img src="resources/images/login.jpg" alt="" />
         <ext:Window
             ID="Window1"
             runat="server"

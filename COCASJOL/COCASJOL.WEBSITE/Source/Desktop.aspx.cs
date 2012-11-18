@@ -17,8 +17,8 @@ namespace COCASJOL.WEBSITE
         {
             if (!X.IsAjaxRequest)
             {
-                //this.MyDesktop.Wallpaper = "../Images/desktop.jpg";
-                this.MyDesktop.Wallpaper = "../Images/background1.jpg";
+                //this.MyDesktop.Wallpaper = "../resources/images/desktop.jpg";
+                this.MyDesktop.Wallpaper = "../resources/images/background1.jpg";
             }
         }
 
