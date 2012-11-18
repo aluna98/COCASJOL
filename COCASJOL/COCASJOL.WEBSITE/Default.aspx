@@ -12,18 +12,38 @@
 <head runat="server">
     <title>Colinas Login</title>
     <style type="text/css">
-          body
+        /*body
           {
               background-image: url('Images/login.jpg') !important;
               background-position: center;
               background-repeat: no-repeat;
-          }
-          
-          .loginEl {
+          }*/
+        
+        #bg
+        {
+            position: fixed;
+            
+            width: 200%;
+            height: 200%;
+        }
+        #bg img
+        {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            
+            margin: auto;
+            min-width: 50%;
+            min-height: 50%;
+        }
+        
+        .loginEl
+        {
             position: relative !important;
-          }
+        }
     </style>
-    <script type="text/javascript" src="Scripts/md5.js"></script>
+    <script type="text/javascript" src="resources/js/md5.js"></script>
     <script type="text/javascript">
         var validate = function () {
             if (!Ext.getCmp('txtUsername').validate() || !Ext.getCmp('txtPassword').validate()) {
@@ -31,7 +51,7 @@
                 return;
             } else {
                 txtPassword.setValue(faultylabs.MD5(txtPassword.getValue()));
-                Ext.net.DirectMethods.Button1_Click({ eventMask: { showMask: true } });
+                Ext.net.DirectMethods.Button1_Click({ eventMask: { showMask: true, minDelay: 1000 } });
             }
         };
 
@@ -51,10 +71,10 @@
         public void Button1_Click()
         {
             UsuarioLogic usuarioLogic = new UsuarioLogic();
-            if (usuarioLogic.Autenticar(this.txtUsername.Text, this.txtPassword.Text))
+            if (usuarioLogic.Autenticar(this.txtUsername.Text, this.txtPassword.Text) == true)
             {
                 Session["username"] = this.txtUsername.Text;
-
+                
                 Window1.Close();
                 Response.Redirect("~/Source/Desktop.aspx");
             }
@@ -70,24 +90,32 @@
                 <DocumentReady Handler="alinearLogin();" />
             </Listeners>
         </ext:ResourceManager>
-        
-        <ext:Window ID="Window1" runat="server" Closable="false" Resizable="false" Height="150"
-            Icon="Lock" Title="Login" Draggable="false" Width="350" Layout="FitLayout"
+        <div id="bg">
+        <img src="Images/login.jpg" alt="" />
+        <ext:Window
+            ID="Window1"
+            runat="server"
+            Closable="false"
+            Resizable="false"
+            Height="150"
+            Icon="Lock"
+            Title="Login"
+            Draggable="false"
+            Width="350"
+            Layout="FitLayout"
             Cls="loginEl">
             <Items>
-                <ext:FormPanel ID="FormPanel1" runat="server" Title="Form Panel" Header="false" Frame="false" ButtonAlign="Right" Border="false">
+                <ext:FormPanel ID="FormPanel1" runat="server" Title="Form Panel" Header="false" Frame="false" ButtonAlign="Right" Border="false" MonitorValid="true">
                     <Items>
                         <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout"
                             Border="false">
                             <Items>
-                                <ext:TextField ID="txtUsername" runat="server" FieldLabel="Usuario" AllowBlank="false"
-                                    BlankText="Se requiere su nombre de usuario." EnableKeyEvents="true" LabelAlign="Right" AnchorHorizontal="90%">
+                                <ext:TextField ID="txtUsername" runat="server" FieldLabel="Usuario" AllowBlank="false" BlankText="Se requiere su nombre de usuario." EnableKeyEvents="true" LabelAlign="Right" AnchorHorizontal="90%" MsgTarget="Side">
                                     <Listeners>
                                         <KeyUp Handler="KeyUpEvent(this, e);" />
                                     </Listeners>
                                 </ext:TextField>
-                                <ext:TextField ID="txtPassword" runat="server" InputType="Password" FieldLabel="Clave"
-                                    AllowBlank="false" BlankText="Se requiere su clave." EnableKeyEvents="true" LabelAlign="Right" AnchorHorizontal="90%">
+                                <ext:TextField ID="txtPassword" runat="server" InputType="Password" FieldLabel="Clave" AllowBlank="false" BlankText="Se requiere su clave." EnableKeyEvents="true" LabelAlign="Right" AnchorHorizontal="90%" MsgTarget="Side">
                                     <Listeners>
                                         <KeyUp Handler="KeyUpEvent(this, e);" />
                                     </Listeners>
@@ -105,6 +133,8 @@
                 </ext:Button>
             </Buttons>
         </ext:Window>
+        </div>
+        
     </form>
 </body>
 </html>

@@ -41,8 +41,6 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
             UsuarioLogic usuariologic = new UsuarioLogic();
 
             usuariologic.ActualizarClave(user, this.CambiarClaveConfirmarTxt.Text, this.LoggedUserHdn.Text);
-            this.FormPanel2.Reset();
-            this.CambiarClaveWin.Hide();
         }
 
         #endregion

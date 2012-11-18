@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Desktop.aspx.cs" Inherits="COCASJOL.WEBSITE.Desktop" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
+<%@ Register src="~/Source/Seguridad/CambiarClave.ascx" tagname="EditarClave" tagprefix="cclave" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -48,56 +49,34 @@
     
     <script type="text/javascript">
         var DesktopX = {
-            openWindows: new Array(),
-
-            popWindow: function(window) {
-                var idx = -1;
-                for (var i = 0; i < this.openWindows.length; i++) {
-                    if (this.openWindows[i].title == window.title)
-                    {
-                        idx = i;
-                        break;
-                    }
-                }
-
-                if (idx != -1)
-                    this.openWindows = this.openWindows.slice(idx, idx);
-
-                return true;
-            },
-
-            createDynamicWindow: function (app,ico, title, url) {
-                for (var i = 0; i < this.openWindows.length; i++) {
-                    if (this.openWindows[i].title == title) {
-                        return;
-                    }
-                }
-
+            createDynamicWindow: function (app, ico, title, url) {
                 var desk = app.getDesktop();
 
-                var w = desk.createWindow({
-                    iconCls: 'icon-' + ico,
-                    title: title,
-                    width: 1000,
-                    height: 600,
-                    maximizable: true,
-                    minimizable: true,
-                    closeAction: 'close',
-                    listeners: {
-                        beforeClose: function () { DesktopX.popWindow(this); }
-                    },
-                    autoLoad: {
-                        url: url,
-                        mode: "iframe",
-                        scripts: true,
-                        showMask: true
-                    }
-                });
+                var w = desk.getWindow(title + '-win');
 
-                w.center();
+                if (!w) {
+                    w = desk.createWindow({
+                        id: title + '-win',
+                        iconCls: 'icon-' + ico,
+                        title: title,
+                        width: 1000,
+                        height: 600,
+                        maximizable: true,
+                        minimizable: true,
+                        closeAction: 'close',
+                        shim: false,
+                        animCollapse: false,
+                        constrainHeader: true,
+                        layout: 'fit',
+                        autoLoad: {
+                            url: url,
+                            mode: "iframe",
+                            showMask: true
+                        }
+                    });
+                    w.center();
+                }
                 w.show();
-
-                this.openWindows.push(w);
             }
         };
 
@@ -110,8 +89,12 @@
                 DesktopX.createDynamicWindow(app, 'cog', 'Roles', 'Seguridad/Rol.aspx');
             },
 
-            socios: function(app){
+            socios: function(app) {
                 DesktopX.createDynamicWindow(app, 'group', 'Socios', 'Socios/Socios.aspx');
+            },
+
+            settings: function() {
+                SettingsWin.show();
             }
         };
 
@@ -138,6 +121,16 @@
         <ext:ResourceManager ID="ResourceManager1" runat="server">
         </ext:ResourceManager>
 
+        <ext:Menu runat="server" ID="cmenu">
+            <Items>
+            <ext:MenuItem Text="Settings" Icon="Wrench">
+                <Listeners>
+                    <Click Handler="WindowX.settings();" />
+                </Listeners>
+            </ext:MenuItem>
+            </Items>
+        </ext:Menu>
+
         <ext:Desktop 
             ID="MyDesktop" 
             runat="server" 
@@ -145,10 +138,21 @@
             ShortcutTextColor="White" >
             <Listeners>
                 <ShortcutClick Handler="ShorcutClickHandler(#{MyDesktop}, id);" />
+                <Ready Handler="Ext.get('x-desktop').on('contextmenu', function(e){e.stopEvent();e.preventDefault();cmenu.showAt(e.getPoint());});" />
             </Listeners>
-
             <StartButton Text="Inicio" IconCls="start-button" />
-            <Modules>                
+
+            <Modules>
+                <ext:DesktopModule ModuleID="SettingsModule" WindowID="SettingsWin" >
+                    <Launcher ID="SettingsLauncher" runat="server" Text="Configuración" Icon="Wrench"></Launcher>
+                </ext:DesktopModule>
+                <ext:DesktopModule ModuleID="UsuariosModule">
+                    <Launcher ID="Launcher1" runat="server" Text="Usuarios" Icon="User" >
+                        <Listeners>
+                            <Click Handler="WindowX.usuarios(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
                 <ext:DesktopModule ModuleID="UsuariosModule">
                     <Launcher ID="UsuariosLauncher" runat="server" Text="Usuarios" Icon="User" >
                         <Listeners>
@@ -178,8 +182,8 @@
                 <ext:DesktopShortcut ShortcutID="scTile" Text="Tile windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-90" />
                 <ext:DesktopShortcut ShortcutID="scCascade" Text="Cascade windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-170" />
                 <ext:DesktopShortcut ShortcutID="scSocios" Text="Socios" IconCls="shortcut-icon icon-socios" />
-            </Shortcuts>            
-            
+            </Shortcuts>
+
             <StartMenu Height="400" Width="300" ToolsWidth="127" Title="Start Menu">
                 <ToolItems>
                     <ext:MenuItem Text="Settings" Icon="Wrench">
@@ -190,7 +194,7 @@
                     <ext:MenuItem Text="Logout" Icon="Disconnect">
                         <DirectEvents>
                             <Click OnEvent="Logout_Click">
-                                <EventMask ShowMask="true" Msg="Good Bye..." MinDelay="1000" />
+                                <EventMask ShowMask="true" Msg="Adios..." MinDelay="1000" />
                             </Click>
                         </DirectEvents>
                     </ext:MenuItem>
@@ -219,6 +223,20 @@
                 </Items>
             </StartMenu>
         </ext:Desktop>
+
+        <ext:DesktopWindow
+            ID="SettingsWin"
+            runat="server"
+            Title="Configuración"
+            Width="300"
+            Maximizable="false"
+            BodyBorder="false"
+            InitCenter="false"
+            Icon="Wrench"
+            AutoHeight="true"
+            Shadow="None"
+            Resizable="false">
+        </ext:DesktopWindow>
     </div>
     </form>
 </body>

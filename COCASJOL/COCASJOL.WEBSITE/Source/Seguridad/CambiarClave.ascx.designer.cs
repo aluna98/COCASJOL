@@ -7,72 +7,90 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace COCASJOL.WEBSITE {
+namespace COCASJOL.Website.Source.Seguridad {
     
     
-    public partial class Desktop {
+    public partial class CambiarClave {
         
         /// <summary>
-        /// form1 control.
+        /// LoggedUserHdn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::Ext.Net.Hidden LoggedUserHdn;
         
         /// <summary>
-        /// ResourceManager1 control.
+        /// FormPanel2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ResourceManager ResourceManager1;
+        protected global::Ext.Net.FormPanel FormPanel2;
         
         /// <summary>
-        /// cmenu control.
+        /// Panel4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Menu cmenu;
+        protected global::Ext.Net.Panel Panel4;
         
         /// <summary>
-        /// MyDesktop control.
+        /// CambiarClaveUsernameTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Desktop MyDesktop;
+        protected global::Ext.Net.TextField CambiarClaveUsernameTxt;
         
         /// <summary>
-        /// MenuItem4 control.
+        /// CambiarClaveActualTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.MenuItem MenuItem4;
+        protected global::Ext.Net.TextField CambiarClaveActualTxt;
         
         /// <summary>
-        /// Menu2 control.
+        /// CambiarClaveActualConfirmarTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Menu Menu2;
+        protected global::Ext.Net.TextField CambiarClaveActualConfirmarTxt;
         
         /// <summary>
-        /// SettingsWin control.
+        /// CambiarClaveNuevaTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DesktopWindow SettingsWin;
+        protected global::Ext.Net.TextField CambiarClaveNuevaTxt;
+        
+        /// <summary>
+        /// CambiarClaveNuevaConfirmarTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField CambiarClaveNuevaConfirmarTxt;
+        
+        /// <summary>
+        /// CambiarClaveGuardarBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button CambiarClaveGuardarBtn;
     }
 }

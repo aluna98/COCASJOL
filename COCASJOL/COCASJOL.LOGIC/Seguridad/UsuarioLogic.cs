@@ -131,6 +131,29 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        public usuario GetUsuario(string USR_USERNAME)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    db.usuarios.MergeOption = MergeOption.NoTracking;
+
+                    EntityKey k = new EntityKey("colinasEntities.usuarios", "USR_USERNAME", USR_USERNAME);
+
+                    var u = db.GetObjectByKey(k);
+
+                    usuario user = (usuario)u;
+
+                    return user;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         #endregion
 
         #region Insert
@@ -265,6 +288,43 @@ namespace COCASJOL.LOGIC.Seguridad
                     usuario user = (usuario)u;
 
                     user.USR_PASSWORD = USR_PASSWORD;
+                    user.MODIFICADO_POR = MODIFICADO_POR;
+                    user.FECHA_MODIFICACION = DateTime.Now;
+
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public void ActualizarUsuario
+            (string USR_USERNAME,
+            string USR_NOMBRE,
+            string USR_APELLIDO,
+            string USR_CEDULA,
+            string USR_CORREO,
+            string USR_PUESTO,
+            string MODIFICADO_POR)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    EntityKey k = new EntityKey("colinasEntities.usuarios", "USR_USERNAME", USR_USERNAME);
+
+                    var u = db.GetObjectByKey(k);
+
+                    usuario user = (usuario)u;
+
+                    user.USR_USERNAME = USR_USERNAME;
+                    user.USR_NOMBRE = USR_NOMBRE;
+                    user.USR_APELLIDO = USR_APELLIDO;
+                    user.USR_CEDULA = USR_CEDULA;
+                    user.USR_CORREO = USR_CORREO;
+                    user.USR_PUESTO = USR_PUESTO;
                     user.MODIFICADO_POR = MODIFICADO_POR;
                     user.FECHA_MODIFICACION = DateTime.Now;
 

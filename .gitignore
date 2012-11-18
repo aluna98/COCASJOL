@@ -2,6 +2,7 @@
 bin
 obj
 *.suo
+*.user
 Colinas.Views.cs
 # mstest test results
 TestResults

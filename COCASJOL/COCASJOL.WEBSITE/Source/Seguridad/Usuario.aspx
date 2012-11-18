@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <script type="text/javascript" src="../../Scripts/md5.js"></script>
+    <script type="text/javascript" src="../../resources/js/md5.js"></script>
     <script type="text/javascript">
         var Grid = null;
         var GridStore = null;
@@ -148,7 +148,7 @@
                         var encrypted = faultylabs.MD5(CambiarClaveConfirmarTxt.getValue());
                         CambiarClaveTxt.setValue(encrypted);
                         CambiarClaveConfirmarTxt.setValue(encrypted);
-                        Ext.net.DirectMethods.CambiarClaveGuardarBtn_Click({ success: function () { Ext.Msg.alert('Cambiar Contraseña', 'Contraseña actualizada exitosamente.'); } }, { eventMask: { showMask: true, target: 'customtarget', customTarget: FormPanel2} });
+                        Ext.net.DirectMethods.CambiarClaveGuardarBtn_Click({ success: function () { Ext.Msg.alert('Cambiar Contraseña', 'Contraseña actualizada exitosamente.'); FormPanel2.getForm().reset(); CambiarClaveWin.hide(); } }, { eventMask: { showMask: true, target: 'customtarget', customTarget: FormPanel2} });
                     }
                 });
             },
@@ -291,7 +291,7 @@
                                         </ext:JsonReader>
                                     </Reader>
                                     <Listeners>
-                                        <CommitDone Handler="Ext.Msg.alert('Guardar', 'Datos Guardados Exitosamente.');" />
+                                        <CommitDone Handler="Ext.Msg.alert('Guardar', 'Cambios guardados exitosamente.');" />
                                     </Listeners>
                                 </ext:Store>
                             </Store>
@@ -437,13 +437,13 @@
                                     <Items>
                                         <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                             <Items>
-                                                <ext:TextField runat="server" ID="AddUsernameTxt"         DataIndex="USR_USERNAME"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre de Usuario" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddNombreTxt"           DataIndex="USR_NOMBRE"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddApellidoTxt"         DataIndex="USR_APELLIDO"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Apellido" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddCedulaTxt"           DataIndex="USR_CEDULA"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cedula" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddEmailTxt"            DataIndex="USR_CORREO"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Email" Vtype="email" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddUsernameTxt"         DataIndex="USR_USERNAME"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre de Usuario" AllowBlank="false" MsgTarget="Side"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddNombreTxt"           DataIndex="USR_NOMBRE"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddApellidoTxt"         DataIndex="USR_APELLIDO"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Apellido" AllowBlank="false" MsgTarget="Side"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddCedulaTxt"           DataIndex="USR_CEDULA"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cedula" AllowBlank="false" MsgTarget="Side"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddEmailTxt"            DataIndex="USR_CORREO"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Email" Vtype="email"  MsgTarget="Side"></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddPuestoTxt"           DataIndex="USR_PUESTO"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Puesto" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddPasswordTxt"         DataIndex="USR_PASSWORD"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Clave" InputType="Password" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddPasswordTxt"         DataIndex="USR_PASSWORD"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Clave" InputType="Password" AllowBlank="false" MsgTarget="Side"></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddCreatedByTxt"        DataIndex="CREADO_POR"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado por" Hidden="true" ></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddCreatedDateTxt"      DataIndex="FECHA_CREACION"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddModifiedByTxt"       DataIndex="MODIFICADO_POR"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
@@ -491,13 +491,18 @@
                                     <Items>
                                         <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                             <Items>
-                                                <ext:TextField runat="server" ID="EditUsernameTxt"      DataIndex="USR_USERNAME"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre de Usuario" AllowBlank="false" ReadOnly="true"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditNombreTxt"        DataIndex="USR_NOMBRE"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditApellidoTxt"      DataIndex="USR_APELLIDO"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Apellido" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditCedulaTxt"        DataIndex="USR_CEDULA"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cedula" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditEmailTxt"         DataIndex="USR_CORREO"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Email" Vtype="email" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditUsernameTxt"      DataIndex="USR_USERNAME"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre de Usuario" AllowBlank="false" ReadOnly="true">
+                                                    <ToolTips>
+                                                        <ext:ToolTip ID="ToolTip1" runat="server" Html="El nombre de usuario es de solo lectura."
+                                                            Title="Nombre de Usuario" Width="200" TrackMouse="true" />
+                                                    </ToolTips>
+                                                </ext:TextField>
+                                                <ext:TextField runat="server" ID="EditNombreTxt"        DataIndex="USR_NOMBRE"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditApellidoTxt"      DataIndex="USR_APELLIDO"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Apellido" AllowBlank="false" MsgTarget="Side"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditCedulaTxt"        DataIndex="USR_CEDULA"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cedula" AllowBlank="false" MsgTarget="Side"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditEmailTxt"         DataIndex="USR_CORREO"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Email" Vtype="email"  MsgTarget="Side"></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditPuestoTxt"        DataIndex="USR_PUESTO"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Puesto" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditPasswordTxt"      DataIndex="USR_PASSWORD"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Clave" InputType="Password" AllowBlank="false" IndicatorIcon="BulletRed" Hidden="true" ReadOnly="true"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditPasswordTxt"      DataIndex="USR_PASSWORD"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Clave" InputType="Password" AllowBlank="false" MsgTarget="Side" Hidden="true" ReadOnly="true"></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditCreatedByTxt"     DataIndex="CREADO_POR"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditCreationDateTxt"  DataIndex="FECHA_CREACION"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditModifiedByTxt"    DataIndex="MODIFICADO_POR"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
@@ -734,7 +739,7 @@
             </Items>
         </ext:Window>
     
-        <ext:Window ID="CambiarClaveWin" runat="server" Hidden="true" Icon="CogAdd" Title="Cambiar Contraseña"
+        <ext:Window ID="CambiarClaveWin" runat="server" Hidden="true" Icon="Key" Title="Cambiar Contraseña"
             Width="400" Layout="FormLayout" AutoHeight="True" Resizable="false" Shadow="None"
             X="30" Y="70" Modal="true">
             <Listeners>
@@ -746,7 +751,7 @@
                         <ext:Panel ID="Panel4" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                             <Items>
                                 <ext:TextField runat="server" ID="CambiarClaveUsernameTxt"  DataIndex="USR_USERNAME"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre de Usuario" AllowBlank="false" Hidden="true" ReadOnly="true"></ext:TextField>
-                                <ext:TextField runat="server" ID="CambiarClaveTxt"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nueva Contraseña"     InputType="Password" AllowBlank="false" ></ext:TextField>
+                                <ext:TextField runat="server" ID="CambiarClaveTxt"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nueva Contraseña"     InputType="Password" AllowBlank="false" MsgTarget="Side" ></ext:TextField>
                                 <ext:TextField runat="server" ID="CambiarClaveConfirmarTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Confirmar Contraseña" InputType="Password" AllowBlank="false" Vtype="password" MsgTarget="Side" >
                                     <CustomConfig>
                                         <ext:ConfigItem Name="initialPassField" Value="#{CambiarClaveTxt}" Mode="Value" />
