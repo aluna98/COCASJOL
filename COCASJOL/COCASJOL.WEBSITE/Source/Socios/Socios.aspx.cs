@@ -30,6 +30,16 @@ namespace COCASJOL.Website.Socios
         }
 
         [DirectMethod]
+        public void AgregarBeneficiarioBtn_Click()
+        {
+            SociosLogic socios = new SociosLogic();
+            socios.InsertarBeneficiario(this.EditsocioIdTxt.Text, this.AddBenefID.Text,
+                this.AddBenefNombre.Text, this.AddBenefParentezco.Text, this.AddBenefNacimiento.Text,
+                this.AddBenefLugarNac.Text, this.AddBenefPorcentaje.Text);
+            Beneficiarios_Refresh(null, null);
+        }
+
+        [DirectMethod]
         public void DoYesDisable()
         {
             confirm = true;
@@ -105,8 +115,11 @@ namespace COCASJOL.Website.Socios
                 e.ExtraParams["PRODUCCION_TIPO_INSUMOS"],
                 manzanas, this.LoggedUserHdn.Text
                 );
-            this.EditarSocioWin.Close();
+            this.EditarSocioWin.Hide();
             SociosSt_Reload(null, null);
+            SociosGridP.GetView().Refresh(false);
+            SociosSt.DataSource = soc.getData();
+            SociosSt.DataBind();
         }
 
         protected void SociosSt_Insert(object sender, DirectEventArgs e)
@@ -160,7 +173,7 @@ namespace COCASJOL.Website.Socios
                 );
             NuevoSocioForm.Reset();
             SociosGridP.GetView().Refresh(false);
-            this.NuevoSocioWin.Close();
+            this.NuevoSocioWin.Hide();
             SociosSt_Reload(null, null);
         }
 

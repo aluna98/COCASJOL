@@ -44,6 +44,43 @@ namespace COCASJOL.LOGIC.Socios
         #endregion
 
         #region Update
+        public void ActualizarBeneficiario(
+            string SOCIOS_ID,
+            string BENEFICIARIO_IDENTIFICACION,
+            string BENEFICIARIO_NOMBRE,
+            string BENEFICIARIO_PARENTEZCO,
+            string BENEFICIARIO_NACIMIENTO,
+            string BENEFICIARIO_LUGAR_NACIMIENTO,
+            decimal BENEFICIARIO_PORCENTAJE){
+                colinasEntities db = null;
+                try
+                {
+                    db = new colinasEntities();
+                    var query = from nuevo in db.beneficiario_x_socio
+                                where nuevo.SOCIOS_ID == SOCIOS_ID && nuevo.BENEFICIARIO_IDENTIFICACION == BENEFICIARIO_IDENTIFICACION
+                                select nuevo;
+                    beneficiario_x_socio beneficiario = query.First();
+                    beneficiario.SOCIOS_ID = SOCIOS_ID;
+                    beneficiario.BENEFICIARIO_IDENTIFICACION = BENEFICIARIO_IDENTIFICACION;
+                    beneficiario.BENEFICIARIO_LUGAR_NACIMIENTO = BENEFICIARIO_LUGAR_NACIMIENTO;
+                    beneficiario.BENEFICIARIO_NACIMIENTO = DateTime.Parse(BENEFICIARIO_NACIMIENTO);
+                    beneficiario.BENEFICIARIO_NOMBRE = BENEFICIARIO_NOMBRE;
+                    beneficiario.BENEFICIARIO_PORCENTAJE = Convert.ToDecimal(BENEFICIARIO_PORCENTAJE);
+                    beneficiario.BENEFICIARIO_PARENTEZCO = BENEFICIARIO_PARENTEZCO;
+                    db.SaveChanges();
+                    db.Dispose();
+                }
+                catch (Exception e)
+                {
+                    if (db != null)
+                    {
+                        db.Dispose();
+                    }
+                    throw;
+                }
+           
+
+        }
         public void ActualizarSocio(
             string SOCIOS_ID,
             string SOCIOS_PRIMER_NOMBRE,
@@ -140,6 +177,7 @@ namespace COCASJOL.LOGIC.Socios
         #endregion update
 
         #region insert
+
         public void InsertarSocio(
             string SOCIOS_ID,
             string SOCIOS_PRIMER_NOMBRE,
@@ -248,6 +286,40 @@ namespace COCASJOL.LOGIC.Socios
                 throw;
             }
         }
+
+        public void InsertarBeneficiario(string SOCIOS_ID,
+            string BENEFICIARIO_IDENTIFICACION,
+            string BENEFICIARIO_NOMBRE,
+            string BENEFICIARIO_PARENTEZCO,
+            string BENEFICIARIO_NACIMIENTO,
+            string BENEFICIARIO_LUGAR_NACIMIENTO,
+            string BENEFICIARIO_PORCENTAJE)
+        {
+            colinasEntities db = null;
+            try
+            {
+                db = new colinasEntities();
+                beneficiario_x_socio benef = new beneficiario_x_socio();
+                benef.SOCIOS_ID = SOCIOS_ID;
+                benef.BENEFICIARIO_IDENTIFICACION = BENEFICIARIO_IDENTIFICACION;
+                benef.BENEFICIARIO_NOMBRE = BENEFICIARIO_NOMBRE;
+                benef.BENEFICIARIO_PARENTEZCO = BENEFICIARIO_PARENTEZCO;
+                benef.BENEFICIARIO_NACIMIENTO = DateTime.Parse(BENEFICIARIO_NACIMIENTO);
+                benef.BENEFICIARIO_LUGAR_NACIMIENTO = BENEFICIARIO_LUGAR_NACIMIENTO;
+                benef.BENEFICIARIO_PORCENTAJE = Convert.ToDecimal(BENEFICIARIO_PORCENTAJE);
+                db.beneficiario_x_socio.AddObject(benef);
+                db.SaveChanges();
+                db.Dispose();
+            }
+            catch (Exception e)
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                }
+                throw;
+            }
+        }
         #endregion insert
 
         #region Delete
@@ -271,6 +343,28 @@ namespace COCASJOL.LOGIC.Socios
                 db.Dispose();
             }
             catch (Exception ex)
+            {
+                if (db != null)
+                    db.Dispose();
+                throw;
+            }
+        }
+
+        public void EliminarBeneficiario(string SOCIO_ID, string BENEFICIARIO_ID){
+            colinasEntities db = null;
+            try
+            {
+                db = new colinasEntities();
+                var query = from ben in db.beneficiario_x_socio
+                            where ben.SOCIOS_ID == SOCIO_ID && ben.BENEFICIARIO_IDENTIFICACION == BENEFICIARIO_ID
+                            select ben;
+
+                beneficiario_x_socio beneficiario = query.First();
+                db.DeleteObject(beneficiario);
+                db.SaveChanges();
+                db.Dispose();
+            }
+            catch (Exception e)
             {
                 if (db != null)
                     db.Dispose();
@@ -335,3 +429,9 @@ namespace COCASJOL.LOGIC.Socios
         #endregion
     }
 }
+//BenGrid = BeneficiariosGridP; 
+//AddBenWindow = NuevoBeneficiarioWin;
+//AddBenForm = NuevoBeneficiarioForm;
+//var ConfirmUpdateBen = "Seguro desea modificar el Beneficiario?";
+//var ConfirmDeleteBen = "Seguro desea Eliminar el Beneficiario?";
+//var Confirmacion = "Se ha finalizado correctamente";
