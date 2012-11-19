@@ -63,19 +63,22 @@
     <Content Include="resources\images\background1.jpg" />
     <Content Include="resources\images\cocasjol_start_button.gif" />
     <Content Include="resources\images\desktop.jpg" />
+    <Content Include="resources\images\dev-by-unitec.png" />
     <Content Include="resources\images\gear_in.png" />
     <Content Include="resources\images\grid48x48.png" />
     <Content Include="resources\images\group.png" />
+    <Content Include="resources\images\key.png" />
     <Content Include="resources\images\login.jpg" />
     <Content Include="resources\images\user.png" />
+    <Content Include="resources\images\user_edit.png" />
     <Content Include="resources\images\vista_start_button.gif" />
     <Content Include="resources\images\window48x48.png" />
     <Content Include="resources\js\md5.js" />
     <Content Include="Source\Desktop.aspx" />
-    <Content Include="Source\Seguridad\CambiarClave.aspx" />
+    <Content Include="Source\Seguridad\CambiarClave.ascx" />
     <Content Include="Source\Seguridad\Rol.aspx" />
     <Content Include="Source\Seguridad\Usuario.aspx" />
-    <Content Include="Source\Seguridad\UsuarioActual.aspx" />
+    <Content Include="Source\Seguridad\UsuarioActual.ascx" />
     <Content Include="Source\Socios\Socios.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -108,11 +111,12 @@
     <Compile Include="Source\Desktop.aspx.designer.cs">
       <DependentUpon>Desktop.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Source\Seguridad\CambiarClave.aspx.cs">
-      <DependentUpon>CambiarClave.aspx</DependentUpon>
+    <Compile Include="Source\Seguridad\CambiarClave.ascx.cs">
+      <DependentUpon>CambiarClave.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Source\Seguridad\CambiarClave.aspx.designer.cs">
-      <DependentUpon>CambiarClave.aspx</DependentUpon>
+    <Compile Include="Source\Seguridad\CambiarClave.ascx.designer.cs">
+      <DependentUpon>CambiarClave.ascx</DependentUpon>
     </Compile>
     <Compile Include="Source\Seguridad\Rol.aspx.cs">
       <DependentUpon>Rol.aspx</DependentUpon>
@@ -128,12 +132,12 @@
     <Compile Include="Source\Seguridad\Usuario.aspx.designer.cs">
       <DependentUpon>Usuario.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Source\Seguridad\UsuarioActual.aspx.cs">
-      <DependentUpon>UsuarioActual.aspx</DependentUpon>
+    <Compile Include="Source\Seguridad\UsuarioActual.ascx.cs">
+      <DependentUpon>UsuarioActual.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Source\Seguridad\UsuarioActual.aspx.designer.cs">
-      <DependentUpon>UsuarioActual.aspx</DependentUpon>
+    <Compile Include="Source\Seguridad\UsuarioActual.ascx.designer.cs">
+      <DependentUpon>UsuarioActual.ascx</DependentUpon>
     </Compile>
     <Compile Include="Source\Socios\Socios.aspx.cs">
       <DependentUpon>Socios.aspx</DependentUpon>
@@ -149,9 +153,7 @@
       <Name>COCASJOL.LOGIC</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

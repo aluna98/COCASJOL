@@ -1,7 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Desktop.aspx.cs" Inherits="COCASJOL.WEBSITE.Desktop" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
-<%@ Register src="~/Source/Seguridad/CambiarClave.ascx" tagname="EditarClave" tagprefix="cclave" %>
+<%@ Register Src="~/Source/Seguridad/UsuarioActual.ascx" TagName="UsuarioActual" TagPrefix="usera" %>
+<%@ Register Src="~/Source/Seguridad/CambiarClave.ascx" TagName="CambiarClave" TagPrefix="cclave" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -9,23 +10,27 @@
 <head runat="server">
     <title>Colinas</title>    
     
-    <style type="text/css">        
-        .start-button {
+    <style type="text/css">
+        .start-button
+        {
             background-image: url(../resources/images/cocasjol_start_button.gif) !important;
         }
         
-        .shortcut-icon {
+        .shortcut-icon
+        {
             width: 48px;
             height: 48px;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/window.png", sizingMethod="scale");
         }
         
-        .icon-grid48 {
+        .icon-grid48
+        {
             background-image: url(../Images/grid48x48.png) !important;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/grid48x48.png", sizingMethod="scale");
         }
         
-        .icon-usuarios {
+        .icon-usuarios
+        {
             background-image: url(../Images/user.png) !important;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/user.png", sizingMethod="scale");
         }
@@ -36,17 +41,45 @@
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/group.png", sizingMethod="scale");
         }
         
-        .icon-roles {
+        .icon-roles
+        {
             background-image: url(../Images/gear_in.png) !important;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/gear_in.png", sizingMethod="scale");
         }
         
-        .icon-window48 {
+        .icon-window48
+        {
             background-image: url(../Images/window48x48.png) !important;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/window48x48.png", sizingMethod="scale");
         }
+        
+        #poweredby
+        {
+            position: absolute;
+            bottom: 40px;
+            right: 20px;
+            z-index: 15000; /* IE 5-7 */
+            filter: alpha(opacity=70); /* Netscape */
+            -moz-opacity: 0.7; /* Safari 1.x */
+            -khtml-opacity: 0.7; /* Good browsers */
+            opacity: 0.7;
+        }
+        #poweredby div
+        {
+            position: relative;
+            width: 104px;
+            height: 50px;
+            background-image: url(../resources/images/dev-by-unitec.png);
+            background-repeat: no-repeat;
+        }
+        /* The simple background image PNG does not work in IE6-8, but does in IE9 */
+        .x-ie6 #poweredby div, .x-ie7 #poweredby div, .x-ie8 #poweredby div
+        {
+            background-image: none;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../resources/images/dev-by-unitec.png', sizingMethod='scale');
+        }
     </style>
-    
+    <script type="text/javascript" src="../resources/js/md5.js"></script>
     <script type="text/javascript">
         var DesktopX = {
             createDynamicWindow: function (app, ico, title, url) {
@@ -59,8 +92,8 @@
                         id: title + '-win',
                         iconCls: 'icon-' + ico,
                         title: title,
-                        width: 1000,
-                        height: 600,
+                        width: 640,
+                        height: 480,
                         maximizable: true,
                         minimizable: true,
                         closeAction: 'close',
@@ -101,11 +134,7 @@
         var ShorcutClickHandler = function (app, id) {
             var d = app.getDesktop();
 
-            if (id == 'scTile') {
-                d.tile();
-            } else if (id == 'scCascade') {
-                d.cascade();
-            } else if (id == 'scUsuarios') {
+            if (id == 'scUsuarios') {
                 WindowX.usuarios(app);
             } else if (id == 'scRoles') {
                 WindowX.roles(app);
@@ -123,9 +152,20 @@
 
         <ext:Menu runat="server" ID="cmenu">
             <Items>
-            <ext:MenuItem Text="Settings" Icon="Wrench">
+            <ext:MenuItem Text="Configuración" Icon="Wrench">
                 <Listeners>
                     <Click Handler="WindowX.settings();" />
+                </Listeners>
+            </ext:MenuItem>
+            <ext:MenuSeparator />
+            <ext:MenuItem Text="Ventanas en Mosaico" Icon="ApplicationTileVertical">
+                <Listeners>
+                    <Click Handler="#{MyDesktop}.getDesktop().tile();" />
+                </Listeners>
+            </ext:MenuItem>
+            <ext:MenuItem Text="Ventanas en Cascada" Icon="ApplicationCascade">
+                <Listeners>
+                    <Click Handler="#{MyDesktop}.getDesktop().cascade();" />
                 </Listeners>
             </ext:MenuItem>
             </Items>
@@ -146,13 +186,15 @@
                 <ext:DesktopModule ModuleID="SettingsModule" WindowID="SettingsWin" >
                     <Launcher ID="SettingsLauncher" runat="server" Text="Configuración" Icon="Wrench"></Launcher>
                 </ext:DesktopModule>
-                <ext:DesktopModule ModuleID="UsuariosModule">
-                    <Launcher ID="Launcher1" runat="server" Text="Usuarios" Icon="User" >
-                        <Listeners>
-                            <Click Handler="WindowX.usuarios(#{MyDesktop});" />
-                        </Listeners>
-                    </Launcher>
+
+                <ext:DesktopModule ModuleID="UsuarioActualModule" WindowID="UsuarioActualWin" >
+                    <Launcher ID="UsuarioActualLauncher" runat="server" Text="Editar Usuario" Icon="UserEdit" />
                 </ext:DesktopModule>
+
+                <ext:DesktopModule ModuleID="CambiarClaveModule" WindowID="CambiarClaveWin" >
+                    <Launcher ID="CambiarClaveLauncher" runat="server" Text="Cambiar Clave" Icon="Key" />
+                </ext:DesktopModule>
+
                 <ext:DesktopModule ModuleID="UsuariosModule">
                     <Launcher ID="UsuariosLauncher" runat="server" Text="Usuarios" Icon="User" >
                         <Listeners>
@@ -179,8 +221,8 @@
             <Shortcuts>
                 <ext:DesktopShortcut ShortcutID="scUsuarios" Text="Usuarios" IconCls="shortcut-icon icon-usuarios" />
                 <ext:DesktopShortcut ShortcutID="scRoles" Text="Roles" IconCls="shortcut-icon icon-roles" />
-                <ext:DesktopShortcut ShortcutID="scTile" Text="Tile windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-90" />
-                <ext:DesktopShortcut ShortcutID="scCascade" Text="Cascade windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-170" />
+                <%--<ext:DesktopShortcut ShortcutID="scTile" Text="Tile windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-90" />
+                <ext:DesktopShortcut ShortcutID="scCascade" Text="Cascade windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-170" />--%>
                 <ext:DesktopShortcut ShortcutID="scSocios" Text="Socios" IconCls="shortcut-icon icon-socios" />
             </Shortcuts>
 
@@ -234,10 +276,71 @@
             InitCenter="false"
             Icon="Wrench"
             AutoHeight="true"
+            Resizable="false"
             Shadow="None"
-            Resizable="false">
+            Layout="AccordionLayout">
+            <Items>
+                <ext:Panel ID="Panel1" runat="server" AutoHeight="true" Title="Editar Usuario" Layout="FitLayout">
+                    <Items>
+                        <ext:Portal ID="portal1" runat="server" AutoHeight="true" Header="false" Layout="Column">
+                            <Items>
+                                <ext:PortalColumn ID="portalcolumn" runat="server" StyleSpec="padding:10px 10px 10px 10px"
+                                    ColumnWidth="1" Layout="Anchor" Height="150">
+                                    <Items>
+                                        <ext:Portlet runat="server" Title="Editar Información" Selectable="true" ID="UserInfoPortlet" Draggable="false" Collapsible="false" Icon="UserEdit">
+                                            <Items>
+                                                <ext:TableLayout runat="server" >
+                                                    <Cells>
+                                                        <ext:Cell>
+                                                            <ext:ImageButton ID="UsuarioActulBtn" runat="server" Height="32" Width="32"
+                                                                ImageUrl="../resources/images/user_edit.png">
+                                                                <Listeners>
+                                                                    <Click Handler="#{UsuarioActualWin}.show();" />
+                                                                </Listeners>
+                                                            </ext:ImageButton>
+                                                        </ext:Cell>
+                                                        <ext:Cell>
+                                                            <ext:Label ID="Label11" runat="server" Text="Permite Cambiar la información del usuario actual."></ext:Label>
+                                                        </ext:Cell>
+                                                    </Cells>
+                                                </ext:TableLayout>
+                                            </Items>
+                                        </ext:Portlet>
+                                        <ext:Portlet runat="server" Title="Cambiar Contraseña" Selectable="true" ID="PasswordPortlet" Draggable="false" Collapsible="false" Icon="Key">
+                                            <Items>
+                                                <ext:TableLayout runat="server" ID="TableLayout1">
+                                                    <Cells>
+                                                        <ext:Cell>
+                                                            <ext:ImageButton ID="CambiarClaveBtn" runat="server" Height="32" Width="32"
+                                                                ImageUrl="../resources/images/key.png">
+                                                                <Listeners>
+                                                                    <Click Handler="#{CambiarClaveWin}.show();" />
+                                                                </Listeners>
+                                                            </ext:ImageButton>
+                                                        </ext:Cell>
+                                                        <ext:Cell>
+                                                            <ext:Label ID="Label12" runat="server" Text="Permite Cambiar la contraseña del usuario actual.">
+                                                            </ext:Label>
+                                                        </ext:Cell>
+                                                    </Cells>
+                                                </ext:TableLayout>
+                                            </Items>
+                                        </ext:Portlet>
+                                    </Items>
+                                </ext:PortalColumn>
+                            </Items>
+                        </ext:Portal>
+                    </Items>
+                </ext:Panel>
+                <%--<ext:Panel ID="Panel2" runat="server" Height="200" Title="Fondo de Escritorio" Layout="FitLayout">
+                </ext:Panel>--%>
+            </Items>
         </ext:DesktopWindow>
+
+        <usera:UsuarioActual runat="server" ID="UsuarioActualCtl" />
+        <cclave:CambiarClave runat="server" ID="CambiarClaveCtl" />
     </div>
     </form>
+    <a href="http://www.unitec.edu" target="_blank" alt="Powered by Ext .Net"id="poweredby"><div></div></a>
 </body>
 </html>

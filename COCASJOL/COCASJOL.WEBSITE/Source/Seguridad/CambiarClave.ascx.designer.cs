@@ -13,40 +13,22 @@ namespace COCASJOL.Website.Source.Seguridad {
     public partial class CambiarClave {
         
         /// <summary>
-        /// form1 control.
+        /// XScript1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::Ext.Net.XScript XScript1;
         
         /// <summary>
-        /// ResourceManager1 control.
+        /// CambiarClaveWin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ResourceManager ResourceManager1;
-        
-        /// <summary>
-        /// LoggedUserHdn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden LoggedUserHdn;
-        
-        /// <summary>
-        /// Viewport1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Viewport Viewport1;
+        protected global::Ext.Net.DesktopWindow CambiarClaveWin;
         
         /// <summary>
         /// FormPanel2 control.

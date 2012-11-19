@@ -17,8 +17,10 @@ namespace COCASJOL.WEBSITE
         {
             if (!X.IsAjaxRequest)
             {
+                string loggedUser = Session["username"] as string;
                 //this.MyDesktop.Wallpaper = "../resources/images/desktop.jpg";
                 this.MyDesktop.Wallpaper = "../resources/images/background1.jpg";
+                this.MyDesktop.StartMenu.Title = loggedUser;
             }
         }
 

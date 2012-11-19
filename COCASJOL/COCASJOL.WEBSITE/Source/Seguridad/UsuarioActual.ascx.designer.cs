@@ -13,31 +13,13 @@ namespace COCASJOL.Website.Source.Seguridad {
     public partial class UsuarioActual {
         
         /// <summary>
-        /// form1 control.
+        /// UsuarioActualWin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
-        /// ResourceManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ResourceManager ResourceManager1;
-        
-        /// <summary>
-        /// LoggedUserHdn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden LoggedUserHdn;
+        protected global::Ext.Net.DesktopWindow UsuarioActualWin;
         
         /// <summary>
         /// EditarUsuarioFormP control.
@@ -47,15 +29,6 @@ namespace COCASJOL.Website.Source.Seguridad {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.FormPanel EditarUsuarioFormP;
-        
-        /// <summary>
-        /// Panel12 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Panel Panel12;
         
         /// <summary>
         /// Panel13 control.

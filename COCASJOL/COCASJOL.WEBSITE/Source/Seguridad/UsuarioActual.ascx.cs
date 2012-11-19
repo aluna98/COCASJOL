@@ -11,30 +11,27 @@ using COCASJOL.LOGIC.Web;
 
 using System.Data;
 using System.Data.Objects;
-using COCASJOL.LOGIC;//para acceder al ado entity
 
 namespace COCASJOL.Website.Source.Seguridad
 {
-    public partial class UsuarioActual : COCASJOLBASE
+    public partial class UsuarioActual : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!X.IsAjaxRequest)
-            {
-                string loggedUsr = Session["username"] as string;
-                this.LoggedUserHdn.Text = loggedUsr;
-            }
+
         }
 
         [DirectMethod]
         public void CargarUsuario()
         {
-            if (this.LoggedUserHdn.Text.CompareTo("DEVELOPER") != 0)
+            string loggedUsr = Session["username"] as string;
+            this.EditUsernameTxt.Text = loggedUsr;
+
+            if (loggedUsr.CompareTo("DEVELOPER") != 0)
             {
                 UsuarioLogic usuarioActual = new UsuarioLogic();
-                usuario user = usuarioActual.GetUsuario(this.LoggedUserHdn.Text);
+                COCASJOL.LOGIC.usuario user = usuarioActual.GetUsuario(loggedUsr);
 
-                this.EditUsernameTxt.Text = user.USR_USERNAME;
                 this.EditNombreTxt.Text = user.USR_NOMBRE;
                 this.EditApellidoTxt.Text = user.USR_APELLIDO;
                 this.EditCedulaTxt.Text = user.USR_CEDULA;
@@ -46,7 +43,9 @@ namespace COCASJOL.Website.Source.Seguridad
         [DirectMethod]
         public void GuardarCambios()
         {
-            if (this.LoggedUserHdn.Text.CompareTo("DEVELOPER") != 0)
+            string loggedUsr = Session["username"] as string;
+
+            if (loggedUsr.CompareTo("DEVELOPER") != 0)
             {
                 UsuarioLogic usuarioActual = new UsuarioLogic();
 
@@ -56,7 +55,7 @@ namespace COCASJOL.Website.Source.Seguridad
                     this.EditApellidoTxt.Text,
                     this.EditCedulaTxt.Text,
                     this.EditEmailTxt.Text,
-                    this.EditPuestoTxt.Text, this.LoggedUserHdn.Text);
+                    this.EditPuestoTxt.Text, loggedUsr);
             }
         }
     }
