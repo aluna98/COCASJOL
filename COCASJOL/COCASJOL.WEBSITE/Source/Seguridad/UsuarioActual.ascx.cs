@@ -21,41 +21,57 @@ namespace COCASJOL.Website.Source.Seguridad
 
         }
 
-        [DirectMethod]
+        [DirectMethod(RethrowException = true)]
         public void CargarUsuario()
         {
-            string loggedUsr = Session["username"] as string;
-            this.EditUsernameTxt.Text = loggedUsr;
-
-            if (loggedUsr.CompareTo("DEVELOPER") != 0)
+            try
             {
-                UsuarioLogic usuarioActual = new UsuarioLogic();
-                COCASJOL.LOGIC.usuario user = usuarioActual.GetUsuario(loggedUsr);
+                string loggedUsr = Session["username"] as string;
+                this.EditUsernameTxt.Text = loggedUsr;
 
-                this.EditNombreTxt.Text = user.USR_NOMBRE;
-                this.EditApellidoTxt.Text = user.USR_APELLIDO;
-                this.EditCedulaTxt.Text = user.USR_CEDULA;
-                this.EditEmailTxt.Text = user.USR_CORREO;
-                this.EditPuestoTxt.Text = user.USR_PUESTO;
+                if (loggedUsr.CompareTo("DEVELOPER") != 0)
+                {
+                    UsuarioLogic usuarioActual = new UsuarioLogic();
+                    COCASJOL.LOGIC.usuario user = usuarioActual.GetUsuario(loggedUsr);
+
+                    this.EditNombreTxt.Text = user.USR_NOMBRE;
+                    this.EditApellidoTxt.Text = user.USR_APELLIDO;
+                    this.EditCedulaTxt.Text = user.USR_CEDULA;
+                    this.EditEmailTxt.Text = user.USR_CORREO;
+                    this.EditPuestoTxt.Text = user.USR_PUESTO;
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
             }
         }
 
-        [DirectMethod]
+        [DirectMethod(RethrowException = true)]
         public void GuardarCambios()
         {
-            string loggedUsr = Session["username"] as string;
-
-            if (loggedUsr.CompareTo("DEVELOPER") != 0)
+            try
             {
-                UsuarioLogic usuarioActual = new UsuarioLogic();
+                string loggedUsr = Session["username"] as string;
 
-                usuarioActual.ActualizarUsuario(
-                    this.EditUsernameTxt.Text,
-                    this.EditNombreTxt.Text,
-                    this.EditApellidoTxt.Text,
-                    this.EditCedulaTxt.Text,
-                    this.EditEmailTxt.Text,
-                    this.EditPuestoTxt.Text, loggedUsr);
+                if (loggedUsr.CompareTo("DEVELOPER") != 0)
+                {
+                    UsuarioLogic usuarioActual = new UsuarioLogic();
+
+                    usuarioActual.ActualizarUsuario(
+                        this.EditUsernameTxt.Text,
+                        this.EditNombreTxt.Text,
+                        this.EditApellidoTxt.Text,
+                        this.EditCedulaTxt.Text,
+                        this.EditEmailTxt.Text,
+                        this.EditPuestoTxt.Text, loggedUsr);
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
             }
         }
     }

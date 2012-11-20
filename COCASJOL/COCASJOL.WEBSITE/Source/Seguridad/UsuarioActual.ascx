@@ -29,7 +29,7 @@
             <Show Handler="loadUser();" />
         </Listeners>
         <Items>
-            <ext:FormPanel ID="EditarUsuarioFormP" AutoHeight="true" runat="server" Title="Información" ButtonAlign="Right" MonitorValid="true">
+            <ext:FormPanel ID="EditarUsuarioFormP" AutoHeight="true" runat="server" Title="Información" ButtonAlign="Right" MonitorValid="true" LabelWidth="120">
                 <Items>
                     <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                         <Items>

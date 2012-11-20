@@ -21,29 +21,45 @@ namespace COCASJOL.Website.Source.Seguridad
 
         }
 
-        [DirectMethod]
+        [DirectMethod(RethrowException=true)]
         public void CargarClave()
         {
-            string loggedUsr = Session["username"] as string;
-
-            if (loggedUsr.CompareTo("DEVELOPER") != 0)
+            try
             {
-                UsuarioLogic usuariologic = new UsuarioLogic();
+                string loggedUsr = Session["username"] as string;
 
-                COCASJOL.LOGIC.usuario user = usuariologic.GetUsuario(loggedUsr);
+                if (loggedUsr.CompareTo("DEVELOPER") != 0)
+                {
+                    UsuarioLogic usuariologic = new UsuarioLogic();
 
-                this.CambiarClaveUsernameTxt.Text = loggedUsr;
-                this.CambiarClaveActualTxt.Text = user.USR_PASSWORD;
+                    COCASJOL.LOGIC.usuario user = usuariologic.GetUsuario(loggedUsr);
+
+                    this.CambiarClaveUsernameTxt.Text = loggedUsr;
+                    this.CambiarClaveActualTxt.Text = user.USR_PASSWORD;
+                }
+            }
+            catch (Exception)
+            {
+                //log
+                throw;
             }
         }
 
-        [DirectMethod]
+        [DirectMethod(RethrowException=true)]
         public void CambiarClaveGuardarBtn_Click()
         {
-            string loggedUsr = Session["username"] as string;
+            try
+            {
+                string loggedUsr = Session["username"] as string;
 
-            UsuarioLogic usuariologic = new UsuarioLogic();
-            usuariologic.ActualizarClave(this.CambiarClaveUsernameTxt.Text, this.CambiarClaveNuevaConfirmarTxt.Text, loggedUsr);
+                UsuarioLogic usuariologic = new UsuarioLogic();
+                usuariologic.ActualizarClave(this.CambiarClaveUsernameTxt.Text, this.CambiarClaveNuevaConfirmarTxt.Text, loggedUsr);
+            }
+            catch (Exception)
+            {
+                //log
+                throw;
+            }
         }
     }
 }

@@ -166,6 +166,15 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.Label Label12;
         
         /// <summary>
+        /// AboutWin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Window AboutWin;
+        
+        /// <summary>
         /// UsuarioActualCtl control.
         /// </summary>
         /// <remarks>

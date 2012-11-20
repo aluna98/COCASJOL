@@ -122,12 +122,16 @@
                 DesktopX.createDynamicWindow(app, 'cog', 'Roles', 'Seguridad/Rol.aspx');
             },
 
-            socios: function(app) {
+            socios: function (app) {
                 DesktopX.createDynamicWindow(app, 'group', 'Socios', 'Socios/Socios.aspx');
             },
 
-            settings: function() {
+            settings: function () {
                 SettingsWin.show();
+            },
+
+            about: function () {
+                AboutWin.show();
             }
         };
 
@@ -183,18 +187,6 @@
             <StartButton Text="Inicio" IconCls="start-button" />
 
             <Modules>
-                <ext:DesktopModule ModuleID="SettingsModule" WindowID="SettingsWin" >
-                    <Launcher ID="SettingsLauncher" runat="server" Text="Configuración" Icon="Wrench"></Launcher>
-                </ext:DesktopModule>
-
-                <ext:DesktopModule ModuleID="UsuarioActualModule" WindowID="UsuarioActualWin" >
-                    <Launcher ID="UsuarioActualLauncher" runat="server" Text="Editar Usuario" Icon="UserEdit" />
-                </ext:DesktopModule>
-
-                <ext:DesktopModule ModuleID="CambiarClaveModule" WindowID="CambiarClaveWin" >
-                    <Launcher ID="CambiarClaveLauncher" runat="server" Text="Cambiar Clave" Icon="Key" />
-                </ext:DesktopModule>
-
                 <ext:DesktopModule ModuleID="UsuariosModule">
                     <Launcher ID="UsuariosLauncher" runat="server" Text="Usuarios" Icon="User" >
                         <Listeners>
@@ -216,31 +208,51 @@
                         </Listeners>
                     </Launcher>
                 </ext:DesktopModule>
+
+
+                <ext:DesktopModule ModuleID="SettingsModule" WindowID="SettingsWin" >
+                    <Launcher ID="SettingsLauncher" runat="server" Text="Configuración" Icon="Wrench"></Launcher>
+                </ext:DesktopModule>
+
+                <ext:DesktopModule ModuleID="UsuarioActualModule" WindowID="UsuarioActualWin" >
+                    <Launcher ID="UsuarioActualLauncher" runat="server" Text="Editar Usuario" Icon="UserEdit" />
+                </ext:DesktopModule>
+
+                <ext:DesktopModule ModuleID="CambiarClaveModule" WindowID="CambiarClaveWin" >
+                    <Launcher ID="CambiarClaveLauncher" runat="server" Text="Cambiar Clave" Icon="Key" />
+                </ext:DesktopModule>
             </Modules>  
             
             <Shortcuts>
                 <ext:DesktopShortcut ShortcutID="scUsuarios" Text="Usuarios" IconCls="shortcut-icon icon-usuarios" />
                 <ext:DesktopShortcut ShortcutID="scRoles" Text="Roles" IconCls="shortcut-icon icon-roles" />
+                <ext:DesktopShortcut ShortcutID="scSocios" Text="Socios" IconCls="shortcut-icon icon-socios" />
+
+
                 <%--<ext:DesktopShortcut ShortcutID="scTile" Text="Tile windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-90" />
                 <ext:DesktopShortcut ShortcutID="scCascade" Text="Cascade windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-170" />--%>
-                <ext:DesktopShortcut ShortcutID="scSocios" Text="Socios" IconCls="shortcut-icon icon-socios" />
             </Shortcuts>
 
             <StartMenu Height="400" Width="300" ToolsWidth="127" Title="Start Menu">
                 <ToolItems>
-                    <ext:MenuItem Text="Settings" Icon="Wrench">
+                    <ext:MenuItem Text="Configuración" Icon="Wrench">
                         <Listeners>
-                            <Click Handler="Ext.Msg.alert('Message', 'Settings Clicked');" />
+                            <Click Handler="WindowX.settings();" />
                         </Listeners>
                     </ext:MenuItem>
-                    <ext:MenuItem Text="Logout" Icon="Disconnect">
+                    <ext:MenuItem Text="Salir" Icon="Disconnect">
                         <DirectEvents>
                             <Click OnEvent="Logout_Click">
                                 <EventMask ShowMask="true" Msg="Adios..." MinDelay="1000" />
                             </Click>
                         </DirectEvents>
                     </ext:MenuItem>
-                    <%--<ext:MenuSeparator />--%>
+                    <ext:MenuSeparator />
+                    <ext:MenuItem Text="About" Icon="Information">
+                        <Listeners>
+                            <Click Handler="WindowX.about();" />
+                        </Listeners>
+                    </ext:MenuItem>
                 </ToolItems>                
                 <Items>
                     <ext:MenuItem ID="MenuItem4" runat="server" Text="All" Icon="Folder" HideOnClick="false">
@@ -336,6 +348,23 @@
                 </ext:Panel>--%>
             </Items>
         </ext:DesktopWindow>
+
+        <ext:Window
+            ID="AboutWin"
+            runat="server"
+            Title="About"
+            Width="300"
+            Maximizable="false"
+            CloseAction="Hide"
+            InitCenter="true"
+            Icon="Information"
+            Height="200"
+            Resizable="false"
+            Hidden="true">
+            <Content>
+                Proyecto de Graduación para Ingeniería en Sistemas Computacionales.
+            </Content>
+        </ext:Window>
 
         <usera:UsuarioActual runat="server" ID="UsuarioActualCtl" />
         <cclave:CambiarClave runat="server" ID="CambiarClaveCtl" />

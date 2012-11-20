@@ -12,7 +12,8 @@ namespace COCASJOL.LOGIC.Web
     {
         public COCASJOLBASE()
         {
-            base.Init += new EventHandler(COCASJOLBASE_Init);
+            base.Init += new EventHandler(this.COCASJOLBASE_Init);
+            base.Error += new EventHandler(this.COCASJOL_Error);
         }
 
         protected void COCASJOLBASE_Init(object sender, EventArgs e)
@@ -30,6 +31,12 @@ namespace COCASJOL.LOGIC.Web
             {
                 base.Response.Redirect("~/ExpiredSession.aspx");
             }
+        }
+
+        protected void COCASJOL_Error(object sender, EventArgs e)
+        {
+            Exception ex = base.Server.GetLastError();
+            //log error
         }
     }
 }

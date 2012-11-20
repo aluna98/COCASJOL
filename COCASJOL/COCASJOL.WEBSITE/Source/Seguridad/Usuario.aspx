@@ -428,7 +428,7 @@
                 <Show Handler="#{AddUsuarioFormP}.getForm().reset();" />
             </Listeners>
             <Items>
-                <ext:FormPanel ID="AddUsuarioFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true">
+                <ext:FormPanel ID="AddUsuarioFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelWidth="120">
                     <Items>
                         <ext:TabPanel ID="TabPanel1" runat="server">
                             <Items>
@@ -479,7 +479,7 @@
             Modal="true"
             X="10" Y="30">
             <Items>
-                <ext:FormPanel ID="EditarUsuarioFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true">
+                <ext:FormPanel ID="EditarUsuarioFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelWidth="120">
                     <Items>
                         <ext:TabPanel ID="TabPanel11" runat="server">
                             <Items>
@@ -746,7 +746,7 @@
                 <Show Handler="#{FormPanel2}.getForm().reset();" />
             </Listeners>
             <Items>
-                <ext:FormPanel ID="FormPanel2" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true">
+                <ext:FormPanel ID="FormPanel2" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelWidth="120">
                     <Items>
                         <ext:Panel ID="Panel4" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                             <Items>

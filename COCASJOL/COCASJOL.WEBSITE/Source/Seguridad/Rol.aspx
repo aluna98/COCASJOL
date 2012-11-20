@@ -343,7 +343,7 @@
             Modal="true"
             X="10" Y="30">
             <Items>
-                <ext:FormPanel ID="AddRolFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true">
+                <ext:FormPanel ID="AddRolFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelWidth="120">
                     <Listeners>
                         <Show Handler="this.getForm().reset();" />
                     </Listeners>
@@ -393,7 +393,7 @@
             Modal="true"
             X="10" Y="30">
             <Items>
-                <ext:FormPanel ID="EditarRolFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true">
+                <ext:FormPanel ID="EditarRolFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelWidth="120">
                     <Listeners>
                         <Show Handler="this.getForm().reset();" />
                     </Listeners>

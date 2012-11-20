@@ -15,20 +15,36 @@ namespace COCASJOL.WEBSITE
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!X.IsAjaxRequest)
+            try
             {
-                string loggedUser = Session["username"] as string;
-                //this.MyDesktop.Wallpaper = "../resources/images/desktop.jpg";
-                this.MyDesktop.Wallpaper = "../resources/images/background1.jpg";
-                this.MyDesktop.StartMenu.Title = loggedUser;
+                if (!X.IsAjaxRequest)
+                {
+                    string loggedUser = Session["username"] as string;
+                    //this.MyDesktop.Wallpaper = "../resources/images/desktop.jpg";
+                    this.MyDesktop.Wallpaper = "../resources/images/background1.jpg";
+                    this.MyDesktop.StartMenu.Title = loggedUser;
+                }
+            }
+            catch (Exception ex)
+            {
+                //log
+                throw;
             }
         }
 
         protected void Logout_Click(object sender, DirectEventArgs e)
         {
-            // Logout from Authenticated Session
-            Session.Abandon();
-            this.Response.Redirect("~/Default.aspx");
+            try
+            {
+                // Logout from Authenticated Session
+                Session.Abandon();
+                this.Response.Redirect("~/Default.aspx");
+            }
+            catch (Exception ex)
+            {
+                //log
+                throw;
+            }
         }
     }
 }

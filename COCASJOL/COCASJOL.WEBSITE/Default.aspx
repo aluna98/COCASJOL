@@ -19,10 +19,20 @@
               background-repeat: no-repeat;
           }*/
         
-        #bg
+        html, body
+        {
+            background: #3d71b8 url('resources/images/login.jpg') no-repeat left top;
+            font: normal 12px tahoma, arial, verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            border: 0 none;
+            overflow: hidden;
+            height: 100%;
+        }
+        
+        /*#bg
         {
             position: fixed;
-            
             width: 200%;
             height: 200%;
         }
@@ -32,11 +42,10 @@
             top: 0;
             left: 0;
             right: 0;
-            
             margin: auto;
             min-width: 50%;
             min-height: 50%;
-        }
+        }*/
         
         .loginEl
         {
@@ -67,19 +76,27 @@
     </script>
 
     <script runat="server">
-        [DirectMethod]
+        [DirectMethod(RethrowException=true)]
         public void Button1_Click()
         {
-            UsuarioLogic usuarioLogic = new UsuarioLogic();
-            if (usuarioLogic.Autenticar(this.txtUsername.Text, this.txtPassword.Text) == true)
+            try
             {
-                Session["username"] = this.txtUsername.Text;
-                
-                Window1.Close();
-                Response.Redirect("~/Source/Desktop.aspx");
+                UsuarioLogic usuarioLogic = new UsuarioLogic();
+                if (usuarioLogic.Autenticar(this.txtUsername.Text, this.txtPassword.Text) == true)
+                {
+                    Session["username"] = this.txtUsername.Text;
+
+                    Window1.Close();
+                    Response.Redirect("~/Source/Desktop.aspx");
+                }
+                else
+                    X.Msg.Alert("Inicio de Sesión", "El nombre de usuario o contraseña son incorrectos.").Show();
             }
-            else
-                X.Msg.Alert("Inicio de Sesión", "El nombre de usuario o contraseña son incorrectos.").Show();
+            catch (Exception ex)
+            {
+                //log
+                throw;
+            }
         }
     </script>
 </head>
@@ -91,7 +108,7 @@
             </Listeners>
         </ext:ResourceManager>
         <div id="bg">
-        <img src="resources/images/login.jpg" alt="" />
+        <%--<img src="resources/images/login.jpg" alt="" />--%>
         <ext:Window
             ID="Window1"
             runat="server"

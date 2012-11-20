@@ -44,7 +44,7 @@
         <Show Handler="loadPassword();" />
     </Listeners>
     <Items>
-        <ext:FormPanel ID="FormPanel2" runat="server" AutoHeight="true" Title="Cambiar Contraseña" ButtonAlign="Right" MonitorValid="true">
+        <ext:FormPanel ID="FormPanel2" runat="server" AutoHeight="true" Title="Cambiar Contraseña" ButtonAlign="Right" MonitorValid="true" LabelWidth="120">
             <Items>
                 <ext:Panel ID="Panel4" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                     <Items>
