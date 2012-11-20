@@ -51,24 +51,29 @@ namespace COCASJOL.LOGIC.Socios
             string BENEFICIARIO_PARENTEZCO,
             string BENEFICIARIO_NACIMIENTO,
             string BENEFICIARIO_LUGAR_NACIMIENTO,
-            decimal BENEFICIARIO_PORCENTAJE){
+            string BENEFICIARIO_PORCENTAJE){
                 colinasEntities db = null;
                 try
                 {
                     db = new colinasEntities();
+                    List<beneficiario_x_socio> Lista;
                     var query = from nuevo in db.beneficiario_x_socio
                                 where nuevo.SOCIOS_ID == SOCIOS_ID && nuevo.BENEFICIARIO_IDENTIFICACION == BENEFICIARIO_IDENTIFICACION
                                 select nuevo;
-                    beneficiario_x_socio beneficiario = query.First();
-                    beneficiario.SOCIOS_ID = SOCIOS_ID;
-                    beneficiario.BENEFICIARIO_IDENTIFICACION = BENEFICIARIO_IDENTIFICACION;
-                    beneficiario.BENEFICIARIO_LUGAR_NACIMIENTO = BENEFICIARIO_LUGAR_NACIMIENTO;
-                    beneficiario.BENEFICIARIO_NACIMIENTO = DateTime.Parse(BENEFICIARIO_NACIMIENTO);
-                    beneficiario.BENEFICIARIO_NOMBRE = BENEFICIARIO_NOMBRE;
-                    beneficiario.BENEFICIARIO_PORCENTAJE = Convert.ToDecimal(BENEFICIARIO_PORCENTAJE);
-                    beneficiario.BENEFICIARIO_PARENTEZCO = BENEFICIARIO_PARENTEZCO;
-                    db.SaveChanges();
-                    db.Dispose();
+                    Lista = query.ToList<beneficiario_x_socio>();
+                    if (Lista.Count > 0)
+                    {
+                        beneficiario_x_socio beneficiario = query.First();
+                        beneficiario.SOCIOS_ID = SOCIOS_ID;
+                        beneficiario.BENEFICIARIO_IDENTIFICACION = BENEFICIARIO_IDENTIFICACION;
+                        beneficiario.BENEFICIARIO_LUGAR_NACIMIENTO = BENEFICIARIO_LUGAR_NACIMIENTO;
+                        beneficiario.BENEFICIARIO_NACIMIENTO = DateTime.Parse(BENEFICIARIO_NACIMIENTO);
+                        beneficiario.BENEFICIARIO_NOMBRE = BENEFICIARIO_NOMBRE;
+                        beneficiario.BENEFICIARIO_PORCENTAJE = Convert.ToInt32(BENEFICIARIO_PORCENTAJE);
+                        beneficiario.BENEFICIARIO_PARENTEZCO = BENEFICIARIO_PARENTEZCO;
+                        db.SaveChanges();
+                        db.Dispose();
+                    }
                 }
                 catch (Exception e)
                 {
@@ -306,7 +311,7 @@ namespace COCASJOL.LOGIC.Socios
                 benef.BENEFICIARIO_PARENTEZCO = BENEFICIARIO_PARENTEZCO;
                 benef.BENEFICIARIO_NACIMIENTO = DateTime.Parse(BENEFICIARIO_NACIMIENTO);
                 benef.BENEFICIARIO_LUGAR_NACIMIENTO = BENEFICIARIO_LUGAR_NACIMIENTO;
-                benef.BENEFICIARIO_PORCENTAJE = Convert.ToDecimal(BENEFICIARIO_PORCENTAJE);
+                benef.BENEFICIARIO_PORCENTAJE = Convert.ToInt32(float.Parse(BENEFICIARIO_PORCENTAJE));
                 db.beneficiario_x_socio.AddObject(benef);
                 db.SaveChanges();
                 db.Dispose();
@@ -427,11 +432,74 @@ namespace COCASJOL.LOGIC.Socios
             }
         }
         #endregion
+
+        #region Metodos
+
+        public bool BuscarId(string SOCIOS_ID, string BENEFICIARIO_ID){
+            colinasEntities db = null;
+            try
+            {
+                db = new colinasEntities();
+                List<beneficiario_x_socio> lista;
+                var query = from nuevo in db.beneficiario_x_socio
+                            where nuevo.SOCIOS_ID == SOCIOS_ID && nuevo.BENEFICIARIO_IDENTIFICACION == BENEFICIARIO_ID
+                            select nuevo;
+                lista = query.ToList<beneficiario_x_socio>();
+
+                if (lista.Count == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                }
+                throw;
+            }
+        }
+
+        public bool CienPorciento(string SOCIOS_ID, int PORCENTAJE)
+        {
+            colinasEntities db = null;
+            try
+            {
+                db = new colinasEntities();
+                List<beneficiario_x_socio> lista;
+                var query = from nuevo in db.beneficiario_x_socio
+                            where nuevo.SOCIOS_ID == SOCIOS_ID
+                            select nuevo;
+                lista = query.ToList<beneficiario_x_socio>();
+                int total = PORCENTAJE;
+                foreach (beneficiario_x_socio ben in lista)
+                {
+                    total += ben.BENEFICIARIO_PORCENTAJE.Value;
+                }
+                if (total > 100)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                }
+                throw;
+            }
+            return true;
+        }
+        #endregion
     }
 }
-//BenGrid = BeneficiariosGridP; 
-//AddBenWindow = NuevoBeneficiarioWin;
-//AddBenForm = NuevoBeneficiarioForm;
-//var ConfirmUpdateBen = "Seguro desea modificar el Beneficiario?";
-//var ConfirmDeleteBen = "Seguro desea Eliminar el Beneficiario?";
-//var Confirmacion = "Se ha finalizado correctamente";

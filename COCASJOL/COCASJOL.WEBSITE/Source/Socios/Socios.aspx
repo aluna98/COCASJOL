@@ -7,67 +7,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title></title>
-     <script runat="server">
-        [DirectMethod]
-        public void DoConfirmDisable()
-        {
-            X.Msg.Confirm("Message", "Desea deshabilitar el socio?", new MessageBoxButtonsConfig
-            {
-                Yes = new MessageBoxButtonConfig
-                {
-                    Handler = "CompanyX.DoYesDisable()",
-                    Text = "Aceptar"
-                },
-                No = new MessageBoxButtonConfig
-                {
-                    Handler = "CompanyX.DoNo()",
-                    Text = "Cancelar"
-                }
-            }).Show();
-        }
-
-        [DirectMethod]
-        public void DoConfirmEnable()
-        {
-            X.Msg.Confirm("Message", "Desea habilitar el socio?", new MessageBoxButtonsConfig
-            {
-                Yes = new MessageBoxButtonConfig
-                {
-                    Handler = "CompanyX.DoYesEnable()",
-                    Text = "Aceptar"
-                },
-                No = new MessageBoxButtonConfig
-                {
-                    Handler = "CompanyX.DoNo()",
-                    Text = "Cancelar"
-                }
-            }).Show();
-            
-        }
-
-        [DirectMethod]
-        public void RefrescarBeneficiarios()
-        {
-            Beneficiarios_Refresh(null, null);
-        }
-
-        [DirectMethod]
-        public void RefreshGrid()
-        {
-            SociosSt_Reload(null, null);
-        }
-     </script>
      <script type="text/javascript">
          var Grid = null;
          var BenGrid = null;
          var EditWindow = null;
          var EditForm = null;
+         var EditWindowBen = null;
+         var EditFormBen = null;
          var AddWindow = null;
          var AddForm = null;
          var panelper = null;
          var AddBenWindow = null;
          var addBenForm = null;
          var ConfirmMsgTitle = "Socio";
+         var ConfirmMsgTitleBene = "Beneficiario";
          var ConfirmUpdate = "Seguro desea modificar el Socio?";
          var ConfirmDelete = "Seguro desea deshabilitar el Socio?";
          var ConfirmUpdateBen = "Seguro desea modificar el Beneficiario?";
@@ -75,7 +28,7 @@
          var Confirmacion = "Se ha finalizado correctamente";
 
          var SocioX = {
-             _index: 0,
+             _index: 0, _indexBen: 0,
 
              setReferences: function () {
                  Grid = SociosGridP;
@@ -87,6 +40,16 @@
                  BenGrid = BeneficiariosGridP;
                  AddBenWindow = NuevoBeneficiarioWin;
                  addBenForm = NuevoBeneficiarioForm;
+                 EditFormBen = EditarBeneficiarioForm;
+                 EditWindowBen = EditarBeneficiarioWin;
+             },
+
+             getRecordBen: function () {
+                 var registro = BenGrid.getStore().getAt(indexBen);
+
+                 if (registro != null) {
+                     return registro;
+                 }
              },
 
              getRecord: function () {
@@ -111,7 +74,18 @@
              },
 
              insertben: function () {
-                Ext.net.DirectMethods.AgregarBeneficiarioBtn_Click({ success: function () { StoreBeneficiarios.reload(); Ext.Msg.alert('Agregar Beneficiario', 'Beneficiario agregado exitosamente.'); } }, { eventMask: { showMask: true, target: 'customtarget', customTarget: AddBenWindow} }, { failure: function () { Ext.Msg.alert('Agregar Beneficiario', 'Error al agregar Beneficiario.'); } });
+                 CompanyX.AgregarBeneficiarioBtn_Click();
+             },
+
+             editben: function () {
+                 if (BenGrid.getSelectionModel().hasSelection()) {
+                     var record = BenGrid.getSelectionModel().getSelected();
+                     indexBen = BenGrid.store.indexOf(record);
+                     this.openBen();
+                 } else {
+                     var msg = Ext.Msg;
+                     Ext.Msg.alert('Atención', 'Seleccione al menos 1 elemento');
+                 }
              },
 
              edit: function () {
@@ -139,12 +113,44 @@
                  this.edit2(this.getIndex() - 1);
              },
 
+             openBen: function () {
+                 rec = this.getRecordBen();
+                 if (rec != null) {
+                     EditWindowBen.show();
+                     EditFormBen.getForm().loadRecord(rec);
+                     EditFormBen.record = rec;
+                 }
+             },
+
              open: function () {
                  rec = this.getRecord();
                  if (rec != null) {
                      EditWindow.show();
                      EditForm.getForm().loadRecord(rec);
                      EditForm.record = rec;
+                 }
+             },
+
+             removeben: function () {
+                 if (EditForm.record == null) {
+                     return;
+                 }
+                 if (BenGrid.getSelectionModel().hasSelection()) {
+                     Ext.Msg.confirm(ConfirmMsgTitleBene, ConfirmDeleteBen, function (btn, text) {
+                         if (btn == 'yes') {
+                             var record = BenGrid.getSelectionModel().getSelected();
+                             if (rec != null) {
+                                 EditFormBen.getForm().loadRecord(record);
+                                 EditFormBen.record = record;
+                                 CompanyX.EliminarBeneficiarioBtn_Click();
+                                 EditWindowBen.hide();
+                                 CompanyX.RefrescarBeneficiarios();
+                             }
+                         }
+                     });
+                 } else {
+                     var msg = Ext.Msg;
+                     Ext.Msg.alert('Atención', 'Seleccione al menos 1 elemento');
                  }
              },
 
@@ -157,6 +163,17 @@
                      if (btn == 'yes') {
                          //EditForm.record.commit(false);
                          EditForm.getForm().updateRecord(EditForm.record);
+                     }
+                 });
+             },
+
+             updateben: function () {
+                 if (EditFormBen.record == null) {
+                     return;
+                 }
+                 Ext.Msg.confirm(ConfirmMsgTitleBene, ConfirmUpdateBen, function (btn, text) {
+                     if (btn == 'yes') {
+                         CompanyX.ActualizarBeneficiarioBtn_Click();
                      }
                  });
              },
@@ -712,7 +729,7 @@
                                         </ext:Panel>
                                     </Items>
                                 </ext:Panel>
-                                <ext:Panel ID="PanelBeneficiarios" runat="server" Title="Beneficiarios" Layout="AnchorLayout" AutoHeight="true" Icon="BuildingEdit" LabelWidth="120">
+                                <ext:Panel ID="PanelBeneficiarios" runat="server" Title="Beneficiarios" Layout="AnchorLayout" AutoHeight="true" Icon="GroupAdd" LabelWidth="120">
                                     <Items>
                                         <ext:Panel ID="Panel4" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                             <Items>
@@ -721,7 +738,7 @@
                                                     <Store>
                                                     <ext:Store ID="StoreBeneficiarios" runat="server" OnRefreshData="Beneficiarios_Refresh">
                                                         <Reader>
-                                                            <ext:JsonReader IDProperty="ProductID">
+                                                            <ext:JsonReader IDProperty="SOCIO_ID">
                                                                 <Fields>
                                                                     <ext:RecordField Name="SOCIO_ID" />
                                                                     <ext:RecordField Name="BENEFICIARIO_IDENTIFICACION" />
@@ -743,7 +760,7 @@
                                                             <ext:Column DataIndex="BENEFICIARIO_NOMBRE"             Header="Nombre"   />         
                                                             <ext:Column DataIndex="BENEFICIARIO_IDENTIFICACION"     Header="Identificacion" /> 
                                                             <ext:Column DataIndex="BENEFICIARIO_PARENTEZCO"         Header="Parentezco"     /> 
-                                                            <ext:Column DataIndex="BENEFICIARIO_NACIMIENTO"         Header="Fecha Nacimiento" />
+                                                            <ext:DateColumn DataIndex="BENEFICIARIO_NACIMIENTO"         Header="Fecha Nacimiento" Format="d MMM y"/>
                                                             <ext:Column DataIndex="BENEFICIARIO_LUGAR_NACIMIENTO"   Header="Lugar Nacimiento" />
                                                             <ext:Column DataIndex="BENEFICIARIO_PORCENTAJE"         Header="Porcentaje"      />
                                                         </Columns>
@@ -761,10 +778,14 @@
                                                                     </Listeners>
                                                                 </ext:Button>
                                                                 <ext:Button ID="EliminarBeneficiarioBtn" runat="server" Text="Eliminar" Icon="CogDelete">
-                                                                
+                                                                    <Listeners>
+                                                                        <Click  Handler="SocioX.removeben()" />
+                                                                    </Listeners>
                                                                 </ext:Button>
                                                                 <ext:Button ID="EditarBeneficiarioBtn" runat="server" Text="Editar" Icon="CogEdit" >
-                                                                
+                                                                    <Listeners>
+                                                                        <Click Handler="SocioX.editben()" />
+                                                                    </Listeners>
                                                                 </ext:Button>
                                                             </Items>
                                                         </ext:Toolbar>
@@ -906,7 +927,7 @@
             AutoHeight="True"
             Resizable="false"
             Shadow="None"
-            Modal="true"
+            Modal="true" 
             X="15" Y="35">
             <Listeners>
                 <Hide Handler="NuevoBeneficiarioForm.getForm().reset()" />
@@ -921,9 +942,9 @@
                                         <ext:TextField runat="server" ID="AddBenefID"            DataIndex="BENEFICIARIO_IDENTIFICACION"           FieldLabel="Identificacion"    AnchorHorizontal="90%" AllowBlank="false" ></ext:TextField>
                                         <ext:TextField runat="server" ID="AddBenefNombre"        DataIndex="BENEFICIARIO_NOMBRE"                   FieldLabel="Nombre"            AnchorHorizontal="90%" AllowBlank="false" ></ext:TextField>
                                         <ext:TextField runat="server" ID="AddBenefParentezco"    DataIndex="BENEFICIARIO_PARENTEZCO"               FieldLabel="Parentezco"        AnchorHorizontal="90%" AllowBlank="false" ></ext:TextField>
-                                        <ext:TextField runat="server" ID="AddBenefNacimiento"    DataIndex="BENEFICIARIO_NACIMIENTO"               FieldLabel="Nacimiento"        AnchorHorizontal="90%" ></ext:TextField>
+                                        <ext:DateField runat="server" ID="AddBenefFechaNacimiento"    DataIndex="BENEFICIARIO_NACIMIENTO"               FieldLabel="Fecha Nacimiento"  AnchorHorizontal="90%" AllowBlank="false" Format="d MMM y"></ext:DateField>
                                         <ext:TextField runat="server" ID="AddBenefLugarNac"      DataIndex="BENEFICIARIO_LUGAR_NACIMIENTO"         FieldLabel="Lugar Nacimiento"  AnchorHorizontal="90%" ></ext:TextField>
-                                        <ext:TextField runat="server" ID="AddBenefPorcentaje"    DataIndex="BENEFICIARIO_PORCENTAJE"               FieldLabel="Porcentaje"        AnchorHorizontal="90%" AllowBlank="false" ></ext:TextField>
+                                        <ext:NumberField runat="server" ID="AddBenefPorcentaje"    DataIndex="BENEFICIARIO_PORCENTAJE"               FieldLabel="Porcentaje"        AnchorHorizontal="90%" AllowBlank="false" AllowDecimals="false" MaxValue="100" MinValue="0" ></ext:NumberField>
                                     </Items>                                                               
                                 </ext:Panel>
                             </Items>
@@ -933,6 +954,51 @@
                         <ext:Button ID="AddBenefBtn" runat="server" Text="Crear" Icon="Add" FormBind="true">
                             <Listeners>
                                 <Click Handler="SocioX.insertben()" />
+                            </Listeners>
+                        </ext:Button>
+                    </Buttons>
+                </ext:FormPanel>
+            </Items>
+         </ext:Window>
+    </div>
+    <div>
+        <ext:Window ID="EditarBeneficiarioWin"
+            runat="server"
+            Hidden="true"
+            Icon="UserAdd"
+            Title="Editar Beneficiario"
+            Width="550"
+            Layout="FormLayout"
+            AutoHeight="True"
+            Resizable="false"
+            Shadow="None"
+            Modal="true" 
+            X="15" Y="35">
+            <Listeners>
+                <Hide Handler="EditarBeneficiarioForm.getForm().reset()" />
+            </Listeners>
+            <Items>
+                <ext:FormPanel runat="server" ID="EditarBeneficiarioForm" Title="Form Panel" Handler="false" ButtonAlign="Right" MonitorValid="true">
+                    <Items>
+                        <ext:Panel ID="PanelEditarBeneficiario" runat="server" Title="Datos Beneficiario" Layout="AnchorLayout" AutoHeight="True" Icon="User" LabelWidth="150">
+                            <Items>
+                                <ext:Panel ID="Panel10" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
+                                    <Items>
+                                        <ext:TextField runat="server" ID="EditBenefId"            DataIndex="BENEFICIARIO_IDENTIFICACION"           FieldLabel="Identificacion"    AnchorHorizontal="90%" AllowBlank="false"  ReadOnly="true"></ext:TextField>
+                                        <ext:TextField runat="server" ID="EditBenefNombre"        DataIndex="BENEFICIARIO_NOMBRE"                   FieldLabel="Nombre"            AnchorHorizontal="90%" AllowBlank="false" Vtype="alpha"></ext:TextField>
+                                        <ext:TextField runat="server" ID="EditBenefParentezco"    DataIndex="BENEFICIARIO_PARENTEZCO"               FieldLabel="Parentezco"        AnchorHorizontal="90%" AllowBlank="false" Vtype="alpha"></ext:TextField>
+                                        <ext:DateField runat="server" ID="EditBenefNacimiento"    DataIndex="BENEFICIARIO_NACIMIENTO"               FieldLabel="Fecha Nacimiento"  AnchorHorizontal="90%" AllowBlank="false" Format="d MMM y"></ext:DateField>
+                                        <ext:TextField runat="server" ID="EditBenLugarNac"      DataIndex="BENEFICIARIO_LUGAR_NACIMIENTO"         FieldLabel="Lugar Nacimiento"  AnchorHorizontal="90%" ></ext:TextField>
+                                        <ext:NumberField runat="server" ID="EditBenefPorcentaje"    DataIndex="BENEFICIARIO_PORCENTAJE"               FieldLabel="Porcentaje"        AnchorHorizontal="90%" AllowBlank="false" AllowDecimals="false" MaxValue="100" MinValue="0" ></ext:NumberField>
+                                    </Items>                                                               
+                                </ext:Panel>
+                            </Items>
+                          </ext:Panel>
+                    </Items>
+                    <Buttons>
+                        <ext:Button ID="Button5" runat="server" Text="Guardar" Icon="Disk" FormBind="true">
+                            <Listeners>
+                                <Click Handler="SocioX.updateben()" />
                             </Listeners>
                         </ext:Button>
                     </Buttons>

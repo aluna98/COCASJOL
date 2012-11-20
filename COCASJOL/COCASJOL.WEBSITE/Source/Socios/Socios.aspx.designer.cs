@@ -1201,13 +1201,13 @@ namespace COCASJOL.Website.Socios {
         protected global::Ext.Net.TextField AddBenefParentezco;
         
         /// <summary>
-        /// AddBenefNacimiento control.
+        /// AddBenefFechaNacimiento control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField AddBenefNacimiento;
+        protected global::Ext.Net.DateField AddBenefFechaNacimiento;
         
         /// <summary>
         /// AddBenefLugarNac control.
@@ -1225,7 +1225,7 @@ namespace COCASJOL.Website.Socios {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField AddBenefPorcentaje;
+        protected global::Ext.Net.NumberField AddBenefPorcentaje;
         
         /// <summary>
         /// AddBenefBtn control.
@@ -1235,5 +1235,104 @@ namespace COCASJOL.Website.Socios {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button AddBenefBtn;
+        
+        /// <summary>
+        /// EditarBeneficiarioWin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Window EditarBeneficiarioWin;
+        
+        /// <summary>
+        /// EditarBeneficiarioForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FormPanel EditarBeneficiarioForm;
+        
+        /// <summary>
+        /// PanelEditarBeneficiario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel PanelEditarBeneficiario;
+        
+        /// <summary>
+        /// Panel10 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Panel10;
+        
+        /// <summary>
+        /// EditBenefId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField EditBenefId;
+        
+        /// <summary>
+        /// EditBenefNombre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField EditBenefNombre;
+        
+        /// <summary>
+        /// EditBenefParentezco control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField EditBenefParentezco;
+        
+        /// <summary>
+        /// EditBenefNacimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DateField EditBenefNacimiento;
+        
+        /// <summary>
+        /// EditBenLugarNac control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField EditBenLugarNac;
+        
+        /// <summary>
+        /// EditBenefPorcentaje control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditBenefPorcentaje;
+        
+        /// <summary>
+        /// Button5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Button5;
     }
 }

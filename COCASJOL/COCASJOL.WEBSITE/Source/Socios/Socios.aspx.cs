@@ -6,10 +6,12 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using COCASJOL.LOGIC;
 using System.Data;
+using System.Data.Objects;
 using Ext.Net;
 
 using COCASJOL.LOGIC.Socios;
 using COCASJOL.LOGIC.Web;
+using COCASJOL.LOGIC.Seguridad;
 
 namespace COCASJOL.Website.Socios
 {
@@ -21,7 +23,9 @@ namespace COCASJOL.Website.Socios
         protected void Page_Load(object sender, EventArgs e)
         {
             confirm = false;
+
             this.ResourceManager1.DirectMethodNamespace = "CompanyX";
+
             if (!X.IsAjaxRequest)
             {
                 string loggedUsr = Session["username"] as string;
@@ -30,15 +34,107 @@ namespace COCASJOL.Website.Socios
         }
 
         [DirectMethod]
-        public void AgregarBeneficiarioBtn_Click()
+        public void DoConfirmDisable()
         {
-            SociosLogic socios = new SociosLogic();
-            socios.InsertarBeneficiario(this.EditsocioIdTxt.Text, this.AddBenefID.Text,
-                this.AddBenefNombre.Text, this.AddBenefParentezco.Text, this.AddBenefNacimiento.Text,
-                this.AddBenefLugarNac.Text, this.AddBenefPorcentaje.Text);
+            X.Msg.Confirm("Message", "Desea deshabilitar el socio?", new MessageBoxButtonsConfig
+            {
+                Yes = new MessageBoxButtonConfig
+                {
+                    Handler = "CompanyX.DoYesDisable()",
+                    Text = "Aceptar"
+                },
+                No = new MessageBoxButtonConfig
+                {
+                    Handler = "CompanyX.DoNo()",
+                    Text = "Cancelar"
+                }
+            }).Show();
+        }
+
+        [DirectMethod]
+        public void DoConfirmEnable()
+        {
+            X.Msg.Confirm("Message", "Desea habilitar el socio?", new MessageBoxButtonsConfig
+            {
+                Yes = new MessageBoxButtonConfig
+                {
+                    Handler = "CompanyX.DoYesEnable()",
+                    Text = "Aceptar"
+                },
+                No = new MessageBoxButtonConfig
+                {
+                    Handler = "CompanyX.DoNo()",
+                    Text = "Cancelar"
+                }
+            }).Show();
+
+        }
+
+        [DirectMethod]
+        public void RefrescarBeneficiarios()
+        {
             Beneficiarios_Refresh(null, null);
         }
 
+        [DirectMethod]
+        public void RefreshGrid()
+        {
+            SociosSt_Reload(null, null);
+        }
+
+        [DirectMethod]
+        public void ActualizarBeneficiarioBtn_Click()
+        {
+            SociosLogic socios = new SociosLogic();
+            if (socios.CienPorciento(this.EditsocioIdTxt.Text, Convert.ToInt32(this.AddBenefPorcentaje.Text)))
+            {
+                socios.ActualizarBeneficiario(this.EditsocioIdTxt.Text, this.EditBenefId.Text,
+                    this.EditBenefNombre.Text, this.EditBenefParentezco.Text, this.EditBenefNacimiento.Text,
+                    this.EditBenLugarNac.Text, this.EditBenefPorcentaje.Text);
+                EditarBeneficiarioWin.Hide();
+                Beneficiarios_Refresh(null, null);
+                X.Msg.Alert("Beneficiario", "Beneficiario Actualizado Correctamente.").Show();
+            }
+            else
+            {
+                X.Msg.Alert("Beneficiario", "ERROR: El porcentaje excede del 100% del capital.").Show();
+            }
+        }
+
+        [DirectMethod]
+        public void AgregarBeneficiarioBtn_Click()
+        {
+            SociosLogic socios = new SociosLogic();
+            if (socios.BuscarId(this.EditsocioIdTxt.Text, this.AddBenefID.Text))
+            {
+                if (socios.CienPorciento(this.EditsocioIdTxt.Text, Convert.ToInt32(this.AddBenefPorcentaje.Text)))
+                {
+                    socios.InsertarBeneficiario(this.EditsocioIdTxt.Text, this.AddBenefID.Text,
+                        this.AddBenefNombre.Text, this.AddBenefParentezco.Text, this.AddBenefFechaNacimiento.Text,
+                        this.AddBenefLugarNac.Text, this.AddBenefPorcentaje.Text);
+                    this.NuevoBeneficiarioWin.Hide();
+                    Beneficiarios_Refresh(null, null);
+                    X.Msg.Alert("Beneficiario", "Beneficiario Agregado Correctamente.").Show();
+                }
+                else
+                {
+                    X.Msg.Alert("Beneficiario", "ERROR: El porcentaje excede del 100% del capital.").Show();
+                }
+            }
+            else
+            {
+                X.Msg.Alert("Beneficiario", "ERROR: El beneficiario ya existe.").Show();
+            }
+        }
+
+        [DirectMethod]
+        public void EliminarBeneficiarioBtn_Click()
+        {
+             
+            SociosLogic socios = new SociosLogic();
+            socios.EliminarBeneficiario(this.EditsocioIdTxt.Text, this.EditBenefId.Text);
+            X.Msg.Alert("Beneficiario", "Beneficiario Eliminado Correctamente.").Show();
+        }
         [DirectMethod]
         public void DoYesDisable()
         {
@@ -120,6 +216,7 @@ namespace COCASJOL.Website.Socios
             SociosGridP.GetView().Refresh(false);
             SociosSt.DataSource = soc.getData();
             SociosSt.DataBind();
+            X.Msg.Alert("Socio", "Socio Actualizado Exitosamente.").Show();
         }
 
         protected void SociosSt_Insert(object sender, DirectEventArgs e)
@@ -175,6 +272,7 @@ namespace COCASJOL.Website.Socios
             SociosGridP.GetView().Refresh(false);
             this.NuevoSocioWin.Hide();
             SociosSt_Reload(null, null);
+            X.Msg.Alert("Socio", "Socio Agregado Exitosamente.").Show();
         }
 
         protected void SociosSt_Remove(object sender, DirectEventArgs e)
