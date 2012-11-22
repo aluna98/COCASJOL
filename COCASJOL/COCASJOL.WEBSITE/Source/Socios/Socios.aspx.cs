@@ -172,9 +172,6 @@ namespace COCASJOL.Website.Socios
         protected void SociosSt_Update(object sender, DirectEventArgs e)
         {
             SociosLogic soc = new SociosLogic();
-            int identidad = Convert.ToInt32(e.ExtraParams["SOCIOS_IDENTIDAD"]);
-            int RTN = Convert.ToInt32(e.ExtraParams["SOCIOS_RTN"]);
-            int IHCAFE = Convert.ToInt32(e.ExtraParams["GENERAL_CARNET_IHCAFE"]);
             int anual = Convert.ToInt32(e.ExtraParams["PRODUCCION_ANUAL"]);
             int manzanas = Convert.ToInt32(e.ExtraParams["PRODUCCION_MANZANAS_CULTIVADAS"]);
             soc.ActualizarSocio(e.ExtraParams["SOCIOS_ID"],
@@ -187,13 +184,13 @@ namespace COCASJOL.Website.Socios
                 e.ExtraParams["SOCIOS_LUGAR_DE_NACIMIENTO"],
                 e.ExtraParams["SOCIOS_FECHA_DE_NACIMIENTO"],
                 e.ExtraParams["SOCIOS_NIVEL_EDUCATIVO"],
-                identidad,
+                e.ExtraParams["SOCIOS_IDENTIDAD"],
                 e.ExtraParams["SOCIOS_PROFESION"],
-                RTN,
+                e.ExtraParams["SOCIOS_RTN"],
                 e.ExtraParams["SOCIOS_TELEFONO"],
                 e.ExtraParams["SOCIOS_LUGAR_DE_EMISION"],
                 e.ExtraParams["SOCIOS_FECHA_DE_EMISION"],
-                IHCAFE,
+                e.ExtraParams["GENERAL_CARNET_IHCAFE"],
                 e.ExtraParams["GENERAL_ORGANIZACION_SECUNDARIA"],
                 e.ExtraParams["GENERAL_NUMERO_CARNET"],
                 e.ExtraParams["GENERAL_EMPRESA_LABORA"],
@@ -221,13 +218,7 @@ namespace COCASJOL.Website.Socios
 
         protected void SociosSt_Insert(object sender, DirectEventArgs e)
         {
-
             SociosLogic soc = new SociosLogic();
-            int identidad = Convert.ToInt32(e.ExtraParams["SOCIOS_IDENTIDAD"]);
-            int RTN = Convert.ToInt32(e.ExtraParams["SOCIOS_RTN"]);
-            int IHCAFE = 0;
-            if (AddCarnetIHCAFETxt.Text != null && AddCarnetIHCAFETxt.Text != "")
-                IHCAFE = Convert.ToInt32(AddCarnetIHCAFETxt.Text);
             int anual = 0;
             if (AddAnualTxt.Text != null && AddAnualTxt.Text != "")
                 anual = Convert.ToInt32(AddAnualTxt.Text);
@@ -244,13 +235,13 @@ namespace COCASJOL.Website.Socios
                 e.ExtraParams["SOCIOS_LUGAR_DE_NACIMIENTO"],
                 e.ExtraParams["SOCIOS_FECHA_DE_NACIMIENTO"],
                 e.ExtraParams["SOCIOS_NIVEL_EDUCATIVO"],
-                identidad,
+                e.ExtraParams["SOCIOS_IDENTIDAD"],
                 e.ExtraParams["SOCIOS_PROFESION"],
-                RTN,
+                e.ExtraParams["SOCIOS_RTN"],
                 e.ExtraParams["SOCIOS_TELEFONO"],
                 e.ExtraParams["SOCIOS_LUGAR_DE_EMISION"],
                 e.ExtraParams["SOCIOS_FECHA_DE_EMISION"],
-                IHCAFE,
+                AddCarnetIHCAFETxt.Text,
                 AddOrganizacionSecunTxt.Text,
                 AddNumCarnetTxt.Text,
                 AddEmpresaTxt.Text,
