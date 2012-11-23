@@ -13,13 +13,13 @@
           <EntitySet Name="nota_detalle" EntityType="COLINASMODEL.Store.nota_detalle" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="privilegios" EntityType="COLINASMODEL.Store.privilegios" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="privilegios_x_roles" EntityType="COLINASMODEL.Store.privilegios_x_roles" store:Type="Tables" Schema="colinas" />
-          <EntitySet Name="producto" EntityType="COLINASMODEL.Store.producto" store:Type="Tables" Schema="colinas" />
+          <EntitySet Name="productos" EntityType="COLINASMODEL.Store.productos" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="roles" EntityType="COLINASMODEL.Store.roles" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="roles_x_usuarios" EntityType="COLINASMODEL.Store.roles_x_usuarios" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="socios" EntityType="COLINASMODEL.Store.socios" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="socios_generales" EntityType="COLINASMODEL.Store.socios_generales" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="socios_produccion" EntityType="COLINASMODEL.Store.socios_produccion" store:Type="Tables" Schema="colinas" />
-          <EntitySet Name="tipo_producto" EntityType="COLINASMODEL.Store.tipo_producto" store:Type="Tables" Schema="colinas" />
+          <EntitySet Name="tipos_productos" EntityType="COLINASMODEL.Store.tipos_productos" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="usuarios" EntityType="COLINASMODEL.Store.usuarios" store:Type="Tables" Schema="colinas" />
           <AssociationSet Name="FK_BENEFICIARIO_X_SOCIO_socios" Association="COLINASMODEL.Store.FK_BENEFICIARIO_X_SOCIO_socios">
             <End Role="socios" EntitySet="socios" />
@@ -38,8 +38,8 @@
             <End Role="privilegios_x_roles" EntitySet="privilegios_x_roles" />
           </AssociationSet>
           <AssociationSet Name="PROD_TIPO" Association="COLINASMODEL.Store.PROD_TIPO">
-            <End Role="tipo_producto" EntitySet="tipo_producto" />
-            <End Role="producto" EntitySet="producto" />
+            <End Role="tipos_productos" EntitySet="tipos_productos" />
+            <End Role="productos" EntitySet="productos" />
           </AssociationSet>
           <AssociationSet Name="ROL_ID_PRIV_fk" Association="COLINASMODEL.Store.ROL_ID_PRIV_fk">
             <End Role="roles" EntitySet="roles" />
@@ -135,14 +135,14 @@
           <Property Name="PRIV_ID" Type="int" Nullable="false" />
           <Property Name="ROL_ID" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="producto">
+        <EntityType Name="productos">
           <Key>
-            <PropertyRef Name="PRODUCTO_ID" />
+            <PropertyRef Name="PRODUCTOS_ID" />
           </Key>
-          <Property Name="PRODUCTO_ID" Type="int" Nullable="false" />
-          <Property Name="TIPO_PROD_ID" Type="int" Nullable="false" />
-          <Property Name="PRODUCTO_NOMBRE" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="PRODUCTO_DESCRIPCION" Type="varchar" MaxLength="100" />
+          <Property Name="PRODUCTOS_ID" Type="int" Nullable="false" />
+          <Property Name="TIPOS_PROD_ID" Type="int" Nullable="false" />
+          <Property Name="PRODUCTOS_NOMBRE" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="PRODUCTOS_DESCRIPCION" Type="varchar" MaxLength="100" />
           <Property Name="CREADO_POR" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
           <Property Name="MODIFICADO_POR" Type="varchar" MaxLength="45" />
@@ -223,14 +223,13 @@
           <Property Name="PRODUCCION_TIPO_INSUMOS" Type="varchar" MaxLength="100" />
           <Property Name="PRODUCCION_MANZANAS_CULTIVADAS" Type="int" />
         </EntityType>
-        <EntityType Name="tipo_producto">
+        <EntityType Name="tipos_productos">
           <Key>
-            <PropertyRef Name="TIPO_PROD_ID" />
+            <PropertyRef Name="TIPOS_PROD_ID" />
           </Key>
-          <Property Name="TIPO_PROD_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="TIPO_PROD_NOMBRE" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="TIPO_PROD_DECRIPCION" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="TIPO_PRODUCTOcol" Type="varchar" MaxLength="45" />
+          <Property Name="TIPOS_PROD_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TIPOS_PROD_NOMBRE" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="TIPOS_PROD_DECRIPCION" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="CREADO_POR" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
           <Property Name="MODIFICADO_POR" Type="varchar" MaxLength="45" />
@@ -309,16 +308,16 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="PROD_TIPO">
-          <End Role="tipo_producto" Type="COLINASMODEL.Store.tipo_producto" Multiplicity="1">
+          <End Role="tipos_productos" Type="COLINASMODEL.Store.tipos_productos" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="producto" Type="COLINASMODEL.Store.producto" Multiplicity="*" />
+          <End Role="productos" Type="COLINASMODEL.Store.productos" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tipo_producto">
-              <PropertyRef Name="TIPO_PROD_ID" />
+            <Principal Role="tipos_productos">
+              <PropertyRef Name="TIPOS_PROD_ID" />
             </Principal>
-            <Dependent Role="producto">
-              <PropertyRef Name="TIPO_PROD_ID" />
+            <Dependent Role="productos">
+              <PropertyRef Name="TIPOS_PROD_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -444,11 +443,11 @@
             <End Role="socio" EntitySet="socios" />
             <End Role="socios_generales" EntitySet="socios_generales" />
           </AssociationSet>
-          <EntitySet Name="producto" EntityType="COLINASMODEL.producto" />
-          <EntitySet Name="tipo_producto" EntityType="COLINASMODEL.tipo_producto" />
+          <EntitySet Name="productos" EntityType="COLINASMODEL.producto" />
+          <EntitySet Name="tipos_productos" EntityType="COLINASMODEL.tipo_producto" />
           <AssociationSet Name="PROD_TIPO" Association="COLINASMODEL.PROD_TIPO">
-            <End Role="tipo_producto" EntitySet="tipo_producto" />
-            <End Role="producto" EntitySet="producto" />
+            <End Role="tipos_productos" EntitySet="tipos_productos" />
+            <End Role="productos" EntitySet="productos" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="codigo">
@@ -683,41 +682,40 @@
         </Association>
         <EntityType Name="producto">
           <Key>
-            <PropertyRef Name="PRODUCTO_ID" />
+            <PropertyRef Name="PRODUCTOS_ID" />
           </Key>
-          <Property Type="Int32" Name="PRODUCTO_ID" Nullable="false" />
-          <Property Type="Int32" Name="TIPO_PROD_ID" Nullable="false" />
-          <Property Type="String" Name="PRODUCTO_NOMBRE" Nullable="false" />
-          <Property Type="String" Name="PRODUCTO_DESCRIPCION" />
+          <Property Type="Int32" Name="PRODUCTOS_ID" Nullable="false" />
+          <Property Type="Int32" Name="TIPOS_PROD_ID" Nullable="false" />
+          <Property Type="String" Name="PRODUCTOS_NOMBRE" Nullable="false" />
+          <Property Type="String" Name="PRODUCTOS_DESCRIPCION" />
           <Property Type="String" Name="CREADO_POR" Nullable="false" />
           <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
           <Property Type="String" Name="MODIFICADO_POR" />
           <Property Type="DateTime" Name="FECHA_MODIFICACION" />
-          <NavigationProperty Name="tipo_producto" Relationship="COLINASMODEL.PROD_TIPO" FromRole="producto" ToRole="tipo_producto" />
+          <NavigationProperty Name="tipos_productos" Relationship="COLINASMODEL.PROD_TIPO" FromRole="productos" ToRole="tipos_productos" />
         </EntityType>
         <EntityType Name="tipo_producto">
           <Key>
-            <PropertyRef Name="TIPO_PROD_ID" />
+            <PropertyRef Name="TIPOS_PROD_ID" />
           </Key>
-          <Property Type="Int32" Name="TIPO_PROD_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="TIPO_PROD_NOMBRE" Nullable="false" />
-          <Property Type="String" Name="TIPO_PROD_DECRIPCION" Nullable="false" />
-          <Property Type="String" Name="TIPO_PRODUCTOcol" />
+          <Property Type="Int32" Name="TIPOS_PROD_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="TIPOS_PROD_NOMBRE" Nullable="false" />
+          <Property Type="String" Name="TIPOS_PROD_DECRIPCION" Nullable="false" />
           <Property Type="String" Name="CREADO_POR" Nullable="false" />
           <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
           <Property Type="String" Name="MODIFICADO_POR" />
           <Property Type="DateTime" Name="FECHA_MODIFICACION" />
-          <NavigationProperty Name="producto" Relationship="COLINASMODEL.PROD_TIPO" FromRole="tipo_producto" ToRole="producto" />
+          <NavigationProperty Name="productos" Relationship="COLINASMODEL.PROD_TIPO" FromRole="tipos_productos" ToRole="productos" />
         </EntityType>
         <Association Name="PROD_TIPO">
-          <End Type="COLINASMODEL.tipo_producto" Role="tipo_producto" Multiplicity="1" />
-          <End Type="COLINASMODEL.producto" Role="producto" Multiplicity="*" />
+          <End Type="COLINASMODEL.tipo_producto" Role="tipos_productos" Multiplicity="1" />
+          <End Type="COLINASMODEL.producto" Role="productos" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tipo_producto">
-              <PropertyRef Name="TIPO_PROD_ID" />
+            <Principal Role="tipos_productos">
+              <PropertyRef Name="TIPOS_PROD_ID" />
             </Principal>
-            <Dependent Role="producto">
-              <PropertyRef Name="TIPO_PROD_ID" />
+            <Dependent Role="productos">
+              <PropertyRef Name="TIPOS_PROD_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -901,31 +899,30 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="producto">
+          <EntitySetMapping Name="productos">
             <EntityTypeMapping TypeName="COLINASMODEL.producto">
-              <MappingFragment StoreEntitySet="producto">
+              <MappingFragment StoreEntitySet="productos">
                 <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
                 <ScalarProperty Name="MODIFICADO_POR" ColumnName="MODIFICADO_POR" />
                 <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
                 <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
-                <ScalarProperty Name="PRODUCTO_DESCRIPCION" ColumnName="PRODUCTO_DESCRIPCION" />
-                <ScalarProperty Name="PRODUCTO_NOMBRE" ColumnName="PRODUCTO_NOMBRE" />
-                <ScalarProperty Name="TIPO_PROD_ID" ColumnName="TIPO_PROD_ID" />
-                <ScalarProperty Name="PRODUCTO_ID" ColumnName="PRODUCTO_ID" />
+                <ScalarProperty Name="PRODUCTOS_DESCRIPCION" ColumnName="PRODUCTOS_DESCRIPCION" />
+                <ScalarProperty Name="PRODUCTOS_NOMBRE" ColumnName="PRODUCTOS_NOMBRE" />
+                <ScalarProperty Name="TIPOS_PROD_ID" ColumnName="TIPOS_PROD_ID" />
+                <ScalarProperty Name="PRODUCTOS_ID" ColumnName="PRODUCTOS_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tipo_producto">
+          <EntitySetMapping Name="tipos_productos">
             <EntityTypeMapping TypeName="COLINASMODEL.tipo_producto">
-              <MappingFragment StoreEntitySet="tipo_producto">
+              <MappingFragment StoreEntitySet="tipos_productos">
                 <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
                 <ScalarProperty Name="MODIFICADO_POR" ColumnName="MODIFICADO_POR" />
                 <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
                 <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
-                <ScalarProperty Name="TIPO_PRODUCTOcol" ColumnName="TIPO_PRODUCTOcol" />
-                <ScalarProperty Name="TIPO_PROD_DECRIPCION" ColumnName="TIPO_PROD_DECRIPCION" />
-                <ScalarProperty Name="TIPO_PROD_NOMBRE" ColumnName="TIPO_PROD_NOMBRE" />
-                <ScalarProperty Name="TIPO_PROD_ID" ColumnName="TIPO_PROD_ID" />
+                <ScalarProperty Name="TIPOS_PROD_DECRIPCION" ColumnName="TIPOS_PROD_DECRIPCION" />
+                <ScalarProperty Name="TIPOS_PROD_NOMBRE" ColumnName="TIPOS_PROD_NOMBRE" />
+                <ScalarProperty Name="TIPOS_PROD_ID" ColumnName="TIPOS_PROD_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -989,15 +986,15 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="COLINASMODEL.socio_general" Width="1.5" PointX="3" PointY="21.875" Height="2.7494921875000031" />
         <AssociationConnector Association="COLINASMODEL.SOCIO_ID_FK" >
-          <ConnectorPoint PointX="0.98241984375" PointY="14.268616536458334" />
+          <ConnectorPoint PointX="0.98241984375" PointY="14.268616536458332" />
           <ConnectorPoint PointX="0.98241984375" PointY="23.24974609375" />
           <ConnectorPoint PointX="3" PointY="23.24974609375" />
         </AssociationConnector>
         <EntityTypeShape EntityType="COLINASMODEL.producto" Width="1.5" PointX="7.625" PointY="9" Height="2.7494921875000031" />
-        <EntityTypeShape EntityType="COLINASMODEL.tipo_producto" Width="1.5" PointX="5.375" PointY="9" Height="2.7494921875000031" />
+        <EntityTypeShape EntityType="COLINASMODEL.tipo_producto" Width="1.5" PointX="5.375" PointY="9" Height="2.5571907552083388" />
         <AssociationConnector Association="COLINASMODEL.PROD_TIPO" >
-          <ConnectorPoint PointX="6.875" PointY="10.374746093750002" />
-          <ConnectorPoint PointX="7.625" PointY="10.374746093750002" />
+          <ConnectorPoint PointX="6.875" PointY="10.278595377604169" />
+          <ConnectorPoint PointX="7.625" PointY="10.278595377604169" />
         </AssociationConnector>
         </Diagram>
     </Diagrams>

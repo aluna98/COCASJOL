@@ -26,7 +26,7 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "SOCIOS_ID_FK2", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "socio_produccion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.socio_produccion), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "roles_x_usuarios", "rol", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.rol), "usuarios", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.usuario))]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "SOCIO_ID_FK", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "socios_generales", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.socio_general), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "PROD_TIPO", "tipo_producto", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.tipo_producto), "producto", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.producto), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "PROD_TIPO", "tipos_productos", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.tipo_producto), "productos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.producto), true)]
 
 #endregion
 
@@ -257,34 +257,34 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<producto> producto
+        public ObjectSet<producto> productos
         {
             get
             {
-                if ((_producto == null))
+                if ((_productos == null))
                 {
-                    _producto = base.CreateObjectSet<producto>("producto");
+                    _productos = base.CreateObjectSet<producto>("productos");
                 }
-                return _producto;
+                return _productos;
             }
         }
-        private ObjectSet<producto> _producto;
+        private ObjectSet<producto> _productos;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<tipo_producto> tipo_producto
+        public ObjectSet<tipo_producto> tipos_productos
         {
             get
             {
-                if ((_tipo_producto == null))
+                if ((_tipos_productos == null))
                 {
-                    _tipo_producto = base.CreateObjectSet<tipo_producto>("tipo_producto");
+                    _tipos_productos = base.CreateObjectSet<tipo_producto>("tipos_productos");
                 }
-                return _tipo_producto;
+                return _tipos_productos;
             }
         }
-        private ObjectSet<tipo_producto> _tipo_producto;
+        private ObjectSet<tipo_producto> _tipos_productos;
 
         #endregion
 
@@ -379,19 +379,19 @@ namespace COCASJOL.LOGIC
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the producto EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the productos EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToproducto(producto producto)
+        public void AddToproductos(producto producto)
         {
-            base.AddObject("producto", producto);
+            base.AddObject("productos", producto);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the tipo_producto EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the tipos_productos EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddTotipo_producto(tipo_producto tipo_producto)
+        public void AddTotipos_productos(tipo_producto tipo_producto)
         {
-            base.AddObject("tipo_producto", tipo_producto);
+            base.AddObject("tipos_productos", tipo_producto);
         }
 
         #endregion
@@ -1652,17 +1652,17 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// Create a new producto object.
         /// </summary>
-        /// <param name="pRODUCTO_ID">Initial value of the PRODUCTO_ID property.</param>
-        /// <param name="tIPO_PROD_ID">Initial value of the TIPO_PROD_ID property.</param>
-        /// <param name="pRODUCTO_NOMBRE">Initial value of the PRODUCTO_NOMBRE property.</param>
+        /// <param name="pRODUCTOS_ID">Initial value of the PRODUCTOS_ID property.</param>
+        /// <param name="tIPOS_PROD_ID">Initial value of the TIPOS_PROD_ID property.</param>
+        /// <param name="pRODUCTOS_NOMBRE">Initial value of the PRODUCTOS_NOMBRE property.</param>
         /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
         /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
-        public static producto Createproducto(global::System.Int32 pRODUCTO_ID, global::System.Int32 tIPO_PROD_ID, global::System.String pRODUCTO_NOMBRE, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
+        public static producto Createproducto(global::System.Int32 pRODUCTOS_ID, global::System.Int32 tIPOS_PROD_ID, global::System.String pRODUCTOS_NOMBRE, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
         {
             producto producto = new producto();
-            producto.PRODUCTO_ID = pRODUCTO_ID;
-            producto.TIPO_PROD_ID = tIPO_PROD_ID;
-            producto.PRODUCTO_NOMBRE = pRODUCTO_NOMBRE;
+            producto.PRODUCTOS_ID = pRODUCTOS_ID;
+            producto.TIPOS_PROD_ID = tIPOS_PROD_ID;
+            producto.PRODUCTOS_NOMBRE = pRODUCTOS_NOMBRE;
             producto.CREADO_POR = cREADO_POR;
             producto.FECHA_CREACION = fECHA_CREACION;
             return producto;
@@ -1677,99 +1677,99 @@ namespace COCASJOL.LOGIC
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 PRODUCTO_ID
+        public global::System.Int32 PRODUCTOS_ID
         {
             get
             {
-                return _PRODUCTO_ID;
+                return _PRODUCTOS_ID;
             }
             set
             {
-                if (_PRODUCTO_ID != value)
+                if (_PRODUCTOS_ID != value)
                 {
-                    OnPRODUCTO_IDChanging(value);
-                    ReportPropertyChanging("PRODUCTO_ID");
-                    _PRODUCTO_ID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("PRODUCTO_ID");
-                    OnPRODUCTO_IDChanged();
+                    OnPRODUCTOS_IDChanging(value);
+                    ReportPropertyChanging("PRODUCTOS_ID");
+                    _PRODUCTOS_ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PRODUCTOS_ID");
+                    OnPRODUCTOS_IDChanged();
                 }
             }
         }
-        private global::System.Int32 _PRODUCTO_ID;
-        partial void OnPRODUCTO_IDChanging(global::System.Int32 value);
-        partial void OnPRODUCTO_IDChanged();
+        private global::System.Int32 _PRODUCTOS_ID;
+        partial void OnPRODUCTOS_IDChanging(global::System.Int32 value);
+        partial void OnPRODUCTOS_IDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 TIPO_PROD_ID
+        public global::System.Int32 TIPOS_PROD_ID
         {
             get
             {
-                return _TIPO_PROD_ID;
+                return _TIPOS_PROD_ID;
             }
             set
             {
-                OnTIPO_PROD_IDChanging(value);
-                ReportPropertyChanging("TIPO_PROD_ID");
-                _TIPO_PROD_ID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("TIPO_PROD_ID");
-                OnTIPO_PROD_IDChanged();
+                OnTIPOS_PROD_IDChanging(value);
+                ReportPropertyChanging("TIPOS_PROD_ID");
+                _TIPOS_PROD_ID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TIPOS_PROD_ID");
+                OnTIPOS_PROD_IDChanged();
             }
         }
-        private global::System.Int32 _TIPO_PROD_ID;
-        partial void OnTIPO_PROD_IDChanging(global::System.Int32 value);
-        partial void OnTIPO_PROD_IDChanged();
+        private global::System.Int32 _TIPOS_PROD_ID;
+        partial void OnTIPOS_PROD_IDChanging(global::System.Int32 value);
+        partial void OnTIPOS_PROD_IDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String PRODUCTO_NOMBRE
+        public global::System.String PRODUCTOS_NOMBRE
         {
             get
             {
-                return _PRODUCTO_NOMBRE;
+                return _PRODUCTOS_NOMBRE;
             }
             set
             {
-                OnPRODUCTO_NOMBREChanging(value);
-                ReportPropertyChanging("PRODUCTO_NOMBRE");
-                _PRODUCTO_NOMBRE = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("PRODUCTO_NOMBRE");
-                OnPRODUCTO_NOMBREChanged();
+                OnPRODUCTOS_NOMBREChanging(value);
+                ReportPropertyChanging("PRODUCTOS_NOMBRE");
+                _PRODUCTOS_NOMBRE = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("PRODUCTOS_NOMBRE");
+                OnPRODUCTOS_NOMBREChanged();
             }
         }
-        private global::System.String _PRODUCTO_NOMBRE;
-        partial void OnPRODUCTO_NOMBREChanging(global::System.String value);
-        partial void OnPRODUCTO_NOMBREChanged();
+        private global::System.String _PRODUCTOS_NOMBRE;
+        partial void OnPRODUCTOS_NOMBREChanging(global::System.String value);
+        partial void OnPRODUCTOS_NOMBREChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String PRODUCTO_DESCRIPCION
+        public global::System.String PRODUCTOS_DESCRIPCION
         {
             get
             {
-                return _PRODUCTO_DESCRIPCION;
+                return _PRODUCTOS_DESCRIPCION;
             }
             set
             {
-                OnPRODUCTO_DESCRIPCIONChanging(value);
-                ReportPropertyChanging("PRODUCTO_DESCRIPCION");
-                _PRODUCTO_DESCRIPCION = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("PRODUCTO_DESCRIPCION");
-                OnPRODUCTO_DESCRIPCIONChanged();
+                OnPRODUCTOS_DESCRIPCIONChanging(value);
+                ReportPropertyChanging("PRODUCTOS_DESCRIPCION");
+                _PRODUCTOS_DESCRIPCION = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PRODUCTOS_DESCRIPCION");
+                OnPRODUCTOS_DESCRIPCIONChanged();
             }
         }
-        private global::System.String _PRODUCTO_DESCRIPCION;
-        partial void OnPRODUCTO_DESCRIPCIONChanging(global::System.String value);
-        partial void OnPRODUCTO_DESCRIPCIONChanged();
+        private global::System.String _PRODUCTOS_DESCRIPCION;
+        partial void OnPRODUCTOS_DESCRIPCIONChanging(global::System.String value);
+        partial void OnPRODUCTOS_DESCRIPCIONChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1878,16 +1878,16 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "PROD_TIPO", "tipo_producto")]
-        public tipo_producto tipo_producto
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "PROD_TIPO", "tipos_productos")]
+        public tipo_producto tipos_productos
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tipo_producto>("COLINASMODEL.PROD_TIPO", "tipo_producto").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tipo_producto>("COLINASMODEL.PROD_TIPO", "tipos_productos").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tipo_producto>("COLINASMODEL.PROD_TIPO", "tipo_producto").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tipo_producto>("COLINASMODEL.PROD_TIPO", "tipos_productos").Value = value;
             }
         }
         /// <summary>
@@ -1895,17 +1895,17 @@ namespace COCASJOL.LOGIC
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<tipo_producto> tipo_productoReference
+        public EntityReference<tipo_producto> tipos_productosReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tipo_producto>("COLINASMODEL.PROD_TIPO", "tipo_producto");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tipo_producto>("COLINASMODEL.PROD_TIPO", "tipos_productos");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tipo_producto>("COLINASMODEL.PROD_TIPO", "tipo_producto", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tipo_producto>("COLINASMODEL.PROD_TIPO", "tipos_productos", value);
                 }
             }
         }
@@ -3503,17 +3503,17 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// Create a new tipo_producto object.
         /// </summary>
-        /// <param name="tIPO_PROD_ID">Initial value of the TIPO_PROD_ID property.</param>
-        /// <param name="tIPO_PROD_NOMBRE">Initial value of the TIPO_PROD_NOMBRE property.</param>
-        /// <param name="tIPO_PROD_DECRIPCION">Initial value of the TIPO_PROD_DECRIPCION property.</param>
+        /// <param name="tIPOS_PROD_ID">Initial value of the TIPOS_PROD_ID property.</param>
+        /// <param name="tIPOS_PROD_NOMBRE">Initial value of the TIPOS_PROD_NOMBRE property.</param>
+        /// <param name="tIPOS_PROD_DECRIPCION">Initial value of the TIPOS_PROD_DECRIPCION property.</param>
         /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
         /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
-        public static tipo_producto Createtipo_producto(global::System.Int32 tIPO_PROD_ID, global::System.String tIPO_PROD_NOMBRE, global::System.String tIPO_PROD_DECRIPCION, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
+        public static tipo_producto Createtipo_producto(global::System.Int32 tIPOS_PROD_ID, global::System.String tIPOS_PROD_NOMBRE, global::System.String tIPOS_PROD_DECRIPCION, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
         {
             tipo_producto tipo_producto = new tipo_producto();
-            tipo_producto.TIPO_PROD_ID = tIPO_PROD_ID;
-            tipo_producto.TIPO_PROD_NOMBRE = tIPO_PROD_NOMBRE;
-            tipo_producto.TIPO_PROD_DECRIPCION = tIPO_PROD_DECRIPCION;
+            tipo_producto.TIPOS_PROD_ID = tIPOS_PROD_ID;
+            tipo_producto.TIPOS_PROD_NOMBRE = tIPOS_PROD_NOMBRE;
+            tipo_producto.TIPOS_PROD_DECRIPCION = tIPOS_PROD_DECRIPCION;
             tipo_producto.CREADO_POR = cREADO_POR;
             tipo_producto.FECHA_CREACION = fECHA_CREACION;
             return tipo_producto;
@@ -3528,99 +3528,75 @@ namespace COCASJOL.LOGIC
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 TIPO_PROD_ID
+        public global::System.Int32 TIPOS_PROD_ID
         {
             get
             {
-                return _TIPO_PROD_ID;
+                return _TIPOS_PROD_ID;
             }
             set
             {
-                if (_TIPO_PROD_ID != value)
+                if (_TIPOS_PROD_ID != value)
                 {
-                    OnTIPO_PROD_IDChanging(value);
-                    ReportPropertyChanging("TIPO_PROD_ID");
-                    _TIPO_PROD_ID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("TIPO_PROD_ID");
-                    OnTIPO_PROD_IDChanged();
+                    OnTIPOS_PROD_IDChanging(value);
+                    ReportPropertyChanging("TIPOS_PROD_ID");
+                    _TIPOS_PROD_ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("TIPOS_PROD_ID");
+                    OnTIPOS_PROD_IDChanged();
                 }
             }
         }
-        private global::System.Int32 _TIPO_PROD_ID;
-        partial void OnTIPO_PROD_IDChanging(global::System.Int32 value);
-        partial void OnTIPO_PROD_IDChanged();
+        private global::System.Int32 _TIPOS_PROD_ID;
+        partial void OnTIPOS_PROD_IDChanging(global::System.Int32 value);
+        partial void OnTIPOS_PROD_IDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String TIPO_PROD_NOMBRE
+        public global::System.String TIPOS_PROD_NOMBRE
         {
             get
             {
-                return _TIPO_PROD_NOMBRE;
+                return _TIPOS_PROD_NOMBRE;
             }
             set
             {
-                OnTIPO_PROD_NOMBREChanging(value);
-                ReportPropertyChanging("TIPO_PROD_NOMBRE");
-                _TIPO_PROD_NOMBRE = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("TIPO_PROD_NOMBRE");
-                OnTIPO_PROD_NOMBREChanged();
+                OnTIPOS_PROD_NOMBREChanging(value);
+                ReportPropertyChanging("TIPOS_PROD_NOMBRE");
+                _TIPOS_PROD_NOMBRE = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("TIPOS_PROD_NOMBRE");
+                OnTIPOS_PROD_NOMBREChanged();
             }
         }
-        private global::System.String _TIPO_PROD_NOMBRE;
-        partial void OnTIPO_PROD_NOMBREChanging(global::System.String value);
-        partial void OnTIPO_PROD_NOMBREChanged();
+        private global::System.String _TIPOS_PROD_NOMBRE;
+        partial void OnTIPOS_PROD_NOMBREChanging(global::System.String value);
+        partial void OnTIPOS_PROD_NOMBREChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String TIPO_PROD_DECRIPCION
+        public global::System.String TIPOS_PROD_DECRIPCION
         {
             get
             {
-                return _TIPO_PROD_DECRIPCION;
+                return _TIPOS_PROD_DECRIPCION;
             }
             set
             {
-                OnTIPO_PROD_DECRIPCIONChanging(value);
-                ReportPropertyChanging("TIPO_PROD_DECRIPCION");
-                _TIPO_PROD_DECRIPCION = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("TIPO_PROD_DECRIPCION");
-                OnTIPO_PROD_DECRIPCIONChanged();
+                OnTIPOS_PROD_DECRIPCIONChanging(value);
+                ReportPropertyChanging("TIPOS_PROD_DECRIPCION");
+                _TIPOS_PROD_DECRIPCION = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("TIPOS_PROD_DECRIPCION");
+                OnTIPOS_PROD_DECRIPCIONChanged();
             }
         }
-        private global::System.String _TIPO_PROD_DECRIPCION;
-        partial void OnTIPO_PROD_DECRIPCIONChanging(global::System.String value);
-        partial void OnTIPO_PROD_DECRIPCIONChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String TIPO_PRODUCTOcol
-        {
-            get
-            {
-                return _TIPO_PRODUCTOcol;
-            }
-            set
-            {
-                OnTIPO_PRODUCTOcolChanging(value);
-                ReportPropertyChanging("TIPO_PRODUCTOcol");
-                _TIPO_PRODUCTOcol = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("TIPO_PRODUCTOcol");
-                OnTIPO_PRODUCTOcolChanged();
-            }
-        }
-        private global::System.String _TIPO_PRODUCTOcol;
-        partial void OnTIPO_PRODUCTOcolChanging(global::System.String value);
-        partial void OnTIPO_PRODUCTOcolChanged();
+        private global::System.String _TIPOS_PROD_DECRIPCION;
+        partial void OnTIPOS_PROD_DECRIPCIONChanging(global::System.String value);
+        partial void OnTIPOS_PROD_DECRIPCIONChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -3729,18 +3705,18 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "PROD_TIPO", "producto")]
-        public EntityCollection<producto> producto
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "PROD_TIPO", "productos")]
+        public EntityCollection<producto> productos
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<producto>("COLINASMODEL.PROD_TIPO", "producto");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<producto>("COLINASMODEL.PROD_TIPO", "productos");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<producto>("COLINASMODEL.PROD_TIPO", "producto", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<producto>("COLINASMODEL.PROD_TIPO", "productos", value);
                 }
             }
         }
