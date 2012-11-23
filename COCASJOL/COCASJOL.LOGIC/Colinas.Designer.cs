@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -25,6 +26,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "SOCIOS_ID_FK2", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "socio_produccion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.socio_produccion), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "roles_x_usuarios", "rol", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.rol), "usuarios", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.usuario))]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "SOCIO_ID_FK", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "socios_generales", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.socio_general), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "PROD_TIPO", "tipo_producto", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.tipo_producto), "producto", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.producto), true)]
 
 #endregion
 
@@ -251,8 +253,41 @@ namespace COCASJOL.LOGIC
             }
         }
         private ObjectSet<socio_general> _socios_generales;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<producto> producto
+        {
+            get
+            {
+                if ((_producto == null))
+                {
+                    _producto = base.CreateObjectSet<producto>("producto");
+                }
+                return _producto;
+            }
+        }
+        private ObjectSet<producto> _producto;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<tipo_producto> tipo_producto
+        {
+            get
+            {
+                if ((_tipo_producto == null))
+                {
+                    _tipo_producto = base.CreateObjectSet<tipo_producto>("tipo_producto");
+                }
+                return _tipo_producto;
+            }
+        }
+        private ObjectSet<tipo_producto> _tipo_producto;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -342,8 +377,25 @@ namespace COCASJOL.LOGIC
         {
             base.AddObject("socios_generales", socio_general);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the producto EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToproducto(producto producto)
+        {
+            base.AddObject("producto", producto);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the tipo_producto EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTotipo_producto(tipo_producto tipo_producto)
+        {
+            base.AddObject("tipo_producto", tipo_producto);
+        }
 
         #endregion
+
         #region Function Imports
     
         /// <summary>
@@ -423,11 +475,11 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -458,6 +510,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -635,6 +688,7 @@ namespace COCASJOL.LOGIC
         partial void OnBENEFICIARIO_PORCENTAJEChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -677,6 +731,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -703,6 +758,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -757,6 +813,7 @@ namespace COCASJOL.LOGIC
         partial void OnCODIGO_NUMEROChanged();
 
         #endregion
+
     
     }
     
@@ -784,6 +841,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -889,6 +947,7 @@ namespace COCASJOL.LOGIC
         partial void OninventariocolChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -931,6 +990,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -965,6 +1025,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1139,6 +1200,7 @@ namespace COCASJOL.LOGIC
         partial void OnNOTA_PORCENTAJE_HUMEDADChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1181,6 +1243,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1207,6 +1270,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1312,6 +1376,7 @@ namespace COCASJOL.LOGIC
         partial void OnDETALLE_PESOChanged();
 
         #endregion
+
     
     }
     
@@ -1345,6 +1410,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1543,6 +1609,7 @@ namespace COCASJOL.LOGIC
         partial void OnFECHA_MODIFICACIONChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1569,6 +1636,282 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="COLINASMODEL", Name="producto")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class producto : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new producto object.
+        /// </summary>
+        /// <param name="pRODUCTO_ID">Initial value of the PRODUCTO_ID property.</param>
+        /// <param name="tIPO_PROD_ID">Initial value of the TIPO_PROD_ID property.</param>
+        /// <param name="pRODUCTO_NOMBRE">Initial value of the PRODUCTO_NOMBRE property.</param>
+        /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
+        /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
+        public static producto Createproducto(global::System.Int32 pRODUCTO_ID, global::System.Int32 tIPO_PROD_ID, global::System.String pRODUCTO_NOMBRE, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
+        {
+            producto producto = new producto();
+            producto.PRODUCTO_ID = pRODUCTO_ID;
+            producto.TIPO_PROD_ID = tIPO_PROD_ID;
+            producto.PRODUCTO_NOMBRE = pRODUCTO_NOMBRE;
+            producto.CREADO_POR = cREADO_POR;
+            producto.FECHA_CREACION = fECHA_CREACION;
+            return producto;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 PRODUCTO_ID
+        {
+            get
+            {
+                return _PRODUCTO_ID;
+            }
+            set
+            {
+                if (_PRODUCTO_ID != value)
+                {
+                    OnPRODUCTO_IDChanging(value);
+                    ReportPropertyChanging("PRODUCTO_ID");
+                    _PRODUCTO_ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PRODUCTO_ID");
+                    OnPRODUCTO_IDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _PRODUCTO_ID;
+        partial void OnPRODUCTO_IDChanging(global::System.Int32 value);
+        partial void OnPRODUCTO_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 TIPO_PROD_ID
+        {
+            get
+            {
+                return _TIPO_PROD_ID;
+            }
+            set
+            {
+                OnTIPO_PROD_IDChanging(value);
+                ReportPropertyChanging("TIPO_PROD_ID");
+                _TIPO_PROD_ID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TIPO_PROD_ID");
+                OnTIPO_PROD_IDChanged();
+            }
+        }
+        private global::System.Int32 _TIPO_PROD_ID;
+        partial void OnTIPO_PROD_IDChanging(global::System.Int32 value);
+        partial void OnTIPO_PROD_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String PRODUCTO_NOMBRE
+        {
+            get
+            {
+                return _PRODUCTO_NOMBRE;
+            }
+            set
+            {
+                OnPRODUCTO_NOMBREChanging(value);
+                ReportPropertyChanging("PRODUCTO_NOMBRE");
+                _PRODUCTO_NOMBRE = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("PRODUCTO_NOMBRE");
+                OnPRODUCTO_NOMBREChanged();
+            }
+        }
+        private global::System.String _PRODUCTO_NOMBRE;
+        partial void OnPRODUCTO_NOMBREChanging(global::System.String value);
+        partial void OnPRODUCTO_NOMBREChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PRODUCTO_DESCRIPCION
+        {
+            get
+            {
+                return _PRODUCTO_DESCRIPCION;
+            }
+            set
+            {
+                OnPRODUCTO_DESCRIPCIONChanging(value);
+                ReportPropertyChanging("PRODUCTO_DESCRIPCION");
+                _PRODUCTO_DESCRIPCION = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PRODUCTO_DESCRIPCION");
+                OnPRODUCTO_DESCRIPCIONChanged();
+            }
+        }
+        private global::System.String _PRODUCTO_DESCRIPCION;
+        partial void OnPRODUCTO_DESCRIPCIONChanging(global::System.String value);
+        partial void OnPRODUCTO_DESCRIPCIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CREADO_POR
+        {
+            get
+            {
+                return _CREADO_POR;
+            }
+            set
+            {
+                OnCREADO_PORChanging(value);
+                ReportPropertyChanging("CREADO_POR");
+                _CREADO_POR = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CREADO_POR");
+                OnCREADO_PORChanged();
+            }
+        }
+        private global::System.String _CREADO_POR;
+        partial void OnCREADO_PORChanging(global::System.String value);
+        partial void OnCREADO_PORChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime FECHA_CREACION
+        {
+            get
+            {
+                return _FECHA_CREACION;
+            }
+            set
+            {
+                OnFECHA_CREACIONChanging(value);
+                ReportPropertyChanging("FECHA_CREACION");
+                _FECHA_CREACION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_CREACION");
+                OnFECHA_CREACIONChanged();
+            }
+        }
+        private global::System.DateTime _FECHA_CREACION;
+        partial void OnFECHA_CREACIONChanging(global::System.DateTime value);
+        partial void OnFECHA_CREACIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MODIFICADO_POR
+        {
+            get
+            {
+                return _MODIFICADO_POR;
+            }
+            set
+            {
+                OnMODIFICADO_PORChanging(value);
+                ReportPropertyChanging("MODIFICADO_POR");
+                _MODIFICADO_POR = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MODIFICADO_POR");
+                OnMODIFICADO_PORChanged();
+            }
+        }
+        private global::System.String _MODIFICADO_POR;
+        partial void OnMODIFICADO_PORChanging(global::System.String value);
+        partial void OnMODIFICADO_PORChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> FECHA_MODIFICACION
+        {
+            get
+            {
+                return _FECHA_MODIFICACION;
+            }
+            set
+            {
+                OnFECHA_MODIFICACIONChanging(value);
+                ReportPropertyChanging("FECHA_MODIFICACION");
+                _FECHA_MODIFICACION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_MODIFICACION");
+                OnFECHA_MODIFICACIONChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _FECHA_MODIFICACION;
+        partial void OnFECHA_MODIFICACIONChanging(Nullable<global::System.DateTime> value);
+        partial void OnFECHA_MODIFICACIONChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "PROD_TIPO", "tipo_producto")]
+        public tipo_producto tipo_producto
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tipo_producto>("COLINASMODEL.PROD_TIPO", "tipo_producto").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tipo_producto>("COLINASMODEL.PROD_TIPO", "tipo_producto").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<tipo_producto> tipo_productoReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tipo_producto>("COLINASMODEL.PROD_TIPO", "tipo_producto");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tipo_producto>("COLINASMODEL.PROD_TIPO", "tipo_producto", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
@@ -1599,6 +1942,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1773,6 +2117,7 @@ namespace COCASJOL.LOGIC
         partial void OnFECHA_MODIFICACIONChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1821,6 +2166,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1877,6 +2223,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2387,6 +2734,7 @@ namespace COCASJOL.LOGIC
         partial void OnSOCIOS_ESTATUSChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2533,6 +2881,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2557,6 +2906,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2755,6 +3105,7 @@ namespace COCASJOL.LOGIC
         partial void OnGENERAL_EMPRESA_TELEFONOChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2797,6 +3148,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2821,6 +3173,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3091,6 +3444,7 @@ namespace COCASJOL.LOGIC
         partial void OnPRODUCCION_MANZANAS_CULTIVADASChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -3133,6 +3487,266 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="COLINASMODEL", Name="tipo_producto")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class tipo_producto : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new tipo_producto object.
+        /// </summary>
+        /// <param name="tIPO_PROD_ID">Initial value of the TIPO_PROD_ID property.</param>
+        /// <param name="tIPO_PROD_NOMBRE">Initial value of the TIPO_PROD_NOMBRE property.</param>
+        /// <param name="tIPO_PROD_DECRIPCION">Initial value of the TIPO_PROD_DECRIPCION property.</param>
+        /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
+        /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
+        public static tipo_producto Createtipo_producto(global::System.Int32 tIPO_PROD_ID, global::System.String tIPO_PROD_NOMBRE, global::System.String tIPO_PROD_DECRIPCION, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
+        {
+            tipo_producto tipo_producto = new tipo_producto();
+            tipo_producto.TIPO_PROD_ID = tIPO_PROD_ID;
+            tipo_producto.TIPO_PROD_NOMBRE = tIPO_PROD_NOMBRE;
+            tipo_producto.TIPO_PROD_DECRIPCION = tIPO_PROD_DECRIPCION;
+            tipo_producto.CREADO_POR = cREADO_POR;
+            tipo_producto.FECHA_CREACION = fECHA_CREACION;
+            return tipo_producto;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 TIPO_PROD_ID
+        {
+            get
+            {
+                return _TIPO_PROD_ID;
+            }
+            set
+            {
+                if (_TIPO_PROD_ID != value)
+                {
+                    OnTIPO_PROD_IDChanging(value);
+                    ReportPropertyChanging("TIPO_PROD_ID");
+                    _TIPO_PROD_ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("TIPO_PROD_ID");
+                    OnTIPO_PROD_IDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _TIPO_PROD_ID;
+        partial void OnTIPO_PROD_IDChanging(global::System.Int32 value);
+        partial void OnTIPO_PROD_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String TIPO_PROD_NOMBRE
+        {
+            get
+            {
+                return _TIPO_PROD_NOMBRE;
+            }
+            set
+            {
+                OnTIPO_PROD_NOMBREChanging(value);
+                ReportPropertyChanging("TIPO_PROD_NOMBRE");
+                _TIPO_PROD_NOMBRE = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("TIPO_PROD_NOMBRE");
+                OnTIPO_PROD_NOMBREChanged();
+            }
+        }
+        private global::System.String _TIPO_PROD_NOMBRE;
+        partial void OnTIPO_PROD_NOMBREChanging(global::System.String value);
+        partial void OnTIPO_PROD_NOMBREChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String TIPO_PROD_DECRIPCION
+        {
+            get
+            {
+                return _TIPO_PROD_DECRIPCION;
+            }
+            set
+            {
+                OnTIPO_PROD_DECRIPCIONChanging(value);
+                ReportPropertyChanging("TIPO_PROD_DECRIPCION");
+                _TIPO_PROD_DECRIPCION = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("TIPO_PROD_DECRIPCION");
+                OnTIPO_PROD_DECRIPCIONChanged();
+            }
+        }
+        private global::System.String _TIPO_PROD_DECRIPCION;
+        partial void OnTIPO_PROD_DECRIPCIONChanging(global::System.String value);
+        partial void OnTIPO_PROD_DECRIPCIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String TIPO_PRODUCTOcol
+        {
+            get
+            {
+                return _TIPO_PRODUCTOcol;
+            }
+            set
+            {
+                OnTIPO_PRODUCTOcolChanging(value);
+                ReportPropertyChanging("TIPO_PRODUCTOcol");
+                _TIPO_PRODUCTOcol = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TIPO_PRODUCTOcol");
+                OnTIPO_PRODUCTOcolChanged();
+            }
+        }
+        private global::System.String _TIPO_PRODUCTOcol;
+        partial void OnTIPO_PRODUCTOcolChanging(global::System.String value);
+        partial void OnTIPO_PRODUCTOcolChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CREADO_POR
+        {
+            get
+            {
+                return _CREADO_POR;
+            }
+            set
+            {
+                OnCREADO_PORChanging(value);
+                ReportPropertyChanging("CREADO_POR");
+                _CREADO_POR = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CREADO_POR");
+                OnCREADO_PORChanged();
+            }
+        }
+        private global::System.String _CREADO_POR;
+        partial void OnCREADO_PORChanging(global::System.String value);
+        partial void OnCREADO_PORChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime FECHA_CREACION
+        {
+            get
+            {
+                return _FECHA_CREACION;
+            }
+            set
+            {
+                OnFECHA_CREACIONChanging(value);
+                ReportPropertyChanging("FECHA_CREACION");
+                _FECHA_CREACION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_CREACION");
+                OnFECHA_CREACIONChanged();
+            }
+        }
+        private global::System.DateTime _FECHA_CREACION;
+        partial void OnFECHA_CREACIONChanging(global::System.DateTime value);
+        partial void OnFECHA_CREACIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MODIFICADO_POR
+        {
+            get
+            {
+                return _MODIFICADO_POR;
+            }
+            set
+            {
+                OnMODIFICADO_PORChanging(value);
+                ReportPropertyChanging("MODIFICADO_POR");
+                _MODIFICADO_POR = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MODIFICADO_POR");
+                OnMODIFICADO_PORChanged();
+            }
+        }
+        private global::System.String _MODIFICADO_POR;
+        partial void OnMODIFICADO_PORChanging(global::System.String value);
+        partial void OnMODIFICADO_PORChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> FECHA_MODIFICACION
+        {
+            get
+            {
+                return _FECHA_MODIFICACION;
+            }
+            set
+            {
+                OnFECHA_MODIFICACIONChanging(value);
+                ReportPropertyChanging("FECHA_MODIFICACION");
+                _FECHA_MODIFICACION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_MODIFICACION");
+                OnFECHA_MODIFICACIONChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _FECHA_MODIFICACION;
+        partial void OnFECHA_MODIFICACIONChanging(Nullable<global::System.DateTime> value);
+        partial void OnFECHA_MODIFICACIONChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "PROD_TIPO", "producto")]
+        public EntityCollection<producto> producto
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<producto>("COLINASMODEL.PROD_TIPO", "producto");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<producto>("COLINASMODEL.PROD_TIPO", "producto", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
@@ -3167,6 +3781,7 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3437,6 +4052,7 @@ namespace COCASJOL.LOGIC
         partial void OnFECHA_MODIFICACIONChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -3463,8 +4079,10 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+
     }
 
     #endregion
+
     
 }
