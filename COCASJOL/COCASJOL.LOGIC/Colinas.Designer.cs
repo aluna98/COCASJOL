@@ -26,8 +26,8 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "FK_NOTA_DE_PESO_socios", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.nota_de_peso), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "SOCIO_ID_FK", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "socio_general", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.socio_general), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "SOCIOS_ID_FK2", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "socio_produccion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.socio_produccion), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "PrestamosPXS_fk", "prestamos", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.prestamos), "prestamos_x_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.prestamos_x_socio), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "PrestamosSocio_fk", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "prestamos_x_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.prestamos_x_socio), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "PrestamosPXS_fk", "prestamos", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.prestamo), "prestamos_x_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.prestamo_x_socio), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "PrestamosSocio_fk", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "prestamos_x_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.prestamo_x_socio), true)]
 
 #endregion
 
@@ -290,34 +290,34 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<prestamos> prestamos
+        public ObjectSet<prestamo> prestamos
         {
             get
             {
                 if ((_prestamos == null))
                 {
-                    _prestamos = base.CreateObjectSet<prestamos>("prestamos");
+                    _prestamos = base.CreateObjectSet<prestamo>("prestamos");
                 }
                 return _prestamos;
             }
         }
-        private ObjectSet<prestamos> _prestamos;
+        private ObjectSet<prestamo> _prestamos;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<prestamos_x_socio> prestamos_x_socio
+        public ObjectSet<prestamo_x_socio> prestamos_x_socio
         {
             get
             {
                 if ((_prestamos_x_socio == null))
                 {
-                    _prestamos_x_socio = base.CreateObjectSet<prestamos_x_socio>("prestamos_x_socio");
+                    _prestamos_x_socio = base.CreateObjectSet<prestamo_x_socio>("prestamos_x_socio");
                 }
                 return _prestamos_x_socio;
             }
         }
-        private ObjectSet<prestamos_x_socio> _prestamos_x_socio;
+        private ObjectSet<prestamo_x_socio> _prestamos_x_socio;
 
         #endregion
         #region AddTo Methods
@@ -429,17 +429,17 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// Deprecated Method for adding a new object to the prestamos EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToprestamos(prestamos prestamos)
+        public void AddToprestamos(prestamo prestamo)
         {
-            base.AddObject("prestamos", prestamos);
+            base.AddObject("prestamos", prestamo);
         }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the prestamos_x_socio EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToprestamos_x_socio(prestamos_x_socio prestamos_x_socio)
+        public void AddToprestamos_x_socio(prestamo_x_socio prestamo_x_socio)
         {
-            base.AddObject("prestamos_x_socio", prestamos_x_socio);
+            base.AddObject("prestamos_x_socio", prestamo_x_socio);
         }
 
         #endregion
@@ -1417,28 +1417,28 @@ namespace COCASJOL.LOGIC
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="COLINASMODEL", Name="prestamos")]
+    [EdmEntityTypeAttribute(NamespaceName="COLINASMODEL", Name="prestamo")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class prestamos : EntityObject
+    public partial class prestamo : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new prestamos object.
+        /// Create a new prestamo object.
         /// </summary>
         /// <param name="pRESTAMOS_ID">Initial value of the PRESTAMOS_ID property.</param>
         /// <param name="pRESTAMOS_NOMBRE">Initial value of the PRESTAMOS_NOMBRE property.</param>
         /// <param name="pRESTAMOS_CANT_MAXIMA">Initial value of the PRESTAMOS_CANT_MAXIMA property.</param>
         /// <param name="pRESTAMOS_INTERES">Initial value of the PRESTAMOS_INTERES property.</param>
-        public static prestamos Createprestamos(global::System.Int32 pRESTAMOS_ID, global::System.String pRESTAMOS_NOMBRE, global::System.Int32 pRESTAMOS_CANT_MAXIMA, global::System.Int32 pRESTAMOS_INTERES)
+        public static prestamo Createprestamo(global::System.Int32 pRESTAMOS_ID, global::System.String pRESTAMOS_NOMBRE, global::System.Int32 pRESTAMOS_CANT_MAXIMA, global::System.Int32 pRESTAMOS_INTERES)
         {
-            prestamos prestamos = new prestamos();
-            prestamos.PRESTAMOS_ID = pRESTAMOS_ID;
-            prestamos.PRESTAMOS_NOMBRE = pRESTAMOS_NOMBRE;
-            prestamos.PRESTAMOS_CANT_MAXIMA = pRESTAMOS_CANT_MAXIMA;
-            prestamos.PRESTAMOS_INTERES = pRESTAMOS_INTERES;
-            return prestamos;
+            prestamo prestamo = new prestamo();
+            prestamo.PRESTAMOS_ID = pRESTAMOS_ID;
+            prestamo.PRESTAMOS_NOMBRE = pRESTAMOS_NOMBRE;
+            prestamo.PRESTAMOS_CANT_MAXIMA = pRESTAMOS_CANT_MAXIMA;
+            prestamo.PRESTAMOS_INTERES = pRESTAMOS_INTERES;
+            return prestamo;
         }
 
         #endregion
@@ -1578,17 +1578,17 @@ namespace COCASJOL.LOGIC
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "PrestamosPXS_fk", "prestamos_x_socio")]
-        public EntityCollection<prestamos_x_socio> prestamos_x_socio
+        public EntityCollection<prestamo_x_socio> prestamos_x_socio
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<prestamos_x_socio>("COLINASMODEL.PrestamosPXS_fk", "prestamos_x_socio");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<prestamo_x_socio>("COLINASMODEL.PrestamosPXS_fk", "prestamos_x_socio");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<prestamos_x_socio>("COLINASMODEL.PrestamosPXS_fk", "prestamos_x_socio", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<prestamo_x_socio>("COLINASMODEL.PrestamosPXS_fk", "prestamos_x_socio", value);
                 }
             }
         }
@@ -1599,24 +1599,24 @@ namespace COCASJOL.LOGIC
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="COLINASMODEL", Name="prestamos_x_socio")]
+    [EdmEntityTypeAttribute(NamespaceName="COLINASMODEL", Name="prestamo_x_socio")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class prestamos_x_socio : EntityObject
+    public partial class prestamo_x_socio : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new prestamos_x_socio object.
+        /// Create a new prestamo_x_socio object.
         /// </summary>
         /// <param name="sOCIOS_ID">Initial value of the SOCIOS_ID property.</param>
         /// <param name="pRESTAMOS_ID">Initial value of the PRESTAMOS_ID property.</param>
-        public static prestamos_x_socio Createprestamos_x_socio(global::System.String sOCIOS_ID, global::System.Int32 pRESTAMOS_ID)
+        public static prestamo_x_socio Createprestamo_x_socio(global::System.String sOCIOS_ID, global::System.Int32 pRESTAMOS_ID)
         {
-            prestamos_x_socio prestamos_x_socio = new prestamos_x_socio();
-            prestamos_x_socio.SOCIOS_ID = sOCIOS_ID;
-            prestamos_x_socio.PRESTAMOS_ID = pRESTAMOS_ID;
-            return prestamos_x_socio;
+            prestamo_x_socio prestamo_x_socio = new prestamo_x_socio();
+            prestamo_x_socio.SOCIOS_ID = sOCIOS_ID;
+            prestamo_x_socio.PRESTAMOS_ID = pRESTAMOS_ID;
+            return prestamo_x_socio;
         }
 
         #endregion
@@ -1759,15 +1759,15 @@ namespace COCASJOL.LOGIC
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "PrestamosPXS_fk", "prestamos")]
-        public prestamos prestamos
+        public prestamo prestamos
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<prestamos>("COLINASMODEL.PrestamosPXS_fk", "prestamos").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<prestamo>("COLINASMODEL.PrestamosPXS_fk", "prestamos").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<prestamos>("COLINASMODEL.PrestamosPXS_fk", "prestamos").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<prestamo>("COLINASMODEL.PrestamosPXS_fk", "prestamos").Value = value;
             }
         }
         /// <summary>
@@ -1775,17 +1775,17 @@ namespace COCASJOL.LOGIC
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<prestamos> prestamosReference
+        public EntityReference<prestamo> prestamosReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<prestamos>("COLINASMODEL.PrestamosPXS_fk", "prestamos");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<prestamo>("COLINASMODEL.PrestamosPXS_fk", "prestamos");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<prestamos>("COLINASMODEL.PrestamosPXS_fk", "prestamos", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<prestamo>("COLINASMODEL.PrestamosPXS_fk", "prestamos", value);
                 }
             }
         }
@@ -3327,17 +3327,17 @@ namespace COCASJOL.LOGIC
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "PrestamosSocio_fk", "prestamos_x_socio")]
-        public EntityCollection<prestamos_x_socio> prestamos_x_socio
+        public EntityCollection<prestamo_x_socio> prestamos_x_socio
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<prestamos_x_socio>("COLINASMODEL.PrestamosSocio_fk", "prestamos_x_socio");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<prestamo_x_socio>("COLINASMODEL.PrestamosSocio_fk", "prestamos_x_socio");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<prestamos_x_socio>("COLINASMODEL.PrestamosSocio_fk", "prestamos_x_socio", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<prestamo_x_socio>("COLINASMODEL.PrestamosSocio_fk", "prestamos_x_socio", value);
                 }
             }
         }

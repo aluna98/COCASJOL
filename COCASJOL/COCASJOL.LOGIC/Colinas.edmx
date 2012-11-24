@@ -508,8 +508,8 @@
             <End Role="socios" EntitySet="socios" />
             <End Role="socio_produccion" EntitySet="socios_produccion" />
           </AssociationSet>
-          <EntitySet Name="prestamos" EntityType="COLINASMODEL.prestamos" />
-          <EntitySet Name="prestamos_x_socio" EntityType="COLINASMODEL.prestamos_x_socio" />
+          <EntitySet Name="prestamos" EntityType="COLINASMODEL.prestamo" />
+          <EntitySet Name="prestamos_x_socio" EntityType="COLINASMODEL.prestamo_x_socio" />
           <AssociationSet Name="PrestamosPXS_fk" Association="COLINASMODEL.PrestamosPXS_fk">
             <End Role="prestamos" EntitySet="prestamos" />
             <End Role="prestamos_x_socio" EntitySet="prestamos_x_socio" />
@@ -789,7 +789,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="prestamos">
+        <EntityType Name="prestamo">
           <Key>
             <PropertyRef Name="PRESTAMOS_ID" />
           </Key>
@@ -800,7 +800,7 @@
           <Property Type="Int32" Name="PRESTAMOS_INTERES" Nullable="false" />
           <NavigationProperty Name="prestamos_x_socio" Relationship="COLINASMODEL.PrestamosPXS_fk" FromRole="prestamos" ToRole="prestamos_x_socio" />
         </EntityType>
-        <EntityType Name="prestamos_x_socio">
+        <EntityType Name="prestamo_x_socio">
           <Key>
             <PropertyRef Name="SOCIOS_ID" />
             <PropertyRef Name="PRESTAMOS_ID" />
@@ -814,8 +814,8 @@
           <NavigationProperty Name="socios" Relationship="COLINASMODEL.PrestamosSocio_fk" FromRole="prestamos_x_socio" ToRole="socio" />
         </EntityType>
         <Association Name="PrestamosPXS_fk">
-          <End Type="COLINASMODEL.prestamos" Role="prestamos" Multiplicity="1" />
-          <End Type="COLINASMODEL.prestamos_x_socio" Role="prestamos_x_socio" Multiplicity="*" />
+          <End Type="COLINASMODEL.prestamo" Role="prestamos" Multiplicity="1" />
+          <End Type="COLINASMODEL.prestamo_x_socio" Role="prestamos_x_socio" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="prestamos">
               <PropertyRef Name="PRESTAMOS_ID" />
@@ -827,7 +827,7 @@
         </Association>
         <Association Name="PrestamosSocio_fk">
           <End Type="COLINASMODEL.socio" Role="socio" Multiplicity="1" />
-          <End Type="COLINASMODEL.prestamos_x_socio" Role="prestamos_x_socio" Multiplicity="*" />
+          <End Type="COLINASMODEL.prestamo_x_socio" Role="prestamos_x_socio" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="socio">
               <PropertyRef Name="SOCIOS_ID" />
@@ -1045,7 +1045,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="prestamos">
-            <EntityTypeMapping TypeName="COLINASMODEL.prestamos">
+            <EntityTypeMapping TypeName="COLINASMODEL.prestamo">
               <MappingFragment StoreEntitySet="prestamos">
                 <ScalarProperty Name="PRESTAMOS_INTERES" ColumnName="PRESTAMOS_INTERES" />
                 <ScalarProperty Name="PRESTAMOS_CANT_MAXIMA" ColumnName="PRESTAMOS_CANT_MAXIMA" />
@@ -1056,7 +1056,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="prestamos_x_socio">
-            <EntityTypeMapping TypeName="COLINASMODEL.prestamos_x_socio">
+            <EntityTypeMapping TypeName="COLINASMODEL.prestamo_x_socio">
               <MappingFragment StoreEntitySet="prestamos x socio">
                 <ScalarProperty Name="PXS_INTERES" ColumnName="PXS_INTERES" />
                 <ScalarProperty Name="PXS_PRESTAMO_MAXIMO" ColumnName="PXS_PRESTAMO_MAXIMO" />
@@ -1138,8 +1138,8 @@
           <ConnectorPoint PointX="2.25" PointY="15.292958984375002" />
           <ConnectorPoint PointX="3" PointY="15.292958984375002" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="COLINASMODEL.prestamos" Width="1.5" PointX="4.75" PointY="7.875" Height="2.172587890624996" />
-        <EntityTypeShape EntityType="COLINASMODEL.prestamos_x_socio" Width="1.5" PointX="7.375" PointY="9.125" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="COLINASMODEL.prestamo" Width="1.5" PointX="4.75" PointY="7.875" Height="2.172587890624996" />
+        <EntityTypeShape EntityType="COLINASMODEL.prestamo_x_socio" Width="1.5" PointX="7.375" PointY="9.125" Height="2.3648893229166674" />
         <AssociationConnector Association="COLINASMODEL.PrestamosPXS_fk" >
           <ConnectorPoint PointX="6.25" PointY="9.586293945312498" />
           <ConnectorPoint PointX="7.375" PointY="9.586293945312498" />
