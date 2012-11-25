@@ -211,13 +211,13 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.Button btnCancelar;
         
         /// <summary>
-        /// gripPesos control.
+        /// gridPesos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.GridPanel gripPesos;
+        protected global::Ext.Net.GridPanel gridPesos;
         
         /// <summary>
         /// NumberField1 control.
@@ -265,31 +265,31 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.Container Container9;
         
         /// <summary>
-        /// TextField1 control.
+        /// txtDescuentos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField TextField1;
+        protected global::Ext.Net.NumberField txtDescuentos;
         
         /// <summary>
-        /// TextField2 control.
+        /// txtPeso control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField TextField2;
+        protected global::Ext.Net.NumberField txtPeso;
         
         /// <summary>
-        /// TextField3 control.
+        /// txtTotal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField TextField3;
+        protected global::Ext.Net.NumberField txtTotal;
         
         /// <summary>
         /// winAgregarPeso control.
@@ -301,15 +301,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.Window winAgregarPeso;
         
         /// <summary>
-        /// txtcAddSacos control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.NumberField txtcAddSacos;
-        
-        /// <summary>
         /// txtAddPeso control.
         /// </summary>
         /// <remarks>
@@ -319,156 +310,30 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.NumberField txtAddPeso;
         
         /// <summary>
-        /// AgregarUsuarioWin control.
+        /// txtAddSacos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Window AgregarUsuarioWin;
+        protected global::Ext.Net.NumberField txtAddSacos;
         
         /// <summary>
-        /// AddUsuarioFormP control.
+        /// btnAgregarPesoAgregar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.FormPanel AddUsuarioFormP;
+        protected global::Ext.Net.Button btnAgregarPesoAgregar;
         
         /// <summary>
-        /// TabPanel1 control.
+        /// btnAgregarPesoCancelar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TabPanel TabPanel1;
-        
-        /// <summary>
-        /// Panel2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Panel Panel2;
-        
-        /// <summary>
-        /// Panel3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Panel Panel3;
-        
-        /// <summary>
-        /// AddUsernameTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField AddUsernameTxt;
-        
-        /// <summary>
-        /// AddNombreTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField AddNombreTxt;
-        
-        /// <summary>
-        /// AddApellidoTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField AddApellidoTxt;
-        
-        /// <summary>
-        /// AddCedulaTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField AddCedulaTxt;
-        
-        /// <summary>
-        /// AddEmailTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField AddEmailTxt;
-        
-        /// <summary>
-        /// AddPuestoTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField AddPuestoTxt;
-        
-        /// <summary>
-        /// AddPasswordTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField AddPasswordTxt;
-        
-        /// <summary>
-        /// AddCreatedByTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField AddCreatedByTxt;
-        
-        /// <summary>
-        /// AddCreatedDateTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField AddCreatedDateTxt;
-        
-        /// <summary>
-        /// AddModifiedByTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField AddModifiedByTxt;
-        
-        /// <summary>
-        /// AddModificationDateTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField AddModificationDateTxt;
-        
-        /// <summary>
-        /// AddGuardarBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Button AddGuardarBtn;
+        protected global::Ext.Net.Button btnAgregarPesoCancelar;
     }
 }
