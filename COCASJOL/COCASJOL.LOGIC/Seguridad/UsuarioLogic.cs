@@ -208,7 +208,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
-        public List<privilegio> GetAllPrivileges(string USR_USERNAME)
+        public List<privilegio> GetPrivilegiosNoDeUsuario(string USR_USERNAME)
         {
             try
             {
@@ -216,15 +216,7 @@ namespace COCASJOL.LOGIC.Seguridad
                 {
                     db.privilegios.MergeOption = MergeOption.NoTracking;
 
-                    EntityKey k = new EntityKey("colinasEntities.usuarios", "USR_USERNAME", USR_USERNAME);
-
-                    var u = db.GetObjectByKey(k);
-
-                    usuario user = (usuario)u;
-
-                    var query = from r in user.roles
-                                from pr in r.privilegios
-                                select pr;
+                    var query = db.GetPrivilegiosNoDeUsuario(USR_USERNAME);
 
                     return query.ToList<privilegio>();
                 }

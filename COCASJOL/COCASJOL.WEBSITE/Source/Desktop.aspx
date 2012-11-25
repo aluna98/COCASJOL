@@ -214,7 +214,7 @@
 
 
                 <ext:DesktopModule ModuleID="SettingsModule" WindowID="SettingsWin" >
-                    <Launcher ID="SettingsLauncher" runat="server" Text="Configuración" Icon="Wrench"></Launcher>
+                    <Launcher ID="SettingsLauncher" runat="server" Text="Configuración" Icon="Wrench" />
                 </ext:DesktopModule>
 
                 <ext:DesktopModule ModuleID="UsuarioActualModule" WindowID="UsuarioActualWin" >

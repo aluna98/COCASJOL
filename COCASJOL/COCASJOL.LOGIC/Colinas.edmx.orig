@@ -35,10 +35,6 @@
             <End Role="socios" EntitySet="socios" />
             <End Role="nota_de_peso" EntitySet="nota_de_peso" />
           </AssociationSet>
-          <AssociationSet Name="FK_NOTA_DETALLE_NOTA_PESO" Association="COLINASMODEL.Store.FK_NOTA_DETALLE_NOTA_PESO">
-            <End Role="nota_de_peso" EntitySet="nota_de_peso" />
-            <End Role="nota_detalle" EntitySet="nota_detalle" />
-          </AssociationSet>
           <AssociationSet Name="PrestamosPXS_fk" Association="COLINASMODEL.Store.PrestamosPXS_fk">
             <End Role="prestamos" EntitySet="prestamos" />
             <End Role="prestamos x socio" EntitySet="prestamos x socio" />
@@ -332,20 +328,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_NOTA_DETALLE_NOTA_PESO">
-          <End Role="nota_de_peso" Type="COLINASMODEL.Store.nota_de_peso" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="nota_detalle" Type="COLINASMODEL.Store.nota_detalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="nota_de_peso">
-              <PropertyRef Name="NOTA_ID" />
-            </Principal>
-            <Dependent Role="nota_detalle">
-              <PropertyRef Name="NOTA_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="PrestamosPXS_fk">
           <End Role="prestamos" Type="COLINASMODEL.Store.prestamos" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -471,9 +453,6 @@
         <Function Name="GetPrivilegiosNoDeRol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="colinas">
           <Parameter Name="nROL_ID" Type="int" Mode="In" />
         </Function>
-        <Function Name="GetPrivilegiosNoDeUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="colinas">
-          <Parameter Name="strUSR_USERNAME" Type="varchar" Mode="In" />
-        </Function>
         <Function Name="GetRolesNoDeUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="colinas">
           <Parameter Name="strUSR_USERNAME" Type="varchar" Mode="In" />
         </Function>
@@ -483,6 +462,7 @@
       <Schema Namespace="COLINASMODEL" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="colinasEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="codigo" EntityType="COLINASMODEL.codigo" />
+          <EntitySet Name="nota_detalle" EntityType="COLINASMODEL.nota_detalle" />
           <EntitySet Name="privilegios" EntityType="COLINASMODEL.privilegio" />
           <EntitySet Name="socios_produccion" EntityType="COLINASMODEL.socio_produccion" />
           <FunctionImport Name="GetPrivilegiosNoDeRol" EntitySet="privilegios" ReturnType="Collection(COLINASMODEL.privilegio)">
@@ -532,6 +512,10 @@
             <End Role="socio" EntitySet="socios" />
             <End Role="prestamos_x_socio" EntitySet="prestamos_x_socio" />
           </AssociationSet>
+          <AssociationSet Name="nota_de_pesonota_detalle" Association="COLINASMODEL.nota_de_pesonota_detalle">
+            <End Role="nota_de_peso" EntitySet="nota_de_peso" />
+            <End Role="nota_detalle" EntitySet="nota_detalle" />
+          </AssociationSet>
           <EntitySet Name="usuarios" EntityType="COLINASMODEL.usuario" />
           <EntitySet Name="roles" EntityType="COLINASMODEL.rol" />
           <AssociationSet Name="privilegios_x_roles" Association="COLINASMODEL.privilegios_x_roles">
@@ -542,14 +526,6 @@
             <End Role="roles" EntitySet="roles" />
             <End Role="usuario" EntitySet="usuarios" />
           </AssociationSet>
-          <EntitySet Name="nota_detalle" EntityType="COLINASMODEL.nota_detalle" />
-          <AssociationSet Name="FK_NOTA_DETALLE_NOTA_PESO" Association="COLINASMODEL.FK_NOTA_DETALLE_NOTA_PESO">
-            <End Role="nota_de_peso" EntitySet="nota_de_peso" />
-            <End Role="nota_detalle" EntitySet="nota_detalle" />
-          </AssociationSet>
-          <FunctionImport Name="GetPrivilegiosNoDeUsuario" EntitySet="privilegios" ReturnType="Collection(COLINASMODEL.privilegio)">
-            <Parameter Name="strUSR_USERNAME" Mode="In" Type="String" />
-          </FunctionImport>
           </EntityContainer>
         <EntityType Name="codigo">
           <Key>
@@ -557,6 +533,17 @@
           </Key>
           <Property Type="String" Name="CODIGO_LETRA" Nullable="false" />
           <Property Type="Int32" Name="CODIGO_NUMERO" Nullable="false" />
+        </EntityType>
+        <EntityType Name="nota_detalle">
+          <Key>
+            <PropertyRef Name="DETALLE_ID" />
+            <PropertyRef Name="NOTA_ID" />
+          </Key>
+          <Property Type="Int32" Name="DETALLE_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="NOTA_ID" Nullable="false" />
+          <Property Type="Int32" Name="DETALLE_CANTIDAD_SACOS" />
+          <Property Type="Decimal" Name="DETALLE_PESO" />
+          <NavigationProperty Name="nota_de_peso" Relationship="COLINASMODEL.nota_de_pesonota_detalle" FromRole="nota_detalle" ToRole="nota_de_peso" />
         </EntityType>
         <EntityType Name="privilegio">
           <Key>
@@ -612,7 +599,7 @@
           <Property Type="Decimal" Name="NOTA_PORCENTAJE_DESCUENTO" Nullable="false" />
           <Property Type="Decimal" Name="NOTA_PORCENTAJE_HUMEDAD" Nullable="false" />
           <NavigationProperty Name="socios" Relationship="COLINASMODEL.FK_NOTA_DE_PESO_socios" FromRole="nota_de_peso" ToRole="socios" />
-          <NavigationProperty Name="nota_detalle" Relationship="COLINASMODEL.FK_NOTA_DETALLE_NOTA_PESO" FromRole="nota_de_peso" ToRole="nota_detalle" />
+          <NavigationProperty Name="nota_detalle" Relationship="COLINASMODEL.nota_de_pesonota_detalle" FromRole="nota_de_peso" ToRole="nota_detalle" />
         </EntityType>
         <EntityType Name="beneficiario_x_socio">
           <Key>
@@ -823,6 +810,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="nota_de_pesonota_detalle">
+          <End Type="COLINASMODEL.nota_de_peso" Role="nota_de_peso" Multiplicity="1" />
+          <End Type="COLINASMODEL.nota_detalle" Role="nota_detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nota_de_peso">
+              <PropertyRef Name="NOTA_ID" />
+            </Principal>
+            <Dependent Role="nota_detalle">
+              <PropertyRef Name="NOTA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="usuario">
           <Key>
             <PropertyRef Name="USR_USERNAME" />
@@ -864,29 +863,6 @@
           <End Type="COLINASMODEL.rol" Role="roles" Multiplicity="*" />
           <End Type="COLINASMODEL.usuario" Role="usuario" Multiplicity="*" />
         </Association>
-        <EntityType Name="nota_detalle">
-          <Key>
-            <PropertyRef Name="DETALLE_ID" />
-            <PropertyRef Name="NOTA_ID" />
-          </Key>
-          <Property Type="Int32" Name="DETALLE_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="NOTA_ID" Nullable="false" />
-          <Property Type="Int32" Name="DETALLE_CANTIDAD_SACOS" />
-          <Property Type="Decimal" Name="DETALLE_PESO" />
-          <NavigationProperty Name="nota_de_peso" Relationship="COLINASMODEL.FK_NOTA_DETALLE_NOTA_PESO" FromRole="nota_detalle" ToRole="nota_de_peso" />
-        </EntityType>
-        <Association Name="FK_NOTA_DETALLE_NOTA_PESO">
-          <End Type="COLINASMODEL.nota_de_peso" Role="nota_de_peso" Multiplicity="1" />
-          <End Type="COLINASMODEL.nota_detalle" Role="nota_detalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="nota_de_peso">
-              <PropertyRef Name="NOTA_ID" />
-            </Principal>
-            <Dependent Role="nota_detalle">
-              <PropertyRef Name="NOTA_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -898,6 +874,16 @@
               <MappingFragment StoreEntitySet="codigo">
                 <ScalarProperty Name="CODIGO_NUMERO" ColumnName="CODIGO_NUMERO" />
                 <ScalarProperty Name="CODIGO_LETRA" ColumnName="CODIGO_LETRA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nota_detalle">
+            <EntityTypeMapping TypeName="COLINASMODEL.nota_detalle">
+              <MappingFragment StoreEntitySet="nota_detalle">
+                <ScalarProperty Name="DETALLE_PESO" ColumnName="DETALLE_PESO" />
+                <ScalarProperty Name="DETALLE_CANTIDAD_SACOS" ColumnName="DETALLE_CANTIDAD_SACOS" />
+                <ScalarProperty Name="NOTA_ID" ColumnName="NOTA_ID" />
+                <ScalarProperty Name="DETALLE_ID" ColumnName="DETALLE_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1062,6 +1048,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="nota_de_pesonota_detalle" TypeName="COLINASMODEL.nota_de_pesonota_detalle" StoreEntitySet="nota_de_peso">
+            <EndProperty Name="nota_detalle">
+              <ScalarProperty Name="NOTA_ID" ColumnName="NOTA_ID" />
+            </EndProperty>
+            <EndProperty Name="nota_de_peso">
+              <ScalarProperty Name="NOTA_ID" ColumnName="NOTA_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
           <EntitySetMapping Name="usuarios">
             <EntityTypeMapping TypeName="COLINASMODEL.usuario">
               <MappingFragment StoreEntitySet="usuarios">
@@ -1110,17 +1104,6 @@
               <ScalarProperty Name="ROL_ID" ColumnName="ROL_ID" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="nota_detalle">
-            <EntityTypeMapping TypeName="COLINASMODEL.nota_detalle">
-              <MappingFragment StoreEntitySet="nota_detalle">
-                <ScalarProperty Name="DETALLE_PESO" ColumnName="DETALLE_PESO" />
-                <ScalarProperty Name="DETALLE_CANTIDAD_SACOS" ColumnName="DETALLE_CANTIDAD_SACOS" />
-                <ScalarProperty Name="NOTA_ID" ColumnName="NOTA_ID" />
-                <ScalarProperty Name="DETALLE_ID" ColumnName="DETALLE_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="GetPrivilegiosNoDeUsuario" FunctionName="COLINASMODEL.Store.GetPrivilegiosNoDeUsuario" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1141,8 +1124,9 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Colinas" ZoomLevel="81">
+      <Diagram Name="Colinas" ZoomLevel="97">
         <EntityTypeShape EntityType="COLINASMODEL.codigo" Width="1.5" PointX="5.75" PointY="5.75" Height="1.4033821614583317" />
+        <EntityTypeShape EntityType="COLINASMODEL.nota_detalle" Width="1.5" PointX="5.625" PointY="18.75" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="COLINASMODEL.privilegio" Width="1.5" PointX="5.75" PointY="1.25" Height="2.7494921875000031" />
         <EntityTypeShape EntityType="COLINASMODEL.socio_produccion" Width="1.5" PointX="3" PointY="14.25" Height="3.3263964843750014" />
         <EntityTypeShape EntityType="COLINASMODEL.inventario" Width="1.5" PointX="3" PointY="1.625" Height="1.9802864583333388" />
@@ -1156,20 +1140,20 @@
           <ConnectorPoint PointX="2" PointY="8.6535953776041659" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.FK_INVENTARIO_socios" >
-          <ConnectorPoint PointX="2.25" PointY="12.698671340494787" />
-          <ConnectorPoint PointX="4.0312494999999995" PointY="12.698671340494787" />
-          <ConnectorPoint PointX="4.0312494999999995" PointY="3.6052864583333388" />
+          <ConnectorPoint PointX="1.1391574257812502" PointY="10.125" />
+          <ConnectorPoint PointX="1.1391574257812502" PointY="2.6151432291666694" />
+          <ConnectorPoint PointX="3" PointY="2.6151432291666694" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.FK_NOTA_DE_PESO_socios" >
-          <ConnectorPoint PointX="1.5" PointY="16.335917968750003" />
-          <ConnectorPoint PointX="1.5" PointY="19.749746093749998" />
-          <ConnectorPoint PointX="1.8229191666666667" PointY="19.749746093749998" />
-          <ConnectorPoint PointX="1.9895858333333332" PointY="19.749746093749998" />
+          <ConnectorPoint PointX="1.2353500781250002" PointY="16.335917968750003" />
+          <ConnectorPoint PointX="1.2353500781250002" PointY="19.749746093749998" />
+          <ConnectorPoint PointX="1.6998718229166669" PointY="19.749746093749998" />
+          <ConnectorPoint PointX="1.8665384895833335" PointY="19.749746093749998" />
           <ConnectorPoint PointX="3" PointY="19.749746093749998" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.SOCIO_ID_FK" >
-          <ConnectorPoint PointX="1.9062525" PointY="16.335917968750003" />
-          <ConnectorPoint PointX="1.9062525" PointY="23.24974609375" />
+          <ConnectorPoint PointX="1.7832051562500002" PointY="16.335917968750003" />
+          <ConnectorPoint PointX="1.7832051562500002" PointY="23.24974609375" />
           <ConnectorPoint PointX="3" PointY="23.24974609375" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.SOCIOS_ID_FK2" >
@@ -1190,25 +1174,24 @@
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.PrestamosSocio_fk" >
           <ConnectorPoint PointX="2.25" PointY="11.084839680989585" />
-          <ConnectorPoint PointX="3.947916166666666" PointY="11.084839680989585" />
-          <ConnectorPoint PointX="4.1145828333333325" PointY="11.084839680989585" />
           <ConnectorPoint PointX="5.375" PointY="11.084839680989585" />
         </AssociationConnector>
+<<<<<<< HEAD
         <EntityTypeShape EntityType="COLINASMODEL.usuario" Width="1.5" PointX="10.25" PointY="0.75" Height="3.7109993489583317" />
         <EntityTypeShape EntityType="COLINASMODEL.rol" Width="1.5" PointX="8" PointY="1.25" Height="2.7494921875000031" />
         <AssociationConnector Association="COLINASMODEL.privilegios_x_roles" >
           <ConnectorPoint PointX="7.25" PointY="2.62474609375" />
           <ConnectorPoint PointX="8" PointY="2.62474609375" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="COLINASMODEL.usuario" Width="1.5" PointX="10.25" PointY="1" Height="3.3263964843749818" />
-        <AssociationConnector Association="COLINASMODEL.roles_x_usuarios" >
-          <ConnectorPoint PointX="9.5" PointY="2.62474609375" />
-          <ConnectorPoint PointX="10.25" PointY="2.62474609375" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="COLINASMODEL.nota_detalle" Width="1.5" PointX="5.25" PointY="18.75" Height="1.9802864583333388" />
-        <AssociationConnector Association="COLINASMODEL.FK_NOTA_DETALLE_NOTA_PESO" >
+=======
+        <AssociationConnector Association="COLINASMODEL.nota_de_pesonota_detalle">
           <ConnectorPoint PointX="4.5" PointY="19.740143229166669" />
-          <ConnectorPoint PointX="5.25" PointY="19.740143229166669" />
+          <ConnectorPoint PointX="5.625" PointY="19.740143229166669" />
+        <EntityTypeShape EntityType="COLINASMODEL.usuario" Width="1.5" PointX="10.25" PointY="1" Height="3.3263964843749818" />
+>>>>>>> d3090d04bc4c3ea3d213265650b384ea9ab74ad9
+        <AssociationConnector Association="COLINASMODEL.roles_x_usuarios" >
+          <ConnectorPoint PointX="9.5" PointY="2.6247460937500016" />
+          <ConnectorPoint PointX="10.25" PointY="2.6247460937500016" />
         </AssociationConnector>
         </Diagram>
     </Diagrams>

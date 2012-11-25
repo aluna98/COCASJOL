@@ -29,42 +29,12 @@ namespace COCASJOL.WEBSITE
                     this.MyDesktop.Wallpaper = "../resources/images/background1.jpg";
                     this.MyDesktop.StartMenu.Title = loggedUser;
 
-                    this.HideObjects();
-                    //this.ShowObjects();
+                    //RemoveObjects();
                 }
             }
             catch (Exception ex)
             {
                 //log
-                throw;
-            }
-        }
-
-        private void HideObjects()
-        {
-            try
-            {
-                XmlDocument doc = new XmlDocument();
-                doc.Load(Server.MapPath("~/resources/xml/Privilegios.xml"));
-
-                XmlNodeList nodes = doc.SelectNodes("privilegios/privilege");
-
-                foreach (XmlNode node in nodes)
-                {
-                    XmlNode moduleNode = node.SelectSingleNode("module");
-                    string module = moduleNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
-
-                    DesktopShortcuts listDS = this.MyDesktop.Shortcuts;
-
-                    foreach (DesktopShortcut ds in listDS)
-                    {
-                        if (ds.ModuleID == module)
-                            X.Js.Call("hideShortcut", new object[] { module });
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
                 throw;
             }
         }
@@ -77,7 +47,7 @@ namespace COCASJOL.WEBSITE
 
                 UsuarioLogic usuariologic = new UsuarioLogic();
 
-                List<privilegio> privs = usuariologic.GetAllPrivileges(loggedUser);
+                List<privilegio> privs = usuariologic.GetPrivilegiosNoDeUsuario(loggedUser);
 
                 XmlDocument doc = new XmlDocument();
                 doc.Load(Server.MapPath("~/resources/xml/Privilegios.xml"));

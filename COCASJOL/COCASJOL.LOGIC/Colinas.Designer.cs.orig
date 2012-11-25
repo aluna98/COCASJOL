@@ -27,9 +27,13 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "PROD_TIPO", "tipos_productos", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.tipo_producto), "productos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.producto), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "PrestamosPXS_fk", "prestamos", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.prestamo), "prestamos_x_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.prestamo_x_socio), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "PrestamosSocio_fk", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "prestamos_x_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.prestamo_x_socio), true)]
+<<<<<<< HEAD
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "privilegios_x_roles", "privilegio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.privilegio), "roles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.rol))]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "roles_x_usuarios", "roles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.rol), "usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.usuario))]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "FK_NOTA_DETALLE_NOTA_PESO", "nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.nota_de_peso), "nota_detalle", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.nota_detalle), true)]
+=======
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "nota_de_pesonota_detalle", "nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.nota_de_peso), "nota_detalle", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.nota_detalle), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "roles_x_usuarios", "rol", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.rol), "usuarios", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.usuario))]
+>>>>>>> d3090d04bc4c3ea3d213265650b384ea9ab74ad9
 
 #endregion
 
@@ -96,6 +100,22 @@ namespace COCASJOL.LOGIC
             }
         }
         private ObjectSet<codigo> _codigo;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<nota_detalle> nota_detalle
+        {
+            get
+            {
+                if ((_nota_detalle == null))
+                {
+                    _nota_detalle = base.CreateObjectSet<nota_detalle>("nota_detalle");
+                }
+                return _nota_detalle;
+            }
+        }
+        private ObjectSet<nota_detalle> _nota_detalle;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -304,22 +324,6 @@ namespace COCASJOL.LOGIC
             }
         }
         private ObjectSet<rol> _roles;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<nota_detalle> nota_detalle
-        {
-            get
-            {
-                if ((_nota_detalle == null))
-                {
-                    _nota_detalle = base.CreateObjectSet<nota_detalle>("nota_detalle");
-                }
-                return _nota_detalle;
-            }
-        }
-        private ObjectSet<nota_detalle> _nota_detalle;
 
         #endregion
 
@@ -331,6 +335,14 @@ namespace COCASJOL.LOGIC
         public void AddTocodigo(codigo codigo)
         {
             base.AddObject("codigo", codigo);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the nota_detalle EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTonota_detalle(nota_detalle nota_detalle)
+        {
+            base.AddObject("nota_detalle", nota_detalle);
         }
     
         /// <summary>
@@ -436,14 +448,6 @@ namespace COCASJOL.LOGIC
         {
             base.AddObject("roles", rol);
         }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the nota_detalle EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTonota_detalle(nota_detalle nota_detalle)
-        {
-            base.AddObject("nota_detalle", nota_detalle);
-        }
 
         #endregion
 
@@ -523,44 +527,6 @@ namespace COCASJOL.LOGIC
             }
     
             return base.ExecuteFunction<rol>("GetRolesNoDeUsuario", mergeOption, strUSR_USERNAMEParameter);
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        /// <param name="strUSR_USERNAME">No Metadata Documentation available.</param>
-        public ObjectResult<privilegio> GetPrivilegiosNoDeUsuario(global::System.String strUSR_USERNAME)
-        {
-            ObjectParameter strUSR_USERNAMEParameter;
-            if (strUSR_USERNAME != null)
-            {
-                strUSR_USERNAMEParameter = new ObjectParameter("strUSR_USERNAME", strUSR_USERNAME);
-            }
-            else
-            {
-                strUSR_USERNAMEParameter = new ObjectParameter("strUSR_USERNAME", typeof(global::System.String));
-            }
-    
-            return base.ExecuteFunction<privilegio>("GetPrivilegiosNoDeUsuario", strUSR_USERNAMEParameter);
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        /// <param name="mergeOption"></param>
-        /// <param name="strUSR_USERNAME">No Metadata Documentation available.</param>
-        public ObjectResult<privilegio> GetPrivilegiosNoDeUsuario(global::System.String strUSR_USERNAME, MergeOption mergeOption)
-        {
-            ObjectParameter strUSR_USERNAMEParameter;
-            if (strUSR_USERNAME != null)
-            {
-                strUSR_USERNAMEParameter = new ObjectParameter("strUSR_USERNAME", strUSR_USERNAME);
-            }
-            else
-            {
-                strUSR_USERNAMEParameter = new ObjectParameter("strUSR_USERNAME", typeof(global::System.String));
-            }
-    
-            return base.ExecuteFunction<privilegio>("GetPrivilegiosNoDeUsuario", mergeOption, strUSR_USERNAMEParameter);
         }
 
         #endregion
@@ -1337,18 +1303,18 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "FK_NOTA_DETALLE_NOTA_PESO", "nota_detalle")]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "nota_de_pesonota_detalle", "nota_detalle")]
         public EntityCollection<nota_detalle> nota_detalle
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<nota_detalle>("COLINASMODEL.FK_NOTA_DETALLE_NOTA_PESO", "nota_detalle");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<nota_detalle>("COLINASMODEL.nota_de_pesonota_detalle", "nota_detalle");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<nota_detalle>("COLINASMODEL.FK_NOTA_DETALLE_NOTA_PESO", "nota_detalle", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<nota_detalle>("COLINASMODEL.nota_de_pesonota_detalle", "nota_detalle", value);
                 }
             }
         }
@@ -1488,7 +1454,6 @@ namespace COCASJOL.LOGIC
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -1497,16 +1462,16 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "FK_NOTA_DETALLE_NOTA_PESO", "nota_de_peso")]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "nota_de_pesonota_detalle", "nota_de_peso")]
         public nota_de_peso nota_de_peso
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<nota_de_peso>("COLINASMODEL.FK_NOTA_DETALLE_NOTA_PESO", "nota_de_peso").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<nota_de_peso>("COLINASMODEL.nota_de_pesonota_detalle", "nota_de_peso").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<nota_de_peso>("COLINASMODEL.FK_NOTA_DETALLE_NOTA_PESO", "nota_de_peso").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<nota_de_peso>("COLINASMODEL.nota_de_pesonota_detalle", "nota_de_peso").Value = value;
             }
         }
         /// <summary>
@@ -1518,19 +1483,18 @@ namespace COCASJOL.LOGIC
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<nota_de_peso>("COLINASMODEL.FK_NOTA_DETALLE_NOTA_PESO", "nota_de_peso");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<nota_de_peso>("COLINASMODEL.nota_de_pesonota_detalle", "nota_de_peso");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<nota_de_peso>("COLINASMODEL.FK_NOTA_DETALLE_NOTA_PESO", "nota_de_peso", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<nota_de_peso>("COLINASMODEL.nota_de_pesonota_detalle", "nota_de_peso", value);
                 }
             }
         }
 
         #endregion
-
     }
     
     /// <summary>
