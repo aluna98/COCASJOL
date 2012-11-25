@@ -105,6 +105,35 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        public List<rol> GetRoles(string USR_USERNAME, int ROL_ID, string ROL_NOMBRE)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    db.roles.MergeOption = MergeOption.NoTracking;//optimizacion
+                    db.usuarios.MergeOption = MergeOption.NoTracking;//optimizacion
+
+                    var query = from r in db.roles.Include("usuarios")
+                                from u in r.usuarios
+                                where u.USR_USERNAME == USR_USERNAME
+                                select r;
+
+                    var filter = from rls in query
+                                 where
+                                 (ROL_ID.Equals(0) ? true : rls.ROL_ID.Equals(ROL_ID)) &&
+                                 (string.IsNullOrEmpty(ROL_NOMBRE) ? true : rls.ROL_NOMBRE.Contains(ROL_NOMBRE))
+                                 select rls;
+
+                    return filter.ToList<rol>();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public List<rol> GetRolesNoDeUsuario(string USR_USERNAME, int ROL_ID, string ROL_NOMBRE, string ROL_DESCRIPCION)
         {
             try
@@ -131,6 +160,31 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        public List<rol> GetRolesNoDeUsuario(string USR_USERNAME, int ROL_ID, string ROL_NOMBRE)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    db.roles.MergeOption = MergeOption.NoTracking;//optimizacion
+
+                    var query = db.GetRolesNoDeUsuario(USR_USERNAME);
+
+                    var filter = from rls in query
+                                 where
+                                 (ROL_ID.Equals(0) ? true : rls.ROL_ID.Equals(ROL_ID)) &&
+                                 (string.IsNullOrEmpty(ROL_NOMBRE) ? true : rls.ROL_NOMBRE.Contains(ROL_NOMBRE))
+                                 select rls;
+
+                    return filter.ToList<rol>();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public usuario GetUsuario(string USR_USERNAME)
         {
             try
@@ -146,6 +200,33 @@ namespace COCASJOL.LOGIC.Seguridad
                     usuario user = (usuario)u;
 
                     return user;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public List<privilegio> GetAllPrivileges(string USR_USERNAME)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    db.privilegios.MergeOption = MergeOption.NoTracking;
+
+                    EntityKey k = new EntityKey("colinasEntities.usuarios", "USR_USERNAME", USR_USERNAME);
+
+                    var u = db.GetObjectByKey(k);
+
+                    usuario user = (usuario)u;
+
+                    var query = from r in user.roles
+                                from pr in r.privilegios
+                                select pr;
+
+                    return query.ToList<privilegio>();
                 }
             }
             catch (Exception ex)

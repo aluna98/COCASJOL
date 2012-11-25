@@ -183,6 +183,16 @@
             keyUpEvent: function (sender, e) {
                 if (e.getKey() == 13)
                     GridStore.reload();
+            },
+
+            keyUpEvent2: function (sender, e) {
+                if (e.getKey() == 13)
+                    RolesDeUsuarioSt.reload();
+            },
+
+            keyUpEvent3: function (sender, e) {
+                if (e.getKey() == 13)
+                    RolesNoDeUsuarioSt.reload();
             }
         };
 
@@ -521,7 +531,7 @@
                                         <ext:Panel ID="Panel16" runat="server" Frame="false" Padding="5" Layout="AnchorLayout"
                                             Border="false">
                                             <Items>
-                                                <ext:GridPanel ID="RolesDeUsuarioGridP" runat="server" AutoExpandColumn="ROL_DESCRIPCION"
+                                                <ext:GridPanel ID="RolesDeUsuarioGridP" runat="server" AutoExpandColumn="ROL_NOMBRE"
                                                     Height="250" Title="Roles de Usuario" Header="false" Border="true" StripeRows="true"
                                                     TrackMouseOver="true" SelectionMemory="Disabled">
                                                     <Store>   
@@ -544,7 +554,7 @@
                                                         <Columns>
                                                             <ext:Column DataIndex="ROL_ID" Header="Id" Sortable="true"></ext:Column>
                                                             <ext:Column DataIndex="ROL_NOMBRE" Header="Nombre" Sortable="true"></ext:Column>
-                                                            <ext:Column DataIndex="ROL_DESCRIPCION" Header="Descripción" Sortable="true"></ext:Column>
+                                                            <%--<ext:Column DataIndex="ROL_DESCRIPCION" Header="Descripción" Sortable="true"></ext:Column>--%>
                                                         </Columns>
                                                     </ColumnModel>
                                                     <View>
@@ -557,7 +567,7 @@
                                                                             <Component>
                                                                                 <ext:NumberField ID="f_ROL_ID" runat="server" EnableKeyEvents="true" Icon="Find">
                                                                                     <Listeners>
-                                                                                        <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                                                        <KeyUp Handler="PageX.keyUpEvent2(this, e);" />
                                                                                     </Listeners>
                                                                                 </ext:NumberField>
                                                                             </Component>
@@ -566,20 +576,20 @@
                                                                             <Component>
                                                                                 <ext:TextField ID="f_ROL_NOMBRE" runat="server" EnableKeyEvents="true" Icon="Find">
                                                                                     <Listeners>
-                                                                                        <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                                                        <KeyUp Handler="PageX.keyUpEvent2(this, e);" />
                                                                                     </Listeners>
                                                                                 </ext:TextField>
                                                                             </Component>
                                                                         </ext:HeaderColumn>
-                                                                        <ext:HeaderColumn Cls="x-small-editor">
+                                                                        <%--<ext:HeaderColumn Cls="x-small-editor">
                                                                             <Component>
                                                                                 <ext:TextField ID="f_ROL_DESCRIPCION" runat="server" EnableKeyEvents="true" Icon="Find">
                                                                                     <Listeners>
-                                                                                        <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                                                        <KeyUp Handler="PageX.keyUpEvent2(this, e);" />
                                                                                     </Listeners>
                                                                                 </ext:TextField>
                                                                             </Component>
-                                                                        </ext:HeaderColumn>
+                                                                        </ext:HeaderColumn>--%>
                                                                     </Columns>
                                                                 </ext:HeaderRow>
                                                             </HeaderRows>
@@ -650,7 +660,7 @@
                     <Items>
                         <ext:Panel ID="Panel9" runat="server" Frame="false" Padding="5">
                             <Items>
-                                <ext:GridPanel ID="RolesNoDeUsuarioGridP" runat="server" AutoExpandColumn="ROL_DESCRIPCION"
+                                <ext:GridPanel ID="RolesNoDeUsuarioGridP" runat="server" AutoExpandColumn="ROL_NOMBRE"
                                     Height="250" Title="Agregar Roles" Header="false" Border="true" StripeRows="true"
                                     TrackMouseOver="true" SelectionMemory="Disabled">
                                     <Store>
@@ -671,7 +681,7 @@
                                         <Columns>
                                             <ext:Column DataIndex="ROL_ID" Header="Id" Sortable="true"></ext:Column>
                                             <ext:Column DataIndex="ROL_NOMBRE" Header="Nombre" Sortable="true"></ext:Column>
-                                            <ext:Column DataIndex="ROL_DESCRIPCION" Header="Descripción" Sortable="true"></ext:Column>
+                                            <%--<ext:Column DataIndex="ROL_DESCRIPCION" Header="Descripción" Sortable="true"></ext:Column>--%>
                                         </Columns>
                                     </ColumnModel>
                                     <View>
@@ -684,7 +694,7 @@
                                                             <Component>
                                                                 <ext:NumberField ID="f2_ROL_ID" runat="server" EnableKeyEvents="true" Icon="Find">
                                                                     <Listeners>
-                                                                        <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                                        <KeyUp Handler="PageX.keyUpEvent3(this, e);" />
                                                                     </Listeners>
                                                                 </ext:NumberField>
                                                             </Component>
@@ -693,20 +703,20 @@
                                                             <Component>
                                                                 <ext:TextField ID="f2_ROL_NOMBRE" runat="server" EnableKeyEvents="true" Icon="Find">
                                                                     <Listeners>
-                                                                        <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                                        <KeyUp Handler="PageX.keyUpEvent3(this, e);" />
                                                                     </Listeners>
                                                                 </ext:TextField>
                                                             </Component>
                                                         </ext:HeaderColumn>
-                                                        <ext:HeaderColumn Cls="x-small-editor">
+                                                        <%--<ext:HeaderColumn Cls="x-small-editor">
                                                             <Component>
                                                                 <ext:TextField ID="f2_ROL_DESCRIPCION" runat="server" EnableKeyEvents="true" Icon="Find">
                                                                     <Listeners>
-                                                                        <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                                        <KeyUp Handler="PageX.keyUpEvent3(this, e);" />
                                                                     </Listeners>
                                                                 </ext:TextField>
                                                             </Component>
-                                                        </ext:HeaderColumn>
+                                                        </ext:HeaderColumn>--%>
                                                     </Columns>
                                                 </ext:HeaderRow>
                                             </HeaderRows>

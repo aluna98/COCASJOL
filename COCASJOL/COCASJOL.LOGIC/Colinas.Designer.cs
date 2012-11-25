@@ -19,7 +19,6 @@ using System.Xml.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "privilegios_x_roles", "privilegios", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.privilegio), "roles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.rol))]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "FK_BENEFICIARIO_X_SOCIO_socios", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "beneficiario_x_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.beneficiario_x_socio), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "FK_INVENTARIO_socios", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "inventario", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.inventario), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "FK_NOTA_DE_PESO_socios", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.nota_de_peso), true)]
@@ -28,7 +27,8 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "PROD_TIPO", "tipos_productos", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.tipo_producto), "productos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.producto), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "PrestamosPXS_fk", "prestamos", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.prestamo), "prestamos_x_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.prestamo_x_socio), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "PrestamosSocio_fk", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "prestamos_x_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.prestamo_x_socio), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "roles_x_usuarios", "rol", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.rol), "usuarios", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.usuario))]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "privilegios_x_roles", "privilegio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.privilegio), "roles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.rol))]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "roles_x_usuarios", "roles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.rol), "usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.usuario))]
 
 #endregion
 
@@ -127,22 +127,6 @@ namespace COCASJOL.LOGIC
             }
         }
         private ObjectSet<privilegio> _privilegios;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<rol> roles
-        {
-            get
-            {
-                if ((_roles == null))
-                {
-                    _roles = base.CreateObjectSet<rol>("roles");
-                }
-                return _roles;
-            }
-        }
-        private ObjectSet<rol> _roles;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -319,6 +303,22 @@ namespace COCASJOL.LOGIC
             }
         }
         private ObjectSet<usuario> _usuarios;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<rol> roles
+        {
+            get
+            {
+                if ((_roles == null))
+                {
+                    _roles = base.CreateObjectSet<rol>("roles");
+                }
+                return _roles;
+            }
+        }
+        private ObjectSet<rol> _roles;
 
         #endregion
 
@@ -346,14 +346,6 @@ namespace COCASJOL.LOGIC
         public void AddToprivilegios(privilegio privilegio)
         {
             base.AddObject("privilegios", privilegio);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the roles EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToroles(rol rol)
-        {
-            base.AddObject("roles", rol);
         }
     
         /// <summary>
@@ -442,6 +434,14 @@ namespace COCASJOL.LOGIC
         public void AddTousuarios(usuario usuario)
         {
             base.AddObject("usuarios", usuario);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the roles EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToroles(rol rol)
+        {
+            base.AddObject("roles", rol);
         }
 
         #endregion
@@ -2652,18 +2652,18 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "privilegios_x_roles", "privilegios")]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "privilegios_x_roles", "privilegio")]
         public EntityCollection<privilegio> privilegios
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<privilegio>("COLINASMODEL.privilegios_x_roles", "privilegios");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<privilegio>("COLINASMODEL.privilegios_x_roles", "privilegio");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<privilegio>("COLINASMODEL.privilegios_x_roles", "privilegios", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<privilegio>("COLINASMODEL.privilegios_x_roles", "privilegio", value);
                 }
             }
         }
@@ -2674,18 +2674,18 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "roles_x_usuarios", "usuarios")]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "roles_x_usuarios", "usuario")]
         public EntityCollection<usuario> usuarios
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<usuario>("COLINASMODEL.roles_x_usuarios", "usuarios");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<usuario>("COLINASMODEL.roles_x_usuarios", "usuario");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<usuario>("COLINASMODEL.roles_x_usuarios", "usuarios", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<usuario>("COLINASMODEL.roles_x_usuarios", "usuario", value);
                 }
             }
         }
@@ -4363,6 +4363,30 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String USR_SEGUNDO_NOMBRE
+        {
+            get
+            {
+                return _USR_SEGUNDO_NOMBRE;
+            }
+            set
+            {
+                OnUSR_SEGUNDO_NOMBREChanging(value);
+                ReportPropertyChanging("USR_SEGUNDO_NOMBRE");
+                _USR_SEGUNDO_NOMBRE = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("USR_SEGUNDO_NOMBRE");
+                OnUSR_SEGUNDO_NOMBREChanged();
+            }
+        }
+        private global::System.String _USR_SEGUNDO_NOMBRE;
+        partial void OnUSR_SEGUNDO_NOMBREChanging(global::System.String value);
+        partial void OnUSR_SEGUNDO_NOMBREChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String USR_APELLIDO
@@ -4383,6 +4407,30 @@ namespace COCASJOL.LOGIC
         private global::System.String _USR_APELLIDO;
         partial void OnUSR_APELLIDOChanging(global::System.String value);
         partial void OnUSR_APELLIDOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String USR_SEGUNDO_APPELLIDO
+        {
+            get
+            {
+                return _USR_SEGUNDO_APPELLIDO;
+            }
+            set
+            {
+                OnUSR_SEGUNDO_APPELLIDOChanging(value);
+                ReportPropertyChanging("USR_SEGUNDO_APPELLIDO");
+                _USR_SEGUNDO_APPELLIDO = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("USR_SEGUNDO_APPELLIDO");
+                OnUSR_SEGUNDO_APPELLIDOChanged();
+            }
+        }
+        private global::System.String _USR_SEGUNDO_APPELLIDO;
+        partial void OnUSR_SEGUNDO_APPELLIDOChanging(global::System.String value);
+        partial void OnUSR_SEGUNDO_APPELLIDOChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -4587,18 +4635,18 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "roles_x_usuarios", "rol")]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "roles_x_usuarios", "roles")]
         public EntityCollection<rol> roles
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<rol>("COLINASMODEL.roles_x_usuarios", "rol");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<rol>("COLINASMODEL.roles_x_usuarios", "roles");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<rol>("COLINASMODEL.roles_x_usuarios", "rol", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<rol>("COLINASMODEL.roles_x_usuarios", "roles", value);
                 }
             }
         }

@@ -186,7 +186,7 @@
             <PropertyRef Name="ROL_ID" />
           </Key>
           <Property Name="ROL_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="ROL_NOMBRE" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="ROL_NOMBRE" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="ROL_DESCRIPCION" Type="varchar" MaxLength="100" />
           <Property Name="CREADO_POR" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
@@ -198,7 +198,7 @@
             <PropertyRef Name="USR_USERNAME" />
             <PropertyRef Name="ROL_ID" />
           </Key>
-          <Property Name="USR_USERNAME" Type="varchar" Nullable="false" MaxLength="15" />
+          <Property Name="USR_USERNAME" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="ROL_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="socios">
@@ -272,9 +272,11 @@
           <Key>
             <PropertyRef Name="USR_USERNAME" />
           </Key>
-          <Property Name="USR_USERNAME" Type="varchar" Nullable="false" MaxLength="15" />
+          <Property Name="USR_USERNAME" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="USR_NOMBRE" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="USR_SEGUNDO_NOMBRE" Type="varchar" MaxLength="45" />
           <Property Name="USR_APELLIDO" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="USR_SEGUNDO_APPELLIDO" Type="varchar" MaxLength="45" />
           <Property Name="USR_CEDULA" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="USR_CORREO" Type="varchar" MaxLength="30" />
           <Property Name="USR_PUESTO" Type="varchar" MaxLength="30" />
@@ -462,12 +464,7 @@
           <EntitySet Name="codigo" EntityType="COLINASMODEL.codigo" />
           <EntitySet Name="nota_detalle" EntityType="COLINASMODEL.nota_detalle" />
           <EntitySet Name="privilegios" EntityType="COLINASMODEL.privilegio" />
-          <EntitySet Name="roles" EntityType="COLINASMODEL.rol" />
           <EntitySet Name="socios_produccion" EntityType="COLINASMODEL.socio_produccion" />
-          <AssociationSet Name="privilegios_x_roles" Association="COLINASMODEL.privilegios_x_roles">
-            <End Role="privilegios" EntitySet="privilegios" />
-            <End Role="roles" EntitySet="roles" />
-          </AssociationSet>
           <FunctionImport Name="GetPrivilegiosNoDeRol" EntitySet="privilegios" ReturnType="Collection(COLINASMODEL.privilegio)">
           <Parameter Name="nROL_ID" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -516,9 +513,14 @@
             <End Role="prestamos_x_socio" EntitySet="prestamos_x_socio" />
           </AssociationSet>
           <EntitySet Name="usuarios" EntityType="COLINASMODEL.usuario" />
+          <EntitySet Name="roles" EntityType="COLINASMODEL.rol" />
+          <AssociationSet Name="privilegios_x_roles" Association="COLINASMODEL.privilegios_x_roles">
+            <End Role="privilegio" EntitySet="privilegios" />
+            <End Role="roles" EntitySet="roles" />
+          </AssociationSet>
           <AssociationSet Name="roles_x_usuarios" Association="COLINASMODEL.roles_x_usuarios">
-            <End Role="rol" EntitySet="roles" />
-            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="roles" EntitySet="roles" />
+            <End Role="usuario" EntitySet="usuarios" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="codigo">
@@ -550,21 +552,7 @@
           <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
           <Property Type="String" Name="MODIFICADO_POR" />
           <Property Type="DateTime" Name="FECHA_MODIFICACION" />
-          <NavigationProperty Name="roles" Relationship="COLINASMODEL.privilegios_x_roles" FromRole="privilegios" ToRole="roles" />
-        </EntityType>
-        <EntityType Name="rol">
-          <Key>
-            <PropertyRef Name="ROL_ID" />
-          </Key>
-          <Property Type="Int32" Name="ROL_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="ROL_NOMBRE" Nullable="false" />
-          <Property Type="String" Name="ROL_DESCRIPCION" />
-          <Property Type="String" Name="CREADO_POR" Nullable="false" />
-          <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
-          <Property Type="String" Name="MODIFICADO_POR" />
-          <Property Type="DateTime" Name="FECHA_MODIFICACION" />
-          <NavigationProperty Name="privilegios" Relationship="COLINASMODEL.privilegios_x_roles" FromRole="roles" ToRole="privilegios" />
-          <NavigationProperty Name="usuarios" Relationship="COLINASMODEL.roles_x_usuarios" FromRole="rol" ToRole="usuarios" />
+          <NavigationProperty Name="roles" Relationship="COLINASMODEL.privilegios_x_roles" FromRole="privilegio" ToRole="roles" />
         </EntityType>
         <EntityType Name="socio_produccion">
           <Key>
@@ -583,10 +571,6 @@
           <Property Type="Int32" Name="PRODUCCION_MANZANAS_CULTIVADAS" />
           <NavigationProperty Name="socios" Relationship="COLINASMODEL.SOCIOS_ID_FK2" FromRole="socio_produccion" ToRole="socios" />
         </EntityType>
-        <Association Name="privilegios_x_roles">
-          <End Type="COLINASMODEL.privilegio" Role="privilegios" Multiplicity="*" />
-          <End Type="COLINASMODEL.rol" Role="roles" Multiplicity="*" />
-        </Association>
         <EntityType Name="inventario">
           <Key>
             <PropertyRef Name="SOCIOS_ID" />
@@ -826,7 +810,9 @@
           </Key>
           <Property Type="String" Name="USR_USERNAME" Nullable="false" />
           <Property Type="String" Name="USR_NOMBRE" Nullable="false" />
+          <Property Type="String" Name="USR_SEGUNDO_NOMBRE" />
           <Property Type="String" Name="USR_APELLIDO" Nullable="false" />
+          <Property Type="String" Name="USR_SEGUNDO_APPELLIDO" />
           <Property Type="String" Name="USR_CEDULA" Nullable="false" />
           <Property Type="String" Name="USR_CORREO" />
           <Property Type="String" Name="USR_PUESTO" />
@@ -835,11 +821,29 @@
           <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
           <Property Type="String" Name="MODIFICADO_POR" />
           <Property Type="DateTime" Name="FECHA_MODIFICACION" />
-          <NavigationProperty Name="roles" Relationship="COLINASMODEL.roles_x_usuarios" FromRole="usuarios" ToRole="rol" />
+          <NavigationProperty Name="roles" Relationship="COLINASMODEL.roles_x_usuarios" FromRole="usuario" ToRole="roles" />
         </EntityType>
+        <EntityType Name="rol">
+          <Key>
+            <PropertyRef Name="ROL_ID" />
+          </Key>
+          <Property Type="Int32" Name="ROL_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ROL_NOMBRE" Nullable="false" />
+          <Property Type="String" Name="ROL_DESCRIPCION" />
+          <Property Type="String" Name="CREADO_POR" Nullable="false" />
+          <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
+          <Property Type="String" Name="MODIFICADO_POR" />
+          <Property Type="DateTime" Name="FECHA_MODIFICACION" />
+          <NavigationProperty Name="privilegios" Relationship="COLINASMODEL.privilegios_x_roles" FromRole="roles" ToRole="privilegio" />
+          <NavigationProperty Name="usuarios" Relationship="COLINASMODEL.roles_x_usuarios" FromRole="roles" ToRole="usuario" />
+        </EntityType>
+        <Association Name="privilegios_x_roles">
+          <End Type="COLINASMODEL.privilegio" Role="privilegio" Multiplicity="*" />
+          <End Type="COLINASMODEL.rol" Role="roles" Multiplicity="*" />
+        </Association>
         <Association Name="roles_x_usuarios">
-          <End Type="COLINASMODEL.rol" Role="rol" Multiplicity="*" />
-          <End Type="COLINASMODEL.usuario" Role="usuarios" Multiplicity="*" />
+          <End Type="COLINASMODEL.rol" Role="roles" Multiplicity="*" />
+          <End Type="COLINASMODEL.usuario" Role="usuario" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -879,19 +883,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="roles">
-            <EntityTypeMapping TypeName="COLINASMODEL.rol">
-              <MappingFragment StoreEntitySet="roles">
-                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
-                <ScalarProperty Name="MODIFICADO_POR" ColumnName="MODIFICADO_POR" />
-                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
-                <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
-                <ScalarProperty Name="ROL_DESCRIPCION" ColumnName="ROL_DESCRIPCION" />
-                <ScalarProperty Name="ROL_NOMBRE" ColumnName="ROL_NOMBRE" />
-                <ScalarProperty Name="ROL_ID" ColumnName="ROL_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="socios_produccion">
             <EntityTypeMapping TypeName="COLINASMODEL.socio_produccion">
               <MappingFragment StoreEntitySet="socios_produccion">
@@ -909,14 +900,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="privilegios_x_roles" TypeName="COLINASMODEL.privilegios_x_roles" StoreEntitySet="privilegios_x_roles">
-            <EndProperty Name="roles">
-              <ScalarProperty Name="ROL_ID" ColumnName="ROL_ID" />
-            </EndProperty>
-            <EndProperty Name="privilegios">
-              <ScalarProperty Name="PRIV_ID" ColumnName="PRIV_ID" />
-            </EndProperty>
-          </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="GetPrivilegiosNoDeRol" FunctionName="COLINASMODEL.Store.GetPrivilegiosNoDeRol" />
           <FunctionImportMapping FunctionImportName="GetRolesNoDeUsuario" FunctionName="COLINASMODEL.Store.GetRolesNoDeUsuario" />
           <EntitySetMapping Name="inventario">
@@ -1058,17 +1041,40 @@
                 <ScalarProperty Name="USR_PUESTO" ColumnName="USR_PUESTO" />
                 <ScalarProperty Name="USR_CORREO" ColumnName="USR_CORREO" />
                 <ScalarProperty Name="USR_CEDULA" ColumnName="USR_CEDULA" />
+                <ScalarProperty Name="USR_SEGUNDO_APPELLIDO" ColumnName="USR_SEGUNDO_APPELLIDO" />
                 <ScalarProperty Name="USR_APELLIDO" ColumnName="USR_APELLIDO" />
+                <ScalarProperty Name="USR_SEGUNDO_NOMBRE" ColumnName="USR_SEGUNDO_NOMBRE" />
                 <ScalarProperty Name="USR_NOMBRE" ColumnName="USR_NOMBRE" />
                 <ScalarProperty Name="USR_USERNAME" ColumnName="USR_USERNAME" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="COLINASMODEL.rol">
+              <MappingFragment StoreEntitySet="roles">
+                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
+                <ScalarProperty Name="MODIFICADO_POR" ColumnName="MODIFICADO_POR" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
+                <ScalarProperty Name="ROL_DESCRIPCION" ColumnName="ROL_DESCRIPCION" />
+                <ScalarProperty Name="ROL_NOMBRE" ColumnName="ROL_NOMBRE" />
+                <ScalarProperty Name="ROL_ID" ColumnName="ROL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="privilegios_x_roles" TypeName="COLINASMODEL.privilegios_x_roles" StoreEntitySet="privilegios_x_roles">
+            <EndProperty Name="roles">
+              <ScalarProperty Name="ROL_ID" ColumnName="ROL_ID" />
+            </EndProperty>
+            <EndProperty Name="privilegio">
+              <ScalarProperty Name="PRIV_ID" ColumnName="PRIV_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
           <AssociationSetMapping Name="roles_x_usuarios" TypeName="COLINASMODEL.roles_x_usuarios" StoreEntitySet="roles_x_usuarios">
-            <EndProperty Name="usuarios">
+            <EndProperty Name="usuario">
               <ScalarProperty Name="USR_USERNAME" ColumnName="USR_USERNAME" />
             </EndProperty>
-            <EndProperty Name="rol">
+            <EndProperty Name="roles">
               <ScalarProperty Name="ROL_ID" ColumnName="ROL_ID" />
             </EndProperty>
           </AssociationSetMapping>
@@ -1096,12 +1102,7 @@
         <EntityTypeShape EntityType="COLINASMODEL.codigo" Width="1.5" PointX="5.75" PointY="5.75" Height="1.4033821614583317" />
         <EntityTypeShape EntityType="COLINASMODEL.nota_detalle" Width="1.5" PointX="7.75" PointY="5.75" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="COLINASMODEL.privilegio" Width="1.5" PointX="5.75" PointY="1.25" Height="2.7494921875000031" />
-        <EntityTypeShape EntityType="COLINASMODEL.rol" Width="1.5" PointX="8" PointY="1.25" Height="2.749492187499996" />
         <EntityTypeShape EntityType="COLINASMODEL.socio_produccion" Width="1.5" PointX="3" PointY="14.25" Height="3.3263964843750014" />
-        <AssociationConnector Association="COLINASMODEL.privilegios_x_roles" >
-          <ConnectorPoint PointX="7.25" PointY="2.6247460937500016" />
-          <ConnectorPoint PointX="8" PointY="2.6247460937500016" />
-        </AssociationConnector>
         <EntityTypeShape EntityType="COLINASMODEL.inventario" Width="1.5" PointX="3" PointY="1.625" Height="1.9802864583333388" />
         <EntityTypeShape EntityType="COLINASMODEL.nota_de_peso" Width="1.5" PointX="3" PointY="18.375" Height="2.5571907552083388" />
         <EntityTypeShape EntityType="COLINASMODEL.beneficiario_x_socio" Width="1.5" PointX="2" PointY="7.375" Height="2.5571907552083317" />
@@ -1149,10 +1150,15 @@
           <ConnectorPoint PointX="2.25" PointY="11.084839680989585" />
           <ConnectorPoint PointX="5.375" PointY="11.084839680989585" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="COLINASMODEL.usuario" Width="1.5" PointX="10.25" PointY="1" Height="3.3263964843749818" />
+        <EntityTypeShape EntityType="COLINASMODEL.usuario" Width="1.5" PointX="10.25" PointY="0.75" Height="3.7109993489583317" />
+        <EntityTypeShape EntityType="COLINASMODEL.rol" Width="1.5" PointX="8" PointY="1.25" Height="2.7494921875000031" />
+        <AssociationConnector Association="COLINASMODEL.privilegios_x_roles" >
+          <ConnectorPoint PointX="7.25" PointY="2.62474609375" />
+          <ConnectorPoint PointX="8" PointY="2.62474609375" />
+        </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.roles_x_usuarios" >
-          <ConnectorPoint PointX="9.5" PointY="2.62474609375" />
-          <ConnectorPoint PointX="10.25" PointY="2.62474609375" />
+          <ConnectorPoint PointX="9.5" PointY="2.6247460937500016" />
+          <ConnectorPoint PointX="10.25" PointY="2.6247460937500016" />
         </AssociationConnector>
         </Diagram>
     </Diagrams>

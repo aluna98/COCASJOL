@@ -82,7 +82,10 @@
     <script type="text/javascript" src="../resources/js/md5.js"></script>
     <script type="text/javascript">
         var DesktopX = {
-            createDynamicWindow: function (app, ico, title, url) {
+            createDynamicWindow: function (app, ico, title, url, width, height) {
+                width = width == null ? 640 : width;
+                height = height == null ? 480 : height;
+
                 var desk = app.getDesktop();
 
                 var w = desk.getWindow(title + '-win');
@@ -92,8 +95,8 @@
                         id: title + '-win',
                         iconCls: 'icon-' + ico,
                         title: title,
-                        width: 640,
-                        height: 480,
+                        width: width,
+                        height: height,
                         maximizable: true,
                         minimizable: true,
                         closeAction: 'close',
@@ -123,7 +126,7 @@
             },
 
             socios: function (app) {
-                DesktopX.createDynamicWindow(app, 'group', 'Socios', 'Socios/Socios.aspx');
+                DesktopX.createDynamicWindow(app, 'group', 'Socios', 'Socios/Socios.aspx', 800, 600);
             },
 
             settings: function () {

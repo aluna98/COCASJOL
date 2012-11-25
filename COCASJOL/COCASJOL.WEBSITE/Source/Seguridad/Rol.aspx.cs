@@ -49,7 +49,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
 
                 RolLogic rollogic = new RolLogic();
                 int priv_id = string.IsNullOrEmpty(this.f_PRIV_ID.Text) ? 0 : Convert.ToInt32(this.f_PRIV_ID.Text);
-                this.PrivilegiosDeRolSt.DataSource = rollogic.GetPrivilegios(rol_id, priv_id, this.f_ROL_NOMBRE.Text, this.f_ROL_DESCRIPCION.Text, this.f_PRIV_LLAVE.Text);
+                this.PrivilegiosDeRolSt.DataSource = rollogic.GetPrivilegios(rol_id, priv_id, this.f_ROL_NOMBRE.Text, this.f_PRIV_LLAVE.Text);
                 this.PrivilegiosDeRolSt.DataBind();
             }
             catch (Exception)
@@ -94,7 +94,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
 
                 RolLogic rollogic = new RolLogic();
                 int priv_id = string.IsNullOrEmpty(this.f2_PRIV_ID.Text) ? 0 : Convert.ToInt32(this.f2_PRIV_ID.Text);
-                this.PrivilegiosNoDeRolesSt.DataSource = rollogic.GetPrivilegiosNoDeRol(rol_id, priv_id, this.f2_PRIV_NOMBRE.Text, this.f2_PRIV_DESCRIPCION.Text, this.f2_PRIV_LLAVE.Text);
+                this.PrivilegiosNoDeRolesSt.DataSource = rollogic.GetPrivilegiosNoDeRol(rol_id, priv_id, this.f2_PRIV_NOMBRE.Text, this.f2_PRIV_LLAVE.Text);
                 this.PrivilegiosNoDeRolesSt.DataBind();
             }
             catch (Exception)

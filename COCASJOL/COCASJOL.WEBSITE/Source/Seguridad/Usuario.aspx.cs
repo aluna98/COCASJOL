@@ -71,7 +71,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
 
                 UsuarioLogic usuariologic = new UsuarioLogic();
                 int rol_id = string.IsNullOrEmpty(this.f_ROL_ID.Text) ? 0 : Convert.ToInt32(this.f_ROL_ID.Text);
-                this.RolesDeUsuarioSt.DataSource = usuariologic.GetRoles(user, rol_id, this.f_ROL_NOMBRE.Text, this.f_ROL_DESCRIPCION.Text);
+                this.RolesDeUsuarioSt.DataSource = usuariologic.GetRoles(user, rol_id, this.f_ROL_NOMBRE.Text);
                 this.RolesDeUsuarioSt.DataBind();
             }
             catch (Exception)
@@ -116,7 +116,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
 
                 UsuarioLogic usuariologica = new UsuarioLogic();
                 int rol_id = string.IsNullOrEmpty(this.f2_ROL_ID.Text) ? 0 : Convert.ToInt32(this.f2_ROL_ID.Text);
-                this.RolesNoDeUsuarioSt.DataSource = usuariologica.GetRolesNoDeUsuario(user, rol_id, this.f2_ROL_NOMBRE.Text, this.f2_ROL_DESCRIPCION.Text);
+                this.RolesNoDeUsuarioSt.DataSource = usuariologica.GetRolesNoDeUsuario(user, rol_id, this.f2_ROL_NOMBRE.Text);
                 this.RolesNoDeUsuarioSt.DataBind();
             }
             catch (Exception)

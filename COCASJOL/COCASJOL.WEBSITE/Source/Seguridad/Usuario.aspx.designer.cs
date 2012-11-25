@@ -589,15 +589,6 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         protected global::Ext.Net.TextField f_ROL_NOMBRE;
         
         /// <summary>
-        /// f_ROL_DESCRIPCION control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField f_ROL_DESCRIPCION;
-        
-        /// <summary>
         /// RolesDeUsuarioSelectionM control.
         /// </summary>
         /// <remarks>
@@ -740,15 +731,6 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField f2_ROL_NOMBRE;
-        
-        /// <summary>
-        /// f2_ROL_DESCRIPCION control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField f2_ROL_DESCRIPCION;
         
         /// <summary>
         /// RolesNoDeUsuarioSelectionM control.

@@ -1,8 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <privilegios>
     <privilege>
-        <key>SYS_USER</key>
-        <name>Seguridad Usuarios</name>
-        <description>Acceso a la pantalla de usuarios seguridad.</description>
+      <key>SYS_USER</key>
+      <module>UsuariosModule</module>
+      <shortcut></shortcut>
+      <menuitem></menuitem>
     </privilege>
+  <privilege>
+    <key>SYS_ROLES</key>
+    <module>RolesModule</module>
+    <shortcut></shortcut>
+    <menuitem></menuitem>
+  </privilege>
+  <privilege>
+    <key>APP_CONFIG</key>
+    <module>SettingsModule</module>
+    <shortcut></shortcut>
+    <menuitem></menuitem>
+  </privilege>
+  <privilege>
+    <key>USER_EDIT</key>
+    <module>UsuarioActualModule</module>
+    <shortcut></shortcut>
+    <menuitem></menuitem>
+  </privilege>
+  <privilege>
+    <key>USER_PSWRD</key>
+    <module>CambiarClaveModule</module>
+    <shortcut></shortcut>
+    <menuitem></menuitem>
+  </privilege>
+  <privilege>
+    <key>MANT_SOCIOS</key>
+    <module>SociosModule</module>
+    <shortcut></shortcut>
+    <menuitem></menuitem>
+  </privilege>
 </privilegios>

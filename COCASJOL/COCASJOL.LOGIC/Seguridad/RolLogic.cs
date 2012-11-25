@@ -91,6 +91,33 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        public List<privilegio> GetPrivilegios(int ROL_ID, int PRIV_ID, string PRIV_NOMBRE, string PRIV_LLAVE)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    var query = from p in db.privilegios
+                                from r in p.roles
+                                where r.ROL_ID == ROL_ID
+                                select p;
+
+                    var filter = from privs in query
+                                 where
+                                 (PRIV_ID.Equals(0) ? true : privs.PRIV_ID.Equals(PRIV_ID)) &&
+                                 (string.IsNullOrEmpty(PRIV_NOMBRE) ? true : privs.PRIV_NOMBRE.Contains(PRIV_NOMBRE)) &&
+                                 (string.IsNullOrEmpty(PRIV_LLAVE) ? true : privs.PRIV_LLAVE.Contains(PRIV_LLAVE))
+                                 select privs;
+
+                    return filter.ToList<privilegio>();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public List<privilegio> GetPrivilegiosNoDeRol(int ROL_ID, int PRIV_ID, string PRIV_NOMBRE, string PRIV_DESCRIPCION, string PRIV_LLAVE)
         {
             try
@@ -104,6 +131,30 @@ namespace COCASJOL.LOGIC.Seguridad
                                  (PRIV_ID.Equals(0) ? true : privs.PRIV_ID.Equals(PRIV_ID)) &&
                                  (string.IsNullOrEmpty(PRIV_NOMBRE) ? true : privs.PRIV_NOMBRE.Contains(PRIV_NOMBRE)) &&
                                  (string.IsNullOrEmpty(PRIV_DESCRIPCION) ? true : privs.PRIV_DESCRIPCION.Contains(PRIV_DESCRIPCION)) &&
+                                 (string.IsNullOrEmpty(PRIV_LLAVE) ? true : privs.PRIV_LLAVE.Contains(PRIV_LLAVE))
+                                 select privs;
+
+                    return filter.ToList<privilegio>();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public List<privilegio> GetPrivilegiosNoDeRol(int ROL_ID, int PRIV_ID, string PRIV_NOMBRE, string PRIV_LLAVE)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    var query = db.GetPrivilegiosNoDeRol(ROL_ID);
+
+                    var filter = from privs in query
+                                 where
+                                 (PRIV_ID.Equals(0) ? true : privs.PRIV_ID.Equals(PRIV_ID)) &&
+                                 (string.IsNullOrEmpty(PRIV_NOMBRE) ? true : privs.PRIV_NOMBRE.Contains(PRIV_NOMBRE)) &&
                                  (string.IsNullOrEmpty(PRIV_LLAVE) ? true : privs.PRIV_LLAVE.Contains(PRIV_LLAVE))
                                  select privs;
 
