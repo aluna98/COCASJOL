@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Colinas.Views.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Colinas.Views.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Inventario\Ingresos\NotaDePesoLogic.cs" />
     <Compile Include="Seguridad\PrivilegioLogic.cs" />
     <Compile Include="Seguridad\RolLogic.cs" />
     <Compile Include="Seguridad\UsuarioLogic.cs" />

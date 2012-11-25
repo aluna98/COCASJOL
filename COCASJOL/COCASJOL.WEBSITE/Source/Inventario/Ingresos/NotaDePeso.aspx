@@ -11,9 +11,23 @@
     <script  type="text/javascript">
 
         function validarFormulario() {
-            return false;
+            return true;
         }
-    
+
+        function gridRowAdded(item) {
+            #{txtPeso}.setValue(#{txtPeso}.getValue() + item.data.items[0].data.PESO);
+        }
+         
+        function pesoToJson() {
+            var items =  #{stPesos}.data;
+            var ret = [];
+            for (var i = 0; i < items.length; i++) {
+                ret.push({DETALLE_PESO : items.items[i].data.PESO, DETALLE_CANTIDAD_SACOS : items.items[i].data.CANT_SACOS });
+            }
+            
+            return Ext.encode(ret);
+        } 
+            
         </script>
     </ext:XScript>
 </head>
@@ -23,6 +37,9 @@
         <ext:ResourceManager ID="ResourceManager1" runat="server">
         </ext:ResourceManager>
         <ext:Store runat="server" ID="stPesos">
+        <Listeners>
+            <Add Fn="gridRowAdded" />
+        </Listeners>
         <Reader>
             <ext:JsonReader>
                 <Fields>
@@ -63,7 +80,11 @@
                                 </ext:Container>
                                 <ext:Container ID="Container1" runat="server" Layout="FormLayout" ColumnWidth="0.5">
                                     <Items>
-                                        <ext:DateField runat="server" ID="FECHA" FieldLabel="Fecha" AnchorHorizontal="95%" />
+                                        <ext:DateField runat="server" ID="FECHA" FieldLabel="Fecha" AnchorHorizontal="95%" >
+                                            <Listeners>
+                                                <Render Handler="#{FECHA}.setValue(new Date());" />
+                                            </Listeners>
+                                        </ext:DateField>
                                         <ext:ComboBox runat="server" ID="cmbTipoCafe" FieldLabel="Tipo Cafe" AnchorHorizontal="95%">
                                             <Items>
                                                 <ext:ListItem Value="CONV" Text="Convencional" />
@@ -121,7 +142,12 @@
                             <Buttons>
                                 <ext:Button runat="server" ID="btnGuardar" Text="Guardar">
                                     <DirectEvents>
-                                        <Click Before="return validarFormulario();">
+                                        <Click Before="return validarFormulario();" OnEvent="btnGuardar_OnClick">
+                                            <ExtraParams >
+                                                <ext:Parameter Name="DETALLE" Mode="Raw" Value="
+                                                pesoToJson()
+                                                " />
+                                            </ExtraParams>
                                             <Confirmation Message="¿Desea registrar la nota de peso?" />
                                         </Click>
                                     </DirectEvents>
@@ -135,7 +161,8 @@
                                 </ext:Button>
                             </Buttons>
                             <Items>
-                                <ext:GridPanel ID="gripPesos" runat="server" StoreID="stPesos">
+                                <ext:GridPanel ID="gridPesos" runat="server" StoreID="stPesos">
+                                    
                                     <CustomConfig>
                                         <ext:ConfigItem Name="width" Value="75%" Mode="Value" />
                                     </CustomConfig>
@@ -182,9 +209,24 @@
                                         </ext:Container>
                                         <ext:Container ID="Container9" runat="server" ColumnWidth=".375">
                                             <Items>
-                                                <ext:TextField runat="server" ID="TextField1" FieldLabel="Descuentos" AnchorHorizontal="90%" />
-                                                <ext:TextField runat="server" ID="TextField2" FieldLabel="Peso" AnchorHorizontal="90%" />
-                                                <ext:TextField runat="server" ID="TextField3" FieldLabel="Total" AnchorHorizontal="90%" />
+                                                <ext:NumberField runat="server" ID="txtDescuentos" FieldLabel="Descuentos" AnchorHorizontal="90%"
+                                                    ReadOnly="true">
+                                                    <Listeners>
+                                                        <Render Handler="#{txtDescuentos}.setValue(0);" />
+                                                    </Listeners>
+                                                </ext:NumberField>
+                                                <ext:NumberField runat="server" ID="txtPeso" FieldLabel="Peso" AnchorHorizontal="90%"
+                                                    ReadOnly="true">
+                                                    <Listeners>
+                                                        <Render Handler="#{txtPeso}.setValue(0);" />
+                                                    </Listeners>
+                                                </ext:NumberField>
+                                                <ext:NumberField runat="server" ID="txtTotal" FieldLabel="Total" AnchorHorizontal="90%"
+                                                    ReadOnly="true">
+                                                    <Listeners>
+                                                        <Render Handler="#{txtTotal}.setValue(0);" />
+                                                    </Listeners>
+                                                </ext:NumberField>
                                             </Items>
                                         </ext:Container>
                                     </Items>
@@ -196,7 +238,11 @@
             </Items>
         </ext:Viewport>
 
-        <ext:Window ID="winAgregarPeso" runat="server">
+        <ext:Window ID="winAgregarPeso" runat="server" CloseAction="Hide" Width="400" Height="170" Hidden="true">
+        <Listeners>
+            <Hide Handler="#{txtAddSacos}.setValue(0); #{txtAddPeso}.setValue(0); " />
+            <Show Handler="#{txtAddPeso}.focus();" />
+        </Listeners>
         <Items>
             <ext:FormPanel runat="server">
             <Items>
@@ -206,8 +252,18 @@
                         <Items>
                         <ext:Panel runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                             <Items>
-                                <ext:NumberField runat="server" ID="txtcAddSacos"   DataIndex="CANT_SACOS"  AnchorHorizontal="90%" FieldLabel="Peso" AllowBlank="false" IndicatorIcon="BulletRed" />
-                                <ext:NumberField runat="server" ID="txtAddPeso"     DataIndex="PESO"        AnchorHorizontal="90%" FieldLabel="Cant. Sacos" AllowBlank="false" IndicatorIcon="BulletRed" />
+                                <ext:NumberField runat="server" ID="txtAddPeso" DataIndex="PESO" AnchorHorizontal="90%"
+                                    FieldLabel="Peso" AllowBlank="false" IndicatorIcon="BulletRed" EnableKeyEvents="true">
+                                    <Listeners>
+                                        <KeyDown Handler="if (e.keyCode == e.ENTER) #{txtAddSacos}.focus()" />
+                                    </Listeners>
+                                </ext:NumberField>
+                                <ext:NumberField runat="server" ID="txtAddSacos" DataIndex="CANT_SACOS" AnchorHorizontal="90%"
+                                    FieldLabel="Cant. Sacos" AllowBlank="false" IndicatorIcon="BulletRed">
+                                    <Listeners>
+                                        <KeyDown Handler="if (e.keyCode == e.ENTER) #{btnAgregarPesoAgregar}.focus()" />
+                                    </Listeners>
+                                </ext:NumberField>
                             </Items>
                         </ext:Panel>
                         </Items>
@@ -215,67 +271,24 @@
                     </Items>
                 </ext:TabPanel>
             </Items>
+                <Buttons>
+                    <ext:Button runat="server" ID="btnAgregarPesoAgregar" Text="Agregar" Icon="Add">
+                    <Listeners>
+                        <Click Handler="#{gridPesos}.insertRecord(#{stPesos}.data.length,{CANT_SACOS : #{txtAddSacos}.getValue(), PESO : #{txtAddPeso}.getValue() } ); #{txtAddSacos}.setValue(0); #{txtAddPeso}.setValue(0); #{txtAddPeso}.focus();" />
+                    </Listeners>
+                    </ext:Button>
+                    <ext:Button runat="server" ID="btnAgregarPesoCancelar" Text="Cancelar" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="#{winAgregarPeso}.hide();" />
+                    </Listeners>
+                    </ext:Button>
+                </Buttons>
             </ext:FormPanel>
         </Items>
         
 
         </ext:Window>
 
-
-
-        <ext:Window ID="AgregarUsuarioWin"
-            runat="server"
-            Hidden="true"
-            Icon="UserAdd"
-            Title="Agregar Usuario"
-            Width="500"
-            Layout="FormLayout"
-            AutoHeight="True"
-            Resizable="false"
-            Shadow="None"
-            Modal="true"
-            X="10" Y="30">
-            <Listeners>
-                <Show Handler="#{AddUsuarioFormP}.getForm().reset();" />
-            </Listeners>
-            <Items>
-                <ext:FormPanel ID="AddUsuarioFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true">
-                    <Items>
-                        <ext:TabPanel ID="TabPanel1" runat="server">
-                            <Items>
-                                <ext:Panel ID="Panel2" runat="server" Title="Información" Layout="AnchorLayout" AutoHeight="True"
-                                    Resizable="false">
-                                    <Items>
-                                        <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
-                                            <Items>
-                                                <ext:TextField runat="server" ID="AddUsernameTxt"         DataIndex="USR_USERNAME"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre de Usuario" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddNombreTxt"           DataIndex="USR_NOMBRE"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddApellidoTxt"         DataIndex="USR_APELLIDO"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Apellido" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddCedulaTxt"           DataIndex="USR_CEDULA"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cedula" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddEmailTxt"            DataIndex="USR_CORREO"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Email" Vtype="email" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddPuestoTxt"           DataIndex="USR_PUESTO"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Puesto" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddPasswordTxt"         DataIndex="USR_PASSWORD"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Clave" InputType="Password" AllowBlank="false" IndicatorIcon="BulletRed"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddCreatedByTxt"        DataIndex="CREADO_POR"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado por" Hidden="true" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddCreatedDateTxt"      DataIndex="FECHA_CREACION"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddModifiedByTxt"       DataIndex="MODIFICADO_POR"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddModificationDateTxt" DataIndex="FECHA_MODIFICACION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Modificacion" Hidden="true" ></ext:TextField>
-                                            </Items>
-                                        </ext:Panel>
-                                    </Items>
-                                </ext:Panel>
-                            </Items>
-                        </ext:TabPanel>
-                    </Items>
-                    <Buttons>
-                        <ext:Button ID="AddGuardarBtn" runat="server" Text="Guardar" Icon="Disk" FormBind="true">
-                            <Listeners>
-                                <Click Handler="#{AddCreatedByTxt}.setValue(#{LoggedUserHdn}.getValue()); PageX.insert();" />
-                            </Listeners>
-                        </ext:Button>
-                    </Buttons>
-                </ext:FormPanel>
-            </Items>
-        </ext:Window>
 
 
 
