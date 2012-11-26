@@ -127,7 +127,7 @@
                         <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout"
                             Border="false">
                             <Items>
-                                <ext:TextField ID="txtUsername" runat="server" FieldLabel="Usuario" AllowBlank="false" BlankText="Se requiere su nombre de usuario." EnableKeyEvents="true" LabelAlign="Right" AnchorHorizontal="90%" MsgTarget="Side">
+                                <ext:TextField ID="txtUsername" runat="server" FieldLabel="Usuario" AllowBlank="false" BlankText="Se requiere su nombre de usuario." EnableKeyEvents="true" LabelAlign="Right" AnchorHorizontal="90%" MsgTarget="Side" AutoFocus="true" AutoFocusDelay="1000">
                                     <Listeners>
                                         <KeyUp Handler="KeyUpEvent(this, e);" />
                                     </Listeners>

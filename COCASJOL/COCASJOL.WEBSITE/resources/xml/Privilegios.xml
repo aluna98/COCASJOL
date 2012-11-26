@@ -3,37 +3,19 @@
     <privilege>
       <key>SYS_USER</key>
       <module>UsuariosModule</module>
-      <shortcut></shortcut>
-      <menuitem></menuitem>
+      <shortcut>scUsuarios</shortcut>
+      <menuitem>UsuariosMenuItem</menuitem>
     </privilege>
   <privilege>
     <key>SYS_ROLES</key>
     <module>RolesModule</module>
-    <shortcut></shortcut>
-    <menuitem></menuitem>
+    <shortcut>scRoles</shortcut>
+    <menuitem>RolesMenuItem</menuitem>
   </privilege>
   <privilege>
-    <key>APP_CONFIG</key>
-    <module>SettingsModule</module>
-    <shortcut></shortcut>
-    <menuitem></menuitem>
-  </privilege>
-  <privilege>
-    <key>USER_EDIT</key>
-    <module>UsuarioActualModule</module>
-    <shortcut></shortcut>
-    <menuitem></menuitem>
-  </privilege>
-  <privilege>
-    <key>USER_PSWRD</key>
-    <module>CambiarClaveModule</module>
-    <shortcut></shortcut>
-    <menuitem></menuitem>
-  </privilege>
-  <privilege>
-    <key>MANT_SOCIOS</key>
+    <key>MANT_SOCIO</key>
     <module>SociosModule</module>
-    <shortcut></shortcut>
-    <menuitem></menuitem>
+    <shortcut>scSocios</shortcut>
+    <menuitem>SociosMenuItem</menuitem>
   </privilege>
 </privilegios>

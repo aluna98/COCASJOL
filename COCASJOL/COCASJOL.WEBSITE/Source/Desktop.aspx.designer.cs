@@ -49,22 +49,49 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.Desktop MyDesktop;
         
         /// <summary>
-        /// MenuItem4 control.
+        /// SecurityMenu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.MenuItem MenuItem4;
+        protected global::Ext.Net.MenuItem SecurityMenu;
         
         /// <summary>
-        /// Menu2 control.
+        /// UsuariosMenuItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Menu Menu2;
+        protected global::Ext.Net.MenuItem UsuariosMenuItem;
+        
+        /// <summary>
+        /// RolesMenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem RolesMenuItem;
+        
+        /// <summary>
+        /// AsociatesMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem AsociatesMenu;
+        
+        /// <summary>
+        /// SociosMenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem SociosMenuItem;
         
         /// <summary>
         /// SettingsWin control.

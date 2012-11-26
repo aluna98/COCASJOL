@@ -18,6 +18,12 @@ namespace COCASJOL.WEBSITE
 {
     public partial class Desktop : COCASJOLBASE //System.Web.UI.Page
     {
+        protected override void OnInit(EventArgs e)
+        {
+            base.OnInit(e);
+            RemoveObjects();
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -44,6 +50,10 @@ namespace COCASJOL.WEBSITE
             try
             {
                 string loggedUser = Session["username"] as string;
+#if DEBUG
+                if (loggedUser == "DEVELOPER")
+                    return;
+#endif
 
                 UsuarioLogic usuariologic = new UsuarioLogic();
 
@@ -75,23 +85,26 @@ namespace COCASJOL.WEBSITE
                             DesktopModulesCollection listDM = this.MyDesktop.Modules;
                             ItemsCollection<Component> listIC = this.MyDesktop.StartMenu.Items;
 
-                            foreach (DesktopShortcut ds in listDS)
+                            for (int x = 0; x < listDS.Count; x++)
                             {
-                                if (ds.ModuleID == module)
-                                    X.Js.Call("hideShortcut", new object[] { module });
+                                DesktopShortcut ds = listDS.ElementAt(x);
+
+                                if (ds.ShortcutID == shortcut)
+                                    listDS.Remove(ds);
                             }
 
-                            foreach (DesktopModule dm in listDM)
+                            for (int x = 0; x < listDM.Count; x++)
                             {
+                                DesktopModule dm = listDM.ElementAt(x);
+
                                 if (dm.ModuleID == module)
-                                {
                                     listDM.Remove(dm);
-                                }
                             }
 
-
-                            foreach (Component item in listIC)
+                            for (int x = 0; x < listIC.Count; x++)
                             {
+                                Component item = listIC.ElementAt(x);
+
                                 if (item is Ext.Net.MenuItem)
                                 {
                                     Ext.Net.MenuItem menuItem = (Ext.Net.MenuItem)item;
@@ -100,12 +113,16 @@ namespace COCASJOL.WEBSITE
                                     {
                                         MenuCollection menu = menuItem.Menu;
 
-                                        foreach (Component itm in menu.Primary.Items)
+                                        for (int y = 0; y < menu.Primary.Items.Count; y++)
                                         {
+                                            Component itm = menu.Primary.Items.ElementAt(y);
                                             if (itm.ID == menuitem)
                                                 menu.Primary.Items.Remove(itm);
                                         }
                                     }
+
+                                    if (menuItem.Menu.Primary.Items.Count == 0)
+                                        listIC.Remove(menuItem);
                                 }
                             }
                         }

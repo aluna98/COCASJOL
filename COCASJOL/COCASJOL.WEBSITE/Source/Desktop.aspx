@@ -178,7 +178,7 @@
             </Items>
         </ext:Menu>
 
-        <ext:Desktop 
+        <ext:Desktop
             ID="MyDesktop" 
             runat="server" 
             BackgroundColor="Black" 
@@ -231,7 +231,6 @@
                 <ext:DesktopShortcut ShortcutID="scRoles" Text="Roles" IconCls="shortcut-icon icon-roles" />
                 <ext:DesktopShortcut ShortcutID="scSocios" Text="Socios" IconCls="shortcut-icon icon-socios" />
 
-
                 <%--<ext:DesktopShortcut ShortcutID="scTile" Text="Tile windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-90" />
                 <ext:DesktopShortcut ShortcutID="scCascade" Text="Cascade windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-170" />--%>
             </Shortcuts>
@@ -258,18 +257,31 @@
                     </ext:MenuItem>
                 </ToolItems>                
                 <Items>
-                    <ext:MenuItem ID="MenuItem4" runat="server" Text="All" Icon="Folder" HideOnClick="false">
+                    <ext:MenuItem ID="SecurityMenu" runat="server" Text="Seguridad" Icon="Folder" HideOnClick="false">
                         <Menu>
-                            <ext:Menu ID="Menu2" runat="server">
+                            <ext:Menu runat="server">
                                 <Items>
-                                    <ext:MenuItem Text="Usuarios" Icon="User">
+                                    <ext:MenuItem ID="UsuariosMenuItem" Text="Usuarios" Icon="User">
                                         <Listeners>
                                             <Click Handler="WindowX.usuarios(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
-                                    <ext:MenuItem Text="Roles" Icon="Cog">
+                                    <ext:MenuItem ID="RolesMenuItem" Text="Roles" Icon="Cog">
                                         <Listeners>
                                             <Click Handler="WindowX.roles(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                </Items>
+                            </ext:Menu>
+                        </Menu>
+                    </ext:MenuItem>
+                    <ext:MenuItem ID="AsociatesMenu" runat="server" Text="Socios" Icon="Folder" HideOnClick="false">
+                        <Menu>
+                            <ext:Menu runat ="server">
+                                <Items>
+                                    <ext:MenuItem ID="SociosMenuItem" Text="Socios" Icon="Group" >
+                                        <Listeners>
+                                            <click Handler="WindowX.socios(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
                                 </Items>
