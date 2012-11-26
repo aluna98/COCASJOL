@@ -48,11 +48,6 @@
     <Compile Include="Seguridad\PrivilegioLogic.cs" />
     <Compile Include="Seguridad\RolLogic.cs" />
     <Compile Include="Seguridad\UsuarioLogic.cs" />
-    <Compile Include="Colinas.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Colinas.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Socios\SociosLogic.cs" />
     <Compile Include="Web\COCASJOLBASE.cs">
