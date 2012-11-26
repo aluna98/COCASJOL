@@ -35,10 +35,10 @@ namespace COCASJOL.Website.Source.Seguridad
                     COCASJOL.LOGIC.usuario user = usuarioActual.GetUsuario(loggedUsr);
 
                     this.EditNombreTxt.Text = user.USR_NOMBRE;
+                    this.EditSegundoNombreTxt.Text = user.USR_SEGUNDO_NOMBRE;
                     this.EditApellidoTxt.Text = user.USR_APELLIDO;
-                    this.EditCedulaTxt.Text = user.USR_CEDULA;
+                    this.EditSegundoApellidoTxt.Text = user.USR_SEGUNDO_APELLIDO;
                     this.EditEmailTxt.Text = user.USR_CORREO;
-                    this.EditPuestoTxt.Text = user.USR_PUESTO;
                 }
             }
             catch (Exception)
@@ -62,10 +62,11 @@ namespace COCASJOL.Website.Source.Seguridad
                     usuarioActual.ActualizarUsuario(
                         this.EditUsernameTxt.Text,
                         this.EditNombreTxt.Text,
+                        this.EditSegundoNombreTxt.Text,
                         this.EditApellidoTxt.Text,
-                        this.EditCedulaTxt.Text,
+                        this.EditSegundoApellidoTxt.Text,
                         this.EditEmailTxt.Text,
-                        this.EditPuestoTxt.Text, loggedUsr);
+                        loggedUsr);
                 }
             }
             catch (Exception)

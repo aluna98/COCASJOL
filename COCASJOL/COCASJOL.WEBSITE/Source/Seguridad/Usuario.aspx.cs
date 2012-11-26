@@ -24,6 +24,8 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                 {
                     string loggedUsr = Session["username"] as string;
                     this.LoggedUserHdn.Text = loggedUsr;
+
+                    this.ValidarCredenciales("SYS_USER");
                 }
             }
             catch (Exception)
@@ -58,6 +60,71 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                 throw;
             }
         }
+
+        #region Validacion
+
+        protected void AddUsernameTxt_Change(object sender, RemoteValidationEventArgs e)
+        {
+            try
+            {
+                string username = this.AddUsernameTxt.Text;
+
+                UsuarioLogic usuariologic = new UsuarioLogic();
+                if (usuariologic.UsuarioExiste(username))
+                {
+                    e.Success = false;
+                    e.ErrorMessage = "El nombre de usuario ingresado ya existe.";
+                }
+                else
+                    e.Success = true;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        protected void AddCedulaTxt_Change(object sender, RemoteValidationEventArgs e)
+        {
+            try
+            {
+                string cedula = this.AddCedulaTxt.Text;
+                UsuarioLogic usuarioLogic = new UsuarioLogic();
+                if (usuarioLogic.CedulaExiste(cedula))
+                {
+                    e.Success = false;
+                    e.ErrorMessage = "La cedula ingresada ya existe.";
+                }
+                else
+                    e.Success = true;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        protected void EditCedulaTxt_Change(object sender, RemoteValidationEventArgs e)
+        {
+            try
+            {
+                string cedula = this.EditCedulaTxt.Text;
+                UsuarioLogic usuarioLogic = new UsuarioLogic();
+                if (usuarioLogic.CedulaExiste(cedula))
+                {
+                    e.Success = false;
+                    e.ErrorMessage = "La cedula ingresada ya existe.";
+                }
+                else
+                    e.Success = true;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        #endregion
 
         #endregion
 

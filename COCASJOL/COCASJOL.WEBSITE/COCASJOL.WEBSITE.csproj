@@ -61,6 +61,7 @@
     <Content Include="Error.aspx" />
     <Content Include="ExpiredSession.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="NoAccess.aspx" />
     <Content Include="resources\images\background1.jpg" />
     <Content Include="resources\images\cocasjol_start_button.gif" />
     <Content Include="resources\images\desktop.jpg" />
@@ -93,7 +94,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="resources\xml\Privilegios.xml" />
+    <Content Include="resources\xml\Privilegios.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="resources\xml\Privilegios.xsl" />
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +116,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="NoAccess.aspx.cs">
+      <DependentUpon>NoAccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NoAccess.aspx.designer.cs">
+      <DependentUpon>NoAccess.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\Desktop.aspx.cs">

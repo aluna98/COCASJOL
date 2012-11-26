@@ -226,22 +226,26 @@
                 DeleteMethod="EliminarUsuario" 
             onselecting="UsuarioDS_Selecting" >
                 <SelectParameters>
-                    <asp:ControlParameter Name="USR_USERNAME"       Type="String"   ControlID="f_USR_USERNAME"  PropertyName="Text" />
-                    <asp:ControlParameter Name="USR_NOMBRE"         Type="String"   ControlID="f_USR_NOMBRE"    PropertyName="Text" />
-                    <asp:ControlParameter Name="USR_APELLIDO"       Type="String"   ControlID="f_USR_APELLIDO"  PropertyName="Text" />
-                    <asp:ControlParameter Name="USR_CEDULA"         Type="String"   ControlID="f_USR_CEDULA"    PropertyName="Text" />
-                    <asp:ControlParameter Name="USR_CORREO"         Type="String"   ControlID="f_USR_CORREO"    PropertyName="Text" />
-                    <asp:ControlParameter Name="USR_PUESTO"         Type="String"   ControlID="f_USR_PUESTO"    PropertyName="Text" />
-                    <asp:ControlParameter Name="USR_PASSWORD"       Type="String"   ControlID="nullHdn"         PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="CREADO_POR"         Type="String"   ControlID="nullHdn"         PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_CREACION"     Type="DateTime" ControlID="nullHdn"         PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="MODIFICADO_POR"     Type="String"   ControlID="nullHdn"         PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_MODIFICACION" Type="DateTime" ControlID="nullHdn"         PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="USR_USERNAME"         Type="String"   ControlID="f_USR_USERNAME"         PropertyName="Text" />
+                    <asp:ControlParameter Name="USR_NOMBRE"           Type="String"   ControlID="f_USR_NOMBRE"           PropertyName="Text" />
+                    <asp:ControlParameter Name="USR_SEGUNDO_NOMBRE"   Type="String"   ControlID="f_USR_SEGUNDO_NOMBRE"   PropertyName="Text" />
+                    <asp:ControlParameter Name="USR_APELLIDO"         Type="String"   ControlID="f_USR_APELLIDO"         PropertyName="Text" />
+                    <asp:ControlParameter Name="USR_SEGUNDO_APELLIDO" Type="String"   ControlID="f_USR_SEGUNDO_APELLIDO" PropertyName="Text" />
+                    <asp:ControlParameter Name="USR_CEDULA"           Type="String"   ControlID="f_USR_CEDULA"           PropertyName="Text" />
+                    <asp:ControlParameter Name="USR_CORREO"           Type="String"   ControlID="f_USR_CORREO"           PropertyName="Text" />
+                    <asp:ControlParameter Name="USR_PUESTO"           Type="String"   ControlID="f_USR_PUESTO"           PropertyName="Text" />
+                    <asp:ControlParameter Name="USR_PASSWORD"         Type="String"   ControlID="nullHdn"                PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="CREADO_POR"           Type="String"   ControlID="nullHdn"                PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_CREACION"       Type="DateTime" ControlID="nullHdn"                PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="MODIFICADO_POR"       Type="String"   ControlID="nullHdn"                PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_MODIFICACION"   Type="DateTime" ControlID="nullHdn"                PropertyName="Text" DefaultValue="" />
                 </SelectParameters>
                 <InsertParameters>
                     <asp:Parameter Name="USR_USERNAME"          Type="String" />
                     <asp:Parameter Name="USR_NOMBRE"            Type="String" />
+                    <asp:Parameter Name="USR_SEGUNDO_NOMBRE"    Type="String" />
                     <asp:Parameter Name="USR_APELLIDO"          Type="String" />
+                    <asp:Parameter Name="USR_SEGUNDO_APELLIDO"  Type="String" />
                     <asp:Parameter Name="USR_CEDULA"            Type="String" />
                     <asp:Parameter Name="USR_CORREO"            Type="String" />
                     <asp:Parameter Name="USR_PUESTO"            Type="String" />
@@ -254,7 +258,9 @@
                 <UpdateParameters>
                     <asp:Parameter Name="USR_USERNAME"          Type="String" />
                     <asp:Parameter Name="USR_NOMBRE"            Type="String" />
+                    <asp:Parameter Name="USR_SEGUNDO_NOMBRE"    Type="String" />
                     <asp:Parameter Name="USR_APELLIDO"          Type="String" />
+                    <asp:Parameter Name="USR_SEGUNDO_APELLIDO"  Type="String" />
                     <asp:Parameter Name="USR_CEDULA"            Type="String" />
                     <asp:Parameter Name="USR_CORREO"            Type="String" />
                     <asp:Parameter Name="USR_PUESTO"            Type="String" />
@@ -286,17 +292,19 @@
                                     <Reader>
                                         <ext:JsonReader IDProperty="USR_USERNAME">
                                             <Fields>
-                                                <ext:RecordField Name="USR_USERNAME"        />
-                                                <ext:RecordField Name="USR_NOMBRE"          />
-                                                <ext:RecordField Name="USR_APELLIDO"        />
-                                                <ext:RecordField Name="USR_CEDULA"          />
-                                                <ext:RecordField Name="USR_CORREO"          />
-                                                <ext:RecordField Name="USR_PUESTO"          />
-                                                <ext:RecordField Name="USR_PASSWORD"        />
-                                                <ext:RecordField Name="CREADO_POR"          />
-                                                <ext:RecordField Name="FECHA_CREACION"      Type="Date" />
-                                                <ext:RecordField Name="MODIFICADO_POR"      />
-                                                <ext:RecordField Name="FECHA_MODIFICACION"  Type="Date" />
+                                                <ext:RecordField Name="USR_USERNAME"         />
+                                                <ext:RecordField Name="USR_NOMBRE"           />
+                                                <ext:RecordField Name="USR_SEGUNDO_NOMBRE"   />
+                                                <ext:RecordField Name="USR_APELLIDO"         />
+                                                <ext:RecordField Name="USR_SEGUNDO_APELLIDO" />
+                                                <ext:RecordField Name="USR_CEDULA"           />
+                                                <ext:RecordField Name="USR_CORREO"           />
+                                                <ext:RecordField Name="USR_PUESTO"           />
+                                                <ext:RecordField Name="USR_PASSWORD"         />
+                                                <ext:RecordField Name="CREADO_POR"           />
+                                                <ext:RecordField Name="FECHA_CREACION"       Type="Date" />
+                                                <ext:RecordField Name="MODIFICADO_POR"       />
+                                                <ext:RecordField Name="FECHA_MODIFICACION"   Type="Date" />
                                             </Fields>
                                         </ext:JsonReader>
                                     </Reader>
@@ -307,12 +315,14 @@
                             </Store>
                             <ColumnModel>
                                 <Columns>
-                                    <ext:Column DataIndex="USR_USERNAME" Header="Usuario" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="USR_NOMBRE"   Header="Nombre" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="USR_APELLIDO" Header="Apellido" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="USR_CEDULA"   Header="Cedula" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="USR_CORREO"   Header="Email" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="USR_PUESTO"   Header="Puesto" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="USR_USERNAME"         Header="Usuario" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="USR_NOMBRE"           Header="Primer Nombre" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="USR_SEGUNDO_NOMBRE"   Header="Segundo Nombre" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="USR_APELLIDO"         Header="Primer Apellido" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="USR_SEGUNDO_APELLIDO" Header="Segundo Apellido" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="USR_CEDULA"           Header="Cedula" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="USR_CORREO"           Header="Email" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="USR_PUESTO"           Header="Puesto" Sortable="true"></ext:Column>
                                 </Columns>
                             </ColumnModel>
                             <SelectionModel>
@@ -369,7 +379,25 @@
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
+                                                        <ext:TextField ID="f_USR_SEGUNDO_NOMBRE" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <Listeners>
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                            </Listeners>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
                                                         <ext:TextField ID="f_USR_APELLIDO" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <Listeners>
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                            </Listeners>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="f_USR_SEGUNDO_APELLIDO" runat="server" EnableKeyEvents="true" Icon="Find">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
@@ -447,17 +475,23 @@
                                     <Items>
                                         <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                             <Items>
-                                                <ext:TextField runat="server" ID="AddUsernameTxt"         DataIndex="USR_USERNAME"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre de Usuario" AllowBlank="false" MsgTarget="Side" Vtype="alphanum"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddNombreTxt"           DataIndex="USR_NOMBRE"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddApellidoTxt"         DataIndex="USR_APELLIDO"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Apellido" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddCedulaTxt"           DataIndex="USR_CEDULA"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cedula" AllowBlank="false" MsgTarget="Side" Vtype="alphanum"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddEmailTxt"            DataIndex="USR_CORREO"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Email" Vtype="email"  MsgTarget="Side"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddPuestoTxt"           DataIndex="USR_PUESTO"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Puesto" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddPasswordTxt"         DataIndex="USR_PASSWORD"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Clave" InputType="Password" AllowBlank="false" MsgTarget="Side"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddCreatedByTxt"        DataIndex="CREADO_POR"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado por" Hidden="true" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddCreatedDateTxt"      DataIndex="FECHA_CREACION"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddModifiedByTxt"       DataIndex="MODIFICADO_POR"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddModificationDateTxt" DataIndex="FECHA_MODIFICACION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Modificacion" Hidden="true" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddUsernameTxt"         DataIndex="USR_USERNAME"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre de Usuario" AllowBlank="false" MsgTarget="Side" Vtype="alphanum" IsRemoteValidation="true" >
+                                                    <RemoteValidation OnValidation="AddUsernameTxt_Change" />
+                                                </ext:TextField>
+                                                <ext:TextField runat="server" ID="AddNombreTxt"           DataIndex="USR_NOMBRE"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Primer Nombre" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddSegundoNombreTxt"    DataIndex="USR_SEGUNDO_NOMBRE"   LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Segundo Nombre" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddApellidoTxt"         DataIndex="USR_APELLIDO"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Primer Apellido" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddSegundoApellidoTxt"  DataIndex="USR_SEGUNDO_APELLIDO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Segundo Apellido" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddCedulaTxt"           DataIndex="USR_CEDULA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cedula" AllowBlank="false" MsgTarget="Side" Vtype="alphanum" IsRemoteValidation="true">
+                                                    <RemoteValidation OnValidation="AddCedulaTxt_Change" />
+                                                </ext:TextField>
+                                                <ext:TextField runat="server" ID="AddEmailTxt"            DataIndex="USR_CORREO"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Email" Vtype="email"  MsgTarget="Side"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddPuestoTxt"           DataIndex="USR_PUESTO"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Puesto" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddPasswordTxt"         DataIndex="USR_PASSWORD"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Clave" InputType="Password" AllowBlank="false" MsgTarget="Side"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddCreatedByTxt"        DataIndex="CREADO_POR"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado por" Hidden="true" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddCreatedDateTxt"      DataIndex="FECHA_CREACION"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddModifiedByTxt"       DataIndex="MODIFICADO_POR"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddModificationDateTxt" DataIndex="FECHA_MODIFICACION"   LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Modificacion" Hidden="true" ></ext:TextField>
                                             </Items>
                                         </ext:Panel>
                                     </Items>
@@ -501,22 +535,27 @@
                                     <Items>
                                         <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                             <Items>
-                                                <ext:TextField runat="server" ID="EditUsernameTxt"      DataIndex="USR_USERNAME"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre de Usuario" AllowBlank="false" ReadOnly="true">
+                                                <ext:TextField runat="server" ID="EditUsernameTxt"        DataIndex="USR_USERNAME"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre de Usuario" AllowBlank="false" ReadOnly="true">
                                                     <ToolTips>
                                                         <ext:ToolTip ID="ToolTip1" runat="server" Html="El nombre de usuario es de solo lectura."
                                                             Title="Nombre de Usuario" Width="200" TrackMouse="true" />
                                                     </ToolTips>
                                                 </ext:TextField>
-                                                <ext:TextField runat="server" ID="EditNombreTxt"        DataIndex="USR_NOMBRE"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditApellidoTxt"      DataIndex="USR_APELLIDO"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Apellido" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditCedulaTxt"        DataIndex="USR_CEDULA"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cedula" AllowBlank="false" MsgTarget="Side" Vtype="alphanum"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditEmailTxt"         DataIndex="USR_CORREO"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Email" Vtype="email"  MsgTarget="Side"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditPuestoTxt"        DataIndex="USR_PUESTO"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Puesto" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditPasswordTxt"      DataIndex="USR_PASSWORD"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Clave" InputType="Password" AllowBlank="false" MsgTarget="Side" Hidden="true" ReadOnly="true"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditCreatedByTxt"     DataIndex="CREADO_POR"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditCreationDateTxt"  DataIndex="FECHA_CREACION"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditModifiedByTxt"    DataIndex="MODIFICADO_POR"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditModificationDate" DataIndex="FECHA_MODIFICACION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Modificacion" Hidden="true" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditNombreTxt"          DataIndex="USR_NOMBRE"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditSegundoNombreTxt"   DataIndex="USR_SEGUNDO_NOMBRE"   LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Segundo Nombre" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditApellidoTxt"        DataIndex="USR_APELLIDO"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Primer Apellido" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditSegundoApellidoTxt" DataIndex="USR_SEGUNDO_APELLIDO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Segundo Apellido" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditCedulaTxt"          DataIndex="USR_CEDULA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cedula" AllowBlank="false" MsgTarget="Side" Vtype="alphanum" IsRemoteValidation="true" >
+                                                    <RemoteValidation OnValidation="EditCedulaTxt_Change">
+                                                    </RemoteValidation>
+                                                </ext:TextField>
+                                                <ext:TextField runat="server" ID="EditEmailTxt"           DataIndex="USR_CORREO"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Email" Vtype="email"  MsgTarget="Side"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditPuestoTxt"          DataIndex="USR_PUESTO"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Puesto" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditPasswordTxt"        DataIndex="USR_PASSWORD"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Clave" InputType="Password" AllowBlank="false" MsgTarget="Side" Hidden="true" ReadOnly="true"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditCreatedByTxt"       DataIndex="CREADO_POR"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditCreationDateTxt"    DataIndex="FECHA_CREACION"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditModifiedByTxt"      DataIndex="MODIFICADO_POR"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditModificationDate"   DataIndex="FECHA_MODIFICACION"   LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Modificacion" Hidden="true" ></ext:TextField>
                                             </Items>
                                         </ext:Panel>
                                     </Items>
@@ -554,7 +593,6 @@
                                                         <Columns>
                                                             <ext:Column DataIndex="ROL_ID" Header="Id" Sortable="true"></ext:Column>
                                                             <ext:Column DataIndex="ROL_NOMBRE" Header="Nombre" Sortable="true"></ext:Column>
-                                                            <%--<ext:Column DataIndex="ROL_DESCRIPCION" Header="Descripción" Sortable="true"></ext:Column>--%>
                                                         </Columns>
                                                     </ColumnModel>
                                                     <View>
@@ -581,15 +619,6 @@
                                                                                 </ext:TextField>
                                                                             </Component>
                                                                         </ext:HeaderColumn>
-                                                                        <%--<ext:HeaderColumn Cls="x-small-editor">
-                                                                            <Component>
-                                                                                <ext:TextField ID="f_ROL_DESCRIPCION" runat="server" EnableKeyEvents="true" Icon="Find">
-                                                                                    <Listeners>
-                                                                                        <KeyUp Handler="PageX.keyUpEvent2(this, e);" />
-                                                                                    </Listeners>
-                                                                                </ext:TextField>
-                                                                            </Component>
-                                                                        </ext:HeaderColumn>--%>
                                                                     </Columns>
                                                                 </ext:HeaderRow>
                                                             </HeaderRows>
@@ -681,7 +710,6 @@
                                         <Columns>
                                             <ext:Column DataIndex="ROL_ID" Header="Id" Sortable="true"></ext:Column>
                                             <ext:Column DataIndex="ROL_NOMBRE" Header="Nombre" Sortable="true"></ext:Column>
-                                            <%--<ext:Column DataIndex="ROL_DESCRIPCION" Header="Descripción" Sortable="true"></ext:Column>--%>
                                         </Columns>
                                     </ColumnModel>
                                     <View>
@@ -708,15 +736,6 @@
                                                                 </ext:TextField>
                                                             </Component>
                                                         </ext:HeaderColumn>
-                                                        <%--<ext:HeaderColumn Cls="x-small-editor">
-                                                            <Component>
-                                                                <ext:TextField ID="f2_ROL_DESCRIPCION" runat="server" EnableKeyEvents="true" Icon="Find">
-                                                                    <Listeners>
-                                                                        <KeyUp Handler="PageX.keyUpEvent3(this, e);" />
-                                                                    </Listeners>
-                                                                </ext:TextField>
-                                                            </Component>
-                                                        </ext:HeaderColumn>--%>
                                                     </Columns>
                                                 </ext:HeaderRow>
                                             </HeaderRows>

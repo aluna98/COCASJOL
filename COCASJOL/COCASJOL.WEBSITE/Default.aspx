@@ -90,7 +90,11 @@
                     Response.Redirect("~/Source/Desktop.aspx");
                 }
                 else
-                    X.Msg.Alert("Inicio de Sesión", "El nombre de usuario o contraseña son incorrectos.").Show();
+                {
+                    this.txtUsername.Clear();
+                    this.txtPassword.Clear();
+                    X.Msg.Alert("Inicio de Sesión", "El nombre de usuario o contraseña son incorrectos.", "#{txtUsername}.focus();").Show();
+                }
             }
             catch (Exception ex)
             {
@@ -128,7 +132,7 @@
                             Border="false">
                             <Items>
                                 <ext:TextField ID="txtUsername" runat="server" FieldLabel="Usuario" AllowBlank="false" BlankText="Se requiere su nombre de usuario." EnableKeyEvents="true" LabelAlign="Right" AnchorHorizontal="90%" MsgTarget="Side" AutoFocus="true" AutoFocusDelay="1000">
-                                    <Listeners>
+                                    <Listeners>                                        
                                         <KeyUp Handler="KeyUpEvent(this, e);" />
                                     </Listeners>
                                 </ext:TextField>

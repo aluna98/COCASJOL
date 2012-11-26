@@ -34,7 +34,9 @@ namespace COCASJOL.LOGIC.Seguridad
         public List<usuario> GetUsuarios
             (string USR_USERNAME,
             string USR_NOMBRE,
+            string USR_SEGUNDO_NOMBRE,
             string USR_APELLIDO,
+            string USR_SEGUNDO_APELLIDO,
             string USR_CEDULA,
             string USR_CORREO,
             string USR_PUESTO,
@@ -54,7 +56,9 @@ namespace COCASJOL.LOGIC.Seguridad
                                 where
                                 (string.IsNullOrEmpty(USR_USERNAME) ? true : usr.USR_USERNAME.Contains(USR_USERNAME)) &&
                                 (string.IsNullOrEmpty(USR_NOMBRE) ? true : usr.USR_NOMBRE.Contains(USR_NOMBRE)) &&
+                                (string.IsNullOrEmpty(USR_SEGUNDO_NOMBRE) ? true : usr.USR_SEGUNDO_NOMBRE.Contains(USR_SEGUNDO_NOMBRE)) &&
                                 (string.IsNullOrEmpty(USR_APELLIDO) ? true : usr.USR_APELLIDO.Contains(USR_APELLIDO)) &&
+                                (string.IsNullOrEmpty(USR_SEGUNDO_APELLIDO) ? true : usr.USR_SEGUNDO_APELLIDO.Contains(USR_SEGUNDO_APELLIDO)) &&
                                 (string.IsNullOrEmpty(USR_CEDULA) ? true : usr.USR_CEDULA.Equals(USR_CEDULA)) &&
                                 (string.IsNullOrEmpty(USR_CORREO) ? true : usr.USR_CORREO.Contains(USR_CORREO)) &&
                                 (string.IsNullOrEmpty(USR_PUESTO) ? true : usr.USR_PUESTO.Contains(USR_PUESTO)) &&
@@ -75,36 +79,6 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
-        public List<rol> GetRoles(string USR_USERNAME, int ROL_ID, string ROL_NOMBRE, string ROL_DESCRIPCION)
-        {
-            try
-            {
-                using (var db = new colinasEntities())
-                {
-                    db.roles.MergeOption = MergeOption.NoTracking;//optimizacion
-                    db.usuarios.MergeOption = MergeOption.NoTracking;//optimizacion
-
-                    var query = from r in db.roles.Include("usuarios")
-                                from u in r.usuarios
-                                where u.USR_USERNAME == USR_USERNAME
-                                select r;
-
-                    var filter = from rls in query
-                                 where
-                                 (ROL_ID.Equals(0) ? true : rls.ROL_ID.Equals(ROL_ID)) &&
-                                 (string.IsNullOrEmpty(ROL_NOMBRE) ? true : rls.ROL_NOMBRE.Contains(ROL_NOMBRE)) &&
-                                 (string.IsNullOrEmpty(ROL_DESCRIPCION) ? true : rls.ROL_DESCRIPCION.Contains(ROL_DESCRIPCION))
-                                 select rls;
-
-                    return filter.ToList<rol>();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
-
         public List<rol> GetRoles(string USR_USERNAME, int ROL_ID, string ROL_NOMBRE)
         {
             try
@@ -112,11 +86,14 @@ namespace COCASJOL.LOGIC.Seguridad
                 using (var db = new colinasEntities())
                 {
                     db.roles.MergeOption = MergeOption.NoTracking;//optimizacion
-                    db.usuarios.MergeOption = MergeOption.NoTracking;//optimizacion
 
-                    var query = from r in db.roles.Include("usuarios")
-                                from u in r.usuarios
-                                where u.USR_USERNAME == USR_USERNAME
+                    EntityKey k = new EntityKey("colinasEntities.usuarios", "USR_USERNAME", USR_USERNAME);
+
+                    var u = db.GetObjectByKey(k);
+
+                    usuario user = (usuario)u;
+
+                    var query = from r in user.roles
                                 select r;
 
                     var filter = from rls in query
@@ -125,32 +102,6 @@ namespace COCASJOL.LOGIC.Seguridad
                                  (string.IsNullOrEmpty(ROL_NOMBRE) ? true : rls.ROL_NOMBRE.Contains(ROL_NOMBRE))
                                  select rls;
 
-                    return filter.ToList<rol>();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
-
-        public List<rol> GetRolesNoDeUsuario(string USR_USERNAME, int ROL_ID, string ROL_NOMBRE, string ROL_DESCRIPCION)
-        {
-            try
-            {
-                using (var db = new colinasEntities())
-                {
-                    db.roles.MergeOption = MergeOption.NoTracking;//optimizacion
-
-                    var query = db.GetRolesNoDeUsuario(USR_USERNAME);
-
-                    var filter = from rls in query
-                                 where
-                                 (ROL_ID.Equals(0) ? true : rls.ROL_ID.Equals(ROL_ID)) &&
-                                 (string.IsNullOrEmpty(ROL_NOMBRE) ? true : rls.ROL_NOMBRE.Contains(ROL_NOMBRE)) &&
-                                 (string.IsNullOrEmpty(ROL_DESCRIPCION) ? true : rls.ROL_DESCRIPCION.Contains(ROL_DESCRIPCION))
-                                 select rls;
-                    
                     return filter.ToList<rol>();
                 }
             }
@@ -208,6 +159,33 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        public List<privilegio> GetPrivilegiosDeUsuario(string USR_USERNAME)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    db.privilegios.MergeOption = MergeOption.NoTracking;
+
+                    EntityKey k = new EntityKey("colinasEntities.usuarios", "USR_USERNAME", USR_USERNAME);
+
+                    var u = db.GetObjectByKey(k);
+
+                    usuario user = (usuario)u;
+
+                    var query = from r in user.roles
+                                from pr in r.privilegios
+                                select pr;
+
+                    return query.ToList<privilegio>();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        
         public List<privilegio> GetPrivilegiosNoDeUsuario(string USR_USERNAME)
         {
             try
@@ -234,7 +212,9 @@ namespace COCASJOL.LOGIC.Seguridad
         public void InsertarUsuario
             (string USR_USERNAME,
             string USR_NOMBRE,
+            string USR_SEGUNDO_NOMBRE,
             string USR_APELLIDO,
+            string USR_SEGUNDO_APELLIDO,
             string USR_CEDULA,
             string USR_CORREO,
             string USR_PUESTO,
@@ -251,7 +231,9 @@ namespace COCASJOL.LOGIC.Seguridad
                     usuario user = new usuario();
                     user.USR_USERNAME = USR_USERNAME;
                     user.USR_NOMBRE = USR_NOMBRE;
+                    user.USR_SEGUNDO_NOMBRE = USR_SEGUNDO_NOMBRE;
                     user.USR_APELLIDO = USR_APELLIDO;
+                    user.USR_SEGUNDO_APELLIDO = USR_SEGUNDO_APELLIDO;
                     user.USR_CEDULA = USR_CEDULA;
                     user.USR_CORREO = USR_CORREO;
                     user.USR_PUESTO = USR_PUESTO;
@@ -307,7 +289,9 @@ namespace COCASJOL.LOGIC.Seguridad
         public void ActualizarUsuario
             (string USR_USERNAME,
             string USR_NOMBRE,
+            string USR_SEGUNDO_NOMBRE,
             string USR_APELLIDO,
+            string USR_SEGUNDO_APELLIDO,
             string USR_CEDULA,
             string USR_CORREO,
             string USR_PUESTO,
@@ -329,7 +313,9 @@ namespace COCASJOL.LOGIC.Seguridad
 
                     user.USR_USERNAME = USR_USERNAME;
                     user.USR_NOMBRE = USR_NOMBRE;
+                    user.USR_SEGUNDO_NOMBRE = USR_SEGUNDO_NOMBRE;
                     user.USR_APELLIDO = USR_APELLIDO;
+                    user.USR_SEGUNDO_APELLIDO = USR_SEGUNDO_APELLIDO;
                     user.USR_CEDULA = USR_CEDULA;
                     user.USR_CORREO = USR_CORREO;
                     user.USR_PUESTO = USR_PUESTO;
@@ -376,10 +362,10 @@ namespace COCASJOL.LOGIC.Seguridad
         public void ActualizarUsuario
             (string USR_USERNAME,
             string USR_NOMBRE,
+            string USR_SEGUNDO_NOMBRE,
             string USR_APELLIDO,
-            string USR_CEDULA,
+            string USR_SEGUNDO_APELLIDO,
             string USR_CORREO,
-            string USR_PUESTO,
             string MODIFICADO_POR)
         {
             try
@@ -394,10 +380,10 @@ namespace COCASJOL.LOGIC.Seguridad
 
                     user.USR_USERNAME = USR_USERNAME;
                     user.USR_NOMBRE = USR_NOMBRE;
+                    user.USR_SEGUNDO_NOMBRE = USR_SEGUNDO_NOMBRE;
                     user.USR_APELLIDO = USR_APELLIDO;
-                    user.USR_CEDULA = USR_CEDULA;
+                    user.USR_SEGUNDO_APELLIDO = USR_SEGUNDO_APELLIDO;
                     user.USR_CORREO = USR_CORREO;
-                    user.USR_PUESTO = USR_PUESTO;
                     user.MODIFICADO_POR = MODIFICADO_POR;
                     user.FECHA_MODIFICACION = DateTime.Now;
 
@@ -489,6 +475,53 @@ namespace COCASJOL.LOGIC.Seguridad
                     }
 
                     return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public bool UsuarioExiste(string USR_USERNAME)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    db.usuarios.MergeOption = MergeOption.NoTracking;
+
+                    Object u = null;
+                    EntityKey k = new EntityKey("colinasEntities.usuarios", "USR_USERNAME", USR_USERNAME);
+
+                    if (db.TryGetObjectByKey(k, out u))
+                        return true;
+
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                
+                throw;
+            }
+        }
+
+        public bool CedulaExiste(string USR_CEDULA)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    db.usuarios.MergeOption = MergeOption.NoTracking;
+
+                    var query = from u in db.usuarios
+                                where u.USR_CEDULA == USR_CEDULA
+                                select u;
+                    if (query.Count() > 0)
+                        return true;
+                    else
+                        return false;
                 }
             }
             catch (Exception ex)

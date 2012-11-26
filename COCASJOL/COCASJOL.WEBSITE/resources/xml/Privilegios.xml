@@ -13,7 +13,7 @@
     <menuitem>RolesMenuItem</menuitem>
   </privilege>
   <privilege>
-    <key>MANT_SOCIO</key>
+    <key>MANT_SOCIOS</key>
     <module>SociosModule</module>
     <shortcut>scSocios</shortcut>
     <menuitem>SociosMenuItem</menuitem>

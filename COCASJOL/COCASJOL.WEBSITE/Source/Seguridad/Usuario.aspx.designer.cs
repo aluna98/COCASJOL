@@ -175,6 +175,15 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         protected global::Ext.Net.TextField f_USR_NOMBRE;
         
         /// <summary>
+        /// f_USR_SEGUNDO_NOMBRE control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField f_USR_SEGUNDO_NOMBRE;
+        
+        /// <summary>
         /// f_USR_APELLIDO control.
         /// </summary>
         /// <remarks>
@@ -182,6 +191,15 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField f_USR_APELLIDO;
+        
+        /// <summary>
+        /// f_USR_SEGUNDO_APELLIDO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField f_USR_SEGUNDO_APELLIDO;
         
         /// <summary>
         /// f_USR_CEDULA control.
@@ -283,6 +301,15 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         protected global::Ext.Net.TextField AddNombreTxt;
         
         /// <summary>
+        /// AddSegundoNombreTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField AddSegundoNombreTxt;
+        
+        /// <summary>
         /// AddApellidoTxt control.
         /// </summary>
         /// <remarks>
@@ -290,6 +317,15 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField AddApellidoTxt;
+        
+        /// <summary>
+        /// AddSegundoApellidoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField AddSegundoApellidoTxt;
         
         /// <summary>
         /// AddCedulaTxt control.
@@ -445,6 +481,15 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         protected global::Ext.Net.TextField EditNombreTxt;
         
         /// <summary>
+        /// EditSegundoNombreTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField EditSegundoNombreTxt;
+        
+        /// <summary>
         /// EditApellidoTxt control.
         /// </summary>
         /// <remarks>
@@ -452,6 +497,15 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField EditApellidoTxt;
+        
+        /// <summary>
+        /// EditSegundoApellidoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField EditSegundoApellidoTxt;
         
         /// <summary>
         /// EditCedulaTxt control.

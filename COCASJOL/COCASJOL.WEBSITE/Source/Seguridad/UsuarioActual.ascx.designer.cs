@@ -67,6 +67,15 @@ namespace COCASJOL.Website.Source.Seguridad {
         protected global::Ext.Net.TextField EditNombreTxt;
         
         /// <summary>
+        /// EditSegundoNombreTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField EditSegundoNombreTxt;
+        
+        /// <summary>
         /// EditApellidoTxt control.
         /// </summary>
         /// <remarks>
@@ -76,13 +85,13 @@ namespace COCASJOL.Website.Source.Seguridad {
         protected global::Ext.Net.TextField EditApellidoTxt;
         
         /// <summary>
-        /// EditCedulaTxt control.
+        /// EditSegundoApellidoTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField EditCedulaTxt;
+        protected global::Ext.Net.TextField EditSegundoApellidoTxt;
         
         /// <summary>
         /// EditEmailTxt control.
@@ -92,15 +101,6 @@ namespace COCASJOL.Website.Source.Seguridad {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField EditEmailTxt;
-        
-        /// <summary>
-        /// EditPuestoTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField EditPuestoTxt;
         
         /// <summary>
         /// EditGuardarBtn control.

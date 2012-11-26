@@ -6,6 +6,11 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 
+using System.Data;
+using System.Data.Objects;
+
+using COCASJOL.LOGIC.Seguridad;
+
 namespace COCASJOL.LOGIC.Web
 {
     public class COCASJOLBASE : Page
@@ -37,6 +42,26 @@ namespace COCASJOL.LOGIC.Web
         {
             Exception ex = base.Server.GetLastError();
             //log error
+        }
+
+        protected void ValidarCredenciales(string PRIV_LLAVE)
+        {
+            string loggedUser = Session["username"] as string;
+#if DEBUG
+            if (loggedUser == "DEVELOPER")
+                return;
+#endif
+            UsuarioLogic usuariologic = new UsuarioLogic();
+
+            List<privilegio> privs = usuariologic.GetPrivilegiosDeUsuario(loggedUser);
+
+            foreach (privilegio p in privs)
+            {
+                if (p.PRIV_LLAVE == PRIV_LLAVE)
+                    return;
+            }
+
+            base.Response.Redirect("~/NoAccess.aspx");
         }
     }
 }

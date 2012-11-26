@@ -464,7 +464,6 @@
                                                             <ext:Column DataIndex="PRIV_ID" Header="Id" Sortable="true"></ext:Column>
                                                             <ext:Column DataIndex="PRIV_LLAVE" Header="Llave" Sortable="true"></ext:Column>
                                                             <ext:Column DataIndex="PRIV_NOMBRE" Header="Nombre" Sortable="true"></ext:Column>
-                                                            <%--<ext:Column DataIndex="PRIV_DESCRIPCION" Header="Descripción" Sortable="true"></ext:Column>--%>
                                                         </Columns>
                                                     </ColumnModel>
                                                     <View>
@@ -500,15 +499,6 @@
                                                                                 </ext:TextField>
                                                                             </Component>
                                                                         </ext:HeaderColumn>
-                                                                        <%--<ext:HeaderColumn Cls="x-small-editor">
-                                                                            <Component>
-                                                                                <ext:TextField ID="f_PRIV_DESCRIPCION" runat="server" EnableKeyEvents="true" Icon="Find">
-                                                                                    <Listeners>
-                                                                                        <KeyUp Handler="PageX.keyUpEvent2(this, e);" />
-                                                                                    </Listeners>
-                                                                                </ext:TextField>
-                                                                            </Component>
-                                                                        </ext:HeaderColumn>--%>
                                                                     </Columns>
                                                                 </ext:HeaderRow>
                                                             </HeaderRows>
@@ -602,7 +592,6 @@
                                             <ext:Column DataIndex="PRIV_ID" Header="Id" Sortable="true"></ext:Column>
                                             <ext:Column DataIndex="PRIV_LLAVE" Header="Llave" Sortable="true"></ext:Column>
                                             <ext:Column DataIndex="PRIV_NOMBRE" Header="Nombre" Sortable="true"></ext:Column>
-                                            <%--<ext:Column DataIndex="PRIV_DESCRIPCION" Header="Descripción" Sortable="true"></ext:Column>--%>
                                         </Columns>
                                     </ColumnModel>
                                     <View>
@@ -638,15 +627,6 @@
                                                                 </ext:TextField>
                                                             </Component>
                                                         </ext:HeaderColumn>
-                                                        <%--<ext:HeaderColumn Cls="x-small-editor">
-                                                            <Component>
-                                                                <ext:TextField ID="f2_PRIV_DESCRIPCION" runat="server" EnableKeyEvents="true" Icon="Find">
-                                                                    <Listeners>
-                                                                        <KeyUp Handler="PageX.keyUpEvent3(this, e);" />
-                                                                    </Listeners>
-                                                                </ext:TextField>
-                                                            </Component>
-                                                        </ext:HeaderColumn>--%>
                                                     </Columns>
                                                 </ext:HeaderRow>
                                             </HeaderRows>

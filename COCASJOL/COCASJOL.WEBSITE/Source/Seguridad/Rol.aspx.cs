@@ -24,6 +24,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                 {
                     string loggedUsr = Session["username"] as string;
                     this.LoggedUserHdn.Text = loggedUsr;
+                    this.ValidarCredenciales("SYS_ROLES");
                 }
             }
             catch (Exception)

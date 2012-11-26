@@ -40,11 +40,11 @@
                                         Title="Nombre de Usuario" Width="200" TrackMouse="true" />
                                 </ToolTips>
                             </ext:TextField>
-                            <ext:TextField runat="server" ID="EditNombreTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                            <ext:TextField runat="server" ID="EditApellidoTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Apellido" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                            <ext:TextField runat="server" ID="EditCedulaTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cedula" AllowBlank="false" MsgTarget="Side" Vtype="alphanum"></ext:TextField>
+                            <ext:TextField runat="server" ID="EditNombreTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Primer Nombre" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                            <ext:TextField runat="server" ID="EditSegundoNombreTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Segundo Nombre" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                            <ext:TextField runat="server" ID="EditApellidoTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Primer Apellido" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                            <ext:TextField runat="server" ID="EditSegundoApellidoTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Segundo Apellido" MsgTarget="Side" Vtype="alpha"></ext:TextField>
                             <ext:TextField runat="server" ID="EditEmailTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Email" Vtype="email" MsgTarget="Side"></ext:TextField>
-                            <ext:TextField runat="server" ID="EditPuestoTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Puesto"></ext:TextField>
                         </Items>
                     </ext:Panel>
                 </Items>
