@@ -34,104 +34,10 @@ namespace COCASJOL.Website.Source.Productos
             }
         }
 
-        protected void RolDS_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        protected void TipoDeProductoDS_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
         {
             if (!this.IsPostBack)
                 e.Cancel = true;
         }
-
-        #region Privilegios
-
-        protected void PrivilegiosDeRolSt_Refresh(object sender, StoreRefreshDataEventArgs e)
-        {
-            try
-            {
-                int rol_id = string.IsNullOrEmpty(this.EditIdTxt.Text) ? 0 : Convert.ToInt32(this.EditIdTxt.Text);
-
-                RolLogic rollogic = new RolLogic();
-                int priv_id = string.IsNullOrEmpty(this.f_PRIV_ID.Text) ? 0 : Convert.ToInt32(this.f_PRIV_ID.Text);
-                this.PrivilegiosDeRolSt.DataSource = rollogic.GetPrivilegios(rol_id, priv_id, this.f_ROL_NOMBRE.Text, this.f_PRIV_LLAVE.Text);
-                this.PrivilegiosDeRolSt.DataBind();
-            }
-            catch (Exception)
-            {
-                //log
-                throw;
-            }
-        }
-
-        [DirectMethod(RethrowException = true)]
-        public void EditRolDeletePrivilegioBtn_Click()
-        {
-            try
-            {
-                RolLogic rollogic = new RolLogic();
-
-                int rol_id = Convert.ToInt32(this.EditIdTxt.Text);
-
-                List<int> privs = new List<int>();
-
-                foreach (SelectedRow row in this.PrivilegiosDeRolSelectionM.SelectedRows)
-                {
-                    privs.Add(Convert.ToInt32(row.RecordID));
-                }
-
-                rollogic.EliminarPrivilegios(rol_id, privs);
-
-                this.PrivilegiosDeRolSelectionM.ClearSelections();
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        protected void PrivilegiosNoDeRolesSt_Refresh(object sender, StoreRefreshDataEventArgs e)
-        {
-            try
-            {
-                int rol_id = Convert.ToInt32(this.EditIdTxt.Text);
-
-                RolLogic rollogic = new RolLogic();
-                int priv_id = string.IsNullOrEmpty(this.f2_PRIV_ID.Text) ? 0 : Convert.ToInt32(this.f2_PRIV_ID.Text);
-                this.PrivilegiosNoDeRolesSt.DataSource = rollogic.GetPrivilegiosNoDeRol(rol_id, priv_id, this.f2_PRIV_NOMBRE.Text, this.f2_PRIV_LLAVE.Text);
-                this.PrivilegiosNoDeRolesSt.DataBind();
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        [DirectMethod(RethrowException = true)]
-        public void AddPrivilegiosAddPrivilegioBtn_Click()
-        {
-            try
-            {
-                int rol_id = Convert.ToInt32(this.EditIdTxt.Text);
-
-                List<int> privs = new List<int>();
-
-                foreach (SelectedRow row in this.PrivilegiosNoDeRolSelectionM.SelectedRows)
-                {
-                    privs.Add(Convert.ToInt32(row.RecordID));
-                }
-
-
-                RolLogic rollogic = new RolLogic();
-                rollogic.InsertarPrivilegios(rol_id, privs);
-
-                this.PrivilegiosNoDeRolSelectionM.ClearSelections();
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        #endregion
     }
 }

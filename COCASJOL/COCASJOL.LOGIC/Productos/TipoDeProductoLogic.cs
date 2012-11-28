@@ -14,7 +14,7 @@ namespace COCASJOL.LOGIC.Productos
 
         #region Select
 
-        public IQueryable getTipos()
+        public IQueryable GetTiposDeProducto()
         {
             try
             {
@@ -72,7 +72,8 @@ namespace COCASJOL.LOGIC.Productos
         #region Insert
 
         public void InsertarTipoDeProducto
-            (string TIPOS_PROD_NOMBRE,
+            (int TIPOS_PROD_ID,
+            string TIPOS_PROD_NOMBRE,
             string TIPOS_PROD_DESCRIPCION,
             string CREADO_POR,
             DateTime FECHA_CREACION,
@@ -85,6 +86,7 @@ namespace COCASJOL.LOGIC.Productos
                 {
                     tipo_producto productType = new tipo_producto();
 
+                    productType.TIPOS_PROD_ID = TIPOS_PROD_ID;
                     productType.TIPOS_PROD_NOMBRE = TIPOS_PROD_NOMBRE;
                     productType.TIPOS_PROD_DESCRIPCION = TIPOS_PROD_DESCRIPCION;
                     productType.CREADO_POR = CREADO_POR;
@@ -133,7 +135,6 @@ namespace COCASJOL.LOGIC.Productos
                     productType.MODIFICADO_POR = CREADO_POR;
                     productType.FECHA_MODIFICACION = productType.FECHA_CREACION;
 
-                    db.tipos_productos.AddObject(productType);
                     db.SaveChanges();
                 }
             }
