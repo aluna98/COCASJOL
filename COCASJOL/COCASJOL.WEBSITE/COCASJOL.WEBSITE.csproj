@@ -13,6 +13,7 @@
     <RootNamespace>COCASJOL.Website</RootNamespace>
     <AssemblyName>COCASJOL.Website</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -80,6 +81,8 @@
     <Content Include="Source\Inventario\Ingresos\MantenimientoNotaDePeso.aspx" />
     <Content Include="Source\Inventario\Ingresos\NotaDePeso.aspx" />
     <Content Include="Source\Inventario\Salidas\HojaDeLiquidacion.aspx" />
+    <Content Include="Source\Productos\Productos.aspx" />
+    <Content Include="Source\Productos\TiposDeProductos.aspx" />
     <Content Include="Source\Seguridad\CambiarClave.ascx" />
     <Content Include="Source\Seguridad\Rol.aspx" />
     <Content Include="Source\Seguridad\Usuario.aspx" />
@@ -152,6 +155,20 @@
     </Compile>
     <Compile Include="Source\Inventario\Salidas\HojaDeLiquidacion.aspx.designer.cs">
       <DependentUpon>HojaDeLiquidacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Productos\Productos.aspx.cs">
+      <DependentUpon>Productos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Productos\Productos.aspx.designer.cs">
+      <DependentUpon>Productos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Productos\TiposDeProductos.aspx.cs">
+      <DependentUpon>TiposDeProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Productos\TiposDeProductos.aspx.designer.cs">
+      <DependentUpon>TiposDeProductos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Seguridad\CambiarClave.ascx.cs">
       <DependentUpon>CambiarClave.ascx</DependentUpon>

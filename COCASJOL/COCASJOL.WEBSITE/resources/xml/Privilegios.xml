@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <privilegios>
-    <privilege>
-      <key>SYS_USER</key>
-      <module>UsuariosModule</module>
-      <shortcut>scUsuarios</shortcut>
-      <menuitem>UsuariosMenuItem</menuitem>
+  <privilege>
+    <key>SYS_USER</key>
+    <module>UsuariosModule</module>
+    <shortcut>scUsuarios</shortcut>
+    <menuitem>UsuariosMenuItem</menuitem>
     </privilege>
   <privilege>
     <key>SYS_ROLES</key>

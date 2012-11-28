@@ -33,18 +33,18 @@
                 <Items>
                     <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                         <Items>
-                            <ext:TextField runat="server" ID="EditUsernameTxt" LabelAlign="Right" AnchorHorizontal="90%"
+                            <ext:TextField runat="server" ID="EditUsernameTxt"        MaxLength="45" LabelAlign="Right" AnchorHorizontal="90%"
                                 FieldLabel="Nombre de Usuario" AllowBlank="false" ReadOnly="true">
                                 <ToolTips>
                                     <ext:ToolTip ID="ToolTip1" runat="server" Html="El nombre de usuario es de solo lectura."
                                         Title="Nombre de Usuario" Width="200" TrackMouse="true" />
                                 </ToolTips>
                             </ext:TextField>
-                            <ext:TextField runat="server" ID="EditNombreTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Primer Nombre" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                            <ext:TextField runat="server" ID="EditSegundoNombreTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Segundo Nombre" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                            <ext:TextField runat="server" ID="EditApellidoTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Primer Apellido" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                            <ext:TextField runat="server" ID="EditSegundoApellidoTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Segundo Apellido" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                            <ext:TextField runat="server" ID="EditEmailTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Email" Vtype="email" MsgTarget="Side"></ext:TextField>
+                            <ext:TextField runat="server" ID="EditNombreTxt"          MaxLength="45" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Primer Nombre" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                            <ext:TextField runat="server" ID="EditSegundoNombreTxt"   MaxLength="45" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Segundo Nombre" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                            <ext:TextField runat="server" ID="EditApellidoTxt"        MaxLength="45" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Primer Apellido" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                            <ext:TextField runat="server" ID="EditSegundoApellidoTxt" MaxLength="45" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Segundo Apellido" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                            <ext:TextField runat="server" ID="EditEmailTxt"           MaxLength="30" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Email" Vtype="email" MsgTarget="Side"></ext:TextField>
                         </Items>
                     </ext:Panel>
                 </Items>

@@ -1,11 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Rol.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Seguridad.Rol" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Productos.aspx.cs" Inherits="COCASJOL.Website.Source.Productos.Productos" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
     <title></title>
     <script type="text/javascript">
         var Grid = null;
@@ -18,7 +18,7 @@
         var AlertSelMsgTitle = "Atención";
         var AlertSelMsg = "Debe seleccionar 1 elemento";
 
-        var ConfirmMsgTitle = "Rol";
+        var ConfirmMsgTitle = "Producto";
         var ConfirmUpdate = "Seguro desea modificar el rol?";
         var ConfirmDelete = "Seguro desea eliminar el rol?";
 

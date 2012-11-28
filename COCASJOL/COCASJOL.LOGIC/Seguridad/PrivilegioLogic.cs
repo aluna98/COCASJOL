@@ -43,6 +43,8 @@ namespace COCASJOL.LOGIC.Seguridad
             {
                 using (var db = new colinasEntities())
                 {
+                    db.privilegios.MergeOption = MergeOption.NoTracking;
+
                     var query = from privs in db.privilegios
                                 where
                                 (PRIV_ID.Equals(0) ? true : privs.PRIV_ID.Equals(PRIV_ID)) &&

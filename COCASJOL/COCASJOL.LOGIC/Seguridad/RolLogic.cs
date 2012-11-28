@@ -42,6 +42,8 @@ namespace COCASJOL.LOGIC.Seguridad
             {
                 using (var db = new colinasEntities())
                 {
+                    db.roles.MergeOption = MergeOption.NoTracking;
+
                     var query = from rls in db.roles
                                 where
                                 (ROL_ID.Equals(0) ? true : rls.ROL_ID.Equals(ROL_ID)) &&

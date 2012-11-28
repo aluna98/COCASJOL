@@ -361,7 +361,7 @@
                                             <Columns>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="f_USR_USERNAME" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                        <ext:TextField ID="f_USR_USERNAME" runat="server" EnableKeyEvents="true" Icon="Find"  MaxLength="45">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
@@ -370,7 +370,7 @@
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="f_USR_NOMBRE" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                        <ext:TextField ID="f_USR_NOMBRE" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="45">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
@@ -379,7 +379,7 @@
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="f_USR_SEGUNDO_NOMBRE" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                        <ext:TextField ID="f_USR_SEGUNDO_NOMBRE" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="45">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
@@ -388,7 +388,7 @@
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="f_USR_APELLIDO" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                        <ext:TextField ID="f_USR_APELLIDO" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="45">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
@@ -397,7 +397,7 @@
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="f_USR_SEGUNDO_APELLIDO" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                        <ext:TextField ID="f_USR_SEGUNDO_APELLIDO" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="45">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
@@ -406,7 +406,7 @@
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="f_USR_CEDULA" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                        <ext:TextField ID="f_USR_CEDULA" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="20">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
@@ -415,7 +415,7 @@
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="f_USR_CORREO" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                        <ext:TextField ID="f_USR_CORREO" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="30">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
@@ -424,7 +424,7 @@
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="f_USR_PUESTO" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                        <ext:TextField ID="f_USR_PUESTO" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="30">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
@@ -475,19 +475,19 @@
                                     <Items>
                                         <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                             <Items>
-                                                <ext:TextField runat="server" ID="AddUsernameTxt"         DataIndex="USR_USERNAME"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre de Usuario" AllowBlank="false" MsgTarget="Side" Vtype="alphanum" IsRemoteValidation="true" >
+                                                <ext:TextField runat="server" ID="AddUsernameTxt"         DataIndex="USR_USERNAME"         LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Nombre de Usuario" AllowBlank="false" MsgTarget="Side" Vtype="alphanum" IsRemoteValidation="true" >
                                                     <RemoteValidation OnValidation="AddUsernameTxt_Change" />
                                                 </ext:TextField>
-                                                <ext:TextField runat="server" ID="AddNombreTxt"           DataIndex="USR_NOMBRE"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Primer Nombre" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddSegundoNombreTxt"    DataIndex="USR_SEGUNDO_NOMBRE"   LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Segundo Nombre" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddApellidoTxt"         DataIndex="USR_APELLIDO"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Primer Apellido" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddSegundoApellidoTxt"  DataIndex="USR_SEGUNDO_APELLIDO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Segundo Apellido" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddCedulaTxt"           DataIndex="USR_CEDULA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cedula" AllowBlank="false" MsgTarget="Side" Vtype="alphanum" IsRemoteValidation="true">
+                                                <ext:TextField runat="server" ID="AddNombreTxt"           DataIndex="USR_NOMBRE"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Primer Nombre" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddSegundoNombreTxt"    DataIndex="USR_SEGUNDO_NOMBRE"   LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Segundo Nombre" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddApellidoTxt"         DataIndex="USR_APELLIDO"         LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Primer Apellido" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddSegundoApellidoTxt"  DataIndex="USR_SEGUNDO_APELLIDO" LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Segundo Apellido" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddCedulaTxt"           DataIndex="USR_CEDULA"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="20" FieldLabel="Cedula" AllowBlank="false" MsgTarget="Side" Vtype="alphanum" IsRemoteValidation="true">
                                                     <RemoteValidation OnValidation="AddCedulaTxt_Change" />
                                                 </ext:TextField>
-                                                <ext:TextField runat="server" ID="AddEmailTxt"            DataIndex="USR_CORREO"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Email" Vtype="email"  MsgTarget="Side"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddPuestoTxt"           DataIndex="USR_PUESTO"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Puesto" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddPasswordTxt"         DataIndex="USR_PASSWORD"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Clave" InputType="Password" AllowBlank="false" MsgTarget="Side"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddEmailTxt"            DataIndex="USR_CORREO"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="30" FieldLabel="Email" Vtype="email"  MsgTarget="Side"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddPuestoTxt"           DataIndex="USR_PUESTO"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="30" FieldLabel="Puesto" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddPasswordTxt"         DataIndex="USR_PASSWORD"         LabelAlign="Right" AnchorHorizontal="90%" MaxLength="32" FieldLabel="Clave" InputType="Password" AllowBlank="false" MsgTarget="Side" MinLength="6"></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddCreatedByTxt"        DataIndex="CREADO_POR"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado por" Hidden="true" ></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddCreatedDateTxt"      DataIndex="FECHA_CREACION"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddModifiedByTxt"       DataIndex="MODIFICADO_POR"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
@@ -535,23 +535,23 @@
                                     <Items>
                                         <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                             <Items>
-                                                <ext:TextField runat="server" ID="EditUsernameTxt"        DataIndex="USR_USERNAME"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre de Usuario" AllowBlank="false" ReadOnly="true">
+                                                <ext:TextField runat="server" ID="EditUsernameTxt"        DataIndex="USR_USERNAME"         LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Nombre de Usuario" AllowBlank="false" ReadOnly="true">
                                                     <ToolTips>
                                                         <ext:ToolTip ID="ToolTip1" runat="server" Html="El nombre de usuario es de solo lectura."
                                                             Title="Nombre de Usuario" Width="200" TrackMouse="true" />
                                                     </ToolTips>
                                                 </ext:TextField>
-                                                <ext:TextField runat="server" ID="EditNombreTxt"          DataIndex="USR_NOMBRE"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditSegundoNombreTxt"   DataIndex="USR_SEGUNDO_NOMBRE"   LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Segundo Nombre" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditApellidoTxt"        DataIndex="USR_APELLIDO"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Primer Apellido" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditSegundoApellidoTxt" DataIndex="USR_SEGUNDO_APELLIDO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Segundo Apellido" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditCedulaTxt"          DataIndex="USR_CEDULA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cedula" AllowBlank="false" MsgTarget="Side" Vtype="alphanum" IsRemoteValidation="true" >
+                                                <ext:TextField runat="server" ID="EditNombreTxt"          DataIndex="USR_NOMBRE"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditSegundoNombreTxt"   DataIndex="USR_SEGUNDO_NOMBRE"   LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Segundo Nombre" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditApellidoTxt"        DataIndex="USR_APELLIDO"         LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Primer Apellido" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditSegundoApellidoTxt" DataIndex="USR_SEGUNDO_APELLIDO" LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Segundo Apellido" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditCedulaTxt"          DataIndex="USR_CEDULA"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="20" FieldLabel="Cedula" AllowBlank="false" MsgTarget="Side" Vtype="alphanum" IsRemoteValidation="true" >
                                                     <RemoteValidation OnValidation="EditCedulaTxt_Change">
                                                     </RemoteValidation>
                                                 </ext:TextField>
-                                                <ext:TextField runat="server" ID="EditEmailTxt"           DataIndex="USR_CORREO"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Email" Vtype="email"  MsgTarget="Side"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditPuestoTxt"          DataIndex="USR_PUESTO"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Puesto" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditPasswordTxt"        DataIndex="USR_PASSWORD"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Clave" InputType="Password" AllowBlank="false" MsgTarget="Side" Hidden="true" ReadOnly="true"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditEmailTxt"           DataIndex="USR_CORREO"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="30" FieldLabel="Email" Vtype="email"  MsgTarget="Side"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditPuestoTxt"          DataIndex="USR_PUESTO"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="30" FieldLabel="Puesto" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditPasswordTxt"        DataIndex="USR_PASSWORD"         LabelAlign="Right" AnchorHorizontal="90%" MaxLength="32" FieldLabel="Clave" InputType="Password" AllowBlank="false" MsgTarget="Side" Hidden="true" ReadOnly="true"></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditCreatedByTxt"       DataIndex="CREADO_POR"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditCreationDateTxt"    DataIndex="FECHA_CREACION"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditModifiedByTxt"      DataIndex="MODIFICADO_POR"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
@@ -612,7 +612,7 @@
                                                                         </ext:HeaderColumn>
                                                                         <ext:HeaderColumn Cls="x-small-editor">
                                                                             <Component>
-                                                                                <ext:TextField ID="f_ROL_NOMBRE" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                                                <ext:TextField ID="f_ROL_NOMBRE" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="45">
                                                                                     <Listeners>
                                                                                         <KeyUp Handler="PageX.keyUpEvent2(this, e);" />
                                                                                     </Listeners>
@@ -729,7 +729,7 @@
                                                         </ext:HeaderColumn>
                                                         <ext:HeaderColumn Cls="x-small-editor">
                                                             <Component>
-                                                                <ext:TextField ID="f2_ROL_NOMBRE" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                                <ext:TextField ID="f2_ROL_NOMBRE" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="45">
                                                                     <Listeners>
                                                                         <KeyUp Handler="PageX.keyUpEvent3(this, e);" />
                                                                     </Listeners>
@@ -779,9 +779,9 @@
                     <Items>
                         <ext:Panel ID="Panel4" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                             <Items>
-                                <ext:TextField runat="server" ID="CambiarClaveUsernameTxt"  DataIndex="USR_USERNAME"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre de Usuario" AllowBlank="false" Hidden="true" ReadOnly="true"></ext:TextField>
-                                <ext:TextField runat="server" ID="CambiarClaveTxt"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nueva Contraseña"     InputType="Password" AllowBlank="false" MsgTarget="Side" ></ext:TextField>
-                                <ext:TextField runat="server" ID="CambiarClaveConfirmarTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Confirmar Contraseña" InputType="Password" AllowBlank="false" Vtype="password" MsgTarget="Side" >
+                                <ext:TextField runat="server" ID="CambiarClaveUsernameTxt"  DataIndex="USR_USERNAME" MaxLength="32" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre de Usuario" AllowBlank="false" Hidden="true" ReadOnly="true"></ext:TextField>
+                                <ext:TextField runat="server" ID="CambiarClaveTxt"                                   MaxLength="32" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nueva Contraseña"     InputType="Password" AllowBlank="false" MsgTarget="Side" MinLength="6" ></ext:TextField>
+                                <ext:TextField runat="server" ID="CambiarClaveConfirmarTxt"                          MaxLength="32" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Confirmar Contraseña" InputType="Password" AllowBlank="false" Vtype="password" MsgTarget="Side" MinLength="6" >
                                     <CustomConfig>
                                         <ext:ConfigItem Name="initialPassField" Value="#{CambiarClaveTxt}" Mode="Value" />
                                     </CustomConfig>

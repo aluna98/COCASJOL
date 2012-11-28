@@ -48,11 +48,11 @@
             <Items>
                 <ext:Panel ID="Panel4" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                     <Items>
-                        <ext:TextField runat="server" ID="CambiarClaveUsernameTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre de Usuario" AllowBlank="false" Hidden="true" ReadOnly="true"></ext:TextField>
-                        <ext:TextField runat="server" ID="CambiarClaveActualTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Contraseña Actual" InputType="Password" AllowBlank="false" Hidden="true" ReadOnly="true"></ext:TextField>
-                        <ext:TextField runat="server" ID="CambiarClaveActualConfirmarTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Confirmar Contraseña Actual" InputType="Password" AllowBlank="false" MsgTarget="Side"></ext:TextField>
-                        <ext:TextField runat="server" ID="CambiarClaveNuevaTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nueva Contraseña" InputType="Password" AllowBlank="false" MsgTarget="Side"></ext:TextField>
-                        <ext:TextField runat="server" ID="CambiarClaveNuevaConfirmarTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Confirmar Contraseña" InputType="Password" AllowBlank="false" Vtype="password" MsgTarget="Side">
+                        <ext:TextField runat="server" ID="CambiarClaveUsernameTxt"        MaxLength="45" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre de Usuario" AllowBlank="false" Hidden="true" ReadOnly="true"></ext:TextField>
+                        <ext:TextField runat="server" ID="CambiarClaveActualTxt"          MaxLength="32" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Contraseña Actual" InputType="Password" AllowBlank="false" Hidden="true" ReadOnly="true"></ext:TextField>
+                        <ext:TextField runat="server" ID="CambiarClaveActualConfirmarTxt" MaxLength="32" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Confirmar Contraseña Actual" InputType="Password" AllowBlank="false" MsgTarget="Side" ></ext:TextField>
+                        <ext:TextField runat="server" ID="CambiarClaveNuevaTxt"           MaxLength="32" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nueva Contraseña" InputType="Password" AllowBlank="false" MsgTarget="Side" MinLength="6" ></ext:TextField>
+                        <ext:TextField runat="server" ID="CambiarClaveNuevaConfirmarTxt"  MaxLength="32" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Confirmar Contraseña" InputType="Password" AllowBlank="false" Vtype="password" MsgTarget="Side" MinLength="6" >
                             <CustomConfig>
                                 <ext:ConfigItem Name="initialPassField" Value="#{CambiarClaveNuevaTxt}" Mode="Value" />
                             </CustomConfig>

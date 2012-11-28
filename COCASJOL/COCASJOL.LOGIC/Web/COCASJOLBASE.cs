@@ -47,6 +47,7 @@ namespace COCASJOL.LOGIC.Web
         protected void ValidarCredenciales(string PRIV_LLAVE)
         {
             string loggedUser = Session["username"] as string;
+
 #if DEBUG
             if (loggedUser == "DEVELOPER")
                 return;
