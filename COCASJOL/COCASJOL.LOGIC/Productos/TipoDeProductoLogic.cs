@@ -130,10 +130,8 @@ namespace COCASJOL.LOGIC.Productos
 
                     productType.TIPOS_PROD_NOMBRE = TIPOS_PROD_NOMBRE;
                     productType.TIPOS_PROD_DESCRIPCION = TIPOS_PROD_DESCRIPCION;
-                    productType.CREADO_POR = CREADO_POR;
-                    productType.FECHA_CREACION = DateTime.Today;
-                    productType.MODIFICADO_POR = CREADO_POR;
-                    productType.FECHA_MODIFICACION = productType.FECHA_CREACION;
+                    productType.MODIFICADO_POR = MODIFICADO_POR;
+                    productType.FECHA_MODIFICACION = DateTime.Today;
 
                     db.SaveChanges();
                 }
