@@ -325,8 +325,6 @@
     <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Slate">
         <Listeners>
             <DocumentReady Handler="SocioX.setReferences()" />
-            <%--<BeforeAjaxRequest Handler="Ext.net.Mask.show();" />
-            <AjaxRequestComplete Handler="Ext.net.Mask.hide();" />--%>
         </Listeners>
     </ext:ResourceManager>
     <div>
@@ -370,6 +368,8 @@
                                                 <ext:RecordField Name="GENERAL_EMPRESA_CARGO" ServerMapping="socios_generales.GENERAL_EMPRESA_CARGO" />
                                                 <ext:RecordField Name="GENERAL_EMPRESA_DIRECCION" ServerMapping="socios_generales.GENERAL_EMPRESA_DIRECCION" />
                                                 <ext:RecordField Name="GENERAL_EMPRESA_TELEFONO" ServerMapping="socios_generales.GENERAL_EMPRESA_TELEFONO" />
+                                                <ext:RecordField Name="GENERAL_SEGURO" ServerMapping="socios_generales.GENERAL_SEGURO" />
+                                                <ext:RecordField Name="GENERAL_FECHA_ACEPTACION" type="Date" ServerMapping="socios_generales.GENERAL_FECHA_ACEPTACION" />
                                                 <ext:RecordField Name="PRODUCCION_UBICACION_FINCA" ServerMapping="socios_produccion.PRODUCCION_UBICACION_FINCA" />
                                                 <ext:RecordField Name="PRODUCCION_AREA" ServerMapping="socios_produccion.PRODUCCION_AREA" />
                                                 <ext:RecordField Name="PRODUCCION_VARIEDAD" ServerMapping="socios_produccion.PRODUCCION_VARIEDAD" />
@@ -410,6 +410,8 @@
                                                 <ext:Parameter Name="GENERAL_EMPRESA_CARGO"             Mode="Raw"     Value="#{EditCargoTxt}.getValue()" />
                                                 <ext:Parameter Name="GENERAL_EMPRESA_DIRECCION"         Mode="Raw"     Value="#{EditDireccionTxt}.getValue()" />
                                                 <ext:Parameter Name="GENERAL_EMPRESA_TELEFONO"          Mode="Raw"     Value="#{EditTelefonoTxt}.getValue()" />
+                                                <ext:Parameter Name="GENERAL_SEGURO"                    Mode="Raw"     Value="#{EditSeguroTxt}.getValue()" />
+                                                <ext:Parameter Name="GENERAL_FECHA_ACEPTACION"          Mode="Raw"     Value="#{EditAceptacionTxt}.getValue()" />
                                                 <ext:Parameter Name="PRODUCCION_UBICACION_FINCA"        Mode="Raw"     Value="#{EditUbicacionTxt}.getValue()" />
                                                 <ext:Parameter Name="PRODUCCION_AREA"                   Mode="Raw"     Value="#{EditAreaTxt}.getValue()" />
                                                 <ext:Parameter Name="PRODUCCION_VARIEDAD"               Mode="Raw"     Value="#{EditVariedadTxt}.getValue()" />
@@ -450,6 +452,8 @@
                                                 <ext:Parameter Name="GENERAL_EMPRESA_CARGO"             Mode="Raw"     Value="#{AddCargoTxt}.getValue()" />
                                                 <ext:Parameter Name="GENERAL_EMPRESA_DIRECCION"         Mode="Raw"     Value="#{AddDireccionTxt}.getValue()" />
                                                 <ext:Parameter Name="GENERAL_EMPRESA_TELEFONO"          Mode="Raw"     Value="#{AddEmpresaTelefonoTxt}.getValue()" />
+                                                <ext:Parameter Name="GENERAL_SEGURO"                    Mode="Raw"     Value="#{AddSeguroTxt}.getValue()" />
+                                                <ext:Parameter Name="GENERAL_FECHA_ACEPTACION"          Mode="Raw"     Value="#{AddFechaAceptacionTxt}.getValue()" />
                                                 <ext:Parameter Name="PRODUCCION_UBICACION_FINCA"        Mode="Raw"     Value="#{AddUbicacionTxt}.getValue()" />
                                                 <ext:Parameter Name="PRODUCCION_AREA"                   Mode="Raw"     Value="#{AddAreaTxt}.getValue()" />
                                                 <ext:Parameter Name="PRODUCCION_VARIEDAD"               Mode="Raw"     Value="#{AddVariedadTxt}.getValue()" />
@@ -468,12 +472,12 @@
                              <TopBar>
                                 <ext:Toolbar ID="Toolbar1" runat="server">
                                     <Items>
-                                        <ext:Button ID="Button1" runat="server" Text="Add" Icon="Add">
+                                        <ext:Button ID="Button1" runat="server" Text="Agregar" Icon="Add">
                                             <Listeners>
                                                 <Click Handler="SocioX.add()" />
                                             </Listeners>
                                         </ext:Button>
-                                        <ext:Button ID="Button3" runat="server" Text="Edit" Icon="ApplicationEdit">
+                                        <ext:Button ID="Button3" runat="server" Text="Editar" Icon="ApplicationEdit">
                                             <Listeners>
                                                 <Click Handler="SocioX.edit()" />
                                             </Listeners>
@@ -498,7 +502,7 @@
                                             <Columns>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="FilterSocioId" runat="server" EnableKeyEvents="true">
+                                                        <ext:TextField ID="FilterSocioId" runat="server" EnableKeyEvents="true" Icon="Find">
                                                             <Listeners>
                                                                 <KeyUp Handler="applyFilter(this);" Buffer="250" />                                                
                                                             </Listeners>
@@ -508,7 +512,7 @@
 
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="Filter1erNombre" runat="server"  EnableKeyEvents="true">
+                                                        <ext:TextField ID="Filter1erNombre" runat="server"  EnableKeyEvents="true" Icon="Find">
                                                             <Listeners>
                                                                 <KeyUp Handler="applyFilter(this);" Buffer="250" />
                                                             </Listeners>
@@ -518,7 +522,7 @@
 
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="Filter2doNombre" runat="server"  EnableKeyEvents="true">
+                                                        <ext:TextField ID="Filter2doNombre" runat="server"  EnableKeyEvents="true" Icon="Find">
                                                             <Listeners>
                                                                 <KeyUp Handler="applyFilter(this);" Buffer="250" />
                                                             </Listeners>
@@ -528,7 +532,7 @@
 
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="Filter1erApellido" runat="server"  EnableKeyEvents="true">
+                                                        <ext:TextField ID="Filter1erApellido" runat="server"  EnableKeyEvents="true" Icon="Find">
                                                             <Listeners>
                                                                 <KeyUp Handler="applyFilter(this);" Buffer="250" />
                                                             </Listeners>
@@ -538,7 +542,7 @@
 
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="Filter2doApellido" runat="server"  EnableKeyEvents="true">
+                                                        <ext:TextField ID="Filter2doApellido" runat="server"  EnableKeyEvents="true" Icon="Find">
                                                             <Listeners>
                                                                 <KeyUp Handler="applyFilter(this);" Buffer="250" />
                                                             </Listeners>
@@ -548,7 +552,7 @@
                                  
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="FilterResidencia" runat="server"  EnableKeyEvents="true">
+                                                        <ext:TextField ID="FilterResidencia" runat="server"  EnableKeyEvents="true" Icon="Find">
                                                             <Listeners>
                                                                 <KeyUp Handler="applyFilter(this);" Buffer="250" />
                                                             </Listeners>
@@ -558,7 +562,7 @@
                                  
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="FilterIdentidad" runat="server"  EnableKeyEvents="true">
+                                                        <ext:TextField ID="FilterIdentidad" runat="server"  EnableKeyEvents="true" Icon="Find">
                                                             <Listeners>
                                                                 <KeyUp Handler="applyFilter(this);" Buffer="250" />
                                                             </Listeners>
@@ -568,7 +572,7 @@
 
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="FilterRTN" runat="server"  EnableKeyEvents="true">
+                                                        <ext:TextField ID="FilterRTN" runat="server"  EnableKeyEvents="true" Icon="Find">
                                                             <Listeners>
                                                                 <KeyUp Handler="applyFilter(this);" Buffer="250" />
                                                             </Listeners>
@@ -668,7 +672,13 @@
                <Hide Handler="EditarSocioFormP.getForm().reset()" />
             </Listeners>
             <Items>
-                <ext:FormPanel ID="EditarSocioFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelAlign="Right">
+                <ext:FormPanel ID="EditarSocioFormP" 
+                        runat="server" 
+                        Title="Form Panel" 
+                        Header="false" 
+                        ButtonAlign="Right" 
+                        MonitorValid="true" 
+                        LabelAlign="Right">
                     <Items>
                         <ext:TabPanel ID="TabPanel11" runat="server">
                             <Items>
@@ -686,10 +696,10 @@
                                                 <ext:TextField runat="server" ID="EditLugarNacimientoTxt"   DataIndex="SOCIOS_LUGAR_DE_NACIMIENTO"   FieldLabel="Lugar de Nacimiento "   AnchorHorizontal="90%" MaxLength="100" AllowBlank="false"   ></ext:TextField>
                                                 <ext:DateField runat="server" ID="EditFechaNacimientoTxt"   DataIndex="SOCIOS_FECHA_DE_NACIMIENTO"   FieldLabel="Fecha de Nacimiento "   AnchorHorizontal="90%"                 AllowBlank="false"   Format="d MMM y" ></ext:DateField>
                                                 <ext:TextField runat="server" ID="EditNivelEducativoTxt"    DataIndex="SOCIOS_NIVEL_EDUCATIVO"       FieldLabel="Nivel Educativo     "   AnchorHorizontal="90%" MaxLength="45" AllowBlank="false"   ></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditIdentidadTxt"         DataIndex="SOCIOS_IDENTIDAD"             FieldLabel="Tarjeta de Identidad"   AnchorHorizontal="90%" MaxLength="20" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditSocioProfesionTxt"    DataIndex="SOCIOS_PROFESION"             FieldLabel="Profesion           "   AnchorHorizontal="90%" MaxLength="45" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditSocioRTNTxt"          DataIndex="SOCIOS_RTN"                   FieldLabel="RTN                 "   AnchorHorizontal="90%" MaxLength="25" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditSocioTelfono"         DataIndex="SOCIOS_TELEFONO"              FieldLabel="Telefono            "   AnchorHorizontal="90%" MaxLength="20" AllowBlank="false"   ></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditIdentidadTxt"         DataIndex="SOCIOS_IDENTIDAD"             FieldLabel="Tarjeta de Identidad"   AnchorHorizontal="90%" MaxLength="20" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditLugarEmisionTxt"      DataIndex="SOCIOS_LUGAR_DE_EMISION"      FieldLabel="Lugar de Emision    "   AnchorHorizontal="90%" MaxLength="100" AllowBlank="false"   ></ext:TextField>
                                                 <ext:DateField runat="server" ID="EditFechaEmisionTxt"      DataIndex="SOCIOS_FECHA_DE_EMISION"      FieldLabel="Fecha de Emision    "   AnchorHorizontal="90%" AllowBlank="false"   Format="d MMM y"></ext:DateField>                                                
                                             </Items>                                                               
@@ -700,13 +710,15 @@
                                     <Items>
                                         <ext:Panel ID="Panel2" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                             <Items>
-                                                <ext:TextField runat="server" ID="EditCarnetIhcafeTxt"  DataIndex="GENERAL_CARNET_IHCAFE"            FieldLabel="Carnet IHCAFE"   AnchorHorizontal="90%" MaxLength="25" />
-                                                <ext:TextField runat="server" ID="EditOrgSecundTxt"     DataIndex="GENERAL_ORGANIZACION_SECUNDARIA"  FieldLabel="Org. Secundaria" AnchorHorizontal="90%" MaxLength="45" />
-                                                <ext:TextField runat="server" ID="EditNumCarnetTxt"     DataIndex="GENERAL_NUMERO_CARNET"            FieldLabel="No. Carnet"      AnchorHorizontal="90%" MaxLength="45" />
-                                                <ext:TextField runat="server" ID="EditEmpresaTxt"       DataIndex="GENERAL_EMPRESA_LABORA"           FieldLabel="Empresa"         AnchorHorizontal="90%" MaxLength="45" />
-                                                <ext:TextField runat="server" ID="EditCargoTxt"         DataIndex="GENERAL_EMPRESA_CARGO"            FieldLabel="Cargo"           AnchorHorizontal="90%" MaxLength="45" />
-                                                <ext:TextField runat="server" ID="EditDireccionTxt"     DataIndex="GENERAL_EMPRESA_DIRECCION"        FieldLabel="Direccion"       AnchorHorizontal="90%" MaxLength="100" />
-                                                <ext:TextField runat="server" ID="EditTelefonoTxt"      DataIndex="GENERAL_EMPRESA_TELEFONO"         FieldLabel="Telefono"        AnchorHorizontal="90%" MaxLength="20" />
+                                                <ext:TextField runat="server" ID="EditCarnetIhcafeTxt"  DataIndex="GENERAL_CARNET_IHCAFE"            FieldLabel="Carnet IHCAFE"     AnchorHorizontal="90%" MaxLength="25" />
+                                                <ext:TextField runat="server" ID="EditOrgSecundTxt"     DataIndex="GENERAL_ORGANIZACION_SECUNDARIA"  FieldLabel="Org. Secundaria"   AnchorHorizontal="90%" MaxLength="45" />
+                                                <ext:TextField runat="server" ID="EditNumCarnetTxt"     DataIndex="GENERAL_NUMERO_CARNET"            FieldLabel="No. Carnet"        AnchorHorizontal="90%" MaxLength="45" />
+                                                <ext:TextField runat="server" ID="EditEmpresaTxt"       DataIndex="GENERAL_EMPRESA_LABORA"           FieldLabel="Empresa"           AnchorHorizontal="90%" MaxLength="45" />
+                                                <ext:TextField runat="server" ID="EditCargoTxt"         DataIndex="GENERAL_EMPRESA_CARGO"            FieldLabel="Cargo"             AnchorHorizontal="90%" MaxLength="45" />
+                                                <ext:TextField runat="server" ID="EditDireccionTxt"     DataIndex="GENERAL_EMPRESA_DIRECCION"        FieldLabel="Direccion"         AnchorHorizontal="90%" MaxLength="100" />
+                                                <ext:TextField runat="server" ID="EditTelefonoTxt"      DataIndex="GENERAL_EMPRESA_TELEFONO"         FieldLabel="Telefono"          AnchorHorizontal="90%" MaxLength="20" />
+                                                <ext:TextField runat="server" ID="EditSeguroTxt"        DataIndex="GENERAL_SEGURO"                   FieldLabel="Carnet Seguro"     AnchorHorizontal="90%" MaxLength="45" />
+                                                <ext:DateField runat="server" ID="EditAceptacionTxt"    DataIndex="GENERAL_FECHA_ACEPTACION"         FieldLabel="Fecha Aceptacion"  AnchorHorizontal="90%" Format="d MMM y"></ext:DateField>
                                             </Items>
                                          </ext:Panel>
                                     </Items>
@@ -829,7 +841,7 @@
             runat="server"
             Hidden="true"
             Icon="UserAdd"
-            Title="Editar Socio"
+            Title="Agregar Nuevo Socio"
             Width="550"
             Layout="FormLayout"
             AutoHeight="True"
@@ -859,12 +871,13 @@
                                                 <ext:TextField runat="server" ID="AddLugarNacTxt"           DataIndex="SOCIOS_LUGAR_DE_NACIMIENTO"  FieldLabel="Lugar de Nacimiento"    AnchorHorizontal="90%" MaxLength="100" AllowBlank="false"   ></ext:TextField>
                                                 <ext:DateField runat="server" ID="AddFechaNacTxt"           DataIndex="SOCIOS_FECHA_DE_NACIMIENTO"  FieldLabel="Fecha de Nacimiento"    AnchorHorizontal="90%"                AllowBlank="false"   Format="d MMM y" ></ext:DateField>
                                                 <ext:TextField runat="server" ID="AddNivelEducTxt"          DataIndex="SOCIOS_NIVEL_EDUCATIVO"      FieldLabel="Nivel Educativo"        AnchorHorizontal="90%" MaxLength="45" AllowBlank="false"   ></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddIdentidadTxt"          DataIndex="SOCIOS_IDENTIDAD"            FieldLabel="Tarjeta de Identidad"   AnchorHorizontal="90%" MaxLength="20" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddProfesionTxt"          DataIndex="SOCIOS_PROFESION"            FieldLabel="Profesion"              AnchorHorizontal="90%" MaxLength="45" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddRTNTxt"                DataIndex="SOCIOS_RTN"                  FieldLabel="RTN"                    AnchorHorizontal="90%" MaxLength="25" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddTelefonoTxt"           DataIndex="SOCIOS_TELEFONO"             FieldLabel="Telefono"               AnchorHorizontal="90%" MaxLength="20" AllowBlank="false"   ></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddIdentidadTxt"          DataIndex="SOCIOS_IDENTIDAD"            FieldLabel="Tarjeta de Identidad"   AnchorHorizontal="90%" MaxLength="20" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddLugarEmisionTxt"       DataIndex="SOCIOS_LUGAR_DE_EMISION"     FieldLabel="Lugar de Emision"       AnchorHorizontal="90%" MaxLength="100" AllowBlank="false"   ></ext:TextField>
-                                                <ext:DateField runat="server" ID="AddFechaEmisionTxt"       DataIndex="SOCIOS_FECHA_DE_EMISION"     FieldLabel="Fecha de Emision"       AnchorHorizontal="90%" AllowBlank="false"   Format="d MMM y"></ext:DateField>                                                
+                                                <ext:DateField runat="server" ID="AddFechaEmisionTxt"       DataIndex="SOCIOS_FECHA_DE_EMISION"     FieldLabel="Fecha de Emision"       AnchorHorizontal="90%" AllowBlank="false"   Format="d MMM y"></ext:DateField>
+                                                <ext:DateField runat="server" ID="AddFechaAceptacionTxt"    DataIndex="GENERAL_FECHA_ACEPTACION"    FieldLabel="Fecha de Aceptacion"   AnchorHorizontal="90%" AllowBlank="false"   Format="d MMM y" />
                                             </Items>                                                               
                                         </ext:Panel>
                                     </Items>
@@ -873,13 +886,14 @@
                                     <Items>
                                         <ext:Panel ID="Panel7" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                             <Items>
-                                                <ext:TextField runat="server" ID="AddCarnetIHCAFETxt"       DataIndex="GENERAL_CARNET_IHCAFE"           FieldLabel="Carnet IHCAFE"   AnchorHorizontal="90%" MaxLength="25" />
-                                                <ext:TextField runat="server" ID="AddOrganizacionSecunTxt"  DataIndex="GENERAL_ORGANIZACION_SECUNDARIA" FieldLabel="Org. Secundaria" AnchorHorizontal="90%" MaxLength="45" />
-                                                <ext:TextField runat="server" ID="AddNumCarnetTxt"          DataIndex="GENERAL_NUMERO_CARNET"           FieldLabel="No. Carnet"      AnchorHorizontal="90%" MaxLength="45" />
-                                                <ext:TextField runat="server" ID="AddEmpresaTxt"            DataIndex="GENERAL_EMPRESA_LABORA"          FieldLabel="Empresa"         AnchorHorizontal="90%" MaxLength="45" />
-                                                <ext:TextField runat="server" ID="AddCargoTxt"              DataIndex="GENERAL_EMPRESA_CARGO"           FieldLabel="Cargo"           AnchorHorizontal="90%" MaxLength="45" />
-                                                <ext:TextField runat="server" ID="AddDireccionTxt"          DataIndex="GENERAL_EMPRESA_DIRECCION"       FieldLabel="Direccion"       AnchorHorizontal="90%" MaxLength="100" />
-                                                <ext:TextField runat="server" ID="AddEmpresaTelefonoTxt"    DataIndex="GENERAL_EMPRESA_TELEFONO"        FieldLabel="Telefono"        AnchorHorizontal="90%" MaxLength="20" />
+                                                <ext:TextField runat="server" ID="AddCarnetIHCAFETxt"       DataIndex="GENERAL_CARNET_IHCAFE"           FieldLabel="Carnet IHCAFE"      AnchorHorizontal="90%" MaxLength="25" />
+                                                <ext:TextField runat="server" ID="AddOrganizacionSecunTxt"  DataIndex="GENERAL_ORGANIZACION_SECUNDARIA" FieldLabel="Org. Secundaria"    AnchorHorizontal="90%" MaxLength="45" />
+                                                <ext:TextField runat="server" ID="AddNumCarnetTxt"          DataIndex="GENERAL_NUMERO_CARNET"           FieldLabel="No. Carnet"         AnchorHorizontal="90%" MaxLength="45" />
+                                                <ext:TextField runat="server" ID="AddEmpresaTxt"            DataIndex="GENERAL_EMPRESA_LABORA"          FieldLabel="Empresa"            AnchorHorizontal="90%" MaxLength="45" />
+                                                <ext:TextField runat="server" ID="AddCargoTxt"              DataIndex="GENERAL_EMPRESA_CARGO"           FieldLabel="Cargo"              AnchorHorizontal="90%" MaxLength="45" />
+                                                <ext:TextField runat="server" ID="AddDireccionTxt"          DataIndex="GENERAL_EMPRESA_DIRECCION"       FieldLabel="Direccion"          AnchorHorizontal="90%" MaxLength="100" />
+                                                <ext:TextField runat="server" ID="AddEmpresaTelefonoTxt"    DataIndex="GENERAL_EMPRESA_TELEFONO"        FieldLabel="Telefono"           AnchorHorizontal="90%" MaxLength="20" />
+                                                <ext:TextField runat="server" ID="AddSeguroTxt"             DataIndex="GENERAL_SEGURO"                  FieldLabel="Carnet del Seguro"  AnchorHorizontal="90%" MaxLength="45" />
                                             </Items>
                                          </ext:Panel>
                                     </Items>

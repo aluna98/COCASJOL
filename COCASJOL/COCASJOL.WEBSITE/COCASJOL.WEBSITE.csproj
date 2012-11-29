@@ -81,6 +81,8 @@
     <Content Include="Source\Inventario\Ingresos\MantenimientoNotaDePeso.aspx" />
     <Content Include="Source\Inventario\Ingresos\NotaDePeso.aspx" />
     <Content Include="Source\Inventario\Salidas\HojaDeLiquidacion.aspx" />
+    <Content Include="Source\Prestamos\Prestamos.aspx" />
+    <Content Include="Source\Prestamos\SolicitudPrestamo.aspx" />
     <Content Include="Source\Productos\Productos.aspx" />
     <Content Include="Source\Productos\TiposDeProductos.aspx" />
     <Content Include="Source\Seguridad\CambiarClave.ascx" />
@@ -155,6 +157,20 @@
     </Compile>
     <Compile Include="Source\Inventario\Salidas\HojaDeLiquidacion.aspx.designer.cs">
       <DependentUpon>HojaDeLiquidacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Prestamos\Prestamos.aspx.cs">
+      <DependentUpon>Prestamos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Prestamos\Prestamos.aspx.designer.cs">
+      <DependentUpon>Prestamos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Prestamos\SolicitudPrestamo.aspx.cs">
+      <DependentUpon>SolicitudPrestamo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Prestamos\SolicitudPrestamo.aspx.designer.cs">
+      <DependentUpon>SolicitudPrestamo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Productos\Productos.aspx.cs">
       <DependentUpon>Productos.aspx</DependentUpon>
