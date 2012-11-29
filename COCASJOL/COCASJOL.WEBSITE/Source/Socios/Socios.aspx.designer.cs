@@ -391,15 +391,6 @@ namespace COCASJOL.Website.Socios {
         protected global::Ext.Net.TextField EditNivelEducativoTxt;
         
         /// <summary>
-        /// EditIdentidadTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField EditIdentidadTxt;
-        
-        /// <summary>
         /// EditSocioProfesionTxt control.
         /// </summary>
         /// <remarks>
@@ -425,6 +416,15 @@ namespace COCASJOL.Website.Socios {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField EditSocioTelfono;
+        
+        /// <summary>
+        /// EditIdentidadTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField EditIdentidadTxt;
         
         /// <summary>
         /// EditLugarEmisionTxt control.
@@ -524,6 +524,24 @@ namespace COCASJOL.Website.Socios {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField EditTelefonoTxt;
+        
+        /// <summary>
+        /// EditSeguroTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField EditSeguroTxt;
+        
+        /// <summary>
+        /// EditAceptacionTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DateField EditAceptacionTxt;
         
         /// <summary>
         /// PanelProd control.
@@ -886,15 +904,6 @@ namespace COCASJOL.Website.Socios {
         protected global::Ext.Net.TextField AddNivelEducTxt;
         
         /// <summary>
-        /// AddIdentidadTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField AddIdentidadTxt;
-        
-        /// <summary>
         /// AddProfesionTxt control.
         /// </summary>
         /// <remarks>
@@ -922,6 +931,15 @@ namespace COCASJOL.Website.Socios {
         protected global::Ext.Net.TextField AddTelefonoTxt;
         
         /// <summary>
+        /// AddIdentidadTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField AddIdentidadTxt;
+        
+        /// <summary>
         /// AddLugarEmisionTxt control.
         /// </summary>
         /// <remarks>
@@ -938,6 +956,15 @@ namespace COCASJOL.Website.Socios {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.DateField AddFechaEmisionTxt;
+        
+        /// <summary>
+        /// AddFechaAceptacionTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DateField AddFechaAceptacionTxt;
         
         /// <summary>
         /// PanelGeneral control.
@@ -1019,6 +1046,15 @@ namespace COCASJOL.Website.Socios {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField AddEmpresaTelefonoTxt;
+        
+        /// <summary>
+        /// AddSeguroTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField AddSeguroTxt;
         
         /// <summary>
         /// PanelProduccion control.

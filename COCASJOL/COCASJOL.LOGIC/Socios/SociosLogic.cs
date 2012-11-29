@@ -86,6 +86,7 @@ namespace COCASJOL.LOGIC.Socios
            
 
         }
+
         public void ActualizarSocio(
             string SOCIOS_ID,
             string SOCIOS_PRIMER_NOMBRE,
@@ -110,6 +111,8 @@ namespace COCASJOL.LOGIC.Socios
             string GENERAL_EMPRESA_CARGO,
             string GENERAL_EMPRESA_DIRECCION, 
             string GENERAL_EMPRESA_TELEFONO,
+            string GENERAL_SEGURO,
+            string GENERAL_FECHA_ACEPTACION,
             string PRODUCCION_UBICACION_FINCA,
             string PRODUCCION_AREA,
             string PRODUCCION_VARIEDAD,
@@ -157,6 +160,8 @@ namespace COCASJOL.LOGIC.Socios
                 socio.socios_generales.GENERAL_EMPRESA_CARGO = GENERAL_EMPRESA_CARGO;
                 socio.socios_generales.GENERAL_EMPRESA_DIRECCION = GENERAL_EMPRESA_DIRECCION;
                 socio.socios_generales.GENERAL_EMPRESA_TELEFONO = GENERAL_EMPRESA_TELEFONO;
+                socio.socios_generales.GENERAL_SEGURO = GENERAL_SEGURO;
+                socio.socios_generales.GENERAL_FECHA_ACEPTACION = DateTime.Parse(GENERAL_FECHA_ACEPTACION);
                 socio.socios_produccion.PRODUCCION_UBICACION_FINCA = PRODUCCION_UBICACION_FINCA;
                 socio.socios_produccion.PRODUCCION_AREA = PRODUCCION_AREA;
                 socio.socios_produccion.PRODUCCION_VARIEDAD = PRODUCCION_VARIEDAD;
@@ -207,6 +212,8 @@ namespace COCASJOL.LOGIC.Socios
             string GENERAL_EMPRESA_CARGO,
             string GENERAL_EMPRESA_DIRECCION,
             string GENERAL_EMPRESA_TELEFONO,
+            string GENERAL_SEGURO,
+            string GENERAL_FECHA_ACEPTACION,
             string PRODUCCION_UBICACION_FINCA,
             string PRODUCCION_AREA,
             string PRODUCCION_VARIEDAD,
@@ -231,7 +238,7 @@ namespace COCASJOL.LOGIC.Socios
                             select cod;
 
                 codigo c = query.First();
-                string NuevoCodigo = letra + c.CODIGO_NUMERO;
+                string NuevoCodigo = c.CODIGO_LETRA + c.CODIGO_NUMERO;
                 c.CODIGO_NUMERO = c.CODIGO_NUMERO + 1;
                 socio soc = new socio();
                 soc.SOCIOS_ID = NuevoCodigo;
@@ -265,6 +272,8 @@ namespace COCASJOL.LOGIC.Socios
                 socgen.GENERAL_EMPRESA_CARGO = GENERAL_EMPRESA_CARGO;
                 socgen.GENERAL_EMPRESA_DIRECCION = GENERAL_EMPRESA_DIRECCION;
                 socgen.GENERAL_EMPRESA_TELEFONO = GENERAL_EMPRESA_TELEFONO;
+                socgen.GENERAL_SEGURO = GENERAL_SEGURO;
+                socgen.GENERAL_FECHA_ACEPTACION = DateTime.Parse(GENERAL_FECHA_ACEPTACION);
                 db.socios_generales.AddObject(socgen);
                 socio_produccion socprod = new socio_produccion();
                 socprod.SOCIOS_ID = NuevoCodigo;

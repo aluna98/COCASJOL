@@ -23,14 +23,12 @@ namespace COCASJOL.Website.Socios
         protected void Page_Load(object sender, EventArgs e)
         {
             confirm = false;
-
             this.ResourceManager1.DirectMethodNamespace = "CompanyX";
 
             if (!X.IsAjaxRequest)
             {
                 string loggedUsr = Session["username"] as string;
                 this.LoggedUserHdn.Text = loggedUsr;
-                this.ValidarCredenciales("MANT_SOCIOS");
             }
         }
 
@@ -198,6 +196,8 @@ namespace COCASJOL.Website.Socios
                 e.ExtraParams["GENERAL_EMPRESA_CARGO"],
                 e.ExtraParams["GENERAL_EMPRESA_DIRECCION"],
                 e.ExtraParams["GENERAL_EMPRESA_TELEFONO"],
+                e.ExtraParams["GENERAL_SEGURO"],
+                e.ExtraParams["GENERAL_FECHA_ACEPTACION"],
                 e.ExtraParams["PRODUCCION_UBICACION_FINCA"],
                 e.ExtraParams["PRODUCCION_AREA"],
                 e.ExtraParams["PRODUCCION_VARIEDAD"],
@@ -249,6 +249,8 @@ namespace COCASJOL.Website.Socios
                 AddCargoTxt.Text,
                 AddDireccionTxt.Text,
                 AddEmpresaTelefonoTxt.Text,
+                AddSeguroTxt.Text,
+                AddFechaAceptacionTxt.Text,
                 AddUbicacionTxt.Text,
                 AddAreaTxt.Text,
                 AddVariedadTxt.Text,
