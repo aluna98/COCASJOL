@@ -94,13 +94,13 @@ namespace COCASJOL.Website.Source.Productos {
         protected global::Ext.Net.GridPanel TiposProductoGridP;
         
         /// <summary>
-        /// RolesSt control.
+        /// TiposDeProductoSt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store RolesSt;
+        protected global::Ext.Net.Store TiposDeProductoSt;
         
         /// <summary>
         /// RowSelectionModel1 control.
@@ -193,13 +193,13 @@ namespace COCASJOL.Website.Source.Productos {
         protected global::Ext.Net.PagingToolbar PagingToolbar1;
         
         /// <summary>
-        /// AgregarTiposProductolWin control.
+        /// AgregarTiposProductoWin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Window AgregarTiposProductolWin;
+        protected global::Ext.Net.Window AgregarTiposProductoWin;
         
         /// <summary>
         /// AddTipoFormP control.

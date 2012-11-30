@@ -33,12 +33,12 @@ namespace COCASJOL.LOGIC.Productos
         }
 
         public List<producto> GetProductos
-            (int PRODUCTOS_ID,
-            int TIPOS_PROD_ID,
+            (int? PRODUCTOS_ID,
+            int? TIPOS_PROD_ID,
             string PRODUCTOS_NOMBRE,
             string PRODUCTOS_DESCRIPCION,
-            int PRODUCTOS_CANTIDAD_MIN,
-            int PRODUCTOS_EXISTENCIA,
+            int? PRODUCTOS_CANTIDAD_MIN,
+            int? PRODUCTOS_EXISTENCIA,
             string CREADO_POR,
             DateTime FECHA_CREACION,
             string MODIFICADO_POR,
@@ -52,12 +52,12 @@ namespace COCASJOL.LOGIC.Productos
 
                     var query = from prods in db.productos
                                 where
-                                (PRODUCTOS_ID.Equals(0) ? true : prods.PRODUCTOS_ID.Equals(PRODUCTOS_ID)) &&
-                                (TIPOS_PROD_ID.Equals(0) ? true : prods.TIPOS_PROD_ID.Equals(TIPOS_PROD_ID)) &&
+                                (!PRODUCTOS_ID.HasValue ? true : prods.PRODUCTOS_ID.Equals(PRODUCTOS_ID)) &&
+                                (!TIPOS_PROD_ID.HasValue ? true : prods.TIPOS_PROD_ID.Equals(TIPOS_PROD_ID)) &&
                                 (string.IsNullOrEmpty(PRODUCTOS_NOMBRE) ? true : prods.PRODUCTOS_NOMBRE.Contains(PRODUCTOS_NOMBRE)) &&
                                 (string.IsNullOrEmpty(PRODUCTOS_DESCRIPCION) ? true : prods.PRODUCTOS_DESCRIPCION.Contains(PRODUCTOS_DESCRIPCION)) &&
-                                (PRODUCTOS_CANTIDAD_MIN.Equals(-1) ? true : prods.PRODUCTOS_CANTIDAD_MIN.Equals(PRODUCTOS_CANTIDAD_MIN)) &&
-                                (PRODUCTOS_EXISTENCIA.Equals(-1) ? true : prods.PRODUCTOS_EXISTENCIA.Equals(PRODUCTOS_EXISTENCIA)) &&
+                                (!PRODUCTOS_CANTIDAD_MIN.HasValue ? true : prods.PRODUCTOS_CANTIDAD_MIN.Equals(PRODUCTOS_CANTIDAD_MIN)) &&
+                                (!PRODUCTOS_EXISTENCIA.HasValue ? true : prods.PRODUCTOS_EXISTENCIA.Equals(PRODUCTOS_EXISTENCIA)) &&
                                 (string.IsNullOrEmpty(CREADO_POR) ? true : prods.CREADO_POR.Contains(CREADO_POR)) &&
                                 (default(DateTime) == FECHA_CREACION ? true : prods.FECHA_CREACION == FECHA_CREACION) &&
                                 (string.IsNullOrEmpty(MODIFICADO_POR) ? true : prods.MODIFICADO_POR.Contains(MODIFICADO_POR)) &&
@@ -77,8 +77,9 @@ namespace COCASJOL.LOGIC.Productos
 
         #region Insert
 
-        public void InsertarProductos
-            (int TIPOS_PROD_ID,
+        public void InsertarProducto
+            (int PRODUCTOS_ID,
+            int TIPOS_PROD_ID,
             string PRODUCTOS_NOMBRE,
             string PRODUCTOS_DESCRIPCION,
             int PRODUCTOS_CANTIDAD_MIN,
@@ -94,6 +95,7 @@ namespace COCASJOL.LOGIC.Productos
                 {
                     producto product = new producto();
 
+                    //product.PRODUCTOS_ID = PRODUCTOS_ID;
                     product.TIPOS_PROD_ID = TIPOS_PROD_ID;
                     product.PRODUCTOS_NOMBRE = PRODUCTOS_NOMBRE;
                     product.PRODUCTOS_DESCRIPCION = PRODUCTOS_DESCRIPCION;
@@ -119,7 +121,7 @@ namespace COCASJOL.LOGIC.Productos
 
         #region Update
 
-        public void ActualizarProductos
+        public void ActualizarProducto
             (int PRODUCTOS_ID,
             int TIPOS_PROD_ID,
             string PRODUCTOS_NOMBRE,
@@ -163,7 +165,7 @@ namespace COCASJOL.LOGIC.Productos
 
         #region Delete
 
-        public void EliminarProductos(int PRODUCTOS_ID)
+        public void EliminarProducto(int PRODUCTOS_ID)
         {
             try
             {
@@ -183,6 +185,35 @@ namespace COCASJOL.LOGIC.Productos
             }
             catch (Exception ex)
             {
+                throw;
+            }
+        }
+
+        #endregion
+
+        #region Methods
+
+        public bool NombreDeProductoExiste(string PRODUCTOS_NOMBRE)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    db.productos.MergeOption = MergeOption.NoTracking;
+
+                    var query = from p in db.productos
+                                where p.PRODUCTOS_NOMBRE == PRODUCTOS_NOMBRE
+                                select p;
+
+                    if (query.Count() > 0)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            catch (Exception)
+            {
+                
                 throw;
             }
         }

@@ -14,7 +14,7 @@ namespace COCASJOL.LOGIC.Productos
 
         #region Select
 
-        public IQueryable GetTiposDeProducto()
+        public List<tipo_producto> GetTiposDeProducto()
         {
             try
             {
@@ -22,7 +22,7 @@ namespace COCASJOL.LOGIC.Productos
                 {
                     db.tipos_productos.MergeOption = MergeOption.NoTracking;
 
-                    return db.tipos_productos;
+                    return db.tipos_productos.ToList<tipo_producto>();
                 }
             }
             catch (Exception)
@@ -167,6 +167,35 @@ namespace COCASJOL.LOGIC.Productos
             }
             catch (Exception ex)
             {
+                throw;
+            }
+        }
+
+        #endregion
+
+        #region Methods
+
+        public bool NombreDeTipoDeProductoExiste(string TIPOS_PROD_NOMBRE)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    db.tipos_productos.MergeOption = MergeOption.NoTracking;
+
+                    var query = from tp in db.tipos_productos
+                                where tp.TIPOS_PROD_NOMBRE == TIPOS_PROD_NOMBRE
+                                select tp;
+
+                    if (query.Count() > 0)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            catch (Exception)
+            {
+                
                 throw;
             }
         }

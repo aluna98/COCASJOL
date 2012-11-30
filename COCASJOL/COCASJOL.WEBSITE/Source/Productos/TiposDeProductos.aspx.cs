@@ -9,7 +9,7 @@ using System.Data;
 using System.Data.Objects;
 using Ext.Net;
 
-using COCASJOL.LOGIC.Seguridad;
+using COCASJOL.LOGIC.Productos;
 using COCASJOL.LOGIC.Web;
 
 namespace COCASJOL.Website.Source.Productos
@@ -24,7 +24,7 @@ namespace COCASJOL.Website.Source.Productos
                 {
                     string loggedUsr = Session["username"] as string;
                     this.LoggedUserHdn.Text = loggedUsr;
-                    this.ValidarCredenciales("SYS_ROLES");
+                    //this.ValidarCredenciales("SYS_ROLES");
                 }
             }
             catch (Exception)
@@ -38,6 +38,50 @@ namespace COCASJOL.Website.Source.Productos
         {
             if (!this.IsPostBack)
                 e.Cancel = true;
+        }
+
+        protected void AddNombreTxt_Validate(object sender, RemoteValidationEventArgs e)
+        {
+            try
+            {
+                string nombreDeTipoDeProducto = this.AddNombreTxt.Text;
+
+                TipoDeProductoLogic tipoDeProductologic = new TipoDeProductoLogic();
+
+                if (tipoDeProductologic.NombreDeTipoDeProductoExiste(nombreDeTipoDeProducto))
+                {
+                    e.Success = false;
+                    e.ErrorMessage = "El nombre de tipo de producto ingresado ya existe.";
+                }
+                else
+                    e.Success = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        protected void EditNombreTxt_Validate(object sender, RemoteValidationEventArgs e)
+        {
+            try
+            {
+                string nombreDeTipoDeProducto = this.EditNombreTxt.Text;
+
+                TipoDeProductoLogic tipoDeProductologic = new TipoDeProductoLogic();
+
+                if (tipoDeProductologic.NombreDeTipoDeProductoExiste(nombreDeTipoDeProducto))
+                {
+                    e.Success = false;
+                    e.ErrorMessage = "El nombre de tipo de producto ingresado ya existe.";
+                }
+                else
+                    e.Success = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

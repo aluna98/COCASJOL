@@ -9,7 +9,7 @@ using System.Data;
 using System.Data.Objects;
 using Ext.Net;
 
-using COCASJOL.LOGIC.Seguridad;
+using COCASJOL.LOGIC.Productos;
 using COCASJOL.LOGIC.Web;
 
 namespace COCASJOL.Website.Source.Productos
@@ -24,7 +24,7 @@ namespace COCASJOL.Website.Source.Productos
                 {
                     string loggedUsr = Session["username"] as string;
                     this.LoggedUserHdn.Text = loggedUsr;
-                    this.ValidarCredenciales("SYS_ROLES");
+                    //this.ValidarCredenciales("SYS_ROLES");
                 }
             }
             catch (Exception)
@@ -34,104 +34,54 @@ namespace COCASJOL.Website.Source.Productos
             }
         }
 
-        protected void RolDS_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        protected void ProductosDS_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
         {
             if (!this.IsPostBack)
                 e.Cancel = true;
         }
 
-        #region Privilegios
-
-        protected void PrivilegiosDeRolSt_Refresh(object sender, StoreRefreshDataEventArgs e)
+        protected void AddNombreTxt_Validate(object sender, RemoteValidationEventArgs e)
         {
             try
             {
-                int rol_id = string.IsNullOrEmpty(this.EditIdTxt.Text) ? 0 : Convert.ToInt32(this.EditIdTxt.Text);
+                string nombreDeProducto = this.AddNombreTxt.Text;
 
-                RolLogic rollogic = new RolLogic();
-                int priv_id = string.IsNullOrEmpty(this.f_PRIV_ID.Text) ? 0 : Convert.ToInt32(this.f_PRIV_ID.Text);
-                this.PrivilegiosDeRolSt.DataSource = rollogic.GetPrivilegios(rol_id, priv_id, this.f_ROL_NOMBRE.Text, this.f_PRIV_LLAVE.Text);
-                this.PrivilegiosDeRolSt.DataBind();
-            }
-            catch (Exception)
-            {
-                //log
-                throw;
-            }
-        }
+                ProductoLogic productologic = new ProductoLogic();
 
-        [DirectMethod(RethrowException = true)]
-        public void EditRolDeletePrivilegioBtn_Click()
-        {
-            try
-            {
-                RolLogic rollogic = new RolLogic();
-
-                int rol_id = Convert.ToInt32(this.EditIdTxt.Text);
-
-                List<int> privs = new List<int>();
-
-                foreach (SelectedRow row in this.PrivilegiosDeRolSelectionM.SelectedRows)
+                if (productologic.NombreDeProductoExiste(nombreDeProducto))
                 {
-                    privs.Add(Convert.ToInt32(row.RecordID));
+                    e.Success = false;
+                    e.ErrorMessage = "El nombre de producto ingresado ya existe.";
                 }
-
-                rollogic.EliminarPrivilegios(rol_id, privs);
-
-                this.PrivilegiosDeRolSelectionM.ClearSelections();
+                else
+                    e.Success = true;
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
 
-        protected void PrivilegiosNoDeRolesSt_Refresh(object sender, StoreRefreshDataEventArgs e)
+        protected void EditNombreTxt_Validate(object sender, RemoteValidationEventArgs e)
         {
             try
             {
-                int rol_id = Convert.ToInt32(this.EditIdTxt.Text);
+                string nombreDeProducto = this.EditNombreTxt.Text;
 
-                RolLogic rollogic = new RolLogic();
-                int priv_id = string.IsNullOrEmpty(this.f2_PRIV_ID.Text) ? 0 : Convert.ToInt32(this.f2_PRIV_ID.Text);
-                this.PrivilegiosNoDeRolesSt.DataSource = rollogic.GetPrivilegiosNoDeRol(rol_id, priv_id, this.f2_PRIV_NOMBRE.Text, this.f2_PRIV_LLAVE.Text);
-                this.PrivilegiosNoDeRolesSt.DataBind();
-            }
-            catch (Exception)
-            {
+                ProductoLogic productologic = new ProductoLogic();
 
-                throw;
-            }
-        }
-
-        [DirectMethod(RethrowException = true)]
-        public void AddPrivilegiosAddPrivilegioBtn_Click()
-        {
-            try
-            {
-                int rol_id = Convert.ToInt32(this.EditIdTxt.Text);
-
-                List<int> privs = new List<int>();
-
-                foreach (SelectedRow row in this.PrivilegiosNoDeRolSelectionM.SelectedRows)
+                if (productologic.NombreDeProductoExiste(nombreDeProducto))
                 {
-                    privs.Add(Convert.ToInt32(row.RecordID));
+                    e.Success = false;
+                    e.ErrorMessage = "El nombre de producto ingresado ya existe.";
                 }
-
-
-                RolLogic rollogic = new RolLogic();
-                rollogic.InsertarPrivilegios(rol_id, privs);
-
-                this.PrivilegiosNoDeRolSelectionM.ClearSelections();
+                else
+                    e.Success = true;
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
-
-        #endregion
     }
 }

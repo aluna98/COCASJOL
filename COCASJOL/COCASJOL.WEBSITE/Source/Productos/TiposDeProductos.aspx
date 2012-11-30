@@ -27,9 +27,9 @@
 
             setReferences: function () {
                 Grid = TiposProductoGridP;
-                GridStore = RolesSt;
-                AddWindow = AgregarTiposProductolWin;
-                AddForm = AddTipoFormP
+                GridStore = TiposDeProductoSt;
+                AddWindow = AgregarTiposProductoWin;
+                AddForm = AddTipoFormP;
                 EditWindow = EditarTiposProductoWin;
                 EditForm = EditarTipoFormP;
             },
@@ -43,19 +43,6 @@
 
                 Grid.insertRecord(0, fields, false);
                 AddForm.getForm().reset();
-            },
-
-            insertRol: function () {
-                if (PrivilegiosNoDeRolGridP.getSelectionModel().hasSelection()) {
-                    Ext.Msg.confirm('Agregar Tipo de Producto', 'Seguro desea agregar estos tipos de producto?', function (btn, text) {
-                        if (btn == 'yes') {
-                            Ext.net.DirectMethods.AddPrivilegiosAddPrivilegioBtn_Click({ success: function () { PrivilegiosDeRolSt.reload(); PrivilegiosNoDeRolesSt.reload(); Ext.Msg.alert('Agregar Privilegios', 'Privilegios agregado exitosamente.'); } }, { eventMask: { showMask: true, target: 'customtarget', customTarget: PrivilegiosNoDeRolGridP} }, { failure: function () { Ext.Msg.alert('Agregar Privilegios', 'Error al agregar privilegios.'); } });
-                        }
-                    });
-                } else {
-                    var msg = Ext.Msg;
-                    Ext.Msg.alert(AlertSelMsgTitle, AlertSelMsg);
-                }
             },
 
             getIndex: function () {
@@ -137,32 +124,9 @@
                 }
             },
 
-            removeRol: function () {
-                if (PrivilegiosDeRolGridP.getSelectionModel().hasSelection()) {
-                    Ext.Msg.confirm('Eliminar Privilegios', 'Seguro desea eliminar estos privilegios?', function (btn, text) {
-                        if (btn == 'yes') {
-                            Ext.net.DirectMethods.EditRolDeletePrivilegioBtn_Click({ success: function () { PrivilegiosDeRolSt.reload(); Ext.Msg.alert('Eliminar Privilegios', 'Privilegios eliminados exitosamente.'); } }, { eventMask: { showMask: true, target: 'customtarget', customTarget: PrivilegiosDeRolGridP} }, { failure: function () { Ext.Msg.alert('Eliminar Privilegios', 'Error al eliminar privilegios.'); } });
-                        }
-                    });
-                } else {
-                    var msg = Ext.Msg;
-                    Ext.Msg.alert(AlertSelMsgTitle, AlertSelMsg);
-                }
-            },
-
             keyUpEvent: function (sender, e) {
                 if (e.getKey() == 13)
                     GridStore.reload();
-            },
-
-            keyUpEvent2: function (sender, e) {
-                if (e.getKey() == 13)
-                    PrivilegiosDeRolSt.reload();
-            },
-
-            keyUpEvent3: function (sender, e) {
-                if (e.getKey() == 13)
-                    PrivilegiosNoDeRolesSt.reload();
             }
         };
 
@@ -198,10 +162,10 @@
                     <asp:ControlParameter Name="TIPOS_PROD_ID"          Type="Int32"    ControlID="f_TIPOS_PROD_ID"          PropertyName="Text" />
                     <asp:ControlParameter Name="TIPOS_PROD_NOMBRE"      Type="String"   ControlID="f_TIPOS_PROD_NOMBRE"      PropertyName="Text" />
                     <asp:ControlParameter Name="TIPOS_PROD_DESCRIPCION" Type="String"   ControlID="f_TIPOS_PROD_DESCRIPCION" PropertyName="Text" />
-                    <asp:ControlParameter Name="CREADO_POR"             Type="String"   ControlID="nullHdn"           PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_CREACION"         Type="DateTime" ControlID="nullHdn"           PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="MODIFICADO_POR"         Type="String"   ControlID="nullHdn"           PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_MODIFICACION"     Type="DateTime" ControlID="nullHdn"           PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="CREADO_POR"             Type="String"   ControlID="nullHdn"                  PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_CREACION"         Type="DateTime" ControlID="nullHdn"                  PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="MODIFICADO_POR"         Type="String"   ControlID="nullHdn"                  PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_MODIFICACION"     Type="DateTime" ControlID="nullHdn"                  PropertyName="Text" DefaultValue="" />
                 </SelectParameters>
                 <InsertParameters>
                     <asp:Parameter Name="TIPOS_PROD_ID"          Type="Int32" />
@@ -239,17 +203,17 @@
                         <ext:GridPanel ID="TiposProductoGridP" runat="server" AutoExpandColumn="TIPOS_PROD_DESCRIPCION" Height="300"
                             Title="Usuarios" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
                             <Store>
-                                <ext:Store ID="RolesSt" runat="server" DataSourceID="TiposProductoDS" AutoSave="true" SkipIdForNewRecords="false" >
+                                <ext:Store ID="TiposDeProductoSt" runat="server" DataSourceID="TiposProductoDS" AutoSave="true" SkipIdForNewRecords="false" >
                                     <Reader>
                                         <ext:JsonReader IDProperty="TIPOS_PROD_ID">
                                             <Fields>
-                                                <ext:RecordField Name="TIPOS_PROD_ID"              />
-                                                <ext:RecordField Name="TIPOS_PROD_NOMBRE"          />
-                                                <ext:RecordField Name="TIPOS_PROD_DESCRIPCION"     />
-                                                <ext:RecordField Name="CREADO_POR"          />
-                                                <ext:RecordField Name="FECHA_CREACION"      Type="Date" />
-                                                <ext:RecordField Name="MODIFICADO_POR"      />
-                                                <ext:RecordField Name="FECHA_MODIFICACION"  Type="Date" />
+                                                <ext:RecordField Name="TIPOS_PROD_ID"          />
+                                                <ext:RecordField Name="TIPOS_PROD_NOMBRE"      />
+                                                <ext:RecordField Name="TIPOS_PROD_DESCRIPCION" />
+                                                <ext:RecordField Name="CREADO_POR"             />
+                                                <ext:RecordField Name="FECHA_CREACION"         Type="Date" />
+                                                <ext:RecordField Name="MODIFICADO_POR"         />
+                                                <ext:RecordField Name="FECHA_MODIFICACION"     Type="Date" />
                                             </Fields>
                                         </ext:JsonReader>
                                     </Reader>
@@ -327,7 +291,7 @@
                                 </ext:GridView>
                             </View>
                             <BottomBar>
-                                <ext:PagingToolbar ID="PagingToolbar1" runat="server" PageSize="20" StoreID="RolesSt" />
+                                <ext:PagingToolbar ID="PagingToolbar1" runat="server" PageSize="20" StoreID="TiposDeProductoSt" />
                             </BottomBar>
                             <LoadMask ShowMask="true" />
                             <SaveMask ShowMask="true" />
@@ -340,7 +304,7 @@
             </Items>
         </ext:Viewport>
 
-        <ext:Window ID="AgregarTiposProductolWin"
+        <ext:Window ID="AgregarTiposProductoWin"
             runat="server"
             Hidden="true"
             Icon="Add"
@@ -364,7 +328,9 @@
                                 <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                     <Items>
                                         <ext:NumberField runat="server" ID="AddIdTxt"               DataIndex="TIPOS_PROD_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Tipo de Producto" AllowBlank="false" Text="0" Hidden="true" ReadOnly="true"></ext:NumberField>
-                                        <ext:TextField   runat="server" ID="AddNombreTxt"           DataIndex="TIPOS_PROD_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45"></ext:TextField>
+                                        <ext:TextField   runat="server" ID="AddNombreTxt"           DataIndex="TIPOS_PROD_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" IsRemoteValidation="true">
+                                            <RemoteValidation OnValidation="AddNombreTxt_Validate" />
+                                        </ext:TextField>
                                         <ext:TextField   runat="server" ID="AddDescripcionTxt"      DataIndex="TIPOS_PROD_DESCRIPCION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100"></ext:TextField>
                                         <ext:TextField   runat="server" ID="AddCreatedByTxt"        DataIndex="CREADO_POR"             LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado por" Hidden="true" ></ext:TextField>
                                         <ext:TextField   runat="server" ID="AddCreatedDateTxt"      DataIndex="FECHA_CREACION"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
@@ -413,7 +379,9 @@
                                 <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                     <Items>
                                         <ext:NumberField runat="server" ID="EditIdTxt"            DataIndex="TIPOS_PROD_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Rol" AllowBlank="false" ReadOnly="true" Hidden="true"></ext:NumberField>
-                                        <ext:TextField runat="server"   ID="EditNombreTxt"        DataIndex="TIPOS_PROD_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45"></ext:TextField>
+                                        <ext:TextField runat="server"   ID="EditNombreTxt"        DataIndex="TIPOS_PROD_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" IsRemoteValidation="true">
+                                            <RemoteValidation OnValidation="EditNombreTxt_Validate" />
+                                        </ext:TextField>
                                         <ext:TextField runat="server"   ID="EditDescripcionTxt"   DataIndex="TIPOS_PROD_DESCRIPCION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100"></ext:TextField>
                                         <ext:TextField runat="server"   ID="EditCreatedByTxt"     DataIndex="CREADO_POR"             LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
                                         <ext:TextField runat="server"   ID="EditCreationDateTxt"  DataIndex="FECHA_CREACION"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>

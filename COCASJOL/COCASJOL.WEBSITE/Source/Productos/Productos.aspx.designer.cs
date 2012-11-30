@@ -40,13 +40,31 @@ namespace COCASJOL.Website.Source.Productos {
         protected global::Ext.Net.ResourceManager ResourceManager1;
         
         /// <summary>
-        /// RolDS control.
+        /// ProductosDS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource RolDS;
+        protected global::System.Web.UI.WebControls.ObjectDataSource ProductosDS;
+        
+        /// <summary>
+        /// TiposProductoDS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource TiposProductoDS;
+        
+        /// <summary>
+        /// TiposDeProductoSt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store TiposDeProductoSt;
         
         /// <summary>
         /// nullHdn control.
@@ -85,22 +103,22 @@ namespace COCASJOL.Website.Source.Productos {
         protected global::Ext.Net.Panel Panel1;
         
         /// <summary>
-        /// RolesGridP control.
+        /// ProductosGridP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.GridPanel RolesGridP;
+        protected global::Ext.Net.GridPanel ProductosGridP;
         
         /// <summary>
-        /// RolesSt control.
+        /// ProductosSt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store RolesSt;
+        protected global::Ext.Net.Store ProductosSt;
         
         /// <summary>
         /// RowSelectionModel1 control.
@@ -121,31 +139,31 @@ namespace COCASJOL.Website.Source.Productos {
         protected global::Ext.Net.Toolbar Toolbar1;
         
         /// <summary>
-        /// AgregarRolBtn control.
+        /// AgregarTipoBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button AgregarRolBtn;
+        protected global::Ext.Net.Button AgregarTipoBtn;
         
         /// <summary>
-        /// EditarRolBtn control.
+        /// EditarTipoBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button EditarRolBtn;
+        protected global::Ext.Net.Button EditarTipoBtn;
         
         /// <summary>
-        /// EliminarRolBtn control.
+        /// EliminarTipoBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button EliminarRolBtn;
+        protected global::Ext.Net.Button EliminarTipoBtn;
         
         /// <summary>
         /// GridView1 control.
@@ -157,31 +175,58 @@ namespace COCASJOL.Website.Source.Productos {
         protected global::Ext.Net.GridView GridView1;
         
         /// <summary>
-        /// f_ROL_ID control.
+        /// f_PRODUCTOS_ID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField f_ROL_ID;
+        protected global::Ext.Net.NumberField f_PRODUCTOS_ID;
         
         /// <summary>
-        /// f_ROL_NOMBRE control.
+        /// f_TIPOS_PROD_ID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField f_ROL_NOMBRE;
+        protected global::Ext.Net.NumberField f_TIPOS_PROD_ID;
         
         /// <summary>
-        /// f_ROL_DESCRIPCION control.
+        /// f_PRODUCTOS_NOMBRE control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField f_ROL_DESCRIPCION;
+        protected global::Ext.Net.TextField f_PRODUCTOS_NOMBRE;
+        
+        /// <summary>
+        /// f_PRODUCTOS_DESCRIPCION control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField f_PRODUCTOS_DESCRIPCION;
+        
+        /// <summary>
+        /// f_PRODUCTOS_CANTIDAD_MIN control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField f_PRODUCTOS_CANTIDAD_MIN;
+        
+        /// <summary>
+        /// f_PRODUCTOS_EXISTENCIA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField f_PRODUCTOS_EXISTENCIA;
         
         /// <summary>
         /// PagingToolbar1 control.
@@ -193,31 +238,22 @@ namespace COCASJOL.Website.Source.Productos {
         protected global::Ext.Net.PagingToolbar PagingToolbar1;
         
         /// <summary>
-        /// AgregarRolWin control.
+        /// AgregarProductosWin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Window AgregarRolWin;
+        protected global::Ext.Net.Window AgregarProductosWin;
         
         /// <summary>
-        /// AddRolFormP control.
+        /// AddTipoFormP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.FormPanel AddRolFormP;
-        
-        /// <summary>
-        /// TabPanel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TabPanel TabPanel1;
+        protected global::Ext.Net.FormPanel AddTipoFormP;
         
         /// <summary>
         /// Panel2 control.
@@ -247,6 +283,15 @@ namespace COCASJOL.Website.Source.Productos {
         protected global::Ext.Net.NumberField AddIdTxt;
         
         /// <summary>
+        /// AddTipoDeProdIdCmb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox AddTipoDeProdIdCmb;
+        
+        /// <summary>
         /// AddNombreTxt control.
         /// </summary>
         /// <remarks>
@@ -263,6 +308,24 @@ namespace COCASJOL.Website.Source.Productos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField AddDescripcionTxt;
+        
+        /// <summary>
+        /// AddCantidadMinTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField AddCantidadMinTxt;
+        
+        /// <summary>
+        /// AddExistenciaTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField AddExistenciaTxt;
         
         /// <summary>
         /// AddCreatedByTxt control.
@@ -310,31 +373,22 @@ namespace COCASJOL.Website.Source.Productos {
         protected global::Ext.Net.Button AddGuardarBtn;
         
         /// <summary>
-        /// EditarRolWin control.
+        /// EditarProductosWin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Window EditarRolWin;
+        protected global::Ext.Net.Window EditarProductosWin;
         
         /// <summary>
-        /// EditarRolFormP control.
+        /// EditarTipoFormP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.FormPanel EditarRolFormP;
-        
-        /// <summary>
-        /// TabPanel11 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TabPanel TabPanel11;
+        protected global::Ext.Net.FormPanel EditarTipoFormP;
         
         /// <summary>
         /// Panel12 control.
@@ -364,6 +418,15 @@ namespace COCASJOL.Website.Source.Productos {
         protected global::Ext.Net.NumberField EditIdTxt;
         
         /// <summary>
+        /// EditTipoDeProdIdCmb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox EditTipoDeProdIdCmb;
+        
+        /// <summary>
         /// EditNombreTxt control.
         /// </summary>
         /// <remarks>
@@ -380,6 +443,24 @@ namespace COCASJOL.Website.Source.Productos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField EditDescripcionTxt;
+        
+        /// <summary>
+        /// EditCantidadMinTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditCantidadMinTxt;
+        
+        /// <summary>
+        /// EditExistenciaTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditExistenciaTxt;
         
         /// <summary>
         /// EditCreatedByTxt control.
@@ -418,123 +499,6 @@ namespace COCASJOL.Website.Source.Productos {
         protected global::Ext.Net.TextField EditModificationDate;
         
         /// <summary>
-        /// Panel14 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Panel Panel14;
-        
-        /// <summary>
-        /// Panel16 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Panel Panel16;
-        
-        /// <summary>
-        /// PrivilegiosDeRolGridP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.GridPanel PrivilegiosDeRolGridP;
-        
-        /// <summary>
-        /// PrivilegiosDeRolSt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store PrivilegiosDeRolSt;
-        
-        /// <summary>
-        /// GridView2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.GridView GridView2;
-        
-        /// <summary>
-        /// f_PRIV_ID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.NumberField f_PRIV_ID;
-        
-        /// <summary>
-        /// f_PRIV_LLAVE control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField f_PRIV_LLAVE;
-        
-        /// <summary>
-        /// f_PRIV_NOMBRE control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField f_PRIV_NOMBRE;
-        
-        /// <summary>
-        /// PrivilegiosDeRolSelectionM control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.CheckboxSelectionModel PrivilegiosDeRolSelectionM;
-        
-        /// <summary>
-        /// Toolbar2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Toolbar Toolbar2;
-        
-        /// <summary>
-        /// EditRolAddPrivilegioBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Button EditRolAddPrivilegioBtn;
-        
-        /// <summary>
-        /// EditRolDeletePrivilegioBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Button EditRolDeletePrivilegioBtn;
-        
-        /// <summary>
-        /// PagingToolbar2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.PagingToolbar PagingToolbar2;
-        
-        /// <summary>
         /// EditPreviousBtn control.
         /// </summary>
         /// <remarks>
@@ -560,122 +524,5 @@ namespace COCASJOL.Website.Source.Productos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button EditGuardarBtn;
-        
-        /// <summary>
-        /// AgregarPrivilegiosWin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Window AgregarPrivilegiosWin;
-        
-        /// <summary>
-        /// FormPanel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.FormPanel FormPanel1;
-        
-        /// <summary>
-        /// Panel9 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Panel Panel9;
-        
-        /// <summary>
-        /// PrivilegiosNoDeRolGridP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.GridPanel PrivilegiosNoDeRolGridP;
-        
-        /// <summary>
-        /// PrivilegiosNoDeRolesSt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store PrivilegiosNoDeRolesSt;
-        
-        /// <summary>
-        /// GridView3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.GridView GridView3;
-        
-        /// <summary>
-        /// f2_PRIV_ID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.NumberField f2_PRIV_ID;
-        
-        /// <summary>
-        /// f2_PRIV_LLAVE control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField f2_PRIV_LLAVE;
-        
-        /// <summary>
-        /// f2_PRIV_NOMBRE control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField f2_PRIV_NOMBRE;
-        
-        /// <summary>
-        /// PrivilegiosNoDeRolSelectionM control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.CheckboxSelectionModel PrivilegiosNoDeRolSelectionM;
-        
-        /// <summary>
-        /// Toolbar3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Toolbar Toolbar3;
-        
-        /// <summary>
-        /// AddPrivilegiosAddPrivilegioBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Button AddPrivilegiosAddPrivilegioBtn;
-        
-        /// <summary>
-        /// PagingToolbar4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.PagingToolbar PagingToolbar4;
     }
 }

@@ -182,7 +182,7 @@
           <Key>
             <PropertyRef Name="PRODUCTOS_ID" />
           </Key>
-          <Property Name="PRODUCTOS_ID" Type="int" Nullable="false" />
+          <Property Name="PRODUCTOS_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="TIPOS_PROD_ID" Type="int" Nullable="false" />
           <Property Name="PRODUCTOS_NOMBRE" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="PRODUCTOS_DESCRIPCION" Type="varchar" MaxLength="100" />
@@ -870,7 +870,7 @@
           <Key>
             <PropertyRef Name="PRODUCTOS_ID" />
           </Key>
-          <Property Type="Int32" Name="PRODUCTOS_ID" Nullable="false" />
+          <Property Type="Int32" Name="PRODUCTOS_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="TIPOS_PROD_ID" Nullable="false" />
           <Property Type="String" Name="PRODUCTOS_NOMBRE" Nullable="false" />
           <Property Type="String" Name="PRODUCTOS_DESCRIPCION" />
@@ -1190,15 +1190,15 @@
           <ConnectorPoint PointX="4.0312494999999995" PointY="3.6052864583333388" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.FK_NOTA_DE_PESO_socios" >
-          <ConnectorPoint PointX="1.2294294873046874" PointY="16.335917968750003" />
-          <ConnectorPoint PointX="1.2294294873046874" PointY="19.749746093749998" />
-          <ConnectorPoint PointX="1.6876339103190106" PointY="19.749746093749998" />
-          <ConnectorPoint PointX="1.8543005769856771" PointY="19.749746093749998" />
+          <ConnectorPoint PointX="1.2292311218261718" PointY="16.335917968750003" />
+          <ConnectorPoint PointX="1.2292311218261718" PointY="19.749746093749998" />
+          <ConnectorPoint PointX="1.6875347275797525" PointY="19.749746093749998" />
+          <ConnectorPoint PointX="1.8542013942464191" PointY="19.749746093749998" />
           <ConnectorPoint PointX="3" PointY="19.749746093749998" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.SOCIO_ID_FK" >
-          <ConnectorPoint PointX="1.7709672436523438" PointY="16.335917968750003" />
-          <ConnectorPoint PointX="1.7709672436523438" PointY="23.442047526041669" />
+          <ConnectorPoint PointX="1.7708680609130858" PointY="16.335917968750003" />
+          <ConnectorPoint PointX="1.7708680609130858" PointY="23.442047526041669" />
           <ConnectorPoint PointX="3" PointY="23.442047526041669" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.SOCIOS_ID_FK2" >
