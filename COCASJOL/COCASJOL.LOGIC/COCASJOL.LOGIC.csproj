@@ -51,6 +51,7 @@
     </Compile>
     <Compile Include="Inventario\Ingresos\NotaDePesoLogic.cs" />
     <Compile Include="Prestamos\PrestamosLogic.cs" />
+    <Compile Include="Prestamos\SolicitudesLogic.cs" />
     <Compile Include="Productos\ProductoLogic.cs" />
     <Compile Include="Productos\TipoDeProductoLogic.cs" />
     <Compile Include="Seguridad\PrivilegioLogic.cs" />

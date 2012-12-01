@@ -16,11 +16,13 @@
           <EntitySet Name="privilegios" EntityType="COLINASMODEL.Store.privilegios" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="privilegios_x_roles" EntityType="COLINASMODEL.Store.privilegios_x_roles" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="productos" EntityType="COLINASMODEL.Store.productos" store:Type="Tables" Schema="colinas" />
+          <EntitySet Name="referencias_x_socio" EntityType="COLINASMODEL.Store.referencias_x_socio" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="roles" EntityType="COLINASMODEL.Store.roles" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="roles_x_usuarios" EntityType="COLINASMODEL.Store.roles_x_usuarios" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="socios" EntityType="COLINASMODEL.Store.socios" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="socios_generales" EntityType="COLINASMODEL.Store.socios_generales" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="socios_produccion" EntityType="COLINASMODEL.Store.socios_produccion" store:Type="Tables" Schema="colinas" />
+          <EntitySet Name="solicitudes_prestamos" EntityType="COLINASMODEL.Store.solicitudes_prestamos" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="tipos_productos" EntityType="COLINASMODEL.Store.tipos_productos" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="usuarios" EntityType="COLINASMODEL.Store.usuarios" store:Type="Tables" Schema="colinas" />
           <AssociationSet Name="FK_BENEFICIARIO_X_SOCIO_socios" Association="COLINASMODEL.Store.FK_BENEFICIARIO_X_SOCIO_socios">
@@ -55,6 +57,10 @@
             <End Role="tipos_productos" EntitySet="tipos_productos" />
             <End Role="productos" EntitySet="productos" />
           </AssociationSet>
+          <AssociationSet Name="ReferenciaxSociofk" Association="COLINASMODEL.Store.ReferenciaxSociofk">
+            <End Role="socios" EntitySet="socios" />
+            <End Role="referencias_x_socio" EntitySet="referencias_x_socio" />
+          </AssociationSet>
           <AssociationSet Name="ROL_ID_PRIV_fk" Association="COLINASMODEL.Store.ROL_ID_PRIV_fk">
             <End Role="roles" EntitySet="roles" />
             <End Role="privilegios_x_roles" EntitySet="privilegios_x_roles" />
@@ -70,6 +76,14 @@
           <AssociationSet Name="SOCIOS_ID_FK2" Association="COLINASMODEL.Store.SOCIOS_ID_FK2">
             <End Role="socios" EntitySet="socios" />
             <End Role="socios_produccion" EntitySet="socios_produccion" />
+          </AssociationSet>
+          <AssociationSet Name="SolicitudesPrestamofk" Association="COLINASMODEL.Store.SolicitudesPrestamofk">
+            <End Role="prestamos" EntitySet="prestamos" />
+            <End Role="solicitudes_prestamos" EntitySet="solicitudes_prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="Solicitudesxsociofk" Association="COLINASMODEL.Store.Solicitudesxsociofk">
+            <End Role="socios" EntitySet="socios" />
+            <End Role="solicitudes_prestamos" EntitySet="solicitudes_prestamos" />
           </AssociationSet>
           <AssociationSet Name="USR_USERNAME_ROL_fk" Association="COLINASMODEL.Store.USR_USERNAME_ROL_fk">
             <End Role="usuarios" EntitySet="usuarios" />
@@ -193,6 +207,17 @@
           <Property Name="MODIFICADO_POR" Type="varchar" MaxLength="45" />
           <Property Name="FECHA_MODIFICACION" Type="date" />
         </EntityType>
+        <EntityType Name="referencias_x_socio">
+          <Key>
+            <PropertyRef Name="SOCIOS_ID" />
+            <PropertyRef Name="REFERENCIAS_ID" />
+          </Key>
+          <Property Name="SOCIOS_ID" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="REFERENCIAS_ID" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="REFERENCIAS_NOMBRE" Type="varchar" MaxLength="100" />
+          <Property Name="REFERENCIAS_TELEFONO" Type="varchar" MaxLength="20" />
+          <Property Name="REFERENCIAS_TIPO" Type="varchar" MaxLength="20" />
+        </EntityType>
         <EntityType Name="roles">
           <Key>
             <PropertyRef Name="ROL_ID" />
@@ -269,6 +294,34 @@
           <Property Name="PRODUCCION_ANALISIS_SUELO" Type="varchar" MaxLength="10" />
           <Property Name="PRODUCCION_TIPO_INSUMOS" Type="varchar" MaxLength="100" />
           <Property Name="PRODUCCION_MANZANAS_CULTIVADAS" Type="int" />
+        </EntityType>
+        <EntityType Name="solicitudes_prestamos">
+          <Key>
+            <PropertyRef Name="SOCIOS_ID" />
+            <PropertyRef Name="SOLICITUDES_ID" />
+          </Key>
+          <Property Name="SOCIOS_ID" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="SOLICITUDES_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SOLICITUDES_MONTO" Type="mediumtext" Nullable="false" />
+          <Property Name="SOLICITUDES_INTERES" Type="tinyint" Nullable="false" />
+          <Property Name="SOLICITUDES_PLAZO" Type="date" Nullable="false" />
+          <Property Name="SOLICITUDES_PAGO" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="SOLICITUDES_DESTINO" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="PRESTAMOS_ID" Type="int" Nullable="false" />
+          <Property Name="SOLICITUDES_CARGO" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="SOLICITUDES_PROMEDIO3" Type="mediumtext" />
+          <Property Name="SOLICITUDES_PRODUCCIONACT" Type="mediumtext" />
+          <Property Name="SOLICITUDES_NORTE" Type="varchar" MaxLength="45" />
+          <Property Name="SOLICITUDES_SUR" Type="varchar" MaxLength="45" />
+          <Property Name="SOLICITUDES_ESTE" Type="varchar" MaxLength="45" />
+          <Property Name="SOLICITUDES_OESTE" Type="varchar" MaxLength="45" />
+          <Property Name="SOLICITUDES_VEHICULO" Type="tinyint" />
+          <Property Name="SOLICITUDES_AGUA" Type="tinyint" />
+          <Property Name="SOLICITUDES_ENEE" Type="tinyint" />
+          <Property Name="SOLICITUDES_CASA" Type="tinyint" />
+          <Property Name="SOLICITUDES_BENEFICIO" Type="tinyint" />
+          <Property Name="SOLICITUD_OTROSCULTIVOS" Type="varchar" MaxLength="45" />
+          <Property Name="SOLICITUD_CALIFICACION" Type="varchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="tipos_productos">
           <Key>
@@ -412,6 +465,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="ReferenciaxSociofk">
+          <End Role="socios" Type="COLINASMODEL.Store.socios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="referencias_x_socio" Type="COLINASMODEL.Store.referencias_x_socio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="socios">
+              <PropertyRef Name="SOCIOS_ID" />
+            </Principal>
+            <Dependent Role="referencias_x_socio">
+              <PropertyRef Name="SOCIOS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="ROL_ID_PRIV_fk">
           <End Role="roles" Type="COLINASMODEL.Store.roles" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -460,6 +527,34 @@
               <PropertyRef Name="SOCIOS_ID" />
             </Principal>
             <Dependent Role="socios_produccion">
+              <PropertyRef Name="SOCIOS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SolicitudesPrestamofk">
+          <End Role="prestamos" Type="COLINASMODEL.Store.prestamos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="solicitudes_prestamos" Type="COLINASMODEL.Store.solicitudes_prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="prestamos">
+              <PropertyRef Name="PRESTAMOS_ID" />
+            </Principal>
+            <Dependent Role="solicitudes_prestamos">
+              <PropertyRef Name="PRESTAMOS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Solicitudesxsociofk">
+          <End Role="socios" Type="COLINASMODEL.Store.socios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="solicitudes_prestamos" Type="COLINASMODEL.Store.solicitudes_prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="socios">
+              <PropertyRef Name="SOCIOS_ID" />
+            </Principal>
+            <Dependent Role="solicitudes_prestamos">
               <PropertyRef Name="SOCIOS_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -559,6 +654,20 @@
           <AssociationSet Name="PROD_TIPO" Association="COLINASMODEL.PROD_TIPO">
             <End Role="tipos_productos" EntitySet="tipos_productos" />
             <End Role="productos" EntitySet="productos" />
+          </AssociationSet>
+          <EntitySet Name="referencias_x_socio" EntityType="COLINASMODEL.referencia_x_socio" />
+          <AssociationSet Name="ReferenciaxSociofk" Association="COLINASMODEL.ReferenciaxSociofk">
+            <End Role="socio" EntitySet="socios" />
+            <End Role="referencias_x_socio" EntitySet="referencias_x_socio" />
+          </AssociationSet>
+          <EntitySet Name="solicitudes_prestamos" EntityType="COLINASMODEL.solicitud_prestamo" />
+          <AssociationSet Name="SolicitudesPrestamofk" Association="COLINASMODEL.SolicitudesPrestamofk">
+            <End Role="prestamo" EntitySet="prestamos" />
+            <End Role="solicitudes_prestamos" EntitySet="solicitudes_prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="Solicitudesxsociofk" Association="COLINASMODEL.Solicitudesxsociofk">
+            <End Role="socio" EntitySet="socios" />
+            <End Role="solicitudes_prestamos" EntitySet="solicitudes_prestamos" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="codigo">
@@ -671,6 +780,8 @@
           <NavigationProperty Name="socios_generales" Relationship="COLINASMODEL.SOCIO_ID_FK" FromRole="socios" ToRole="socio_general" />
           <NavigationProperty Name="socios_produccion" Relationship="COLINASMODEL.SOCIOS_ID_FK2" FromRole="socios" ToRole="socio_produccion" />
           <NavigationProperty Name="prestamos_x_socio" Relationship="COLINASMODEL.PrestamosSocio_fk" FromRole="socio" ToRole="prestamos_x_socio" />
+          <NavigationProperty Name="referencias_x_socio" Relationship="COLINASMODEL.ReferenciaxSociofk" FromRole="socio" ToRole="referencias_x_socio" />
+          <NavigationProperty Name="solicitudes_prestamos" Relationship="COLINASMODEL.Solicitudesxsociofk" FromRole="socio" ToRole="solicitudes_prestamos" />
         </EntityType>
         <Association Name="FK_BENEFICIARIO_X_SOCIO_socios">
           <End Type="COLINASMODEL.socio" Role="socios" Multiplicity="1" />
@@ -746,6 +857,7 @@
           <Property Type="DateTime" Name="FECHA_CREACION" />
           <Property Type="String" Name="MODIFICADO_POR" />
           <Property Type="DateTime" Name="FECHA_MODIFICACION" />
+          <NavigationProperty Name="solicitudes_prestamos" Relationship="COLINASMODEL.SolicitudesPrestamofk" FromRole="prestamo" ToRole="solicitudes_prestamos" />
         </EntityType>
         <EntityType Name="prestamo_x_socio">
           <Key>
@@ -904,6 +1016,84 @@
             </Principal>
             <Dependent Role="productos">
               <PropertyRef Name="TIPOS_PROD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="referencia_x_socio">
+          <Key>
+            <PropertyRef Name="SOCIOS_ID" />
+            <PropertyRef Name="REFERENCIAS_ID" />
+          </Key>
+          <Property Type="String" Name="SOCIOS_ID" Nullable="false" />
+          <Property Type="String" Name="REFERENCIAS_ID" Nullable="false" />
+          <Property Type="String" Name="REFERENCIAS_NOMBRE" />
+          <Property Type="String" Name="REFERENCIAS_TELEFONO" />
+          <Property Type="String" Name="REFERENCIAS_TIPO" />
+          <NavigationProperty Name="socios" Relationship="COLINASMODEL.ReferenciaxSociofk" FromRole="referencias_x_socio" ToRole="socio" />
+        </EntityType>
+        <Association Name="ReferenciaxSociofk">
+          <End Type="COLINASMODEL.socio" Role="socio" Multiplicity="1" />
+          <End Type="COLINASMODEL.referencia_x_socio" Role="referencias_x_socio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="socio">
+              <PropertyRef Name="SOCIOS_ID" />
+            </Principal>
+            <Dependent Role="referencias_x_socio">
+              <PropertyRef Name="SOCIOS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="solicitud_prestamo">
+          <Key>
+            <PropertyRef Name="SOCIOS_ID" />
+            <PropertyRef Name="SOLICITUDES_ID" />
+          </Key>
+          <Property Type="String" Name="SOCIOS_ID" Nullable="false" />
+          <Property Type="Int32" Name="SOLICITUDES_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="SOLICITUDES_MONTO" Nullable="false" />
+          <Property Type="SByte" Name="SOLICITUDES_INTERES" Nullable="false" />
+          <Property Type="DateTime" Name="SOLICITUDES_PLAZO" Nullable="false" />
+          <Property Type="String" Name="SOLICITUDES_PAGO" Nullable="false" />
+          <Property Type="String" Name="SOLICITUDES_DESTINO" Nullable="false" />
+          <Property Type="Int32" Name="PRESTAMOS_ID" Nullable="false" />
+          <Property Type="String" Name="SOLICITUDES_CARGO" Nullable="false" />
+          <Property Type="String" Name="SOLICITUDES_PROMEDIO3" />
+          <Property Type="String" Name="SOLICITUDES_PRODUCCIONACT" />
+          <Property Type="String" Name="SOLICITUDES_NORTE" />
+          <Property Type="String" Name="SOLICITUDES_SUR" />
+          <Property Type="String" Name="SOLICITUDES_ESTE" />
+          <Property Type="String" Name="SOLICITUDES_OESTE" />
+          <Property Type="SByte" Name="SOLICITUDES_VEHICULO" />
+          <Property Type="SByte" Name="SOLICITUDES_AGUA" />
+          <Property Type="SByte" Name="SOLICITUDES_ENEE" />
+          <Property Type="SByte" Name="SOLICITUDES_CASA" />
+          <Property Type="SByte" Name="SOLICITUDES_BENEFICIO" />
+          <Property Type="String" Name="SOLICITUD_OTROSCULTIVOS" />
+          <Property Type="String" Name="SOLICITUD_CALIFICACION" />
+          <NavigationProperty Name="prestamos" Relationship="COLINASMODEL.SolicitudesPrestamofk" FromRole="solicitudes_prestamos" ToRole="prestamo" />
+          <NavigationProperty Name="socios" Relationship="COLINASMODEL.Solicitudesxsociofk" FromRole="solicitudes_prestamos" ToRole="socio" />
+        </EntityType>
+        <Association Name="SolicitudesPrestamofk">
+          <End Type="COLINASMODEL.prestamo" Role="prestamo" Multiplicity="1" />
+          <End Type="COLINASMODEL.solicitud_prestamo" Role="solicitudes_prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="prestamo">
+              <PropertyRef Name="PRESTAMOS_ID" />
+            </Principal>
+            <Dependent Role="solicitudes_prestamos">
+              <PropertyRef Name="PRESTAMOS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Solicitudesxsociofk">
+          <End Type="COLINASMODEL.socio" Role="socio" Multiplicity="1" />
+          <End Type="COLINASMODEL.solicitud_prestamo" Role="solicitudes_prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="socio">
+              <PropertyRef Name="SOCIOS_ID" />
+            </Principal>
+            <Dependent Role="solicitudes_prestamos">
+              <PropertyRef Name="SOCIOS_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1151,6 +1341,45 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="referencias_x_socio">
+            <EntityTypeMapping TypeName="COLINASMODEL.referencia_x_socio">
+              <MappingFragment StoreEntitySet="referencias_x_socio">
+                <ScalarProperty Name="REFERENCIAS_TIPO" ColumnName="REFERENCIAS_TIPO" />
+                <ScalarProperty Name="REFERENCIAS_TELEFONO" ColumnName="REFERENCIAS_TELEFONO" />
+                <ScalarProperty Name="REFERENCIAS_NOMBRE" ColumnName="REFERENCIAS_NOMBRE" />
+                <ScalarProperty Name="REFERENCIAS_ID" ColumnName="REFERENCIAS_ID" />
+                <ScalarProperty Name="SOCIOS_ID" ColumnName="SOCIOS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="solicitudes_prestamos">
+            <EntityTypeMapping TypeName="COLINASMODEL.solicitud_prestamo">
+              <MappingFragment StoreEntitySet="solicitudes_prestamos">
+                <ScalarProperty Name="SOLICITUD_CALIFICACION" ColumnName="SOLICITUD_CALIFICACION" />
+                <ScalarProperty Name="SOLICITUD_OTROSCULTIVOS" ColumnName="SOLICITUD_OTROSCULTIVOS" />
+                <ScalarProperty Name="SOLICITUDES_BENEFICIO" ColumnName="SOLICITUDES_BENEFICIO" />
+                <ScalarProperty Name="SOLICITUDES_CASA" ColumnName="SOLICITUDES_CASA" />
+                <ScalarProperty Name="SOLICITUDES_ENEE" ColumnName="SOLICITUDES_ENEE" />
+                <ScalarProperty Name="SOLICITUDES_AGUA" ColumnName="SOLICITUDES_AGUA" />
+                <ScalarProperty Name="SOLICITUDES_VEHICULO" ColumnName="SOLICITUDES_VEHICULO" />
+                <ScalarProperty Name="SOLICITUDES_OESTE" ColumnName="SOLICITUDES_OESTE" />
+                <ScalarProperty Name="SOLICITUDES_ESTE" ColumnName="SOLICITUDES_ESTE" />
+                <ScalarProperty Name="SOLICITUDES_SUR" ColumnName="SOLICITUDES_SUR" />
+                <ScalarProperty Name="SOLICITUDES_NORTE" ColumnName="SOLICITUDES_NORTE" />
+                <ScalarProperty Name="SOLICITUDES_PRODUCCIONACT" ColumnName="SOLICITUDES_PRODUCCIONACT" />
+                <ScalarProperty Name="SOLICITUDES_PROMEDIO3" ColumnName="SOLICITUDES_PROMEDIO3" />
+                <ScalarProperty Name="SOLICITUDES_CARGO" ColumnName="SOLICITUDES_CARGO" />
+                <ScalarProperty Name="PRESTAMOS_ID" ColumnName="PRESTAMOS_ID" />
+                <ScalarProperty Name="SOLICITUDES_DESTINO" ColumnName="SOLICITUDES_DESTINO" />
+                <ScalarProperty Name="SOLICITUDES_PAGO" ColumnName="SOLICITUDES_PAGO" />
+                <ScalarProperty Name="SOLICITUDES_PLAZO" ColumnName="SOLICITUDES_PLAZO" />
+                <ScalarProperty Name="SOLICITUDES_INTERES" ColumnName="SOLICITUDES_INTERES" />
+                <ScalarProperty Name="SOLICITUDES_MONTO" ColumnName="SOLICITUDES_MONTO" />
+                <ScalarProperty Name="SOLICITUDES_ID" ColumnName="SOLICITUDES_ID" />
+                <ScalarProperty Name="SOCIOS_ID" ColumnName="SOCIOS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1180,30 +1409,30 @@
         <EntityTypeShape EntityType="COLINASMODEL.socio_general" Width="1.5" PointX="3" PointY="21.875" Height="2.7494921875000031" />
         <EntityTypeShape EntityType="COLINASMODEL.socio" Width="1.5" PointX="0.75" PointY="10.125" Height="6.0186165364583388" />
         <AssociationConnector Association="COLINASMODEL.FK_BENEFICIARIO_X_SOCIO_socios" >
-          <ConnectorPoint PointX="1.5908198515625003" PointY="10.125" />
-          <ConnectorPoint PointX="1.5908198515625003" PointY="8.6535953776041659" />
+          <ConnectorPoint PointX="1.5954586894531251" PointY="10.125" />
+          <ConnectorPoint PointX="1.5954586894531251" PointY="8.6535953776041659" />
           <ConnectorPoint PointX="2" PointY="8.6535953776041659" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.FK_INVENTARIO_socios" >
-          <ConnectorPoint PointX="2.25" PointY="12.698671340494787" />
-          <ConnectorPoint PointX="4.0312494999999995" PointY="12.698671340494787" />
-          <ConnectorPoint PointX="4.0312494999999995" PointY="3.6052864583333388" />
+          <ConnectorPoint PointX="1.1414768447265624" PointY="10.125" />
+          <ConnectorPoint PointX="1.1414768447265624" PointY="2.6151432291666694" />
+          <ConnectorPoint PointX="3" PointY="2.6151432291666694" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.FK_NOTA_DE_PESO_socios" >
-          <ConnectorPoint PointX="1.2292311218261718" PointY="16.335917968750003" />
-          <ConnectorPoint PointX="1.2292311218261718" PointY="19.749746093749998" />
-          <ConnectorPoint PointX="1.6875347275797525" PointY="19.749746093749998" />
-          <ConnectorPoint PointX="1.8542013942464191" PointY="19.749746093749998" />
+          <ConnectorPoint PointX="1.2698578635191917" PointY="16.720520833333335" />
+          <ConnectorPoint PointX="1.2698578635191917" PointY="19.749746093749998" />
+          <ConnectorPoint PointX="1.7078480984262627" PointY="19.749746093749998" />
+          <ConnectorPoint PointX="1.8745147650929293" PointY="19.749746093749998" />
           <ConnectorPoint PointX="3" PointY="19.749746093749998" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.SOCIO_ID_FK" >
-          <ConnectorPoint PointX="1.7708680609130858" PointY="16.335917968750003" />
-          <ConnectorPoint PointX="1.7708680609130858" PointY="23.442047526041669" />
+          <ConnectorPoint PointX="1.791181431759596" PointY="16.720520833333335" />
+          <ConnectorPoint PointX="1.791181431759596" PointY="23.442047526041669" />
           <ConnectorPoint PointX="3" PointY="23.442047526041669" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.SOCIOS_ID_FK2" >
-          <ConnectorPoint PointX="2.25" PointY="15.292958984375003" />
-          <ConnectorPoint PointX="3" PointY="15.292958984375003" />
+          <ConnectorPoint PointX="2.25" PointY="15.485260416666668" />
+          <ConnectorPoint PointX="3" PointY="15.485260416666668" />
         </AssociationConnector>
         <EntityTypeShape EntityType="COLINASMODEL.prestamo" Width="1.5" PointX="6.5" PointY="12.625" Height="2.1725878906249818" />
         <EntityTypeShape EntityType="COLINASMODEL.prestamo_x_socio" Width="1.5" PointX="5.375" PointY="9" Height="2.3648893229166674" />
@@ -1212,8 +1441,8 @@
           <ConnectorPoint PointX="6.6875" PointY="12.134095052083334" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.PrestamosSocio_fk" >
-          <ConnectorPoint PointX="2.25" PointY="11.129547526041666" />
-          <ConnectorPoint PointX="5.375" PointY="11.129547526041666" />
+          <ConnectorPoint PointX="2.25" PointY="10.65625" />
+          <ConnectorPoint PointX="5.375" PointY="10.65625" />
         </AssociationConnector>
         <EntityTypeShape EntityType="COLINASMODEL.rol" Width="1.5" PointX="8" PointY="1.25" Height="2.7494921875000031" />
         <EntityTypeShape EntityType="COLINASMODEL.nota_detalle" Width="1.5" PointX="5.25" PointY="18.75" Height="1.9802864583333388" />
@@ -1231,11 +1460,30 @@
           <ConnectorPoint PointX="7.25" PointY="2.62474609375" />
           <ConnectorPoint PointX="8" PointY="2.62474609375" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="COLINASMODEL.producto" Width="1.5" PointX="10.625" PointY="6" Height="3.1340950520833388" />
-        <EntityTypeShape EntityType="COLINASMODEL.tipo_producto" Width="1.5" PointX="8.375" PointY="6.25" Height="2.5571907552083379" />
+        <EntityTypeShape EntityType="COLINASMODEL.producto" Width="1.75" PointX="10.625" PointY="6" Height="3.1340950520833388" />
+        <EntityTypeShape EntityType="COLINASMODEL.tipo_producto" Width="2" PointX="7.875" PointY="6.25" Height="2.5571907552083379" />
         <AssociationConnector Association="COLINASMODEL.PROD_TIPO" >
           <ConnectorPoint PointX="9.875" PointY="7.5285953776041694" />
           <ConnectorPoint PointX="10.625" PointY="7.5285953776041694" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="COLINASMODEL.referencia_x_socio" Width="1.5" PointX="3" PointY="11.25" Height="2.1725878906250031" />
+        <AssociationConnector Association="COLINASMODEL.ReferenciaxSociofk" >
+          <ConnectorPoint PointX="2.25" PointY="12.336293945312502" />
+          <ConnectorPoint PointX="3" PointY="12.336293945312502" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="COLINASMODEL.solicitud_prestamo" Width="1.5" PointX="8.75" PointY="10.625" Height="5.6340136718749978" />
+        <AssociationConnector Association="COLINASMODEL.SolicitudesPrestamofk" >
+          <ConnectorPoint PointX="8" PointY="14.192047526041666" />
+          <ConnectorPoint PointX="8.75" PointY="14.192047526041666" />
+        </AssociationConnector>
+        <AssociationConnector Association="COLINASMODEL.Solicitudesxsociofk" >
+          <ConnectorPoint PointX="2.25" PointY="13.910777180989584" />
+          <ConnectorPoint PointX="2.75" PointY="13.910777180989584" />
+          <ConnectorPoint PointX="2.75" PointY="13.672587890625003" />
+          <ConnectorPoint PointX="6.25" PointY="13.672587890625003" />
+          <ConnectorPoint PointX="6.25" PointY="16.509013671874996" />
+          <ConnectorPoint PointX="9.5" PointY="16.509013671874996" />
+          <ConnectorPoint PointX="9.5" PointY="16.259013671874996" />
         </AssociationConnector>
         </Diagram>
     </Diagrams>
