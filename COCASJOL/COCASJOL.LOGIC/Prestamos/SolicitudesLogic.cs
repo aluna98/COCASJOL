@@ -20,7 +20,6 @@ namespace COCASJOL.LOGIC.Prestamos
                         select solicitud;
             return query.ToList<solicitud_prestamo>();
         }
-
     #endregion
     }
 }
