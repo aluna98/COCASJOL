@@ -451,7 +451,7 @@
                             <Items>
                                 <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                     <Items>
-                                        <ext:NumberField runat="server" ID="EditIdTxt"            DataIndex="TIPOS_PROD_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Rol" AllowBlank="false" ReadOnly="true" Hidden="true"></ext:NumberField>
+                                        <ext:NumberField runat="server" ID="EditIdTxt"            DataIndex="PRODUCTOS_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Rol" AllowBlank="false" ReadOnly="true" Hidden="true"></ext:NumberField>
                                         <ext:ComboBox runat="server"    ID="EditTipoDeProdIdCmb"  DataIndex="TIPOS_PROD_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Producto" AllowBlank="false" MsgTarget="Side"
                                             StoreID="TiposDeProductoSt" 
                                             ValueField="TIPOS_PROD_ID" 

@@ -7,22 +7,14 @@
 <script runat="server">
     protected void Page_Load(object sender, EventArgs e)
     {
-        try
+        ExtNet.Msg.Show(new MessageBoxConfig
         {
-            ExtNet.Msg.Show(new MessageBoxConfig
-            {
-                Closable = false,
-                Title = "Error",
-                Message = "Su sesión ha expirado.",
-                Buttons = MessageBox.Button.OK,
-                Handler = "window.parent.location = 'Default.aspx'"
-            });
-        }
-        catch (Exception ex)
-        {
-            //log
-            throw;
-        }
+            Title = "Error 404",
+            Message = "La pagina a la que usted quiere acceder no existe.",
+            Closable = false,
+            Buttons = MessageBox.Button.OK,
+            Handler = "window.parent.location = 'Default.aspx'"
+        });
     }
 </script>
 

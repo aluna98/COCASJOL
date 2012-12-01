@@ -18,4 +18,16 @@
     <shortcut>scSocios</shortcut>
     <menuitem>SociosMenuItem</menuitem>
   </privilege>
+  <privilege>
+    <key>MANT_TIPOPRODS</key>
+    <module>ProductosModule</module>
+    <shortcut>scTiposDeProductos</shortcut>
+    <menuitem>TiposDeProductosMenuItem</menuitem>
+  </privilege>
+  <privilege>
+    <key>MANT_PRODUCTOS</key>
+    <module>ProductosModule</module>
+    <shortcut>scProductos</shortcut>
+    <menuitem>ProductosMenuItem</menuitem>
+  </privilege>
 </privilegios>

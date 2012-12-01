@@ -9,8 +9,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Colinas</title>    
-    
-    <style type="text/css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/desktop.css" />
+    <%--<style type="text/css">
         .start-button
         {
             background-image: url(../resources/images/cocasjol_start_button.gif) !important;
@@ -35,16 +35,28 @@
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/user.png", sizingMethod="scale");
         }
         
+        .icon-roles
+        {
+            background-image: url(../Images/gear_in.png) !important;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/gear_in.png", sizingMethod="scale");
+        }
+        
         .icon-socios
         {
             background-image: url(../Images/group.png) !important;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/group.png", sizingMethod="scale");
         }
         
-        .icon-roles
+        .icon-tiposDeProducto
         {
-            background-image: url(../Images/gear_in.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/gear_in.png", sizingMethod="scale");
+            background-image: url(../Images/basket_put.png) !important;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/basket_put.png", sizingMethod="scale");
+        }
+        
+        .icon-productos
+        {
+            background-image: url(../Images/basket.png) !important;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/basket.png", sizingMethod="scale");
         }
         
         .icon-window48
@@ -78,7 +90,7 @@
             background-image: none;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../resources/images/dev-by-unitec.png', sizingMethod='scale');
         }
-    </style>
+    </style>--%>
     <script type="text/javascript" src="../resources/js/md5.js"></script>
     <script type="text/javascript">
         var DesktopX = {
@@ -129,6 +141,14 @@
                 DesktopX.createDynamicWindow(app, 'group', 'Socios', 'Socios/Socios.aspx', 800, 600);
             },
 
+            tiposDeProductos: function (app) {
+                DesktopX.createDynamicWindow(app, 'basketput', 'Tipos de producto', 'Productos/TiposDeProductos.aspx');
+            },
+
+            productos: function (app) {
+                DesktopX.createDynamicWindow(app, 'basket', 'Productos', 'Productos/Productos.aspx');
+            },
+
             settings: function () {
                 SettingsWin.show();
             },
@@ -147,6 +167,10 @@
                 WindowX.roles(app);
             } else if (id == 'scSocios') {
                 WindowX.socios(app);
+            } else if (id == 'scTiposDeProductos') {
+                WindowX.tiposDeProductos(app);
+            } else if (id == 'scProductos') {
+                WindowX.productos(app);
             }
         };
     </script>
@@ -190,6 +214,7 @@
             <StartButton Text="Inicio" IconCls="start-button" />
 
             <Modules>
+                <%--Seguridad--%>
                 <ext:DesktopModule ModuleID="UsuariosModule">
                     <Launcher ID="UsuariosLauncher" runat="server" Text="Usuarios" Icon="User" >
                         <Listeners>
@@ -204,6 +229,9 @@
                         </Listeners>
                     </Launcher>
                 </ext:DesktopModule>
+                <%--Seguridad--%>
+
+                <%--Socios--%>
                 <ext:DesktopModule ModuleID="SociosModule">
                     <Launcher ID="SociosLauncher" runat="server" Text="Socios" Icon="Group" >
                         <Listeners>
@@ -211,25 +239,47 @@
                         </Listeners>
                     </Launcher>
                 </ext:DesktopModule>
+                <%--Socios--%>
+
+                <%--Productos--%>
+                <ext:DesktopModule ModuleID="TiposDeProductoModule">
+                    <Launcher ID="TiposDeProductoLauncher" runat="server" Text="Tipos de Producto" Icon="BasketPut" >
+                        <Listeners>
+                            <Click Handler="WindowX.tiposDeProductos(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
+                <ext:DesktopModule ModuleID="ProductosModule">
+                    <Launcher ID="ProductosLauncher" runat="server" Text="Productos" Icon="Basket" >
+                        <Listeners>
+                            <Click Handler="WindowX.productos(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
+                <%--Productos--%>
 
 
+                <%--Configuracion--%>
                 <ext:DesktopModule ModuleID="SettingsModule" WindowID="SettingsWin" >
                     <Launcher ID="SettingsLauncher" runat="server" Text="Configuración" Icon="Wrench" />
                 </ext:DesktopModule>
-
                 <ext:DesktopModule ModuleID="UsuarioActualModule" WindowID="UsuarioActualWin" >
                     <Launcher ID="UsuarioActualLauncher" runat="server" Text="Editar Usuario" Icon="UserEdit" />
                 </ext:DesktopModule>
-
                 <ext:DesktopModule ModuleID="CambiarClaveModule" WindowID="CambiarClaveWin" >
                     <Launcher ID="CambiarClaveLauncher" runat="server" Text="Cambiar Clave" Icon="Key" />
                 </ext:DesktopModule>
+                <%--Configuracion--%>
             </Modules>  
             
             <Shortcuts>
                 <ext:DesktopShortcut ShortcutID="scUsuarios" Text="Usuarios" IconCls="shortcut-icon icon-usuarios" />
                 <ext:DesktopShortcut ShortcutID="scRoles" Text="Roles" IconCls="shortcut-icon icon-roles" />
+
                 <ext:DesktopShortcut ShortcutID="scSocios" Text="Socios" IconCls="shortcut-icon icon-socios" />
+
+                <ext:DesktopShortcut ShortcutID="scTiposDeProductos" Text="Tipos de Productos" IconCls="shortcut-icon icon-tiposDeProducto" />
+                <ext:DesktopShortcut ShortcutID="scProductos" Text="Productos" IconCls="shortcut-icon icon-productos" />
 
                 <%--<ext:DesktopShortcut ShortcutID="scTile" Text="Tile windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-90" />
                 <ext:DesktopShortcut ShortcutID="scCascade" Text="Cascade windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-170" />--%>
@@ -282,6 +332,24 @@
                                     <ext:MenuItem ID="SociosMenuItem" Text="Socios" Icon="Group" >
                                         <Listeners>
                                             <click Handler="WindowX.socios(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                </Items>
+                            </ext:Menu>
+                        </Menu>
+                    </ext:MenuItem>
+                    <ext:MenuItem ID="ProductsMenu" runat="server" Text="Productos" Icon="Folder" HideOnClick="false">
+                        <Menu>
+                            <ext:Menu runat ="server">
+                                <Items>
+                                    <ext:MenuItem ID="ProductosMenuItem" Text="Productos" Icon="Basket" >
+                                        <Listeners>
+                                            <click Handler="WindowX.productos(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                    <ext:MenuItem ID="TiposDeProductosMenuItem" Text="Tipos de Productos" Icon="BasketPut" >
+                                        <Listeners>
+                                            <click Handler="WindowX.tiposDeProductos(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
                                 </Items>
