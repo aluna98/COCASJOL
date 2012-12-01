@@ -10,7 +10,7 @@ using COCASJOL.LOGIC.Inventario.Ingresos;
 
 namespace COCASJOL.Website.Source.Inventario.Ingresos
 {
-    public partial class MantenimientoNotaDePeso : System.Web.UI.Page
+    public partial class MantenimientoNotaDePeso : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
         protected void Page_Load( object sender, EventArgs e )
         {
@@ -18,6 +18,8 @@ namespace COCASJOL.Website.Source.Inventario.Ingresos
             {
                 stSocios.DataSource = NotaDePesoLogic.GetSocios();
                 stSocios.DataBind();
+
+                //this.ValidarCredenciales("MANT_NOTASPESO");
             }
         }
 

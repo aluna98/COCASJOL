@@ -58,6 +58,12 @@
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/basket.png", sizingMethod="scale");
         }
         
+        .icon-notasDePeso
+        {
+            background-image: url(../Images/package.png) !important;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/package.png", sizingMethod="scale");
+        }
+        
         .icon-window48
         {
             background-image: url(../Images/window48x48.png) !important;
@@ -148,6 +154,10 @@
                 DesktopX.createDynamicWindow(app, 'basket', 'Productos', 'Productos/Productos.aspx');
             },
 
+            notasDePeso: function (app) {
+                DesktopX.createDynamicWindow(app, 'package', 'Notas De Peso', 'Inventario/Ingresos/MantenimientoNotaDePeso.aspx');
+            },
+
             settings: function () {
                 SettingsWin.show();
             },
@@ -170,6 +180,8 @@
                 WindowX.tiposDeProductos(app);
             } else if (id == 'scProductos') {
                 WindowX.productos(app);
+            } else if (id == 'scNotasDePeso') {
+                WindowX.notasDePeso(app);
             }
         };
     </script>
@@ -257,6 +269,16 @@
                 </ext:DesktopModule>
                 <%--Productos--%>
 
+                <%--Notas De Peso--%>
+                <ext:DesktopModule ModuleID="NotasDePesoModule">
+                    <Launcher ID="NotasDePesoLauncher" runat="server" Text="Notas De Peso" Icon="Package" >
+                        <Listeners>
+                            <Click Handler="WindowX.notasDePeso(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
+                <%--Notas De Peso--%>
+
 
                 <%--Configuracion--%>
                 <ext:DesktopModule ModuleID="SettingsModule" WindowID="SettingsWin" >
@@ -279,6 +301,8 @@
 
                 <ext:DesktopShortcut ShortcutID="scTiposDeProductos" Text="Tipos de Productos" IconCls="shortcut-icon icon-tiposDeProducto" />
                 <ext:DesktopShortcut ShortcutID="scProductos" Text="Productos" IconCls="shortcut-icon icon-productos" />
+
+                <ext:DesktopShortcut ShortcutID="scNotasDePeso" Text="Notas de Peso" IconCls="shortcut-icon icon-notasDePeso" />
 
                 <%--<ext:DesktopShortcut ShortcutID="scTile" Text="Tile windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-90" />
                 <ext:DesktopShortcut ShortcutID="scCascade" Text="Cascade windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-170" />--%>
@@ -349,6 +373,19 @@
                                     <ext:MenuItem ID="TiposDeProductosMenuItem" Text="Tipos de Productos" Icon="BasketPut" >
                                         <Listeners>
                                             <click Handler="WindowX.tiposDeProductos(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                </Items>
+                            </ext:Menu>
+                        </Menu>
+                    </ext:MenuItem>
+                    <ext:MenuItem ID="NotasDePesoMenu" runat="server" Text="Notas de Peso" Icon="Folder" HideOnClick="false">
+                        <Menu>
+                            <ext:Menu ID="Menu1" runat ="server">
+                                <Items>
+                                    <ext:MenuItem ID="NotasDePesoMenuItem" Text="Notas de Peso" Icon="Package" >
+                                        <Listeners>
+                                            <click Handler="WindowX.notasDePeso(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
                                 </Items>

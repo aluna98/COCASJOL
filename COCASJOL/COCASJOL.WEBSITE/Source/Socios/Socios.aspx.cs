@@ -29,6 +29,8 @@ namespace COCASJOL.Website.Socios
             {
                 string loggedUsr = Session["username"] as string;
                 this.LoggedUserHdn.Text = loggedUsr;
+
+                this.ValidarCredenciales("MANT_SOCIOS");
             }
         }
 

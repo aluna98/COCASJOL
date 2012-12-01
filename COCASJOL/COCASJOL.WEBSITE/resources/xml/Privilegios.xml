@@ -30,4 +30,10 @@
     <shortcut>scProductos</shortcut>
     <menuitem>ProductosMenuItem</menuitem>
   </privilege>
+  <privilege>
+    <key>MANT_NOTASPESO</key>
+    <module>NotasDePesoModule</module>
+    <shortcut>scNotasDePeso</shortcut>
+    <menuitem>NotasDePesoMenuItem</menuitem>
+  </privilege>
 </privilegios>

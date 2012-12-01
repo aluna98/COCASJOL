@@ -24,7 +24,7 @@ namespace COCASJOL.Website.Source.Productos
                 {
                     string loggedUsr = Session["username"] as string;
                     this.LoggedUserHdn.Text = loggedUsr;
-                    //this.ValidarCredenciales("MANT_TIPOPRODS");
+                    this.ValidarCredenciales("MANT_TIPOPRODS");
                 }
             }
             catch (Exception)
