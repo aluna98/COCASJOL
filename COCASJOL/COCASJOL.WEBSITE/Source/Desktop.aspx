@@ -8,9 +8,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Colinas</title>    
-    <link rel="stylesheet" type="text/css" href="../resources/css/desktop.css" />
-    <%--<style type="text/css">
+    <title>Colinas</title>
+    <style type="text/css" >
         .start-button
         {
             background-image: url(../resources/images/cocasjol_start_button.gif) !important;
@@ -90,7 +89,7 @@
             background-image: none;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../resources/images/dev-by-unitec.png', sizingMethod='scale');
         }
-    </style>--%>
+    </style>
     <script type="text/javascript" src="../resources/js/md5.js"></script>
     <script type="text/javascript">
         var DesktopX = {

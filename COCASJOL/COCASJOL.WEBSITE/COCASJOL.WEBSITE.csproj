@@ -64,7 +64,6 @@
     <Content Include="ExpiredSession.aspx" />
     <Content Include="Global.asax" />
     <Content Include="NoAccess.aspx" />
-    <Content Include="resources\css\desktop.css" />
     <Content Include="resources\images\background1.jpg" />
     <Content Include="resources\images\basket.png" />
     <Content Include="resources\images\basket_put.png" />
@@ -211,7 +210,9 @@
       <Name>COCASJOL.LOGIC</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="resources\css\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
