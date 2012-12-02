@@ -84,6 +84,7 @@
     <Content Include="Source\Desktop.aspx" />
     <Content Include="Source\Inventario\Ingresos\MantenimientoNotaDePeso.aspx" />
     <Content Include="Source\Inventario\Ingresos\NotaDePeso.aspx" />
+    <Content Include="Source\Inventario\Ingresos\NotasDePeso.aspx" />
     <Content Include="Source\Inventario\Salidas\HojaDeLiquidacion.aspx" />
     <Content Include="Source\Prestamos\Prestamos.aspx" />
     <Content Include="Source\Prestamos\SolicitudPrestamo.aspx" />
@@ -133,6 +134,12 @@
     </Compile>
     <Compile Include="Source\Inventario\Ingresos\NotaDePeso.aspx.designer.cs">
       <DependentUpon>NotaDePeso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Inventario\Ingresos\NotasDePeso.aspx.cs">
+      <DependentUpon>NotasDePeso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Inventario\Ingresos\NotasDePeso.aspx.designer.cs">
+      <DependentUpon>NotasDePeso.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Inventario\Salidas\HojaDeLiquidacion.aspx.cs">
       <DependentUpon>HojaDeLiquidacion.aspx</DependentUpon>
