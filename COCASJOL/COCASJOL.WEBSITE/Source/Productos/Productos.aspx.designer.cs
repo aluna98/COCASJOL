@@ -190,7 +190,7 @@ namespace COCASJOL.Website.Source.Productos {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField f_TIPOS_PROD_ID;
+        protected global::Ext.Net.ComboBox f_TIPOS_PROD_ID;
         
         /// <summary>
         /// f_PRODUCTOS_NOMBRE control.
@@ -274,15 +274,6 @@ namespace COCASJOL.Website.Source.Productos {
         protected global::Ext.Net.Panel Panel3;
         
         /// <summary>
-        /// AddIdTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.NumberField AddIdTxt;
-        
-        /// <summary>
         /// AddTipoDeProdIdCmb control.
         /// </summary>
         /// <remarks>
@@ -290,6 +281,15 @@ namespace COCASJOL.Website.Source.Productos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ComboBox AddTipoDeProdIdCmb;
+        
+        /// <summary>
+        /// AddIdTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField AddIdTxt;
         
         /// <summary>
         /// AddNombreTxt control.
@@ -416,6 +416,15 @@ namespace COCASJOL.Website.Source.Productos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.NumberField EditIdTxt;
+        
+        /// <summary>
+        /// ToolTip1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip1;
         
         /// <summary>
         /// EditTipoDeProdIdCmb control.

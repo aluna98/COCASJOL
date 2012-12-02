@@ -135,7 +135,7 @@ namespace COCASJOL.LOGIC.Seguridad
                 using (var db = new colinasEntities())
                 {
                     rol role = new rol();
-                    role.ROL_ID = ROL_ID;
+                    
                     role.ROL_NOMBRE = ROL_NOMBRE;
                     role.ROL_DESCRIPCION = ROL_DESCRIPCION;
                     role.CREADO_POR = CREADO_POR;
@@ -206,7 +206,6 @@ namespace COCASJOL.LOGIC.Seguridad
 
                     rol role = (rol)r;
 
-                    role.ROL_ID = ROL_ID;
                     role.ROL_NOMBRE = ROL_NOMBRE;
                     role.ROL_DESCRIPCION = ROL_DESCRIPCION;
                     role.CREADO_POR = CREADO_POR;

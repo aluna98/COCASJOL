@@ -311,7 +311,6 @@ namespace COCASJOL.LOGIC.Seguridad
 
                     usuario user = (usuario)u;
 
-                    user.USR_USERNAME = USR_USERNAME;
                     user.USR_NOMBRE = USR_NOMBRE;
                     user.USR_SEGUNDO_NOMBRE = USR_SEGUNDO_NOMBRE;
                     user.USR_APELLIDO = USR_APELLIDO;
@@ -378,7 +377,6 @@ namespace COCASJOL.LOGIC.Seguridad
 
                     usuario user = (usuario)u;
 
-                    user.USR_USERNAME = USR_USERNAME;
                     user.USR_NOMBRE = USR_NOMBRE;
                     user.USR_SEGUNDO_NOMBRE = USR_SEGUNDO_NOMBRE;
                     user.USR_APELLIDO = USR_APELLIDO;

@@ -89,31 +89,30 @@
                 </Fields>
             </ext:JsonReader>
         </Reader>
-        </ext:Store>
-
-        <ext:Store ID="stNotasPeso" runat="server" AutoSave="true"  OnRefreshData="stNotasPeso_RefreshData">
-                                    <Reader>
-                                        <ext:JsonReader IDProperty="NOTA_ID">
-                                            <Fields>
-                                                <ext:RecordField Name="NOTA_ID"        />
-                                                <ext:RecordField Name="NOTA_FECHA"          />
-                                                <ext:RecordField Name="SOCIO_ID"        />
-                                                <ext:RecordField Name="SOCIO_NOMBRE"        />
-                                                <ext:RecordField Name="NOTA_TIPO_CAFE"          />
-                                                <ext:RecordField Name="NOTA_PORCENTAJE_DEFECTO"          />
-                                                <ext:RecordField Name="NOTA_PORENTAJE_HUMDEDA"          />
-                                                <ext:RecordField Name="NOTA_CARRO_PROPIO"        />
-                                                <ext:RecordField Name="CREADO_POR"          />
-                                                <ext:RecordField Name="FECHA_CREACION"      Type="Date" />
-                                                <ext:RecordField Name="MODIFICADO_POR"      />
-                                                <ext:RecordField Name="FECHA_MODIFICACION"  Type="Date" />
-                                            </Fields>
-                                        </ext:JsonReader>
-                                    </Reader>
-                                    <Listeners>
-                                        <CommitDone Handler="Ext.Msg.alert('Guardar', 'Cambios guardados exitosamente.');" />
-                                    </Listeners>
-                                </ext:Store>
+    </ext:Store>
+    <ext:Store ID="stNotasPeso" runat="server" AutoSave="true" OnRefreshData="stNotasPeso_RefreshData">
+        <Reader>
+            <ext:JsonReader IDProperty="NOTA_ID">
+                <Fields>
+                    <ext:RecordField Name="NOTA_ID" />
+                    <ext:RecordField Name="NOTA_FECHA" />
+                    <ext:RecordField Name="SOCIO_ID" />
+                    <ext:RecordField Name="SOCIO_NOMBRE" />
+                    <ext:RecordField Name="NOTA_TIPO_CAFE" />
+                    <ext:RecordField Name="NOTA_PORCENTAJE_DEFECTO" />
+                    <ext:RecordField Name="NOTA_PORENTAJE_HUMDEDA" />
+                    <ext:RecordField Name="NOTA_CARRO_PROPIO" />
+                    <ext:RecordField Name="CREADO_POR" />
+                    <ext:RecordField Name="FECHA_CREACION" Type="Date" />
+                    <ext:RecordField Name="MODIFICADO_POR" />
+                    <ext:RecordField Name="FECHA_MODIFICACION" Type="Date" />
+                </Fields>
+            </ext:JsonReader>
+        </Reader>
+        <Listeners>
+            <CommitDone Handler="Ext.Msg.alert('Guardar', 'Cambios guardados exitosamente.');" />
+        </Listeners>
+    </ext:Store>
 
 
         <ext:Store runat="server" ID="stSocios">

@@ -60,8 +60,8 @@
         
         .icon-notasDePeso
         {
-            background-image: url(../Images/package.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/package.png", sizingMethod="scale");
+            background-image: url(../Images/note.png) !important;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/note.png", sizingMethod="scale");
         }
         
         .icon-window48

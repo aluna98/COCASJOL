@@ -75,7 +75,7 @@
     <Content Include="resources\images\group.png" />
     <Content Include="resources\images\key.png" />
     <Content Include="resources\images\login.jpg" />
-    <Content Include="resources\images\package.png" />
+    <Content Include="resources\images\note.png" />
     <Content Include="resources\images\user.png" />
     <Content Include="resources\images\user_edit.png" />
     <Content Include="resources\images\vista_start_button.gif" />

@@ -537,7 +537,7 @@
                                             <Items>
                                                 <ext:TextField runat="server" ID="EditUsernameTxt"        DataIndex="USR_USERNAME"         LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Nombre de Usuario" AllowBlank="false" ReadOnly="true">
                                                     <ToolTips>
-                                                        <ext:ToolTip ID="ToolTip1" runat="server" Html="El nombre de usuario es de solo lectura."
+                                                        <ext:ToolTip runat="server" Html="El nombre de usuario es de solo lectura."
                                                             Title="Nombre de Usuario" Width="200" TrackMouse="true" />
                                                     </ToolTips>
                                                 </ext:TextField>

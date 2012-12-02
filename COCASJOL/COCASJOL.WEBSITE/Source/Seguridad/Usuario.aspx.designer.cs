@@ -463,15 +463,6 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         protected global::Ext.Net.TextField EditUsernameTxt;
         
         /// <summary>
-        /// ToolTip1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ToolTip ToolTip1;
-        
-        /// <summary>
         /// EditNombreTxt control.
         /// </summary>
         /// <remarks>

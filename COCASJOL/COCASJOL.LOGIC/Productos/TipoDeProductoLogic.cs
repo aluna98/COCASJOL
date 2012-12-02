@@ -86,7 +86,6 @@ namespace COCASJOL.LOGIC.Productos
                 {
                     tipo_producto productType = new tipo_producto();
 
-                    productType.TIPOS_PROD_ID = TIPOS_PROD_ID;
                     productType.TIPOS_PROD_NOMBRE = TIPOS_PROD_NOMBRE;
                     productType.TIPOS_PROD_DESCRIPCION = TIPOS_PROD_DESCRIPCION;
                     productType.CREADO_POR = CREADO_POR;

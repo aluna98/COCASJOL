@@ -127,6 +127,10 @@
             keyUpEvent: function (sender, e) {
                 if (e.getKey() == 13)
                     GridStore.reload();
+            },
+
+            reloadGridStore: function () {
+                GridStore.reload();
             }
         };
 
@@ -159,12 +163,13 @@
                 UpdateMethod="ActualizarProducto"
                 DeleteMethod="EliminarProducto" onselecting="ProductosDS_Selecting" >
                 <SelectParameters>
-                    <asp:ControlParameter Name="PRODUCTOS_ID"           Type="Int32"    ControlID="f_PRODUCTOS_ID"           PropertyName="Text" />
-                    <asp:ControlParameter Name="TIPOS_PROD_ID"          Type="Int32"    ControlID="f_TIPOS_PROD_ID"          PropertyName="Text" />
-                    <asp:ControlParameter Name="PRODUCTOS_NOMBRE"       Type="String"   ControlID="f_PRODUCTOS_NOMBRE"       PropertyName="Text" />
-                    <asp:ControlParameter Name="PRODUCTOS_DESCRIPCION"  Type="String"   ControlID="f_PRODUCTOS_DESCRIPCION"  PropertyName="Text" />
-                    <asp:ControlParameter Name="PRODUCTOS_CANTIDAD_MIN" Type="Int32"    ControlID="f_PRODUCTOS_CANTIDAD_MIN" PropertyName="Text" />
-                    <asp:ControlParameter Name="PRODUCTOS_EXISTENCIA"   Type="Int32"    ControlID="f_PRODUCTOS_EXISTENCIA"   PropertyName="Text" />
+                    <asp:ControlParameter Name="PRODUCTOS_ID"           Type="Int32"    ControlID="f_PRODUCTOS_ID"           PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="TIPOS_PROD_ID"          Type="Int32"    ControlID="f_TIPOS_PROD_ID"          PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="TIPOS_PROD_NOMBRE"      Type="String"   ControlID="nullHdn"                  PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="PRODUCTOS_NOMBRE"       Type="String"   ControlID="f_PRODUCTOS_NOMBRE"       PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="PRODUCTOS_DESCRIPCION"  Type="String"   ControlID="f_PRODUCTOS_DESCRIPCION"  PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="PRODUCTOS_CANTIDAD_MIN" Type="Int32"    ControlID="f_PRODUCTOS_CANTIDAD_MIN" PropertyName="Text" DefaultValue="-1"/>
+                    <asp:ControlParameter Name="PRODUCTOS_EXISTENCIA"   Type="Int32"    ControlID="f_PRODUCTOS_EXISTENCIA"   PropertyName="Text" DefaultValue="-1"/>
                     <asp:ControlParameter Name="CREADO_POR"             Type="String"   ControlID="nullHdn"                  PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="FECHA_CREACION"         Type="DateTime" ControlID="nullHdn"                  PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="MODIFICADO_POR"         Type="String"   ControlID="nullHdn"                  PropertyName="Text" DefaultValue="" />
@@ -173,6 +178,7 @@
                 <InsertParameters>
                     <asp:Parameter Name="PRODUCTOS_ID"           Type="Int32" />
                     <asp:Parameter Name="TIPOS_PROD_ID"          Type="Int32" />
+                    <asp:Parameter Name="TIPOS_PROD_NOMBRE"      Type="String" />
                     <asp:Parameter Name="PRODUCTOS_NOMBRE"       Type="String" />
                     <asp:Parameter Name="PRODUCTOS_DESCRIPCION"  Type="String" />
                     <asp:Parameter Name="PRODUCTOS_CANTIDAD_MIN" Type="Int32" />
@@ -185,6 +191,7 @@
                 <UpdateParameters>
                     <asp:Parameter Name="PRODUCTOS_ID"           Type="Int32" />
                     <asp:Parameter Name="TIPOS_PROD_ID"          Type="Int32" />
+                    <asp:Parameter Name="TIPOS_PROD_NOMBRE"      Type="String" />
                     <asp:Parameter Name="PRODUCTOS_NOMBRE"       Type="String" />
                     <asp:Parameter Name="PRODUCTOS_DESCRIPCION"  Type="String" />
                     <asp:Parameter Name="PRODUCTOS_CANTIDAD_MIN" Type="Int32" />
@@ -234,6 +241,7 @@
                                             <Fields>
                                                 <ext:RecordField Name="PRODUCTOS_ID"           />
                                                 <ext:RecordField Name="TIPOS_PROD_ID"          />
+                                                <ext:RecordField Name="TIPOS_PROD_NOMBRE"      ServerMapping="tipos_productos.TIPOS_PROD_NOMBRE" />
                                                 <ext:RecordField Name="PRODUCTOS_NOMBRE"       />
                                                 <ext:RecordField Name="PRODUCTOS_DESCRIPCION"  />
                                                 <ext:RecordField Name="PRODUCTOS_CANTIDAD_MIN" />
@@ -253,7 +261,7 @@
                             <ColumnModel>
                                 <Columns>
                                     <ext:Column DataIndex="PRODUCTOS_ID"           Header="Id de Producto" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="TIPOS_PROD_ID"          Header="Id de Tipo de Producto" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="TIPOS_PROD_NOMBRE"      Header="Tipo de Producto" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="PRODUCTOS_NOMBRE"       Header="Nombre" Sortable="true" Width="150"></ext:Column>
                                     <ext:Column DataIndex="PRODUCTOS_DESCRIPCION"  Header="Descripción" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="PRODUCTOS_CANTIDAD_MIN" Header="Cantidad Minima" Sortable="true"></ext:Column>
@@ -300,11 +308,25 @@
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:NumberField ID="f_TIPOS_PROD_ID" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                        <ext:ComboBox
+                                                            ID="f_TIPOS_PROD_ID" 
+                                                            runat="server"
+                                                            Icon="Find"
+                                                            StoreID="TiposDeProductoSt"
+                                                            DataIndex="TIPOS_PROD_ID"
+                                                            ValueField="TIPOS_PROD_ID" 
+                                                            DisplayField="TIPOS_PROD_NOMBRE" 
+                                                            Mode="Local"
+                                                            TypeAhead="true">
+                                                            <Triggers>
+                                                                <ext:FieldTrigger Icon="Clear"/>
+                                                            </Triggers>
                                                             <Listeners>
+                                                                <Select Handler="PageX.reloadGridStore();" />
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                                <TriggerClick Handler="this.clearValue();" />
                                                             </Listeners>
-                                                        </ext:NumberField>
+                                                        </ext:ComboBox>
                                                     </Component>
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
@@ -385,7 +407,6 @@
                             <Items>
                                 <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                     <Items>
-                                        <ext:NumberField runat="server" ID="AddIdTxt"               DataIndex="PRODUCTOS_ID"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Producto" AllowBlank="false" Text="0" Hidden="true" ReadOnly="true"></ext:NumberField>
                                         <ext:ComboBox runat="server"    ID="AddTipoDeProdIdCmb"     DataIndex="TIPOS_PROD_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Producto" AllowBlank="false" MsgTarget="Side"
                                             StoreID="TiposDeProductoSt"
                                             ValueField="TIPOS_PROD_ID" 
@@ -399,6 +420,7 @@
                                                 <TriggerClick Handler="this.clearValue();" />
                                             </Listeners>
                                         </ext:ComboBox>
+                                        <ext:NumberField runat="server" ID="AddIdTxt"               DataIndex="PRODUCTOS_ID"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Producto" AllowBlank="false" Text="0" Hidden="true" ReadOnly="true"></ext:NumberField>
                                         <ext:TextField   runat="server" ID="AddNombreTxt"           DataIndex="PRODUCTOS_NOMBRE"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" IsRemoteValidation="true">
                                             <RemoteValidation OnValidation="AddNombreTxt_Validate" />
                                         </ext:TextField>
@@ -451,7 +473,11 @@
                             <Items>
                                 <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                     <Items>
-                                        <ext:NumberField runat="server" ID="EditIdTxt"            DataIndex="PRODUCTOS_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Rol" AllowBlank="false" ReadOnly="true" Hidden="true"></ext:NumberField>
+                                        <ext:NumberField runat="server" ID="EditIdTxt"            DataIndex="PRODUCTOS_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Producto" AllowBlank="false" ReadOnly="true">
+                                            <ToolTips>
+                                                <ext:ToolTip ID="ToolTip1" runat="server" Title="Id de Producto" Html="El Id de Producto es de solo lectura." Width="200" TrackMouse="true" />
+                                            </ToolTips>
+                                        </ext:NumberField>
                                         <ext:ComboBox runat="server"    ID="EditTipoDeProdIdCmb"  DataIndex="TIPOS_PROD_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Producto" AllowBlank="false" MsgTarget="Side"
                                             StoreID="TiposDeProductoSt" 
                                             ValueField="TIPOS_PROD_ID" 
