@@ -17,8 +17,8 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
         {
             if ( !X.IsAjaxRequest )
             {
-                stSocios.DataSource = NotaDePesoLogic.GetSocios();
-                stSocios.DataBind();
+                //stSocios.DataSource = NotaDePesoLogic.GetSocios();
+                //stSocios.DataBind();
             }
 
         }
