@@ -53,30 +53,6 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
         //}
 
         #region Select
-
-        //public List<nota_de_peso> GetNotasDePeso(string SOCIO_ID, string SOCIO_NOMBRE, string NOTA_ID, string NOTA_TIPO_CAFE, string NOTA_PORCENTAJE_DEFECTO, string NOTA_CARRO_PROPIO)
-        //{
-        //    using (var db = new colinasEntities())
-        //    {
-        //        db.nota_de_peso.MergeOption = MergeOption.NoTracking;
-
-        //        var notas = from n in db.nota_de_peso.Include("socios")
-        //                    where
-        //                    (String.IsNullOrEmpty(SOCIO_ID) ? true : n.SOCIOS_ID == SOCIO_ID) &&
-        //                    (String.IsNullOrEmpty(SOCIO_NOMBRE) ? true : (
-        //                                n.socios.SOCIOS_PRIMER_NOMBRE.Contains(SOCIO_NOMBRE) ||
-        //                                n.socios.SOCIOS_SEGUNDO_NOMBRE.Contains(SOCIO_NOMBRE) ||
-        //                                n.socios.SOCIOS_PRIMER_APELLIDO.Contains(SOCIO_NOMBRE) ||
-        //                                n.socios.SOCIOS_SEGUNDO_APELLIDO.Contains(SOCIO_NOMBRE))) &&
-        //                    (String.IsNullOrEmpty(NOTA_ID) ? true : n.NOTA_ID == Convert.ToInt32(NOTA_ID)) &&
-        //                    (String.IsNullOrEmpty(NOTA_TIPO_CAFE) ? true : n.NOTA_TIPO_CAFE == Convert.ToDecimal(NOTA_TIPO_CAFE)) &&
-        //                    (String.IsNullOrEmpty(NOTA_PORCENTAJE_DEFECTO) ? true : n.NOTA_PORCENTAJE_DESCUENTO == Convert.ToDecimal(NOTA_PORCENTAJE_DEFECTO))
-        //                    select n;//new { NOTA_ID = n.NOTA_ID, SOCIO_ID = n.socios.SOCIOS_ID, SOCIO_NOMBRE = n.socios.SOCIOS_PRIMER_NOMBRE + " " + n.socios.SOCIOS_PRIMER_APELLIDO, NOTA_TIPO_CAFE = n.NOTA_TIPO_CAFE, NOTA_PORCENTAJE_DEFECTO = n.NOTA_PORCENTAJE_DESCUENTO, NOTA_CARRO_PROPIO = false }
-        //                    ;
-        //        return notas.ToList<nota_de_peso>();
-        //    }
-        //}
-
         #endregion
 
         #region Insert

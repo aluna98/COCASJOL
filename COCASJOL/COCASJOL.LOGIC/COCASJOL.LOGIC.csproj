@@ -49,7 +49,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Colinas.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Inventario\ClasificacionDeCafeLogic.cs" />
+    <Compile Include="Inventario\Ingresos\EstadoNotaDePesoLogic.cs" />
     <Compile Include="Inventario\Ingresos\NotaDePesoLogic.cs" />
+    <Compile Include="Inventario\InventarioDeCafeLogic.cs" />
     <Compile Include="Prestamos\PrestamosLogic.cs" />
     <Compile Include="Prestamos\SolicitudesLogic.cs" />
     <Compile Include="Productos\ProductoLogic.cs" />

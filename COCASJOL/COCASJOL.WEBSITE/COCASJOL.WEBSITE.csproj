@@ -82,6 +82,8 @@
     <Content Include="resources\images\window48x48.png" />
     <Content Include="resources\js\md5.js" />
     <Content Include="Source\Desktop.aspx" />
+    <Content Include="Source\Inventario\ClasificacionesDeCafe.aspx" />
+    <Content Include="Source\Inventario\Ingresos\EstadosNotaDePeso.aspx" />
     <Content Include="Source\Inventario\Ingresos\NotasDePeso.aspx" />
     <Content Include="Source\Inventario\Salidas\HojaDeLiquidacion.aspx" />
     <Content Include="Source\Prestamos\Prestamos.aspx" />
@@ -118,6 +120,20 @@
     </Compile>
     <Compile Include="Source\Desktop.aspx.designer.cs">
       <DependentUpon>Desktop.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Inventario\ClasificacionesDeCafe.aspx.cs">
+      <DependentUpon>ClasificacionesDeCafe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Inventario\ClasificacionesDeCafe.aspx.designer.cs">
+      <DependentUpon>ClasificacionesDeCafe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Inventario\Ingresos\EstadosNotaDePeso.aspx.cs">
+      <DependentUpon>EstadosNotaDePeso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Inventario\Ingresos\EstadosNotaDePeso.aspx.designer.cs">
+      <DependentUpon>EstadosNotaDePeso.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Inventario\Ingresos\NotasDePeso.aspx.cs">
       <DependentUpon>NotasDePeso.aspx</DependentUpon>
