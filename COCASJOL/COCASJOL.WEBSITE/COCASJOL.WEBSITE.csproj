@@ -68,6 +68,8 @@
     <Content Include="resources\images\basket.png" />
     <Content Include="resources\images\basket_put.png" />
     <Content Include="resources\images\cocasjol_start_button.gif" />
+    <Content Include="resources\images\cup.png" />
+    <Content Include="resources\images\database.png" />
     <Content Include="resources\images\desktop.jpg" />
     <Content Include="resources\images\dev-by-unitec.png" />
     <Content Include="resources\images\gear_in.png" />
@@ -76,12 +78,14 @@
     <Content Include="resources\images\key.png" />
     <Content Include="resources\images\login.jpg" />
     <Content Include="resources\images\note.png" />
+    <Content Include="resources\images\table_go.png" />
     <Content Include="resources\images\user.png" />
     <Content Include="resources\images\user_edit.png" />
     <Content Include="resources\images\vista_start_button.gif" />
     <Content Include="resources\images\window48x48.png" />
     <Content Include="resources\js\md5.js" />
     <Content Include="Source\Desktop.aspx" />
+    <Content Include="Source\Entorno\VariablesDeEntorno.aspx" />
     <Content Include="Source\Inventario\ClasificacionesDeCafe.aspx" />
     <Content Include="Source\Inventario\Ingresos\EstadosNotaDePeso.aspx" />
     <Content Include="Source\Inventario\Ingresos\NotasDePeso.aspx" />
@@ -120,6 +124,13 @@
     </Compile>
     <Compile Include="Source\Desktop.aspx.designer.cs">
       <DependentUpon>Desktop.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Entorno\VariablesDeEntorno.aspx.cs">
+      <DependentUpon>VariablesDeEntorno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Entorno\VariablesDeEntorno.aspx.designer.cs">
+      <DependentUpon>VariablesDeEntorno.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Inventario\ClasificacionesDeCafe.aspx.cs">
       <DependentUpon>ClasificacionesDeCafe.aspx</DependentUpon>

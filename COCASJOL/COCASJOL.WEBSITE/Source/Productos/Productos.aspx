@@ -260,7 +260,7 @@
                             </Store>
                             <ColumnModel>
                                 <Columns>
-                                    <ext:Column DataIndex="PRODUCTOS_ID"           Header="Id de Producto" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="PRODUCTOS_ID"           Header="Id" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="TIPOS_PROD_NOMBRE"      Header="Tipo de Producto" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="PRODUCTOS_NOMBRE"       Header="Nombre" Sortable="true" Width="150"></ext:Column>
                                     <ext:Column DataIndex="PRODUCTOS_DESCRIPCION"  Header="Descripción" Sortable="true"></ext:Column>
@@ -274,17 +274,17 @@
                             <TopBar>
                                 <ext:Toolbar ID="Toolbar1" runat="server">
                                     <Items>
-                                        <ext:Button ID="AgregarTipoBtn" runat="server" Text="Agregar" Icon="BasketAdd" >
+                                        <ext:Button ID="AgregarBtn" runat="server" Text="Agregar" Icon="BasketAdd" >
                                             <Listeners>
                                                 <Click Handler="PageX.add();" />
                                             </Listeners>
                                         </ext:Button>
-                                        <ext:Button ID="EditarTipoBtn" runat="server" Text="Editar" Icon="BasketEdit">
+                                        <ext:Button ID="EditarBtn" runat="server" Text="Editar" Icon="BasketEdit">
                                             <Listeners>
                                                 <Click Handler="PageX.edit();" />
                                             </Listeners>
                                         </ext:Button>
-                                        <ext:Button ID="EliminarTipoBtn" runat="server" Text="Eliminar" Icon="BasketDelete">
+                                        <ext:Button ID="EliminarBtn" runat="server" Text="Eliminar" Icon="BasketDelete">
                                             <Listeners>
                                                 <Click Handler="PageX.remove();" />
                                             </Listeners>

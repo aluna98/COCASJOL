@@ -139,31 +139,31 @@ namespace COCASJOL.Website.Source.Productos {
         protected global::Ext.Net.Toolbar Toolbar1;
         
         /// <summary>
-        /// AgregarTipoBtn control.
+        /// AgregarBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button AgregarTipoBtn;
+        protected global::Ext.Net.Button AgregarBtn;
         
         /// <summary>
-        /// EditarTipoBtn control.
+        /// EditarBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button EditarTipoBtn;
+        protected global::Ext.Net.Button EditarBtn;
         
         /// <summary>
-        /// EliminarTipoBtn control.
+        /// EliminarBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button EliminarTipoBtn;
+        protected global::Ext.Net.Button EliminarBtn;
         
         /// <summary>
         /// GridView1 control.

@@ -210,10 +210,10 @@
                                                 <ext:RecordField Name="ESTADOS_NOTA_ID"          />
                                                 <ext:RecordField Name="ESTADOS_NOTA_NOMBRE"      />
                                                 <ext:RecordField Name="ESTADOS_NOTA_DESCRIPCION" />
-                                                <ext:RecordField Name="CREADO_POR"             />
-                                                <ext:RecordField Name="FECHA_CREACION"         Type="Date" />
-                                                <ext:RecordField Name="MODIFICADO_POR"         />
-                                                <ext:RecordField Name="FECHA_MODIFICACION"     Type="Date" />
+                                                <ext:RecordField Name="CREADO_POR"               />
+                                                <ext:RecordField Name="FECHA_CREACION"           Type="Date" />
+                                                <ext:RecordField Name="MODIFICADO_POR"           />
+                                                <ext:RecordField Name="FECHA_MODIFICACION"       Type="Date" />
                                             </Fields>
                                         </ext:JsonReader>
                                     </Reader>
@@ -224,7 +224,7 @@
                             </Store>
                             <ColumnModel>
                                 <Columns>
-                                    <ext:Column DataIndex="ESTADOS_NOTA_ID"          Header="Id de Estado de Nota de Peso" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="ESTADOS_NOTA_ID"          Header="Id" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="ESTADOS_NOTA_NOMBRE"      Header="Nombre" Sortable="true" Width="150"></ext:Column>
                                     <ext:Column DataIndex="ESTADOS_NOTA_DESCRIPCION" Header="Descripción" Sortable="true"></ext:Column>
                                 </Columns>
@@ -235,17 +235,17 @@
                             <TopBar>
                                 <ext:Toolbar ID="Toolbar1" runat="server">
                                     <Items>
-                                        <ext:Button ID="AgregarTipoBtn" runat="server" Text="Agregar" Icon="Add" >
+                                        <ext:Button ID="AgregarBtn" runat="server" Text="Agregar" Icon="Add" >
                                             <Listeners>
                                                 <Click Handler="PageX.add();" />
                                             </Listeners>
                                         </ext:Button>
-                                        <ext:Button ID="EditarTipoBtn" runat="server" Text="Editar" Icon="Pencil">
+                                        <ext:Button ID="EditarBtn" runat="server" Text="Editar" Icon="Pencil">
                                             <Listeners>
                                                 <Click Handler="PageX.edit();" />
                                             </Listeners>
                                         </ext:Button>
-                                        <ext:Button ID="EliminarTipoBtn" runat="server" Text="Eliminar" Icon="Delete">
+                                        <ext:Button ID="EliminarBtn" runat="server" Text="Eliminar" Icon="Delete">
                                             <Listeners>
                                                 <Click Handler="PageX.remove();" />
                                             </Listeners>

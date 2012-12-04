@@ -64,6 +64,24 @@
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/note.png", sizingMethod="scale");
         }
         
+        .icon-estadosNotasDePeso
+        {
+            background-image: url(../Images/table_go.png) !important;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/table_go.png", sizingMethod="scale");
+        }
+        
+        .icon-clasificacionesDeCafe
+        {
+            background-image: url(../Images/cup.png) !important;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/cup.png", sizingMethod="scale");
+        }
+        
+        .icon-variablesEntorno
+        {
+            background-image: url(../Images/database.png) !important;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/database.png", sizingMethod="scale");
+        }
+        
         .icon-window48
         {
             background-image: url(../Images/window48x48.png) !important;
@@ -155,7 +173,19 @@
             },
 
             notasDePeso: function (app) {
-                DesktopX.createDynamicWindow(app, 'package', 'Notas De Peso', 'Inventario/Ingresos/MantenimientoNotaDePeso.aspx');
+                DesktopX.createDynamicWindow(app, 'package', 'Notas De Peso', 'Inventario/Ingresos/NotasDePeso.aspx');
+            },
+
+            estadosNotasDePeso: function (app) {
+                DesktopX.createDynamicWindow(app, 'table_go', 'Estados de Notas De Peso', 'Inventario/Ingresos/EstadosNotaDePeso.aspx');
+            },
+
+            clasificacionesDeCafe: function (app) {
+                DesktopX.createDynamicWindow(app, 'cup', 'Clasificaciones de Café', 'Inventario/ClasificacionesDeCafe.aspx');
+            },
+
+            variablesDeEntorno: function (app) {
+                DesktopX.createDynamicWindow(app, 'database', 'Variables de Entorno', 'Entorno/VariablesDeEntorno.aspx');
             },
 
             settings: function () {
@@ -182,6 +212,12 @@
                 WindowX.productos(app);
             } else if (id == 'scNotasDePeso') {
                 WindowX.notasDePeso(app);
+            } else if (id == 'scEstadosNotasDePeso') {
+                WindowX.estadosNotasDePeso(app);
+            } else if (id == 'scClasificacionesDeCafe') {
+                WindowX.clasificacionesDeCafe(app);
+            } else if (id == 'scVariablesDeEntorno') {
+                WindowX.variablesDeEntorno(app);
             }
         };
     </script>
@@ -277,10 +313,33 @@
                         </Listeners>
                     </Launcher>
                 </ext:DesktopModule>
+                <ext:DesktopModule ModuleID="EstadosNotasDePesoModule">
+                    <Launcher ID="EstadosNotasDePesoLauncher" runat="server" Text="Estados de Notas De Peso" Icon="TableGo" >
+                        <Listeners>
+                            <Click Handler="WindowX.estadosNotasDePeso(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
                 <%--Notas De Peso--%>
 
+                <%--Inventario de Cafe por Socio --%>
+                <ext:DesktopModule ModuleID="ClasificacionesDeCafeModule">
+                    <Launcher ID="ClasificacionesDeCafeLauncher" runat="server" Text="Clasificaciones de Café" Icon="TableGo" >
+                        <Listeners>
+                            <Click Handler="WindowX.clasificacionesDeCafe(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
+                <%--Inventario de Cafe por Socio --%>
 
                 <%--Configuracion--%>
+                <ext:DesktopModule ModuleID="VariablesDeEntornoModule">
+                    <Launcher ID="VariablesDeEntornoLauncher" runat="server" Text="Variables de Entorno" Icon="Database" >
+                        <Listeners>
+                            <Click Handler="WindowX.variablesDeEntorno(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
                 <ext:DesktopModule ModuleID="SettingsModule" WindowID="SettingsWin" >
                     <Launcher ID="SettingsLauncher" runat="server" Text="Configuración" Icon="Wrench" />
                 </ext:DesktopModule>
@@ -303,12 +362,17 @@
                 <ext:DesktopShortcut ShortcutID="scProductos" Text="Productos" IconCls="shortcut-icon icon-productos" />
 
                 <ext:DesktopShortcut ShortcutID="scNotasDePeso" Text="Notas de Peso" IconCls="shortcut-icon icon-notasDePeso" />
+                <ext:DesktopShortcut ShortcutID="scEstadosNotasDePeso" Text="Estados de Notas de Peso" IconCls="shortcut-icon icon-estadosNotasDePeso" />
+
+                <ext:DesktopShortcut ShortcutID="scClasificacionesDeCafe" Text="Clasificaciones de Café" IconCls="shortcut-icon icon-clasificacionesDeCafe" />
+                
+                <ext:DesktopShortcut ShortcutID="scVariablesDeEntorno" Text="Variables de Entorno" IconCls="shortcut-icon icon-variablesEntorno" />
 
                 <%--<ext:DesktopShortcut ShortcutID="scTile" Text="Tile windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-90" />
                 <ext:DesktopShortcut ShortcutID="scCascade" Text="Cascade windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-170" />--%>
             </Shortcuts>
 
-            <StartMenu Height="400" Width="300" ToolsWidth="127" Title="Start Menu">
+            <StartMenu Height="550" Width="350" ToolsWidth="127" Title="Start Menu">
                 <ToolItems>
                     <ext:MenuItem Text="Configuración" Icon="Wrench">
                         <Listeners>
@@ -350,7 +414,7 @@
                     </ext:MenuItem>
                     <ext:MenuItem ID="AsociatesMenu" runat="server" Text="Socios" Icon="Folder" HideOnClick="false">
                         <Menu>
-                            <ext:Menu runat ="server">
+                            <ext:Menu runat="server">
                                 <Items>
                                     <ext:MenuItem ID="SociosMenuItem" Text="Socios" Icon="Group" >
                                         <Listeners>
@@ -363,7 +427,7 @@
                     </ext:MenuItem>
                     <ext:MenuItem ID="ProductsMenu" runat="server" Text="Productos" Icon="Folder" HideOnClick="false">
                         <Menu>
-                            <ext:Menu runat ="server">
+                            <ext:Menu runat="server">
                                 <Items>
                                     <ext:MenuItem ID="ProductosMenuItem" Text="Productos" Icon="Basket" >
                                         <Listeners>
@@ -381,11 +445,42 @@
                     </ext:MenuItem>
                     <ext:MenuItem ID="NotasDePesoMenu" runat="server" Text="Notas de Peso" Icon="Folder" HideOnClick="false">
                         <Menu>
-                            <ext:Menu ID="Menu1" runat ="server">
+                            <ext:Menu runat="server">
                                 <Items>
                                     <ext:MenuItem ID="NotasDePesoMenuItem" Text="Notas de Peso" Icon="Package" >
                                         <Listeners>
                                             <click Handler="WindowX.notasDePeso(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                    <ext:MenuItem ID="EstadosNotasDePesoMenuItem" Text="Estados de Notas de Peso" Icon="TableGo" >
+                                        <Listeners>
+                                            <click Handler="WindowX.estadosNotasDePeso(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                </Items>
+                            </ext:Menu>
+                        </Menu>
+                    </ext:MenuItem>
+                    <ext:MenuItem ID="InventarioDeCafePorSocio" runat="server" Text="Inventario de Café por Socio" Icon="Folder" HideOnClick="false">
+                        <Menu>
+                            <ext:Menu runat="server">
+                                <Items>
+                                    <ext:MenuItem ID="ClasificacionesDeCafeMenuItem" Text="Clasificaciones de Café" Icon="Cup" >
+                                        <Listeners>
+                                            <click Handler="WindowX.clasificacionesDeCafe(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                </Items>
+                            </ext:Menu>
+                        </Menu>
+                    </ext:MenuItem>
+                    <ext:MenuItem ID="EnvironmentMenu" runat="server" Text="Entorno" Icon="Folder" HideOnClick="false">
+                        <Menu>
+                            <ext:Menu runat="server">
+                                <Items>
+                                    <ext:MenuItem ID="VariablesDeEntornoMenuItem" Text="Variables de Entorno" Icon="Database" >
+                                        <Listeners>
+                                            <click Handler="WindowX.variablesDeEntorno(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
                                 </Items>

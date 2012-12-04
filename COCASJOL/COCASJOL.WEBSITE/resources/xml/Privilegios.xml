@@ -5,35 +5,83 @@
     <module>UsuariosModule</module>
     <shortcut>scUsuarios</shortcut>
     <menuitem>UsuariosMenuItem</menuitem>
+    <page></page>
     </privilege>
   <privilege>
     <key>SYS_ROLES</key>
     <module>RolesModule</module>
     <shortcut>scRoles</shortcut>
     <menuitem>RolesMenuItem</menuitem>
+    <page></page>
   </privilege>
   <privilege>
     <key>MANT_SOCIOS</key>
     <module>SociosModule</module>
     <shortcut>scSocios</shortcut>
     <menuitem>SociosMenuItem</menuitem>
+    <page></page>
   </privilege>
   <privilege>
     <key>MANT_TIPOPRODS</key>
     <module>ProductosModule</module>
     <shortcut>scTiposDeProductos</shortcut>
     <menuitem>TiposDeProductosMenuItem</menuitem>
+    <page></page>
   </privilege>
   <privilege>
     <key>MANT_PRODUCTOS</key>
     <module>ProductosModule</module>
     <shortcut>scProductos</shortcut>
     <menuitem>ProductosMenuItem</menuitem>
+    <page></page>
   </privilege>
   <privilege>
     <key>MANT_NOTASPESO</key>
     <module>NotasDePesoModule</module>
     <shortcut>scNotasDePeso</shortcut>
     <menuitem>NotasDePesoMenuItem</menuitem>
+    <page></page>
+  </privilege>
+  <privilege>
+    <key>MANT_ESTADOSNOTAPESO</key>
+    <module>EstadosNotasDePesoModule</module>
+    <shortcut>scEstadosNotasDePeso</shortcut>
+    <menuitem>EstadosNotasDePesoMenuItem</menuitem>
+    <page></page>
+  </privilege>
+  <privilege>
+    <key>MANT_VARIABLESENTORNO</key>
+    <module>VariablesDeEntornoModule</module>
+    <shortcut>scVariablesDeEntorno</shortcut>
+    <menuitem>VariablesDeEntornoMenuItem</menuitem>
+    <page></page>
+  </privilege>
+  <privilege>
+    <key>MANT_CLASIFICACIONESCAFE</key>
+    <module>ClasificacionesDeCafeModule</module>
+    <shortcut>scClasificacionesDeCafe</shortcut>
+    <menuitem>ClasificacionesDeCafeMenuItem</menuitem>
+    <page></page>
+  </privilege>
+  <privilege>
+    <key>MANT_INVENTARIOCAFE</key>
+    <module></module>
+    <shortcut></shortcut>
+    <menuitem></menuitem>
+    <page></page>
+  </privilege>
+  <privilege>
+    <key>MANT_PRESTAMOS</key>
+    <module></module>
+    <shortcut></shortcut>
+    <menuitem></menuitem>
+    <page></page>
+  </privilege>
+  <privilege>
+    <key>MANT_SOLICITUDESPRESTAMO</key>
+    <module></module>
+    <shortcut></shortcut>
+    <menuitem></menuitem>
+    <page></page>
   </privilege>
 </privilegios>

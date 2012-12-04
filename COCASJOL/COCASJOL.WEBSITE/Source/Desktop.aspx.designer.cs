@@ -130,15 +130,6 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.MenuItem NotasDePesoMenu;
         
         /// <summary>
-        /// Menu1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Menu Menu1;
-        
-        /// <summary>
         /// NotasDePesoMenuItem control.
         /// </summary>
         /// <remarks>
@@ -146,6 +137,51 @@ namespace COCASJOL.WEBSITE {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.MenuItem NotasDePesoMenuItem;
+        
+        /// <summary>
+        /// EstadosNotasDePesoMenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem EstadosNotasDePesoMenuItem;
+        
+        /// <summary>
+        /// InventarioDeCafePorSocio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem InventarioDeCafePorSocio;
+        
+        /// <summary>
+        /// ClasificacionesDeCafeMenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem ClasificacionesDeCafeMenuItem;
+        
+        /// <summary>
+        /// EnvironmentMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem EnvironmentMenu;
+        
+        /// <summary>
+        /// VariablesDeEntornoMenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem VariablesDeEntornoMenuItem;
         
         /// <summary>
         /// SettingsWin control.

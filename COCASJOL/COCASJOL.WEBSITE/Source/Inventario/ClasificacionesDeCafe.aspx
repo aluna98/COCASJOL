@@ -224,7 +224,7 @@
                             </Store>
                             <ColumnModel>
                                 <Columns>
-                                    <ext:Column DataIndex="CLASIFICACIONES_CAFE_ID"          Header="Id de la Clasificación de Café" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="CLASIFICACIONES_CAFE_ID"          Header="Id" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="CLASIFICACIONES_CAFE_NOMBRE"      Header="Nombre" Sortable="true" Width="150"></ext:Column>
                                     <ext:Column DataIndex="CLASIFICACIONES_CAFE_DESCRIPCION" Header="Descripción" Sortable="true"></ext:Column>
                                 </Columns>
@@ -235,17 +235,17 @@
                             <TopBar>
                                 <ext:Toolbar ID="Toolbar1" runat="server">
                                     <Items>
-                                        <ext:Button ID="AgregarTipoBtn" runat="server" Text="Agregar" Icon="Add" >
+                                        <ext:Button ID="AgregarBtn" runat="server" Text="Agregar" Icon="CupAdd" >
                                             <Listeners>
                                                 <Click Handler="PageX.add();" />
                                             </Listeners>
                                         </ext:Button>
-                                        <ext:Button ID="EditarTipoBtn" runat="server" Text="Editar" Icon="Pencil">
+                                        <ext:Button ID="EditarBtn" runat="server" Text="Editar" Icon="CupEdit">
                                             <Listeners>
                                                 <Click Handler="PageX.edit();" />
                                             </Listeners>
                                         </ext:Button>
-                                        <ext:Button ID="EliminarTipoBtn" runat="server" Text="Eliminar" Icon="Delete">
+                                        <ext:Button ID="EliminarBtn" runat="server" Text="Eliminar" Icon="CupDelete">
                                             <Listeners>
                                                 <Click Handler="PageX.remove();" />
                                             </Listeners>
@@ -307,7 +307,7 @@
         <ext:Window ID="AgregarClasificacionesCafeWin"
             runat="server"
             Hidden="true"
-            Icon="Add"
+            Icon="CupAdd"
             Title="Agregar Clasificación de Café"
             Width="500"
             Layout="FormLayout"
@@ -355,7 +355,7 @@
         <ext:Window ID="EditarClasificacionesCafeWin"
             runat="server"
             Hidden="true"
-            Icon="Pencil"
+            Icon="CupEdit"
             Title="Editar Clasificación de Café"
             Width="500"
             Layout="FormLayout"

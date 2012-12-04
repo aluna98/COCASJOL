@@ -19,8 +19,8 @@
         var AlertSelMsg = "Debe seleccionar 1 elemento";
 
         var ConfirmMsgTitle = "Tipo de Producto";
-        var ConfirmUpdate = "Seguro desea modificar el tipo de producto?";
-        var ConfirmDelete = "Seguro desea eliminar el tipo de producto?";
+        var ConfirmUpdate = "Seguro desea modificar la nota de peso?";
+        var ConfirmDelete = "Seguro desea eliminar la nota de peso?";
 
         var PageX = {
             _index: 0,
@@ -235,17 +235,17 @@
                             <TopBar>
                                 <ext:Toolbar ID="Toolbar1" runat="server">
                                     <Items>
-                                        <ext:Button ID="AgregarTipoBtn" runat="server" Text="Agregar" Icon="Add" >
+                                        <ext:Button ID="AgregarBtn" runat="server" Text="Agregar" Icon="Add" >
                                             <Listeners>
                                                 <Click Handler="PageX.add();" />
                                             </Listeners>
                                         </ext:Button>
-                                        <ext:Button ID="EditarTipoBtn" runat="server" Text="Editar" Icon="Pencil">
+                                        <ext:Button ID="EditarBtn" runat="server" Text="Editar" Icon="Pencil">
                                             <Listeners>
                                                 <Click Handler="PageX.edit();" />
                                             </Listeners>
                                         </ext:Button>
-                                        <ext:Button ID="EliminarTipoBtn" runat="server" Text="Eliminar" Icon="Delete">
+                                        <ext:Button ID="EliminarBtn" runat="server" Text="Eliminar" Icon="Delete">
                                             <Listeners>
                                                 <Click Handler="PageX.remove();" />
                                             </Listeners>
