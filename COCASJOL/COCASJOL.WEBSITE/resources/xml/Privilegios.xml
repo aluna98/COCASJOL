@@ -64,10 +64,10 @@
     <page></page>
   </privilege>
   <privilege>
-    <key>MANT_INVENTARIOCAFE</key>
-    <module></module>
-    <shortcut></shortcut>
-    <menuitem></menuitem>
+    <key>MANT_INVENTARIOPORSOCIO</key>
+    <module>InventarioDeCafePorSocioModule</module>
+    <shortcut>scInventarioDeCafePorSocio</shortcut>
+    <menuitem>InventarioDeCafePorSocioMenuItem</menuitem>
     <page></page>
   </privilege>
   <privilege>

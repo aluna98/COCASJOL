@@ -235,17 +235,17 @@
                             <TopBar>
                                 <ext:Toolbar ID="Toolbar1" runat="server">
                                     <Items>
-                                        <ext:Button ID="AgregarBtn" runat="server" Text="Agregar" Icon="Add" >
+                                        <ext:Button ID="AgregarBtn" runat="server" Text="Agregar" Icon="BasketAdd" >
                                             <Listeners>
                                                 <Click Handler="PageX.add();" />
                                             </Listeners>
                                         </ext:Button>
-                                        <ext:Button ID="EditarBtn" runat="server" Text="Editar" Icon="Pencil">
+                                        <ext:Button ID="EditarBtn" runat="server" Text="Editar" Icon="BasketEdit">
                                             <Listeners>
                                                 <Click Handler="PageX.edit();" />
                                             </Listeners>
                                         </ext:Button>
-                                        <ext:Button ID="EliminarBtn" runat="server" Text="Eliminar" Icon="Delete">
+                                        <ext:Button ID="EliminarBtn" runat="server" Text="Eliminar" Icon="BasketDelete">
                                             <Listeners>
                                                 <Click Handler="PageX.remove();" />
                                             </Listeners>
@@ -307,7 +307,7 @@
         <ext:Window ID="AgregarTiposProductoWin"
             runat="server"
             Hidden="true"
-            Icon="Add"
+            Icon="BasketAdd"
             Title="Agregar Tipo de Producto"
             Width="500"
             Layout="FormLayout"
@@ -355,7 +355,7 @@
         <ext:Window ID="EditarTiposProductoWin"
             runat="server"
             Hidden="true"
-            Icon="Pencil"
+            Icon="BasketEdit"
             Title="Editar Tipo de Producto"
             Width="500"
             Layout="FormLayout"

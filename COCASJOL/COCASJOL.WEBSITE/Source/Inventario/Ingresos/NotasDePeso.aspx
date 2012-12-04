@@ -198,7 +198,7 @@
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
             <Items>
-                <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Tipos de Producto" Icon="BasketPut" Layout="Fit">
+                <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Tipos de Producto" Icon="PageWhiteCup" Layout="Fit">
                     <Items>
                         <ext:GridPanel ID="TiposProductoGridP" runat="server" AutoExpandColumn="TIPOS_PROD_DESCRIPCION" Height="300"
                             Title="Usuarios" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
@@ -235,17 +235,17 @@
                             <TopBar>
                                 <ext:Toolbar ID="Toolbar1" runat="server">
                                     <Items>
-                                        <ext:Button ID="AgregarBtn" runat="server" Text="Agregar" Icon="Add" >
+                                        <ext:Button ID="AgregarBtn" runat="server" Text="Agregar" Icon="PageWhiteAdd" >
                                             <Listeners>
                                                 <Click Handler="PageX.add();" />
                                             </Listeners>
                                         </ext:Button>
-                                        <ext:Button ID="EditarBtn" runat="server" Text="Editar" Icon="Pencil">
+                                        <ext:Button ID="EditarBtn" runat="server" Text="Editar" Icon="PageWhiteEdit">
                                             <Listeners>
                                                 <Click Handler="PageX.edit();" />
                                             </Listeners>
                                         </ext:Button>
-                                        <ext:Button ID="EliminarBtn" runat="server" Text="Eliminar" Icon="Delete">
+                                        <ext:Button ID="EliminarBtn" runat="server" Text="Eliminar" Icon="PageWhiteDelete">
                                             <Listeners>
                                                 <Click Handler="PageX.remove();" />
                                             </Listeners>
@@ -307,7 +307,7 @@
         <ext:Window ID="AgregarTiposProductoWin"
             runat="server"
             Hidden="true"
-            Icon="Add"
+            Icon="PageWhiteAdd"
             Title="Agregar Tipo de Producto"
             Width="500"
             Layout="FormLayout"
@@ -355,7 +355,7 @@
         <ext:Window ID="EditarTiposProductoWin"
             runat="server"
             Hidden="true"
-            Icon="Pencil"
+            Icon="PageWhiteEdit"
             Title="Editar Tipo de Producto"
             Width="500"
             Layout="FormLayout"

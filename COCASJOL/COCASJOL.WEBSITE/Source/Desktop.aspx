@@ -48,32 +48,38 @@
         
         .icon-tiposDeProducto
         {
-            background-image: url(../Images/basket_put.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/basket_put.png", sizingMethod="scale");
-        }
-        
-        .icon-productos
-        {
             background-image: url(../Images/basket.png) !important;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/basket.png", sizingMethod="scale");
         }
         
+        .icon-productos
+        {
+            background-image: url(../Images/cart.png) !important;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/cart.png", sizingMethod="scale");
+        }
+        
         .icon-notasDePeso
         {
-            background-image: url(../Images/note.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/note.png", sizingMethod="scale");
+            background-image: url(../Images/page_white_cup.png) !important;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_cup.png", sizingMethod="scale");
         }
         
         .icon-estadosNotasDePeso
         {
-            background-image: url(../Images/table_go.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/table_go.png", sizingMethod="scale");
+            background-image: url(../Images/page_go.png) !important;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_go.png", sizingMethod="scale");
         }
         
         .icon-clasificacionesDeCafe
         {
             background-image: url(../Images/cup.png) !important;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/cup.png", sizingMethod="scale");
+        }
+        
+        .icon-inventarioDeCafePorSocio
+        {
+            background-image: url(../Images/bricks.png) !important;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/bricks.png", sizingMethod="scale");
         }
         
         .icon-variablesEntorno
@@ -165,23 +171,27 @@
             },
 
             tiposDeProductos: function (app) {
-                DesktopX.createDynamicWindow(app, 'basketput', 'Tipos de producto', 'Productos/TiposDeProductos.aspx');
+                DesktopX.createDynamicWindow(app, 'basket', 'Tipos de producto', 'Productos/TiposDeProductos.aspx');
             },
 
             productos: function (app) {
-                DesktopX.createDynamicWindow(app, 'basket', 'Productos', 'Productos/Productos.aspx');
+                DesktopX.createDynamicWindow(app, 'cart', 'Productos', 'Productos/Productos.aspx');
             },
 
             notasDePeso: function (app) {
-                DesktopX.createDynamicWindow(app, 'package', 'Notas De Peso', 'Inventario/Ingresos/NotasDePeso.aspx');
+                DesktopX.createDynamicWindow(app, 'pagewhitecup', 'Notas De Peso', 'Inventario/Ingresos/NotasDePeso.aspx');
             },
 
             estadosNotasDePeso: function (app) {
-                DesktopX.createDynamicWindow(app, 'table_go', 'Estados de Notas De Peso', 'Inventario/Ingresos/EstadosNotaDePeso.aspx');
+                DesktopX.createDynamicWindow(app, 'pagego', 'Estados de Notas De Peso', 'Inventario/Ingresos/EstadosNotaDePeso.aspx');
             },
 
             clasificacionesDeCafe: function (app) {
                 DesktopX.createDynamicWindow(app, 'cup', 'Clasificaciones de Café', 'Inventario/ClasificacionesDeCafe.aspx');
+            },
+
+            inventarioDeCafePorSocio: function (app) {
+                DesktopX.createDynamicWindow(app, 'bricks', 'Inventario de Café por socio', 'Inventario/InventarioDeCafePorSocio.aspx');
             },
 
             variablesDeEntorno: function (app) {
@@ -216,6 +226,8 @@
                 WindowX.estadosNotasDePeso(app);
             } else if (id == 'scClasificacionesDeCafe') {
                 WindowX.clasificacionesDeCafe(app);
+            } else if (id == 'scInventarioDeCafePorSocio') {
+                WindowX.inventarioDeCafePorSocio(app);
             } else if (id == 'scVariablesDeEntorno') {
                 WindowX.variablesDeEntorno(app);
             }
@@ -290,14 +302,14 @@
 
                 <%--Productos--%>
                 <ext:DesktopModule ModuleID="TiposDeProductoModule">
-                    <Launcher ID="TiposDeProductoLauncher" runat="server" Text="Tipos de Producto" Icon="BasketPut" >
+                    <Launcher ID="TiposDeProductoLauncher" runat="server" Text="Tipos de Producto" Icon="Basket" >
                         <Listeners>
                             <Click Handler="WindowX.tiposDeProductos(#{MyDesktop});" />
                         </Listeners>
                     </Launcher>
                 </ext:DesktopModule>
                 <ext:DesktopModule ModuleID="ProductosModule">
-                    <Launcher ID="ProductosLauncher" runat="server" Text="Productos" Icon="Basket" >
+                    <Launcher ID="ProductosLauncher" runat="server" Text="Productos" Icon="Cart" >
                         <Listeners>
                             <Click Handler="WindowX.productos(#{MyDesktop});" />
                         </Listeners>
@@ -307,14 +319,14 @@
 
                 <%--Notas De Peso--%>
                 <ext:DesktopModule ModuleID="NotasDePesoModule">
-                    <Launcher ID="NotasDePesoLauncher" runat="server" Text="Notas De Peso" Icon="Package" >
+                    <Launcher ID="NotasDePesoLauncher" runat="server" Text="Notas De Peso" Icon="PageWhiteCup" >
                         <Listeners>
                             <Click Handler="WindowX.notasDePeso(#{MyDesktop});" />
                         </Listeners>
                     </Launcher>
                 </ext:DesktopModule>
                 <ext:DesktopModule ModuleID="EstadosNotasDePesoModule">
-                    <Launcher ID="EstadosNotasDePesoLauncher" runat="server" Text="Estados de Notas De Peso" Icon="TableGo" >
+                    <Launcher ID="EstadosNotasDePesoLauncher" runat="server" Text="Estados de Notas De Peso" Icon="PageGo" >
                         <Listeners>
                             <Click Handler="WindowX.estadosNotasDePeso(#{MyDesktop});" />
                         </Listeners>
@@ -327,6 +339,13 @@
                     <Launcher ID="ClasificacionesDeCafeLauncher" runat="server" Text="Clasificaciones de Café" Icon="TableGo" >
                         <Listeners>
                             <Click Handler="WindowX.clasificacionesDeCafe(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
+                <ext:DesktopModule ModuleID="InventarioDeCafePorSocioModule">
+                    <Launcher ID="InventarioDeCafePorSocioLauncher" runat="server" Text="Inventario de Café por Socio" Icon="Bricks" >
+                        <Listeners>
+                            <Click Handler="WindowX.inventarioDeCafePorSocio(#{MyDesktop});" />
                         </Listeners>
                     </Launcher>
                 </ext:DesktopModule>
@@ -355,6 +374,7 @@
             <Shortcuts>
                 <ext:DesktopShortcut ShortcutID="scUsuarios" Text="Usuarios" IconCls="shortcut-icon icon-usuarios" />
                 <ext:DesktopShortcut ShortcutID="scRoles" Text="Roles" IconCls="shortcut-icon icon-roles" />
+                <ext:DesktopShortcut ShortcutID="scVariablesDeEntorno" Text="Variables de Entorno" IconCls="shortcut-icon icon-variablesEntorno" />
 
                 <ext:DesktopShortcut ShortcutID="scSocios" Text="Socios" IconCls="shortcut-icon icon-socios" />
 
@@ -365,8 +385,7 @@
                 <ext:DesktopShortcut ShortcutID="scEstadosNotasDePeso" Text="Estados de Notas de Peso" IconCls="shortcut-icon icon-estadosNotasDePeso" />
 
                 <ext:DesktopShortcut ShortcutID="scClasificacionesDeCafe" Text="Clasificaciones de Café" IconCls="shortcut-icon icon-clasificacionesDeCafe" />
-                
-                <ext:DesktopShortcut ShortcutID="scVariablesDeEntorno" Text="Variables de Entorno" IconCls="shortcut-icon icon-variablesEntorno" />
+                <ext:DesktopShortcut ShortcutID="scInventarioDeCafePorSocio" Text="Inventario de Café por Socio" IconCls="shortcut-icon icon-inventarioDeCafePorSocio" />
 
                 <%--<ext:DesktopShortcut ShortcutID="scTile" Text="Tile windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-90" />
                 <ext:DesktopShortcut ShortcutID="scCascade" Text="Cascade windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-170" />--%>
@@ -429,12 +448,12 @@
                         <Menu>
                             <ext:Menu runat="server">
                                 <Items>
-                                    <ext:MenuItem ID="ProductosMenuItem" Text="Productos" Icon="Basket" >
+                                    <ext:MenuItem ID="ProductosMenuItem" Text="Productos" Icon="Cart" >
                                         <Listeners>
                                             <click Handler="WindowX.productos(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
-                                    <ext:MenuItem ID="TiposDeProductosMenuItem" Text="Tipos de Productos" Icon="BasketPut" >
+                                    <ext:MenuItem ID="TiposDeProductosMenuItem" Text="Tipos de Productos" Icon="Basket" >
                                         <Listeners>
                                             <click Handler="WindowX.tiposDeProductos(#{MyDesktop});" />
                                         </Listeners>
@@ -447,12 +466,12 @@
                         <Menu>
                             <ext:Menu runat="server">
                                 <Items>
-                                    <ext:MenuItem ID="NotasDePesoMenuItem" Text="Notas de Peso" Icon="Package" >
+                                    <ext:MenuItem ID="NotasDePesoMenuItem" Text="Notas de Peso" Icon="PageWhiteCup" >
                                         <Listeners>
                                             <click Handler="WindowX.notasDePeso(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
-                                    <ext:MenuItem ID="EstadosNotasDePesoMenuItem" Text="Estados de Notas de Peso" Icon="TableGo" >
+                                    <ext:MenuItem ID="EstadosNotasDePesoMenuItem" Text="Estados de Notas de Peso" Icon="PageGo" >
                                         <Listeners>
                                             <click Handler="WindowX.estadosNotasDePeso(#{MyDesktop});" />
                                         </Listeners>
@@ -461,13 +480,18 @@
                             </ext:Menu>
                         </Menu>
                     </ext:MenuItem>
-                    <ext:MenuItem ID="InventarioDeCafePorSocio" runat="server" Text="Inventario de Café por Socio" Icon="Folder" HideOnClick="false">
+                    <ext:MenuItem ID="InventarioDeCafePorSocioMenu" runat="server" Text="Inventario de Café por Socio" Icon="Folder" HideOnClick="false">
                         <Menu>
                             <ext:Menu runat="server">
                                 <Items>
                                     <ext:MenuItem ID="ClasificacionesDeCafeMenuItem" Text="Clasificaciones de Café" Icon="Cup" >
                                         <Listeners>
                                             <click Handler="WindowX.clasificacionesDeCafe(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                    <ext:MenuItem ID="InventarioDeCafePorSocioMenuItem" Text="Inventario de Café por Socio" Icon="Bricks" >
+                                        <Listeners>
+                                            <click Handler="WindowX.inventarioDeCafePorSocio(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
                                 </Items>

@@ -148,13 +148,13 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.MenuItem EstadosNotasDePesoMenuItem;
         
         /// <summary>
-        /// InventarioDeCafePorSocio control.
+        /// InventarioDeCafePorSocioMenu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.MenuItem InventarioDeCafePorSocio;
+        protected global::Ext.Net.MenuItem InventarioDeCafePorSocioMenu;
         
         /// <summary>
         /// ClasificacionesDeCafeMenuItem control.
@@ -164,6 +164,15 @@ namespace COCASJOL.WEBSITE {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.MenuItem ClasificacionesDeCafeMenuItem;
+        
+        /// <summary>
+        /// InventarioDeCafePorSocioMenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem InventarioDeCafePorSocioMenuItem;
         
         /// <summary>
         /// EnvironmentMenu control.

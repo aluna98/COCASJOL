@@ -235,17 +235,17 @@
                             <TopBar>
                                 <ext:Toolbar ID="Toolbar1" runat="server">
                                     <Items>
-                                        <ext:Button ID="AgregarBtn" runat="server" Text="Agregar" Icon="Add" >
+                                        <ext:Button ID="AgregarBtn" runat="server" Text="Agregar" Icon="PageAdd" >
                                             <Listeners>
                                                 <Click Handler="PageX.add();" />
                                             </Listeners>
                                         </ext:Button>
-                                        <ext:Button ID="EditarBtn" runat="server" Text="Editar" Icon="Pencil">
+                                        <ext:Button ID="EditarBtn" runat="server" Text="Editar" Icon="PageEdit">
                                             <Listeners>
                                                 <Click Handler="PageX.edit();" />
                                             </Listeners>
                                         </ext:Button>
-                                        <ext:Button ID="EliminarBtn" runat="server" Text="Eliminar" Icon="Delete">
+                                        <ext:Button ID="EliminarBtn" runat="server" Text="Eliminar" Icon="PageDelete">
                                             <Listeners>
                                                 <Click Handler="PageX.remove();" />
                                             </Listeners>
@@ -307,7 +307,7 @@
         <ext:Window ID="AgregarEstadosNotaWin"
             runat="server"
             Hidden="true"
-            Icon="Add"
+            Icon="PageAdd"
             Title="Agregar Estado de Nota de Peso"
             Width="500"
             Layout="FormLayout"
@@ -355,7 +355,7 @@
         <ext:Window ID="EditarEstadosNotaWin"
             runat="server"
             Hidden="true"
-            Icon="Pencil"
+            Icon="PageEdit"
             Title="Editar Estado de Nota de Peso"
             Width="500"
             Layout="FormLayout"

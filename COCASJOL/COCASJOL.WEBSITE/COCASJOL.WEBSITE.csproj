@@ -66,7 +66,8 @@
     <Content Include="NoAccess.aspx" />
     <Content Include="resources\images\background1.jpg" />
     <Content Include="resources\images\basket.png" />
-    <Content Include="resources\images\basket_put.png" />
+    <Content Include="resources\images\bricks.png" />
+    <Content Include="resources\images\cart.png" />
     <Content Include="resources\images\cocasjol_start_button.gif" />
     <Content Include="resources\images\cup.png" />
     <Content Include="resources\images\database.png" />
@@ -77,8 +78,8 @@
     <Content Include="resources\images\group.png" />
     <Content Include="resources\images\key.png" />
     <Content Include="resources\images\login.jpg" />
-    <Content Include="resources\images\note.png" />
-    <Content Include="resources\images\table_go.png" />
+    <Content Include="resources\images\page_go.png" />
+    <Content Include="resources\images\page_white_cup.png" />
     <Content Include="resources\images\user.png" />
     <Content Include="resources\images\user_edit.png" />
     <Content Include="resources\images\vista_start_button.gif" />
@@ -89,6 +90,7 @@
     <Content Include="Source\Inventario\ClasificacionesDeCafe.aspx" />
     <Content Include="Source\Inventario\Ingresos\EstadosNotaDePeso.aspx" />
     <Content Include="Source\Inventario\Ingresos\NotasDePeso.aspx" />
+    <Content Include="Source\Inventario\InventarioDeCafePorSocio.aspx" />
     <Content Include="Source\Inventario\Salidas\HojaDeLiquidacion.aspx" />
     <Content Include="Source\Prestamos\Prestamos.aspx" />
     <Content Include="Source\Prestamos\SolicitudPrestamo.aspx" />
@@ -152,6 +154,13 @@
     </Compile>
     <Compile Include="Source\Inventario\Ingresos\NotasDePeso.aspx.designer.cs">
       <DependentUpon>NotasDePeso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Inventario\InventarioDeCafePorSocio.aspx.cs">
+      <DependentUpon>InventarioDeCafePorSocio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Inventario\InventarioDeCafePorSocio.aspx.designer.cs">
+      <DependentUpon>InventarioDeCafePorSocio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Inventario\Salidas\HojaDeLiquidacion.aspx.cs">
       <DependentUpon>HojaDeLiquidacion.aspx</DependentUpon>
