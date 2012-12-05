@@ -33,8 +33,6 @@ namespace COCASJOL.WEBSITE
                     string loggedUser = Session["username"] as string;
                     this.MyDesktop.Wallpaper = "../resources/images/background1.jpg";
                     this.MyDesktop.StartMenu.Title = loggedUser;
-
-                    this.GetVariables(typeof(COCASJOL.WEBSITE.Source.Inventario.Ingresos.NotasDePeso).Name);
                 }
             }
             catch (Exception ex)

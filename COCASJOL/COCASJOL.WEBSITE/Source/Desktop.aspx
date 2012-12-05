@@ -58,16 +58,16 @@
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/cart.png", sizingMethod="scale");
         }
         
-        .icon-notasDePeso
-        {
-            background-image: url(../resources/images/page_white_cup.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_cup.png", sizingMethod="scale");
-        }
-        
         .icon-estadosNotasDePeso
         {
             background-image: url(../resources/images/page_go.png) !important;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_go.png", sizingMethod="scale");
+        }
+        
+        .icon-notasDePeso
+        {
+            background-image: url(../resources/images/page_white_cup.png) !important;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_cup.png", sizingMethod="scale");
         }
         
         .icon-solicitudesDePrestamo
@@ -195,12 +195,12 @@
                 DesktopX.createDynamicWindow(app, 'cart', 'Productos', 'Productos/Productos.aspx');
             },
 
-            notasDePeso: function (app) {
-                DesktopX.createDynamicWindow(app, 'pagewhitecup', 'Notas De Peso', 'Inventario/Ingresos/NotasDePeso.aspx');
-            },
-
             estadosNotasDePeso: function (app) {
                 DesktopX.createDynamicWindow(app, 'pagego', 'Estados de Notas De Peso', 'Inventario/Ingresos/EstadosNotaDePeso.aspx');
+            },
+
+            notasDePeso: function (app) {
+                DesktopX.createDynamicWindow(app, 'pagewhitecup', 'Notas De Peso', 'Inventario/Ingresos/NotasDePeso.aspx');
             },
 
             solicitudesDePrestamo: function (app) {
@@ -245,10 +245,10 @@
                 WindowX.tiposDeProductos(app);
             } else if (id == 'scProductos') {
                 WindowX.productos(app);
-            } else if (id == 'scNotasDePeso') {
-                WindowX.notasDePeso(app);
             } else if (id == 'scEstadosNotasDePeso') {
                 WindowX.estadosNotasDePeso(app);
+            } else if (id == 'scNotasDePeso') {
+                WindowX.notasDePeso(app);
             } else if (id == 'scSolicitudesDePrestamo') {
                 WindowX.solicitudesDePrestamo(app);
             } else if (id == 'scPrestamos') {
@@ -347,17 +347,17 @@
                 <%--Productos--%>
 
                 <%--Notas De Peso--%>
-                <ext:DesktopModule ModuleID="NotasDePesoModule">
-                    <Launcher ID="NotasDePesoLauncher" runat="server" Text="Notas De Peso" Icon="PageWhiteCup" >
-                        <Listeners>
-                            <Click Handler="WindowX.notasDePeso(#{MyDesktop});" />
-                        </Listeners>
-                    </Launcher>
-                </ext:DesktopModule>
                 <ext:DesktopModule ModuleID="EstadosNotasDePesoModule">
                     <Launcher ID="EstadosNotasDePesoLauncher" runat="server" Text="Estados de Notas De Peso" Icon="PageGo" >
                         <Listeners>
                             <Click Handler="WindowX.estadosNotasDePeso(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
+                <ext:DesktopModule ModuleID="NotasDePesoModule">
+                    <Launcher ID="NotasDePesoLauncher" runat="server" Text="Notas De Peso" Icon="PageWhiteCup" >
+                        <Listeners>
+                            <Click Handler="WindowX.notasDePeso(#{MyDesktop});" />
                         </Listeners>
                     </Launcher>
                 </ext:DesktopModule>
@@ -427,8 +427,8 @@
                 <ext:DesktopShortcut ShortcutID="scTiposDeProductos" Text="Tipos de Productos" IconCls="shortcut-icon icon-tiposDeProducto" />
                 <ext:DesktopShortcut ShortcutID="scProductos" Text="Productos" IconCls="shortcut-icon icon-productos" />
 
-                <ext:DesktopShortcut ShortcutID="scNotasDePeso" Text="Notas de Peso" IconCls="shortcut-icon icon-notasDePeso" />
                 <ext:DesktopShortcut ShortcutID="scEstadosNotasDePeso" Text="Estados de Notas de Peso" IconCls="shortcut-icon icon-estadosNotasDePeso" />
+                <ext:DesktopShortcut ShortcutID="scNotasDePeso" Text="Notas de Peso" IconCls="shortcut-icon icon-notasDePeso" />
 
                 <ext:DesktopShortcut ShortcutID="scSolicitudesDePrestamo" Text="Solicitudes de Prestamo" IconCls="shortcut-icon icon-solicitudesDePrestamo" />
                 <ext:DesktopShortcut ShortcutID="scPrestamos" Text="Prestamos" IconCls="shortcut-icon icon-prestamos" />
@@ -497,14 +497,14 @@
                         <Menu>
                             <ext:Menu runat="server">
                                 <Items>
-                                    <ext:MenuItem ID="ProductosMenuItem" Text="Productos" Icon="Cart" >
-                                        <Listeners>
-                                            <click Handler="WindowX.productos(#{MyDesktop});" />
-                                        </Listeners>
-                                    </ext:MenuItem>
                                     <ext:MenuItem ID="TiposDeProductosMenuItem" Text="Tipos de Productos" Icon="Basket" >
                                         <Listeners>
                                             <click Handler="WindowX.tiposDeProductos(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                    <ext:MenuItem ID="ProductosMenuItem" Text="Productos" Icon="Cart" >
+                                        <Listeners>
+                                            <click Handler="WindowX.productos(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
                                 </Items>
@@ -515,14 +515,14 @@
                         <Menu>
                             <ext:Menu runat="server">
                                 <Items>
-                                    <ext:MenuItem ID="NotasDePesoMenuItem" Text="Notas de Peso" Icon="PageWhiteCup" >
-                                        <Listeners>
-                                            <click Handler="WindowX.notasDePeso(#{MyDesktop});" />
-                                        </Listeners>
-                                    </ext:MenuItem>
                                     <ext:MenuItem ID="EstadosNotasDePesoMenuItem" Text="Estados de Notas de Peso" Icon="PageGo" >
                                         <Listeners>
                                             <click Handler="WindowX.estadosNotasDePeso(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                    <ext:MenuItem ID="NotasDePesoMenuItem" Text="Notas de Peso" Icon="PageWhiteCup" >
+                                        <Listeners>
+                                            <click Handler="WindowX.notasDePeso(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
                                 </Items>

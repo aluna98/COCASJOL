@@ -103,15 +103,6 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.MenuItem ProductsMenu;
         
         /// <summary>
-        /// ProductosMenuItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem ProductosMenuItem;
-        
-        /// <summary>
         /// TiposDeProductosMenuItem control.
         /// </summary>
         /// <remarks>
@@ -119,6 +110,15 @@ namespace COCASJOL.WEBSITE {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.MenuItem TiposDeProductosMenuItem;
+        
+        /// <summary>
+        /// ProductosMenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem ProductosMenuItem;
         
         /// <summary>
         /// NotasDePesoMenu control.
@@ -130,15 +130,6 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.MenuItem NotasDePesoMenu;
         
         /// <summary>
-        /// NotasDePesoMenuItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem NotasDePesoMenuItem;
-        
-        /// <summary>
         /// EstadosNotasDePesoMenuItem control.
         /// </summary>
         /// <remarks>
@@ -146,6 +137,15 @@ namespace COCASJOL.WEBSITE {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.MenuItem EstadosNotasDePesoMenuItem;
+        
+        /// <summary>
+        /// NotasDePesoMenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem NotasDePesoMenuItem;
         
         /// <summary>
         /// PrestamosMenu control.

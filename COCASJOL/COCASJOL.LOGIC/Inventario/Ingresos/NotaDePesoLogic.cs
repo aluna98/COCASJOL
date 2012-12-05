@@ -97,7 +97,88 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
         #region Insert
 
+        /*
+         *               -----Calculos-----
+         * 
+         *                  Tara = Peso de los sacos
+         *            Peso bruto = Peso total de café
+         * 
+         *             % Defecto = Peso de  muestra / peso de gramos malos
+         * Descuento por Defecto = ((Peso Bruto) - Tara) * (% Defecto)
+         * 
+         *             % Humedad = Valor devuelto por maquina?
+         * Descuento por Humedad = ((Peso Bruto) - Tara) * (% Humedad)
+         * 
+         *             Descuento = (Descuento por Defecto) + (Descuento por Humedad)
+         *                 Total = (Peso Bruto) - Tara - Descuento
+         * 
+         */
+
         public void InsertarNotasDePeso
+            (int ESTADOS_NOTA_ID,
+            string SOCIOS_ID,
+            int CLASIFICACIONES_CAFE_ID,
+            DateTime NOTAS_FECHA,
+            Boolean NOTAS_TRANSPORTE_COOPERATIVA,
+            decimal NOTAS_PORCENTAJE_DEFECTO,
+            decimal NOTAS_PORCENTAJE_HUMEDAD,
+            decimal NOTAS_PESO_TARA,
+            decimal NOTAS_PESO_SUMA,
+            int NOTAS_SACOS_RETENIDOS,
+            string CREADO_POR,
+            Dictionary<string, string>[] Detalles,
+            Dictionary<string, string> Variables)
+        {
+            try
+            {
+                // Descuento por Defecto = ((Peso Bruto) - Tara) * (% Defecto)
+                decimal DESCUENTO_POR_DEFECTO = (NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_DEFECTO;
+
+                // Descuento por Humedad = ((Peso Bruto) - Tara) * (% Humedad)
+                string strPORCENTAJEHUMEDADMIN = Variables["PORCENTAJEHUMEDADMIN"];
+                decimal PORCENTAJEHUMEDADMIN = Convert.ToDecimal(strPORCENTAJEHUMEDADMIN);
+
+                if (NOTAS_PORCENTAJE_HUMEDAD < PORCENTAJEHUMEDADMIN)
+                    NOTAS_PORCENTAJE_HUMEDAD = 0;
+
+                decimal DESCUENTO_POR_HUMEDAD = (NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_HUMEDAD;
+
+                // Descuento = (Descuento por Defecto) + (Descuento por Humedad)
+                decimal DESCUENTO = DESCUENTO_POR_DEFECTO + DESCUENTO_POR_HUMEDAD;
+                
+                // Total = (Peso Bruto) - Tara - Descuento
+                decimal TOTAL = NOTAS_PESO_SUMA - NOTAS_PESO_TARA - DESCUENTO;
+
+                string TOTAL_TEXTO = COCASJOL.LOGIC.Utiles.NumATexto.Convert(TOTAL);
+
+                InsertarNotasDePeso
+                    (ESTADOS_NOTA_ID,
+                    SOCIOS_ID,
+                    CLASIFICACIONES_CAFE_ID,
+                    NOTAS_FECHA,
+                    NOTAS_TRANSPORTE_COOPERATIVA,
+                    NOTAS_PORCENTAJE_DEFECTO,
+                    NOTAS_PORCENTAJE_HUMEDAD,
+                    DESCUENTO_POR_DEFECTO,
+                    DESCUENTO_POR_HUMEDAD,
+                    DESCUENTO,
+                    NOTAS_PESO_TARA,
+                    NOTAS_PESO_SUMA,
+                    TOTAL,
+                    TOTAL_TEXTO,
+                    NOTAS_SACOS_RETENIDOS,
+                    CREADO_POR,
+                    DateTime.Today,
+                    Detalles);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void InsertarNotasDePeso
             (int ESTADOS_NOTA_ID,
             string SOCIOS_ID,
             int CLASIFICACIONES_CAFE_ID,
@@ -115,40 +196,37 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             int NOTAS_SACOS_RETENIDOS,
             string CREADO_POR,
             DateTime FECHA_CREACION,
-            string MODIFICADO_POR,
-            DateTime FECHA_MODIFICACION)
+            Dictionary<string, string>[] Detalles)
         {
             try
             {
-                /*
-                 * --Calculos--
-                 * Tara = Peso de los sacos
-                 * Peso bruto = Peso total de café
-                 * 
-                 * % Defecto = Peso de  muestra / peso de gramos malos
-                 * Descuento por Defecto = ((Peso Bruto) - Tara) * (% Defecto)
-                 * 
-                 * % Humedad = Valor devuelto por maquina?
-                 * 
-                 * Descuento por Humedad = ((Peso Bruto) - Tara) * (% Humedad)
-                 * 
-                 * Descuento = (Descuento por Defecto) + (Descuento por Humedad)
-                 * 
-                 * Total = (Peso Bruto) - Tara - Descuento
-                 * 
-                 */
                 using (var db = new colinasEntities())
                 {
                     nota_de_peso note = new nota_de_peso();
 
                     note.ESTADOS_NOTA_ID = ESTADOS_NOTA_ID;
                     note.SOCIOS_ID = SOCIOS_ID;
+                    note.CLASIFICACIONES_CAFE_ID = CLASIFICACIONES_CAFE_ID;
+                    note.NOTAS_FECHA = NOTAS_FECHA;
+                    note.NOTAS_TRANSPORTE_COOPERATIVA = NOTAS_TRANSPORTE_COOPERATIVA;
+                    note.NOTAS_PORCENTAJE_DEFECTO = NOTAS_PORCENTAJE_DEFECTO;
+                    note.NOTAS_PORCENTAJE_HUMEDAD = NOTAS_PORCENTAJE_HUMEDAD;
+                    note.NOTAS_PESO_DEFECTO = NOTAS_PESO_DEFECTO;
+                    note.NOTAS_PESO_HUMEDAD = NOTAS_PESO_HUMEDAD;
+                    note.NOTAS_PESO_TARA = NOTAS_PESO_TARA;
+                    note.NOTAS_PESO_SUMA = NOTAS_PESO_SUMA;
+                    note.NOTAS_PESO_TOTAL_RECIBIDO = NOTAS_PESO_TOTAL_RECIBIDO;
+                    note.NOTAS_PESO_TOTAL_RECIBIDO_TEXTO = NOTAS_PESO_TOTAL_RECIBIDO_TEXTO;
+                    note.NOTAS_SACOS_RETENIDOS = NOTAS_SACOS_RETENIDOS;
                     note.CREADO_POR = CREADO_POR;
-                    note.FECHA_CREACION = DateTime.Today;
+                    note.FECHA_CREACION = FECHA_CREACION;
                     note.MODIFICADO_POR = CREADO_POR;
-                    note.FECHA_MODIFICACION = note.FECHA_CREACION;
+                    note.FECHA_MODIFICACION = FECHA_CREACION;
 
-                    //db.notas_de_peso.AddObject(noteStatus);
+                    foreach(Dictionary<string, string> detalle in Detalles)
+                        note.notas_detalles.Add(new nota_detalle() { DETALLES_PESO = Convert.ToDecimal(detalle["DETALLE_PESO"]), DETALLES_CANTIDAD_SACOS = Convert.ToInt32(detalle["DETALLE_CANTIDAD_SACOS"]) });
+
+                    db.notas_de_peso.AddObject(note);
                     db.SaveChanges();
                 }
             }
