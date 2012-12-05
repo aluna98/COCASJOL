@@ -5,6 +5,21 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <style type="text/css">
+        .cbStates-list 
+        {
+            width: 298px;
+            font: 11px tahoma,arial,helvetica,sans-serif;
+        }
+        
+        .cbStates-list th {
+            font-weight: bold;
+        }
+        
+        .cbStates-list td, .cbStates-list th {
+            padding: 3px;
+        }
+    </style>
     <script type="text/javascript">
          var Grid = null;
          var EditWindow = null;
@@ -14,7 +29,7 @@
          var ConfirmMsgTitle = "Socio";
          var ConfirmUpdate = "Seguro que desea editar la Solicitud?";
          var ConfirmDelete = "Seguro desea rechazar la Solicitud?";
-         var ConfirmDelete = "Seguro desea aprobar la Solicitud?";
+         var ConfirmAprobbe = "Seguro desea aprobar la Solicitud?";
          var Confirmacion = "Se ha finalizado correctamente";
 
          var SolicitudX = {
@@ -30,6 +45,11 @@
 
              add: function () {
                  AddWindow.show();
+             },
+
+             insert: function () {
+                 var fields = AddForm.getForm().getFieldValues(false, "");
+                 Grid.insertRecord(0, fields, false);
              },
 
              open: function () {
@@ -138,6 +158,38 @@
                 <DocumentReady Handler="SolicitudX.setReferences()" />
             </Listeners>
         </ext:ResourceManager>
+        <ext:Store ID="ComboBoxSt" runat="server" OnRefreshData="SociosSt_Reload">
+            <Reader>
+                <ext:JsonReader>
+                    <Fields>
+                        <ext:RecordField Name="SOCIOS_ID" />
+                        <ext:RecordField Name="SOCIOS_PRIMER_NOMBRE" />
+                        <ext:RecordField Name="SOCIOS_PRIMER_APELLIDO" />
+                    </Fields>
+                </ext:JsonReader>
+            </Reader>
+            <AutoLoadParams>
+                <ext:Parameter Name="start" Value="0" Mode="Raw" />
+                <ext:Parameter Name="limit" Value="10" Mode="Raw" />
+            </AutoLoadParams>
+        </ext:Store>
+
+        <asp:ObjectDataSource ID="TiposPrestamoDS" runat="server"
+                TypeName="COCASJOL.LOGIC.Prestamos.PrestamosLogic"
+                SelectMethod="getData">
+        </asp:ObjectDataSource>
+
+        <ext:Store ID="TiposDePrestamoSt" runat="server" DataSourceID="TiposPrestamoDS" SkipIdForNewRecords="false">
+            <Reader>
+                <ext:JsonReader IDProperty="PRESTAMOS_ID">
+                    <Fields>
+                        <ext:RecordField Name="PRESTAMOS_ID" />
+                        <ext:RecordField Name="PRESTAMOS_NOMBRE" />
+                    </Fields>
+                </ext:JsonReader>
+            </Reader>
+        </ext:Store>
+
         <ext:Hidden ID="LoggedUserHdn" runat="server"/>
         <ext:Viewport ID="view1" runat="server" Layout="FitLayout">
             <Items>
@@ -175,6 +227,11 @@
                                             </Fields>
                                         </ext:JsonReader>
                                     </Reader>
+                                    <DirectEvents>
+                                        <Add OnEvent="SolicitudesSt_Insert" Success="#{SolicitudesSt}.reload()">
+                                            <EventMask ShowMask="true" Target="CustomTarget" />
+                                        </Add>
+                                    </DirectEvents>
                                 </ext:Store>
                             </Store>
                             <TopBar>
@@ -389,17 +446,98 @@
                     <Items>
                         <ext:TabPanel ID="TabSolicitudAdd" runat="server" LabelAlign="Right">
                             <Items>
-                                <ext:Panel ID="EditPanelDatos" runat="server" Title="Datos Solicitud" Layout="AnchorLayout" AutoHeight="true" Icon="PageEdit" LabelWidth="150">
+                                <ext:Panel ID="EditPanelDatos" runat="server" Title="Datos Solicitud" Layout="AnchorLayout" AutoHeight="true" Icon="PageEdit" LabelWidth="200">
                                     <Items>
                                         <ext:Panel ID="Panel2" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
-                                        
+                                            <Items>
+                                                <ext:ComboBox ID="cbSociosId" runat="server" EmptyText="Seleccione Socio"  TypeAhead="true"
+                                                    ForceSelection="true" StoreID="ComboBoxSt" Mode="Local" DisplayField="SOCIOS_ID" FieldLabel="Codigo Socio" 
+                                                    ValueField="SOCIOS_ID" MinChars="2" ListWidth="450" PageSize="10" ItemSelector="tr.list-item" AnchorHorizontal="90%">
+                                                    <Template ID="Template1" runat="server" Width="200">
+                                                        <Html>
+					                                        <tpl for=".">
+						                                        <tpl if="[xindex] == 1">
+							                                        <table class="cbStates-list">
+								                                        <tr>
+									                                        <th>SOCIOS_ID</th>
+									                                        <th>SOCIOS_PRIMER_NOMBRE</th>
+                                                                            <th>SOCIOS_PRIMER_APELLIDO</th>
+								                                        </tr>
+						                                        </tpl>
+						                                        <tr class="list-item">
+							                                        <td style="padding:3px 0px;">{SOCIOS_ID}</td>
+							                                        <td>{SOCIOS_PRIMER_NOMBRE}</td>
+                                                                    <td>{SOCIOS_PRIMER_APELLIDO}</td>
+						                                        </tr>
+						                                        <tpl if="[xcount-xindex]==0">
+							                                        </table>
+						                                        </tpl>
+					                                        </tpl>
+				                                        </Html>
+                                                    </Template>
+                                                    <Triggers>
+                                                        <ext:FieldTrigger Icon="Clear" HideTrigger="true" />
+                                                    </Triggers>
+                                                    <Listeners>
+                                                        <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
+                                                        <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
+                                                        <Select Handler="this.triggers[0].show();" />
+                                                    </Listeners>
+                                                </ext:ComboBox>
+                                                <ext:TextField      runat="server" ID="AddMontoTxt"     DataIndex="SOLICITUDES_MONTO"           AnchorHorizontal="90%"      FieldLabel="Monto                     " AllowBlank="false" MaxLength="14" />
+                                                <ext:NumberField    runat="server" ID="AddInteresTxt"   DataIndex="SOLICITUDES_INTERES"         AnchorHorizontal="90%"      FieldLabel="Interes                   " AllowBlank="false" MinValue="0" MaxValue="100" AllowDecimals="false" />
+                                                <ext:DateField      runat="server" ID="AddPlazoTxt"     DataIndex="SOLICITUDES_PLAZO"           AnchorHorizontal="90%"      FieldLabel="Fecha de Plazo            " AllowBlank="false" Format="d MMM y" />
+                                                <ext:TextField      runat="server" ID="AddPagoTxt"      DataIndex="SOLICITUDES_PAGO"            AnchorHorizontal="90%"      FieldLabel="Tipo de Pago              " AllowBlank="false" MaxLength="45" />
+                                                <ext:TextField      runat="server" ID="AddDestinoTxt"   DataIndex="SOLICITUDES_DESTINO"         AnchorHorizontal="90%"      FieldLabel="Destino                   " AllowBlank="false" MaxLength="45" />
+                                                <ext:ComboBox runat="server"    ID="AddTipoDeProdIdCmb"     DataIndex="TIPOS_PROD_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Producto" AllowBlank="false" MsgTarget="Side"
+                                                    StoreID="TiposDePrestamoSt"
+                                                    ValueField="PRESTAMOS_ID" 
+                                                    DisplayField="PRESTAMOS_NOMBRE" 
+                                                    Mode="Local"
+                                                    TypeAhead="true">
+                                                    <Triggers>
+                                                        <ext:FieldTrigger Icon="Clear" />
+                                                    </Triggers>
+                                                    <Listeners>
+                                                        <TriggerClick Handler="this.clearValue();" />
+                                                    </Listeners>
+                                                </ext:ComboBox>
+                                                <ext:TextField      runat="server" ID="AddCargoTxt"     DataIndex="SOLICITUDES_CARGO"           AnchorHorizontal="90%"      FieldLabel="Cargo en la cooperativa   " MaxLength="45" />
+                                                
+                                            </Items>
                                         </ext:Panel>
                                     </Items>
                                 </ext:Panel>
-                                <ext:Panel ID="EditPanelGrl" runat="server" Title="Datos Generales" Layout="AnchorLayout" AutoHeight="true" Icon="UserEdit" LabelWidth="150">
+                                <ext:Panel ID="EditPanelGrl" runat="server" Title="Datos Generales" Layout="AnchorLayout" AutoHeight="true" Icon="UserEdit" LabelWidth="200">
                                     <Items>
                                         <ext:Panel ID="P1" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
-                                        
+                                            <Items>
+                                                <ext:NumberField    runat="server" ID="AddPromedioTxt"  DataIndex="SOLICITUDES_PROMEDIO3"       AnchorHorizontal="90%"      FieldLabel="Promedio produccion (3 años)" MinValue="0" AllowDecimals="true" DecimalPrecision="3" DecimalSeparator="." />
+                                                <ext:NumberField    runat="server" ID="AddPromActTxt"   DataIndex="SOLICITUDES_PRODUCCIONACT"   AnchorHorizontal="90%"      FieldLabel="Promedio Actual           " MinValue="0" AllowDecimals="true" DecimalPrecision="3" DecimalSeparator="." />
+                                                <ext:TextField      runat="server" ID="AddNorteTxt"     DataIndex="SOLICITUDES_NORTE"           AnchorHorizontal="90%"      FieldLabel="Colindancias Norte" MaxLength="45" />
+                                                <ext:TextField      runat="server" ID="AddSurTxt"       DataIndex="SOLICITUDES_SUR"             AnchorHorizontal="90%"      FieldLabel="Colindancias Sur" MaxLength="45" />
+                                                <ext:TextField      runat="server" ID="AddEsteTxt"      DataIndex="SOLICITUDES_ESTE"            AnchorHorizontal="90%"      FieldLabel="Colindancias Este" MaxLength="45" />
+                                                <ext:TextField      runat="server" ID="AddOesteTxt"     DataIndex="SOLICITUDES_OESTE"           AnchorHorizontal="90%"      FieldLabel="Colindancias Oeste" MaxLength="45" />
+                                                
+                                                <ext:Checkbox runat="server" ID="AddVehiculo"     DataIndex="SOLICITUDES_VEHICULO" FieldLabel="Acceso en Vehiculo?" LabelWidth="100" />
+                                                <ext:Checkbox runat="server" ID="AddAgua"         DataIndex="SOLICITUDES_AGUA" FieldLabel="Posee Agua?" />
+                                                    
+                                                <ext:Checkbox runat="server" ID="AddENEE"         DataIndex="SOLICITUDES_ENEE" FieldLabel="Posee Energia Electrica?" LabelWidth="100" /> 
+                                                <ext:Checkbox runat="server" ID="AddCasa"         DataIndex="SOLICITUDES_CASA" FieldLabel="Posee Casa Propia?" />                                
+                                                
+                                                <ext:Checkbox       runat="server" ID="AddBeneficio"    DataIndex="SOLICITUDES_BENEFICIO" FieldLabel="Posee Beneficio?" />
+                                                <ext:TextField      runat="server" ID="AddOtrosTxt"     DataIndex="SOLICITUD_OTROSCULTIVOS" FieldLabel="Otros Cultivos?" MaxLength="45" AnchorHorizontal="90%" />
+                                                <ext:ComboBox ID="AddCalificacion"
+                                                    runat="server" 
+                                                    Editable="false" FieldLabel="Calificacion de Socio"         
+                                                    EmptyText="Seleccione Calificacion..." AnchorHorizontal="90%">
+                                                    <Items>
+                                                        <ext:ListItem Text="Muy Bueno" Value="Muy Bueno" />
+                                                        <ext:ListItem Text="Bueno" Value="Bueno" />
+                                                        <ext:ListItem Text="Regular" Value="Regular" />
+                                                    </Items>
+                                                </ext:ComboBox>
+                                            </Items>
                                         </ext:Panel>
                                     </Items>
                                 </ext:Panel>
