@@ -45,7 +45,7 @@ namespace COCASJOL.LOGIC.Prestamos
                 solicitud.SOCIOS_ID = idsocio;
                 solicitud.SOLICITUDES_ID = idsolicitud;
                 solicitud.SOLICITUDES_MONTO = monto;
-                solicitud.SOLICITUDES_INTERES = interes;
+                solicitud.SOLICITUDES_INTERES = (sbyte)interes;
                 solicitud.SOLICITUDES_PLAZO = DateTime.Parse(plazo);
                 solicitud.SOLICITUDES_DESTINO = destino;
                 solicitud.PRESTAMOS_ID = idprestamo;
