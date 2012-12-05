@@ -163,7 +163,6 @@
                     <asp:ControlParameter Name="VARIABLES_NOMBRE"            Type="String"   ControlID="f_VARIABLES_NOMBRE"            PropertyName="Text" />
                     <asp:ControlParameter Name="VARIABLES_DESCRIPCION"       Type="String"   ControlID="f_VARIABLES_DESCRIPCION"       PropertyName="Text" />
                     <asp:ControlParameter Name="VARIABLES_VALOR"             Type="String"   ControlID="f_VARIABLES_VALOR"             PropertyName="Text" />
-                    <asp:ControlParameter Name="VARIABLES_FECHA_VENCIMIENTO" Type="DateTime" ControlID="f_VARIABLES_FECHA_VENCIMIENTO" PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="CREADO_POR"                  Type="String"   ControlID="nullHdn"                       PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="FECHA_CREACION"              Type="DateTime" ControlID="nullHdn"                       PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="MODIFICADO_POR"              Type="String"   ControlID="nullHdn"                       PropertyName="Text" DefaultValue="" />
@@ -174,7 +173,6 @@
                     <asp:Parameter Name="VARIABLES_NOMBRE"            Type="String" />
                     <asp:Parameter Name="VARIABLES_DESCRIPCION"       Type="String" />
                     <asp:Parameter Name="VARIABLES_VALOR"             Type="String" />
-                    <asp:Parameter Name="VARIABLES_FECHA_VENCIMIENTO" Type="DateTime" />
                     <asp:Parameter Name="CREADO_POR"                  Type="String" />
                     <asp:Parameter Name="FECHA_CREACION"              Type="DateTime" />
                     <asp:Parameter Name="MODIFICADO_POR"              Type="String" />
@@ -185,7 +183,6 @@
                     <asp:Parameter Name="VARIABLES_NOMBRE"            Type="String" />
                     <asp:Parameter Name="VARIABLES_DESCRIPCION"       Type="String" />
                     <asp:Parameter Name="VARIABLES_VALOR"             Type="String" />
-                    <asp:Parameter Name="VARIABLES_FECHA_VENCIMIENTO" Type="DateTime" />
                     <asp:Parameter Name="CREADO_POR"                  Type="String" />
                     <asp:Parameter Name="FECHA_CREACION"              Type="DateTime" />
                     <asp:Parameter Name="MODIFICADO_POR"              Type="String" />
@@ -213,15 +210,14 @@
                                     <Reader>
                                         <ext:JsonReader IDProperty="VARIABLES_LLAVE">
                                             <Fields>
-                                                <ext:RecordField Name="VARIABLES_LLAVE"             />
-                                                <ext:RecordField Name="VARIABLES_NOMBRE"            />
-                                                <ext:RecordField Name="VARIABLES_DESCRIPCION"       />
-                                                <ext:RecordField Name="VARIABLES_VALOR"             />
-                                                <ext:RecordField Name="VARIABLES_FECHA_VENCIMIENTO" Type="Date" />
-                                                <ext:RecordField Name="CREADO_POR"                  />
-                                                <ext:RecordField Name="FECHA_CREACION"              Type="Date" />
-                                                <ext:RecordField Name="MODIFICADO_POR"              />
-                                                <ext:RecordField Name="FECHA_MODIFICACION"          Type="Date" />
+                                                <ext:RecordField Name="VARIABLES_LLAVE"       />
+                                                <ext:RecordField Name="VARIABLES_NOMBRE"      />
+                                                <ext:RecordField Name="VARIABLES_DESCRIPCION" />
+                                                <ext:RecordField Name="VARIABLES_VALOR"       />
+                                                <ext:RecordField Name="CREADO_POR"            />
+                                                <ext:RecordField Name="FECHA_CREACION"        Type="Date" />
+                                                <ext:RecordField Name="MODIFICADO_POR"        />
+                                                <ext:RecordField Name="FECHA_MODIFICACION"    Type="Date" />
                                             </Fields>
                                         </ext:JsonReader>
                                     </Reader>
@@ -232,11 +228,10 @@
                             </Store>
                             <ColumnModel>
                                 <Columns>
-                                    <ext:Column DataIndex="VARIABLES_LLAVE"                 Header="Llave" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="VARIABLES_NOMBRE"                Header="Nombre" Sortable="true" Width="150"></ext:Column>
-                                    <ext:Column DataIndex="VARIABLES_DESCRIPCION"           Header="Descripción" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="VARIABLES_VALOR"                 Header="Valor" Sortable="true"></ext:Column>
-                                    <ext:DateColumn DataIndex="VARIABLES_FECHA_VENCIMIENTO" Header="Fecha de Vencimiento" Sortable="true"></ext:DateColumn>
+                                    <ext:Column DataIndex="VARIABLES_LLAVE"       Header="Llave" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="VARIABLES_NOMBRE"      Header="Nombre" Sortable="true" Width="150"></ext:Column>
+                                    <ext:Column DataIndex="VARIABLES_DESCRIPCION" Header="Descripción" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="VARIABLES_VALOR"       Header="Valor" Sortable="true"></ext:Column>
                                 </Columns>
                             </ColumnModel>
                             <SelectionModel>
@@ -304,18 +299,6 @@
                                                         </ext:TextField>
                                                     </Component>
                                                 </ext:HeaderColumn>
-                                                <ext:HeaderColumn Cls="x-small-editor">
-                                                    <Component>
-                                                        <ext:DateField ID="f_VARIABLES_FECHA_VENCIMIENTO" runat="server" Width="100">
-                                                            <Triggers>
-                                                                <ext:FieldTrigger Icon="Clear" />
-                                                            </Triggers>
-                                                            <Listeners>
-                                                                <TriggerClick Handler="this.reset();" />
-                                                            </Listeners>
-                                                        </ext:DateField>
-                                                    </Component>
-                                                </ext:HeaderColumn>
                                             </Columns>
                                         </ext:HeaderRow>
                                     </HeaderRows>
@@ -358,27 +341,18 @@
                             <Items>
                                 <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                     <Items>
-                                        <ext:TextField   runat="server" ID="AddLlaveTxt"            DataIndex="VARIABLES_LLAVE"             LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Llave" AllowBlank="false" MsgTarget="Side" MaxLength="25" IsRemoteValidation="true">
-                                            <RemoteValidation OnValidation="AddLlaveTxt_Validate" />                                        
-                                        </ext:TextField>                                                                                    
-                                        <ext:TextField   runat="server" ID="AddNombreTxt"           DataIndex="VARIABLES_NOMBRE"            LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" IsRemoteValidation="true">
+                                        <ext:TextField   runat="server" ID="AddLlaveTxt"            DataIndex="VARIABLES_LLAVE"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Llave" AllowBlank="false" MsgTarget="Side" MaxLength="25" IsRemoteValidation="true">
+                                            <RemoteValidation OnValidation="AddLlaveTxt_Validate" />                                   
+                                        </ext:TextField>                                                                               
+                                        <ext:TextField   runat="server" ID="AddNombreTxt"           DataIndex="VARIABLES_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" IsRemoteValidation="true">
                                             <RemoteValidation OnValidation="AddNombreTxt_Validate" />
                                         </ext:TextField>
-                                        <ext:TextField   runat="server" ID="AddDescripcionTxt"      DataIndex="VARIABLES_DESCRIPCION"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100"></ext:TextField>
-                                        <ext:TextField   runat="server" ID="AddValorTxt"            DataIndex="VARIABLES_VALOR"            LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Valor" AllowBlank="false" MsgTarget="Side" MaxLength="100" ></ext:TextField>
-                                        <ext:DateField runat="server"   ID="AddFechaVencDt"         DataIndex="VARIABLES_FECHA_VENCIMIENTO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Vencimiento" MsgTarget="Side" MinDate="<%# DateTime.Today %>" AutoDataBind="true"
-                                            Vtype="daterange" Width="100" >
-                                            <Triggers>
-                                                <ext:FieldTrigger Icon="Clear" />
-                                            </Triggers>
-                                            <Listeners>
-                                                <TriggerClick Handler="this.reset();" />
-                                            </Listeners>
-                                        </ext:DateField>
-                                        <ext:TextField   runat="server" ID="AddCreatedByTxt"        DataIndex="CREADO_POR"                 LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado por" Hidden="true" ></ext:TextField>
-                                        <ext:TextField   runat="server" ID="AddCreatedDateTxt"      DataIndex="FECHA_CREACION"             LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
-                                        <ext:TextField   runat="server" ID="AddModifiedByTxt"       DataIndex="MODIFICADO_POR"             LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
-                                        <ext:TextField   runat="server" ID="AddModificationDateTxt" DataIndex="FECHA_MODIFICACION"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Modificacion" Hidden="true" ></ext:TextField>
+                                        <ext:TextField   runat="server" ID="AddDescripcionTxt"      DataIndex="VARIABLES_DESCRIPCION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100"></ext:TextField>
+                                        <ext:TextField   runat="server" ID="AddValorTxt"            DataIndex="VARIABLES_VALOR"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Valor" AllowBlank="false" MsgTarget="Side" MaxLength="100" ></ext:TextField>
+                                        <ext:TextField   runat="server" ID="AddCreatedByTxt"        DataIndex="CREADO_POR"            LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado por" Hidden="true" ></ext:TextField>
+                                        <ext:TextField   runat="server" ID="AddCreatedDateTxt"      DataIndex="FECHA_CREACION"        LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
+                                        <ext:TextField   runat="server" ID="AddModifiedByTxt"       DataIndex="MODIFICADO_POR"        LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
+                                        <ext:TextField   runat="server" ID="AddModificationDateTxt" DataIndex="FECHA_MODIFICACION"    LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Modificacion" Hidden="true" ></ext:TextField>
                                     </Items>
                                 </ext:Panel>
                             </Items>
@@ -430,16 +404,7 @@
                                             <RemoteValidation OnValidation="EditNombreTxt_Validate" />
                                         </ext:TextField>
                                         <ext:TextField runat="server"   ID="EditDescripcionTxt"   DataIndex="VARIABLES_DESCRIPCION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100"></ext:TextField>
-                                        <ext:TextField runat="server"   ID="EditValorTxt"         DataIndex="VARIABLES_VALOR" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Valor" MaxLength="100" AllowBlank="false" MsgTarget="Side"></ext:TextField>
-                                        <ext:DateField runat="server"   ID="EditFechaVencDt"      DataIndex="VARIABLES_FECHA_VENCIMIENTO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Vencimiento" MsgTarget="Side" MinDate="<%# DateTime.Today %>" AutoDataBind="true"
-                                            Vtype="daterange" Width="100" >
-                                            <Triggers>
-                                                <ext:FieldTrigger Icon="Clear" />
-                                            </Triggers>
-                                            <Listeners>
-                                                <TriggerClick Handler="this.reset();" />
-                                            </Listeners>
-                                        </ext:DateField>
+                                        <ext:TextField runat="server"   ID="EditValorTxt"         DataIndex="VARIABLES_VALOR"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Valor" MaxLength="100" AllowBlank="false" MsgTarget="Side"></ext:TextField>
                                         <ext:TextField runat="server"   ID="EditCreatedByTxt"     DataIndex="CREADO_POR"            LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
                                         <ext:TextField runat="server"   ID="EditCreationDateTxt"  DataIndex="FECHA_CREACION"        LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
                                         <ext:TextField runat="server"   ID="EditModifiedByTxt"    DataIndex="MODIFICADO_POR"        LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>

@@ -38,7 +38,6 @@ namespace COCASJOL.LOGIC.Entorno
             string VARIABLES_NOMBRE,
             string VARIABLES_DESCRIPCION,
             string VARIABLES_VALOR,
-            DateTime VARIABLES_FECHA_VENCIMIENTO,
             string CREADO_POR,
             DateTime FECHA_CREACION,
             string MODIFICADO_POR,
@@ -56,7 +55,6 @@ namespace COCASJOL.LOGIC.Entorno
                                 (string.IsNullOrEmpty(VARIABLES_NOMBRE) ? true : envars.VARIABLES_NOMBRE.Contains(VARIABLES_NOMBRE)) &&
                                 (string.IsNullOrEmpty(VARIABLES_DESCRIPCION) ? true : envars.VARIABLES_DESCRIPCION.Contains(VARIABLES_DESCRIPCION)) &&
                                 (string.IsNullOrEmpty(VARIABLES_VALOR) ? true : envars.VARIABLES_VALOR.Contains(VARIABLES_VALOR)) &&
-                                (default(DateTime) == VARIABLES_FECHA_VENCIMIENTO ? true : envars.VARIABLES_FECHA_VENCIMIENTO == VARIABLES_FECHA_VENCIMIENTO) &&
                                 (string.IsNullOrEmpty(CREADO_POR) ? true : envars.CREADO_POR.Contains(CREADO_POR)) &&
                                 (default(DateTime) == FECHA_CREACION ? true : envars.FECHA_CREACION == FECHA_CREACION) &&
                                 (string.IsNullOrEmpty(MODIFICADO_POR) ? true : envars.MODIFICADO_POR.Contains(MODIFICADO_POR)) &&
@@ -103,7 +101,6 @@ namespace COCASJOL.LOGIC.Entorno
             string VARIABLES_NOMBRE,
             string VARIABLES_DESCRIPCION,
             string VARIABLES_VALOR,
-            DateTime VARIABLES_FECHA_VENCIMIENTO,
             string CREADO_POR,
             DateTime FECHA_CREACION,
             string MODIFICADO_POR,
@@ -119,7 +116,6 @@ namespace COCASJOL.LOGIC.Entorno
                     environmentVariables.VARIABLES_NOMBRE = VARIABLES_NOMBRE;
                     environmentVariables.VARIABLES_DESCRIPCION = VARIABLES_DESCRIPCION;
                     environmentVariables.VARIABLES_VALOR = VARIABLES_VALOR;
-                    environmentVariables.VARIABLES_FECHA_VENCIMIENTO = VARIABLES_FECHA_VENCIMIENTO;
                     environmentVariables.CREADO_POR = CREADO_POR;
                     environmentVariables.FECHA_CREACION = DateTime.Today;
                     environmentVariables.MODIFICADO_POR = CREADO_POR;
@@ -145,7 +141,6 @@ namespace COCASJOL.LOGIC.Entorno
             string VARIABLES_NOMBRE,
             string VARIABLES_DESCRIPCION,
             string VARIABLES_VALOR,
-            DateTime VARIABLES_FECHA_VENCIMIENTO,
             string CREADO_POR,
             DateTime FECHA_CREACION,
             string MODIFICADO_POR,
@@ -164,7 +159,6 @@ namespace COCASJOL.LOGIC.Entorno
                     environmentVariables.VARIABLES_NOMBRE = VARIABLES_NOMBRE;
                     environmentVariables.VARIABLES_DESCRIPCION = VARIABLES_DESCRIPCION;
                     environmentVariables.VARIABLES_VALOR = VARIABLES_VALOR;
-                    environmentVariables.VARIABLES_FECHA_VENCIMIENTO = VARIABLES_FECHA_VENCIMIENTO;
                     environmentVariables.MODIFICADO_POR = MODIFICADO_POR;
                     environmentVariables.FECHA_MODIFICACION = DateTime.Today;
 

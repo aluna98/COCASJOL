@@ -424,7 +424,6 @@
           <Property Name="VARIABLES_NOMBRE" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="VARIABLES_DESCRIPCION" Type="varchar" MaxLength="100" />
           <Property Name="VARIABLES_VALOR" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="VARIABLES_FECHA_VENCIMIENTO" Type="date" />
           <Property Name="CREADO_POR" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
           <Property Name="MODIFICADO_POR" Type="varchar" MaxLength="45" />
@@ -775,7 +774,6 @@
             <End Role="notas_de_peso" EntitySet="notas_de_peso" />
             <End Role="nota_detalle" EntitySet="notas_detalles" />
           </AssociationSet>
-          <EntitySet Name="variables_de_entorno" EntityType="COLINASMODEL.variable_de_entorno" />
           <EntitySet Name="privilegios" EntityType="COLINASMODEL.privilegio" />
           <AssociationSet Name="privilegios_x_roles" Association="COLINASMODEL.privilegios_x_roles">
             <End Role="privilegios" EntitySet="privilegios" />
@@ -795,6 +793,7 @@
             <End Role="socio" EntitySet="socios" />
             <End Role="solicitudes_prestamos" EntitySet="solicitudes_prestamos" />
           </AssociationSet>
+          <EntitySet Name="variables_de_entorno" EntityType="COLINASMODEL.variable_de_entorno" />
           </EntityContainer>
         <EntityType Name="codigo">
           <Key>
@@ -1209,20 +1208,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="variable_de_entorno">
-          <Key>
-            <PropertyRef Name="VARIABLES_LLAVE" />
-          </Key>
-          <Property Type="String" Name="VARIABLES_LLAVE" Nullable="false" />
-          <Property Type="String" Name="VARIABLES_NOMBRE" Nullable="false" />
-          <Property Type="String" Name="VARIABLES_DESCRIPCION" />
-          <Property Type="String" Name="VARIABLES_VALOR" Nullable="false" />
-          <Property Type="DateTime" Name="VARIABLES_FECHA_VENCIMIENTO" />
-          <Property Type="String" Name="CREADO_POR" Nullable="false" />
-          <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
-          <Property Type="String" Name="MODIFICADO_POR" />
-          <Property Type="DateTime" Name="FECHA_MODIFICACION" />
-        </EntityType>
         <EntityType Name="privilegio">
           <Key>
             <PropertyRef Name="PRIV_ID" />
@@ -1327,6 +1312,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="variable_de_entorno">
+          <Key>
+            <PropertyRef Name="VARIABLES_LLAVE" />
+          </Key>
+          <Property Type="String" Name="VARIABLES_LLAVE" Nullable="false" />
+          <Property Type="String" Name="VARIABLES_NOMBRE" Nullable="false" />
+          <Property Type="String" Name="VARIABLES_DESCRIPCION" />
+          <Property Type="String" Name="VARIABLES_VALOR" Nullable="false" />
+          <Property Type="String" Name="CREADO_POR" Nullable="false" />
+          <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
+          <Property Type="String" Name="MODIFICADO_POR" />
+          <Property Type="DateTime" Name="FECHA_MODIFICACION" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1591,21 +1589,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="variables_de_entorno">
-            <EntityTypeMapping TypeName="COLINASMODEL.variable_de_entorno">
-              <MappingFragment StoreEntitySet="variables_de_entorno">
-                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
-                <ScalarProperty Name="MODIFICADO_POR" ColumnName="MODIFICADO_POR" />
-                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
-                <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
-                <ScalarProperty Name="VARIABLES_FECHA_VENCIMIENTO" ColumnName="VARIABLES_FECHA_VENCIMIENTO" />
-                <ScalarProperty Name="VARIABLES_VALOR" ColumnName="VARIABLES_VALOR" />
-                <ScalarProperty Name="VARIABLES_DESCRIPCION" ColumnName="VARIABLES_DESCRIPCION" />
-                <ScalarProperty Name="VARIABLES_NOMBRE" ColumnName="VARIABLES_NOMBRE" />
-                <ScalarProperty Name="VARIABLES_LLAVE" ColumnName="VARIABLES_LLAVE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="privilegios">
             <EntityTypeMapping TypeName="COLINASMODEL.privilegio">
               <MappingFragment StoreEntitySet="privilegios">
@@ -1672,6 +1655,20 @@
                 <ScalarProperty Name="SOLICITUDES_MONTO" ColumnName="SOLICITUDES_MONTO" />
                 <ScalarProperty Name="SOLICITUDES_ID" ColumnName="SOLICITUDES_ID" />
                 <ScalarProperty Name="SOCIOS_ID" ColumnName="SOCIOS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="variables_de_entorno">
+            <EntityTypeMapping TypeName="COLINASMODEL.variable_de_entorno">
+              <MappingFragment StoreEntitySet="variables_de_entorno">
+                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
+                <ScalarProperty Name="MODIFICADO_POR" ColumnName="MODIFICADO_POR" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
+                <ScalarProperty Name="VARIABLES_VALOR" ColumnName="VARIABLES_VALOR" />
+                <ScalarProperty Name="VARIABLES_DESCRIPCION" ColumnName="VARIABLES_DESCRIPCION" />
+                <ScalarProperty Name="VARIABLES_NOMBRE" ColumnName="VARIABLES_NOMBRE" />
+                <ScalarProperty Name="VARIABLES_LLAVE" ColumnName="VARIABLES_LLAVE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1769,7 +1766,6 @@
           <ConnectorPoint PointX="6.875" PointY="17.365143229166669" />
           <ConnectorPoint PointX="8.125" PointY="17.365143229166669" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="COLINASMODEL.variable_de_entorno" Width="1.5" PointX="10" PointY="0.5" Height="2.7494921875000031" />
         <EntityTypeShape EntityType="COLINASMODEL.privilegio" Width="1.5" PointX="4.875" PointY="0.5" Height="2.749492187499996" />
         <AssociationConnector Association="COLINASMODEL.privilegios_x_roles" >
           <ConnectorPoint PointX="4.875" PointY="1.8747460937499982" />
@@ -1789,6 +1785,7 @@
           <ConnectorPoint PointX="5.125" PointY="8.5670475260416659" />
           <ConnectorPoint PointX="11.875" PointY="8.5670475260416659" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="COLINASMODEL.variable_de_entorno" Width="1.5" PointX="10" PointY="0.5" Height="2.5571907552083246" />
         </Diagram>
     </Diagrams>
   </Designer>

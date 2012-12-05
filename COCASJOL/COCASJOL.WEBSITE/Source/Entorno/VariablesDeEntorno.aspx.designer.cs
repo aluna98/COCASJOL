@@ -193,15 +193,6 @@ namespace COCASJOL.WEBSITE.Source.Entorno {
         protected global::Ext.Net.TextField f_VARIABLES_VALOR;
         
         /// <summary>
-        /// f_VARIABLES_FECHA_VENCIMIENTO control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.DateField f_VARIABLES_FECHA_VENCIMIENTO;
-        
-        /// <summary>
         /// PagingToolbar1 control.
         /// </summary>
         /// <remarks>
@@ -281,15 +272,6 @@ namespace COCASJOL.WEBSITE.Source.Entorno {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField AddValorTxt;
-        
-        /// <summary>
-        /// AddFechaVencDt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.DateField AddFechaVencDt;
         
         /// <summary>
         /// AddCreatedByTxt control.
@@ -416,15 +398,6 @@ namespace COCASJOL.WEBSITE.Source.Entorno {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField EditValorTxt;
-        
-        /// <summary>
-        /// EditFechaVencDt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.DateField EditFechaVencDt;
         
         /// <summary>
         /// EditCreatedByTxt control.
