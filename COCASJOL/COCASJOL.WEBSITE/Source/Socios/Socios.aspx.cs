@@ -13,7 +13,7 @@ using COCASJOL.LOGIC.Socios;
 using COCASJOL.LOGIC.Web;
 using COCASJOL.LOGIC.Seguridad;
 
-namespace COCASJOL.Website.Socios
+namespace COCASJOL.WEBSITE.Socios
 {
     public partial class Socios : COCASJOLBASE
     {
@@ -30,7 +30,7 @@ namespace COCASJOL.Website.Socios
                 string loggedUsr = Session["username"] as string;
                 this.LoggedUserHdn.Text = loggedUsr;
 
-                this.ValidarCredenciales("MANT_SOCIOS");
+                this.ValidarCredenciales(typeof(Socios).Name);
             }
         }
 

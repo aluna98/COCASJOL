@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace COCASJOL.Website.Source.Productos {
+namespace COCASJOL.WEBSITE.Source.Productos {
     
     
     public partial class TiposDeProductos {

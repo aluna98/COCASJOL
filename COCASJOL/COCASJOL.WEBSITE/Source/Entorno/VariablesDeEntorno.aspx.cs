@@ -10,7 +10,7 @@ using Ext.Net;
 using COCASJOL.LOGIC.Entorno;
 using COCASJOL.LOGIC.Web;
 
-namespace COCASJOL.Website.Source.Entorno
+namespace COCASJOL.WEBSITE.Source.Entorno
 {
     public partial class VariablesDeEntorno : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
@@ -23,7 +23,7 @@ namespace COCASJOL.Website.Source.Entorno
                     string loggedUsr = Session["username"] as string;
                     this.LoggedUserHdn.Text = loggedUsr;
 
-                    //this.ValidarCredenciales("MANT_TIPOPRODS");
+                    this.ValidarCredenciales(typeof(VariablesDeEntorno).Name);
                 }
             }
             catch (Exception)

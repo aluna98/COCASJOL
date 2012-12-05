@@ -5,6 +5,7 @@ using System.Text;
 
 using System.Web;
 using System.Web.UI;
+using System.Xml;
 
 using System.Data;
 using System.Data.Objects;
@@ -44,25 +45,74 @@ namespace COCASJOL.LOGIC.Web
             //log error
         }
 
-        protected void ValidarCredenciales(string PRIV_LLAVE)
+        protected void ValidarCredenciales(string pagename)
         {
-            string loggedUser = Session["username"] as string;
-
-#if DEBUG
-            if (loggedUser == "DEVELOPER")
-                return;
-#endif
-            UsuarioLogic usuariologic = new UsuarioLogic();
-
-            List<privilegio> privs = usuariologic.GetPrivilegiosDeUsuario(loggedUser);
-
-            foreach (privilegio p in privs)
+            try
             {
-                if (p.PRIV_LLAVE == PRIV_LLAVE)
+                string loggedUser = Session["username"] as string;
+#if DEBUG
+                if (loggedUser == "DEVELOPER")
                     return;
-            }
+#endif
 
-            base.Response.Redirect("~/NoAccess.aspx");
+                XmlDocument doc = new XmlDocument();
+                doc.Load(Server.MapPath(System.Configuration.ConfigurationManager.AppSettings.Get("privilegesXML")));
+
+                XmlNode node = doc.SelectSingleNode("privilegios/privilege[page[contains(text(), '" + pagename + "')]]");
+                XmlNode keyNode = node.SelectSingleNode("key");
+                string key = keyNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
+
+                UsuarioLogic usuariologic = new UsuarioLogic();
+                List<privilegio> privs = usuariologic.GetPrivilegiosDeUsuario(loggedUser);
+
+                foreach (privilegio p in privs)
+                {
+                    if (p.PRIV_LLAVE == key)
+                        return;
+                }
+
+                base.Response.Redirect("~/NoAccess.aspx");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public Dictionary<string, string> GetVariables(string pagename)
+        {
+            Dictionary<string, string> variablesDictionary = null;
+            try
+            {
+                variablesDictionary = new Dictionary<string, string>();
+
+                XmlDocument doc = new XmlDocument();
+                doc.Load(Server.MapPath(System.Configuration.ConfigurationManager.AppSettings.Get("variablesDeEntornoXML")));
+                XmlNodeList pagesNode = doc.SelectNodes("paginas/pagina[Name[contains(text(), '" + pagename + "')]]");
+
+                foreach (XmlNode pageNode in pagesNode)
+                {
+                    XmlNodeList variablesNode = pageNode.SelectNodes("variables/variable");
+
+                    foreach (XmlNode variableNode in variablesNode)
+                    {
+                        XmlNode keyNode = variableNode.SelectSingleNode("key");
+                        XmlNode mapsNode = variableNode.SelectSingleNode("maps");
+
+                        string key = keyNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
+                        string maps = mapsNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
+
+                        variablesDictionary[maps] = key;
+                    }
+                }
+
+                return variablesDictionary;
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ using Ext.Net;
 using COCASJOL.LOGIC.Productos;
 using COCASJOL.LOGIC.Web;
 
-namespace COCASJOL.Website.Source.Productos
+namespace COCASJOL.WEBSITE.Source.Productos
 {
     public partial class Productos : COCASJOLBASE
     {
@@ -24,7 +24,7 @@ namespace COCASJOL.Website.Source.Productos
                 {
                     string loggedUsr = Session["username"] as string;
                     this.LoggedUserHdn.Text = loggedUsr;
-                    this.ValidarCredenciales("MANT_PRODUCTOS");
+                    this.ValidarCredenciales(typeof(Productos).Name);
                 }
             }
             catch (Exception)

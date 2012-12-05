@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CambiarClave.ascx.cs" Inherits="COCASJOL.Website.Source.Seguridad.CambiarClave" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CambiarClave.ascx.cs" Inherits="COCASJOL.WEBSITE.Source.Seguridad.CambiarClave" %>
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 
 <ext:XScript ID="XScript1" runat="server">

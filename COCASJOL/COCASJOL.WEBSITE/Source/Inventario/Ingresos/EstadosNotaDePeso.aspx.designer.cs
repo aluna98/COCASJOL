@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace COCASJOL.Website.Source.Inventario.Ingresos {
+namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
     
     
     public partial class EstadosNotaDePeso {

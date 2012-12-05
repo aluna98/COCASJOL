@@ -2,86 +2,86 @@
 <privilegios>
   <privilege>
     <key>SYS_USER</key>
+    <page>Usuario</page>
     <module>UsuariosModule</module>
     <shortcut>scUsuarios</shortcut>
     <menuitem>UsuariosMenuItem</menuitem>
-    <page></page>
-    </privilege>
+  </privilege>
   <privilege>
     <key>SYS_ROLES</key>
+    <page>Rol</page>
     <module>RolesModule</module>
     <shortcut>scRoles</shortcut>
     <menuitem>RolesMenuItem</menuitem>
-    <page></page>
   </privilege>
   <privilege>
     <key>MANT_SOCIOS</key>
+    <page>Socios</page>
     <module>SociosModule</module>
     <shortcut>scSocios</shortcut>
     <menuitem>SociosMenuItem</menuitem>
-    <page></page>
   </privilege>
   <privilege>
     <key>MANT_TIPOPRODS</key>
+    <page>TiposDeProductos</page>
     <module>ProductosModule</module>
     <shortcut>scTiposDeProductos</shortcut>
     <menuitem>TiposDeProductosMenuItem</menuitem>
-    <page></page>
   </privilege>
   <privilege>
     <key>MANT_PRODUCTOS</key>
+    <page>Productos</page>
     <module>ProductosModule</module>
     <shortcut>scProductos</shortcut>
     <menuitem>ProductosMenuItem</menuitem>
-    <page></page>
   </privilege>
   <privilege>
     <key>MANT_NOTASPESO</key>
+    <page>NotasDePeso</page>
     <module>NotasDePesoModule</module>
     <shortcut>scNotasDePeso</shortcut>
     <menuitem>NotasDePesoMenuItem</menuitem>
-    <page></page>
   </privilege>
   <privilege>
     <key>MANT_ESTADOSNOTAPESO</key>
+    <page>EstadosNotaDePeso</page>
     <module>EstadosNotasDePesoModule</module>
     <shortcut>scEstadosNotasDePeso</shortcut>
     <menuitem>EstadosNotasDePesoMenuItem</menuitem>
-    <page></page>
   </privilege>
   <privilege>
     <key>MANT_VARIABLESENTORNO</key>
+    <page>VariablesDeEntorno</page>
     <module>VariablesDeEntornoModule</module>
     <shortcut>scVariablesDeEntorno</shortcut>
     <menuitem>VariablesDeEntornoMenuItem</menuitem>
-    <page></page>
   </privilege>
   <privilege>
     <key>MANT_CLASIFICACIONESCAFE</key>
+    <page>ClasificacionesDeCafe</page>
     <module>ClasificacionesDeCafeModule</module>
     <shortcut>scClasificacionesDeCafe</shortcut>
     <menuitem>ClasificacionesDeCafeMenuItem</menuitem>
-    <page></page>
   </privilege>
   <privilege>
     <key>MANT_INVENTARIOPORSOCIO</key>
+    <page>InventarioDeCafePorSocio</page>
     <module>InventarioDeCafePorSocioModule</module>
     <shortcut>scInventarioDeCafePorSocio</shortcut>
     <menuitem>InventarioDeCafePorSocioMenuItem</menuitem>
-    <page></page>
   </privilege>
   <privilege>
     <key>MANT_PRESTAMOS</key>
+    <page>Prestamos</page>
     <module></module>
     <shortcut></shortcut>
     <menuitem></menuitem>
-    <page></page>
   </privilege>
   <privilege>
     <key>MANT_SOLICITUDESPRESTAMO</key>
-    <module></module>
-    <shortcut></shortcut>
-    <menuitem></menuitem>
-    <page></page>
+    <page>SolicitudPrestamo</page>
+    <module>SolicitudesDePrestamoModule</module>
+    <shortcut>scSolicitudesDePrestamo</shortcut>
+    <menuitem>SolicitudesDePrestamoMenuItem</menuitem>
   </privilege>
 </privilegios>

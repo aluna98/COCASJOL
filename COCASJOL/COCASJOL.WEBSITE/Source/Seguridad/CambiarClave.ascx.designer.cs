@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace COCASJOL.Website.Source.Seguridad {
+namespace COCASJOL.WEBSITE.Source.Seguridad {
     
     
     public partial class CambiarClave {

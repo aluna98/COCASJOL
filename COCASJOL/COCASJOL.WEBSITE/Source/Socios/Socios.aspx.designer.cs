@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace COCASJOL.Website.Socios {
+namespace COCASJOL.WEBSITE.Socios {
     
     
     public partial class Socios {

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VariablesDeEntorno.aspx.cs" Inherits="COCASJOL.Website.Source.Entorno.VariablesDeEntorno" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VariablesDeEntorno.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Entorno.VariablesDeEntorno" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 

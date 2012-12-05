@@ -13,7 +13,7 @@ using COCASJOL.LOGIC.Web;
 using COCASJOL.LOGIC.Seguridad;
 using COCASJOL.LOGIC.Prestamos;
 
-namespace COCASJOL.Website.Source.Prestamos
+namespace COCASJOL.WEBSITE.Source.Prestamos
 {
     public partial class Prestamos : COCASJOLBASE
     {
@@ -23,6 +23,7 @@ namespace COCASJOL.Website.Source.Prestamos
             {
                 string loggedUsr = Session["username"] as string;
                 this.LoggedUserHdn.Text = loggedUsr;
+                this.ValidarCredenciales(typeof(Prestamos).Name);
             }
         }
 

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace COCASJOL.Website.Source.Entorno {
+namespace COCASJOL.WEBSITE.Source.Entorno {
     
     
     public partial class VariablesDeEntorno {

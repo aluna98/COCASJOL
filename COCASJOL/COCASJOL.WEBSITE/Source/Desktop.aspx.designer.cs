@@ -148,6 +148,33 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.MenuItem EstadosNotasDePesoMenuItem;
         
         /// <summary>
+        /// PrestamosMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem PrestamosMenu;
+        
+        /// <summary>
+        /// SolicitudesDePrestamoMenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem SolicitudesDePrestamoMenuItem;
+        
+        /// <summary>
+        /// PrestamosMenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem PrestamosMenuItem;
+        
+        /// <summary>
         /// InventarioDeCafePorSocioMenu control.
         /// </summary>
         /// <remarks>
@@ -307,7 +334,7 @@ namespace COCASJOL.WEBSITE {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::COCASJOL.Website.Source.Seguridad.UsuarioActual UsuarioActualCtl;
+        protected global::COCASJOL.WEBSITE.Source.Seguridad.UsuarioActual UsuarioActualCtl;
         
         /// <summary>
         /// CambiarClaveCtl control.
@@ -316,6 +343,6 @@ namespace COCASJOL.WEBSITE {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::COCASJOL.Website.Source.Seguridad.CambiarClave CambiarClaveCtl;
+        protected global::COCASJOL.WEBSITE.Source.Seguridad.CambiarClave CambiarClaveCtl;
     }
 }

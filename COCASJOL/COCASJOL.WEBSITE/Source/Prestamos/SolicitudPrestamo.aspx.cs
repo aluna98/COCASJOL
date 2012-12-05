@@ -13,7 +13,7 @@ using COCASJOL.LOGIC.Web;
 using COCASJOL.LOGIC.Seguridad;
 using COCASJOL.LOGIC.Prestamos;
 
-namespace COCASJOL.Website.Source.Prestamos
+namespace COCASJOL.WEBSITE.Source.Prestamos
 {
     public partial class SolicitudPrestamo : System.Web.UI.Page
     {

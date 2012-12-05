@@ -5,13 +5,18 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace COCASJOL.Website.Source.Inventario
+using Ext.Net;
+
+namespace COCASJOL.WEBSITE.Source.Inventario
 {
-    public partial class InventarioDeCafePorSocio : System.Web.UI.Page
+    public partial class InventarioDeCafePorSocio : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!X.IsAjaxRequest)
+            {
+                this.ValidarCredenciales(typeof(InventarioDeCafePorSocio).Name);
+            }
         }
     }
 }

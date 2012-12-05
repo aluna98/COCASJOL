@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<paginas>
+  <pagina>
+    <Name>NotasDePeso</Name>
+    <variables>
+      <variable>
+        <key>PORCENTAJEHUMEDADMIN</key>
+        <maps>PORCENTAJEHUMEDADMIN</maps>
+      </variable>
+    </variables>
+  </pagina>
+</paginas>

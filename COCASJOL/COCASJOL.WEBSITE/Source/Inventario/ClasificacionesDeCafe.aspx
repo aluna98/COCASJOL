@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ClasificacionesDeCafe.aspx.cs" Inherits="COCASJOL.Website.Source.Inventario.ClasificacionesDeCafe" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ClasificacionesDeCafe.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Inventario.ClasificacionesDeCafe" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 

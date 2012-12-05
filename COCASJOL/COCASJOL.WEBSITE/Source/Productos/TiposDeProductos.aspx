@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TiposDeProductos.aspx.cs" Inherits="COCASJOL.Website.Source.Productos.TiposDeProductos" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TiposDeProductos.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Productos.TiposDeProductos" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 

@@ -10,7 +10,7 @@ using Ext.Net;
 using COCASJOL.LOGIC.Inventario;
 using COCASJOL.LOGIC.Web;
 
-namespace COCASJOL.Website.Source.Inventario
+namespace COCASJOL.WEBSITE.Source.Inventario
 {
     public partial class ClasificacionesDeCafe : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
@@ -22,7 +22,7 @@ namespace COCASJOL.Website.Source.Inventario
                 {
                     string loggedUsr = Session["username"] as string;
                     this.LoggedUserHdn.Text = loggedUsr;
-                    //this.ValidarCredenciales("MANT_TIPOPRODS");
+                    this.ValidarCredenciales(typeof(ClasificacionesDeCafe).Name);
                 }
             }
             catch (Exception)

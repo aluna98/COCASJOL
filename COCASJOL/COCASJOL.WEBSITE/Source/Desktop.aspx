@@ -24,73 +24,90 @@
         
         .icon-grid48
         {
-            background-image: url(../Images/grid48x48.png) !important;
+            background-image: url(../resources/images/grid48x48.png) !important;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/grid48x48.png", sizingMethod="scale");
         }
         
         .icon-usuarios
         {
-            background-image: url(../Images/user.png) !important;
+            background-image: url(../resources/images/user.png) !important;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/user.png", sizingMethod="scale");
         }
         
         .icon-roles
         {
-            background-image: url(../Images/gear_in.png) !important;
+            background-image: url(../resources/images/gear_in.png) !important;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/gear_in.png", sizingMethod="scale");
         }
         
         .icon-socios
         {
-            background-image: url(../Images/group.png) !important;
+            background-image: url(../resources/images/group.png) !important;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/group.png", sizingMethod="scale");
         }
         
         .icon-tiposDeProducto
         {
-            background-image: url(../Images/basket.png) !important;
+            background-image: url(../resources/images/basket.png) !important;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/basket.png", sizingMethod="scale");
         }
         
         .icon-productos
         {
-            background-image: url(../Images/cart.png) !important;
+            background-image: url(../resources/images/cart.png) !important;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/cart.png", sizingMethod="scale");
         }
         
         .icon-notasDePeso
         {
-            background-image: url(../Images/page_white_cup.png) !important;
+            background-image: url(../resources/images/page_white_cup.png) !important;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_cup.png", sizingMethod="scale");
         }
         
         .icon-estadosNotasDePeso
         {
-            background-image: url(../Images/page_go.png) !important;
+            background-image: url(../resources/images/page_go.png) !important;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_go.png", sizingMethod="scale");
+        }
+        
+        .icon-solicitudesDePrestamo
+        {
+            background-image: url(../resources/images/page_white_text.png) !important;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_text.png", sizingMethod="scale");
+        }
+        
+        .icon-prestamos
+        {
+            background-image: url(../resources/images/cheque.png) !important;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/cheque.png", sizingMethod="scale");
+        }
+        
+        .icon-prestamos16
+        {
+            background-image: url("../resources/images/cheque16x16.png") !important;
         }
         
         .icon-clasificacionesDeCafe
         {
-            background-image: url(../Images/cup.png) !important;
+            background-image: url(../resources/images/cup.png) !important;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/cup.png", sizingMethod="scale");
         }
         
         .icon-inventarioDeCafePorSocio
         {
-            background-image: url(../Images/bricks.png) !important;
+            background-image: url(../resources/images/bricks.png) !important;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/bricks.png", sizingMethod="scale");
         }
         
         .icon-variablesEntorno
         {
-            background-image: url(../Images/database.png) !important;
+            background-image: url(../resources/images/database.png) !important;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/database.png", sizingMethod="scale");
         }
         
         .icon-window48
         {
-            background-image: url(../Images/window48x48.png) !important;
+            background-image: url(../resources/images/window48x48.png) !important;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/window48x48.png", sizingMethod="scale");
         }
         
@@ -186,6 +203,14 @@
                 DesktopX.createDynamicWindow(app, 'pagego', 'Estados de Notas De Peso', 'Inventario/Ingresos/EstadosNotaDePeso.aspx');
             },
 
+            solicitudesDePrestamo: function (app) {
+                DesktopX.createDynamicWindow(app, 'pagewhitetext', 'Solicitudes de Prestamo', 'Prestamos/SolicitudPrestamo.aspx');
+            },
+
+            prestamos: function (app) {
+                DesktopX.createDynamicWindow(app, 'prestamos16', 'Prestamos', 'Prestamos/Prestamos.aspx');
+            },
+
             clasificacionesDeCafe: function (app) {
                 DesktopX.createDynamicWindow(app, 'cup', 'Clasificaciones de Café', 'Inventario/ClasificacionesDeCafe.aspx');
             },
@@ -224,6 +249,10 @@
                 WindowX.notasDePeso(app);
             } else if (id == 'scEstadosNotasDePeso') {
                 WindowX.estadosNotasDePeso(app);
+            } else if (id == 'scSolicitudesDePrestamo') {
+                WindowX.solicitudesDePrestamo(app);
+            } else if (id == 'scPrestamos') {
+                WindowX.prestamos(app);
             } else if (id == 'scClasificacionesDeCafe') {
                 WindowX.clasificacionesDeCafe(app);
             } else if (id == 'scInventarioDeCafePorSocio') {
@@ -334,6 +363,23 @@
                 </ext:DesktopModule>
                 <%--Notas De Peso--%>
 
+                <%--Prestamos--%>
+                <ext:DesktopModule ModuleID="SolicitudesDePrestamoModule">
+                    <Launcher ID="SolicitudesDePrestamoLauncher" runat="server" Text="Solicitudes de Prestamo" Icon="PageWhiteText" >
+                        <Listeners>
+                            <Click Handler="WindowX.solicitudesDePrestamo(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
+                <ext:DesktopModule ModuleID="PrestamosModule">
+                    <Launcher ID="PrestamosLauncher" runat="server" Text="Prestamos" IconCls="icon-prestamos16" >
+                        <Listeners>
+                            <Click Handler="WindowX.prestamos(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
+                <%--Prestamos--%>
+
                 <%--Inventario de Cafe por Socio --%>
                 <ext:DesktopModule ModuleID="ClasificacionesDeCafeModule">
                     <Launcher ID="ClasificacionesDeCafeLauncher" runat="server" Text="Clasificaciones de Café" Icon="TableGo" >
@@ -383,6 +429,9 @@
 
                 <ext:DesktopShortcut ShortcutID="scNotasDePeso" Text="Notas de Peso" IconCls="shortcut-icon icon-notasDePeso" />
                 <ext:DesktopShortcut ShortcutID="scEstadosNotasDePeso" Text="Estados de Notas de Peso" IconCls="shortcut-icon icon-estadosNotasDePeso" />
+
+                <ext:DesktopShortcut ShortcutID="scSolicitudesDePrestamo" Text="Solicitudes de Prestamo" IconCls="shortcut-icon icon-solicitudesDePrestamo" />
+                <ext:DesktopShortcut ShortcutID="scPrestamos" Text="Prestamos" IconCls="shortcut-icon icon-prestamos" />
 
                 <ext:DesktopShortcut ShortcutID="scClasificacionesDeCafe" Text="Clasificaciones de Café" IconCls="shortcut-icon icon-clasificacionesDeCafe" />
                 <ext:DesktopShortcut ShortcutID="scInventarioDeCafePorSocio" Text="Inventario de Café por Socio" IconCls="shortcut-icon icon-inventarioDeCafePorSocio" />
@@ -474,6 +523,24 @@
                                     <ext:MenuItem ID="EstadosNotasDePesoMenuItem" Text="Estados de Notas de Peso" Icon="PageGo" >
                                         <Listeners>
                                             <click Handler="WindowX.estadosNotasDePeso(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                </Items>
+                            </ext:Menu>
+                        </Menu>
+                    </ext:MenuItem>
+                    <ext:MenuItem ID="PrestamosMenu" runat="server" Text="Prestamos" Icon="Folder" HideOnClick="false">
+                        <Menu>
+                            <ext:Menu runat="server">
+                                <Items>
+                                    <ext:MenuItem ID="SolicitudesDePrestamoMenuItem" Text="Solicitudes de Prestamo" Icon="PageWhiteText" >
+                                        <Listeners>
+                                            <click Handler="WindowX.solicitudesDePrestamo(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                    <ext:MenuItem ID="PrestamosMenuItem" Text="Prestamos" IconCls="icon-prestamos16" >
+                                        <Listeners>
+                                            <click Handler="WindowX.prestamos(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
                                 </Items>

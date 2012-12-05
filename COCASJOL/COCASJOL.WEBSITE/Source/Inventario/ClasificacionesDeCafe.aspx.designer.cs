@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace COCASJOL.Website.Source.Inventario {
+namespace COCASJOL.WEBSITE.Source.Inventario {
     
     
     public partial class ClasificacionesDeCafe {

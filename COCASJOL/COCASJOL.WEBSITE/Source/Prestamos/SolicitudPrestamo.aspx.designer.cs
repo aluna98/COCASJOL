@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace COCASJOL.Website.Source.Prestamos {
+namespace COCASJOL.WEBSITE.Source.Prestamos {
     
     
     public partial class SolicitudPrestamo {

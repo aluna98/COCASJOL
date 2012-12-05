@@ -12,7 +12,7 @@ using COCASJOL.LOGIC.Web;
 using System.Data;
 using System.Data.Objects;
 
-namespace COCASJOL.Website.Source.Seguridad
+namespace COCASJOL.WEBSITE.Source.Seguridad
 {
     public partial class UsuarioActual : System.Web.UI.UserControl
     {

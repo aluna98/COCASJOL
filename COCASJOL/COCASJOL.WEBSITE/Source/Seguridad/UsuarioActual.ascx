@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UsuarioActual.ascx.cs" Inherits="COCASJOL.Website.Source.Seguridad.UsuarioActual" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UsuarioActual.ascx.cs" Inherits="COCASJOL.WEBSITE.Source.Seguridad.UsuarioActual" %>
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 
 <ext:XScript runat="server" >

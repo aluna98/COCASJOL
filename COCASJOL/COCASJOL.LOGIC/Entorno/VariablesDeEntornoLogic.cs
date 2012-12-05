@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml;
 
 using System.Data;
 using System.Data.Objects;
@@ -67,6 +68,28 @@ namespace COCASJOL.LOGIC.Entorno
             }
             catch (Exception)
             {
+                throw;
+            }
+        }
+
+        public variable_de_entorno GetVariableDeEntorno(string VARIABLES_LLAVE)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    db.variables_de_entorno.MergeOption = MergeOption.NoTracking;
+
+                    var query = from envars in db.variables_de_entorno
+                                where envars.VARIABLES_LLAVE == VARIABLES_LLAVE
+                                select envars;
+
+                    return query.First<variable_de_entorno>();
+                }
+            }
+            catch (Exception)
+            {
+                
                 throw;
             }
         }
@@ -220,14 +243,13 @@ namespace COCASJOL.LOGIC.Entorno
                 {
                     db.variables_de_entorno.MergeOption = MergeOption.NoTracking;
 
-                    var query = from env in db.variables_de_entorno
-                                where env.VARIABLES_LLAVE == VARIABLES_LLAVE
-                                select env;
+                    Object u = null;
+                    EntityKey k = new EntityKey("colinasEntities.variables_de_entorno", "VARIABLES_LLAVE", VARIABLES_LLAVE);
 
-                    if (query.Count() > 0)
+                    if (db.TryGetObjectByKey(k, out u))
                         return true;
-                    else
-                        return false;
+
+                    return false;
                 }
             }
             catch (Exception)

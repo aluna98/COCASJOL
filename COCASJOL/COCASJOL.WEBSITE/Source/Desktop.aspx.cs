@@ -31,11 +31,10 @@ namespace COCASJOL.WEBSITE
                 if (!X.IsAjaxRequest)
                 {
                     string loggedUser = Session["username"] as string;
-                    //this.MyDesktop.Wallpaper = "../resources/images/desktop.jpg";
                     this.MyDesktop.Wallpaper = "../resources/images/background1.jpg";
                     this.MyDesktop.StartMenu.Title = loggedUser;
 
-                    //RemoveObjects();
+                    this.GetVariables(typeof(COCASJOL.WEBSITE.Source.Inventario.Ingresos.NotasDePeso).Name);
                 }
             }
             catch (Exception ex)
@@ -48,7 +47,7 @@ namespace COCASJOL.WEBSITE
         private void RemoveObjects()
         {
             try
-            {
+            {                
                 string loggedUser = Session["username"] as string;
 #if DEBUG
                 if (loggedUser == "DEVELOPER")
@@ -60,7 +59,7 @@ namespace COCASJOL.WEBSITE
                 List<privilegio> privs = usuariologic.GetPrivilegiosNoDeUsuario(loggedUser);
 
                 XmlDocument doc = new XmlDocument();
-                doc.Load(Server.MapPath("~/resources/xml/Privilegios.xml"));
+                doc.Load(Server.MapPath(System.Configuration.ConfigurationManager.AppSettings.Get("privilegesXML")));
 
                 XmlNodeList nodes = doc.SelectNodes("privilegios/privilege");
 

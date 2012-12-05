@@ -11,7 +11,7 @@ using Ext.Net;
 
 using COCASJOL.LOGIC.Productos;
 
-namespace COCASJOL.Website.Source.Inventario.Ingresos
+namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
 {
     public partial class NotasDePeso : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
@@ -23,7 +23,7 @@ namespace COCASJOL.Website.Source.Inventario.Ingresos
                 {
                     string loggedUsr = Session["username"] as string;
                     this.LoggedUserHdn.Text = loggedUsr;
-                    //this.ValidarCredenciales("MANT_TIPOPRODS");
+                    this.ValidarCredenciales(typeof(NotasDePeso).Name);
                 }
             }
             catch (Exception)
