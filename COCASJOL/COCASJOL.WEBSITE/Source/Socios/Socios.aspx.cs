@@ -17,7 +17,7 @@ namespace COCASJOL.WEBSITE.Socios
 {
     public partial class Socios : COCASJOLBASE
     {
-        public string id;
+        public string id; 
         public bool confirm;
 
         protected void Page_Load(object sender, EventArgs e)

@@ -15,7 +15,7 @@ using System.Data.Objects;
 namespace COCASJOL.WEBSITE.Source.Seguridad
 {
     public partial class UsuarioActual : System.Web.UI.UserControl
-    {
+    { 
         protected void Page_Load(object sender, EventArgs e)
         {
 

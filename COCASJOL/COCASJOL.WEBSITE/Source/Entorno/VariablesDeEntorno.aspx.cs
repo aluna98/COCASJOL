@@ -9,7 +9,7 @@ using Ext.Net;
 
 using COCASJOL.LOGIC.Entorno;
 using COCASJOL.LOGIC.Web;
-
+ 
 namespace COCASJOL.WEBSITE.Source.Entorno
 {
     public partial class VariablesDeEntorno : COCASJOL.LOGIC.Web.COCASJOLBASE

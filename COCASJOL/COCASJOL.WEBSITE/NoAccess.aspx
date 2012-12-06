@@ -7,7 +7,7 @@
 <script runat="server">
     protected void Page_Load(object sender, EventArgs e)
     {
-        ExtNet.Msg.Show(new MessageBoxConfig
+        ExtNet.Msg.Show(new MessageBoxConfig 
         {
             Title = "Sin Accesos",
             Message = "Usted no tiene los accesos necesarios para este recurso, para obtener acceso contactese con el administrador del sistema.",

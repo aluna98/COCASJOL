@@ -11,7 +11,7 @@ namespace COCASJOL.LOGIC.Inventario
     public class InventarioDeCafeLogic
     {
         public InventarioDeCafeLogic() { }
-
+         
         #region Select
 
         public List<inventario_cafe_de_socio> GetInventarioDeCafe()

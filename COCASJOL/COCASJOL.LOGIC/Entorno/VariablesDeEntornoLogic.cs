@@ -13,7 +13,7 @@ namespace COCASJOL.LOGIC.Entorno
     {
         public VariablesDeEntornoLogic() { }
 
-        #region Select
+        #region Select  
 
         public List<variable_de_entorno> GetVariablesDeEntorno()
         {

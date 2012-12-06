@@ -10,7 +10,7 @@
     saveChanges = function () {
         #{DirectMethods}.GuardarCambios({ eventMask: { showMask: true, target: 'customtarget', customTarget: #{EditarUsuarioFormP} } }, { success: function () { Ext.Msg.alert('Guardar', 'Cambios guardados exitosamente.'); } });
     }
-</script>
+</script> 
 </ext:XScript>
 
 <ext:DesktopWindow

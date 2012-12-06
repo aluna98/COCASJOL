@@ -10,7 +10,7 @@
     var updatePassword = function () {
         var encryptedChallenge = faultylabs.MD5(#{CambiarClaveActualConfirmarTxt}.getValue());
 
-        if (#{CambiarClaveActualTxt}.getValue() == encryptedChallenge) {
+        if (#{CambiarClaveActualTxt}.getValue() == encryptedChallenge) { 
             Ext.Msg.confirm('Cambiar Contraseña', 'Seguro desea cambiar su contraseña?', function (btn, text) {
                 if (btn == 'yes') {
                     #{CambiarClaveActualConfirmarTxt}.setValue(encryptedChallenge);

@@ -11,7 +11,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Colinas Login</title>
-    <style type="text/css">
+    <style type="text/css"> 
         /*body
           {
               background-image: url('resources/images/login.jpg') !important;

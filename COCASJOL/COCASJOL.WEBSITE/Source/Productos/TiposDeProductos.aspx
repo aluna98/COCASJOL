@@ -11,7 +11,7 @@
         var Grid = null;
         var GridStore = null;
         var AddWindow = null;
-        var AddForm = null;
+        var AddForm = null; 
         var EditWindow = null;
         var EditForm = null;
 

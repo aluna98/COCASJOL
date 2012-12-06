@@ -9,7 +9,7 @@
     {
         ExtNet.Msg.Show(new MessageBoxConfig
         {
-            Title = "Error 404",
+            Title = "Error 404", 
             Message = "La pagina a la que usted quiere acceder no existe.",
             Closable = false,
             Buttons = MessageBox.Button.OK,

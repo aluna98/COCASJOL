@@ -11,7 +11,7 @@ using Ext.Net;
 
 using COCASJOL.LOGIC.Web;
 using COCASJOL.LOGIC.Seguridad;
-using COCASJOL.LOGIC.Prestamos;
+using COCASJOL.LOGIC.Prestamos; 
 
 namespace COCASJOL.WEBSITE.Source.Prestamos
 {

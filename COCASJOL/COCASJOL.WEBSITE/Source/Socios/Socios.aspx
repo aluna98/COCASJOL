@@ -16,7 +16,7 @@
          var EditFormBen = null;
          var AddWindow = null;
          var AddForm = null;
-         var panelper = null;
+         var panelper = null; 
          var AddBenWindow = null;
          var addBenForm = null;
          var ConfirmMsgTitle = "Socio";

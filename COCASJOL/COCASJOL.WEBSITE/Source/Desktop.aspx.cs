@@ -12,7 +12,7 @@ using COCASJOL.LOGIC.Web;
 using COCASJOL.LOGIC.Seguridad;
 using System.Xml;
 using System.Data;
-using System.Data.Objects;
+using System.Data.Objects; 
 
 namespace COCASJOL.WEBSITE
 {

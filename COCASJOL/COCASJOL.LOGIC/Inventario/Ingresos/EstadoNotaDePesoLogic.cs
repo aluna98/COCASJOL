@@ -9,7 +9,7 @@ using System.Data.Objects;
 namespace COCASJOL.LOGIC.Inventario.Ingresos
 {
     public class EstadoNotaDePesoLogic
-    {
+    { 
         public EstadoNotaDePesoLogic() { }
 
         #region Select

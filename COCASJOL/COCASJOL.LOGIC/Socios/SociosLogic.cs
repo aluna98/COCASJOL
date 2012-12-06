@@ -10,7 +10,7 @@ namespace COCASJOL.LOGIC.Socios
 {
     public class SociosLogic
     {
-        public SociosLogic() { }
+        public SociosLogic() { } 
 
         #region Select
         public List<socio> getData()

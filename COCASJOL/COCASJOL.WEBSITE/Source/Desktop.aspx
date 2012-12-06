@@ -9,7 +9,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Colinas</title>
-    <style type="text/css" >
+    <style type="text/css" > 
         .start-button
         {
             background-image: url(../resources/images/cocasjol_start_button.gif) !important;

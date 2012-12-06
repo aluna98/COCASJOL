@@ -12,7 +12,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario
     public partial class InventarioDeCafePorSocio : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
+        { 
             if (!X.IsAjaxRequest)
             {
                 this.ValidarCredenciales(typeof(InventarioDeCafePorSocio).Name);

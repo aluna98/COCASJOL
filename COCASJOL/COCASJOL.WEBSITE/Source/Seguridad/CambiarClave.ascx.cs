@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 using Ext.Net;
-using COCASJOL.LOGIC.Seguridad;
+using COCASJOL.LOGIC.Seguridad; 
 using COCASJOL.LOGIC.Web;
 
 using System.Data;

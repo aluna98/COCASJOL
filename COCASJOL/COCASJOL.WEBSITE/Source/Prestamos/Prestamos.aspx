@@ -12,7 +12,7 @@
         var EditForm = null;
         var AddWindow = null;
         var AddForm = null;
-        var ConfirmMsgTitle = "Prestamos";
+        var ConfirmMsgTitle = "Prestamos"; 
         var ConfirmEdit = "Seguro desea modificar la informacion  del prestamo?";
         var Confirmacion = "Se ha finalizado correctamente";
         var ConfirmDelete = "Esta seguro que desea eliminar el prestamo?";

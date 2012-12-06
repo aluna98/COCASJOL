@@ -12,7 +12,7 @@ namespace COCASJOL.LOGIC.Inventario
     {
         public ClasificacionDeCafeLogic() { }
 
-        #region Select
+        #region Select 
 
         public List<clasificacion_cafe> GetClasificacionesDeCafe()
         {

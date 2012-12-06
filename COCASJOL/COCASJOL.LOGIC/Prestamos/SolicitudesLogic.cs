@@ -10,7 +10,7 @@ namespace COCASJOL.LOGIC.Prestamos
 {
     public class SolicitudesLogic
     {
-        public SolicitudesLogic() { }
+        public SolicitudesLogic() { } 
 
     #region Select
         public List<solicitud_prestamo> getData()

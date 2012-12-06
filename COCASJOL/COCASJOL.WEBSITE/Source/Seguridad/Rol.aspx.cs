@@ -13,7 +13,7 @@ using COCASJOL.LOGIC.Seguridad;
 using COCASJOL.LOGIC.Web;
 
 namespace COCASJOL.WEBSITE.Source.Seguridad
-{
+{ 
     public partial class Rol : COCASJOLBASE //System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)

@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 using Ext.Net;
 
 using COCASJOL.LOGIC.Inventario;
-using COCASJOL.LOGIC.Web;
+using COCASJOL.LOGIC.Web; 
 
 namespace COCASJOL.WEBSITE.Source.Inventario
 {

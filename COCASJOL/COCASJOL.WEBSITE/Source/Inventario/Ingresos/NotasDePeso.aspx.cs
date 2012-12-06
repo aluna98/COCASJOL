@@ -9,7 +9,7 @@ using System.Data;
 using System.Data.Objects;
 using Ext.Net;
 
-using COCASJOL.LOGIC.Productos;
+using COCASJOL.LOGIC.Productos; 
 
 namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
 {

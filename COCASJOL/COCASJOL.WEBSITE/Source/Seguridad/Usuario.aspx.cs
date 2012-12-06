@@ -10,7 +10,7 @@ using System.Data.Objects;
 using Ext.Net;
 
 using COCASJOL.LOGIC.Seguridad;
-using COCASJOL.LOGIC.Web;
+using COCASJOL.LOGIC.Web; 
 
 namespace COCASJOL.WEBSITE.Source.Seguridad
 {

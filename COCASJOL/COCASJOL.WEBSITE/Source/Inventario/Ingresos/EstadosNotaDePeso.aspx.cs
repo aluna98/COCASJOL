@@ -15,7 +15,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
     public partial class EstadosNotaDePeso : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
+        { 
             try
             {
                 if (!X.IsAjaxRequest)

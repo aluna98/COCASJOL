@@ -14,7 +14,7 @@
             {
                 Title = "Error",
                 Message = "Ocurrio un error inesperado.",
-                Buttons = MessageBox.Button.OK,
+                Buttons = MessageBox.Button.OK, 
                 Handler = "window.location = '" + currentPage + "'"
             });
         }

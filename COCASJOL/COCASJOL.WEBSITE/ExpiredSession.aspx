@@ -15,7 +15,7 @@
                 Title = "Error",
                 Message = "Su sesión ha expirado.",
                 Buttons = MessageBox.Button.OK,
-                Handler = "window.parent.location = 'Default.aspx'"
+                Handler = "window.parent.location = 'Default.aspx'" 
             });
         }
         catch (Exception ex)

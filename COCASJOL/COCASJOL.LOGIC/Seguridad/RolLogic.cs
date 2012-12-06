@@ -11,7 +11,7 @@ namespace COCASJOL.LOGIC.Seguridad
     public class RolLogic
     {
         public RolLogic() { }
-
+         
         #region Select
 
         public IQueryable GetRoles()

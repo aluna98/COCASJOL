@@ -14,7 +14,7 @@
         
         .cbStates-list th {
             font-weight: bold;
-        }
+        } 
         
         .cbStates-list td, .cbStates-list th {
             padding: 3px;

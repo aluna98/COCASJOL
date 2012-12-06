@@ -9,7 +9,7 @@ using System.Data.Objects;
 namespace COCASJOL.LOGIC.Seguridad
 {
     public class PrivilegioLogic
-    {
+    { 
         public PrivilegioLogic() { }
 
         #region Select

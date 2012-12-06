@@ -6,7 +6,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title></title>
+    <title></title> 
     <script type="text/javascript">
         var Grid = null;
         var GridStore = null;

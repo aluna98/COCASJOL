@@ -10,7 +10,7 @@ namespace COCASJOL.LOGIC.Productos
 {
     public class TipoDeProductoLogic
     {
-        public TipoDeProductoLogic() { }
+        public TipoDeProductoLogic() { } 
 
         #region Select
 

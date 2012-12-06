@@ -12,7 +12,7 @@
         var GridStore = null;
         var AddWindow = null;
         var AddForm = null;
-        var EditWindow = null;
+        var EditWindow = null; 
         var EditForm = null;
 
         var AlertSelMsgTitle = "Atención";

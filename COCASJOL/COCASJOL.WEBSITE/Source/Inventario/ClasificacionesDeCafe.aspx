@@ -13,7 +13,7 @@
         var AddWindow = null;
         var AddForm = null;
         var EditWindow = null;
-        var EditForm = null;
+        var EditForm = null; 
 
         var AlertSelMsgTitle = "Atención";
         var AlertSelMsg = "Debe seleccionar 1 elemento";

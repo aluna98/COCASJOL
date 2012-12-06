@@ -9,7 +9,7 @@ namespace COCASJOL.LOGIC.Utiles
     {
         private static string[] _ones =
         {
-            "cero",
+            "cero", 
             "un",
             "dos",
             "tres",

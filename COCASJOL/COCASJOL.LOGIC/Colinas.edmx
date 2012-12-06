@@ -1785,7 +1785,7 @@
           <ConnectorPoint PointX="5.125" PointY="8.5670475260416659" />
           <ConnectorPoint PointX="11.875" PointY="8.5670475260416659" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="COLINASMODEL.variable_de_entorno" Width="1.5" PointX="10" PointY="0.5" Height="2.5571907552083246" />
+        <EntityTypeShape EntityType="COLINASMODEL.variable_de_entorno" Width="1.5" PointX="10.125" PointY="0.5" Height="2.5571907552083246" />
         </Diagram>
     </Diagrams>
   </Designer>

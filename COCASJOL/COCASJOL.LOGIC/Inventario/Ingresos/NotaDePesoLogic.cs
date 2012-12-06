@@ -10,7 +10,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 {
     public class NotaDePesoLogic
     {
-        public NotaDePesoLogic() { }
+        public NotaDePesoLogic() { } 
 
         #region Select
 
