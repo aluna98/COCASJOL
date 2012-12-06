@@ -9,7 +9,7 @@ using System.Data;
 using System.Data.Objects;
 using Ext.Net;
 
-using COCASJOL.LOGIC.Productos; 
+using COCASJOL.LOGIC.Inventario.Ingresos; 
 
 namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
 {
@@ -23,7 +23,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 {
                     string loggedUsr = Session["username"] as string;
                     this.LoggedUserHdn.Text = loggedUsr;
-                    this.ValidarCredenciales(typeof(NotasDePeso).Name);
+                    this.ValidarCredenciales(typeof(EstadosNotaDePeso).Name);
                 }
             }
             catch (Exception)
@@ -33,7 +33,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
             }
         }
 
-        protected void NotasDePesoDS_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        protected void NotasDS_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
         {
             if (!this.IsPostBack)
                 e.Cancel = true;
@@ -43,14 +43,14 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
         {
             try
             {
-                string nombreDeTipoDeProducto = this.AddNombreTxt.Text;
+                string nombreDeEstadoNotaDePeso = this.AddNombreTxt.Text;
 
-                TipoDeProductoLogic tipoDeProductologic = new TipoDeProductoLogic();
+                EstadoNotaDePesoLogic estadoNotaDePesologic = new EstadoNotaDePesoLogic();
 
-                if (tipoDeProductologic.NombreDeTipoDeProductoExiste(nombreDeTipoDeProducto))
+                if (estadoNotaDePesologic.NombreDeEstadoNotaDePesoExiste(nombreDeEstadoNotaDePeso))
                 {
                     e.Success = false;
-                    e.ErrorMessage = "El nombre de tipo de producto ingresado ya existe.";
+                    e.ErrorMessage = "El nombre de estado de nota de peso ingresado ya existe.";
                 }
                 else
                     e.Success = true;
@@ -65,14 +65,14 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
         {
             try
             {
-                string nombreDeTipoDeProducto = this.EditNombreTxt.Text;
+                string nombreDeEstadoNotaDePeso = this.EditNombreTxt.Text;
 
-                TipoDeProductoLogic tipoDeProductologic = new TipoDeProductoLogic();
+                EstadoNotaDePesoLogic estadoNotaDePesologic = new EstadoNotaDePesoLogic();
 
-                if (tipoDeProductologic.NombreDeTipoDeProductoExiste(nombreDeTipoDeProducto))
+                if (estadoNotaDePesologic.NombreDeEstadoNotaDePesoExiste(nombreDeEstadoNotaDePeso))
                 {
                     e.Success = false;
-                    e.ErrorMessage = "El nombre de tipo de producto ingresado ya existe.";
+                    e.ErrorMessage = "El nombre de estado de nota de peso ingresado ya existe.";
                 }
                 else
                     e.Success = true;

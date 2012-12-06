@@ -40,13 +40,13 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.ResourceManager ResourceManager1;
         
         /// <summary>
-        /// NotasDePesoDS control.
+        /// NotasDS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource NotasDePesoDS;
+        protected global::System.Web.UI.WebControls.ObjectDataSource NotasDS;
         
         /// <summary>
         /// nullHdn control.
@@ -85,22 +85,22 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.Panel Panel1;
         
         /// <summary>
-        /// TiposProductoGridP control.
+        /// NotasGridP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.GridPanel TiposProductoGridP;
+        protected global::Ext.Net.GridPanel NotasGridP;
         
         /// <summary>
-        /// TiposDeProductoSt control.
+        /// NotasSt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store TiposDeProductoSt;
+        protected global::Ext.Net.Store NotasSt;
         
         /// <summary>
         /// RowSelectionModel1 control.
@@ -157,31 +157,31 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.GridView GridView1;
         
         /// <summary>
-        /// f_TIPOS_PROD_ID control.
+        /// f_ESTADOS_NOTA_ID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField f_TIPOS_PROD_ID;
+        protected global::Ext.Net.NumberField f_ESTADOS_NOTA_ID;
         
         /// <summary>
-        /// f_TIPOS_PROD_NOMBRE control.
+        /// f_ESTADOS_NOTA_NOMBRE control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField f_TIPOS_PROD_NOMBRE;
+        protected global::Ext.Net.TextField f_ESTADOS_NOTA_NOMBRE;
         
         /// <summary>
-        /// f_TIPOS_PROD_DESCRIPCION control.
+        /// f_ESTADOS_NOTA_DESCRIPCION control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField f_TIPOS_PROD_DESCRIPCION;
+        protected global::Ext.Net.TextField f_ESTADOS_NOTA_DESCRIPCION;
         
         /// <summary>
         /// PagingToolbar1 control.
@@ -193,22 +193,22 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.PagingToolbar PagingToolbar1;
         
         /// <summary>
-        /// AgregarTiposProductoWin control.
+        /// AgregarNotasWin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Window AgregarTiposProductoWin;
+        protected global::Ext.Net.Window AgregarNotasWin;
         
         /// <summary>
-        /// AddTipoFormP control.
+        /// AgregarNotasFormP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.FormPanel AddTipoFormP;
+        protected global::Ext.Net.FormPanel AgregarNotasFormP;
         
         /// <summary>
         /// Panel2 control.
@@ -301,22 +301,22 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.Button AddGuardarBtn;
         
         /// <summary>
-        /// EditarTiposProductoWin control.
+        /// EditarNotasWin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Window EditarTiposProductoWin;
+        protected global::Ext.Net.Window EditarNotasWin;
         
         /// <summary>
-        /// EditarTipoFormP control.
+        /// EditarNotasFormP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.FormPanel EditarTipoFormP;
+        protected global::Ext.Net.FormPanel EditarNotasFormP;
         
         /// <summary>
         /// Panel12 control.
