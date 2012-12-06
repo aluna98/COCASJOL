@@ -14,7 +14,7 @@
         
         .cbStates-list th {
             font-weight: bold;
-        } 
+        }
         
         .cbStates-list td, .cbStates-list th {
             padding: 3px;
@@ -158,6 +158,29 @@
                 <DocumentReady Handler="SolicitudX.setReferences()" />
             </Listeners>
         </ext:ResourceManager>
+        <ext:Store ID="SocioSt" runat="server">
+            <Reader>
+                <ext:JsonReader>
+                    <Fields>
+                        <ext:RecordField Name="SOCIOS_ID" />
+                        <ext:RecordField Name="SOCIOS_PRIMER_NOMBRE" />
+                        <ext:RecordField Name="SOCIOS_SEGUNDO_NOMBRE" />
+                        <ext:RecordField Name="SOCIOS_PRIMER_APELLIDO" />
+                        <ext:RecordField Name="SOCIOS_SEGUNDO_APELLIDO" />
+                        <ext:RecordField Name="SOCIOS_IDENTIDAD" />
+                        <ext:RecordField Name="SOCIOS_LUGAR_DE_NACIMIENTO" />
+                        <ext:RecordField Name="GENERAL_CARNET_IHCAFE" ServerMapping="socios_generales.GENERAL_CARNET_IHCAFE"/>
+                        <ext:RecordField Name="SOCIOS_RTN" />
+                        <ext:RecordField Name="SOCIOS_ESTADO_CIVIL" />
+                        <ext:RecordField Name="SOCIOS_PROFESION" />
+                        <ext:RecordField Name="SOCIOS_TELEFONO" />
+                        <ext:RecordField Name="SOCIOS_RESIDENCIA" />
+                        <ext:RecordField Name="PRODUCCION_MANZANAS_CULTIVADAS" ServerMapping="socios_produccion.PRODUCCION_MANZANAS_CULTIVADAS" />
+                        <ext:RecordField Name="PRODUCCION_UBICACION_FINCA" ServerMapping="socios_produccion.PRODUCCION_UBICACION_FINCA" />
+                    </Fields>
+                </ext:JsonReader>
+            </Reader>
+        </ext:Store>
         <ext:Store ID="ComboBoxSt" runat="server" OnRefreshData="SociosSt_Reload">
             <Reader>
                 <ext:JsonReader>
@@ -173,12 +196,10 @@
                 <ext:Parameter Name="limit" Value="10" Mode="Raw" />
             </AutoLoadParams>
         </ext:Store>
-
         <asp:ObjectDataSource ID="TiposPrestamoDS" runat="server"
                 TypeName="COCASJOL.LOGIC.Prestamos.PrestamosLogic"
                 SelectMethod="getData">
         </asp:ObjectDataSource>
-
         <ext:Store ID="TiposDePrestamoSt" runat="server" DataSourceID="TiposPrestamoDS" SkipIdForNewRecords="false">
             <Reader>
                 <ext:JsonReader IDProperty="PRESTAMOS_ID">
@@ -189,7 +210,6 @@
                 </ext:JsonReader>
             </Reader>
         </ext:Store>
-
         <ext:Hidden ID="LoggedUserHdn" runat="server"/>
         <ext:Viewport ID="view1" runat="server" Layout="FitLayout">
             <Items>
@@ -377,7 +397,7 @@
                                     <ext:Panel ID="PanelPer" runat="server" Title="Datos Personales" Layout="AnchorLayout" AutoHeight="true" Icon="User" LabelWidth="150" >
                                         <Items>
                                             <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
-                                        
+                                                    
                                             </ext:Panel>
                                         </Items>
                                     </ext:Panel>
