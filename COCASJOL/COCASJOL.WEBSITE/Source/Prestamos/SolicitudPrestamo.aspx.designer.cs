@@ -40,6 +40,15 @@ namespace COCASJOL.WEBSITE.Source.Prestamos {
         protected global::Ext.Net.ResourceManager RM1;
         
         /// <summary>
+        /// SocioSt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store SocioSt;
+        
+        /// <summary>
         /// ComboBoxSt control.
         /// </summary>
         /// <remarks>
