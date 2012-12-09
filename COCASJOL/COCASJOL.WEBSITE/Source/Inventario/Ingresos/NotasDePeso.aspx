@@ -7,7 +7,75 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title></title>
+    <style type="text/css">
+        .cbStates-list 
+        {
+            width: 298px;
+            font: 11px tahoma,arial,helvetica,sans-serif;
+        }
+        
+        .cbStates-list th {
+            font-weight: bold;
+        }
+        
+        .cbStates-list td, .cbStates-list th {
+            padding: 3px;
+        }
+        
+        .total-field {
+            background-color : #fff;
+            font-weight      : bold !important;
+            color            : #000;
+            border           : solid 1px silver;
+            padding          : 2px;
+            margin-right     : 5px;
+        }
+    </style>
     <script type="text/javascript">
+        var calendar = {
+            setFecha: function () {
+                var dateFrom = Ext.getCmp('f_DATE_FROM').getValue();
+                if (dateFrom != "")
+                    dateFrom = dateFrom.dateFormat('d/M/y');
+                else
+                    dateFrom = "";
+
+                var dateTo = Ext.getCmp('f_DATE_TO').getValue();
+                if (dateTo != "")
+                    dateTo = dateTo.dateFormat('d/M/y');
+                else
+                    dateTo = "";
+
+
+                var strDate = dateFrom + (dateFrom == "" || dateTo == "" ? "" : " - ") + dateTo;
+
+                Ext.getCmp('f_NOTAS_FECHA').setValue("", strDate);
+                GridStore.reload();
+            },
+
+            clearFecha: function () {
+                Ext.getCmp('f_DATE_FROM').setValue(null);
+                Ext.getCmp('f_DATE_TO').setValue(null);
+                this.setFecha();
+            },
+
+            validateDateRange: function (field) {
+                var v = this.processValue(this.getRawValue()), field;
+
+                if (this.startDateField) {
+                    field = Ext.getCmp(this.startDateField);
+                    field.setMaxValue();
+                    this.dateRabgeMax = null;
+                } else if (this.endDateField) {
+                    field = Ext.getCmp(this.endDateField);
+                    field.setMinValue();
+                    this.dateRangeMin = null;
+                }
+
+                field.validate();
+            }
+        };
+
         var Grid = null;
         var GridStore = null;
         var AddWindow = null;
@@ -18,7 +86,7 @@
         var AlertSelMsgTitle = "Atención";
         var AlertSelMsg = "Debe seleccionar 1 elemento";
 
-        var ConfirmMsgTitle = "Estado de Nota de Peso";
+        var ConfirmMsgTitle = "Nota de Peso";
         var ConfirmUpdate = "Seguro desea modificar la notas de peso?";
         var ConfirmDelete = "Seguro desea eliminar la notas de peso?";
 
@@ -41,8 +109,8 @@
             insert: function () {
                 var fields = AddForm.getForm().getFieldValues(false, "dataIndex");
 
-                Grid.insertRecord(0, fields, false);
-                AddForm.getForm().reset();
+                //                Grid.insertRecord(0, fields, false);
+                //                AddForm.getForm().reset();
             },
 
             getIndex: function () {
@@ -105,7 +173,7 @@
 
                 Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
                     if (btn == 'yes') {
-                        EditForm.getForm().updateRecord(EditForm.record);
+                        //                        EditForm.getForm().updateRecord(EditForm.record);
                     }
                 });
             },
@@ -127,20 +195,179 @@
             keyUpEvent: function (sender, e) {
                 if (e.getKey() == 13)
                     GridStore.reload();
+            },
+
+            getNombreDeSocio: function (nombreTxt) {
+                var comboBox = AddSociosIdTxt, value = comboBox.getValue();
+                record = comboBox.findRecord(value), index = comboBox.getStore().indexOf(record);
+
+                var nombreCompleto = record.data.SOCIOS_PRIMER_NOMBRE +
+                                     (record.data.SOCIOS_SEGUNDO_NOMBRE != '' ? (' ' + record.data.SOCIOS_SEGUNDO_NOMBRE) : '') +
+                                     (record.data.SOCIOS_PRIMER_APELLIDO !== '' ? (' ' + record.data.SOCIOS_PRIMER_APELLIDO) : '') +
+                                     (record.data.SOCIOS_SEGUNDO_APELLIDO != '' ? (' ' + record.data.SOCIOS_SEGUNDO_APELLIDO) : '');
+
+                nombreTxt.setValue(nombreCompleto);
+            },
+
+            getDireccionDeFinca: function (direccionFincaTxt) {
+                var comboBox = AddSociosIdTxt, value = comboBox.getValue();
+                record = comboBox.findRecord(value), index = comboBox.getStore().indexOf(record);
+
+                AddDireccionFincaTxt.setValue(record.data.PRODUCCION_UBICACION_FINCA);
             }
         };
 
-        var HideButtons = function () {
-            EditPreviousBtn.hide();
-            EditNextBtn.hide();
-            EditGuardarBtn.hide();
-        }
 
-        var ShowButtons = function () {
-            EditPreviousBtn.show();
-            EditNextBtn.show();
-            EditGuardarBtn.show();
-        }
+        var AddDetailGrid = null;
+        var AddDetailGridStore = null;
+        var AddDetailAddWindow = null;
+        var AddDetailAddForm = null;
+        var AddDetailEditWindow = null;
+        var AddDetailEditForm = null;
+
+        var AlertSelMsgTitle = "Atención";
+        var AlertSelMsg = "Debe seleccionar 1 elemento";
+
+        var ConfirmMsgTitle = "Datos de Peso";
+        var ConfirmUpdate = "Seguro desea modificar los datos de peos?";
+        var ConfirmDelete = "Seguro desea eliminar los datos de peso?";
+
+        var AddDetailX = {
+            _index: 0,
+
+            setReferences: function () {
+                AddDetailGrid = AddNotaDetalleGridP;
+                AddDetailGridStore = NotaDetalleSt;
+                AddDetailAddWindow = AddDetallesWin;
+                AddDetailAddForm = AddDetallesFormPnl;
+                AddDetailEditWindow = EditDetallesWin;
+                AddDetailEditForm = EditDetallesFormPnl;
+            },
+
+            add: function () {
+                AddDetailAddWindow.show();
+            },
+
+            insert: function () {
+                var fields = AddDetailAddForm.getForm().getFieldValues(false, "dataIndex");
+                AddDetailGrid.insertRecord(0, fields, true);
+                AddDetailAddForm.getForm().reset();
+                Ext.getCmp('AddDetailBagTxt').focus(false, 200);
+            },
+
+            getIndex: function () {
+                return this._index;
+            },
+
+            setIndex: function (index) {
+                if (index > -1 && index < AddDetailGrid.getStore().getCount()) {
+                    this._index = index;
+                }
+            },
+
+            getRecord: function () {
+                var rec = AddDetailGrid.getStore().getAt(this.getIndex());  // Get the Record
+
+                if (rec != null) {
+                    return rec;
+                }
+            },
+
+            edit: function () {
+                if (AddDetailGrid.getSelectionModel().hasSelection()) {
+                    var record = AddDetailGrid.getSelectionModel().getSelected();
+                    var index = AddDetailGrid.store.indexOf(record);
+                    this.setIndex(index);
+                    this.open();
+                } else {
+                    var msg = Ext.Msg;
+                    Ext.Msg.alert(AlertSelMsgTitle, AlertSelMsg);
+                }
+            },
+
+            edit2: function (index) {
+                this.setIndex(index);
+                this.open();
+            },
+
+            next: function () {
+                this.edit2(this.getIndex() + 1);
+            },
+
+            previous: function () {
+                this.edit2(this.getIndex() - 1);
+            },
+
+            open: function () {
+                rec = this.getRecord();
+
+                if (rec != null) {
+                    AddDetailEditWindow.show();
+                    AddDetailEditForm.getForm().loadRecord(rec);
+                    AddDetailEditForm.record = rec;
+                }
+            },
+
+            update: function () {
+                if (AddDetailEditForm.record == null) {
+                    return;
+                }
+
+                Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
+                    if (btn == 'yes') {
+                        AddDetailEditForm.getForm().updateRecord(AddDetailEditForm.record);
+                        Ext.getCmp('EditDetailBagTxt').focus(false, 200);
+                    }
+                });
+            },
+
+            remove: function () {
+                if (AddDetailGrid.getSelectionModel().hasSelection()) {
+                    Ext.Msg.confirm(ConfirmMsgTitle, ConfirmDelete, function (btn, text) {
+                        if (btn == 'yes') {
+                            var record = AddDetailGrid.getSelectionModel().getSelected();
+                            AddDetailGrid.deleteRecord(record);
+                        }
+                    });
+                } else {
+                    var msg = Ext.Msg;
+                    Ext.Msg.alert(AlertSelMsgTitle, AlertSelMsg);
+                }
+            },
+
+            keyUpEventAddDetail: function (sender, e) {
+                if (e.getKey() == 13) {
+                    if (AddDetailAddForm.getForm().isValid())
+                        this.insert();
+                }
+            },
+
+            keyUpEventEditDetail: function (sender, e) {
+                if (e.getKey() == 13) {
+                    if (AddDetailEditForm.getForm().isValid())
+                        this.update();
+                }
+            },
+
+            updateSumTotals: function () {
+                var bagSum = this.getSum(AddNotaDetalleGridP, 0);
+                var weigthSum = this.getSum(AddNotaDetalleGridP, 1);
+
+                AddSumaSacosTxt.setValue(bagSum);
+                AddSumaPesoBrutoTxt.setValue(weigthSum);
+            },
+
+            getSum: function (grid, index) {
+                var dataIndex = grid.getColumnModel().getDataIndex(index),
+                    sum = 0;
+
+                grid.getStore().each(function (record) {
+                    sum += record.get(dataIndex);
+                });
+
+                return sum;
+            }
+        };
     </script>
 </head>
 <body>
@@ -148,23 +375,75 @@
     <div>
         <ext:ResourceManager ID="ResourceManager1" runat="server">
             <Listeners>
-                <DocumentReady Handler="PageX.setReferences();" />
+                <DocumentReady Handler="PageX.setReferences(); AddDetailX.setReferences();" />
             </Listeners>
         </ext:ResourceManager>
 
         <asp:ObjectDataSource ID="NotasDS" runat="server"
-                TypeName="COCASJOL.LOGIC.Inventario.Ingresos.EstadoNotaDePesoLogic"
+                TypeName="COCASJOL.LOGIC.Inventario.Ingresos.NotaDePesoLogic"
                 SelectMethod="GetNotasDePeso" onselecting="NotasDS_Selecting" >
                 <SelectParameters>
-                    <asp:ControlParameter Name="ESTADOS_NOTA_ID"          Type="Int32"    ControlID="f_ESTADOS_NOTA_ID"          PropertyName="Text" />
-                    <asp:ControlParameter Name="ESTADOS_NOTA_NOMBRE"      Type="String"   ControlID="f_ESTADOS_NOTA_NOMBRE"      PropertyName="Text" />
-                    <asp:ControlParameter Name="ESTADOS_NOTA_DESCRIPCION" Type="String"   ControlID="f_ESTADOS_NOTA_DESCRIPCION" PropertyName="Text" />
-                    <asp:ControlParameter Name="CREADO_POR"               Type="String"   ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_CREACION"           Type="DateTime" ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="MODIFICADO_POR"           Type="String"   ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_MODIFICACION"       Type="DateTime" ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="NOTAS_ID"                        Type="Int32"    ControlID="f_NOTAS_ID"                PropertyName="Text" />
+                    <asp:ControlParameter Name="ESTADOS_NOTA_ID"                 Type="Int32"    ControlID="f_ESTADOS_NOTA_ID"         PropertyName="Text" />
+                    <asp:ControlParameter Name="SOCIOS_ID"                       Type="String"   ControlID="f_SOCIOS_ID"               PropertyName="Text" />
+                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_ID"         Type="Int32"    ControlID="f_CLASIFICACIONES_CAFE_ID" PropertyName="Text" />
+                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_NOMBRE"     Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="NOTAS_FECHA"                     Type="DateTime" ControlID="f_NOTAS_FECHA"             PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_DESDE"                     Type="DateTime" ControlID="f_DATE_FROM"               PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_HASTA"                     Type="DateTime" ControlID="f_DATE_TO"                 PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="NOTAS_TRANSPORTE_COOPERATIVA"    Type="Boolean"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="NOTAS_PORCENTAJE_DEFECTO"        Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PORCENTAJE_HUMEDAD"        Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PESO_DEFECTO"              Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PESO_HUMEDAD"              Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PESO_DESCUENTO"            Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PESO_SUMA"                 Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PESO_TARA"                 Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PESO_TOTAL_RECIBIDO"       Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO" Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="NOTAS_SACOS_RETENIDOS"           Type="Int32"    ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="CREADO_POR"                      Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_CREACION"                  Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="MODIFICADO_POR"                  Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_MODIFICACION"              Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
                 </SelectParameters>
         </asp:ObjectDataSource>
+
+        <asp:ObjectDataSource ID="SociosDS" runat="server"
+                TypeName="COCASJOL.LOGIC.Socios.SociosLogic"
+                SelectMethod="getData" >
+        </asp:ObjectDataSource>
+
+        <asp:ObjectDataSource ID="ClasificacionesCafeDS" runat="server"
+                TypeName="COCASJOL.LOGIC.Inventario.ClasificacionDeCafeLogic"
+                SelectMethod="GetClasificacionesDeCafe" >
+        </asp:ObjectDataSource>
+
+        <ext:Store ID="SocioSt" runat="server" DataSourceID="SociosDS">
+            <Reader>
+                <ext:JsonReader>
+                    <Fields>
+                        <ext:RecordField Name="SOCIOS_ID" />
+                        <ext:RecordField Name="SOCIOS_PRIMER_NOMBRE" />
+                        <ext:RecordField Name="SOCIOS_SEGUNDO_NOMBRE" />
+                        <ext:RecordField Name="SOCIOS_PRIMER_APELLIDO" />
+                        <ext:RecordField Name="SOCIOS_SEGUNDO_APELLIDO" />
+                        <ext:RecordField Name="PRODUCCION_UBICACION_FINCA" ServerMapping="socios_produccion.PRODUCCION_UBICACION_FINCA" />
+                    </Fields>
+                </ext:JsonReader>
+            </Reader>
+        </ext:Store>
+
+        <ext:Store ID="ClasificacionesCafeSt" runat="server" DataSourceID="ClasificacionesCafeDS">
+            <Reader>
+                <ext:JsonReader>
+                    <Fields>
+                        <ext:RecordField Name="CLASIFICACIONES_CAFE_ID" />
+                        <ext:RecordField Name="CLASIFICACIONES_CAFE_NOMBRE" />
+                    </Fields>
+                </ext:JsonReader>
+            </Reader>
+        </ext:Store>
         
         <ext:Hidden ID="nullHdn" runat="server" >
         </ext:Hidden>
@@ -176,20 +455,36 @@
             <Items>
                 <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Notas de Peso" Icon="PageWhiteCup" Layout="Fit">
                     <Items>
-                        <ext:GridPanel ID="NotasGridP" runat="server" AutoExpandColumn="ESTADOS_NOTA_DESCRIPCION" Height="300"
+                        <ext:GridPanel ID="NotasGridP" runat="server" AutoExpandColumn="CLASIFICACIONES_CAFE_NOMBRE" Height="300"
                             Title="Usuarios" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
                             <Store>
                                 <ext:Store ID="NotasSt" runat="server" DataSourceID="NotasDS" AutoSave="true" SkipIdForNewRecords="false" >
                                     <Reader>
-                                        <ext:JsonReader IDProperty="ESTADOS_NOTA_ID">
+                                        <ext:JsonReader IDProperty="NOTAS_ID">
                                             <Fields>
-                                                <ext:RecordField Name="ESTADOS_NOTA_ID"          />
-                                                <ext:RecordField Name="ESTADOS_NOTA_NOMBRE"      />
-                                                <ext:RecordField Name="ESTADOS_NOTA_DESCRIPCION" />
-                                                <ext:RecordField Name="CREADO_POR"               />
-                                                <ext:RecordField Name="FECHA_CREACION"           Type="Date" />
-                                                <ext:RecordField Name="MODIFICADO_POR"           />
-                                                <ext:RecordField Name="FECHA_MODIFICACION"       Type="Date" />
+                                                <ext:RecordField Name="NOTAS_ID"                        />
+                                                <ext:RecordField Name="ESTADOS_NOTA_ID"                 />
+                                                <ext:RecordField Name="SOCIOS_ID"                       />
+                                                <ext:RecordField Name="CLASIFICACIONES_CAFE_ID"         />
+                                                <ext:RecordField Name="CLASIFICACIONES_CAFE_NOMBRE"     ServerMapping="clasificaciones_cafe.CLASIFICACIONES_CAFE_NOMBRE"/>
+                                                <ext:RecordField Name="NOTAS_FECHA"                     Type="Date" />
+                                                <ext:RecordField Name="FECHA_DESDE"                     Type="Date" DefaultValue="" />
+                                                <ext:RecordField Name="FECHA_HASTA"                     Type="Date" DefaultValue="" />
+                                                <ext:RecordField Name="NOTAS_TRANSPORTE_COOPERATIVA"    />
+                                                <ext:RecordField Name="NOTAS_PORCENTAJE_DEFECTO"        />
+                                                <ext:RecordField Name="NOTAS_PORCENTAJE_HUMEDAD"        />
+                                                <ext:RecordField Name="NOTAS_PESO_DEFECTO"              />
+                                                <ext:RecordField Name="NOTAS_PESO_HUMEDAD"              />
+                                                <ext:RecordField Name="NOTAS_PESO_DESCUENTO"            />
+                                                <ext:RecordField Name="NOTAS_PESO_SUMA"                 />
+                                                <ext:RecordField Name="NOTAS_PESO_TARA"                 />
+                                                <ext:RecordField Name="NOTAS_PESO_TOTAL_RECIBIDO"       />
+                                                <ext:RecordField Name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO" />
+                                                <ext:RecordField Name="NOTAS_SACOS_RETENIDOS"           />
+                                                <ext:RecordField Name="CREADO_POR"                      />
+                                                <ext:RecordField Name="FECHA_CREACION"                  Type="Date" />
+                                                <ext:RecordField Name="MODIFICADO_POR"                  />
+                                                <ext:RecordField Name="FECHA_MODIFICACION"              Type="Date" />
                                             </Fields>
                                         </ext:JsonReader>
                                     </Reader>
@@ -200,9 +495,11 @@
                             </Store>
                             <ColumnModel>
                                 <Columns>
-                                    <ext:Column DataIndex="ESTADOS_NOTA_ID"          Header="Id" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="ESTADOS_NOTA_NOMBRE"      Header="Nombre" Sortable="true" Width="150"></ext:Column>
-                                    <ext:Column DataIndex="ESTADOS_NOTA_DESCRIPCION" Header="Descripción" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="NOTAS_ID"                    Header="Id" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="ESTADOS_NOTA_ID"             Header="Nombre" Sortable="true" Width="150"></ext:Column>
+                                    <ext:Column DataIndex="SOCIOS_ID"                   Header="Socio" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="CLASIFICACIONES_CAFE_NOMBRE" Header="Clasificacion de Café" Sortable="true"></ext:Column>
+                                    <ext:DateColumn DataIndex="NOTAS_FECHA"             Header="Fecha" Sortable="true" Width="150" ></ext:DateColumn>
                                 </Columns>
                             </ColumnModel>
                             <SelectionModel>
@@ -236,6 +533,15 @@
                                             <Columns>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
+                                                        <ext:NumberField ID="f_NOTAS_ID" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <Listeners>
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                            </Listeners>
+                                                        </ext:NumberField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
                                                         <ext:NumberField ID="f_ESTADOS_NOTA_ID" runat="server" EnableKeyEvents="true" Icon="Find">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
@@ -245,7 +551,7 @@
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="f_ESTADOS_NOTA_NOMBRE" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                        <ext:TextField ID="f_SOCIOS_ID" runat="server" EnableKeyEvents="true" Icon="Find">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
@@ -254,11 +560,62 @@
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="f_ESTADOS_NOTA_DESCRIPCION" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                        <ext:NumberField ID="f_CLASIFICACIONES_CAFE_ID" runat="server" EnableKeyEvents="true" Icon="Find">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
-                                                        </ext:TextField>
+                                                        </ext:NumberField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:DropDownField ID="f_NOTAS_FECHA" AllowBlur="true" runat="server" Editable="false"
+                                                            Mode="ValueText" Icon="Find" TriggerIcon="SimpleArrowDown" CollapseMode="Default">
+                                                            <Component>
+                                                                <ext:FormPanel runat="server" Height="100" Width="170" Frame="true"
+                                                                    LabelWidth="50" ButtonAlign="Left" BodyStyle="padding:2px 2px;">
+                                                                    <Items>
+                                                                        <ext:CompositeField runat="server" FieldLabel="Desde" LabelWidth="50">
+                                                                            <Items>
+                                                                                <ext:DateField ID="f_DATE_FROM" Vtype="daterange" runat="server" Flex="1" Width="100"
+                                                                                    CausesValidation="false">
+                                                                                    <CustomConfig>
+                                                                                        <ext:ConfigItem Name="endDateField" Value="#{f_DATE_TO}" Mode="Value" />
+                                                                                    </CustomConfig>
+                                                                                    <Listeners>
+                                                                                        <KeyUp Fn="calendar.validateDateRange" />
+                                                                                    </Listeners>
+                                                                                </ext:DateField>
+                                                                            </Items>
+                                                                        </ext:CompositeField>
+                                                                        <ext:CompositeField ID="CompositeField2" runat="server" FieldLabel="Hasta" LabelWidth="50">
+                                                                            <Items>
+                                                                                <ext:DateField ID="f_DATE_TO" runat="server" Vtype="daterange" Width="100">
+                                                                                    <CustomConfig>
+                                                                                        <ext:ConfigItem Name="startDateField" Value="#{f_DATE_FROM}" Mode="Value" />
+                                                                                    </CustomConfig>
+                                                                                    <Listeners>
+                                                                                        <KeyUp Fn="calendar.validateDateRange" />
+                                                                                    </Listeners>
+                                                                                </ext:DateField>
+                                                                            </Items>
+                                                                        </ext:CompositeField>
+                                                                    </Items>
+                                                                    <Buttons>
+                                                                        <ext:Button ID="Button1" Text="Ok" Icon="Accept" runat="server">
+                                                                            <Listeners>
+                                                                                <Click Handler="calendar.setFecha();" />
+                                                                            </Listeners>
+                                                                        </ext:Button>
+                                                                        <ext:Button ID="Button2" Text="Cancelar" Icon="Cancel" runat="server">
+                                                                            <Listeners>
+                                                                                <Click Handler="calendar.clearFecha();" />
+                                                                            </Listeners>
+                                                                        </ext:Button>
+                                                                    </Buttons>
+                                                                </ext:FormPanel>
+                                                                </Component>
+                                                        </ext:DropDownField>
                                                     </Component>
                                                 </ext:HeaderColumn>
                                             </Columns>
@@ -280,34 +637,205 @@
             </Items>
         </ext:Viewport>
 
+        <ext:Store ID="NotaDetalleSt" runat="server" WarningOnDirty="false" IgnoreExtraFields="true" AutoSave="true" >
+            <Reader>
+                <ext:JsonReader>
+                    <Fields>
+                        <ext:RecordField Name="DETALLES_CANTIDAD_SACOS" />
+                        <ext:RecordField Name="DETALLES_PESO" />
+                    </Fields>
+                </ext:JsonReader>
+            </Reader>
+            <Listeners>
+                <BeforeLoad Handler="return false;" />
+                <CommitDone Handler="AddDetailX.updateSumTotals();" />
+            </Listeners>
+        </ext:Store>
+
         <ext:Window ID="AgregarNotasWin"
             runat="server"
             Hidden="true"
             Icon="PageWhiteAdd"
             Title="Agregar Notas de Peso"
-            Width="500"
-            Layout="FormLayout"
+            Width="600"
             AutoHeight="True"
             Resizable="false"
             Shadow="None"
             Modal="true"
             X="10" Y="30">
+            <Listeners>
+                <Hide Handler="#{NotaDetalleSt}.removeAll();" />
+            </Listeners>
             <Items>
-                <ext:FormPanel ID="AgregarNotasFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelWidth="120">
+                <ext:FormPanel ID="AgregarNotasFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true">
                     <Listeners>
                         <Show Handler="this.getForm().reset();" />
                     </Listeners>
                     <Items>
-                        <ext:Panel ID="Panel2" runat="server" Title="Información" Layout="AnchorLayout" AutoHeight="True"
-                            Resizable="false">
+                        <ext:Panel runat="server" Title="Nota de Peso" Layout="AnchorLayout" AutoHeight="True" Resizable="false" AnchorHorizontal="100%">
                             <Items>
-                                <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
+                                <ext:Panel runat ="server" Layout="ColumnLayout" Padding="5" Border="false" AnchorHorizontal="100%" >
+                                    <LayoutConfig>
+                                        <ext:ColumnLayoutConfig FitHeight="false" />
+                                    </LayoutConfig>
                                     <Items>
-                                        <ext:NumberField runat="server" ID="AddIdTxt"               DataIndex="ESTADOS_NOTA_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Estado" AllowBlank="false" Text="0" Hidden="true" ReadOnly="true"></ext:NumberField>
-                                        <ext:TextField   runat="server" ID="AddNombreTxt"           DataIndex="ESTADOS_NOTA_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" IsRemoteValidation="true">
-                                            <RemoteValidation OnValidation="AddNombreTxt_Validate" />
+                                        <ext:Panel runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
+                                            <Items>
+                                                <ext:DateField   runat="server" ID="AddFechaNotaTxt"        DataIndex="NOTAS_FECHA" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha" AllowBlank="false"   Format="d MMM y" MsgTarget="Side"></ext:DateField>
+                                                <ext:ComboBox runat="server" ID="AddSociosIdTxt"    DataIndex="SOCIOS_ID" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Codigo Socio" AllowBlank="false"  MsgTarget="Side"
+                                                    TypeAhead="true"
+                                                    EmptyText="Seleccione un Socio"
+                                                    ForceSelection="true" 
+                                                    StoreID="SocioSt"
+                                                    Mode="Local" 
+                                                    DisplayField="SOCIOS_ID"
+                                                    ValueField="SOCIOS_ID"
+                                                    MinChars="2" 
+                                                    ListWidth="450" 
+                                                    PageSize="10" 
+                                                    ItemSelector="tr.list-item" >
+                                                    <Template ID="Template1" runat="server" Width="200">
+                                                        <Html>
+					                                        <tpl for=".">
+						                                        <tpl if="[xindex] == 1">
+							                                        <table class="cbStates-list">
+								                                        <tr>
+									                                        <th>SOCIOS_ID</th>
+									                                        <th>SOCIOS_PRIMER_NOMBRE</th>
+                                                                            <th>SOCIOS_PRIMER_APELLIDO</th>
+								                                        </tr>
+						                                        </tpl>
+						                                        <tr class="list-item">
+							                                        <td style="padding:3px 0px;">{SOCIOS_ID}</td>
+							                                        <td>{SOCIOS_PRIMER_NOMBRE}</td>
+                                                                    <td>{SOCIOS_PRIMER_APELLIDO}</td>
+						                                        </tr>
+						                                        <tpl if="[xcount-xindex]==0">
+							                                        </table>
+						                                        </tpl>
+					                                        </tpl>
+				                                        </Html>
+                                                    </Template>
+                                                    <Triggers>
+                                                        <ext:FieldTrigger Icon="Clear" HideTrigger="true" />
+                                                    </Triggers>
+                                                    <Listeners>
+                                                        <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
+                                                        <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
+                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('AddNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('AddDireccionFincaTxt'));" />
+                                                    </Listeners>
+                                                </ext:ComboBox>
+                                            </Items>
+                                        </ext:Panel>
+                                        <ext:Panel runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
+                                            <Items>
+                                                <ext:ComboBox runat="server"    ID="AddClasificacionCafeCmb"     DataIndex="CLASIFICACIONES_CAFE_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Café" AllowBlank="false" MsgTarget="Side"
+                                                    StoreID="ClasificacionesCafeSt"
+                                                    EmptyText="Seleccione un Tipo"
+                                                    ValueField="CLASIFICACIONES_CAFE_ID" 
+                                                    DisplayField="CLASIFICACIONES_CAFE_NOMBRE"
+                                                    ForceSelection="true"
+                                                    Mode="Local"
+                                                    TypeAhead="true">
+                                                    <Triggers>
+                                                        <ext:FieldTrigger Icon="Clear" />
+                                                    </Triggers>
+                                                    <Listeners>
+                                                        <TriggerClick Handler="this.clearValue();" />
+                                                    </Listeners>
+                                                </ext:ComboBox>
+                                            </Items>
+                                        </ext:Panel>
+                                    </Items>
+                                </ext:Panel>
+                                <ext:Panel runat="server" Frame="false" Padding="5" Layout="AnchorLayout" AnchorHorizontal="100%" Border="false">
+                                    <Items>
+                                        <ext:TextField   runat="server" ID="AddNombreTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre del Socio" ReadOnly="true" >
+                                            <ToolTips>
+                                                <ext:ToolTip ID="ToolTip1" runat="server" Html="El nombre de socio es de solo lectura." Title="Nombre del Socio" Width="200" TrackMouse="true" />
+                                            </ToolTips>
                                         </ext:TextField>
-                                        <ext:TextField   runat="server" ID="AddDescripcionTxt"      DataIndex="ESTADOS_NOTA_DESCRIPCION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100"></ext:TextField>
+                                        <ext:TextField   runat="server" ID="AddDireccionFincaTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Dirección de la Finca" ReadOnly="true" >
+                                            <ToolTips>
+                                                <ext:ToolTip ID="ToolTip2" runat="server" Html="El nombre de socio es de solo lectura." Title="Nombre del Socio" Width="200" TrackMouse="true" />
+                                            </ToolTips>
+                                        </ext:TextField>
+
+                                        <ext:RadioGroup runat="server" ID="AddTipoRolRdGrp" LabelAlign="Right" AnchorHorizontal="100%" DataIndex="NOTAS_TRANSPORTE_COOPERATIVA" FieldLabel="Forma de Transporte">
+                                            <Items>
+                                                <ext:Radio ID="AddGeneralRadio" runat="server" InputValue="0" BoxLabel="Carro Propio" ColumnWidth=".5" AnchorHorizontal="90%" Checked="true">
+                                                </ext:Radio>
+                                                <ext:Radio ID="AddEspecificoRadio" runat="server" InputValue="1" BoxLabel="Carro de la Cooperativa" ColumnWidth=".5" AnchorHorizontal="90%">
+                                                </ext:Radio>
+                                            </Items>
+                                        </ext:RadioGroup>
+                                        <ext:Panel runat="server" Frame="false" Padding="5">
+                                            <Items>
+                                                <ext:GridPanel ID="AddNotaDetalleGridP" runat="server" AutoExpandColumn="DETALLES_PESO"
+                                                    Height="250" Title="Detalle" Header="false" Border="true" StripeRows="true"
+                                                    TrackMouseOver="true" SelectionMemory="Disabled" StoreID="NotaDetalleSt" >
+                                                    <ColumnModel>
+                                                        <Columns>
+                                                            <ext:Column DataIndex="DETALLES_CANTIDAD_SACOS" Header="Sacos" MenuDisabled="true" Sortable="false" Hideable="false"></ext:Column>
+                                                            <ext:Column DataIndex="DETALLES_PESO" Header="Peso Bruto" MenuDisabled="true" Sortable="false" Hideable="false"></ext:Column>
+                                                        </Columns>
+                                                    </ColumnModel>
+                                                    <View>
+                                                        <ext:GridView ForceFit="true" MarkDirty="false" />
+                                                    </View>
+                                                    <SelectionModel>
+                                                        <ext:RowSelectionModel ID="RowSelectionModel2" runat="server" SingleSelect="true" />
+                                                    </SelectionModel>
+                                                    <TopBar>
+                                                        <ext:Toolbar runat="server">
+                                                            <Items>
+                                                                <ext:Button ID="AgregarDetalleBtn" runat="server" Text="Agregar" Icon="Add">
+                                                                    <Listeners>
+                                                                        <Click Handler="AddDetailX.add();" />
+                                                                    </Listeners>
+                                                                </ext:Button>
+                                                                <ext:Button ID="EditarDetalleBtn" runat="server" Text="Editar" Icon="Pencil">
+                                                                    <Listeners>
+                                                                        <Click Handler="AddDetailX.edit();" />
+                                                                    </Listeners>
+                                                                </ext:Button>
+                                                                <ext:Button ID="EliminarDetalleBtn" runat="server" Text="Eliminar" Icon="Delete">
+                                                                    <Listeners>
+                                                                        <Click Handler="AddDetailX.remove();" />
+                                                                    </Listeners>
+                                                                </ext:Button>
+                                                            </Items>
+                                                        </ext:Toolbar>
+                                                    </TopBar>
+                                                    <LoadMask ShowMask="true" />
+                                                    <Listeners>
+                                                        <RowDblClick Handler="AddDetailX.edit();" />
+                                                    </Listeners>
+                                                </ext:GridPanel>
+                                            </Items>
+                                        </ext:Panel>
+
+                                        <ext:Panel runat ="server" Layout="ColumnLayout" Padding="5" Border="false" AnchorHorizontal="100%" >
+                                            <LayoutConfig>
+                                                <ext:ColumnLayoutConfig FitHeight="false" />
+                                            </LayoutConfig>
+                                            <Items>
+                                                <ext:Panel runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
+                                                    <Items>
+                                                        <ext:NumberField runat="server" ID="AddSumaSacosTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cantidad de Sacos" Text="0" ReadOnly="true"></ext:NumberField>
+                                                        <ext:NumberField runat="server" ID="AddSacosRetenidosTxt" DataIndex="NOTAS_SACOS_RETENIDOS" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Sacos Retenidos"     AllowBlank="false"></ext:NumberField>
+                                                    </Items>
+                                                </ext:Panel>
+                                                <ext:Panel runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
+                                                    <Items>
+                                                        <ext:NumberField runat="server" ID="AddSumaPesoBrutoTxt" DataIndex="NOTAS_PESO_SUMA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Suma"      AllowBlank="false" Text="0" ReadOnly="true"></ext:NumberField>
+                                                        <ext:NumberField runat="server" ID="AddTaraTxt"          DataIndex="NOTAS_PESO_TARA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tara"      AllowBlank="false" ></ext:NumberField>
+                                                        <ext:NumberField runat="server" ID="AddDescuentoTxt"     DataIndex="NOTAS_PESO_DESCUENTO"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descuento" AllowBlank="false" ReadOnly="true" ></ext:NumberField>
+                                                        <ext:NumberField runat="server" ID="AddTotalRecibidoTxt" DataIndex="NOTAS_PESO_TOTAL_RECIBIDO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Total"     AllowBlank="false" ReadOnly="true" ></ext:NumberField>
+                                                    </Items>
+                                                </ext:Panel>
+                                            </Items>
+                                        </ext:Panel>
                                         <ext:TextField   runat="server" ID="AddCreatedByTxt"        DataIndex="CREADO_POR"               LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado por" Hidden="true" ></ext:TextField>
                                         <ext:TextField   runat="server" ID="AddCreatedDateTxt"      DataIndex="FECHA_CREACION"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
                                         <ext:TextField   runat="server" ID="AddModifiedByTxt"       DataIndex="MODIFICADO_POR"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
@@ -326,6 +854,115 @@
                     </Buttons>
                 </ext:FormPanel>
             </Items>
+        </ext:Window>
+
+        <ext:Window 
+            ID="AddDetallesWin" 
+            runat="server" 
+            Title="Agregar Datos de Peso" 
+            CenterOnLoad="true"
+            Width="420" 
+            AutoHeight="true"
+            X="50"
+            Y="50"
+            Padding="10" 
+            Resizable="false" 
+            Closable="true"
+            Layout="Fit"
+            Hidden="true">
+            <Listeners>
+                <Show Handler="#{AddDetallesFormPnl}.getForm().reset();" />
+            </Listeners>
+            <Items>
+                <ext:FormPanel 
+                    ID="AddDetallesFormPnl" 
+                    runat="server" 
+                    Border="false" 
+                    MonitorValid="true"
+                    BodyStyle="background-color:transparent;"
+                    Layout="Form"
+                    AutoHeight="true">
+                    <Items>
+                        <ext:NumberField ID="AddDetailBagTxt"    runat="server" DataIndex="DETALLES_CANTIDAD_SACOS" MsgTarget="Side" AllowBlank="false" FieldLabel="Cantidad de Sacos" Width="260" EnableKeyEvents="true" >
+                            <Listeners>
+                                <KeyUp Handler="AddDetailX.keyUpEventAddDetail(this, e);"/>
+                            </Listeners>
+                        </ext:NumberField>
+                        <ext:NumberField ID="AddDetailWeigthTxt" runat="server" DataIndex="DETALLES_PESO" MsgTarget="Side" AllowBlank="false" FieldLabel="Peso Bruto"  Width="260" EnableKeyEvents="true" >
+                            <Listeners>
+                                <KeyUp Handler="AddDetailX.keyUpEventAddDetail(this, e);"/>
+                            </Listeners>
+                        </ext:NumberField>
+                    </Items>
+                    <Buttons>
+                    <ext:Button ID="AddDetailSaveBtn" runat="server" Text="Guardar" Icon="Disk" FormBind="true">
+                        <Listeners>
+                            <Click Handler="AddDetailX.insert();" />
+                        </Listeners>
+                    </ext:Button>
+            </Buttons>
+                </ext:FormPanel>
+            </Items>
+        </ext:Window>
+
+        <ext:Window 
+            ID="EditDetallesWin"
+            runat="server" 
+            Title="Editar Datos de Peso" 
+            CenterOnLoad="true"
+            Width="420" 
+            AutoHeight="true"
+            X="50"
+            Y="50"
+            Padding="10" 
+            Resizable="false" 
+            Closable="true"
+            Layout="Fit"
+            Modal="true"
+            Hidden="true">
+            <Listeners>
+                <Show Handler="#{EditDetallesFormPnl}.getForm().reset();" />
+            </Listeners>
+            <Items>
+                <ext:FormPanel 
+                    ID="EditDetallesFormPnl" 
+                    runat="server" 
+                    Border="false" 
+                    MonitorValid="true"
+                    BodyStyle="background-color:transparent;"
+                    Layout="Form"
+                    AutoHeight="true">
+                    <Items>
+                        <ext:NumberField ID="EditDetailBagTxt"    runat="server" DataIndex="DETALLES_CANTIDAD_SACOS" MsgTarget="Side" AllowBlank="false" FieldLabel="Cantidad de Sacos" Width="260" EnableKeyEvents="true" >
+                            <Listeners>
+                                <KeyUp Handler="AddDetailX.keyUpEventEditDetail(this, e);" />
+                            </Listeners>
+                        </ext:NumberField>
+                        <ext:NumberField ID="EditDetailWeigthTxt" runat="server" DataIndex="DETALLES_PESO" MsgTarget="Side" AllowBlank="false" FieldLabel="Peso Bruto"  Width="260" EnableKeyEvents="true" >
+                            <Listeners>
+                                <KeyUp Handler="AddDetailX.keyUpEventEditDetail(this, e);" />
+                            </Listeners>
+                        </ext:NumberField>
+                    </Items>
+                </ext:FormPanel>
+            </Items>
+            <Buttons>
+                <ext:Button ID="EditDetailPreviousBtn" runat="server" Text="Anterior" Icon="PreviousGreen">
+                    <Listeners>
+                        <Click Handler="AddDetailX.previous();" />
+                    </Listeners>
+                </ext:Button>
+                <ext:Button ID="EditDetailNextBtn" runat="server" Text="Siguiente" Icon="NextGreen">
+                    <Listeners>
+                        <Click Handler="AddDetailX.next();" />
+                    </Listeners>
+                </ext:Button>
+                <ext:Button ID="EditDetailSaveBtn" runat="server" Text="Guardar" Icon="Disk" FormBind="true">
+                    <Listeners>
+                        <Click Handler="AddDetailX.update();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
         </ext:Window>
 
         <ext:Window ID="EditarNotasWin"
@@ -380,9 +1017,9 @@
                             </Listeners>
                         </ext:Button>
                         <ext:Button ID="EditGuardarBtn" runat="server" Text="Guardar" Icon="Disk" FormBind="true">
-                            <Listeners>
+                            <%--<Listeners>
                                 <Click Handler="#{EditModifiedByTxt}.setValue(#{LoggedUserHdn}.getValue()); PageX.update();" />
-                            </Listeners>
+                            </Listeners>--%>
                         </ext:Button>
                     </Buttons>
                 </ext:FormPanel>

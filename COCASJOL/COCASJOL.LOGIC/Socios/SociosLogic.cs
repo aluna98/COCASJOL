@@ -15,10 +15,19 @@ namespace COCASJOL.LOGIC.Socios
         #region Select
         public List<socio> getData()
         {
-            colinasEntities db = new colinasEntities();
-            var query = from soc in db.socios
-                        select soc;
-            return query.ToList<socio>();
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    var query = from s in db.socios.Include("socios_generales").Include("socios_produccion").Include("beneficiario_x_socio").Include("referencias_x_socio")
+                                select s;
+                    return query.ToList<socio>();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public List<beneficiario_x_socio> getBenefxSocio(string socioid)

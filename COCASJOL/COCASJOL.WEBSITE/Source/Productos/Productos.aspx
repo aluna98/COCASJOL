@@ -409,12 +409,14 @@
                                     <Items>
                                         <ext:ComboBox runat="server"    ID="AddTipoDeProdIdCmb"     DataIndex="TIPOS_PROD_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Producto" AllowBlank="false" MsgTarget="Side"
                                             StoreID="TiposDeProductoSt"
+                                            EmptyText="Seleccione un Tipo"
                                             ValueField="TIPOS_PROD_ID" 
-                                            DisplayField="TIPOS_PROD_NOMBRE" 
+                                            DisplayField="TIPOS_PROD_NOMBRE"
+                                            ForceSelection="true"
                                             Mode="Local"
                                             TypeAhead="true">
                                             <Triggers>
-                                                <ext:FieldTrigger Icon="Clear" />
+                                                <ext:FieldTrigger Icon="Clear" HideTrigger="true" />
                                             </Triggers>
                                             <Listeners>
                                                 <TriggerClick Handler="this.clearValue();" />

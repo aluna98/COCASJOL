@@ -701,7 +701,7 @@
                                                 <ext:TextField runat="server" ID="EditSocioTelfono"         DataIndex="SOCIOS_TELEFONO"              FieldLabel="Telefono            "   AnchorHorizontal="90%" MaxLength="20" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditIdentidadTxt"         DataIndex="SOCIOS_IDENTIDAD"             FieldLabel="Tarjeta de Identidad"   AnchorHorizontal="90%" MaxLength="20" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditLugarEmisionTxt"      DataIndex="SOCIOS_LUGAR_DE_EMISION"      FieldLabel="Lugar de Emision    "   AnchorHorizontal="90%" MaxLength="100" AllowBlank="false"   ></ext:TextField>
-                                                <ext:DateField runat="server" ID="EditFechaEmisionTxt"      DataIndex="SOCIOS_FECHA_DE_EMISION"      FieldLabel="Fecha de Emision    "   AnchorHorizontal="90%" AllowBlank="false"   Format="d MMM y"></ext:DateField>                                                
+                                                <ext:DateField runat="server" ID="EditFechaEmisionTxt"      DataIndex="SOCIOS_FECHA_DE_EMISION"      FieldLabel="Fecha de Emision    "   AnchorHorizontal="90%" AllowBlank="false"   Format="d MMM y"></ext:DateField>
                                             </Items>                                                               
                                         </ext:Panel>
                                     </Items>

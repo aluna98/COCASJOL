@@ -84,17 +84,17 @@ namespace COCASJOL.LOGIC.Inventario
             {
                 using (var db = new colinasEntities())
                 {
-                    inventario_cafe_de_socio coffeeClassif = new inventario_cafe_de_socio();
+                    inventario_cafe_de_socio asocInventory = new inventario_cafe_de_socio();
 
-                    coffeeClassif.SOCIOS_ID = SOCIOS_ID;
-                    coffeeClassif.CLASIFICACIONES_CAFE_ID = CLASIFICACIONES_CAFE_ID;
-                    coffeeClassif.INVENTARIO_CANTIDAD = INVENTARIO_CANTIDAD;
-                    coffeeClassif.CREADO_POR = CREADO_POR;
-                    coffeeClassif.FECHA_CREACION = DateTime.Today;
-                    coffeeClassif.MODIFICADO_POR = CREADO_POR;
-                    coffeeClassif.FECHA_MODIFICACION = coffeeClassif.FECHA_CREACION;
+                    asocInventory.SOCIOS_ID = SOCIOS_ID;
+                    asocInventory.CLASIFICACIONES_CAFE_ID = CLASIFICACIONES_CAFE_ID;
+                    asocInventory.INVENTARIO_CANTIDAD = INVENTARIO_CANTIDAD;
+                    asocInventory.CREADO_POR = CREADO_POR;
+                    asocInventory.FECHA_CREACION = DateTime.Today;
+                    asocInventory.MODIFICADO_POR = CREADO_POR;
+                    asocInventory.FECHA_MODIFICACION = asocInventory.FECHA_CREACION;
 
-                    db.inventario_cafe_de_socio.AddObject(coffeeClassif);
+                    db.inventario_cafe_de_socio.AddObject(asocInventory);
                     db.SaveChanges();
                 }
             }
@@ -131,11 +131,11 @@ namespace COCASJOL.LOGIC.Inventario
 
                     var invCafSoc = db.GetObjectByKey(k);
 
-                    inventario_cafe_de_socio coffeeClassif = (inventario_cafe_de_socio)invCafSoc;
+                    inventario_cafe_de_socio asocInventory = (inventario_cafe_de_socio)invCafSoc;
 
-                    coffeeClassif.INVENTARIO_CANTIDAD = INVENTARIO_CANTIDAD;
-                    coffeeClassif.MODIFICADO_POR = MODIFICADO_POR;
-                    coffeeClassif.FECHA_MODIFICACION = DateTime.Today;
+                    asocInventory.INVENTARIO_CANTIDAD = INVENTARIO_CANTIDAD;
+                    asocInventory.MODIFICADO_POR = MODIFICADO_POR;
+                    asocInventory.FECHA_MODIFICACION = DateTime.Today;
 
                     db.SaveChanges();
                 }
@@ -167,9 +167,9 @@ namespace COCASJOL.LOGIC.Inventario
 
                     var invCafSoc = db.GetObjectByKey(k);
 
-                    inventario_cafe_de_socio coffeeClassif = (inventario_cafe_de_socio)invCafSoc;
+                    inventario_cafe_de_socio asocInventory = (inventario_cafe_de_socio)invCafSoc;
 
-                    db.DeleteObject(coffeeClassif);
+                    db.DeleteObject(asocInventory);
 
                     db.SaveChanges();
                 }

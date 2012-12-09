@@ -789,7 +789,7 @@
             <End Role="solicitudes_prestamos" EntitySet="solicitudes_prestamos" />
           </AssociationSet>
           <EntitySet Name="variables_de_entorno" EntityType="COLINASMODEL.variable_de_entorno" />
-          <EntitySet Name="estados_nota_de_peso" EntityType="COLINASMODEL.estados_nota_de_peso" />
+          <EntitySet Name="estados_nota_de_peso" EntityType="COLINASMODEL.estado_nota_de_peso" />
           <AssociationSet Name="notas_de_peso_estado_fk" Association="COLINASMODEL.notas_de_peso_estado_fk">
             <End Role="estados_nota_de_peso" EntitySet="estados_nota_de_peso" />
             <End Role="nota_de_peso" EntitySet="notas_de_peso" />
@@ -1300,7 +1300,7 @@
           <Property Type="String" Name="MODIFICADO_POR" />
           <Property Type="DateTime" Name="FECHA_MODIFICACION" />
         </EntityType>
-        <EntityType Name="estados_nota_de_peso">
+        <EntityType Name="estado_nota_de_peso">
           <Key>
             <PropertyRef Name="ESTADOS_NOTA_ID" />
           </Key>
@@ -1314,7 +1314,7 @@
           <NavigationProperty Name="notas_de_peso" Relationship="COLINASMODEL.notas_de_peso_estado_fk" FromRole="estados_nota_de_peso" ToRole="nota_de_peso" />
         </EntityType>
         <Association Name="notas_de_peso_estado_fk">
-          <End Type="COLINASMODEL.estados_nota_de_peso" Role="estados_nota_de_peso" Multiplicity="1" />
+          <End Type="COLINASMODEL.estado_nota_de_peso" Role="estados_nota_de_peso" Multiplicity="1" />
           <End Type="COLINASMODEL.nota_de_peso" Role="nota_de_peso" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="estados_nota_de_peso">
@@ -1660,7 +1660,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="estados_nota_de_peso">
-            <EntityTypeMapping TypeName="COLINASMODEL.estados_nota_de_peso">
+            <EntityTypeMapping TypeName="COLINASMODEL.estado_nota_de_peso">
               <MappingFragment StoreEntitySet="estados_nota_de_peso">
                 <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
                 <ScalarProperty Name="MODIFICADO_POR" ColumnName="MODIFICADO_POR" />
@@ -1781,7 +1781,7 @@
           <ConnectorPoint PointX="11.875" PointY="8.5670475260416659" />
         </AssociationConnector>
         <EntityTypeShape EntityType="COLINASMODEL.variable_de_entorno" Width="1.5" PointX="10.125" PointY="0.5" Height="2.5571907552083246" />
-        <EntityTypeShape EntityType="COLINASMODEL.estados_nota_de_peso" Width="1.5" PointX="8.125" PointY="19" Height="2.5571907552083317" />
+        <EntityTypeShape EntityType="COLINASMODEL.estado_nota_de_peso" Width="1.5" PointX="8.125" PointY="19" Height="2.5571907552083317" />
         <AssociationConnector Association="COLINASMODEL.notas_de_peso_estado_fk" >
           <ConnectorPoint PointX="8.125" PointY="20.278595377604166" />
           <ConnectorPoint PointX="6.875" PointY="20.278595377604166" />
