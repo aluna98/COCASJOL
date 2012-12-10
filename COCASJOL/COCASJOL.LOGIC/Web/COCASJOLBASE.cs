@@ -11,6 +11,7 @@ using System.Data;
 using System.Data.Objects;
  
 using COCASJOL.LOGIC.Seguridad;
+using COCASJOL.LOGIC.Entorno;
 
 namespace COCASJOL.LOGIC.Web
 {
@@ -90,6 +91,8 @@ namespace COCASJOL.LOGIC.Web
                 doc.Load(Server.MapPath(System.Configuration.ConfigurationManager.AppSettings.Get("variablesDeEntornoXML")));
                 XmlNodeList pagesNode = doc.SelectNodes("paginas/pagina[Name[contains(text(), '" + pagename + "')]]");
 
+                VariablesDeEntornoLogic variablesLogic = new VariablesDeEntornoLogic();
+
                 foreach (XmlNode pageNode in pagesNode)
                 {
                     XmlNodeList variablesNode = pageNode.SelectNodes("variables/variable");
@@ -102,7 +105,9 @@ namespace COCASJOL.LOGIC.Web
                         string key = keyNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
                         string maps = mapsNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
 
-                        variablesDictionary[maps] = key;
+                        variable_de_entorno varenv = variablesLogic.GetVariableDeEntorno(key);
+
+                        variablesDictionary[maps] = varenv.VARIABLES_VALOR;
                     }
                 }
 

@@ -24,6 +24,8 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                     string loggedUsr = Session["username"] as string;
                     this.LoggedUserHdn.Text = loggedUsr;
                     this.ValidarCredenciales(typeof(EstadosNotaDePeso).Name);
+
+                    this.AddFechaNotaTxt.SelectedDate = DateTime.Today;
                 }
             }
             catch (Exception)
@@ -39,43 +41,40 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 e.Cancel = true;
         }
 
-        protected void AddNombreTxt_Validate(object sender, RemoteValidationEventArgs e)
+
+
+        [DirectMethod(RethrowException=true)]
+        public void AddNotaDePeso_Click(string Detalles)
         {
             try
             {
-                string nombreDeEstadoNotaDePeso = this.AddNombreTxt.Text;
+                string loggedUser = this.LoggedUserHdn.Text;
 
-                EstadoNotaDePesoLogic estadoNotaDePesologic = new EstadoNotaDePesoLogic();
+                var detalles = JSON.Deserialize<Dictionary<string, string>[]>(Detalles);
 
-                if (estadoNotaDePesologic.NombreDeEstadoNotaDePesoExiste(nombreDeEstadoNotaDePeso))
-                {
-                    e.Success = false;
-                    e.ErrorMessage = "El nombre de estado de nota de peso ingresado ya existe.";
-                }
-                else
-                    e.Success = true;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+                Dictionary<string, string> variables = this.GetVariables(typeof(NotasDePeso).Name);
+                //validar variables
 
-        protected void EditNombreTxt_Validate(object sender, RemoteValidationEventArgs e)
-        {
-            try
-            {
-                string nombreDeEstadoNotaDePeso = this.EditNombreTxt.Text;
+                NotaDePesoLogic notadepesologic = new NotaDePesoLogic();
 
-                EstadoNotaDePesoLogic estadoNotaDePesologic = new EstadoNotaDePesoLogic();
 
-                if (estadoNotaDePesologic.NombreDeEstadoNotaDePesoExiste(nombreDeEstadoNotaDePeso))
-                {
-                    e.Success = false;
-                    e.ErrorMessage = "El nombre de estado de nota de peso ingresado ya existe.";
-                }
-                else
-                    e.Success = true;
+                string pDefecto = this.AddPorcentajeDefectoTxt.Text.Replace("%", "");
+                string pHumedad = this.AddPorcentajeHumedadTxt.Text.Replace("%", "");
+
+                notadepesologic.InsertarNotaDePeso
+                    (int.Parse(this.AddEstadoNotaCmb.Text),
+                    this.AddSociosIdTxt.Text,
+                    int.Parse(this.AddClasificacionCafeCmb.Text),
+                    this.AddFechaNotaTxt.SelectedDate,
+                    this.AddCooperativaRadio.Value == null ? false : true,
+                    decimal.Parse(pDefecto),
+                    decimal.Parse(pHumedad),
+                    decimal.Parse(this.AddSumaPesoBrutoTxt.Text),
+                    decimal.Parse(this.AddTaraTxt.Text),
+                    int.Parse(this.AddSacosRetenidosTxt.Text),
+                    loggedUser,
+                    detalles,
+                    variables);
             }
             catch (Exception)
             {

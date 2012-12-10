@@ -67,6 +67,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::System.Web.UI.WebControls.ObjectDataSource ClasificacionesCafeDS;
         
         /// <summary>
+        /// EstadosNotaDS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource EstadosNotaDS;
+        
+        /// <summary>
         /// SocioSt control.
         /// </summary>
         /// <remarks>
@@ -83,6 +92,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Store ClasificacionesCafeSt;
+        
+        /// <summary>
+        /// EstadosNotaSt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store EstadosNotaSt;
         
         /// <summary>
         /// nullHdn control.
@@ -292,13 +310,13 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.PagingToolbar PagingToolbar1;
         
         /// <summary>
-        /// NotaDetalleSt control.
+        /// AddNotaDetalleSt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store NotaDetalleSt;
+        protected global::Ext.Net.Store AddNotaDetalleSt;
         
         /// <summary>
         /// AgregarNotasWin control.
@@ -319,6 +337,33 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.FormPanel AgregarNotasFormP;
         
         /// <summary>
+        /// AddNotaHeaderFS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FieldSet AddNotaHeaderFS;
+        
+        /// <summary>
+        /// AddSocioPnl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel AddSocioPnl;
+        
+        /// <summary>
+        /// Panel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Panel2;
+        
+        /// <summary>
         /// AddFechaNotaTxt control.
         /// </summary>
         /// <remarks>
@@ -335,6 +380,24 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ComboBox AddSociosIdTxt;
+        
+        /// <summary>
+        /// Panel5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Panel5;
+        
+        /// <summary>
+        /// AddEstadoNotaCmb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox AddEstadoNotaCmb;
         
         /// <summary>
         /// AddClasificacionCafeCmb control.
@@ -373,40 +436,121 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.TextField AddDireccionFincaTxt;
         
         /// <summary>
-        /// ToolTip2 control.
+        /// AddPorcentajeDetalleSacosPnl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ToolTip ToolTip2;
+        protected global::Ext.Net.Panel AddPorcentajeDetalleSacosPnl;
         
         /// <summary>
-        /// AddTipoRolRdGrp control.
+        /// Panel3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.RadioGroup AddTipoRolRdGrp;
+        protected global::Ext.Net.Panel Panel3;
         
         /// <summary>
-        /// AddGeneralRadio control.
+        /// AddTransportePorcentajeFS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Radio AddGeneralRadio;
+        protected global::Ext.Net.FieldSet AddTransportePorcentajeFS;
         
         /// <summary>
-        /// AddEspecificoRadio control.
+        /// AddTipoTransporteRdGrp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Radio AddEspecificoRadio;
+        protected global::Ext.Net.RadioGroup AddTipoTransporteRdGrp;
+        
+        /// <summary>
+        /// AddPropiRadio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Radio AddPropiRadio;
+        
+        /// <summary>
+        /// AddCooperativaRadio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Radio AddCooperativaRadio;
+        
+        /// <summary>
+        /// AddPorcentajeHumedadTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField AddPorcentajeHumedadTxt;
+        
+        /// <summary>
+        /// AddPorcentajeDefectoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TriggerField AddPorcentajeDefectoTxt;
+        
+        /// <summary>
+        /// AddSacosFS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FieldSet AddSacosFS;
+        
+        /// <summary>
+        /// AddSumaSacosTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField AddSumaSacosTxt;
+        
+        /// <summary>
+        /// AddSacosRetenidosTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField AddSacosRetenidosTxt;
+        
+        /// <summary>
+        /// Panel4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Panel4;
+        
+        /// <summary>
+        /// AddDetallPnl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel AddDetallPnl;
         
         /// <summary>
         /// AddNotaDetalleGridP control.
@@ -425,6 +569,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.RowSelectionModel RowSelectionModel2;
+        
+        /// <summary>
+        /// Toolbar2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Toolbar Toolbar2;
         
         /// <summary>
         /// AgregarDetalleBtn control.
@@ -454,22 +607,13 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.Button EliminarDetalleBtn;
         
         /// <summary>
-        /// AddSumaSacosTxt control.
+        /// AddResumenPnl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField AddSumaSacosTxt;
-        
-        /// <summary>
-        /// AddSacosRetenidosTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.NumberField AddSacosRetenidosTxt;
+        protected global::Ext.Net.Panel AddResumenPnl;
         
         /// <summary>
         /// AddSumaPesoBrutoTxt control.
@@ -488,24 +632,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.NumberField AddTaraTxt;
-        
-        /// <summary>
-        /// AddDescuentoTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.NumberField AddDescuentoTxt;
-        
-        /// <summary>
-        /// AddTotalRecibidoTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.NumberField AddTotalRecibidoTxt;
         
         /// <summary>
         /// AddCreatedByTxt control.
@@ -551,6 +677,51 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button AddGuardarBtn;
+        
+        /// <summary>
+        /// AddCalculateDefectWin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Window AddCalculateDefectWin;
+        
+        /// <summary>
+        /// AddCalculateDefectFormPnl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FormPanel AddCalculateDefectFormPnl;
+        
+        /// <summary>
+        /// AddCalculateSampleTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField AddCalculateSampleTxt;
+        
+        /// <summary>
+        /// AddCalculateBadSampleTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField AddCalculateBadSampleTxt;
+        
+        /// <summary>
+        /// Button3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Button3;
         
         /// <summary>
         /// AddDetallesWin control.

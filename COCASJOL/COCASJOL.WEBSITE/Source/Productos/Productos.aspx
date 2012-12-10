@@ -388,7 +388,7 @@
             runat="server"
             Hidden="true"
             Icon="CartAdd"
-            Title="Agregar Tipo de Producto"
+            Title="Producto"
             Width="500"
             Layout="FormLayout"
             AutoHeight="True"
@@ -416,10 +416,12 @@
                                             Mode="Local"
                                             TypeAhead="true">
                                             <Triggers>
-                                                <ext:FieldTrigger Icon="Clear" HideTrigger="true" />
+                                                        <ext:FieldTrigger Icon="Clear" HideTrigger="true" />
                                             </Triggers>
                                             <Listeners>
-                                                <TriggerClick Handler="this.clearValue();" />
+                                                <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
+                                                <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
+                                                <Select Handler="this.triggers[0].show();" />
                                             </Listeners>
                                         </ext:ComboBox>
                                         <ext:NumberField runat="server" ID="AddIdTxt"               DataIndex="PRODUCTOS_ID"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Producto" AllowBlank="false" Text="0" Hidden="true" ReadOnly="true"></ext:NumberField>
@@ -453,7 +455,7 @@
             runat="server"
             Hidden="true"
             Icon="CartEdit"
-            Title="Editar Tipo de Producto"
+            Title="Producto"
             Width="500"
             Layout="FormLayout"
             AutoHeight="True"
@@ -482,15 +484,18 @@
                                         </ext:NumberField>
                                         <ext:ComboBox runat="server"    ID="EditTipoDeProdIdCmb"  DataIndex="TIPOS_PROD_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Producto" AllowBlank="false" MsgTarget="Side"
                                             StoreID="TiposDeProductoSt" 
+                                            EmptyText="Seleccione un Tipo"
                                             ValueField="TIPOS_PROD_ID" 
                                             DisplayField="TIPOS_PROD_NOMBRE" 
                                             Mode="Local"
                                             TypeAhead="true">
                                             <Triggers>
-                                                <ext:FieldTrigger Icon="Clear" />
+                                                <ext:FieldTrigger Icon="Clear" HideTrigger="true" />
                                             </Triggers>
                                             <Listeners>
-                                                <TriggerClick Handler="this.clearValue();" />
+                                                <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
+                                                <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
+                                                <Select Handler="this.triggers[0].show();" />
                                             </Listeners>
                                         </ext:ComboBox>
                                         <ext:TextField runat="server"   ID="EditNombreTxt"        DataIndex="PRODUCTOS_NOMBRE"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" IsRemoteValidation="true">

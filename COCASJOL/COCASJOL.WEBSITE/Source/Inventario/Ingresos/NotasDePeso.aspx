@@ -7,6 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title></title>
+    <%--<meta http-equiv="refresh" content="3" />--%>
     <style type="text/css">
         .cbStates-list 
         {
@@ -110,7 +111,9 @@
                 var fields = AddForm.getForm().getFieldValues(false, "dataIndex");
 
                 //                Grid.insertRecord(0, fields, false);
-                //                AddForm.getForm().reset();
+                var pesoJson = AddDetailX.pesoToJson();
+                Ext.net.DirectMethods.AddNotaDePeso_Click(pesoJson);
+                AddForm.getForm().reset();
             },
 
             getIndex: function () {
@@ -224,6 +227,8 @@
         var AddDetailAddForm = null;
         var AddDetailEditWindow = null;
         var AddDetailEditForm = null;
+        var AddDetailAddCalculateDefectWindow = null;
+        var AddDetailAddCalculateDefectForm = null;
 
         var AlertSelMsgTitle = "Atención";
         var AlertSelMsg = "Debe seleccionar 1 elemento";
@@ -237,15 +242,18 @@
 
             setReferences: function () {
                 AddDetailGrid = AddNotaDetalleGridP;
-                AddDetailGridStore = NotaDetalleSt;
+                AddDetailGridStore = AddNotaDetalleSt;
                 AddDetailAddWindow = AddDetallesWin;
                 AddDetailAddForm = AddDetallesFormPnl;
                 AddDetailEditWindow = EditDetallesWin;
                 AddDetailEditForm = EditDetallesFormPnl;
+                AddDetailAddCalculateDefectWindow = AddCalculateDefectWin;
+                AddDetailAddCalculateDefectForm = AddCalculateDefectFormPnl;
             },
 
             add: function () {
                 AddDetailAddWindow.show();
+                Ext.getCmp('AddDetailBagTxt').focus(false, 200);
             },
 
             insert: function () {
@@ -253,6 +261,19 @@
                 AddDetailGrid.insertRecord(0, fields, true);
                 AddDetailAddForm.getForm().reset();
                 Ext.getCmp('AddDetailBagTxt').focus(false, 200);
+            },
+
+            insertDefectCalculation: function () {
+                var sample = AddCalculateSampleTxt.getValue();
+                var badSample = AddCalculateBadSampleTxt.getValue();
+
+                if (badSample > 0) {
+                    var res = sample / badSample;
+                    AddPorcentajeDefectoTxt.setValue(Ext.util.Format.number(res, '0.00%'));
+                    AddDetailAddCalculateDefectWindow.hide();
+                    Ext.getCmp('AddPorcentajeDefectoTxt').focus(false, 200);
+                } else
+                    Ext.Msg.alert('Porcentaje de Defecto', 'El valor de gramos malos debe ser mayor a cero.');
             },
 
             getIndex: function () {
@@ -305,7 +326,13 @@
                     AddDetailEditWindow.show();
                     AddDetailEditForm.getForm().loadRecord(rec);
                     AddDetailEditForm.record = rec;
+                    Ext.getCmp('EditDetailBagTxt').focus(false, 200);
                 }
+            },
+
+            openDefectCalculation: function () {
+                AddDetailAddCalculateDefectWindow.show();
+                Ext.getCmp('AddCalculateSampleTxt').focus(false, 200);
             },
 
             update: function () {
@@ -332,6 +359,13 @@
                 } else {
                     var msg = Ext.Msg;
                     Ext.Msg.alert(AlertSelMsgTitle, AlertSelMsg);
+                }
+            },
+
+            keyUpEventAddCalculateDefect: function (sender, e) {
+                if (e.getKey() == 13) {
+                    if (AddDetailAddCalculateDefectForm.getForm().isValid())
+                        this.insertDefectCalculation();
                 }
             },
 
@@ -366,6 +400,16 @@
                 });
 
                 return sum;
+            },
+
+            pesoToJson: function () {
+                var items = AddDetailGridStore.data;
+                var ret = [];
+                for (var i = 0; i < items.length; i++) {
+                    ret.push({DETALLES_CANTIDAD_SACOS: items.items[i].data.DETALLES_CANTIDAD_SACOS,  DETALLES_PESO: items.items[i].data.DETALLES_PESO });
+                }
+            
+                return Ext.encode(ret);
             }
         };
     </script>
@@ -419,6 +463,11 @@
                 SelectMethod="GetClasificacionesDeCafe" >
         </asp:ObjectDataSource>
 
+        <asp:ObjectDataSource ID="EstadosNotaDS" runat="server"
+                TypeName="COCASJOL.LOGIC.Inventario.Ingresos.EstadoNotaDePesoLogic"
+                SelectMethod="GetEstadosNotaDePeso" >
+        </asp:ObjectDataSource>
+
         <ext:Store ID="SocioSt" runat="server" DataSourceID="SociosDS">
             <Reader>
                 <ext:JsonReader>
@@ -445,6 +494,17 @@
             </Reader>
         </ext:Store>
         
+        <ext:Store ID="EstadosNotaSt" runat="server" DataSourceID="EstadosNotaDS">
+            <Reader>
+                <ext:JsonReader>
+                    <Fields>
+                        <ext:RecordField Name="ESTADOS_NOTA_ID" />
+                        <ext:RecordField Name="ESTADOS_NOTA_NOMBRE" />
+                    </Fields>
+                </ext:JsonReader>
+            </Reader>
+        </ext:Store>
+
         <ext:Hidden ID="nullHdn" runat="server" >
         </ext:Hidden>
 
@@ -637,7 +697,7 @@
             </Items>
         </ext:Viewport>
 
-        <ext:Store ID="NotaDetalleSt" runat="server" WarningOnDirty="false" IgnoreExtraFields="true" AutoSave="true" >
+        <ext:Store ID="AddNotaDetalleSt" runat="server" WarningOnDirty="false" IgnoreExtraFields="true" AutoSave="true" >
             <Reader>
                 <ext:JsonReader>
                     <Fields>
@@ -657,181 +717,248 @@
             Hidden="true"
             Icon="PageWhiteAdd"
             Title="Agregar Notas de Peso"
-            Width="600"
+            Width="640"
             AutoHeight="True"
             Resizable="false"
             Shadow="None"
             Modal="true"
+            Maximizable="true"
             X="10" Y="30">
             <Listeners>
-                <Hide Handler="#{NotaDetalleSt}.removeAll();" />
+                <Hide Handler="#{AddNotaDetalleSt}.removeAll(); #{AgregarNotasFormP}.getForm().reset();" />
             </Listeners>
             <Items>
-                <ext:FormPanel ID="AgregarNotasFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true">
+                <ext:FormPanel ID="AgregarNotasFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelAlign="Right" LabelWidth="130">
                     <Listeners>
                         <Show Handler="this.getForm().reset();" />
                     </Listeners>
                     <Items>
                         <ext:Panel runat="server" Title="Nota de Peso" Layout="AnchorLayout" AutoHeight="True" Resizable="false" AnchorHorizontal="100%">
                             <Items>
-                                <ext:Panel runat ="server" Layout="ColumnLayout" Padding="5" Border="false" AnchorHorizontal="100%" >
-                                    <LayoutConfig>
-                                        <ext:ColumnLayoutConfig FitHeight="false" />
-                                    </LayoutConfig>
-                                    <Items>
-                                        <ext:Panel runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
-                                            <Items>
-                                                <ext:DateField   runat="server" ID="AddFechaNotaTxt"        DataIndex="NOTAS_FECHA" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha" AllowBlank="false"   Format="d MMM y" MsgTarget="Side"></ext:DateField>
-                                                <ext:ComboBox runat="server" ID="AddSociosIdTxt"    DataIndex="SOCIOS_ID" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Codigo Socio" AllowBlank="false"  MsgTarget="Side"
-                                                    TypeAhead="true"
-                                                    EmptyText="Seleccione un Socio"
-                                                    ForceSelection="true" 
-                                                    StoreID="SocioSt"
-                                                    Mode="Local" 
-                                                    DisplayField="SOCIOS_ID"
-                                                    ValueField="SOCIOS_ID"
-                                                    MinChars="2" 
-                                                    ListWidth="450" 
-                                                    PageSize="10" 
-                                                    ItemSelector="tr.list-item" >
-                                                    <Template ID="Template1" runat="server" Width="200">
-                                                        <Html>
-					                                        <tpl for=".">
-						                                        <tpl if="[xindex] == 1">
-							                                        <table class="cbStates-list">
-								                                        <tr>
-									                                        <th>SOCIOS_ID</th>
-									                                        <th>SOCIOS_PRIMER_NOMBRE</th>
-                                                                            <th>SOCIOS_PRIMER_APELLIDO</th>
-								                                        </tr>
-						                                        </tpl>
-						                                        <tr class="list-item">
-							                                        <td style="padding:3px 0px;">{SOCIOS_ID}</td>
-							                                        <td>{SOCIOS_PRIMER_NOMBRE}</td>
-                                                                    <td>{SOCIOS_PRIMER_APELLIDO}</td>
-						                                        </tr>
-						                                        <tpl if="[xcount-xindex]==0">
-							                                        </table>
-						                                        </tpl>
-					                                        </tpl>
-				                                        </Html>
-                                                    </Template>
-                                                    <Triggers>
-                                                        <ext:FieldTrigger Icon="Clear" HideTrigger="true" />
-                                                    </Triggers>
-                                                    <Listeners>
-                                                        <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
-                                                        <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
-                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('AddNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('AddDireccionFincaTxt'));" />
-                                                    </Listeners>
-                                                </ext:ComboBox>
-                                            </Items>
-                                        </ext:Panel>
-                                        <ext:Panel runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
-                                            <Items>
-                                                <ext:ComboBox runat="server"    ID="AddClasificacionCafeCmb"     DataIndex="CLASIFICACIONES_CAFE_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Café" AllowBlank="false" MsgTarget="Side"
-                                                    StoreID="ClasificacionesCafeSt"
-                                                    EmptyText="Seleccione un Tipo"
-                                                    ValueField="CLASIFICACIONES_CAFE_ID" 
-                                                    DisplayField="CLASIFICACIONES_CAFE_NOMBRE"
-                                                    ForceSelection="true"
-                                                    Mode="Local"
-                                                    TypeAhead="true">
-                                                    <Triggers>
-                                                        <ext:FieldTrigger Icon="Clear" />
-                                                    </Triggers>
-                                                    <Listeners>
-                                                        <TriggerClick Handler="this.clearValue();" />
-                                                    </Listeners>
-                                                </ext:ComboBox>
-                                            </Items>
-                                        </ext:Panel>
-                                    </Items>
-                                </ext:Panel>
                                 <ext:Panel runat="server" Frame="false" Padding="5" Layout="AnchorLayout" AnchorHorizontal="100%" Border="false">
                                     <Items>
-                                        <ext:TextField   runat="server" ID="AddNombreTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre del Socio" ReadOnly="true" >
-                                            <ToolTips>
-                                                <ext:ToolTip ID="ToolTip1" runat="server" Html="El nombre de socio es de solo lectura." Title="Nombre del Socio" Width="200" TrackMouse="true" />
-                                            </ToolTips>
-                                        </ext:TextField>
-                                        <ext:TextField   runat="server" ID="AddDireccionFincaTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Dirección de la Finca" ReadOnly="true" >
-                                            <ToolTips>
-                                                <ext:ToolTip ID="ToolTip2" runat="server" Html="El nombre de socio es de solo lectura." Title="Nombre del Socio" Width="200" TrackMouse="true" />
-                                            </ToolTips>
-                                        </ext:TextField>
-
-                                        <ext:RadioGroup runat="server" ID="AddTipoRolRdGrp" LabelAlign="Right" AnchorHorizontal="100%" DataIndex="NOTAS_TRANSPORTE_COOPERATIVA" FieldLabel="Forma de Transporte">
+                                        <ext:FieldSet ID="AddNotaHeaderFS" runat="server" Header="false" Padding="5">
                                             <Items>
-                                                <ext:Radio ID="AddGeneralRadio" runat="server" InputValue="0" BoxLabel="Carro Propio" ColumnWidth=".5" AnchorHorizontal="90%" Checked="true">
-                                                </ext:Radio>
-                                                <ext:Radio ID="AddEspecificoRadio" runat="server" InputValue="1" BoxLabel="Carro de la Cooperativa" ColumnWidth=".5" AnchorHorizontal="90%">
-                                                </ext:Radio>
-                                            </Items>
-                                        </ext:RadioGroup>
-                                        <ext:Panel runat="server" Frame="false" Padding="5">
-                                            <Items>
-                                                <ext:GridPanel ID="AddNotaDetalleGridP" runat="server" AutoExpandColumn="DETALLES_PESO"
-                                                    Height="250" Title="Detalle" Header="false" Border="true" StripeRows="true"
-                                                    TrackMouseOver="true" SelectionMemory="Disabled" StoreID="NotaDetalleSt" >
-                                                    <ColumnModel>
-                                                        <Columns>
-                                                            <ext:Column DataIndex="DETALLES_CANTIDAD_SACOS" Header="Sacos" MenuDisabled="true" Sortable="false" Hideable="false"></ext:Column>
-                                                            <ext:Column DataIndex="DETALLES_PESO" Header="Peso Bruto" MenuDisabled="true" Sortable="false" Hideable="false"></ext:Column>
-                                                        </Columns>
-                                                    </ColumnModel>
-                                                    <View>
-                                                        <ext:GridView ForceFit="true" MarkDirty="false" />
-                                                    </View>
-                                                    <SelectionModel>
-                                                        <ext:RowSelectionModel ID="RowSelectionModel2" runat="server" SingleSelect="true" />
-                                                    </SelectionModel>
-                                                    <TopBar>
-                                                        <ext:Toolbar runat="server">
+                                                <ext:Panel ID="AddSocioPnl" runat ="server" Layout="ColumnLayout" Padding="5" Border="false" AnchorHorizontal="100%" >
+                                                    <LayoutConfig>
+                                                        <ext:ColumnLayoutConfig FitHeight="false" />
+                                                    </LayoutConfig>
+                                                    <Items>
+                                                        <ext:Panel ID="Panel2" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
-                                                                <ext:Button ID="AgregarDetalleBtn" runat="server" Text="Agregar" Icon="Add">
+                                                                <ext:DateField runat="server" ID="AddFechaNotaTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha" AllowBlank="false" MsgTarget="Side">
+                                                                </ext:DateField>
+                                                                <ext:ComboBox  runat="server" ID="AddSociosIdTxt"  DataIndex="SOCIOS_ID"   LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Codigo Socio" AllowBlank="false" MsgTarget="Side"
+                                                                    TypeAhead="true"
+                                                                    EmptyText="Seleccione un Socio"
+                                                                    ForceSelection="true" 
+                                                                    StoreID="SocioSt"
+                                                                    Mode="Local" 
+                                                                    DisplayField="SOCIOS_ID"
+                                                                    ValueField="SOCIOS_ID"
+                                                                    MinChars="2" 
+                                                                    ListWidth="450" 
+                                                                    PageSize="10" 
+                                                                    ItemSelector="tr.list-item" >
+                                                                    <Template ID="Template1" runat="server" Width="200">
+                                                                        <Html>
+					                                                        <tpl for=".">
+						                                                        <tpl if="[xindex] == 1">
+							                                                        <table class="cbStates-list">
+								                                                        <tr>
+								                	                                        <th>SOCIOS_ID</th>
+								                	                                        <th>SOCIOS_PRIMER_NOMBRE</th>
+                                                                                            <th>SOCIOS_PRIMER_APELLIDO</th>
+								                                                        </tr>
+						                                                        </tpl>
+						                                                        <tr class="list-item">
+							                                                        <td style="padding:3px 0px;">{SOCIOS_ID}</td>
+							                                                        <td>{SOCIOS_PRIMER_NOMBRE}</td>
+                                                                                    <td>{SOCIOS_PRIMER_APELLIDO}</td>
+						                                                        </tr>
+						                                                        <tpl if="[xcount-xindex]==0">
+							                                                        </table>
+						                                                        </tpl>
+					                                                        </tpl>
+				                                                        </Html>
+                                                                    </Template>
+                                                                    <Triggers>
+                                                                        <ext:FieldTrigger Icon="Clear" HideTrigger="true" />
+                                                                    </Triggers>
                                                                     <Listeners>
-                                                                        <Click Handler="AddDetailX.add();" />
+                                                                        <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
+                                                                        <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide(); Ext.getCmp('AddNombreTxt').reset(); Ext.getCmp('AddDireccionFincaTxt').reset(); }" />
+                                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('AddNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('AddDireccionFincaTxt'));" />
                                                                     </Listeners>
-                                                                </ext:Button>
-                                                                <ext:Button ID="EditarDetalleBtn" runat="server" Text="Editar" Icon="Pencil">
-                                                                    <Listeners>
-                                                                        <Click Handler="AddDetailX.edit();" />
-                                                                    </Listeners>
-                                                                </ext:Button>
-                                                                <ext:Button ID="EliminarDetalleBtn" runat="server" Text="Eliminar" Icon="Delete">
-                                                                    <Listeners>
-                                                                        <Click Handler="AddDetailX.remove();" />
-                                                                    </Listeners>
-                                                                </ext:Button>
+                                                                </ext:ComboBox>
                                                             </Items>
-                                                        </ext:Toolbar>
-                                                    </TopBar>
-                                                    <LoadMask ShowMask="true" />
-                                                    <Listeners>
-                                                        <RowDblClick Handler="AddDetailX.edit();" />
-                                                    </Listeners>
-                                                </ext:GridPanel>
+                                                        </ext:Panel>
+                                                        <ext:Panel ID="Panel5" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
+                                                            <Items>
+                                                                <ext:ComboBox runat="server" ID="AddEstadoNotaCmb" DataIndex="ESTADOS_NOTA_ID" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Estado de Nota" AllowBlank="false" MsgTarget="Side"
+                                                                    StoreID="EstadosNotaSt"
+                                                                    EmptyText="Seleccione un Estado"
+                                                                    ValueField="ESTADOS_NOTA_ID" 
+                                                                    DisplayField="ESTADOS_NOTA_NOMBRE"
+                                                                    ForceSelection="true"
+                                                                    Mode="Local"
+                                                                    TypeAhead="true">
+                                                                    <Triggers>
+                                                                        <ext:FieldTrigger Icon="Clear" HideTrigger="true" />
+                                                                    </Triggers>
+                                                                    <Listeners>
+                                                                        <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
+                                                                        <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
+                                                                        <Select Handler="this.triggers[0].show();" />
+                                                                    </Listeners>
+                                                                </ext:ComboBox>
+                                                                <ext:ComboBox runat="server"    ID="AddClasificacionCafeCmb"     DataIndex="CLASIFICACIONES_CAFE_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Café" AllowBlank="false" MsgTarget="Side"
+                                                                    StoreID="ClasificacionesCafeSt"
+                                                                    EmptyText="Seleccione un Tipo"
+                                                                    ValueField="CLASIFICACIONES_CAFE_ID" 
+                                                                    DisplayField="CLASIFICACIONES_CAFE_NOMBRE"
+                                                                    ForceSelection="true"
+                                                                    Mode="Local"
+                                                                    TypeAhead="true">
+                                                                    <Triggers>
+                                                                        <ext:FieldTrigger Icon="Clear" HideTrigger="true" />
+                                                                    </Triggers>
+                                                                    <Listeners>
+                                                                        <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
+                                                                        <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
+                                                                        <Select Handler="this.triggers[0].show();" />
+                                                                    </Listeners>
+                                                                </ext:ComboBox>
+                                                            </Items>
+                                                        </ext:Panel>
+                                                    </Items>
+                                                </ext:Panel>
+                                                <ext:TextField   runat="server" ID="AddNombreTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre del Socio" ReadOnly="true" >
+                                                    <ToolTips>
+                                                        <ext:ToolTip ID="ToolTip1" runat="server" Html="El nombre de socio es de solo lectura." Title="Nombre del Socio" Width="200" TrackMouse="true" />
+                                                    </ToolTips>
+                                                </ext:TextField>
+                                                <ext:TextField   runat="server" ID="AddDireccionFincaTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Dirección de la Finca" ReadOnly="true" >
+                                                    <ToolTips>
+                                                        <ext:ToolTip runat="server" Html="La dirección de la finca de solo lectura." Title="Dirección de la Finca" Width="200" TrackMouse="true" />
+                                                    </ToolTips>
+                                                </ext:TextField>
+                                                <%--<ext:TextArea ID="AddTotalRecibidoTextoTxt" runat="server" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Total Recibido" ReadOnly="true" Height="50" >
+                                                    <ToolTips>
+                                                        <ext:ToolTip runat="server" Html="El total recibido es de solo lectura." Title="En Letras el numero de Libras Netas" Width="200" TrackMouse="true" />
+                                                    </ToolTips>
+                                                </ext:TextArea>--%>
+                                            </Items>
+                                        </ext:FieldSet>
+
+                                        <ext:Panel ID="AddPorcentajeDetalleSacosPnl" runat ="server" Layout="ColumnLayout" Padding="5" Border="false" AnchorHorizontal="100%" >
+                                            <LayoutConfig>
+                                                <ext:ColumnLayoutConfig FitHeight="false" />
+                                            </LayoutConfig>
+                                            <Items>
+                                                <ext:Panel ID="Panel3" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
+                                                    <Items>
+                                                        <ext:FieldSet ID="AddTransportePorcentajeFS" runat="server" Title="Forma de Entrega" Padding="5">
+                                                            <Items>
+                                                                <ext:RadioGroup runat="server" ID="AddTipoTransporteRdGrp" LabelAlign="Right" AnchorHorizontal="100%" DataIndex="NOTAS_TRANSPORTE_COOPERATIVA" FieldLabel="Forma de Transporte" ColumnsNumber="1" AutoHeight="true">
+                                                                    <Items>
+                                                                        <ext:Radio ID="AddPropiRadio" runat="server" InputValue="0" BoxLabel="Carro Propio" ColumnWidth=".5" AnchorHorizontal="90%" Checked="true">
+                                                                        </ext:Radio>
+                                                                        <ext:Radio ID="AddCooperativaRadio" runat="server" InputValue="1" BoxLabel="Carro de la Cooperativa" ColumnWidth=".5" AnchorHorizontal="100%">
+                                                                        </ext:Radio>
+                                                                    </Items>
+                                                                </ext:RadioGroup>
+                                                                <ext:TextField runat="server" ID="AddPorcentajeHumedadTxt" DataIndex="NOTAS_PORCENTAJE_HUMEDAD" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Porcentaje de Humedad" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" >
+                                                                    <Listeners>
+                                                                        <Change Handler="this.getEl().setValue(Ext.util.Format.number(newValue.replace(/[\$]/g, ''), '0.00%'));" />
+                                                                    </Listeners>
+                                                                </ext:TextField>
+                                                                <ext:TriggerField runat="server" ID="AddPorcentajeDefectoTxt" DataIndex="NOTAS_PORCENTAJE_DEFECTO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Porcentaje de Defecto" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" >
+                                                                    <Triggers>
+                                                                        <ext:FieldTrigger Icon="SimpleEllipsis" Tag="Calcular" Qtip="Calcular" />
+                                                                    </Triggers>
+                                                                    <Listeners>
+                                                                        <Change Handler="this.getEl().setValue(Ext.util.Format.number(newValue.replace(/[\$]/g, ''), '0.00%'));" />
+                                                                        <TriggerClick Handler="AddDetailX.openDefectCalculation();" />
+                                                                    </Listeners>
+                                                                </ext:TriggerField>
+                                                        </Items>
+                                                        </ext:FieldSet>
+                                                        <ext:FieldSet ID="AddSacosFS" runat="server" Title="Sacos" Padding="7">
+                                                            <Items>
+                                                                <ext:NumberField runat="server" ID="AddSumaSacosTxt"                                            LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cantidad de Sacos" Text="0" ReadOnly="true"></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddSacosRetenidosTxt" DataIndex="NOTAS_SACOS_RETENIDOS"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Sacos Retenidos" AllowBlank="false" MsgTarget="Side"></ext:NumberField>
+                                                            </Items>
+                                                        </ext:FieldSet>
+                                                    </Items>
+                                                </ext:Panel>
+                                                <ext:Panel ID="Panel4" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
+                                                    <Items>
+                                                        <ext:Panel ID="AddDetallPnl" runat="server" Frame="false" Padding="5" Layout="FitLayout" Border="false">
+                                                            <Items>
+                                                                <ext:GridPanel ID="AddNotaDetalleGridP" runat="server" AutoExpandColumn="DETALLES_PESO"
+                                                                    Height="250" Title="Detalle" Header="true" Border="true" StripeRows="true"
+                                                                    TrackMouseOver="true" SelectionMemory="Disabled" StoreID="AddNotaDetalleSt" >
+                                                                    <ColumnModel>
+                                                                        <Columns>
+                                                                            <ext:Column DataIndex="DETALLES_CANTIDAD_SACOS" Header="Sacos" MenuDisabled="true" Sortable="false" Hideable="false"></ext:Column>
+                                                                            <ext:Column DataIndex="DETALLES_PESO" Header="Peso Bruto" MenuDisabled="true" Sortable="false" Hideable="false"></ext:Column>
+                                                                        </Columns>
+                                                                    </ColumnModel>
+                                                                    <View>
+                                                                        <ext:GridView ForceFit="true" MarkDirty="false" />
+                                                                    </View>
+                                                                    <SelectionModel>
+                                                                        <ext:RowSelectionModel ID="RowSelectionModel2" runat="server" SingleSelect="true" />
+                                                                    </SelectionModel>
+                                                                    <TopBar>
+                                                                        <ext:Toolbar ID="Toolbar2" runat="server">
+                                                                            <Items>
+                                                                                <ext:Button ID="AgregarDetalleBtn" runat="server" Text="Agregar" Icon="Add">
+                                                                                    <Listeners>
+                                                                                        <Click Handler="AddDetailX.add();" />
+                                                                                    </Listeners>
+                                                                                </ext:Button>
+                                                                                <ext:Button ID="EditarDetalleBtn" runat="server" Text="Editar" Icon="Pencil">
+                                                                                    <Listeners>
+                                                                                        <Click Handler="AddDetailX.edit();" />
+                                                                                    </Listeners>
+                                                                                </ext:Button>
+                                                                                <ext:Button ID="EliminarDetalleBtn" runat="server" Text="Eliminar" Icon="Delete">
+                                                                                    <Listeners>
+                                                                                        <Click Handler="AddDetailX.remove();" />
+                                                                                    </Listeners>
+                                                                                </ext:Button>
+                                                                            </Items>
+                                                                        </ext:Toolbar>
+                                                                    </TopBar>
+                                                                    <LoadMask ShowMask="true" />
+                                                                    <Listeners>
+                                                                        <RowDblClick Handler="AddDetailX.edit();" />
+                                                                    </Listeners>
+                                                                </ext:GridPanel>
+                                                            </Items>
+                                                        </ext:Panel>
+                                                    </Items>
+                                                </ext:Panel>
                                             </Items>
                                         </ext:Panel>
 
-                                        <ext:Panel runat ="server" Layout="ColumnLayout" Padding="5" Border="false" AnchorHorizontal="100%" >
+                                        <ext:Panel ID="AddResumenPnl" runat ="server" Layout="ColumnLayout" Padding="5" Border="false" AnchorHorizontal="100%" >
                                             <LayoutConfig>
                                                 <ext:ColumnLayoutConfig FitHeight="false" />
                                             </LayoutConfig>
                                             <Items>
                                                 <ext:Panel runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
                                                     <Items>
-                                                        <ext:NumberField runat="server" ID="AddSumaSacosTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cantidad de Sacos" Text="0" ReadOnly="true"></ext:NumberField>
-                                                        <ext:NumberField runat="server" ID="AddSacosRetenidosTxt" DataIndex="NOTAS_SACOS_RETENIDOS" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Sacos Retenidos"     AllowBlank="false"></ext:NumberField>
                                                     </Items>
                                                 </ext:Panel>
                                                 <ext:Panel runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
                                                     <Items>
-                                                        <ext:NumberField runat="server" ID="AddSumaPesoBrutoTxt" DataIndex="NOTAS_PESO_SUMA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Suma"      AllowBlank="false" Text="0" ReadOnly="true"></ext:NumberField>
-                                                        <ext:NumberField runat="server" ID="AddTaraTxt"          DataIndex="NOTAS_PESO_TARA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tara"      AllowBlank="false" ></ext:NumberField>
-                                                        <ext:NumberField runat="server" ID="AddDescuentoTxt"     DataIndex="NOTAS_PESO_DESCUENTO"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descuento" AllowBlank="false" ReadOnly="true" ></ext:NumberField>
-                                                        <ext:NumberField runat="server" ID="AddTotalRecibidoTxt" DataIndex="NOTAS_PESO_TOTAL_RECIBIDO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Total"     AllowBlank="false" ReadOnly="true" ></ext:NumberField>
+                                                        <ext:NumberField runat="server" ID="AddSumaPesoBrutoTxt"  DataIndex="NOTAS_PESO_SUMA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Suma"      AllowBlank="false" Text="0" ReadOnly="true" MsgTarget="Side"></ext:NumberField>
+                                                        <ext:NumberField runat="server" ID="AddTaraTxt"           DataIndex="NOTAS_PESO_TARA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tara"      AllowBlank="false" MsgTarget="Side" ></ext:NumberField>
+                                                        <%--<ext:NumberField runat="server" ID="AddDescuentoTxt"      DataIndex="NOTAS_PESO_DESCUENTO"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descuento" AllowBlank="false" ReadOnly="true" ></ext:NumberField>
+                                                        <ext:NumberField runat="server" ID="AddTotalRecibidoTxt"  DataIndex="NOTAS_PESO_TOTAL_RECIBIDO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Total"     AllowBlank="false" ReadOnly="true" ></ext:NumberField>--%>
                                                     </Items>
                                                 </ext:Panel>
                                             </Items>
@@ -852,6 +979,56 @@
                             </Listeners>
                         </ext:Button>
                     </Buttons>
+                </ext:FormPanel>
+            </Items>
+        </ext:Window>
+
+        <ext:Window 
+            ID="AddCalculateDefectWin" 
+            runat="server" 
+            Title="Calcular Defecto" 
+            CenterOnLoad="true"
+            Width="420" 
+            AutoHeight="true"
+            X="50"
+            Y="50"
+            Padding="10" 
+            Resizable="false" 
+            Closable="true"
+            Layout="Fit"
+            Hidden="true"
+            Modal="true">
+            <Listeners>
+                <Show Handler="#{AddCalculateDefectFormPnl}.getForm().reset();" />
+            </Listeners>
+            <Items>
+                <ext:FormPanel 
+                    ID="AddCalculateDefectFormPnl" 
+                    runat="server" 
+                    Border="false" 
+                    MonitorValid="true"
+                    BodyStyle="background-color:transparent;"
+                    Layout="Form"
+                    AutoHeight="true">
+                    <Items>
+                        <ext:NumberField ID="AddCalculateSampleTxt"    runat="server" MsgTarget="Side" AllowBlank="false" FieldLabel="Peso de Muestra" Width="260" EnableKeyEvents="true" >
+                            <Listeners>
+                                <KeyUp Handler="AddDetailX.keyUpEventAddCalculateDefect(this, e);"/>
+                            </Listeners>
+                        </ext:NumberField>
+                        <ext:NumberField ID="AddCalculateBadSampleTxt" runat="server" MsgTarget="Side" AllowBlank="false" FieldLabel="peso de Gramos Malos"  Width="260" EnableKeyEvents="true" >
+                            <Listeners>
+                                <KeyUp Handler="AddDetailX.keyUpEventAddCalculateDefect(this, e);"/>
+                            </Listeners>
+                        </ext:NumberField>
+                    </Items>
+                    <Buttons>
+                    <ext:Button ID="Button3" runat="server" Text="Guardar" Icon="Disk" FormBind="true">
+                        <Listeners>
+                            <Click Handler="AddDetailX.insertDefectCalculation();" />
+                        </Listeners>
+                    </ext:Button>
+            </Buttons>
                 </ext:FormPanel>
             </Items>
         </ext:Window>
@@ -992,8 +1169,7 @@
                                 <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                     <Items>
                                         <ext:NumberField runat="server" ID="EditIdTxt"            DataIndex="ESTADOS_NOTA_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Estado" AllowBlank="false" ReadOnly="true" Hidden="true"></ext:NumberField>
-                                        <ext:TextField runat="server"   ID="EditNombreTxt"        DataIndex="ESTADOS_NOTA_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" IsRemoteValidation="true">
-                                            <RemoteValidation OnValidation="EditNombreTxt_Validate" />
+                                        <ext:TextField runat="server"   ID="EditNombreTxt"        DataIndex="ESTADOS_NOTA_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" >
                                         </ext:TextField>
                                         <ext:TextField runat="server"   ID="EditDescripcionTxt"   DataIndex="ESTADOS_NOTA_DESCRIPCION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100"></ext:TextField>
                                         <ext:TextField runat="server"   ID="EditCreatedByTxt"     DataIndex="CREADO_POR"             LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>

@@ -78,11 +78,13 @@ namespace COCASJOL.LOGIC.Entorno
                 {
                     db.variables_de_entorno.MergeOption = MergeOption.NoTracking;
 
-                    var query = from envars in db.variables_de_entorno
-                                where envars.VARIABLES_LLAVE == VARIABLES_LLAVE
-                                select envars;
+                    EntityKey k = new EntityKey("colinasEntities.variables_de_entorno", "VARIABLES_LLAVE", VARIABLES_LLAVE);
 
-                    return query.First<variable_de_entorno>();
+                    var env = db.GetObjectByKey(k);
+
+                    variable_de_entorno environmentVariable = (variable_de_entorno)env;
+
+                    return environmentVariable;
                 }
             }
             catch (Exception)

@@ -135,6 +135,17 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
         {
             try
             {
+                decimal peso_suma = 0;
+                foreach (Dictionary<string, string> detalle in Detalles)
+                {
+                    decimal det_peso = Convert.ToDecimal(detalle["DETALLES_PESO"]);
+                    peso_suma += det_peso;
+                }
+
+                NOTAS_PESO_SUMA = peso_suma;
+                NOTAS_PORCENTAJE_DEFECTO = NOTAS_PORCENTAJE_DEFECTO / 100;
+                NOTAS_PORCENTAJE_HUMEDAD = NOTAS_PORCENTAJE_HUMEDAD / 100;
+
                 // Descuento por Defecto = ((Peso Bruto) - Tara) * (% Defecto)
                 decimal DESCUENTO_POR_DEFECTO = (NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_DEFECTO;
 
@@ -228,7 +239,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     note.FECHA_MODIFICACION = FECHA_CREACION;
 
                     foreach(Dictionary<string, string> detalle in Detalles)
-                        note.notas_detalles.Add(new nota_detalle() { DETALLES_PESO = Convert.ToDecimal(detalle["DETALLE_PESO"]), DETALLES_CANTIDAD_SACOS = Convert.ToInt32(detalle["DETALLE_CANTIDAD_SACOS"]) });
+                        note.notas_detalles.Add(new nota_detalle() { DETALLES_PESO = Convert.ToDecimal(detalle["DETALLES_PESO"]), DETALLES_CANTIDAD_SACOS = Convert.ToInt32(detalle["DETALLES_CANTIDAD_SACOS"]) });
 
                     db.notas_de_peso.AddObject(note);
 
