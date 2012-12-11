@@ -24,7 +24,7 @@
   <privilege>
     <key>MANT_TIPOPRODS</key>
     <page>TiposDeProductos</page>
-    <module>ProductosModule</module>
+    <module>TiposDeProductoModule</module>
     <shortcut>scTiposDeProductos</shortcut>
     <menuitem>TiposDeProductosMenuItem</menuitem>
   </privilege>

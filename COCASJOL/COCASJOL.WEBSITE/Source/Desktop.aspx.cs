@@ -54,16 +54,27 @@ namespace COCASJOL.WEBSITE
 
                 UsuarioLogic usuariologic = new UsuarioLogic();
 
-                List<privilegio> privs = usuariologic.GetPrivilegiosNoDeUsuario(loggedUser);
+                //List<privilegio> privs = usuariologic.GetPrivilegiosNoDeUsuario(loggedUser);
+                List<privilegio> privs = usuariologic.GetPrivilegiosDeUsuario(loggedUser);
 
                 XmlDocument doc = new XmlDocument();
                 doc.Load(Server.MapPath(System.Configuration.ConfigurationManager.AppSettings.Get("privilegesXML")));
 
                 XmlNodeList nodes = doc.SelectNodes("privilegios/privilege");
 
+                DesktopShortcuts listDS = this.MyDesktop.Shortcuts;
+                DesktopModulesCollection listDM = this.MyDesktop.Modules;
+                ItemsCollection<Component> listIC = this.MyDesktop.StartMenu.Items;
 
-                foreach (privilegio p in privs)
+                if (privs.Count == 0)
                 {
+                    listDS.Clear();
+                    listDM.Clear();
+                    listIC.Clear();
+                }
+                else
+                {
+
                     foreach (XmlNode node in nodes)
                     {
                         XmlNode keyNode = node.SelectSingleNode("key");
@@ -76,12 +87,12 @@ namespace COCASJOL.WEBSITE
                         string shortcut = shortcutNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
                         string menuitem = menuitemNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
 
-                        if (p.PRIV_LLAVE == key)
-                        {
-                            DesktopShortcuts listDS = this.MyDesktop.Shortcuts;
-                            DesktopModulesCollection listDM = this.MyDesktop.Modules;
-                            ItemsCollection<Component> listIC = this.MyDesktop.StartMenu.Items;
+                        var query = from p in privs.AsParallel()
+                                    where p.PRIV_LLAVE == key
+                                    select p;
 
+                        if (query.Count() == 0)
+                        {
                             for (int x = 0; x < listDS.Count; x++)
                             {
                                 DesktopShortcut ds = listDS.ElementAt(x);

@@ -312,10 +312,11 @@
                                                             ID="f_TIPOS_PROD_ID" 
                                                             runat="server"
                                                             Icon="Find"
+                                                            AllowBlank="true"
+                                                            ForceSelection="true"
                                                             StoreID="TiposDeProductoSt"
-                                                            DataIndex="TIPOS_PROD_ID"
                                                             ValueField="TIPOS_PROD_ID" 
-                                                            DisplayField="TIPOS_PROD_NOMBRE" 
+                                                            DisplayField="TIPOS_PROD_NOMBRE"
                                                             Mode="Local"
                                                             TypeAhead="true">
                                                             <Triggers>

@@ -17,6 +17,8 @@ namespace COCASJOL.LOGIC.Web
 {
     public class COCASJOLBASE : Page
     {
+        private static object lockObj = new object();
+
         public COCASJOLBASE()
         {
             base.Init += new EventHandler(this.COCASJOLBASE_Init);
@@ -48,75 +50,82 @@ namespace COCASJOL.LOGIC.Web
 
         protected void ValidarCredenciales(string pagename)
         {
-            try
+            lock (lockObj)
             {
-                string loggedUser = Session["username"] as string;
+                try
+                {
+                    string loggedUser = Session["username"] as string;
 #if DEBUG
-                if (loggedUser == "DEVELOPER")
-                    return;
+                    if (loggedUser == "DEVELOPER")
+                        return;
 #endif
 
-                XmlDocument doc = new XmlDocument();
-                doc.Load(Server.MapPath(System.Configuration.ConfigurationManager.AppSettings.Get("privilegesXML")));
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(Server.MapPath(System.Configuration.ConfigurationManager.AppSettings.Get("privilegesXML")));
 
-                XmlNode node = doc.SelectSingleNode("privilegios/privilege[page[contains(text(), '" + pagename + "')]]");
-                XmlNode keyNode = node.SelectSingleNode("key");
-                string key = keyNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
+                    XmlNode node = doc.SelectSingleNode("privilegios/privilege[page[contains(text(), '" + pagename + "')]]");
+                    XmlNode keyNode = node.SelectSingleNode("key");
+                    string key = keyNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
 
-                UsuarioLogic usuariologic = new UsuarioLogic();
-                List<privilegio> privs = usuariologic.GetPrivilegiosDeUsuario(loggedUser);
+                    UsuarioLogic usuariologic = new UsuarioLogic();
+                    List<privilegio> privs = usuariologic.GetPrivilegiosDeUsuario(loggedUser);
 
-                foreach (privilegio p in privs)
-                {
-                    if (p.PRIV_LLAVE == key)
-                        return;
+                    foreach (privilegio p in privs)
+                    {
+                        if (p.PRIV_LLAVE == key)
+                            return;
+                    }
+
+                    base.Response.Redirect("~/NoAccess.aspx");
                 }
-
-                base.Response.Redirect("~/NoAccess.aspx");
-            }
-            catch (Exception)
-            {
-                throw;
+                catch (Exception)
+                {
+                    throw;
+                } 
             }
         }
 
         public Dictionary<string, string> GetVariables(string pagename)
         {
-            Dictionary<string, string> variablesDictionary = null;
-            try
+            lock (lockObj)
             {
-                variablesDictionary = new Dictionary<string, string>();
 
-                XmlDocument doc = new XmlDocument();
-                doc.Load(Server.MapPath(System.Configuration.ConfigurationManager.AppSettings.Get("variablesDeEntornoXML")));
-                XmlNodeList pagesNode = doc.SelectNodes("paginas/pagina[Name[contains(text(), '" + pagename + "')]]");
-
-                VariablesDeEntornoLogic variablesLogic = new VariablesDeEntornoLogic();
-
-                foreach (XmlNode pageNode in pagesNode)
+                Dictionary<string, string> variablesDictionary = null;
+                try
                 {
-                    XmlNodeList variablesNode = pageNode.SelectNodes("variables/variable");
+                    variablesDictionary = new Dictionary<string, string>();
 
-                    foreach (XmlNode variableNode in variablesNode)
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(Server.MapPath(System.Configuration.ConfigurationManager.AppSettings.Get("variablesDeEntornoXML")));
+                    XmlNodeList pagesNode = doc.SelectNodes("paginas/pagina[Name[contains(text(), '" + pagename + "')]]");
+
+                    VariablesDeEntornoLogic variablesLogic = new VariablesDeEntornoLogic();
+
+                    foreach (XmlNode pageNode in pagesNode)
                     {
-                        XmlNode keyNode = variableNode.SelectSingleNode("key");
-                        XmlNode mapsNode = variableNode.SelectSingleNode("maps");
+                        XmlNodeList variablesNode = pageNode.SelectNodes("variables/variable");
 
-                        string key = keyNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
-                        string maps = mapsNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
+                        foreach (XmlNode variableNode in variablesNode)
+                        {
+                            XmlNode keyNode = variableNode.SelectSingleNode("key");
+                            XmlNode mapsNode = variableNode.SelectSingleNode("maps");
 
-                        variable_de_entorno varenv = variablesLogic.GetVariableDeEntorno(key);
+                            string key = keyNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
+                            string maps = mapsNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
 
-                        variablesDictionary[maps] = varenv.VARIABLES_VALOR;
+                            variable_de_entorno varenv = variablesLogic.GetVariableDeEntorno(key);
+
+                            variablesDictionary[maps] = varenv.VARIABLES_VALOR;
+                        }
                     }
-                }
 
-                return variablesDictionary;
-            }
-            catch (Exception)
-            {
-                
-                throw;
+                    return variablesDictionary;
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                } 
             }
         }
     }

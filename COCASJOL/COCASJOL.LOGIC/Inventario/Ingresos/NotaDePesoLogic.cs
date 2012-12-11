@@ -32,16 +32,61 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
+        public nota_de_peso GetNotaDePeso(int NOTAS_ID)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    EntityKey k = new EntityKey("colinasEntities.notas_de_peso", "NOTAS_ID", NOTAS_ID);
+
+                    var n = db.GetObjectByKey(k);
+
+                    nota_de_peso note = (nota_de_peso)n;
+
+                    return note;
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
+        public List<nota_detalle> GetDetalleNotaDePeso(int NOTAS_ID)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    EntityKey k = new EntityKey("colinasEntities.notas_de_peso", "NOTAS_ID", NOTAS_ID);
+
+                    var n = db.GetObjectByKey(k);
+
+                    nota_de_peso note = (nota_de_peso)n;
+
+                    return note.notas_detalles.ToList<nota_detalle>();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public List<nota_de_peso> GetNotasDePeso
             (int NOTAS_ID,
             int ESTADOS_NOTA_ID,
+            string ESTADOS_NOTA_NOMBRE,
             string SOCIOS_ID,
             int CLASIFICACIONES_CAFE_ID,
             string CLASIFICACIONES_CAFE_NOMBRE,
             DateTime NOTAS_FECHA,
             DateTime FECHA_DESDE,
             DateTime FECHA_HASTA,
-            Boolean NOTAS_TRANSPORTE_COOPERATIVA,
+            Boolean? NOTAS_TRANSPORTE_COOPERATIVA,
             decimal NOTAS_PORCENTAJE_DEFECTO,
             decimal NOTAS_PORCENTAJE_HUMEDAD,
             decimal NOTAS_PESO_DEFECTO,
@@ -63,7 +108,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 {
                     db.notas_de_peso.MergeOption = MergeOption.NoTracking;
 
-                    var query = from notasPeso in db.notas_de_peso.Include("socios").Include("clasificaciones_cafe")
+                    var query = from notasPeso in db.notas_de_peso.Include("socios").Include("clasificaciones_cafe").Include("estados_nota_de_peso")
                                 where
                                 (NOTAS_ID.Equals(0) ? true : notasPeso.NOTAS_ID.Equals(NOTAS_ID)) &&
                                 (ESTADOS_NOTA_ID.Equals(0) ? true : notasPeso.ESTADOS_NOTA_ID.Equals(ESTADOS_NOTA_ID)) &&
@@ -164,7 +209,8 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 // Total = (Peso Bruto) - Tara - Descuento
                 decimal TOTAL = NOTAS_PESO_SUMA - NOTAS_PESO_TARA - DESCUENTO;
 
-                string TOTAL_TEXTO = COCASJOL.LOGIC.Utiles.Numalet.ToCardinal(TOTAL.ToString(), new System.Globalization.CultureInfo("en-US"));
+                string localization = System.Configuration.ConfigurationManager.AppSettings.Get("localizacionNumerosALetras");
+                string TOTAL_TEXTO = COCASJOL.LOGIC.Utiles.Numalet.ToCardinal(TOTAL.ToString(), new System.Globalization.CultureInfo(localization));
 
                 InsertarNotaDePeso
                     (ESTADOS_NOTA_ID,
@@ -320,12 +366,23 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             decimal NOTAS_PESO_SUMA,
             decimal NOTAS_PESO_TARA,
             int NOTAS_SACOS_RETENIDOS,
-            string CREADO_POR,
+            string MODIFICADO_POR,
             Dictionary<string, string>[] Detalles,
             Dictionary<string, string> Variables)
         {
             try
             {
+                decimal peso_suma = 0;
+                foreach (Dictionary<string, string> detalle in Detalles)
+                {
+                    decimal det_peso = Convert.ToDecimal(detalle["DETALLES_PESO"]);
+                    peso_suma += det_peso;
+                }
+
+                NOTAS_PESO_SUMA = peso_suma;
+                NOTAS_PORCENTAJE_DEFECTO = NOTAS_PORCENTAJE_DEFECTO / 100;
+                NOTAS_PORCENTAJE_HUMEDAD = NOTAS_PORCENTAJE_HUMEDAD / 100;
+
                 // Descuento por Defecto = ((Peso Bruto) - Tara) * (% Defecto)
                 decimal DESCUENTO_POR_DEFECTO = (NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_DEFECTO;
 
@@ -344,7 +401,8 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 // Total = (Peso Bruto) - Tara - Descuento
                 decimal TOTAL = NOTAS_PESO_SUMA - NOTAS_PESO_TARA - DESCUENTO;
 
-                string TOTAL_TEXTO = COCASJOL.LOGIC.Utiles.Numalet.ToCardinal(TOTAL.ToString(), new System.Globalization.CultureInfo("en-US"));
+                string localization = System.Configuration.ConfigurationManager.AppSettings.Get("localizacionNumerosALetras");
+                string TOTAL_TEXTO = COCASJOL.LOGIC.Utiles.Numalet.ToCardinal(TOTAL.ToString(), new System.Globalization.CultureInfo(localization));
 
                 ActualizarNotaDePeso
                     (NOTAS_ID,
@@ -363,7 +421,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     TOTAL,
                     TOTAL_TEXTO,
                     NOTAS_SACOS_RETENIDOS,
-                    CREADO_POR,
+                    MODIFICADO_POR,
                     DateTime.Today,
                     Detalles);
             }
@@ -391,8 +449,8 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             decimal NOTAS_PESO_TOTAL_RECIBIDO,
             string NOTAS_PESO_TOTAL_RECIBIDO_TEXTO,
             int NOTAS_SACOS_RETENIDOS,
-            string CREADO_POR,
-            DateTime FECHA_CREACION,
+            string MODIFICADO_POR,
+            DateTime FECHA_MODIFICACION,
             Dictionary<string, string>[] Detalles)
         {
             try
@@ -421,10 +479,10 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     note.NOTAS_PESO_TOTAL_RECIBIDO = NOTAS_PESO_TOTAL_RECIBIDO;
                     note.NOTAS_PESO_TOTAL_RECIBIDO_TEXTO = NOTAS_PESO_TOTAL_RECIBIDO_TEXTO;
                     note.NOTAS_SACOS_RETENIDOS = NOTAS_SACOS_RETENIDOS;
-                    note.CREADO_POR = CREADO_POR;
-                    note.FECHA_CREACION = FECHA_CREACION;
-                    note.MODIFICADO_POR = CREADO_POR;
-                    note.FECHA_MODIFICACION = FECHA_CREACION;
+                    note.MODIFICADO_POR = MODIFICADO_POR;
+                    note.FECHA_MODIFICACION = FECHA_MODIFICACION;
+
+                    note.notas_detalles.Clear();
 
                     foreach (Dictionary<string, string> detalle in Detalles)
                         note.notas_detalles.Add(new nota_detalle() { DETALLES_PESO = Convert.ToDecimal(detalle["DETALLE_PESO"]), DETALLES_CANTIDAD_SACOS = Convert.ToInt32(detalle["DETALLE_CANTIDAD_SACOS"]) });
@@ -449,8 +507,8 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                         inventario_cafe_de_socio asocInventory = (inventario_cafe_de_socio)invCafSoc;
                         asocInventory.INVENTARIO_CANTIDAD -= NOTAS_PESO_TOTAL_RECIBIDO_ANTERIOR;
                         asocInventory.INVENTARIO_CANTIDAD += NOTAS_PESO_TOTAL_RECIBIDO;
-                        asocInventory.MODIFICADO_POR = CREADO_POR;
-                        asocInventory.FECHA_MODIFICACION = FECHA_CREACION;
+                        asocInventory.MODIFICADO_POR = MODIFICADO_POR;
+                        asocInventory.FECHA_MODIFICACION = FECHA_MODIFICACION;
                     }
                     else
                     {
@@ -458,10 +516,10 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                         asocInventory.SOCIOS_ID = SOCIOS_ID;
                         asocInventory.CLASIFICACIONES_CAFE_ID = CLASIFICACIONES_CAFE_ID;
                         asocInventory.INVENTARIO_CANTIDAD = NOTAS_PESO_TOTAL_RECIBIDO;
-                        asocInventory.CREADO_POR = CREADO_POR;
-                        asocInventory.FECHA_CREACION = FECHA_CREACION;
-                        asocInventory.MODIFICADO_POR = CREADO_POR;
-                        asocInventory.FECHA_MODIFICACION = FECHA_CREACION;
+                        asocInventory.CREADO_POR = MODIFICADO_POR;
+                        asocInventory.FECHA_CREACION = FECHA_MODIFICACION;
+                        asocInventory.MODIFICADO_POR = MODIFICADO_POR;
+                        asocInventory.FECHA_MODIFICACION = FECHA_MODIFICACION;
 
                         db.inventario_cafe_de_socio.AddObject(asocInventory);
                     }
