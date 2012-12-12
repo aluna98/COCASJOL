@@ -54,15 +54,20 @@
     <Compile Include="Inventario\Ingresos\EstadoNotaDePesoLogic.cs" />
     <Compile Include="Inventario\Ingresos\NotaDePesoLogic.cs" />
     <Compile Include="Inventario\InventarioDeCafeLogic.cs" />
+    <Compile Include="Inventario\Salidas\HojaDeLiquidacionLogic.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Prestamos\PrestamosLogic.cs" />
     <Compile Include="Prestamos\SolicitudesLogic.cs" />
     <Compile Include="Productos\ProductoLogic.cs" />
     <Compile Include="Productos\TipoDeProductoLogic.cs" />
     <Compile Include="Seguridad\PrivilegioLogic.cs" />
     <Compile Include="Seguridad\RolLogic.cs" />
+    <Compile Include="Socios\SociosLogic.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Seguridad\UsuarioLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Socios\SociosLogic.cs" />
     <Compile Include="Entorno\VariablesDeEntornoLogic.cs" />
     <Compile Include="Utiles\Numalet.cs" />
     <Compile Include="Web\COCASJOLBASE.cs">
@@ -87,6 +92,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

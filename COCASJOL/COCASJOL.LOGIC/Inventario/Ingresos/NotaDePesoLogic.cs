@@ -209,8 +209,16 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 // Total = (Peso Bruto) - Tara - Descuento
                 decimal TOTAL = NOTAS_PESO_SUMA - NOTAS_PESO_TARA - DESCUENTO;
 
-                string localization = System.Configuration.ConfigurationManager.AppSettings.Get("localizacionNumerosALetras");
-                string TOTAL_TEXTO = COCASJOL.LOGIC.Utiles.Numalet.ToCardinal(TOTAL.ToString(), new System.Globalization.CultureInfo(localization));
+                string localization = System.Configuration.ConfigurationManager.AppSettings.Get("numerosALetrasLocalizacion");
+
+                COCASJOL.LOGIC.Utiles.Numalet cq = new COCASJOL.LOGIC.Utiles.Numalet();
+                cq.SeparadorDecimalSalida = System.Configuration.ConfigurationManager.AppSettings.Get("numerosALetrasSeparadorDecimalSalida");
+                cq.MascaraSalidaDecimal = System.Configuration.ConfigurationManager.AppSettings.Get("numerosALetrasMascaraSalidaDecimal");
+                cq.ConvertirDecimales = bool.Parse(System.Configuration.ConfigurationManager.AppSettings.Get("numerosALetrasConvertirDecimales"));
+
+                //string TOTAL_TEXTO = COCASJOL.LOGIC.Utiles.Numalet.ToCardinal(TOTAL.ToString(), new System.Globalization.CultureInfo(localization));
+
+                string TOTAL_TEXTO = cq.ToCustomCardinal(TOTAL.ToString());
 
                 InsertarNotaDePeso
                     (ESTADOS_NOTA_ID,
@@ -401,8 +409,16 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 // Total = (Peso Bruto) - Tara - Descuento
                 decimal TOTAL = NOTAS_PESO_SUMA - NOTAS_PESO_TARA - DESCUENTO;
 
-                string localization = System.Configuration.ConfigurationManager.AppSettings.Get("localizacionNumerosALetras");
-                string TOTAL_TEXTO = COCASJOL.LOGIC.Utiles.Numalet.ToCardinal(TOTAL.ToString(), new System.Globalization.CultureInfo(localization));
+                string localization = System.Configuration.ConfigurationManager.AppSettings.Get("numerosALetrasLocalizacion");
+
+                COCASJOL.LOGIC.Utiles.Numalet cq = new COCASJOL.LOGIC.Utiles.Numalet();
+                cq.SeparadorDecimalSalida = System.Configuration.ConfigurationManager.AppSettings.Get("numerosALetrasSeparadorDecimalSalida");
+                cq.MascaraSalidaDecimal = System.Configuration.ConfigurationManager.AppSettings.Get("numerosALetrasMascaraSalidaDecimal");
+                cq.ConvertirDecimales = bool.Parse(System.Configuration.ConfigurationManager.AppSettings.Get("numerosALetrasConvertirDecimales"));
+
+                //string TOTAL_TEXTO = COCASJOL.LOGIC.Utiles.Numalet.ToCardinal(TOTAL.ToString(), new System.Globalization.CultureInfo(localization));
+
+                string TOTAL_TEXTO = cq.ToCustomCardinal(TOTAL.ToString());
 
                 ActualizarNotaDePeso
                     (NOTAS_ID,
