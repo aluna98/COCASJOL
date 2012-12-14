@@ -188,10 +188,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 }
 
                 NOTAS_PESO_SUMA = peso_suma;
-                NOTAS_PORCENTAJE_DEFECTO = NOTAS_PORCENTAJE_DEFECTO / 100;
-                NOTAS_PORCENTAJE_HUMEDAD = NOTAS_PORCENTAJE_HUMEDAD / 100;
 
                 // Descuento por Defecto = ((Peso Bruto) - Tara) * (% Defecto)
+                NOTAS_PORCENTAJE_DEFECTO = NOTAS_PORCENTAJE_DEFECTO / 100;
                 decimal DESCUENTO_POR_DEFECTO = (NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_DEFECTO;
 
                 // Descuento por Humedad = ((Peso Bruto) - Tara) * (% Humedad)
@@ -201,11 +200,13 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 if (NOTAS_PORCENTAJE_HUMEDAD < PORCENTAJEHUMEDADMIN)
                     NOTAS_PORCENTAJE_HUMEDAD = 0;
 
+                NOTAS_PORCENTAJE_HUMEDAD = NOTAS_PORCENTAJE_HUMEDAD / 100;
+
                 decimal DESCUENTO_POR_HUMEDAD = (NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_HUMEDAD;
 
                 // Descuento = (Descuento por Defecto) + (Descuento por Humedad)
                 decimal DESCUENTO = DESCUENTO_POR_DEFECTO + DESCUENTO_POR_HUMEDAD;
-                
+
                 // Total = (Peso Bruto) - Tara - Descuento
                 decimal TOTAL = NOTAS_PESO_SUMA - NOTAS_PESO_TARA - DESCUENTO;
 
@@ -215,10 +216,15 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 cq.SeparadorDecimalSalida = System.Configuration.ConfigurationManager.AppSettings.Get("numerosALetrasSeparadorDecimalSalida");
                 cq.MascaraSalidaDecimal = System.Configuration.ConfigurationManager.AppSettings.Get("numerosALetrasMascaraSalidaDecimal");
                 cq.ConvertirDecimales = bool.Parse(System.Configuration.ConfigurationManager.AppSettings.Get("numerosALetrasConvertirDecimales"));
+                cq.LetraCapital = true;
 
                 //string TOTAL_TEXTO = COCASJOL.LOGIC.Utiles.Numalet.ToCardinal(TOTAL.ToString(), new System.Globalization.CultureInfo(localization));
 
-                string TOTAL_TEXTO = cq.ToCustomCardinal(TOTAL.ToString());
+                string TOTAL_TEXTO = cq.ToCustomCardinal((TOTAL / 100).ToString());
+
+                // Convertir Porcentaje a entero de nuevo para guardar.
+                NOTAS_PORCENTAJE_DEFECTO = NOTAS_PORCENTAJE_DEFECTO * 100;
+                NOTAS_PORCENTAJE_HUMEDAD = NOTAS_PORCENTAJE_HUMEDAD * 100;
 
                 InsertarNotaDePeso
                     (ESTADOS_NOTA_ID,
@@ -282,6 +288,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     note.NOTAS_PORCENTAJE_HUMEDAD = NOTAS_PORCENTAJE_HUMEDAD;
                     note.NOTAS_PESO_DEFECTO = NOTAS_PESO_DEFECTO;
                     note.NOTAS_PESO_HUMEDAD = NOTAS_PESO_HUMEDAD;
+                    note.NOTAS_PESO_DESCUENTO = NOTAS_PESO_DESCUENTO;
                     note.NOTAS_PESO_TARA = NOTAS_PESO_TARA;
                     note.NOTAS_PESO_SUMA = NOTAS_PESO_SUMA;
                     note.NOTAS_PESO_TOTAL_RECIBIDO = NOTAS_PESO_TOTAL_RECIBIDO;
@@ -388,10 +395,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 }
 
                 NOTAS_PESO_SUMA = peso_suma;
-                NOTAS_PORCENTAJE_DEFECTO = NOTAS_PORCENTAJE_DEFECTO / 100;
-                NOTAS_PORCENTAJE_HUMEDAD = NOTAS_PORCENTAJE_HUMEDAD / 100;
 
                 // Descuento por Defecto = ((Peso Bruto) - Tara) * (% Defecto)
+                NOTAS_PORCENTAJE_DEFECTO = NOTAS_PORCENTAJE_DEFECTO / 100;
                 decimal DESCUENTO_POR_DEFECTO = (NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_DEFECTO;
 
                 // Descuento por Humedad = ((Peso Bruto) - Tara) * (% Humedad)
@@ -400,6 +406,8 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                 if (NOTAS_PORCENTAJE_HUMEDAD < PORCENTAJEHUMEDADMIN)
                     NOTAS_PORCENTAJE_HUMEDAD = 0;
+
+                NOTAS_PORCENTAJE_HUMEDAD = NOTAS_PORCENTAJE_HUMEDAD / 100;
 
                 decimal DESCUENTO_POR_HUMEDAD = (NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_HUMEDAD;
 
@@ -415,10 +423,15 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 cq.SeparadorDecimalSalida = System.Configuration.ConfigurationManager.AppSettings.Get("numerosALetrasSeparadorDecimalSalida");
                 cq.MascaraSalidaDecimal = System.Configuration.ConfigurationManager.AppSettings.Get("numerosALetrasMascaraSalidaDecimal");
                 cq.ConvertirDecimales = bool.Parse(System.Configuration.ConfigurationManager.AppSettings.Get("numerosALetrasConvertirDecimales"));
+                cq.LetraCapital = true;
 
                 //string TOTAL_TEXTO = COCASJOL.LOGIC.Utiles.Numalet.ToCardinal(TOTAL.ToString(), new System.Globalization.CultureInfo(localization));
 
-                string TOTAL_TEXTO = cq.ToCustomCardinal(TOTAL.ToString());
+                string TOTAL_TEXTO = cq.ToCustomCardinal((TOTAL / 100).ToString());
+
+                // Convertir Porcentaje a entero de nuevo para guardar.
+                NOTAS_PORCENTAJE_DEFECTO = NOTAS_PORCENTAJE_DEFECTO * 100;
+                NOTAS_PORCENTAJE_HUMEDAD = NOTAS_PORCENTAJE_HUMEDAD * 100;
 
                 ActualizarNotaDePeso
                     (NOTAS_ID,
@@ -480,6 +493,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     nota_de_peso note = (nota_de_peso)n;
 
                     decimal NOTAS_PESO_TOTAL_RECIBIDO_ANTERIOR = note.NOTAS_PESO_TOTAL_RECIBIDO;
+                    int CLASIFICACIONES_CAFE_ID_ANTERIOR = note.CLASIFICACIONES_CAFE_ID;
 
                     note.ESTADOS_NOTA_ID = ESTADOS_NOTA_ID;
                     note.SOCIOS_ID = SOCIOS_ID;
@@ -509,6 +523,17 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     /*
                      * Actualizar el Inventario! Si actualizan la nota se le resta el Total anterior y se le suma el total actual?
                      */
+
+                    // Si hubo cambio de clasificacion, hay que remover la cantidad de la clasificacione anterior y agregar la nueva cantidad a la nueva clasificacion.
+
+                    if (CLASIFICACIONES_CAFE_ID_ANTERIOR != CLASIFICACIONES_CAFE_ID)
+                    {
+                        IEnumerable<KeyValuePair<string, object>> entityKeyValuesAnterior =
+                        new KeyValuePair<string, object>[] {
+                            new KeyValuePair<string, object>("SOCIOS_ID", SOCIOS_ID),
+                            new KeyValuePair<string, object>("CLASIFICACIONES_CAFE_ID", CLASIFICACIONES_CAFE_ID) };
+                    }
+
                     IEnumerable<KeyValuePair<string, object>> entityKeyValues =
                         new KeyValuePair<string, object>[] {
                             new KeyValuePair<string, object>("SOCIOS_ID", SOCIOS_ID),

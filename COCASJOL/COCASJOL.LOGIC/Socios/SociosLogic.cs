@@ -170,7 +170,7 @@ namespace COCASJOL.LOGIC.Socios
                 socio.socios_generales.GENERAL_EMPRESA_DIRECCION = GENERAL_EMPRESA_DIRECCION;
                 socio.socios_generales.GENERAL_EMPRESA_TELEFONO = GENERAL_EMPRESA_TELEFONO;
                 socio.socios_generales.GENERAL_SEGURO = GENERAL_SEGURO;
-                socio.socios_generales.GENERAL_FECHA_ACEPTACION = DateTime.Parse(GENERAL_FECHA_ACEPTACION);
+                socio.socios_generales.GENERAL_FECHA_ACEPTACION = string.IsNullOrEmpty(GENERAL_FECHA_ACEPTACION) ? default(DateTime) : DateTime.Parse(GENERAL_FECHA_ACEPTACION);
                 socio.socios_produccion.PRODUCCION_UBICACION_FINCA = PRODUCCION_UBICACION_FINCA;
                 socio.socios_produccion.PRODUCCION_AREA = PRODUCCION_AREA;
                 socio.socios_produccion.PRODUCCION_VARIEDAD = PRODUCCION_VARIEDAD;

@@ -200,7 +200,7 @@
             },
 
             notasDePeso: function (app) {
-                DesktopX.createDynamicWindow(app, 'pagewhitecup', 'Notas De Peso', 'Inventario/Ingresos/NotasDePeso.aspx');
+                DesktopX.createDynamicWindow(app, 'pagewhitecup', 'Notas De Peso', 'Inventario/Ingresos/NotasDePeso.aspx', 1000, 800);
             },
 
             solicitudesDePrestamo: function (app) {

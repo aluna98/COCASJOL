@@ -140,5 +140,25 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 throw;
             }
         }
+
+        [DirectMethod(RethrowException=true)]
+        public void DeleteNotaDePeso_Click(string strNOTAS_ID)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(strNOTAS_ID) || string.IsNullOrWhiteSpace(strNOTAS_ID))
+                    return;
+
+                int NOTAS_ID = int.Parse(strNOTAS_ID);
+                string loggedUser = this.LoggedUserHdn.Text;
+                NotaDePesoLogic notadepesologic = new NotaDePesoLogic();
+                notadepesologic.EliminarNotasDePeso(NOTAS_ID, loggedUser);
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
     }
 }

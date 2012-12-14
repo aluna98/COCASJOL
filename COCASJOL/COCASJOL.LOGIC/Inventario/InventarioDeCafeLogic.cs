@@ -35,6 +35,7 @@ namespace COCASJOL.LOGIC.Inventario
         public List<inventario_cafe_de_socio> GetInventarioDeCafe
             (string SOCIOS_ID,
             int CLASIFICACIONES_CAFE_ID,
+            string CLASIFICACIONES_CAFE_NOMBRE,
             decimal INVENTARIO_CANTIDAD,
             string CREADO_POR,
             DateTime FECHA_CREACION,
@@ -74,6 +75,7 @@ namespace COCASJOL.LOGIC.Inventario
         public void InsertarInventarioDeCafe
             (string SOCIOS_ID,
             int CLASIFICACIONES_CAFE_ID,
+            string CLASIFICACIONES_CAFE_NOMBRE,
             decimal INVENTARIO_CANTIDAD,
             string CREADO_POR,
             DateTime FECHA_CREACION,
@@ -112,6 +114,7 @@ namespace COCASJOL.LOGIC.Inventario
         public void ActualizarInventarioDeCafe
             (string SOCIOS_ID,
             int CLASIFICACIONES_CAFE_ID,
+            string CLASIFICACIONES_CAFE_NOMBRE,
             decimal INVENTARIO_CANTIDAD,
             string CREADO_POR,
             DateTime FECHA_CREACION,
