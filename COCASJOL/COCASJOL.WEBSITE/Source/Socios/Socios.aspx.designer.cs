@@ -445,6 +445,15 @@ namespace COCASJOL.WEBSITE.Socios {
         protected global::Ext.Net.DateField EditFechaEmisionTxt;
         
         /// <summary>
+        /// EditAceptacionTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DateField EditAceptacionTxt;
+        
+        /// <summary>
         /// PanelGrl control.
         /// </summary>
         /// <remarks>
@@ -533,15 +542,6 @@ namespace COCASJOL.WEBSITE.Socios {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField EditSeguroTxt;
-        
-        /// <summary>
-        /// EditAceptacionTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.DateField EditAceptacionTxt;
         
         /// <summary>
         /// PanelProd control.

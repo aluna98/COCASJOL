@@ -702,6 +702,7 @@
                                                 <ext:TextField runat="server" ID="EditIdentidadTxt"         DataIndex="SOCIOS_IDENTIDAD"             FieldLabel="Tarjeta de Identidad"   AnchorHorizontal="90%" MaxLength="20" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditLugarEmisionTxt"      DataIndex="SOCIOS_LUGAR_DE_EMISION"      FieldLabel="Lugar de Emision    "   AnchorHorizontal="90%" MaxLength="100" AllowBlank="false"   ></ext:TextField>
                                                 <ext:DateField runat="server" ID="EditFechaEmisionTxt"      DataIndex="SOCIOS_FECHA_DE_EMISION"      FieldLabel="Fecha de Emision    "   AnchorHorizontal="90%" AllowBlank="false"   Format="d MMM y"></ext:DateField>
+                                                <ext:DateField runat="server" ID="EditAceptacionTxt"        DataIndex="GENERAL_FECHA_ACEPTACION"     FieldLabel="Fecha Aceptacion"  AnchorHorizontal="90%" Format="d MMM y" AllowBlank="false"></ext:DateField>
                                             </Items>                                                               
                                         </ext:Panel>
                                     </Items>
@@ -718,7 +719,6 @@
                                                 <ext:TextField runat="server" ID="EditDireccionTxt"     DataIndex="GENERAL_EMPRESA_DIRECCION"        FieldLabel="Direccion"         AnchorHorizontal="90%" MaxLength="100" />
                                                 <ext:TextField runat="server" ID="EditTelefonoTxt"      DataIndex="GENERAL_EMPRESA_TELEFONO"         FieldLabel="Telefono"          AnchorHorizontal="90%" MaxLength="20" />
                                                 <ext:TextField runat="server" ID="EditSeguroTxt"        DataIndex="GENERAL_SEGURO"                   FieldLabel="Carnet Seguro"     AnchorHorizontal="90%" MaxLength="45" />
-                                                <ext:DateField runat="server" ID="EditAceptacionTxt"    DataIndex="GENERAL_FECHA_ACEPTACION"         FieldLabel="Fecha Aceptacion"  AnchorHorizontal="90%" Format="d MMM y"></ext:DateField>
                                             </Items>
                                          </ext:Panel>
                                     </Items>
