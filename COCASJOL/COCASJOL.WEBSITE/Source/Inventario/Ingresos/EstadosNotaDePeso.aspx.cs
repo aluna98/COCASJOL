@@ -20,9 +20,11 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
             {
                 if (!X.IsAjaxRequest)
                 {
-                    string loggedUsr = Session["username"] as string;
-                    this.LoggedUserHdn.Text = loggedUsr;
+                    
                 }
+
+                string loggedUsr = Session["username"] as string;
+                this.LoggedUserHdn.Text = loggedUsr;
             }
             catch (Exception)
             {

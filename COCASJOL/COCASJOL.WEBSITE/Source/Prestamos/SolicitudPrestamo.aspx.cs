@@ -16,7 +16,7 @@ using COCASJOL.LOGIC.Socios;
 
 namespace COCASJOL.WEBSITE.Source.Prestamos
 {
-    public partial class SolicitudPrestamo : System.Web.UI.Page
+    public partial class SolicitudPrestamo : COCASJOLBASE
     {
         string Socioid;
 
@@ -26,9 +26,11 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
             SociosSt_Reload(null, null);
             if (!X.IsAjaxRequest)
             {
-                string loggedUsr = Session["username"] as string;
-                this.LoggedUserHdn.Text = loggedUsr;
+                
             }
+
+            string loggedUsr = Session["username"] as string;
+            this.LoggedUserHdn.Text = loggedUsr;
         }
 
         [DirectMethod]

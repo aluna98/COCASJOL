@@ -6,13 +6,11 @@
     <variables>
       <variable>
         <key>NOTA_PORCENTAJEHUMEDADMIN</key>
-        <maps>NOTA_PORCENTAJEHUMEDADMIN</maps>
         <descripcion>El porcentaje de humedad minima para descontar de la nota de peso.</descripcion>
         <type>decimal</type>
       </variable>
       <variable>
         <key>NOTA_TRANSPORTECOOP</key>
-        <maps>NOTA_TRANSPORTECOOP</maps>
         <descripcion>El porcentaje a descontar de la nota de peso por concepto de transporte de café.</descripcion>
         <type>decimal</type>
       </variable>
