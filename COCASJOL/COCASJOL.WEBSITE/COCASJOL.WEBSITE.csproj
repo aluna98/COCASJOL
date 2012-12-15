@@ -64,6 +64,7 @@
     <Content Include="ExpiredSession.aspx" />
     <Content Include="Global.asax" />
     <Content Include="NoAccess.aspx" />
+    <Content Include="resources\css\ComboBox_Grid.css" />
     <Content Include="resources\images\background1.jpg" />
     <Content Include="resources\images\basket.png" />
     <Content Include="resources\images\bricks.png" />
@@ -96,6 +97,7 @@
     <Content Include="Source\Inventario\ClasificacionesDeCafe.aspx" />
     <Content Include="Source\Inventario\Ingresos\EstadosNotaDePeso.aspx" />
     <Content Include="Source\Inventario\Ingresos\NotasDePeso.aspx" />
+    <Content Include="Source\Inventario\Ingresos\NotasDePesoEnPesaje.aspx" />
     <Content Include="Source\Inventario\InventarioDeCafePorSocio.aspx" />
     <Content Include="Source\Inventario\Salidas\HojaDeLiquidacion.aspx" />
     <Content Include="Source\Prestamos\Prestamos.aspx" />
@@ -159,6 +161,13 @@
     </Compile>
     <Compile Include="Source\Inventario\Ingresos\NotasDePeso.aspx.designer.cs">
       <DependentUpon>NotasDePeso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Inventario\Ingresos\NotasDePesoEnPesaje.aspx.cs">
+      <DependentUpon>NotasDePesoEnPesaje.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Inventario\Ingresos\NotasDePesoEnPesaje.aspx.designer.cs">
+      <DependentUpon>NotasDePesoEnPesaje.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Inventario\InventarioDeCafePorSocio.aspx.cs">
       <DependentUpon>InventarioDeCafePorSocio.aspx</DependentUpon>
@@ -238,9 +247,7 @@
       <DependentUpon>Socios.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="resources\css\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\COCASJOL.LOGIC\COCASJOL.LOGIC.csproj">
       <Project>{4E2A8EDC-D2EC-4897-BFFA-D87CFCD3FE01}</Project>

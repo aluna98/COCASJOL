@@ -21,10 +21,11 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
         {
             if (!X.IsAjaxRequest)
             {
-                string loggedUsr = Session["username"] as string;
-                this.LoggedUserHdn.Text = loggedUsr;
-                this.ValidarCredenciales(typeof(Prestamos).Name);
+                
             }
+
+            string loggedUsr = Session["username"] as string;
+            this.LoggedUserHdn.Text = loggedUsr;
         }
 
         protected void PrestamosSt_Reload(object sender, StoreRefreshDataEventArgs e)

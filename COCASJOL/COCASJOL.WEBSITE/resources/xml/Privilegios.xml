@@ -73,9 +73,9 @@
   <privilege>
     <key>MANT_PRESTAMOS</key>
     <page>Prestamos</page>
-    <module></module>
-    <shortcut></shortcut>
-    <menuitem></menuitem>
+    <module>PrestamosModule</module>
+    <shortcut>scPrestamos</shortcut>
+    <menuitem>PrestamosMenuItem</menuitem>
   </privilege>
   <privilege>
     <key>MANT_SOLICITUDESPRESTAMO</key>

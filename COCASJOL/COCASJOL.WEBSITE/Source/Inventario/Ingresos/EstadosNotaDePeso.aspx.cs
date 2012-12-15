@@ -22,7 +22,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 {
                     string loggedUsr = Session["username"] as string;
                     this.LoggedUserHdn.Text = loggedUsr;
-                    this.ValidarCredenciales(typeof(EstadosNotaDePeso).Name);
                 }
             }
             catch (Exception)

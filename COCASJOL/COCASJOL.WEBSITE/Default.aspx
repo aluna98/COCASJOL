@@ -76,6 +76,25 @@
     </script>
 
     <script runat="server">
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                string loggedUser = Session["username"] as string;
+
+                if (!string.IsNullOrEmpty(loggedUser))
+                {
+                    Window1.Close();
+                    Response.Redirect("~/Source/Desktop.aspx");
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+    
         [DirectMethod(RethrowException=true)]
         public void Button1_Click()
         {

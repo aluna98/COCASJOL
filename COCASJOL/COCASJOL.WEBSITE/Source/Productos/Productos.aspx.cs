@@ -22,10 +22,11 @@ namespace COCASJOL.WEBSITE.Source.Productos
             {
                 if (!X.IsAjaxRequest)
                 {
-                    string loggedUsr = Session["username"] as string;
-                    this.LoggedUserHdn.Text = loggedUsr;
-                    this.ValidarCredenciales(typeof(Productos).Name);
+                    
                 }
+
+                string loggedUsr = Session["username"] as string;
+                this.LoggedUserHdn.Text = loggedUsr;
             }
             catch (Exception)
             {

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NotasDePeso.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Inventario.Ingresos.NotasDePeso" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NotasDePesoEnPesaje.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Inventario.Ingresos.NotasDePesoEnPesaje" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 
@@ -8,6 +8,7 @@
 <head id="Head1" runat="server">
     <title></title>
     <%--<meta http-equiv="refresh" content="3" />--%>
+
     <link rel="Stylesheet" type="text/css" href="../../../resources/css/ComboBox_Grid.css" />
     <script type="text/javascript">
         var calendar = {
@@ -88,9 +89,20 @@
                 var fields = AddForm.getForm().getFieldValues(false, "dataIndex");
 
                 var pesoJson = AddDetailX.pesoToJson();
-                Ext.net.DirectMethods.AddNotaDePeso_Click(pesoJson);
-                AddForm.getForm().reset();
-                AddNotaDetalleSt.removeAll();
+
+
+                Ext.net.DirectMethods.AddNotaDePeso_Click(pesoJson,
+                { success: function () { 
+                        GridStore.reload();
+                        Ext.Msg.alert('Agregar Nota de Peso', 'Nota de peso agregada exitosamente.'); 
+                        AddForm.getForm().reset();
+                        AddNotaDetalleSt.removeAll();
+                    }
+                }, 
+                { failure: function () {
+                        Ext.Msg.alert('Agregar Nota de Peso', 'Error al agregar nota de peso.');
+                    }
+                });
             },
 
             getIndex: function () {
@@ -156,7 +168,20 @@
 
                 Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
                     if (btn == 'yes') {
-                        //                        EditForm.getForm().updateRecord(EditForm.record);
+                        var fields = EditForm.getForm().getFieldValues(false, "dataIndex");
+
+                        var pesoJson = EditDetailX.pesoToJson();
+
+                        Ext.net.DirectMethods.EditNotaDePeso_Click(pesoJson,
+                            { success: function () {
+                                GridStore.reload();
+                                Ext.Msg.alert('Editar Nota de Peso', 'Nota de peso actualizada exitosamente.');
+                            }
+                        },
+                            { failure: function () {
+                                Ext.Msg.alert('Editar Nota de Peso', 'Error al actualizar la nota de peso.');
+                            }
+                        });
                     }
                 });
             },
@@ -218,7 +243,7 @@
         var AlertSelMsg = "Debe seleccionar 1 elemento";
 
         var ConfirmMsgTitle = "Datos de Peso";
-        var ConfirmUpdate = "Seguro desea modificar los datos de peso?";
+        var ConfirmUpdate = "Seguro desea modificar los datos de peos?";
         var ConfirmDelete = "Seguro desea eliminar los datos de peso?";
 
         var AddDetailX = {
@@ -390,9 +415,9 @@
                 var items = AddDetailGridStore.data;
                 var ret = [];
                 for (var i = 0; i < items.length; i++) {
-                    ret.push({DETALLES_CANTIDAD_SACOS: items.items[i].data.DETALLES_CANTIDAD_SACOS,  DETALLES_PESO: items.items[i].data.DETALLES_PESO });
+                    ret.push({ DETALLES_CANTIDAD_SACOS: items.items[i].data.DETALLES_CANTIDAD_SACOS, DETALLES_PESO: items.items[i].data.DETALLES_PESO });
                 }
-            
+
                 return Ext.encode(ret);
             }
         };
@@ -410,7 +435,7 @@
         var AlertSelMsg = "Debe seleccionar 1 elemento";
 
         var ConfirmMsgTitle = "Datos de Peso";
-        var ConfirmUpdate = "Seguro desea modificar los datos de peos?";
+        var ConfirmUpdate = "Seguro desea modificar los datos de peso?";
         var ConfirmDelete = "Seguro desea eliminar los datos de peso?";
 
         var EditDetailX = {
@@ -438,23 +463,6 @@
                 EditDetailAddForm.getForm().reset();
                 Ext.getCmp('EditDetailAddBagTxt').focus(false, 200);
             },
-
-            insertDescuentosYTotal: function () {
-                var DescuentoDefecto = (EditSumaPesoBrutoTxt.getValue() - EditTaraTxt.getValue()) * (EditPorcentajeDefectoTxt.getValue().replace("%", "") / 100);
-                var DescuentoHumedad = (EditSumaPesoBrutoTxt.getValue() - EditTaraTxt.getValue()) * (EditPorcentajeHumedadTxt.getValue().replace("%", "") / 100);
-
-                var Descuento = DescuentoDefecto + DescuentoHumedad;
-                var total = (EditSumaPesoBrutoTxt.getValue() - EditTaraTxt.getValue()) - Descuento;
-
-
-                EditTotalRecibidoTextoTxt.clear();
-
-                EditTotalPesoDefectoTxt.setValue(DescuentoDefecto);
-                EditTotalPesoHumedadTxt.setValue(DescuentoHumedad);
-                EditDescuentoTxt.setValue(Descuento);
-                EditTotalRecibidoTxt.setValue(total);
-            },
-
 
             insertDefectCalculation: function () {
                 var sample = EditCalculateSampleTxt.getValue();
@@ -857,10 +865,10 @@
                                                         <ext:DropDownField ID="f_NOTAS_FECHA" AllowBlur="true" runat="server" Editable="false"
                                                             Mode="ValueText" Icon="Find" TriggerIcon="SimpleArrowDown" CollapseMode="Default">
                                                             <Component>
-                                                                <ext:FormPanel runat="server" Height="100" Width="170" Frame="true"
+                                                                <ext:FormPanel ID="FormPanel1" runat="server" Height="100" Width="170" Frame="true"
                                                                     LabelWidth="50" ButtonAlign="Left" BodyStyle="padding:2px 2px;">
                                                                     <Items>
-                                                                        <ext:CompositeField runat="server" FieldLabel="Desde" LabelWidth="50">
+                                                                        <ext:CompositeField ID="CompositeField1" runat="server" FieldLabel="Desde" LabelWidth="50">
                                                                             <Items>
                                                                                 <ext:DateField ID="f_DATE_FROM" Vtype="daterange" runat="server" Flex="1" Width="100"
                                                                                     CausesValidation="false">
@@ -950,6 +958,7 @@
             InitCenter="true"
             ConstrainHeader="true">
             <Listeners>
+                <Show Handler="#{AddFechaNotaTxt}.setValue(new Date());" />
                 <Hide Handler="#{AddNotaDetalleSt}.removeAll(); #{AgregarNotasFormP}.getForm().reset();" />
             </Listeners>
             <Items>
@@ -958,9 +967,9 @@
                         <Show Handler="this.getForm().reset();" />
                     </Listeners>
                     <Items>
-                        <ext:Panel runat="server" Title="Nota de Peso" Header="false" Layout="AnchorLayout" AutoHeight="True" Resizable="false" AnchorHorizontal="100%">
+                        <ext:Panel ID="Panel2" runat="server" Title="Nota de Peso" Header="false" Layout="AnchorLayout" AutoHeight="True" Resizable="false" AnchorHorizontal="100%">
                             <Items>
-                                <ext:Panel runat="server" Frame="false" Padding="5" Layout="AnchorLayout" AnchorHorizontal="100%" Border="false">
+                                <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" AnchorHorizontal="100%" Border="false">
                                     <Items>
                                         <ext:FieldSet ID="AddNotaHeaderFS" runat="server" Header="false" Padding="5">
                                             <Items>
@@ -969,7 +978,7 @@
                                                         <ext:ColumnLayoutConfig FitHeight="false" />
                                                     </LayoutConfig>
                                                     <Items>
-                                                        <ext:Panel ID="Panel2" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
+                                                        <ext:Panel ID="Panel4" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
                                                                 <ext:DateField runat="server" ID="AddFechaNotaTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha" AllowBlank="false" MsgTarget="Side" ></ext:DateField>
                                                                 <ext:ComboBox  runat="server" ID="AddSociosIdTxt"  DataIndex="SOCIOS_ID"   LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Codigo Socio" AllowBlank="false" MsgTarget="Side"
@@ -1064,7 +1073,7 @@
                                                 </ext:TextField>
                                                 <ext:TextField   runat="server" ID="AddDireccionFincaTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Dirección de la Finca" ReadOnly="true" >
                                                     <ToolTips>
-                                                        <ext:ToolTip runat="server" Html="La dirección de la finca de solo lectura." Title="Dirección de la Finca" Width="200" TrackMouse="true" />
+                                                        <ext:ToolTip ID="ToolTip2" runat="server" Html="La dirección de la finca de solo lectura." Title="Dirección de la Finca" Width="200" TrackMouse="true" />
                                                     </ToolTips>
                                                 </ext:TextField>
                                             </Items>
@@ -1075,16 +1084,14 @@
                                                 <ext:ColumnLayoutConfig FitHeight="false" />
                                             </LayoutConfig>
                                             <Items>
-                                                <ext:Panel ID="Panel3" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
+                                                <ext:Panel ID="Panel6" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
                                                     <Items>
                                                         <ext:FieldSet ID="AddTransportePorcentajeFS" runat="server" Title="Forma de Entrega" Padding="5">
                                                             <Items>
                                                                 <ext:RadioGroup runat="server" ID="AddTipoTransporteRdGrp" LabelAlign="Right" AnchorHorizontal="100%" DataIndex="NOTAS_TRANSPORTE_COOPERATIVA" FieldLabel="Forma de Transporte" ColumnsNumber="1" AutoHeight="true">
                                                                     <Items>
-                                                                        <ext:Radio ID="AddPropiRadio" runat="server" InputValue="0" BoxLabel="Carro Propio" ColumnWidth=".5" AnchorHorizontal="90%" Checked="true">
-                                                                        </ext:Radio>
-                                                                        <ext:Radio ID="AddCooperativaRadio" runat="server" InputValue="1" BoxLabel="Carro de la Cooperativa" ColumnWidth=".5" AnchorHorizontal="100%" Checked="false">
-                                                                        </ext:Radio>
+                                                                        <ext:Radio ID="AddPropiRadio" runat="server" InputValue="0" BoxLabel="Carro Propio" ColumnWidth=".5" AnchorHorizontal="90%" Checked="true"></ext:Radio>
+                                                                        <ext:Radio ID="AddCooperativaRadio" runat="server" InputValue="1" BoxLabel="Carro de la Cooperativa" ColumnWidth=".5" AnchorHorizontal="100%" Checked="false"></ext:Radio>
                                                                     </Items>
                                                                 </ext:RadioGroup>
                                                                 <ext:TextField runat="server" ID="AddPorcentajeHumedadTxt" DataIndex="NOTAS_PORCENTAJE_HUMEDAD" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Porcentaje de Humedad" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" >
@@ -1105,13 +1112,13 @@
                                                         </ext:FieldSet>
                                                         <ext:FieldSet ID="AddSacosFS" runat="server" Title="Sacos" Padding="7">
                                                             <Items>
-                                                                <ext:NumberField runat="server" ID="AddSumaSacosTxt"                                            LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cantidad de Sacos" Text="0" ReadOnly="true"></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="AddSacosRetenidosTxt" DataIndex="NOTAS_SACOS_RETENIDOS"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Sacos Retenidos" AllowBlank="false" MsgTarget="Side"></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddSumaSacosTxt"                                        LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cantidad de Sacos" Text="0" ReadOnly="true"></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddSacosRetenidosTxt" DataIndex="NOTAS_SACOS_RETENIDOS" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Sacos Retenidos" AllowBlank="false" MsgTarget="Side"></ext:NumberField>
                                                             </Items>
                                                         </ext:FieldSet>
                                                     </Items>
                                                 </ext:Panel>
-                                                <ext:Panel ID="Panel4" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
+                                                <ext:Panel ID="Panel7" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
                                                     <Items>
                                                         <ext:Panel ID="AddDetallPnl" runat="server" Frame="false" Padding="5" Layout="FitLayout" Border="false">
                                                             <Items>
@@ -1168,14 +1175,14 @@
                                                 <ext:ColumnLayoutConfig FitHeight="false" />
                                             </LayoutConfig>
                                             <Items>
-                                                <ext:Panel runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
+                                                <ext:Panel ID="Panel8" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
                                                     <Items>
                                                     </Items>
                                                 </ext:Panel>
-                                                <ext:Panel runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
+                                                <ext:Panel ID="Panel9" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
                                                     <Items>
-                                                        <ext:NumberField runat="server" ID="AddSumaPesoBrutoTxt"  DataIndex="NOTAS_PESO_SUMA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Suma"      AllowBlank="false" Text="0" ReadOnly="true" MsgTarget="Side"></ext:NumberField>
-                                                        <ext:NumberField runat="server" ID="AddTaraTxt"           DataIndex="NOTAS_PESO_TARA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tara"      AllowBlank="false" MsgTarget="Side" ></ext:NumberField>
+                                                        <ext:NumberField runat="server" ID="AddSumaPesoBrutoTxt"  DataIndex="NOTAS_PESO_SUMA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Suma" AllowBlank="false" MsgTarget="Side" Text="0" ReadOnly="true" ></ext:NumberField>
+                                                        <ext:NumberField runat="server" ID="AddTaraTxt"           DataIndex="NOTAS_PESO_TARA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tara" AllowBlank="false" MsgTarget="Side" ></ext:NumberField>
                                                     </Items>
                                                 </ext:Panel>
                                             </Items>
@@ -1369,7 +1376,7 @@
                 </ext:JsonReader>
             </Reader>
             <Listeners>
-                <BeforeSave Handler="EditDetailX.updateSumTotals(); EditDetailX.insertDescuentosYTotal(); return false;" />
+                <BeforeSave Handler="EditDetailX.updateSumTotals(); return false;" />
             </Listeners>
         </ext:Store>
 
@@ -1395,9 +1402,9 @@
                         <Show Handler="this.getForm().reset();" />
                     </Listeners>
                     <Items>
-                        <ext:Panel ID="Panel6" runat="server" Title="Nota de Peso" Header="false" Layout="AnchorLayout" AutoHeight="True" Resizable="false" AnchorHorizontal="100%">
+                        <ext:Panel ID="Panel10" runat="server" Title="Nota de Peso" Header="false" Layout="AnchorLayout" AutoHeight="True" Resizable="false" AnchorHorizontal="100%">
                             <Items>
-                                <ext:Panel ID="Panel7" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" AnchorHorizontal="100%" Border="false">
+                                <ext:Panel ID="Panel11" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" AnchorHorizontal="100%" Border="false">
                                     <Items>
                                         <ext:FieldSet ID="EditNotaHeaderFS" runat="server" Header="false" Padding="5">
                                             <Items>
@@ -1406,11 +1413,11 @@
                                                         <ext:ColumnLayoutConfig FitHeight="false" />
                                                     </LayoutConfig>
                                                     <Items>
-                                                        <ext:Panel ID="Panel8" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
+                                                        <ext:Panel ID="Panel12" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
                                                                 <ext:NumberField runat="server" ID="EditNotaIdTxt"  DataIndex="NOTAS_ID" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nota Numero" AllowBlank="false" ReadOnly="true" MsgTarget="Side">
                                                                     <ToolTips>
-                                                                        <ext:ToolTip ID="ToolTip4" runat="server" Html="El numero de nota de peso es de solo lectura." Title="NUmero de Nota de Peso" Width="200" TrackMouse="true" />
+                                                                        <ext:ToolTip ID="ToolTip3" runat="server" Html="El numero de nota de peso es de solo lectura." Title="NUmero de Nota de Peso" Width="200" TrackMouse="true" />
                                                                     </ToolTips>
                                                                 </ext:NumberField>
                                                                 <ext:DateField runat="server" ID="EditFechaNotaTxt" DataIndex="NOTAS_FECHA" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha" AllowBlank="false" MsgTarget="Side" ></ext:DateField>
@@ -1459,7 +1466,7 @@
                                                                 </ext:ComboBox>
                                                             </Items>
                                                         </ext:Panel>
-                                                        <ext:Panel ID="Panel9" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
+                                                        <ext:Panel ID="Panel13" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
                                                                 <ext:ComboBox runat="server" ID="EditEstadoNotaCmb" DataIndex="ESTADOS_NOTA_ID" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Estado de Nota" AllowBlank="false" MsgTarget="Side"
                                                                     StoreID="EstadosNotaSt"
@@ -1501,19 +1508,14 @@
                                                 </ext:Panel>
                                                 <ext:TextField   runat="server" ID="EditNombreTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre del Socio" ReadOnly="true" >
                                                     <ToolTips>
-                                                        <ext:ToolTip ID="ToolTip2" runat="server" Html="El nombre de socio es de solo lectura." Title="Nombre del Socio" Width="200" TrackMouse="true" />
+                                                        <ext:ToolTip ID="ToolTip4" runat="server" Html="El nombre de socio es de solo lectura." Title="Nombre del Socio" Width="200" TrackMouse="true" />
                                                     </ToolTips>
                                                 </ext:TextField>
                                                 <ext:TextField   runat="server" ID="EditDireccionFincaTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Dirección de la Finca" ReadOnly="true" >
                                                     <ToolTips>
-                                                        <ext:ToolTip ID="ToolTip3" runat="server" Html="La dirección de la finca de solo lectura." Title="Dirección de la Finca" Width="200" TrackMouse="true" />
+                                                        <ext:ToolTip ID="ToolTip5" runat="server" Html="La dirección de la finca de solo lectura." Title="Dirección de la Finca" Width="200" TrackMouse="true" />
                                                     </ToolTips>
                                                 </ext:TextField>
-                                                <ext:TextArea ID="EditTotalRecibidoTextoTxt" runat="server" DataIndex="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Total Recibido" ReadOnly="true" Height="50" >
-                                                    <ToolTips>
-                                                        <ext:ToolTip runat="server" Html="El total recibido es de solo lectura." Title="En Letras el numero de Libras Netas" Width="200" TrackMouse="true" />
-                                                    </ToolTips>
-                                                </ext:TextArea>
                                             </Items>
                                         </ext:FieldSet>
 
@@ -1522,7 +1524,7 @@
                                                 <ext:ColumnLayoutConfig FitHeight="false" />
                                             </LayoutConfig>
                                             <Items>
-                                                <ext:Panel ID="Panel10" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
+                                                <ext:Panel ID="Panel14" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
                                                     <Items>
                                                         <ext:FieldSet ID="EditTransportePorcentajeFS" runat="server" Title="Forma de Entrega" Padding="5">
                                                             <Items>
@@ -1536,7 +1538,7 @@
                                                                 </ext:RadioGroup>
                                                                 <ext:TextField runat="server" ID="EditPorcentajeHumedadTxt" DataIndex="NOTAS_PORCENTAJE_HUMEDAD" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Porcentaje de Humedad" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" >
                                                                     <Listeners>
-                                                                        <Change Handler="this.getEl().setValue(Ext.util.Format.number(newValue.replace(/[\%]/g, ''), '0.00%')); EditTaraTxt.insertDescuentosYTotal();" />
+                                                                        <Change Handler="this.getEl().setValue(Ext.util.Format.number(newValue.replace(/[\%]/g, ''), '0.00%'));" />
                                                                     </Listeners>
                                                                 </ext:TextField>
                                                                 <ext:TriggerField runat="server" ID="EditPorcentajeDefectoTxt" DataIndex="NOTAS_PORCENTAJE_DEFECTO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Porcentaje de Defecto" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" >
@@ -1544,31 +1546,26 @@
                                                                         <ext:FieldTrigger Icon="SimpleEllipsis" Tag="Calcular" Qtip="Calcular" />
                                                                     </Triggers>
                                                                     <Listeners>
-                                                                        <Change Handler="this.getEl().setValue(Ext.util.Format.number(newValue.replace(/[\%]/g, ''), '0.00%')); EditTaraTxt.insertDescuentosYTotal();" />
+                                                                        <Change Handler="this.getEl().setValue(Ext.util.Format.number(newValue.replace(/[\%]/g, ''), '0.00%'));" />
                                                                         <TriggerClick Handler="EditDetailX.openDefectCalculation();" />
                                                                     </Listeners>
                                                                 </ext:TriggerField>
-
-                                                                <ext:NumberField  runat="server" ID="EditTotalPesoHumedadTxt"  DataIndex="NOTAS_PESO_HUMEDAD"    LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Total descuento por Humedad" ReadOnly="true" MsgTarget="Side">
-                                                                    <ToolTips>
-                                                                        <ext:ToolTip ID="ToolTip5" runat="server" Html="El total de descuento por humedad es de solo lectura." Title="Descuento por Humedad" Width="200" TrackMouse="true" />
-                                                                    </ToolTips>
-                                                                </ext:NumberField>
-                                                                <ext:NumberField  runat="server" ID="EditTotalPesoDefectoTxt"  DataIndex="NOTAS_PESO_DEFECTO"    LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Total descuento por Defecto" ReadOnly="true" MsgTarget="Side">
-                                                                    <ToolTips>
-                                                                        <ext:ToolTip ID="ToolTip6" runat="server" Html="El total de descuento por defecto es de solo lectura." Title="Descuento por Defecto" Width="200" TrackMouse="true" />
-                                                                    </ToolTips>
-                                                                </ext:NumberField>
-                                                        </Items>
+                                                            </Items>
+                                                        </ext:FieldSet>
+                                                        <ext:FieldSet ID="EditSacosFS" runat="server" Title="Sacos" Padding="7" >
+                                                            <Items>
+                                                                <ext:NumberField runat="server" ID="EditSumaSacosTxt"                                            LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cantidad de Sacos" Text="0" ReadOnly="true"></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditSacosRetenidosTxt" DataIndex="NOTAS_SACOS_RETENIDOS"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Sacos Retenidos" AllowBlank="false" MsgTarget="Side"></ext:NumberField>
+                                                            </Items>
                                                         </ext:FieldSet>
                                                     </Items>
                                                 </ext:Panel>
-                                                <ext:Panel ID="Panel11" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
+                                                <ext:Panel ID="Panel15" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
                                                     <Items>
                                                         <ext:Panel ID="EditDetallPnl" runat="server" Frame="false" Padding="5" Layout="FitLayout" Border="false">
                                                             <Items>
                                                                 <ext:GridPanel ID="EditNotaDetalleGridP" runat="server" AutoExpandColumn="DETALLES_PESO"
-                                                                    Height="225" Title="Detalle" Header="true" Border="true" StripeRows="true"
+                                                                    Height="250" Title="Detalle" Header="true" Border="true" StripeRows="true"
                                                                     TrackMouseOver="true" SelectionMemory="Disabled" StoreID="EditNotaDetalleSt" >
                                                                     <ColumnModel>
                                                                         <Columns>
@@ -1620,26 +1617,14 @@
                                                 <ext:ColumnLayoutConfig FitHeight="false" />
                                             </LayoutConfig>
                                             <Items>
-                                                <ext:Panel ID="Panel12" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
+                                                <ext:Panel ID="Panel16" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
                                                     <Items>
-                                                        <ext:FieldSet ID="EditSacosFS" runat="server" Title="Sacos" >
-                                                            <Items>
-                                                                <ext:NumberField runat="server" ID="EditSumaSacosTxt"                                            LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cantidad de Sacos" Text="0" ReadOnly="true"></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditSacosRetenidosTxt" DataIndex="NOTAS_SACOS_RETENIDOS"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Sacos Retenidos" AllowBlank="false" MsgTarget="Side"></ext:NumberField>
-                                                            </Items>
-                                                        </ext:FieldSet>
                                                     </Items>
                                                 </ext:Panel>
-                                                <ext:Panel ID="Panel13" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
+                                                <ext:Panel ID="Panel17" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
                                                     <Items>
                                                         <ext:NumberField runat="server" ID="EditSumaPesoBrutoTxt"  DataIndex="NOTAS_PESO_SUMA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Suma"      AllowBlank="false" Text="0" ReadOnly="true" MsgTarget="Side"></ext:NumberField>
-                                                        <ext:NumberField runat="server" ID="EditTaraTxt"           DataIndex="NOTAS_PESO_TARA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tara"      AllowBlank="false" MsgTarget="Side" >
-                                                            <Listeners>
-                                                                <Change Handler="EditTaraTxt.insertDescuentosYTotal();" />
-                                                            </Listeners>
-                                                        </ext:NumberField>
-                                                        <ext:NumberField runat="server" ID="EditDescuentoTxt"      DataIndex="NOTAS_PESO_DESCUENTO"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descuento" AllowBlank="false" ReadOnly="true" ></ext:NumberField>
-                                                        <ext:NumberField runat="server" ID="EditTotalRecibidoTxt"  DataIndex="NOTAS_PESO_TOTAL_RECIBIDO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Total"     AllowBlank="false" ReadOnly="true" ></ext:NumberField>
+                                                        <ext:NumberField runat="server" ID="EditTaraTxt"           DataIndex="NOTAS_PESO_TARA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tara"      AllowBlank="false" MsgTarget="Side" ></ext:NumberField>
                                                     </Items>
                                                 </ext:Panel>
                                             </Items>
@@ -1654,9 +1639,9 @@
                         </ext:Panel>
                     </Items>
                     <Buttons>
-                        <ext:Button ID="EditGuardarBtn" runat="server" Text="Guardar" Icon="Disk" FormBind="true" Hidden="true" Enabled="false">
+                        <ext:Button ID="EditGuardarBtn" runat="server" Text="Guardar" Icon="Disk" FormBind="true" >
                             <Listeners>
-                                <Click Handler="#{EditCreatedByTxt}.setValue(#{LoggedUserHdn}.getValue()); PageX.insert();" />
+                                <Click Handler="#{EditCreatedByTxt}.setValue(#{LoggedUserHdn}.getValue()); PageX.update();" />
                             </Listeners>
                         </ext:Button>
                     </Buttons>
@@ -1706,7 +1691,7 @@
                     <Buttons>
                     <ext:Button ID="Button7" runat="server" Text="Guardar" Icon="Disk" FormBind="true">
                         <Listeners>
-                            <Click Handler="EditDetailX.insertDefectCalculation(); EditTaraTxt.insertDescuentosYTotal();" />
+                            <Click Handler="EditDetailX.insertDefectCalculation();" />
                         </Listeners>
                     </ext:Button>
             </Buttons>

@@ -147,19 +147,22 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
         #region Insert
 
         /*
-         *               -----Calculos-----
+         *                  -----Calculos-----
          * 
-         *                  Tara = Peso de los sacos
-         *            Peso bruto = Peso total de café
+         *                     Tara = Peso de los sacos
+         *               Peso bruto = Peso total de café
          * 
-         *             % Defecto = Peso de  muestra / peso de gramos malos
-         * Descuento por Defecto = ((Peso Bruto) - Tara) * (% Defecto)
+         *                % Defecto = (Peso de  muestra) / (Peso de gramos malos)
+         *    Descuento por Defecto = ((Peso Bruto) - Tara) * (% Defecto)
          * 
-         *             % Humedad = Valor devuelto por maquina?
-         * Descuento por Humedad = ((Peso Bruto) - Tara) * (% Humedad)
+         *                % Humedad = Valor devuelto por maquina?
+         *    Descuento por Humedad = ((Peso Bruto) - Tara) * (% Humedad)
          * 
-         *             Descuento = (Descuento por Defecto) + (Descuento por Humedad)
-         *                 Total = (Peso Bruto) - Tara - Descuento
+         * % Transporte Cooperativa = (Indicado por variable de entorno) * (1-0)
+         * Descuento por Transporte = ((Peso Bruto) - Tara) * (% Transporte Cooperativa)
+         * 
+         *                Descuento = (Descuento por Defecto) + (Descuento por Humedad) + (Descuento por Transporte)
+         *                    Total = (Peso Bruto) - Tara - Descuento
          * 
          */
 
@@ -194,18 +197,28 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 decimal DESCUENTO_POR_DEFECTO = (NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_DEFECTO;
 
                 // Descuento por Humedad = ((Peso Bruto) - Tara) * (% Humedad)
-                string strPORCENTAJEHUMEDADMIN = Variables["PORCENTAJEHUMEDADMIN"];
-                decimal PORCENTAJEHUMEDADMIN = Convert.ToDecimal(strPORCENTAJEHUMEDADMIN);
+                string strNOTA_PORCENTAJEHUMEDADMIN = Variables["NOTA_PORCENTAJEHUMEDADMIN"];
+                decimal NOTA_PORCENTAJEHUMEDADMIN = Convert.ToDecimal(strNOTA_PORCENTAJEHUMEDADMIN);
 
-                if (NOTAS_PORCENTAJE_HUMEDAD < PORCENTAJEHUMEDADMIN)
+                if (NOTAS_PORCENTAJE_HUMEDAD < NOTA_PORCENTAJEHUMEDADMIN)
                     NOTAS_PORCENTAJE_HUMEDAD = 0;
 
                 NOTAS_PORCENTAJE_HUMEDAD = NOTAS_PORCENTAJE_HUMEDAD / 100;
 
                 decimal DESCUENTO_POR_HUMEDAD = (NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_HUMEDAD;
 
-                // Descuento = (Descuento por Defecto) + (Descuento por Humedad)
-                decimal DESCUENTO = DESCUENTO_POR_DEFECTO + DESCUENTO_POR_HUMEDAD;
+                // Descuento por Transporte = ((Peso Bruto) - Tara) * (% Transporte Cooperativa)
+                string strNOTA_TRANSPORTECOOP = Variables["NOTA_TRANSPORTECOOP"];
+                decimal NOTA_TRANSPORTECOOP = Convert.ToDecimal(strNOTA_TRANSPORTECOOP);
+
+                decimal NOTAS_PORCENTAJE_TRANSPORTE = 0;
+                if (NOTAS_TRANSPORTE_COOPERATIVA == true)
+                    NOTAS_PORCENTAJE_TRANSPORTE = NOTA_TRANSPORTECOOP;
+
+                decimal DESCUENTO_POR_TRANSPORTE = (NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_TRANSPORTE;
+
+                // Descuento = (Descuento por Defecto) + (Descuento por Humedad) + (Descuento por Transporte)
+                decimal DESCUENTO = DESCUENTO_POR_DEFECTO + DESCUENTO_POR_HUMEDAD + DESCUENTO_POR_TRANSPORTE;
 
                 // Total = (Peso Bruto) - Tara - Descuento
                 decimal TOTAL = NOTAS_PESO_SUMA - NOTAS_PESO_TARA - DESCUENTO;
@@ -304,40 +317,6 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                     db.notas_de_peso.AddObject(note);
 
-
-                    /*
-                     * Agregar a Inventario
-                     */
-                    IEnumerable<KeyValuePair<string, object>> entityKeyValues =
-                        new KeyValuePair<string, object>[] {
-                            new KeyValuePair<string, object>("SOCIOS_ID", SOCIOS_ID),
-                            new KeyValuePair<string, object>("CLASIFICACIONES_CAFE_ID", CLASIFICACIONES_CAFE_ID) };
-
-                    EntityKey k = new EntityKey("colinasEntities.inventario_cafe_de_socio", entityKeyValues);
-
-                    Object invCafSoc = null;
-
-                    if (db.TryGetObjectByKey(k, out invCafSoc))
-                    {
-                        inventario_cafe_de_socio asocInventory = (inventario_cafe_de_socio)invCafSoc;
-                        asocInventory.INVENTARIO_CANTIDAD += NOTAS_PESO_TOTAL_RECIBIDO;
-                        asocInventory.MODIFICADO_POR = CREADO_POR;
-                        asocInventory.FECHA_MODIFICACION = FECHA_CREACION;
-                    }
-                    else
-                    {
-                        inventario_cafe_de_socio asocInventory = new inventario_cafe_de_socio();
-                        asocInventory.SOCIOS_ID = SOCIOS_ID;
-                        asocInventory.CLASIFICACIONES_CAFE_ID = CLASIFICACIONES_CAFE_ID;
-                        asocInventory.INVENTARIO_CANTIDAD = NOTAS_PESO_TOTAL_RECIBIDO;
-                        asocInventory.CREADO_POR = CREADO_POR;
-                        asocInventory.FECHA_CREACION = FECHA_CREACION;
-                        asocInventory.MODIFICADO_POR = CREADO_POR;
-                        asocInventory.FECHA_MODIFICACION = FECHA_CREACION;
-
-                        db.inventario_cafe_de_socio.AddObject(asocInventory);
-                    }
-
                     db.SaveChanges();
                 }
             }
@@ -348,24 +327,78 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
+        public void AgregarAInventarioDeCafe(int NOTAS_ID, string USR_USERNAME)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    EntityKey k = new EntityKey("colinasEntities.notas_de_peso", "NOTAS_ID", NOTAS_ID);
+
+                    var n = db.GetObjectByKey(k);
+
+                    nota_de_peso note = (nota_de_peso)n;
+
+                    IEnumerable<KeyValuePair<string, object>> entityKeyValues =
+                        new KeyValuePair<string, object>[] {
+                            new KeyValuePair<string, object>("SOCIOS_ID", note.SOCIOS_ID),
+                            new KeyValuePair<string, object>("CLASIFICACIONES_CAFE_ID", note.CLASIFICACIONES_CAFE_ID) };
+
+                    EntityKey k2 = new EntityKey("colinasEntities.inventario_cafe_de_socio", entityKeyValues);
+
+                    Object invCafSoc = null;
+
+                    if (db.TryGetObjectByKey(k2, out invCafSoc))
+                    {
+                        inventario_cafe_de_socio asocInventory = (inventario_cafe_de_socio)invCafSoc;
+                        asocInventory.INVENTARIO_CANTIDAD += note.NOTAS_PESO_TOTAL_RECIBIDO;
+                        asocInventory.MODIFICADO_POR = USR_USERNAME;
+                        asocInventory.FECHA_MODIFICACION = DateTime.Now;
+                    }
+                    else
+                    {
+                        inventario_cafe_de_socio asocInventory = new inventario_cafe_de_socio();
+                        asocInventory.SOCIOS_ID = note.SOCIOS_ID;
+                        asocInventory.CLASIFICACIONES_CAFE_ID = note.CLASIFICACIONES_CAFE_ID;
+                        asocInventory.INVENTARIO_CANTIDAD = note.NOTAS_PESO_TOTAL_RECIBIDO;
+                        asocInventory.CREADO_POR = asocInventory.MODIFICADO_POR = USR_USERNAME;
+                        asocInventory.FECHA_CREACION = DateTime.Now;
+                        asocInventory.FECHA_MODIFICACION = asocInventory.FECHA_CREACION;
+
+                        db.inventario_cafe_de_socio.AddObject(asocInventory);
+                    }
+
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
         #endregion
 
         #region Update
 
         /*
-         *               -----Calculos-----
+         *                  -----Calculos-----
          * 
-         *                  Tara = Peso de los sacos
-         *            Peso bruto = Peso total de café
+         *                     Tara = Peso de los sacos
+         *               Peso bruto = Peso total de café
          * 
-         *             % Defecto = Peso de  muestra / peso de gramos malos
-         * Descuento por Defecto = ((Peso Bruto) - Tara) * (% Defecto)
+         *                % Defecto = (Peso de  muestra) / (Peso de gramos malos)
+         *    Descuento por Defecto = ((Peso Bruto) - Tara) * (% Defecto)
          * 
-         *             % Humedad = Valor devuelto por maquina?
-         * Descuento por Humedad = ((Peso Bruto) - Tara) * (% Humedad)
+         *                % Humedad = Valor devuelto por maquina?
+         *    Descuento por Humedad = ((Peso Bruto) - Tara) * (% Humedad)
          * 
-         *             Descuento = (Descuento por Defecto) + (Descuento por Humedad)
-         *                 Total = (Peso Bruto) - Tara - Descuento
+         * % Transporte Cooperativa = (Indicado por variable de entorno) * (1-0)
+         * Descuento por Transporte = ((Peso Bruto) - Tara) * (% Transporte Cooperativa)
+         * 
+         *                Descuento = (Descuento por Defecto) + (Descuento por Humedad) + (Descuento por Transporte)
+         *                    Total = (Peso Bruto) - Tara - Descuento
          * 
          */
 
@@ -401,18 +434,28 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 decimal DESCUENTO_POR_DEFECTO = (NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_DEFECTO;
 
                 // Descuento por Humedad = ((Peso Bruto) - Tara) * (% Humedad)
-                string strPORCENTAJEHUMEDADMIN = Variables["PORCENTAJEHUMEDADMIN"];
-                decimal PORCENTAJEHUMEDADMIN = Convert.ToDecimal(strPORCENTAJEHUMEDADMIN);
+                string strNOTA_PORCENTAJEHUMEDADMIN = Variables["NOTA_PORCENTAJEHUMEDADMIN"];
+                decimal NOTA_PORCENTAJEHUMEDADMIN = Convert.ToDecimal(strNOTA_PORCENTAJEHUMEDADMIN);
 
-                if (NOTAS_PORCENTAJE_HUMEDAD < PORCENTAJEHUMEDADMIN)
+                if (NOTAS_PORCENTAJE_HUMEDAD < NOTA_PORCENTAJEHUMEDADMIN)
                     NOTAS_PORCENTAJE_HUMEDAD = 0;
 
                 NOTAS_PORCENTAJE_HUMEDAD = NOTAS_PORCENTAJE_HUMEDAD / 100;
 
                 decimal DESCUENTO_POR_HUMEDAD = (NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_HUMEDAD;
 
-                // Descuento = (Descuento por Defecto) + (Descuento por Humedad)
-                decimal DESCUENTO = DESCUENTO_POR_DEFECTO + DESCUENTO_POR_HUMEDAD;
+                // Descuento por Transporte = ((Peso Bruto) - Tara) * (% Transporte Cooperativa)
+                string strNOTA_TRANSPORTECOOP = Variables["NOTA_TRANSPORTECOOP"];
+                decimal NOTA_TRANSPORTECOOP = Convert.ToDecimal(strNOTA_TRANSPORTECOOP);
+
+                decimal NOTAS_PORCENTAJE_TRANSPORTE = 0;
+                if (NOTAS_TRANSPORTE_COOPERATIVA == true)
+                    NOTAS_PORCENTAJE_TRANSPORTE = NOTA_TRANSPORTECOOP;
+
+                decimal DESCUENTO_POR_TRANSPORTE = (NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_TRANSPORTE;
+
+                // Descuento = (Descuento por Defecto) + (Descuento por Humedad) + (Descuento por Transporte)
+                decimal DESCUENTO = DESCUENTO_POR_DEFECTO + DESCUENTO_POR_HUMEDAD + DESCUENTO_POR_TRANSPORTE;
 
                 // Total = (Peso Bruto) - Tara - Descuento
                 decimal TOTAL = NOTAS_PESO_SUMA - NOTAS_PESO_TARA - DESCUENTO;
@@ -519,52 +562,6 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                     db.notas_de_peso.AddObject(note);
 
-
-                    /*
-                     * Actualizar el Inventario! Si actualizan la nota se le resta el Total anterior y se le suma el total actual?
-                     */
-
-                    // Si hubo cambio de clasificacion, hay que remover la cantidad de la clasificacione anterior y agregar la nueva cantidad a la nueva clasificacion.
-
-                    if (CLASIFICACIONES_CAFE_ID_ANTERIOR != CLASIFICACIONES_CAFE_ID)
-                    {
-                        IEnumerable<KeyValuePair<string, object>> entityKeyValuesAnterior =
-                        new KeyValuePair<string, object>[] {
-                            new KeyValuePair<string, object>("SOCIOS_ID", SOCIOS_ID),
-                            new KeyValuePair<string, object>("CLASIFICACIONES_CAFE_ID", CLASIFICACIONES_CAFE_ID) };
-                    }
-
-                    IEnumerable<KeyValuePair<string, object>> entityKeyValues =
-                        new KeyValuePair<string, object>[] {
-                            new KeyValuePair<string, object>("SOCIOS_ID", SOCIOS_ID),
-                            new KeyValuePair<string, object>("CLASIFICACIONES_CAFE_ID", CLASIFICACIONES_CAFE_ID) };
-
-                    EntityKey k2 = new EntityKey("colinasEntities.inventario_cafe_de_socio", entityKeyValues);
-
-                    Object invCafSoc = null;
-
-                    if (db.TryGetObjectByKey(k2, out invCafSoc))
-                    {
-                        inventario_cafe_de_socio asocInventory = (inventario_cafe_de_socio)invCafSoc;
-                        asocInventory.INVENTARIO_CANTIDAD -= NOTAS_PESO_TOTAL_RECIBIDO_ANTERIOR;
-                        asocInventory.INVENTARIO_CANTIDAD += NOTAS_PESO_TOTAL_RECIBIDO;
-                        asocInventory.MODIFICADO_POR = MODIFICADO_POR;
-                        asocInventory.FECHA_MODIFICACION = FECHA_MODIFICACION;
-                    }
-                    else
-                    {
-                        inventario_cafe_de_socio asocInventory = new inventario_cafe_de_socio();
-                        asocInventory.SOCIOS_ID = SOCIOS_ID;
-                        asocInventory.CLASIFICACIONES_CAFE_ID = CLASIFICACIONES_CAFE_ID;
-                        asocInventory.INVENTARIO_CANTIDAD = NOTAS_PESO_TOTAL_RECIBIDO;
-                        asocInventory.CREADO_POR = MODIFICADO_POR;
-                        asocInventory.FECHA_CREACION = FECHA_MODIFICACION;
-                        asocInventory.MODIFICADO_POR = MODIFICADO_POR;
-                        asocInventory.FECHA_MODIFICACION = FECHA_MODIFICACION;
-
-                        db.inventario_cafe_de_socio.AddObject(asocInventory);
-                    }
-
                     db.SaveChanges();
                 }
             }
@@ -579,7 +576,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
         #region Delete
 
-        public void EliminarNotasDePeso(int NOTAS_ID, string USR_USERNAME)
+        public void EliminarNotaDePeso(int NOTAS_ID, string USR_USERNAME)
         {
             try
             {
@@ -592,31 +589,6 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     nota_de_peso note = (nota_de_peso)n;
 
                     db.DeleteObject(note);
-
-                    /*
-                     * Actualizar Inventario! Si borran la nota de peso hay que restar el total que se registro?
-                     */
-                    IEnumerable<KeyValuePair<string, object>> entityKeyValues =
-                        new KeyValuePair<string, object>[] {
-                            new KeyValuePair<string, object>("SOCIOS_ID", note.SOCIOS_ID),
-                            new KeyValuePair<string, object>("CLASIFICACIONES_CAFE_ID", note.CLASIFICACIONES_CAFE_ID) };
-
-                    EntityKey k2 = new EntityKey("colinasEntities.inventario_cafe_de_socio", entityKeyValues);
-
-                    Object invCafSoc = null;
-
-                    if (db.TryGetObjectByKey(k2, out invCafSoc))
-                    {
-                        inventario_cafe_de_socio asocInventory = (inventario_cafe_de_socio)invCafSoc;
-                        asocInventory.INVENTARIO_CANTIDAD -= note.NOTAS_PESO_TOTAL_RECIBIDO;
-                        asocInventory.MODIFICADO_POR = USR_USERNAME;
-                        asocInventory.FECHA_MODIFICACION = DateTime.Today;
-                    }
-                    //else
-                    //{
-                    //    //what to do?
-                    //}
-
 
                     db.SaveChanges();
                 }

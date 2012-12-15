@@ -27,11 +27,11 @@ namespace COCASJOL.WEBSITE.Socios
 
             if (!X.IsAjaxRequest)
             {
-                string loggedUsr = Session["username"] as string;
-                this.LoggedUserHdn.Text = loggedUsr;
 
-                this.ValidarCredenciales(typeof(Socios).Name);
             }
+
+            string loggedUsr = Session["username"] as string;
+            this.LoggedUserHdn.Text = loggedUsr;
         }
 
         [DirectMethod]

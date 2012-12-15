@@ -175,15 +175,6 @@ namespace COCASJOL.WEBSITE.Source.Entorno {
         protected global::Ext.Net.TextField f_VARIABLES_NOMBRE;
         
         /// <summary>
-        /// f_VARIABLES_DESCRIPCION control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField f_VARIABLES_DESCRIPCION;
-        
-        /// <summary>
         /// f_VARIABLES_VALOR control.
         /// </summary>
         /// <remarks>

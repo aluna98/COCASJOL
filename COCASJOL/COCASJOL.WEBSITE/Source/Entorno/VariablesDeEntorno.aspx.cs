@@ -20,11 +20,11 @@ namespace COCASJOL.WEBSITE.Source.Entorno
             {
                 if (!X.IsAjaxRequest)
                 {
-                    string loggedUsr = Session["username"] as string;
-                    this.LoggedUserHdn.Text = loggedUsr;
-
-                    this.ValidarCredenciales(typeof(VariablesDeEntorno).Name);
+                    
                 }
+
+                string loggedUsr = Session["username"] as string;
+                this.LoggedUserHdn.Text = loggedUsr;
             }
             catch (Exception)
             {
@@ -90,10 +90,11 @@ namespace COCASJOL.WEBSITE.Source.Entorno
             try
             {
                 string nombreDeVariablesDeEntorno = this.EditNombreTxt.Text;
+                string llaveDeVariablesDeEntorno = this.EditLlaveTxt.Text;
 
                 VariablesDeEntornoLogic VariablesDeEntornologic = new VariablesDeEntornoLogic();
 
-                if (VariablesDeEntornologic.NombreDeVariableDeEntornoExiste(nombreDeVariablesDeEntorno))
+                if (VariablesDeEntornologic.NombreDeVariableDeEntornoExiste(llaveDeVariablesDeEntorno, nombreDeVariablesDeEntorno))
                 {
                     e.Success = false;
                     e.ErrorMessage = "El nombre de de la variable de entorno ingresada ya existe.";

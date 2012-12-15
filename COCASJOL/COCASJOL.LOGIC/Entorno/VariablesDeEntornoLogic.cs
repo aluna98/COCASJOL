@@ -231,6 +231,40 @@ namespace COCASJOL.LOGIC.Entorno
             }
         }
 
+        public bool NombreDeVariableDeEntornoExiste(string VARIABLES_LLAVE, string VARIABLES_NOMBRE)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    db.variables_de_entorno.MergeOption = MergeOption.NoTracking;
+
+                    EntityKey k = new EntityKey("colinasEntities.variables_de_entorno", "VARIABLES_LLAVE", VARIABLES_LLAVE);
+
+                    var envar = db.GetObjectByKey(k);
+
+                    variable_de_entorno environmentVariables = (variable_de_entorno)envar;
+
+                    if (environmentVariables.VARIABLES_NOMBRE == VARIABLES_NOMBRE)
+                        return false;// para que pase la validacion
+
+                    var query = from env in db.variables_de_entorno
+                                where env.VARIABLES_NOMBRE == VARIABLES_NOMBRE
+                                select env;
+
+                    if (query.Count() > 0)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public bool LlaveDeVariableDeEntornoExiste(string VARIABLES_LLAVE)
         {
             try

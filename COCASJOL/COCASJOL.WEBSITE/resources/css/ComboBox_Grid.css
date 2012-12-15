@@ -1,0 +1,24 @@
+﻿/* Estilos para ComboBox que muestra un grid en lugar de una lista. */
+
+.cbStates-list 
+{
+    width: 298px;
+    font: 11px tahoma,arial,helvetica,sans-serif;
+}
+
+.cbStates-list th {
+    font-weight: bold;
+}
+
+.cbStates-list td, .cbStates-list th {
+    padding: 3px;
+}
+
+.total-field {
+    background-color : #fff;
+    font-weight      : bold !important;
+    color            : #000;
+    border           : solid 1px silver;
+    padding          : 2px;
+    margin-right     : 5px;
+}

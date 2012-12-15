@@ -14,7 +14,7 @@ using COCASJOL.LOGIC.Inventario.Ingresos;
 
 namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
 {
-    public partial class NotasDePeso : COCASJOL.LOGIC.Web.COCASJOLBASE
+    public partial class NotasDePesoEnPesaje : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,11 +22,12 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
             {
                 if (!X.IsAjaxRequest)
                 {
-                    this.AddFechaNotaTxt.SelectedDate = DateTime.Now;
+
                 }
 
                 string loggedUsr = Session["username"] as string;
-                this.LoggedUserHdn.Text = loggedUsr;
+                this.LoggedUserHdn.Text = loggedUsr;//necesario actualizarlo siempre, para el tracking correcto
+                //this.ValidarCredenciales(typeof(NotasDePesoEnPesaje).Name);//necesario validar en todo momento las credenciales
             }
             catch (Exception)
             {
@@ -41,18 +42,18 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 e.Cancel = true;
         }
 
-        [DirectMethod(RethrowException=true)]
+        [DirectMethod(RethrowException = true, ShowMask = true, Target = MaskTarget.CustomTarget, CustomTarget = "AgregarNotasFormP")]
         public void AddNotaDePeso_Click(string Detalles)
         {
             try
             {
+                Dictionary<string, string> variables = this.GetVariables();
+                if (this.ValidarVariables(variables))
+                    return;
+
                 string loggedUser = this.LoggedUserHdn.Text;
 
                 var detalles = JSON.Deserialize<Dictionary<string, string>[]>(Detalles);
-
-                Dictionary<string, string> variables = this.GetVariables();
-                if (!this.ValidarVariables(variables))
-                    return;
 
                 NotaDePesoLogic notadepesologic = new NotaDePesoLogic();
 
@@ -60,20 +61,20 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 string pDefecto = this.AddPorcentajeDefectoTxt.Text.Replace("%", "");
                 string pHumedad = this.AddPorcentajeHumedadTxt.Text.Replace("%", "");
 
-                //notadepesologic.InsertarNotaDePeso
-                //    (int.Parse(this.AddEstadoNotaCmb.Text),
-                //    this.AddSociosIdTxt.Text,
-                //    int.Parse(this.AddClasificacionCafeCmb.Text),
-                //    this.AddFechaNotaTxt.SelectedDate,
-                //    this.AddCooperativaRadio.Value == null ? false : true,
-                //    decimal.Parse(pDefecto),
-                //    decimal.Parse(pHumedad),
-                //    decimal.Parse(this.AddSumaPesoBrutoTxt.Text),
-                //    decimal.Parse(this.AddTaraTxt.Text),
-                //    int.Parse(this.AddSacosRetenidosTxt.Text),
-                //    loggedUser,
-                //    detalles,
-                //    variables);
+                notadepesologic.InsertarNotaDePeso
+                    (int.Parse(this.AddEstadoNotaCmb.Text),
+                    this.AddSociosIdTxt.Text,
+                    int.Parse(this.AddClasificacionCafeCmb.Text),
+                    this.AddFechaNotaTxt.SelectedDate,
+                    this.AddCooperativaRadio.Value == null ? false : true,
+                    decimal.Parse(pDefecto),
+                    decimal.Parse(pHumedad),
+                    decimal.Parse(this.AddSumaPesoBrutoTxt.Text),
+                    decimal.Parse(this.AddTaraTxt.Text),
+                    int.Parse(this.AddSacosRetenidosTxt.Text),
+                    loggedUser,
+                    detalles,
+                    variables);
             }
             catch (Exception)
             {
@@ -81,17 +82,18 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
             }
         }
 
-        [DirectMethod(RethrowException = true)]
+        [DirectMethod(RethrowException = true, ShowMask = true, Target = MaskTarget.CustomTarget, CustomTarget = "EditarNotasFormP")]
         public void EditNotaDePeso_Click(string Detalles)
         {
             try
             {
+                Dictionary<string, string> variables = this.GetVariables();
+                if (!this.ValidarVariables(variables))
+                    return;
+
                 string loggedUser = this.LoggedUserHdn.Text;
 
                 var detalles = JSON.Deserialize<Dictionary<string, string>[]>(Detalles);
-
-                Dictionary<string, string> variables = this.GetVariables();
-                //validar variables
 
                 NotaDePesoLogic notadepesologic = new NotaDePesoLogic();
 
@@ -133,7 +135,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 NotaDePesoLogic notadepesologic = new NotaDePesoLogic();
 
                 this.EditNotaDetalleSt.DataSource = notadepesologic.GetDetalleNotaDePeso(int.Parse(notaId));
-                this.EditNotaDetalleSt.DataBind();                
+                this.EditNotaDetalleSt.DataBind();
             }
             catch (Exception)
             {
@@ -141,7 +143,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
             }
         }
 
-        [DirectMethod(RethrowException=true)]
+        [DirectMethod(RethrowException = true)]
         public void DeleteNotaDePeso_Click(string strNOTAS_ID)
         {
             try
@@ -156,7 +158,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
             }
             catch (Exception)
             {
-                
                 throw;
             }
         }

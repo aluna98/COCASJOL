@@ -159,14 +159,14 @@
                 UpdateMethod="ActualizarVariableDeEntorno"
                 DeleteMethod="EliminarVariableDeEntorno" onselecting="VariablesEntornoDS_Selecting" >
                 <SelectParameters>
-                    <asp:ControlParameter Name="VARIABLES_LLAVE"             Type="String"   ControlID="f_VARIABLES_LLAVE"             PropertyName="Text" />
-                    <asp:ControlParameter Name="VARIABLES_NOMBRE"            Type="String"   ControlID="f_VARIABLES_NOMBRE"            PropertyName="Text" />
-                    <asp:ControlParameter Name="VARIABLES_DESCRIPCION"       Type="String"   ControlID="f_VARIABLES_DESCRIPCION"       PropertyName="Text" />
-                    <asp:ControlParameter Name="VARIABLES_VALOR"             Type="String"   ControlID="f_VARIABLES_VALOR"             PropertyName="Text" />
-                    <asp:ControlParameter Name="CREADO_POR"                  Type="String"   ControlID="nullHdn"                       PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_CREACION"              Type="DateTime" ControlID="nullHdn"                       PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="MODIFICADO_POR"              Type="String"   ControlID="nullHdn"                       PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_MODIFICACION"          Type="DateTime" ControlID="nullHdn"                       PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="VARIABLES_LLAVE"             Type="String"   ControlID="f_VARIABLES_LLAVE"  PropertyName="Text" />
+                    <asp:ControlParameter Name="VARIABLES_NOMBRE"            Type="String"   ControlID="f_VARIABLES_NOMBRE" PropertyName="Text" />
+                    <asp:ControlParameter Name="VARIABLES_DESCRIPCION"       Type="String"   ControlID="nullHdn"            PropertyName="Text" />
+                    <asp:ControlParameter Name="VARIABLES_VALOR"             Type="String"   ControlID="f_VARIABLES_VALOR"  PropertyName="Text" />
+                    <asp:ControlParameter Name="CREADO_POR"                  Type="String"   ControlID="nullHdn"            PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_CREACION"              Type="DateTime" ControlID="nullHdn"            PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="MODIFICADO_POR"              Type="String"   ControlID="nullHdn"            PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_MODIFICACION"          Type="DateTime" ControlID="nullHdn"            PropertyName="Text" DefaultValue="" />
                 </SelectParameters>
                 <InsertParameters>
                     <asp:Parameter Name="VARIABLES_LLAVE"             Type="String" />
@@ -203,7 +203,7 @@
             <Items>
                 <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Icon="Database" Layout="Fit">
                     <Items>
-                        <ext:GridPanel ID="VariablesEntornoGridP" runat="server" AutoExpandColumn="VARIABLES_DESCRIPCION" Height="300"
+                        <ext:GridPanel ID="VariablesEntornoGridP" runat="server" AutoExpandColumn="VARIABLES_NOMBRE" Height="300"
                             Title="Usuarios" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
                             <Store>
                                 <ext:Store ID="VariablesEntornoSt" runat="server" DataSourceID="VariablesEntornoDS" AutoSave="true" SkipIdForNewRecords="false" >
@@ -230,7 +230,7 @@
                                 <Columns>
                                     <ext:Column DataIndex="VARIABLES_LLAVE"       Header="Llave" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="VARIABLES_NOMBRE"      Header="Nombre" Sortable="true" Width="150"></ext:Column>
-                                    <ext:Column DataIndex="VARIABLES_DESCRIPCION" Header="Descripción" Sortable="true"></ext:Column>
+                                    <%--<ext:Column DataIndex="VARIABLES_DESCRIPCION" Header="Descripción" Sortable="true"></ext:Column>--%>
                                     <ext:Column DataIndex="VARIABLES_VALOR"       Header="Valor" Sortable="true"></ext:Column>
                                 </Columns>
                             </ColumnModel>
@@ -240,7 +240,7 @@
                             <TopBar>
                                 <ext:Toolbar ID="Toolbar1" runat="server">
                                     <Items>
-                                        <ext:Button ID="AgregarBtn" runat="server" Text="Agregar" Icon="DatabaseAdd" >
+                                        <ext:Button ID="AgregarBtn" runat="server" Text="Agregar" Icon="DatabaseAdd" Hidden="true" Enabled="false">
                                             <Listeners>
                                                 <Click Handler="PageX.add();" />
                                             </Listeners>
@@ -250,7 +250,7 @@
                                                 <Click Handler="PageX.edit();" />
                                             </Listeners>
                                         </ext:Button>
-                                        <ext:Button ID="EliminarBtn" runat="server" Text="Eliminar" Icon="DatabaseDelete">
+                                        <ext:Button ID="EliminarBtn" runat="server" Text="Eliminar" Icon="DatabaseDelete" Hidden="true" Enabled="false">
                                             <Listeners>
                                                 <Click Handler="PageX.remove();" />
                                             </Listeners>
@@ -281,7 +281,7 @@
                                                         </ext:TextField>
                                                     </Component>
                                                 </ext:HeaderColumn>
-                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                <%--<ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
                                                         <ext:TextField ID="f_VARIABLES_DESCRIPCION" runat="server" EnableKeyEvents="true" Icon="Find">
                                                             <Listeners>
@@ -289,7 +289,7 @@
                                                             </Listeners>
                                                         </ext:TextField>
                                                     </Component>
-                                                </ext:HeaderColumn>
+                                                </ext:HeaderColumn>--%>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
                                                         <ext:TextField ID="f_VARIABLES_VALOR" runat="server" EnableKeyEvents="true" Icon="Find">
@@ -400,7 +400,7 @@
                                                 <ext:ToolTip ID="ToolTip1" runat="server" Title="LLave de Variable" Html="La llave de la variable de entorno es de solo lectura." Width="200" TrackMouse="true" />
                                             </ToolTips>
                                         </ext:TextField>
-                                        <ext:TextField runat="server"   ID="EditNombreTxt"        DataIndex="VARIABLES_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" IsRemoteValidation="true">
+                                        <ext:TextField runat="server"   ID="EditNombreTxt"        DataIndex="VARIABLES_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" IsRemoteValidation="true" >
                                             <RemoteValidation OnValidation="EditNombreTxt_Validate" />
                                         </ext:TextField>
                                         <ext:TextField runat="server"   ID="EditDescripcionTxt"   DataIndex="VARIABLES_DESCRIPCION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100"></ext:TextField>
