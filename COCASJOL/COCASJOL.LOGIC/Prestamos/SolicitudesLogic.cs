@@ -12,23 +12,78 @@ namespace COCASJOL.LOGIC.Prestamos
     {
         public SolicitudesLogic() { }
 
-    #region Select
-        public List<solicitud_prestamo> getData()
+        #region Select
+            public List<solicitud_prestamo> getData()
         {
-            colinasEntities db = new colinasEntities();
-            var query = from solicitud in db.solicitudes_prestamos
-                        select solicitud;
-            return query.ToList<solicitud_prestamo>();
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    var query = from solicitud in db.solicitudes_prestamos.Include("socios")
+                                select solicitud;
+                  
+                    return query.ToList<solicitud_prestamo>();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public List<socio> getSocios()
+            public List<socio> getSocios()
         {
-            colinasEntities db = new colinasEntities();
-            var query = from socios in db.socios
-                        select socios;
-            return query.ToList<socio>();
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    var query = from socios in db.socios.Include("socios_generales").Include("socios_produccion")
+                                select socios;
+                    return query.ToList<socio>();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
-    #endregion
+
+            public socio getSocio(string socioid)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    var query = from socios in db.socios.Include("socios_generales").Include("socios_produccion")
+                                where socios.SOCIOS_ID == socioid
+                                select socios;
+                    return query.First();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+            public solicitud_prestamo getSolicitud(int id)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    var query = from solicitud in db.solicitudes_prestamos.Include("socios")
+                                where solicitud.SOLICITUDES_ID == id
+                                select solicitud;
+                    return query.First();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        #endregion
 
         #region insert
         public void InsertarSolicitud(string idsocio, decimal monto,
@@ -77,6 +132,92 @@ namespace COCASJOL.LOGIC.Prestamos
                 throw;
             }
         }
+        #endregion
+
+        #region Update
+        public void EditarSolicitud(int idsolicitud, 
+            decimal monto, int interes, string plazo, string pago, 
+            string destino, string cargo, decimal promedio3, 
+            decimal prodact, string norte, string sur, 
+            string este, string oeste, int carro, int agua, 
+            int luz, int casa, int beneficio, string otros, 
+            string calificacion, string modificadopor)
+        {
+            colinasEntities db = null;
+            try
+            {
+                db = new colinasEntities();
+                var query = from solicitud in db.solicitudes_prestamos
+                            where idsolicitud == solicitud.SOLICITUDES_ID
+                            select solicitud;
+                solicitud_prestamo sol = query.First();
+                sol.SOLICITUDES_MONTO = monto;
+                sol.SOLICITUDES_INTERES = interes;
+                sol.SOLICITUDES_PLAZO = DateTime.Parse(plazo);
+                sol.SOLICITUDES_PAGO = pago;
+                sol.SOLICITUDES_DESTINO = destino;
+                sol.SOLICITUDES_CARGO = cargo;
+                sol.SOLICITUDES_PROMEDIO3 = promedio3;
+                sol.SOLICITUDES_PRODUCCIONACT = prodact;
+                sol.SOLICITUDES_NORTE = norte;
+                sol.SOLICITUDES_SUR = sur;
+                sol.SOLICITUDES_ESTE = este;
+                sol.SOLICITUDES_OESTE = oeste;
+                sol.SOLICITUDES_VEHICULO = (sbyte)carro;
+                sol.SOLICITUDES_AGUA = (sbyte)agua;
+                sol.SOLICITUDES_ENEE = (sbyte)luz;
+                sol.SOLICITUDES_CASA = (sbyte)casa;
+                sol.SOLICITUDES_BENEFICIO = (sbyte)beneficio;
+                sol.SOLICITUD_OTROSCULTIVOS = otros;
+                sol.SOLICITUD_CALIFICACION = calificacion;
+                sol.MODIFICADO_POR = modificadopor;
+                sol.FECHA_MODIFICACION = DateTime.Today;
+                db.SaveChanges();
+                db.Dispose();
+            }
+            catch (Exception e)
+            {
+                if(db != null){
+                    db.Dispose();
+                }
+                throw;
+            }
+        }
+        #endregion
+
+        #region Metodos
+
+        public socio_produccion getProduccion(string id)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+
+                    var query = from carnet in db.socios_produccion
+                                where carnet.SOCIOS_ID == id
+                                select carnet;
+                    return query.First(); 
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public string getIHCAFE(string id){
+            using (var db = new colinasEntities())
+            {
+
+                var query = from carnet in db.socios_generales
+                            where carnet.SOCIOS_ID == id
+                            select carnet;
+
+                return query.First().GENERAL_CARNET_IHCAFE; 
+            }
+        }
+
         #endregion
     }
 }

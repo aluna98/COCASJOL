@@ -43,6 +43,14 @@
                  AddForm = NuevaSolicitudFormP;
              },
 
+             getRecord: function () {
+                 var registro = Grid.getStore().getAt(this.getIndex());
+
+                 if (registro != null) {
+                     return registro;
+                 }
+             },
+
              add: function () {
                  AddWindow.show();
              },
@@ -52,13 +60,62 @@
                  Grid.insertRecord(0, fields, false);
              },
 
+             edit: function () {
+                 if (Grid.getSelectionModel().hasSelection()) {
+                     var record = Grid.getSelectionModel().getSelected();
+                     var index = Grid.store.indexOf(record);
+                     this.setIndex(index);
+                     this.open();
+                 } else {
+                     var msg = Ext.Msg;
+                     Ext.Msg.alert('Atención', 'Seleccione al menos 1 elemento');
+                 }
+             },
+
+             edit2: function (index) {
+                 this.setIndex(index);
+                 this.open();
+             },
+
+             next: function () {
+                 this.edit2(this.getIndex() + 1);
+             },
+
+             previous: function () {
+                 this.edit2(this.getIndex() - 1);
+             },
+
              open: function () {
-                 //rec = this.getRecord();
-                 //if (rec != null) {
+                 rec = this.getRecord();
+                 if (rec != null) {
                      EditWindow.show();
-                     //EditForm.getForm().loadRecord(rec);
-                     //EditForm.record = rec;
-                 //}
+                     EditForm.getForm().loadRecord(rec);
+                     EditForm.record = rec;
+                     DirectX.RefrescarSocio(rec.data.SOCIOS_ID);
+                 }
+             },
+
+             update: function () {
+                 if (EditForm.record == null) {
+                     return;
+                 }
+
+                 Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
+                     if (btn == 'yes') {
+                         //EditForm.record.commit(false);
+                         EditForm.getForm().updateRecord(EditForm.record);
+                     }
+                 });
+             },
+
+             getIndex: function () {
+                 return this._index;
+             },
+
+             setIndex: function (index) {
+                 if (index > -1 && index < Grid.getStore().getCount()) {
+                     this._index = index;
+                 }
              }
          };
      </script>
@@ -158,29 +215,6 @@
                 <DocumentReady Handler="SolicitudX.setReferences()" />
             </Listeners>
         </ext:ResourceManager>
-        <ext:Store ID="SocioSt" runat="server">
-            <Reader>
-                <ext:JsonReader>
-                    <Fields>
-                        <ext:RecordField Name="SOCIOS_ID" />
-                        <ext:RecordField Name="SOCIOS_PRIMER_NOMBRE" />
-                        <ext:RecordField Name="SOCIOS_SEGUNDO_NOMBRE" />
-                        <ext:RecordField Name="SOCIOS_PRIMER_APELLIDO" />
-                        <ext:RecordField Name="SOCIOS_SEGUNDO_APELLIDO" />
-                        <ext:RecordField Name="SOCIOS_IDENTIDAD" />
-                        <ext:RecordField Name="SOCIOS_LUGAR_DE_NACIMIENTO" />
-                        <ext:RecordField Name="GENERAL_CARNET_IHCAFE" ServerMapping="socios_generales.GENERAL_CARNET_IHCAFE"/>
-                        <ext:RecordField Name="SOCIOS_RTN" />
-                        <ext:RecordField Name="SOCIOS_ESTADO_CIVIL" />
-                        <ext:RecordField Name="SOCIOS_PROFESION" />
-                        <ext:RecordField Name="SOCIOS_TELEFONO" />
-                        <ext:RecordField Name="SOCIOS_RESIDENCIA" />
-                        <ext:RecordField Name="PRODUCCION_MANZANAS_CULTIVADAS" ServerMapping="socios_produccion.PRODUCCION_MANZANAS_CULTIVADAS" />
-                        <ext:RecordField Name="PRODUCCION_UBICACION_FINCA" ServerMapping="socios_produccion.PRODUCCION_UBICACION_FINCA" />
-                    </Fields>
-                </ext:JsonReader>
-            </Reader>
-        </ext:Store>
         <ext:Store ID="ComboBoxSt" runat="server" OnRefreshData="SociosSt_Reload">
             <Reader>
                 <ext:JsonReader>
@@ -251,6 +285,9 @@
                                         <Add OnEvent="SolicitudesSt_Insert" Success="#{SolicitudesSt}.reload()">
                                             <EventMask ShowMask="true" Target="CustomTarget" />
                                         </Add>
+                                        <Update OnEvent="SolicitudesSt_Update" Success="#{SolicitudesSt}.reload()">
+                                            <EventMask ShowMask="true" Target="CustomTarget" />
+                                        </Update>
                                     </DirectEvents>
                                 </ext:Store>
                             </Store>
@@ -264,7 +301,7 @@
                                         </ext:Button>
                                         <ext:Button ID="EditBtn" runat="server" Text="Editar" Icon="ApplicationEdit">
                                             <Listeners>
-                                                <Click Handler="SolicitudX.open()" />
+                                                <Click Handler="SolicitudX.edit()" />
                                             </Listeners>
                                         </ext:Button>
                                         <ext:Button ID="DeleteBtn" runat="server"  Text="Denegar" Icon="MoneyDelete">
@@ -353,7 +390,7 @@
                                     <ext:Column ColumnID="SolicitudId" Header="Solicitud ID" DataIndex="SOLICITUDES_ID" />
                                     <ext:Column ColumnID="SociosNombre" Header="Nombre Socio" DataIndex="SOCIOS_PRIMER_NOMBRE" />
                                     <ext:Column ColumnID="SolicitudMonto" Header="Monto" DataIndex="SOLICITUDES_MONTO" />
-                                    <ext:Column ColumnID="SolicitudPlazo" Header="Plazo" DataIndex="SOLICITUDES_PLAZO" />
+                                    <ext:DateColumn ColumnID="SolicitudPlazo" Header="Plazo" DataIndex="SOLICITUDES_PLAZO" Format="d MMM y" />
                                     <ext:Column Width="28" DataIndex="SOCIOS_ID" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
                                         <Renderer Handler="return '';" />
                                     </ext:Column>
@@ -367,7 +404,7 @@
                             </BottomBar>
                             <LoadMask ShowMask="true" />
                             <Listeners>
-                                <RowDblClick />
+                                <RowDblClick Handler="SolicitudX.edit()" />
                             </Listeners>
                         </ext:GridPanel>
                     </Items>
@@ -378,10 +415,10 @@
         <ext:Window ID="EditarSolicitudWin"
                 runat="server"
                 hidden="true"
-                Icon="EmoticonWaii"
+                Icon="Money"
                 width="550"
                 layout="FormLayout"
-                autoheight="true"
+                autoheight="true" Title="Editar Solicitud"
                 resizable="false"
                 shadow="None"
                 modal="true"
@@ -394,13 +431,82 @@
                         <Items>
                              <ext:TabPanel ID="tabpanel1" runat="server">
                                 <Items>
-                                    <ext:Panel ID="PanelPer" runat="server" Title="Datos Personales" Layout="AnchorLayout" AutoHeight="true" Icon="User" LabelWidth="150" >
+                                    <ext:Panel ID="PanelSolicitud" runat="server" Title="Datos de Solicitud" Layout="AnchorLayout" AutoHeight="true" Icon="User" LabelWidth="150" >
                                         <Items>
                                             <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
-                                                    
+                                                <Items>
+                                                    <ext:TextField      runat="server" ID="EditIdSolicitud" DataIndex="SOLICITUDES_ID" AnchorHorizontal="90%" FieldLabel="Solicitud Id" ReadOnly="true" AllowBlank="false" />
+                                                    <ext:NumberField    runat="server" ID="EditMontoTxt"     DataIndex="SOLICITUDES_MONTO"           AnchorHorizontal="90%"      FieldLabel="Monto                     " AllowBlank="false" MaxLength="11" AllowDecimals="true" DecimalPrecision="3" DecimalSeparator="." />
+                                                    <ext:DateField      runat="server" ID="EditPlazo"     DataIndex="SOLICITUDES_PLAZO"           AnchorHorizontal="90%"      FieldLabel="Fecha de Plazo            " AllowBlank="false" Format="d MMM y" />
+                                                    <ext:TextField      runat="server" ID="EditPagoTxt"      DataIndex="SOLICITUDES_PAGO"            AnchorHorizontal="90%"      FieldLabel="Tipo de Pago              " AllowBlank="false" MaxLength="45" />
+                                                    <ext:TextField      runat="server" ID="EditDestinoTxt"   DataIndex="SOLICITUDES_DESTINO"         AnchorHorizontal="90%"      FieldLabel="Destino                   " AllowBlank="false" MaxLength="45" />
+                                                    <ext:ComboBox runat="server"    ID="EditCmbPrestamo"     DataIndex="PRESTAMOS_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Prestamo" AllowBlank="false" MsgTarget="Side"
+                                                        StoreID="TiposDePrestamoSt"
+                                                        ValueField="PRESTAMOS_ID" 
+                                                        DisplayField="PRESTAMOS_NOMBRE" 
+                                                        Mode="Local"
+                                                        TypeAhead="true">
+                                                        <Triggers>
+                                                            <ext:FieldTrigger Icon="Clear" />
+                                                        </Triggers>
+                                                        <Listeners>
+                                                            <TriggerClick Handler="this.clearValue();" />
+                                                            <Select Handler="DirectX.SeleccionarInteres();" />
+                                                        </Listeners>
+                                                    </ext:ComboBox>
+                                                    <ext:NumberField    runat="server" ID="EditInteres"   DataIndex="SOLICITUDES_INTERES"         AnchorHorizontal="90%"      FieldLabel="Interes                   " AllowBlank="false" MinValue="0" MaxValue="100" AllowDecimals="false" />
+                                                    <ext:TextField      runat="server" ID="EditCargoTxt"     DataIndex="SOLICITUDES_CARGO"           AnchorHorizontal="90%"      FieldLabel="Cargo en la cooperativa   " MaxLength="45" />                                            
+                                                    <ext:NumberField    runat="server" ID="EditPromedio"  DataIndex="SOLICITUDES_PROMEDIO3"       AnchorHorizontal="90%"      FieldLabel="Promedio produccion (3 años)" MinValue="0" AllowDecimals="true" DecimalPrecision="3" DecimalSeparator="." />
+                                                    <ext:NumberField    runat="server" ID="EditProd"   DataIndex="SOLICITUDES_PRODUCCIONACT"   AnchorHorizontal="90%"      FieldLabel="Promedio Actual           " MinValue="0" AllowDecimals="true" DecimalPrecision="3" DecimalSeparator="." />
+                                                    <ext:TextField      runat="server" ID="EditNorteTxt"     DataIndex="SOLICITUDES_NORTE"           AnchorHorizontal="90%"      FieldLabel="Colindancias Norte" MaxLength="45" />
+                                                    <ext:TextField      runat="server" ID="EditSurTxt"       DataIndex="SOLICITUDES_SUR"             AnchorHorizontal="90%"      FieldLabel="Colindancias Sur" MaxLength="45" />
+                                                    <ext:TextField      runat="server" ID="EditEsteTxt"      DataIndex="SOLICITUDES_ESTE"            AnchorHorizontal="90%"      FieldLabel="Colindancias Este" MaxLength="45" />
+                                                    <ext:TextField      runat="server" ID="EditOesteTxt"     DataIndex="SOLICITUDES_OESTE"           AnchorHorizontal="90%"      FieldLabel="Colindancias Oeste" MaxLength="45" />
+                                                    <ext:Checkbox runat="server" ID="EditCarro"     DataIndex="SOLICITUDES_VEHICULO" FieldLabel="Acceso en Vehiculo?" LabelWidth="100" />
+                                                    <ext:Checkbox runat="server" ID="EditAgua"         DataIndex="SOLICITUDES_AGUA" FieldLabel="Posee Agua?" />
+                                                    <ext:Checkbox runat="server" ID="EditLuz"         DataIndex="SOLICITUDES_ENEE" FieldLabel="Posee Energia Electrica?" LabelWidth="100" /> 
+                                                    <ext:Checkbox runat="server" ID="EditCasa"         DataIndex="SOLICITUDES_CASA" FieldLabel="Posee Casa Propia?" />                                
+                                                    <ext:Checkbox       runat="server" ID="EditBeneficio"    DataIndex="SOLICITUDES_BENEFICIO" FieldLabel="Posee Beneficio?" />
+                                                    <ext:TextField      runat="server" ID="EditOtrosTxt"     DataIndex="SOLICITUD_OTROSCULTIVOS" FieldLabel="Otros Cultivos?" MaxLength="45" AnchorHorizontal="90%" />
+                                                    <ext:ComboBox ID="EditCalifCmb"
+                                                        runat="server" DataIndex="SOLICITUD_CALIFICACION"
+                                                        Editable="false" FieldLabel="Calificacion de Socio"         
+                                                        EmptyText="Seleccione Calificacion..." AnchorHorizontal="90%">
+                                                        <Items>
+                                                            <ext:ListItem Text="Muy Bueno" Value="Muy Bueno" />
+                                                            <ext:ListItem Text="Bueno" Value="Bueno" />
+                                                            <ext:ListItem Text="Regular" Value="Regular" />
+                                                        </Items>
+                                                    </ext:ComboBox>
+                                                </Items>
                                             </ext:Panel>
                                         </Items>
                                     </ext:Panel>
+                                    
+                                     <ext:Panel ID="PanelSocio" runat="server" Title="Datos de Socio" Layout="AnchorLayout" AutoHeight="true" Icon="UserComment">
+                                        <Items>
+                                            <ext:Panel ID="Panel5" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
+                                                <Items>
+                                                    <ext:TextField ID="EditSocioid"         ReadOnly="true" runat="server" FieldLabel="ID Socio" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditPrimerNombre"    ReadOnly="true" runat="server" FieldLabel="Primer Nombre" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="Edit2doNombre"       ReadOnly="true" runat="server" FieldLabel="Segundo Nombre" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="Edit1erApellido"     ReadOnly="true" runat="server" FieldLabel="Primer Apellido" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="Edit2doApellido"     ReadOnly="true" runat="server" FieldLabel="Segundo Apellido" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditIdentidad"       ReadOnly="true" runat="server" FieldLabel="Identidad" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditLugarNcax"       ReadOnly="true" runat="server" FieldLabel="Lugar de Nacimiento" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditCarnetIHCAFE"    ReadOnly="true" runat="server" FieldLabel="Carnet IHCAFE" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditRTN"             ReadOnly="true" runat="server" FieldLabel="RTN" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditEstadoCivil"     ReadOnly="true" runat="server" FieldLabel="Estado Civil" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditProfesion"       ReadOnly="true" runat="server" FieldLabel="Profesion" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditTelefono"        ReadOnly="true" runat="server" FieldLabel="Telefono" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditResidencia"      ReadOnly="true" runat="server" FieldLabel="Residencia" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditManzanas"        ReadOnly="true" runat="server" FieldLabel="Manzanas Cultivadas" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditUbicacion"       ReadOnly="true" runat="server" FieldLabel="Ubicacion de la finca" AnchorHorizontal="90%" />
+                                                </Items>
+                                            </ext:Panel>
+                                        </Items>
+                                    </ext:Panel>
+
                                     <ext:Panel ID="PanelRefer" runat="server" Title="Referencias" Layout="AnchorLayout" AutoHeight="true" Icon="GroupAdd">
                                         <Items>
                                             <ext:Panel ID="Panel4" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
@@ -408,13 +514,7 @@
                                             </ext:Panel>
                                         </Items>
                                     </ext:Panel>
-                                    <ext:Panel ID="PanelGrl" runat="server" Title="Datos Generales" Layout="AnchorLayout" AutoHeight="true" Icon="UserComment">
-                                        <Items>
-                                            <ext:Panel ID="Panel5" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
-                                        
-                                            </ext:Panel>
-                                        </Items>
-                                    </ext:Panel>
+                                   
                                     <ext:Panel ID="PanelAvales" runat="server" Title="Avales" Layout="AnchorLayout" AutoHeight="true" Icon="GroupKey">
                                         <Items>
                                             <ext:Panel ID="Panel6" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
@@ -430,17 +530,17 @@
                 <Buttons>
                     <ext:Button ID="EditPreviousBtn" runat="server" Text="Anterior" Icon="PreviousGreen">
                         <Listeners>
-                        
+                            <Click Handler="SolicitudX.previous()" />
                         </Listeners>
                     </ext:Button>
                     <ext:Button ID="EditNextBtn" runat="server" Text="Siguiente" Icon="NextGreen">
                         <Listeners>
-                        
+                            <Click Handler="SolicitudX.next()" />
                         </Listeners>
                     </ext:Button>
                     <ext:Button ID="EditSaveBtn" runat="server" Text="Guardar" Icon="Disk">
                         <Listeners>
-                        
+                            <Click Handler="SolicitudX.update()" />
                         </Listeners>
                     </ext:Button>
                 </Buttons>
@@ -466,7 +566,7 @@
                     <Items>
                         <ext:TabPanel ID="TabSolicitudAdd" runat="server" LabelAlign="Right">
                             <Items>
-                                <ext:Panel ID="EditPanelDatos" runat="server" Title="Datos Solicitud" Layout="AnchorLayout" AutoHeight="true" Icon="PageEdit" LabelWidth="200">
+                                <ext:Panel ID="AddPanelDatos" runat="server" Title="Datos Solicitud" Layout="AnchorLayout" AutoHeight="true" Icon="PageEdit" LabelWidth="200">
                                     <Items>
                                         <ext:Panel ID="Panel2" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                             <Items>
@@ -504,12 +604,11 @@
                                                         <Select Handler="this.triggers[0].show();" />
                                                     </Listeners>
                                                 </ext:ComboBox>
-                                                <ext:TextField      runat="server" ID="AddMontoTxt"     DataIndex="SOLICITUDES_MONTO"           AnchorHorizontal="90%"      FieldLabel="Monto                     " AllowBlank="false" MaxLength="14" />
-                                                <ext:NumberField    runat="server" ID="AddInteresTxt"   DataIndex="SOLICITUDES_INTERES"         AnchorHorizontal="90%"      FieldLabel="Interes                   " AllowBlank="false" MinValue="0" MaxValue="100" AllowDecimals="false" />
+                                                <ext:NumberField    runat="server" ID="AddMontoTxt"     DataIndex="SOLICITUDES_MONTO"           AnchorHorizontal="90%"      FieldLabel="Monto                     " AllowBlank="false" MaxLength="14" MinValue="0" />
                                                 <ext:DateField      runat="server" ID="AddPlazoTxt"     DataIndex="SOLICITUDES_PLAZO"           AnchorHorizontal="90%"      FieldLabel="Fecha de Plazo            " AllowBlank="false" Format="d MMM y" />
                                                 <ext:TextField      runat="server" ID="AddPagoTxt"      DataIndex="SOLICITUDES_PAGO"            AnchorHorizontal="90%"      FieldLabel="Tipo de Pago              " AllowBlank="false" MaxLength="45" />
                                                 <ext:TextField      runat="server" ID="AddDestinoTxt"   DataIndex="SOLICITUDES_DESTINO"         AnchorHorizontal="90%"      FieldLabel="Destino                   " AllowBlank="false" MaxLength="45" />
-                                                <ext:ComboBox runat="server"    ID="AddTipoDeProdIdCmb"     DataIndex="TIPOS_PROD_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Producto" AllowBlank="false" MsgTarget="Side"
+                                                <ext:ComboBox runat="server"    ID="AddTipoDeProdIdCmb"     DataIndex="PRESTAMOS_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Prestamo" AllowBlank="false" MsgTarget="Side"
                                                     StoreID="TiposDePrestamoSt"
                                                     ValueField="PRESTAMOS_ID" 
                                                     DisplayField="PRESTAMOS_NOMBRE" 
@@ -520,15 +619,16 @@
                                                     </Triggers>
                                                     <Listeners>
                                                         <TriggerClick Handler="this.clearValue();" />
+                                                        <Select Handler="DirectX.SeleccionarInteres();" />
                                                     </Listeners>
                                                 </ext:ComboBox>
+                                                <ext:NumberField    runat="server" ID="AddInteresTxt"   DataIndex="SOLICITUDES_INTERES"         AnchorHorizontal="90%"      FieldLabel="Interes                   " AllowBlank="false" MinValue="0" MaxValue="100" AllowDecimals="false" />
                                                 <ext:TextField      runat="server" ID="AddCargoTxt"     DataIndex="SOLICITUDES_CARGO"           AnchorHorizontal="90%"      FieldLabel="Cargo en la cooperativa   " MaxLength="45" />
-                                                
                                             </Items>
                                         </ext:Panel>
                                     </Items>
                                 </ext:Panel>
-                                <ext:Panel ID="EditPanelGrl" runat="server" Title="Datos Generales" Layout="AnchorLayout" AutoHeight="true" Icon="UserEdit" LabelWidth="200">
+                                <ext:Panel ID="AddPanelGrl" runat="server" Title="Datos Generales" Layout="AnchorLayout" AutoHeight="true" Icon="UserEdit" LabelWidth="200">
                                     <Items>
                                         <ext:Panel ID="P1" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                             <Items>
@@ -561,14 +661,14 @@
                                         </ext:Panel>
                                     </Items>
                                 </ext:Panel>
-                                <ext:Panel ID="EditPanelRef" runat="server" Title="Referencias" Layout="AnchorLayout" AutoHeight="true" Icon="GroupAdd">
+                                <ext:Panel ID="AddPanelRef" runat="server" Title="Referencias" Layout="AnchorLayout" AutoHeight="true" Icon="GroupAdd">
                                     <Items>
                                         <ext:Panel ID="Panel8" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                         
                                         </ext:Panel>
                                     </Items>
                                 </ext:Panel>
-                                <ext:Panel ID="EditPanelAval" runat="server" Title="Avales" Layout="AnchorLayout" AutoHeight="true" Icon="GroupKey">
+                                <ext:Panel ID="AddPanelAval" runat="server" Title="Avales" Layout="AnchorLayout" AutoHeight="true" Icon="GroupKey">
                                     <Items>
                                         <ext:Panel ID="Panel9" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                         
@@ -581,7 +681,7 @@
                     <Buttons>
                         <ext:Button ID="AddGuardarBtn" runat="server" Text="Crear" Icon="Add" formBind="true">
                             <Listeners>
-                            
+                                <Click Handler="SolicitudX.insert()" />
                             </Listeners>
                         </ext:Button>
                     </Buttons>

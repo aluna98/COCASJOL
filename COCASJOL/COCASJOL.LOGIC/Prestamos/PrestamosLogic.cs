@@ -128,6 +128,16 @@ namespace COCASJOL.LOGIC.Prestamos
             }
             return found;
         }
+
+        public int Intereses(int prestamo)
+        {
+            colinasEntities db = new colinasEntities();
+            var query = from p in db.prestamos
+                        where p.PRESTAMOS_ID == prestamo
+                        select p;
+
+            return query.First().PRESTAMOS_INTERES;
+        }
         #endregion
     }
 }
