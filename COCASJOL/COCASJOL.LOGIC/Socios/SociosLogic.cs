@@ -19,7 +19,7 @@ namespace COCASJOL.LOGIC.Socios
             {
                 using (var db = new colinasEntities())
                 {
-                    var query = from s in db.socios.Include("socios_generales").Include("socios_produccion").Include("beneficiario_x_socio").Include("referencias_x_socio")
+                    var query = from s in db.socios.Include("socios_generales").Include("socios_produccion").Include("beneficiario_x_socio")
                                 select s;
                     return query.ToList<socio>();
                 }

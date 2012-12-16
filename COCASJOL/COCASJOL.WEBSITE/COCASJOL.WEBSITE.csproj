@@ -81,8 +81,10 @@
     <Content Include="resources\images\group.png" />
     <Content Include="resources\images\key.png" />
     <Content Include="resources\images\login.jpg" />
+    <Content Include="resources\images\Logo_COCASJOL.jpg" />
     <Content Include="resources\images\page_go.png" />
     <Content Include="resources\images\page_white_cup.png" />
+    <Content Include="resources\images\page_white_put.png" />
     <Content Include="resources\images\page_white_text.png" />
     <Content Include="resources\images\user.png" />
     <Content Include="resources\images\user_edit.png" />
@@ -97,6 +99,7 @@
     <Content Include="Source\Inventario\ClasificacionesDeCafe.aspx" />
     <Content Include="Source\Inventario\Ingresos\EstadosNotaDePeso.aspx" />
     <Content Include="Source\Inventario\Ingresos\NotasDePeso.aspx" />
+    <Content Include="Source\Inventario\Ingresos\NotasDePesoEnCatacion.aspx" />
     <Content Include="Source\Inventario\Ingresos\NotasDePesoEnPesaje.aspx" />
     <Content Include="Source\Inventario\InventarioDeCafePorSocio.aspx" />
     <Content Include="Source\Inventario\Salidas\HojaDeLiquidacion.aspx" />
@@ -161,6 +164,13 @@
     </Compile>
     <Compile Include="Source\Inventario\Ingresos\NotasDePeso.aspx.designer.cs">
       <DependentUpon>NotasDePeso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Inventario\Ingresos\NotasDePesoEnCatacion.aspx.cs">
+      <DependentUpon>NotasDePesoEnCatacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Inventario\Ingresos\NotasDePesoEnCatacion.aspx.designer.cs">
+      <DependentUpon>NotasDePesoEnCatacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Inventario\Ingresos\NotasDePesoEnPesaje.aspx.cs">
       <DependentUpon>NotasDePesoEnPesaje.aspx</DependentUpon>

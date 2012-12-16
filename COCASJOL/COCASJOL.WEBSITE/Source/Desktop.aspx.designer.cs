@@ -139,6 +139,15 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.MenuItem EstadosNotasDePesoMenuItem;
         
         /// <summary>
+        /// NotasDePesoEnPesajeMenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem NotasDePesoEnPesajeMenuItem;
+        
+        /// <summary>
         /// NotasDePesoMenuItem control.
         /// </summary>
         /// <remarks>

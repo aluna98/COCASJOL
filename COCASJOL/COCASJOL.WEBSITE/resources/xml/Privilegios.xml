@@ -43,6 +43,13 @@
     <menuitem>NotasDePesoMenuItem</menuitem>
   </privilege>
   <privilege>
+    <key>MANT_NOTASPESOENPESAJE</key>
+    <page>NotasDePesoEnPesaje</page>
+    <module>NotasDePesoEnPesajeModule</module>
+    <shortcut>scNotasDePesoEnPesaje</shortcut>
+    <menuitem>NotasDePesoEnPesajeMenuItem</menuitem>
+  </privilege>
+  <privilege>
     <key>MANT_ESTADOSNOTAPESO</key>
     <page>EstadosNotaDePeso</page>
     <module>EstadosNotasDePesoModule</module>

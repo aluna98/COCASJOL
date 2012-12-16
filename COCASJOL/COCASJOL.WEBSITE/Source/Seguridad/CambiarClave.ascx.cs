@@ -28,6 +28,9 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
             {
                 string loggedUsr = Session["username"] as string;
 
+                if (string.IsNullOrEmpty(loggedUsr))
+                    return;
+
                 if (loggedUsr.CompareTo("DEVELOPER") != 0)
                 {
                     UsuarioLogic usuariologic = new UsuarioLogic();

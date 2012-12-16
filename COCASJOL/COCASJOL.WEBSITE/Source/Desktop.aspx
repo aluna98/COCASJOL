@@ -64,6 +64,12 @@
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_go.png", sizingMethod="scale");
         }
         
+        .icon-notasDePesoEnPesaje
+        {
+            background-image: url(../resources/images/page_white_put.png) !important;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_put.png", sizingMethod="scale");
+        }
+        
         .icon-notasDePeso
         {
             background-image: url(../resources/images/page_white_cup.png) !important;
@@ -136,6 +142,13 @@
             background-image: none;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../resources/images/dev-by-unitec.png', sizingMethod='scale');
         }
+        
+        body
+        {
+            background-image: url(../resources/images/Logo_COCASJOL.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+        }
     </style>
     <script type="text/javascript" src="../resources/js/md5.js"></script>
     <script type="text/javascript">
@@ -147,7 +160,6 @@
                 var desk = app.getDesktop();
 
                 var w = desk.getWindow(title + '-win');
-
                 if (!w) {
                     w = desk.createWindow({
                         id: title + '-win',
@@ -171,6 +183,121 @@
                     w.center();
                 }
                 w.show();
+            },
+
+            cascadeWindows: function (app) {
+                app.getDesktop().cascade();
+            },
+
+            tileWindows: function (app) {
+                app.getDesktop().tile();
+            },
+
+            checkerboardWindows: function (app) {
+                var desk = app.getDesktop();
+
+                var availWidth = desk.getWinWidth();
+                var availHeight = desk.getWinHeight();
+
+                var x = 0, y = 0;
+                var lastx = 0, lasty = 0;
+
+                var square = 400;
+
+                desk.getManager().each(function (win) {
+                    if (win.isVisible()) {
+                        win.setWidth(square - 10);
+                        win.setHeight(square - 10);
+
+                        win.setPosition(x, y);
+                        x += square;
+
+                        if (x + square > availWidth) {
+                            x = lastx;
+                            y += square;
+
+                            if (y > availHeight) {
+                                lastx += 20;
+                                lasty += 20;
+                                x = lastx;
+                                y = lasty;
+                            }
+                        }
+                    }
+                }, this);
+            },
+
+            tileFitWindows: function (app, horizontal) {
+                var desk = app.getDesktop();
+                var availWidth = desk.getWinWidth();
+                var availHeight = desk.getWinHeight();
+
+                var x = 0, y = 0;
+
+                var snapCount = 0;
+
+                desk.getManager().each(function (win) {
+                    if (win.isVisible()) {
+                        snapCount++;
+                    }
+                }, this);
+
+                var snapSize = parseInt(availWidth / snapCount);
+
+                if (!horizontal)
+                    snapSize = parseInt(availHeight / snapCount);
+
+                if (snapSize > 0) {
+                    desk.getManager().each(function (win) {
+                        if (win.isVisible()) {
+                            if (horizontal) {
+                                win.setWidth(snapSize);
+                                win.setHeight(availHeight);
+                            } else {
+                                win.setWidth(availWidth);
+                                win.setHeight(snapSize);
+                            }
+
+                            win.setPosition(x, y);
+
+                            if (horizontal)
+                                x += snapSize;
+                            else
+                                y += snapSize;
+                        }
+                    }, this);
+                }
+            },
+
+            closeAllWindows: function (app) {
+                Ext.Msg.confirm('Cerrar Ventanas', 'Todo el trabajo sin guardar en cada una de las ventanas se perdera. Seguro desea cerrar todas las ventanas?', function (btn, text) {
+                    if (btn == 'yes') {
+                        var desk = app.getDesktop();
+                        desk.getManager().each(function (win) {
+                            var w = desk.getWindow(win.title + '-win');
+                            if (w)
+                                w.close();
+                        });
+                    }
+                });
+            },
+
+            minimizeAllWindows: function (app) {
+                var desk = app.getDesktop();
+                desk.getManager().each(function (win) {
+                    var w = desk.getWindow(win.title + '-win');
+                    if (w && w.isVisible())
+                        win.minimize();
+                });
+            },
+
+            showAllWindows: function (app) {
+                var desk = app.getDesktop();
+                desk.getManager().each(function (win) {
+                    var w = desk.getWindow(win.title + '-win');
+                    if (w && w.minimized)
+                        win.show();
+                });
             }
         };
 
@@ -199,8 +326,12 @@
                 DesktopX.createDynamicWindow(app, 'pagego', 'Estados de Notas De Peso', 'Inventario/Ingresos/EstadosNotaDePeso.aspx');
             },
 
+            notasDePesoEnPesaje: function (app) {
+                DesktopX.createDynamicWindow(app, 'pagewhiteput', 'Notas De Peso en Area de Pesaje', 'Inventario/Ingresos/NotasDePesoEnPesaje.aspx', 1000, 640);
+            },
+
             notasDePeso: function (app) {
-                DesktopX.createDynamicWindow(app, 'pagewhitecup', 'Notas De Peso', 'Inventario/Ingresos/NotasDePeso.aspx', 1000, 800);
+                DesktopX.createDynamicWindow(app, 'pagewhitecup', 'Notas De Peso', 'Inventario/Ingresos/NotasDePeso.aspx', 1000, 640);
             },
 
             solicitudesDePrestamo: function (app) {
@@ -247,6 +378,8 @@
                 WindowX.productos(app);
             } else if (id == 'scEstadosNotasDePeso') {
                 WindowX.estadosNotasDePeso(app);
+            } else if (id == 'scNotasDePesoEnPesaje') {
+                WindowX.notasDePesoEnPesaje(app);
             } else if (id == 'scNotasDePeso') {
                 WindowX.notasDePeso(app);
             } else if (id == 'scSolicitudesDePrestamo') {
@@ -277,14 +410,46 @@
                 </Listeners>
             </ext:MenuItem>
             <ext:MenuSeparator />
-            <ext:MenuItem Text="Ventanas en Mosaico" Icon="ApplicationTileVertical">
-                <Listeners>
-                    <Click Handler="#{MyDesktop}.getDesktop().tile();" />
-                </Listeners>
-            </ext:MenuItem>
             <ext:MenuItem Text="Ventanas en Cascada" Icon="ApplicationCascade">
                 <Listeners>
-                    <Click Handler="#{MyDesktop}.getDesktop().cascade();" />
+                    <Click Handler="DesktopX.cascadeWindows(#{MyDesktop});" />
+                </Listeners>
+            </ext:MenuItem>
+            <ext:MenuItem Text="Ventanas en grupo Horizontal" Icon="ApplicationTileHorizontal">
+                <Listeners>
+                    <Click Handler="DesktopX.tileFitWindows(#{MyDesktop}, true);" />
+                </Listeners>
+            </ext:MenuItem>
+            <ext:MenuItem Text="Ventanas en grupo Vertical" Icon="ApplicationTileHorizontal">
+                <Listeners>
+                    <Click Handler="DesktopX.tileFitWindows(#{MyDesktop}, false);" />
+                </Listeners>
+            </ext:MenuItem>
+            <ext:MenuItem Text="Ventanas en Mosaico" Icon="ApplicationTileVertical">
+                <Listeners>
+                    <Click Handler="DesktopX.tileWindows(#{MyDesktop});" />
+                </Listeners>
+            </ext:MenuItem>
+            <ext:MenuItem Text="Ventanas en Tablero" Icon="ApplicationViewTile">
+                <Listeners>
+                    <Click Handler="DesktopX.checkerboardWindows(#{MyDesktop});" />
+                </Listeners>
+            </ext:MenuItem>
+            <ext:MenuSeparator />
+            <ext:MenuItem Text="Cerrar Ventanas" Icon="ApplicationDelete">
+                <Listeners>
+                    <Click Handler="DesktopX.closeAllWindows(#{MyDesktop});" />
+                </Listeners>
+            </ext:MenuItem>
+            <ext:MenuSeparator />
+            <ext:MenuItem Text="Restaurar Ventanas" Icon="ApplicationGet">
+                <Listeners>
+                    <Click Handler="DesktopX.showAllWindows(#{MyDesktop});" />
+                </Listeners>
+            </ext:MenuItem>
+            <ext:MenuItem Text="Minimizar Ventanas" Icon="ApplicationPut">
+                <Listeners>
+                    <Click Handler="DesktopX.minimizeAllWindows(#{MyDesktop});" />
                 </Listeners>
             </ext:MenuItem>
             </Items>
@@ -293,11 +458,12 @@
         <ext:Desktop
             ID="MyDesktop" 
             runat="server" 
-            BackgroundColor="Black" 
-            ShortcutTextColor="White" >
+            BackgroundColor="White" 
+            ShortcutTextColor="Black" >
             <Listeners>
                 <ShortcutClick Handler="ShorcutClickHandler(#{MyDesktop}, id);" />
-                <Ready Handler="Ext.get('x-desktop').on('contextmenu', function(e){e.stopEvent();e.preventDefault();cmenu.showAt(e.getPoint());});" />
+                <Ready Handler="Ext.get('x-desktop').on('contextmenu', function(e){e.stopEvent();e.preventDefault();cmenu.showAt(e.getPoint());});
+                                Ext.get('ux-taskbar').on('contextmenu', function(e){e.stopEvent();e.preventDefault();cmenu.showAt(e.getPoint());});" />
             </Listeners>
             <StartButton Text="Inicio" IconCls="start-button" />
 
@@ -351,6 +517,13 @@
                     <Launcher ID="EstadosNotasDePesoLauncher" runat="server" Text="Estados de Notas De Peso" Icon="PageGo" >
                         <Listeners>
                             <Click Handler="WindowX.estadosNotasDePeso(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
+                <ext:DesktopModule ModuleID="NotasDePesoEnPesajeModule">
+                    <Launcher ID="Launcher1" runat="server" Text="Notas De Peso en Area de Pesaje" Icon="PageWhitePut" >
+                        <Listeners>
+                            <Click Handler="WindowX.notasDePesoEnPesaje(#{MyDesktop});" />
                         </Listeners>
                     </Launcher>
                 </ext:DesktopModule>
@@ -427,8 +600,9 @@
                 <ext:DesktopShortcut ShortcutID="scTiposDeProductos" Text="Tipos de Productos" IconCls="shortcut-icon icon-tiposDeProducto" />
                 <ext:DesktopShortcut ShortcutID="scProductos" Text="Productos" IconCls="shortcut-icon icon-productos" />
 
-                <ext:DesktopShortcut ShortcutID="scEstadosNotasDePeso" Text="Estados de Notas de Peso" IconCls="shortcut-icon icon-estadosNotasDePeso" />
-                <ext:DesktopShortcut ShortcutID="scNotasDePeso" Text="Notas de Peso" IconCls="shortcut-icon icon-notasDePeso" />
+                <ext:DesktopShortcut ShortcutID="scEstadosNotasDePeso"  Text="Estados de Notas de Peso" IconCls="shortcut-icon icon-estadosNotasDePeso" />
+                <ext:DesktopShortcut ShortcutID="scNotasDePesoEnPesaje" Text="Notas De Peso en Area de Pesaje" IconCls="shortcut-icon icon-notasDePesoEnPesaje" />
+                <ext:DesktopShortcut ShortcutID="scNotasDePeso"         Text="Notas de Peso" IconCls="shortcut-icon icon-notasDePeso" />
 
                 <ext:DesktopShortcut ShortcutID="scSolicitudesDePrestamo" Text="Solicitudes de Prestamo" IconCls="shortcut-icon icon-solicitudesDePrestamo" />
                 <ext:DesktopShortcut ShortcutID="scPrestamos" Text="Prestamos" IconCls="shortcut-icon icon-prestamos" />
@@ -440,7 +614,7 @@
                 <ext:DesktopShortcut ShortcutID="scCascade" Text="Cascade windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-170" />--%>
             </Shortcuts>
 
-            <StartMenu Height="550" Width="350" ToolsWidth="127" Title="Start Menu">
+            <StartMenu Height="550" Width="360" ToolsWidth="127" Title="Start Menu" Icon="UserSuit">
                 <ToolItems>
                     <ext:MenuItem Text="Configuración" Icon="Wrench">
                         <Listeners>
@@ -518,6 +692,11 @@
                                     <ext:MenuItem ID="EstadosNotasDePesoMenuItem" Text="Estados de Notas de Peso" Icon="PageGo" >
                                         <Listeners>
                                             <click Handler="WindowX.estadosNotasDePeso(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                    <ext:MenuItem ID="NotasDePesoEnPesajeMenuItem" Text="Notas De Peso en Area de Pesaje" Icon="PageWhitePut" >
+                                        <Listeners>
+                                            <click Handler="WindowX.notasDePesoEnPesaje(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
                                     <ext:MenuItem ID="NotasDePesoMenuItem" Text="Notas de Peso" Icon="PageWhiteCup" >

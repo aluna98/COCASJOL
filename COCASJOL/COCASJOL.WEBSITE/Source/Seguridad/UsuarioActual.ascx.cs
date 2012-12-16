@@ -27,6 +27,10 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
             try
             {
                 string loggedUsr = Session["username"] as string;
+
+                if (string.IsNullOrEmpty(loggedUsr))
+                    return;
+
                 this.EditUsernameTxt.Text = loggedUsr;
 
                 if (loggedUsr.CompareTo("DEVELOPER") != 0)

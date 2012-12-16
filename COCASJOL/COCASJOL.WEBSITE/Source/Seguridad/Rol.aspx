@@ -108,6 +108,7 @@
                     EditWindow.show();
                     EditForm.getForm().loadRecord(rec);
                     EditForm.record = rec;
+                    PrivilegiosDeRolGridP.getStore().removeAll();
                 }
             },
 
@@ -432,8 +433,7 @@
                                 <ext:Panel ID="Panel14" runat="server" Title="Privilegios" Layout="AnchorLayout" AutoHeight="True"
                                     Resizable="false">
                                     <Listeners>
-                                        <Activate Handler="HideButtons(); Ext.getCmp('PrivilegiosDeRolGridP').getSelectionModel().clearSelections();" />
-                                        <Deactivate Handler="#{PrivilegiosDeRolSt}.removeAll();" />
+                                        <Activate Handler="HideButtons();" />
                                     </Listeners>
                                     <Items>
                                         <ext:Panel ID="Panel16" runat="server" Frame="false" Padding="5" Layout="AnchorLayout"
@@ -571,7 +571,7 @@
                             <Items>
                                 <ext:GridPanel ID="PrivilegiosNoDeRolGridP" runat="server" AutoExpandColumn="PRIV_NOMBRE"
                                     Height="250" Title="Agregar Privilegios" Header="false" Border="true" StripeRows="true"
-                                    TrackMouseOver="true" SelectionMemory="Disabled">
+                                    TrackMouseOver="true" SelectionMemory="Enabled">
                                     <Store>
                                         <ext:Store ID="PrivilegiosNoDeRolesSt" runat="server" OnRefreshData="PrivilegiosNoDeRolesSt_Refresh"
                                             WarningOnDirty="false">

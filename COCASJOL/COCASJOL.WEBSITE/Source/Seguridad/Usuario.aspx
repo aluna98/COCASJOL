@@ -127,6 +127,7 @@
                     EditWindow.show();
                     EditForm.getForm().loadRecord(rec);
                     EditForm.record = rec;
+                    RolesDeUsuarioGridP.getStore().removeAll();
                 }
             },
 
@@ -564,7 +565,6 @@
                                     Resizable="false">
                                     <Listeners>
                                         <Activate Handler="HideButtons(); Ext.getCmp('RolesDeUsuarioGridP').getSelectionModel().clearSelections();" />
-                                        <Deactivate Handler="#{RolesDeUsuarioSt}.removeAll();" />
                                     </Listeners>
                                     <Items>
                                         <ext:Panel ID="Panel16" runat="server" Frame="false" Padding="5" Layout="AnchorLayout"
@@ -691,7 +691,7 @@
                             <Items>
                                 <ext:GridPanel ID="RolesNoDeUsuarioGridP" runat="server" AutoExpandColumn="ROL_NOMBRE"
                                     Height="250" Title="Agregar Roles" Header="false" Border="true" StripeRows="true"
-                                    TrackMouseOver="true" SelectionMemory="Disabled">
+                                    TrackMouseOver="true" SelectionMemory="Enabled">
                                     <Store>
                                         <ext:Store ID="RolesNoDeUsuarioSt" runat="server" OnRefreshData="RolesNoDeUsuarioSt_Refresh"
                                             WarningOnDirty="false">

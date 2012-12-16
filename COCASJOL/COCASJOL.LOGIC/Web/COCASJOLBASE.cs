@@ -24,12 +24,11 @@ namespace COCASJOL.LOGIC.Web
 
         public COCASJOLBASE()
         {
-            //Get Derived Class Name
-            pagename = this.GetType().BaseType.Name;
-
             base.Init += new EventHandler(this.COCASJOLBASE_Init);
             base.Error += new EventHandler(this.COCASJOL_Error);
 
+            //Get Derived Class Name
+            pagename = this.GetType().BaseType.Name;
 
             //Get Cached Privilegios
             string strPrivilegesPath = System.Configuration.ConfigurationManager.AppSettings.Get("privilegesXML");
@@ -105,9 +104,8 @@ namespace COCASJOL.LOGIC.Web
                 if (loggedUser == "DEVELOPER")
                     return;
 #endif
-
-                //XmlDocument docPrivilegios = new XmlDocument();
-                //docPrivilegios.Load(Server.MapPath(System.Configuration.ConfigurationManager.AppSettings.Get("privilegesXML")));
+                if (pagename == "Desktop")
+                    return;
 
                 XmlNode node = docPrivilegios.SelectSingleNode("privilegios/privilege[page[contains(text(), '" + pagename + "')]]");
                 XmlNode keyNode = node.SelectSingleNode("key");
@@ -138,8 +136,6 @@ namespace COCASJOL.LOGIC.Web
             {
                 variablesDictionary = new Dictionary<string, string>();
 
-                //XmlDocument docEntorno = new XmlDocument();
-                //docEntorno.Load(Server.MapPath(System.Configuration.ConfigurationManager.AppSettings.Get("variablesDeEntornoXML")));
                 XmlNodeList pagesNode = docEntorno.SelectNodes("paginas/pagina[Name[contains(text(), '" + pagename + "')]]");
 
                 VariablesDeEntornoLogic variablesLogic = new VariablesDeEntornoLogic();
@@ -166,164 +162,79 @@ namespace COCASJOL.LOGIC.Web
             {
 
                 throw;
-            } 
-
+            }
         }
 
         public bool ValidarVariables(Dictionary<string, string> Variables)
         {
             try
             {
-                lock (lockObj)
+                XmlNodeList pagesNode = docEntorno.SelectNodes("paginas/pagina[Name[contains(text(), '" + pagename + "')]]");
+
+                foreach (XmlNode pageNode in pagesNode)
                 {
-                    //XmlDocument docEntorno = new XmlDocument();
-                    //docEntorno.Load(Server.MapPath(System.Configuration.ConfigurationManager.AppSettings.Get("variablesDeEntornoXML")));
-                    XmlNodeList pagesNode = docEntorno.SelectNodes("paginas/pagina[Name[contains(text(), '" + pagename + "')]]");
+                    XmlNodeList variablesNode = pageNode.SelectNodes("variables/variable");
 
-
-                    foreach (XmlNode pageNode in pagesNode)
+                    foreach (XmlNode variableNode in variablesNode)
                     {
-                        XmlNodeList variablesNode = pageNode.SelectNodes("variables/variable");
+                        XmlNode keyNode = variableNode.SelectSingleNode("key");
+                        XmlNode typeNode = variableNode.SelectSingleNode("type");
 
-                        foreach (XmlNode variableNode in variablesNode)
+                        string key = keyNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
+                        string type = typeNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
+
+                        string VARIABLES_VALOR;
+                        if (!Variables.TryGetValue(key, out VARIABLES_VALOR))
                         {
-                            XmlNode keyNode = variableNode.SelectSingleNode("key");
-                            XmlNode typeNode = variableNode.SelectSingleNode("type");
-
-                            string key = keyNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
-                            string type = typeNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
-
-                            string VARIABLES_VALOR;
-                            if (!Variables.TryGetValue(key, out VARIABLES_VALOR))
-                            {
-                                ShowPinnedNotification("Variables de Entorno", "La variable de entorno \"" + key + "\" no existe.");
-                                return false;
-                            }
+                            ShowPinnedNotification("Variables de Entorno", "La variable de entorno \"" + key + "\" no existe.");
+                            return false;
+                        }
 
 
-                            if (type == "decimal")
+                        if (type == "decimal")
+                        {
+                            decimal decResult;
+                            if (!decimal.TryParse(VARIABLES_VALOR, out decResult))
                             {
-                                decimal decResult;
-                                if (!decimal.TryParse(VARIABLES_VALOR, out decResult))
-                                {
-                                    ShowPinnedNotification("Variables de Entorno", "El tipo de la variable de entorno \"" + key + "\" es incorrecto. Debe ser un numero decimal.");
-                                    return false;
-                                }
-                            }
-                            else if (type == "int")
-                            {
-                                int nResult;
-                                if (!int.TryParse(VARIABLES_VALOR, out nResult))
-                                {
-                                    ShowPinnedNotification("Variables de Entorno", "El tipo de la variable de entorno \"" + key + "\" es incorrecto. Debe ser un numero entero.");
-                                    return false;
-                                }
-                            }
-                            else if (type == "bool")
-                            {
-                                bool bResult;
-                                if (!bool.TryParse(VARIABLES_VALOR, out bResult))
-                                {
-                                    ShowPinnedNotification("Variables de Entorno", "El tipo de la variable de entorno \"" + key + "\" es incorrecto. Debe ser un valor booleano(0-1).");
-                                    return false;
-                                }
-                            }
-                            else if (type == "string" || type == "char")
-                            {
-                                continue;
-                            }
-                            else
-                            {
-                                ShowPinnedNotification("Variables de Entorno", "El tipo de la variable de entorno \"" + key + "\" es incorrecto.");
+                                ShowPinnedNotification("Variables de Entorno", "El tipo de la variable de entorno \"" + key + "\" es incorrecto. Debe ser un numero decimal.");
                                 return false;
                             }
                         }
+                        else if (type == "int")
+                        {
+                            int nResult;
+                            if (!int.TryParse(VARIABLES_VALOR, out nResult))
+                            {
+                                ShowPinnedNotification("Variables de Entorno", "El tipo de la variable de entorno \"" + key + "\" es incorrecto. Debe ser un numero entero.");
+                                return false;
+                            }
+                        }
+                        else if (type == "bool")
+                        {
+                            bool bResult;
+                            if (!bool.TryParse(VARIABLES_VALOR, out bResult))
+                            {
+                                ShowPinnedNotification("Variables de Entorno", "El tipo de la variable de entorno \"" + key + "\" es incorrecto. Debe ser un valor booleano(0-1).");
+                                return false;
+                            }
+                        }
+                        else if (type == "string" || type == "char")
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            ShowPinnedNotification("Variables de Entorno", "El tipo de la variable de entorno \"" + key + "\" es incorrecto.");
+                            return false;
+                        }
                     }
-
-                    return true;
                 }
+
+                return true;
             }
             catch (Exception)
             {
 
-                throw;
-            }
-        }
-
-        public bool ValidarVariables(string pagename, Dictionary<string, string> Variables)
-        {
-            try
-            {
-                lock (lockObj)
-                {
-                    XmlDocument doc = new XmlDocument();
-                    doc.Load(Server.MapPath(System.Configuration.ConfigurationManager.AppSettings.Get("variablesDeEntornoXML")));
-                    XmlNodeList pagesNode = doc.SelectNodes("paginas/pagina[Name[contains(text(), '" + pagename + "')]]");
-
-
-                    foreach (XmlNode pageNode in pagesNode)
-                    {
-                        XmlNodeList variablesNode = pageNode.SelectNodes("variables/variable");
-
-                        foreach (XmlNode variableNode in variablesNode)
-                        {
-                            XmlNode keyNode = variableNode.SelectSingleNode("key");
-                            XmlNode typeNode = variableNode.SelectSingleNode("type");
-
-                            string key = keyNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
-                            string type = typeNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
-
-                            string VARIABLES_VALOR;
-                            if (!Variables.TryGetValue(key, out VARIABLES_VALOR))
-                            {
-                                ShowPinnedNotification("Variables de Entorno", "La variable de entorno \"" + key + "\" no existe.");
-                                return false;
-                            }
-
-
-                            if (type == "decimal")
-                            {
-                                decimal decResult;
-                                if (!decimal.TryParse(VARIABLES_VALOR, out decResult))
-                                {
-                                    ShowPinnedNotification("Variables de Entorno", "El tipo de la variable de entorno \"" + key + "\" es incorrecto. Debe ser un numero decimal.");
-                                    return false;
-                                }
-                            }
-                            else if (type == "int")
-                            {
-                                int nResult;
-                                if (!int.TryParse(VARIABLES_VALOR, out nResult))
-                                {
-                                    ShowPinnedNotification("Variables de Entorno", "El tipo de la variable de entorno \"" + key + "\" es incorrecto. Debe ser un numero entero.");
-                                    return false;
-                                }
-                            }
-                            else if (type == "bool")
-                            {
-                                bool bResult;
-                                if (!bool.TryParse(VARIABLES_VALOR, out bResult))
-                                {
-                                    ShowPinnedNotification("Variables de Entorno", "El tipo de la variable de entorno \"" + key + "\" es incorrecto. Debe ser un valor booleano(0-1).");
-                                    return false;
-                                }
-                            }
-                            else if (type == "string" || type == "char")
-                            {
-                                continue;
-                            } else {
-                                ShowPinnedNotification("Variables de Entorno", "El tipo de la variable de entorno \"" + key + "\" es incorrecto.");
-                                return false;
-                            }
-                        }
-                    }
-
-                    return true;
-                }
-            }
-            catch (Exception)
-            {
-                
                 throw;
             }
         }
