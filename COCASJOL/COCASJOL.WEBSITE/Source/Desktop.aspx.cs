@@ -157,5 +157,24 @@ namespace COCASJOL.WEBSITE
                 throw;
             }
         }
+
+        public static void Notificacion(string title, string message)
+        {
+            try
+            {
+                Ext.Net.Notification.Show(new Ext.Net.NotificationConfig
+                {
+                    Title = title,
+                    Html = message,
+                    ShowPin = true,
+                    Pinned = true
+                });
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
     }
 }

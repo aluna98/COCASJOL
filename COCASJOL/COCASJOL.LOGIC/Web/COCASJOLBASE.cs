@@ -108,7 +108,14 @@ namespace COCASJOL.LOGIC.Web
                     return;
 
                 XmlNode node = docPrivilegios.SelectSingleNode("privilegios/privilege[page[contains(text(), '" + pagename + "')]]");
+
+                if (node == null)
+                {
+                    Response.Redirect("~/NoAccess.aspx");
+                }
+
                 XmlNode keyNode = node.SelectSingleNode("key");
+
                 string key = keyNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
 
                 UsuarioLogic usuariologic = new UsuarioLogic();

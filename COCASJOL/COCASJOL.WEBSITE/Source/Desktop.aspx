@@ -70,10 +70,16 @@
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_put.png", sizingMethod="scale");
         }
         
-        .icon-notasDePeso
+        .icon-notasDePesoEnCatacion
         {
             background-image: url(../resources/images/page_white_cup.png) !important;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_cup.png", sizingMethod="scale");
+        }
+        
+        .icon-notasDePeso
+        {
+            background-image: url(../resources/images/page_white_office.png) !important;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_office.png", sizingMethod="scale");
         }
         
         .icon-solicitudesDePrestamo
@@ -330,8 +336,12 @@
                 DesktopX.createDynamicWindow(app, 'pagewhiteput', 'Notas De Peso en Area de Pesaje', 'Inventario/Ingresos/NotasDePesoEnPesaje.aspx', 1000, 640);
             },
 
+            notasDePesoEnCatacion: function (app) {
+                DesktopX.createDynamicWindow(app, 'pagewhitecup', 'Notas De Peso en Area de Catación', 'Inventario/Ingresos/NotasDePesoEnCatacion.aspx', 1000, 640);
+            },
+
             notasDePeso: function (app) {
-                DesktopX.createDynamicWindow(app, 'pagewhitecup', 'Notas De Peso', 'Inventario/Ingresos/NotasDePeso.aspx', 1000, 640);
+                DesktopX.createDynamicWindow(app, 'pagewhiteoffice', 'Notas De Peso', 'Inventario/Ingresos/NotasDePeso.aspx', 1000, 640);
             },
 
             solicitudesDePrestamo: function (app) {
@@ -380,6 +390,8 @@
                 WindowX.estadosNotasDePeso(app);
             } else if (id == 'scNotasDePesoEnPesaje') {
                 WindowX.notasDePesoEnPesaje(app);
+            } else if (id == 'scNotasDePesoEnCatacion') {
+                WindowX.notasDePesoEnCatacion(app);
             } else if (id == 'scNotasDePeso') {
                 WindowX.notasDePeso(app);
             } else if (id == 'scSolicitudesDePrestamo') {
@@ -527,8 +539,15 @@
                         </Listeners>
                     </Launcher>
                 </ext:DesktopModule>
+                <ext:DesktopModule ModuleID="NotasDePesoEnCatacionModule">
+                    <Launcher ID="Launcher2" runat="server" Text="Notas De Peso en Area de Catación" Icon="PageWhiteCup" >
+                        <Listeners>
+                            <Click Handler="WindowX.notasDePesoEnCatacion(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
                 <ext:DesktopModule ModuleID="NotasDePesoModule">
-                    <Launcher ID="NotasDePesoLauncher" runat="server" Text="Notas De Peso" Icon="PageWhiteCup" >
+                    <Launcher ID="NotasDePesoLauncher" runat="server" Text="Notas De Peso" Icon="PageWhiteOffice" >
                         <Listeners>
                             <Click Handler="WindowX.notasDePeso(#{MyDesktop});" />
                         </Listeners>
@@ -591,24 +610,20 @@
             </Modules>  
             
             <Shortcuts>
-                <ext:DesktopShortcut ShortcutID="scUsuarios" Text="Usuarios" IconCls="shortcut-icon icon-usuarios" />
-                <ext:DesktopShortcut ShortcutID="scRoles" Text="Roles" IconCls="shortcut-icon icon-roles" />
-                <ext:DesktopShortcut ShortcutID="scVariablesDeEntorno" Text="Variables de Entorno" IconCls="shortcut-icon icon-variablesEntorno" />
-
-                <ext:DesktopShortcut ShortcutID="scSocios" Text="Socios" IconCls="shortcut-icon icon-socios" />
-
-                <ext:DesktopShortcut ShortcutID="scTiposDeProductos" Text="Tipos de Productos" IconCls="shortcut-icon icon-tiposDeProducto" />
-                <ext:DesktopShortcut ShortcutID="scProductos" Text="Productos" IconCls="shortcut-icon icon-productos" />
-
-                <ext:DesktopShortcut ShortcutID="scEstadosNotasDePeso"  Text="Estados de Notas de Peso" IconCls="shortcut-icon icon-estadosNotasDePeso" />
-                <ext:DesktopShortcut ShortcutID="scNotasDePesoEnPesaje" Text="Notas De Peso en Area de Pesaje" IconCls="shortcut-icon icon-notasDePesoEnPesaje" />
-                <ext:DesktopShortcut ShortcutID="scNotasDePeso"         Text="Notas de Peso" IconCls="shortcut-icon icon-notasDePeso" />
-
-                <ext:DesktopShortcut ShortcutID="scSolicitudesDePrestamo" Text="Solicitudes de Prestamo" IconCls="shortcut-icon icon-solicitudesDePrestamo" />
-                <ext:DesktopShortcut ShortcutID="scPrestamos" Text="Prestamos" IconCls="shortcut-icon icon-prestamos" />
-
-                <ext:DesktopShortcut ShortcutID="scClasificacionesDeCafe" Text="Clasificaciones de Café" IconCls="shortcut-icon icon-clasificacionesDeCafe" />
-                <ext:DesktopShortcut ShortcutID="scInventarioDeCafePorSocio" Text="Inventario de Café por Socio" IconCls="shortcut-icon icon-inventarioDeCafePorSocio" />
+                <ext:DesktopShortcut ShortcutID="scUsuarios"                 Text="Usuarios"                          IconCls="shortcut-icon icon-usuarios" />
+                <ext:DesktopShortcut ShortcutID="scRoles"                    Text="Roles"                             IconCls="shortcut-icon icon-roles" />
+                <ext:DesktopShortcut ShortcutID="scVariablesDeEntorno"       Text="Variables de Entorno"              IconCls="shortcut-icon icon-variablesEntorno" />
+                <ext:DesktopShortcut ShortcutID="scSocios"                   Text="Socios"                            IconCls="shortcut-icon icon-socios" />
+                <ext:DesktopShortcut ShortcutID="scTiposDeProductos"         Text="Tipos de Productos"                IconCls="shortcut-icon icon-tiposDeProducto" />
+                <ext:DesktopShortcut ShortcutID="scProductos"                Text="Productos"                         IconCls="shortcut-icon icon-productos" />
+                <ext:DesktopShortcut ShortcutID="scEstadosNotasDePeso"       Text="Estados de Notas de Peso"          IconCls="shortcut-icon icon-estadosNotasDePeso" />
+                <ext:DesktopShortcut ShortcutID="scNotasDePesoEnPesaje"      Text="Notas De Peso en Area de Pesaje"   IconCls="shortcut-icon icon-notasDePesoEnPesaje" />
+                <ext:DesktopShortcut ShortcutID="scNotasDePesoEnCatacion"    Text="Notas De Peso en Area de Catación" IconCls="shortcut-icon icon-notasDePesoEnCatacion" />
+                <ext:DesktopShortcut ShortcutID="scNotasDePeso"              Text="Notas de Peso"                     IconCls="shortcut-icon icon-notasDePeso" />
+                <ext:DesktopShortcut ShortcutID="scSolicitudesDePrestamo"    Text="Solicitudes de Prestamo"           IconCls="shortcut-icon icon-solicitudesDePrestamo" />
+                <ext:DesktopShortcut ShortcutID="scPrestamos"                Text="Prestamos"                         IconCls="shortcut-icon icon-prestamos" />
+                <ext:DesktopShortcut ShortcutID="scClasificacionesDeCafe"    Text="Clasificaciones de Café"           IconCls="shortcut-icon icon-clasificacionesDeCafe" />
+                <ext:DesktopShortcut ShortcutID="scInventarioDeCafePorSocio" Text="Inventario de Café por Socio"      IconCls="shortcut-icon icon-inventarioDeCafePorSocio" />
 
                 <%--<ext:DesktopShortcut ShortcutID="scTile" Text="Tile windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-90" />
                 <ext:DesktopShortcut ShortcutID="scCascade" Text="Cascade windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-170" />--%>
@@ -694,9 +709,14 @@
                                             <click Handler="WindowX.estadosNotasDePeso(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
-                                    <ext:MenuItem ID="NotasDePesoEnPesajeMenuItem" Text="Notas De Peso en Area de Pesaje" Icon="PageWhitePut" >
+                                    <ext:MenuItem ID="NotasDePesoEnPesajeMenuItem" Text="Notas De Peso en Area de Pesaje" Icon="PageWhiteOffice" >
                                         <Listeners>
                                             <click Handler="WindowX.notasDePesoEnPesaje(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                    <ext:MenuItem ID="NotasDePesoEnCatacionMenuItem" Text="Notas De Peso en Area de Catacion" Icon="PageWhiteCup" >
+                                        <Listeners>
+                                            <click Handler="WindowX.notasDePesoEnCatacion(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
                                     <ext:MenuItem ID="NotasDePesoMenuItem" Text="Notas de Peso" Icon="PageWhiteCup" >
@@ -761,6 +781,25 @@
                 </Items>
             </StartMenu>
         </ext:Desktop>
+
+        <%--shortcuts' tooltips--%>
+
+        <ext:ToolTip runat="server" ID="scUsuariosTooltip"                  Html="Usuarios"                          Target="scUsuarios-shortcut"                 ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scRolesTooltip"                     Html="Roles"                             Target="scRoles-shortcut"                    ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scVariablesDeEntornoTooltip"        Html="Variables de Entorno"              Target="scVariablesDeEntorno-shortcut"       ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scSociosTooltip"                    Html="Socios"                            Target="scSocios-shortcut"                   ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scTiposDeProductosTooltip"          Html="Tipos de Productos"                Target="scTiposDeProductos-shortcut"         ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scProductosTooltip"                 Html="Productos"                         Target="scProductos-shortcut"                ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scEstadosNotasDePesoTooltip"        Html="Estados de Notas de Peso"          Target="scEstadosNotasDePeso-shortcut"       ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scNotasDePesoEnPesajeTooltip"       Html="Notas De Peso en Area de Pesaje"   Target="scNotasDePesoEnPesaje-shortcut"      ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scNotasDePesoEnCatacionTooltip"     Html="Notas De Peso en Area de Catación" Target="scNotasDePesoEnCatacion-shortcut"    ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scNotasDePesoTooltip"               Html="Notas de Peso"                     Target="scNotasDePeso-shortcut"              ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scSolicitudesDePrestamoTooltip"     Html="Solicitudes de Prestamo"           Target="scSolicitudesDePrestamo-shortcut"    ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scPrestamosTooltip"                 Html="Prestamos"                         Target="scPrestamos-shortcut"                ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scClasificacionesDeCafeTooltip"     Html="Clasificaciones de Café"           Target="scClasificacionesDeCafe-shortcut"    ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scInventarioDeCafePorSocioTooltip"  Html="Inventario de Café por Socio"      Target="scInventarioDeCafePorSocio-shortcut" ></ext:ToolTip>
+
+        <%--shortcuts' tooltips--%>
 
         <ext:DesktopWindow
             ID="SettingsWin"

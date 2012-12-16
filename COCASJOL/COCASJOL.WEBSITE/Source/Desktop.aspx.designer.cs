@@ -148,6 +148,15 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.MenuItem NotasDePesoEnPesajeMenuItem;
         
         /// <summary>
+        /// NotasDePesoEnCatacionMenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem NotasDePesoEnCatacionMenuItem;
+        
+        /// <summary>
         /// NotasDePesoMenuItem control.
         /// </summary>
         /// <remarks>
@@ -227,6 +236,132 @@ namespace COCASJOL.WEBSITE {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.MenuItem VariablesDeEntornoMenuItem;
+        
+        /// <summary>
+        /// scUsuariosTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scUsuariosTooltip;
+        
+        /// <summary>
+        /// scRolesTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scRolesTooltip;
+        
+        /// <summary>
+        /// scVariablesDeEntornoTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scVariablesDeEntornoTooltip;
+        
+        /// <summary>
+        /// scSociosTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scSociosTooltip;
+        
+        /// <summary>
+        /// scTiposDeProductosTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scTiposDeProductosTooltip;
+        
+        /// <summary>
+        /// scProductosTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scProductosTooltip;
+        
+        /// <summary>
+        /// scEstadosNotasDePesoTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scEstadosNotasDePesoTooltip;
+        
+        /// <summary>
+        /// scNotasDePesoEnPesajeTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scNotasDePesoEnPesajeTooltip;
+        
+        /// <summary>
+        /// scNotasDePesoEnCatacionTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scNotasDePesoEnCatacionTooltip;
+        
+        /// <summary>
+        /// scNotasDePesoTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scNotasDePesoTooltip;
+        
+        /// <summary>
+        /// scSolicitudesDePrestamoTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scSolicitudesDePrestamoTooltip;
+        
+        /// <summary>
+        /// scPrestamosTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scPrestamosTooltip;
+        
+        /// <summary>
+        /// scClasificacionesDeCafeTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scClasificacionesDeCafeTooltip;
+        
+        /// <summary>
+        /// scInventarioDeCafePorSocioTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scInventarioDeCafePorSocioTooltip;
         
         /// <summary>
         /// SettingsWin control.
