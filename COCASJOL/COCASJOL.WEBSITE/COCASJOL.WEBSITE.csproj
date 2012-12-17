@@ -258,7 +258,9 @@
       <DependentUpon>Socios.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="bin\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\COCASJOL.LOGIC\COCASJOL.LOGIC.csproj">
       <Project>{4E2A8EDC-D2EC-4897-BFFA-D87CFCD3FE01}</Project>

@@ -220,15 +220,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.NumberField f_NOTAS_ID;
         
         /// <summary>
-        /// f_ESTADOS_NOTA_ID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox f_ESTADOS_NOTA_ID;
-        
-        /// <summary>
         /// f_SOCIOS_ID control.
         /// </summary>
         /// <remarks>

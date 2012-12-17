@@ -39,37 +39,16 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 e.Cancel = true;
         }
 
-        protected void AddNombreTxt_Validate(object sender, RemoteValidationEventArgs e)
-        {
-            try
-            {
-                string nombreDeEstadoNotaDePeso = this.AddNombreTxt.Text;
-
-                EstadoNotaDePesoLogic estadoNotaDePesologic = new EstadoNotaDePesoLogic();
-
-                if (estadoNotaDePesologic.NombreDeEstadoNotaDePesoExiste(nombreDeEstadoNotaDePeso))
-                {
-                    e.Success = false;
-                    e.ErrorMessage = "El nombre de estado de nota de peso ingresado ya existe.";
-                }
-                else
-                    e.Success = true;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
         protected void EditNombreTxt_Validate(object sender, RemoteValidationEventArgs e)
         {
             try
             {
                 string nombreDeEstadoNotaDePeso = this.EditNombreTxt.Text;
+                int EstadoId = int.Parse(this.EditIdTxt.Text);
 
                 EstadoNotaDePesoLogic estadoNotaDePesologic = new EstadoNotaDePesoLogic();
 
-                if (estadoNotaDePesologic.NombreDeEstadoNotaDePesoExiste(nombreDeEstadoNotaDePeso))
+                if (estadoNotaDePesologic.NombreDeEstadoNotaDePesoExiste(EstadoId, nombreDeEstadoNotaDePeso))
                 {
                     e.Success = false;
                     e.ErrorMessage = "El nombre de estado de nota de peso ingresado ya existe.";

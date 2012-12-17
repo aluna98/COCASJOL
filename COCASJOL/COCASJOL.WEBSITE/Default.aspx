@@ -21,31 +21,13 @@
         
         html, body
         {
-            background: #3d71b8 url('resources/images/login.jpg') no-repeat left top;
-            font: normal 12px tahoma, arial, verdana, sans-serif;
+            background: Black url('resources/images/login.jpg') no-repeat center;
             margin: 0;
             padding: 0;
             border: 0 none;
             overflow: hidden;
             height: 100%;
         }
-        
-        /*#bg
-        {
-            position: fixed;
-            width: 200%;
-            height: 200%;
-        }
-        #bg img
-        {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            margin: auto;
-            min-width: 50%;
-            min-height: 50%;
-        }*/
         
         .loginEl
         {
@@ -143,7 +125,7 @@
             Draggable="false"
             Width="350"
             Layout="FitLayout"
-            Cls="loginEl">
+            Cls="loginEl" MonitorResize="true">
             <Items>
                 <ext:FormPanel ID="FormPanel1" runat="server" Title="Form Panel" Header="false" Frame="false" ButtonAlign="Right" Border="false" MonitorValid="true">
                     <Items>

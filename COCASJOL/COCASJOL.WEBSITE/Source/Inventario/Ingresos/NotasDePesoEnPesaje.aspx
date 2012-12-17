@@ -629,7 +629,7 @@
                 SelectMethod="GetNotasDePeso" onselecting="NotasDS_Selecting" >
                 <SelectParameters>
                     <asp:ControlParameter Name="NOTAS_ID"                        Type="Int32"    ControlID="f_NOTAS_ID"                PropertyName="Text" />
-                    <asp:ControlParameter Name="ESTADOS_NOTA_ID"                 Type="Int32"    ControlID="f_ESTADOS_NOTA_ID"         PropertyName="Text" />
+                    <asp:ControlParameter Name="ESTADOS_NOTA_ID"                 Type="Int32"    ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="ESTADOS_NOTA_NOMBRE"             Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="SOCIOS_ID"                       Type="String"   ControlID="f_SOCIOS_ID"               PropertyName="Text" />
                     <asp:ControlParameter Name="CLASIFICACIONES_CAFE_ID"         Type="Int32"    ControlID="f_CLASIFICACIONES_CAFE_ID" PropertyName="Text" />
@@ -667,7 +667,7 @@
 
         <asp:ObjectDataSource ID="EstadosNotaDS" runat="server"
                 TypeName="COCASJOL.LOGIC.Inventario.Ingresos.EstadoNotaDePesoLogic"
-                SelectMethod="GetEstadosNotaDePeso" >
+                SelectMethod="GetEstadosNotaDePesoPesaje" >
         </asp:ObjectDataSource>
 
         <ext:Store ID="SocioSt" runat="server" DataSourceID="SociosDS">
@@ -725,8 +725,8 @@
                                         <ext:JsonReader IDProperty="NOTAS_ID">
                                             <Fields>
                                                 <ext:RecordField Name="NOTAS_ID"                        />
-                                                <ext:RecordField Name="ESTADOS_NOTA_ID"                 />
-                                                <ext:RecordField Name="ESTADOS_NOTA_NOMBRE"             ServerMapping="estados_nota_de_peso.ESTADOS_NOTA_NOMBRE" />
+                                                <%--<ext:RecordField Name="ESTADOS_NOTA_ID"                 />
+                                                <ext:RecordField Name="ESTADOS_NOTA_NOMBRE"             ServerMapping="estados_nota_de_peso.ESTADOS_NOTA_NOMBRE" />--%>
                                                 <ext:RecordField Name="SOCIOS_ID"                       />
                                                 <ext:RecordField Name="CLASIFICACIONES_CAFE_ID"         />
                                                 <ext:RecordField Name="CLASIFICACIONES_CAFE_NOMBRE"     ServerMapping="clasificaciones_cafe.CLASIFICACIONES_CAFE_NOMBRE"/>
@@ -759,7 +759,7 @@
                             <ColumnModel>
                                 <Columns>
                                     <ext:Column DataIndex="NOTAS_ID"                    Header="Numero" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="ESTADOS_NOTA_NOMBRE"         Header="Estado" Sortable="true" Width="150"></ext:Column>
+                                    <%--<ext:Column DataIndex="ESTADOS_NOTA_NOMBRE"         Header="Estado" Sortable="true" Width="150"></ext:Column>--%>
                                     <ext:Column DataIndex="SOCIOS_ID"                   Header="Socio" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="CLASIFICACIONES_CAFE_NOMBRE" Header="Clasificacion de Café" Sortable="true"></ext:Column>
                                     <ext:DateColumn DataIndex="NOTAS_FECHA"             Header="Fecha" Sortable="true" Width="150" ></ext:DateColumn>
@@ -803,7 +803,7 @@
                                                         </ext:NumberField>
                                                     </Component>
                                                 </ext:HeaderColumn>
-                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                <%--<ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
                                                         <ext:ComboBox
                                                             ID="f_ESTADOS_NOTA_ID" 
@@ -826,7 +826,7 @@
                                                             </Listeners>
                                                         </ext:ComboBox>
                                                     </Component>
-                                                </ext:HeaderColumn>
+                                                </ext:HeaderColumn>--%>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
                                                         <ext:TextField ID="f_SOCIOS_ID" runat="server" EnableKeyEvents="true" Icon="Find">
@@ -973,15 +973,15 @@
                                     <Items>
                                         <ext:FieldSet ID="AddNotaHeaderFS" runat="server" Header="false" Padding="5">
                                             <Items>
-                                                <ext:Panel ID="AddSocioPnl" runat ="server" Layout="ColumnLayout" Padding="5" Border="false" AnchorHorizontal="100%" >
+                                                <ext:Panel ID="AddSocioPnl" runat ="server" Layout="ColumnLayout" Border="false" AnchorHorizontal="95%" >
                                                     <LayoutConfig>
                                                         <ext:ColumnLayoutConfig FitHeight="false" />
                                                     </LayoutConfig>
                                                     <Items>
                                                         <ext:Panel ID="Panel4" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
-                                                                <ext:DateField runat="server" ID="AddFechaNotaTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha" AllowBlank="false" MsgTarget="Side" ></ext:DateField>
-                                                                <ext:ComboBox  runat="server" ID="AddSociosIdTxt"  DataIndex="SOCIOS_ID"   LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Codigo Socio" AllowBlank="false" MsgTarget="Side"
+                                                                <ext:DateField runat="server" ID="AddFechaNotaTxt" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Fecha" AllowBlank="false" MsgTarget="Side" ></ext:DateField>
+                                                                <ext:ComboBox  runat="server" ID="AddSociosIdTxt"  LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Codigo Socio" AllowBlank="false" MsgTarget="Side"
                                                                     TypeAhead="true"
                                                                     EmptyText="Seleccione un Socio"
                                                                     ForceSelection="true" 
@@ -1028,7 +1028,7 @@
                                                         </ext:Panel>
                                                         <ext:Panel ID="Panel5" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
-                                                                <ext:ComboBox runat="server" ID="AddEstadoNotaCmb" DataIndex="ESTADOS_NOTA_ID" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Estado de Nota" AllowBlank="false" MsgTarget="Side"
+                                                                <ext:ComboBox runat="server" ID="AddEstadoNotaCmb"           LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Estado de Nota" AllowBlank="false" MsgTarget="Side"
                                                                     StoreID="EstadosNotaSt"
                                                                     EmptyText="Seleccione un Estado"
                                                                     ValueField="ESTADOS_NOTA_ID" 
@@ -1045,7 +1045,7 @@
                                                                         <Select Handler="this.triggers[0].show();" />
                                                                     </Listeners>
                                                                 </ext:ComboBox>
-                                                                <ext:ComboBox runat="server"    ID="AddClasificacionCafeCmb"     DataIndex="CLASIFICACIONES_CAFE_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Café" AllowBlank="false" MsgTarget="Side"
+                                                                <ext:ComboBox runat="server"    ID="AddClasificacionCafeCmb" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Tipo de Café" AllowBlank="false" MsgTarget="Side"
                                                                     StoreID="ClasificacionesCafeSt"
                                                                     EmptyText="Seleccione un Tipo"
                                                                     ValueField="CLASIFICACIONES_CAFE_ID" 
@@ -1066,12 +1066,12 @@
                                                         </ext:Panel>
                                                     </Items>
                                                 </ext:Panel>
-                                                <ext:TextField   runat="server" ID="AddNombreTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre del Socio" ReadOnly="true" >
+                                                <ext:TextField   runat="server" ID="AddNombreTxt" LabelAlign="Right" AnchorHorizontal="95%" FieldLabel="Nombre del Socio" ReadOnly="true" >
                                                     <ToolTips>
                                                         <ext:ToolTip ID="ToolTip1" runat="server" Html="El nombre de socio es de solo lectura." Title="Nombre del Socio" Width="200" TrackMouse="true" />
                                                     </ToolTips>
                                                 </ext:TextField>
-                                                <ext:TextField   runat="server" ID="AddDireccionFincaTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Dirección de la Finca" ReadOnly="true" >
+                                                <ext:TextField   runat="server" ID="AddDireccionFincaTxt" LabelAlign="Right" AnchorHorizontal="95%" FieldLabel="Dirección de la Finca" ReadOnly="true" >
                                                     <ToolTips>
                                                         <ext:ToolTip ID="ToolTip2" runat="server" Html="La dirección de la finca de solo lectura." Title="Dirección de la Finca" Width="200" TrackMouse="true" />
                                                     </ToolTips>
@@ -1090,16 +1090,16 @@
                                                             <Items>
                                                                 <ext:RadioGroup runat="server" ID="AddTipoTransporteRdGrp" LabelAlign="Right" AnchorHorizontal="100%" DataIndex="NOTAS_TRANSPORTE_COOPERATIVA" FieldLabel="Forma de Transporte" ColumnsNumber="1" AutoHeight="true">
                                                                     <Items>
-                                                                        <ext:Radio ID="AddPropiRadio" runat="server" InputValue="0" BoxLabel="Carro Propio" ColumnWidth=".5" AnchorHorizontal="90%" Checked="true"></ext:Radio>
+                                                                        <ext:Radio ID="AddPropiRadio" runat="server" InputValue="0" BoxLabel="Carro Propio" ColumnWidth=".5" AnchorHorizontal="100%" Checked="true"></ext:Radio>
                                                                         <ext:Radio ID="AddCooperativaRadio" runat="server" InputValue="1" BoxLabel="Carro de la Cooperativa" ColumnWidth=".5" AnchorHorizontal="100%" Checked="false"></ext:Radio>
                                                                     </Items>
                                                                 </ext:RadioGroup>
-                                                                <ext:TextField runat="server" ID="AddPorcentajeHumedadTxt" DataIndex="NOTAS_PORCENTAJE_HUMEDAD" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Porcentaje de Humedad" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" >
+                                                                <ext:TextField runat="server" ID="AddPorcentajeHumedadTxt" DataIndex="NOTAS_PORCENTAJE_HUMEDAD" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Porcentaje de Humedad" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" >
                                                                     <Listeners>
                                                                         <Change Handler="this.getEl().setValue(Ext.util.Format.number(newValue.replace(/[\$]/g, ''), '0.00%'));" />
                                                                     </Listeners>
                                                                 </ext:TextField>
-                                                                <ext:TriggerField runat="server" ID="AddPorcentajeDefectoTxt" DataIndex="NOTAS_PORCENTAJE_DEFECTO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Porcentaje de Defecto" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" >
+                                                                <ext:TriggerField runat="server" ID="AddPorcentajeDefectoTxt" DataIndex="NOTAS_PORCENTAJE_DEFECTO" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Porcentaje de Defecto" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" >
                                                                     <Triggers>
                                                                         <ext:FieldTrigger Icon="SimpleEllipsis" Tag="Calcular" Qtip="Calcular" />
                                                                     </Triggers>
@@ -1112,8 +1112,8 @@
                                                         </ext:FieldSet>
                                                         <ext:FieldSet ID="AddSacosFS" runat="server" Title="Sacos" Padding="7">
                                                             <Items>
-                                                                <ext:NumberField runat="server" ID="AddSumaSacosTxt"                                        LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cantidad de Sacos" Text="0" ReadOnly="true"></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="AddSacosRetenidosTxt" DataIndex="NOTAS_SACOS_RETENIDOS" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Sacos Retenidos" AllowBlank="false" MsgTarget="Side"></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddSumaSacosTxt"                                        LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Cantidad de Sacos" Text="0" ReadOnly="true"></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddSacosRetenidosTxt" DataIndex="NOTAS_SACOS_RETENIDOS" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Sacos Retenidos" AllowBlank="false" MsgTarget="Side"></ext:NumberField>
                                                             </Items>
                                                         </ext:FieldSet>
                                                     </Items>
@@ -1408,20 +1408,20 @@
                                     <Items>
                                         <ext:FieldSet ID="EditNotaHeaderFS" runat="server" Header="false" Padding="5">
                                             <Items>
-                                                <ext:Panel ID="EditSocioPnl" runat ="server" Layout="ColumnLayout" Padding="5" Border="false" AnchorHorizontal="100%" >
+                                                <ext:Panel ID="EditSocioPnl" runat ="server" Layout="ColumnLayout" Border="false" AnchorHorizontal="95%" >
                                                     <LayoutConfig>
                                                         <ext:ColumnLayoutConfig FitHeight="false" />
                                                     </LayoutConfig>
                                                     <Items>
                                                         <ext:Panel ID="Panel12" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
-                                                                <ext:NumberField runat="server" ID="EditNotaIdTxt"  DataIndex="NOTAS_ID" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nota Numero" AllowBlank="false" ReadOnly="true" MsgTarget="Side">
+                                                                <ext:NumberField runat="server" ID="EditNotaIdTxt"  DataIndex="NOTAS_ID" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Nota Numero" AllowBlank="false" ReadOnly="true" MsgTarget="Side">
                                                                     <ToolTips>
                                                                         <ext:ToolTip ID="ToolTip3" runat="server" Html="El numero de nota de peso es de solo lectura." Title="NUmero de Nota de Peso" Width="200" TrackMouse="true" />
                                                                     </ToolTips>
                                                                 </ext:NumberField>
-                                                                <ext:DateField runat="server" ID="EditFechaNotaTxt" DataIndex="NOTAS_FECHA" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha" AllowBlank="false" MsgTarget="Side" ></ext:DateField>
-                                                                <ext:ComboBox  runat="server" ID="EditSociosIdTxt"  DataIndex="SOCIOS_ID"   LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Codigo Socio" AllowBlank="false" MsgTarget="Side"
+                                                                <ext:DateField runat="server" ID="EditFechaNotaTxt" DataIndex="NOTAS_FECHA" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Fecha" AllowBlank="false" MsgTarget="Side" ></ext:DateField>
+                                                                <ext:ComboBox  runat="server" ID="EditSociosIdTxt"  DataIndex="SOCIOS_ID"   LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Codigo Socio" AllowBlank="false" MsgTarget="Side"
                                                                     TypeAhead="true"
                                                                     EmptyText="Seleccione un Socio"
                                                                     ForceSelection="true" 
@@ -1468,7 +1468,7 @@
                                                         </ext:Panel>
                                                         <ext:Panel ID="Panel13" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
-                                                                <ext:ComboBox runat="server" ID="EditEstadoNotaCmb" DataIndex="ESTADOS_NOTA_ID" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Estado de Nota" AllowBlank="false" MsgTarget="Side"
+                                                                <ext:ComboBox runat="server" ID="EditEstadoNotaCmb" DataIndex="ESTADOS_NOTA_ID" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Estado de Nota" AllowBlank="false" MsgTarget="Side"
                                                                     StoreID="EstadosNotaSt"
                                                                     EmptyText="Seleccione un Estado"
                                                                     ValueField="ESTADOS_NOTA_ID" 
@@ -1485,7 +1485,7 @@
                                                                         <Select Handler="this.triggers[0].show();" />
                                                                     </Listeners>
                                                                 </ext:ComboBox>
-                                                                <ext:ComboBox runat="server"    ID="EditClasificacionCafeCmb"     DataIndex="CLASIFICACIONES_CAFE_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Café" AllowBlank="false" MsgTarget="Side"
+                                                                <ext:ComboBox runat="server"    ID="EditClasificacionCafeCmb"     DataIndex="CLASIFICACIONES_CAFE_ID"          LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Tipo de Café" AllowBlank="false" MsgTarget="Side"
                                                                     StoreID="ClasificacionesCafeSt"
                                                                     EmptyText="Seleccione un Tipo"
                                                                     ValueField="CLASIFICACIONES_CAFE_ID" 
@@ -1506,12 +1506,12 @@
                                                         </ext:Panel>
                                                     </Items>
                                                 </ext:Panel>
-                                                <ext:TextField   runat="server" ID="EditNombreTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre del Socio" ReadOnly="true" >
+                                                <ext:TextField   runat="server" ID="EditNombreTxt" LabelAlign="Right" AnchorHorizontal="95%" FieldLabel="Nombre del Socio" ReadOnly="true" >
                                                     <ToolTips>
                                                         <ext:ToolTip ID="ToolTip4" runat="server" Html="El nombre de socio es de solo lectura." Title="Nombre del Socio" Width="200" TrackMouse="true" />
                                                     </ToolTips>
                                                 </ext:TextField>
-                                                <ext:TextField   runat="server" ID="EditDireccionFincaTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Dirección de la Finca" ReadOnly="true" >
+                                                <ext:TextField   runat="server" ID="EditDireccionFincaTxt" LabelAlign="Right" AnchorHorizontal="95%" FieldLabel="Dirección de la Finca" ReadOnly="true" >
                                                     <ToolTips>
                                                         <ext:ToolTip ID="ToolTip5" runat="server" Html="La dirección de la finca de solo lectura." Title="Dirección de la Finca" Width="200" TrackMouse="true" />
                                                     </ToolTips>
@@ -1530,18 +1530,18 @@
                                                             <Items>
                                                                 <ext:RadioGroup runat="server" ID="EditTipoTransporteRdGrp" LabelAlign="Right" AnchorHorizontal="100%"  FieldLabel="Forma de Transporte" ColumnsNumber="1" AutoHeight="true">
                                                                     <Items>
-                                                                        <ext:Radio ID="EditPropiRadio" runat="server" InputValue="0" BoxLabel="Carro Propio" ColumnWidth=".5" AnchorHorizontal="90%" Checked="true">
+                                                                        <ext:Radio ID="EditPropiRadio" runat="server" InputValue="0" BoxLabel="Carro Propio" ColumnWidth=".5" AnchorHorizontal="100%" Checked="true">
                                                                         </ext:Radio>
                                                                         <ext:Radio ID="EditCooperativaRadio" runat="server" InputValue="1" DataIndex="NOTAS_TRANSPORTE_COOPERATIVA" BoxLabel="Carro de la Cooperativa" ColumnWidth=".5" AnchorHorizontal="100%">
                                                                         </ext:Radio>
                                                                     </Items>
                                                                 </ext:RadioGroup>
-                                                                <ext:TextField runat="server" ID="EditPorcentajeHumedadTxt" DataIndex="NOTAS_PORCENTAJE_HUMEDAD" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Porcentaje de Humedad" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" >
+                                                                <ext:TextField runat="server" ID="EditPorcentajeHumedadTxt" DataIndex="NOTAS_PORCENTAJE_HUMEDAD" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Porcentaje de Humedad" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" >
                                                                     <Listeners>
                                                                         <Change Handler="this.getEl().setValue(Ext.util.Format.number(newValue.replace(/[\%]/g, ''), '0.00%'));" />
                                                                     </Listeners>
                                                                 </ext:TextField>
-                                                                <ext:TriggerField runat="server" ID="EditPorcentajeDefectoTxt" DataIndex="NOTAS_PORCENTAJE_DEFECTO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Porcentaje de Defecto" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" >
+                                                                <ext:TriggerField runat="server" ID="EditPorcentajeDefectoTxt" DataIndex="NOTAS_PORCENTAJE_DEFECTO" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Porcentaje de Defecto" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" >
                                                                     <Triggers>
                                                                         <ext:FieldTrigger Icon="SimpleEllipsis" Tag="Calcular" Qtip="Calcular" />
                                                                     </Triggers>
@@ -1554,8 +1554,8 @@
                                                         </ext:FieldSet>
                                                         <ext:FieldSet ID="EditSacosFS" runat="server" Title="Sacos" Padding="7" >
                                                             <Items>
-                                                                <ext:NumberField runat="server" ID="EditSumaSacosTxt"                                            LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cantidad de Sacos" Text="0" ReadOnly="true"></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditSacosRetenidosTxt" DataIndex="NOTAS_SACOS_RETENIDOS"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Sacos Retenidos" AllowBlank="false" MsgTarget="Side"></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditSumaSacosTxt"                                            LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Cantidad de Sacos" Text="0" ReadOnly="true"></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditSacosRetenidosTxt" DataIndex="NOTAS_SACOS_RETENIDOS"     LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Sacos Retenidos" AllowBlank="false" MsgTarget="Side"></ext:NumberField>
                                                             </Items>
                                                         </ext:FieldSet>
                                                     </Items>

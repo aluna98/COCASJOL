@@ -10,8 +10,6 @@
     <script type="text/javascript">
         var Grid = null;
         var GridStore = null;
-        var AddWindow = null;
-        var AddForm = null;
         var EditWindow = null; 
         var EditForm = null;
 
@@ -28,21 +26,9 @@
             setReferences: function () {
                 Grid = EstadosNotaGridP;
                 GridStore = EstadosNotaSt;
-                AddWindow = AgregarEstadosNotaWin;
-                AddForm = AddEstadosNotaFormP;
+                
                 EditWindow = EditarEstadosNotaWin;
                 EditForm = EditarEstadosNotaFormP;
-            },
-
-            add: function () {
-                AddWindow.show();
-            },
-
-            insert: function () {
-                var fields = AddForm.getForm().getFieldValues(false, "dataIndex");
-
-                Grid.insertRecord(0, fields, false);
-                AddForm.getForm().reset();
             },
 
             getIndex: function () {
@@ -110,23 +96,13 @@
                 });
             },
 
-            remove: function () {
-                if (Grid.getSelectionModel().hasSelection()) {
-                    Ext.Msg.confirm(ConfirmMsgTitle, ConfirmDelete, function (btn, text) {
-                        if (btn == 'yes') {
-                            var record = Grid.getSelectionModel().getSelected();
-                            Grid.deleteRecord(record);
-                        }
-                    });
-                } else {
-                    var msg = Ext.Msg;
-                    Ext.Msg.alert(AlertSelMsgTitle, AlertSelMsg);
-                }
-            },
-
             keyUpEvent: function (sender, e) {
                 if (e.getKey() == 13)
                     GridStore.reload();
+            },
+
+            reloadGridStore: function () {
+                GridStore.reload();
             }
         };
 
@@ -155,40 +131,50 @@
         <asp:ObjectDataSource ID="EstadosNotaDS" runat="server"
                 TypeName="COCASJOL.LOGIC.Inventario.Ingresos.EstadoNotaDePesoLogic"
                 SelectMethod="GetEstadosNotaDePeso"
-                InsertMethod="InsertarEstadoNotaDePeso"
                 UpdateMethod="ActualizarEstadoNotaDePeso"
                 DeleteMethod="EliminarEstadoNotaDePeso" onselecting="EstadosNotaDS_Selecting" >
                 <SelectParameters>
-                    <asp:ControlParameter Name="ESTADOS_NOTA_ID"          Type="Int32"    ControlID="f_ESTADOS_NOTA_ID"          PropertyName="Text" />
-                    <asp:ControlParameter Name="ESTADOS_NOTA_NOMBRE"      Type="String"   ControlID="f_ESTADOS_NOTA_NOMBRE"      PropertyName="Text" />
-                    <asp:ControlParameter Name="ESTADOS_NOTA_DESCRIPCION" Type="String"   ControlID="f_ESTADOS_NOTA_DESCRIPCION" PropertyName="Text" />
-                    <asp:ControlParameter Name="CREADO_POR"               Type="String"   ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_CREACION"           Type="DateTime" ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="MODIFICADO_POR"           Type="String"   ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_MODIFICACION"       Type="DateTime" ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="ESTADOS_NOTA_ID"           Type="Int32"    ControlID="f_ESTADOS_NOTA_ID"          PropertyName="Text" />
+                    <asp:ControlParameter Name="ESTADOS_NOTA_PADRE"        Type="Int32"    ControlID="f_ESTADOS_NOTA_PADRE"       PropertyName="Text" />
+                    <asp:ControlParameter Name="ESTADOS_NOTA_PADRE_NOMBRE" Type="String"   ControlID="nullHdn"                    PropertyName="Text" />
+                    <asp:ControlParameter Name="ESTADOS_NOTA_LLAVE"        Type="String"   ControlID="f_ESTADOS_NOTA_LLAVE"       PropertyName="Text" />
+                    <asp:ControlParameter Name="ESTADOS_NOTA_NOMBRE"       Type="String"   ControlID="f_ESTADOS_NOTA_NOMBRE"      PropertyName="Text" />
+                    <asp:ControlParameter Name="ESTADOS_NOTA_DESCRIPCION"  Type="String"   ControlID="f_ESTADOS_NOTA_DESCRIPCION" PropertyName="Text" />
+                    <asp:ControlParameter Name="CREADO_POR"                Type="String"   ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_CREACION"            Type="DateTime" ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="MODIFICADO_POR"            Type="String"   ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_MODIFICACION"        Type="DateTime" ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
                 </SelectParameters>
-                <InsertParameters>
-                    <asp:Parameter Name="ESTADOS_NOTA_ID"          Type="Int32" />
-                    <asp:Parameter Name="ESTADOS_NOTA_NOMBRE"      Type="String" />
-                    <asp:Parameter Name="ESTADOS_NOTA_DESCRIPCION" Type="String" />
-                    <asp:Parameter Name="CREADO_POR"               Type="String" />
-                    <asp:Parameter Name="FECHA_CREACION"           Type="DateTime" />
-                    <asp:Parameter Name="MODIFICADO_POR"           Type="String" />
-                    <asp:Parameter Name="FECHA_MODIFICACION"       Type="DateTime" />
-                </InsertParameters>
                 <UpdateParameters>
-                    <asp:Parameter Name="ESTADOS_NOTA_ID"          Type="Int32" />
-                    <asp:Parameter Name="ESTADOS_NOTA_NOMBRE"      Type="String" />
-                    <asp:Parameter Name="ESTADOS_NOTA_DESCRIPCION" Type="String" />
-                    <asp:Parameter Name="CREADO_POR"               Type="String" />
-                    <asp:Parameter Name="FECHA_CREACION"           Type="DateTime" />
-                    <asp:Parameter Name="MODIFICADO_POR"           Type="String" />
-                    <asp:Parameter Name="FECHA_MODIFICACION"       Type="DateTime" />
+                    <asp:Parameter Name="ESTADOS_NOTA_ID"           Type="Int32" />
+                    <asp:Parameter Name="ESTADOS_NOTA_PADRE"        Type="Int32" />
+                    <asp:Parameter Name="ESTADOS_NOTA_PADRE_NOMBRE" Type="String" />
+                    <asp:Parameter Name="ESTADOS_NOTA_LLAVE"        Type="String" />
+                    <asp:Parameter Name="ESTADOS_NOTA_NOMBRE"       Type="String" />
+                    <asp:Parameter Name="ESTADOS_NOTA_DESCRIPCION"  Type="String" />
+                    <asp:Parameter Name="CREADO_POR"                Type="String" />
+                    <asp:Parameter Name="FECHA_CREACION"            Type="DateTime" />
+                    <asp:Parameter Name="MODIFICADO_POR"            Type="String" />
+                    <asp:Parameter Name="FECHA_MODIFICACION"        Type="DateTime" />
                 </UpdateParameters>
-                <DeleteParameters>
-                    <asp:Parameter Name="ESTADOS_NOTA_ID" Type="Int32" />
-                </DeleteParameters>
         </asp:ObjectDataSource>
+
+        <asp:ObjectDataSource ID="EstadosNotaPadreDS" runat="server"
+                TypeName="COCASJOL.LOGIC.Inventario.Ingresos.EstadoNotaDePesoLogic"
+                SelectMethod="GetEstadosNotaDePeso" >
+        </asp:ObjectDataSource>
+
+        <ext:Store ID="EstadosNotaPadreSt" runat="server" DataSourceID="EstadosNotaPadreDS">
+            <Reader>
+                <ext:JsonReader>
+                    <Fields>
+                        <ext:RecordField Name="ESTADOS_NOTA_ID" />
+                        <ext:RecordField Name="ESTADOS_NOTA_NOMBRE" />
+                        <ext:RecordField Name="ESTADOS_NOTA_LLAVE" />
+                    </Fields>
+                </ext:JsonReader>
+            </Reader>
+        </ext:Store>
         
         <ext:Hidden ID="nullHdn" runat="server" >
         </ext:Hidden>
@@ -207,13 +193,16 @@
                                     <Reader>
                                         <ext:JsonReader IDProperty="ESTADOS_NOTA_ID">
                                             <Fields>
-                                                <ext:RecordField Name="ESTADOS_NOTA_ID"          />
-                                                <ext:RecordField Name="ESTADOS_NOTA_NOMBRE"      />
-                                                <ext:RecordField Name="ESTADOS_NOTA_DESCRIPCION" />
-                                                <ext:RecordField Name="CREADO_POR"               />
-                                                <ext:RecordField Name="FECHA_CREACION"           Type="Date" />
-                                                <ext:RecordField Name="MODIFICADO_POR"           />
-                                                <ext:RecordField Name="FECHA_MODIFICACION"       Type="Date" />
+                                                <ext:RecordField Name="ESTADOS_NOTA_ID"           />
+                                                <ext:RecordField Name="ESTADOS_NOTA_PADRE"        />
+                                                <ext:RecordField Name="ESTADOS_NOTA_PADRE_NOMBRE" ServerMapping="estados_nota_de_peso_padre.ESTADOS_NOTA_LLAVE" />
+                                                <ext:RecordField Name="ESTADOS_NOTA_LLAVE"        />
+                                                <ext:RecordField Name="ESTADOS_NOTA_NOMBRE"       />
+                                                <ext:RecordField Name="ESTADOS_NOTA_DESCRIPCION"  />
+                                                <ext:RecordField Name="CREADO_POR"                />
+                                                <ext:RecordField Name="FECHA_CREACION"            Type="Date" />
+                                                <ext:RecordField Name="MODIFICADO_POR"            />
+                                                <ext:RecordField Name="FECHA_MODIFICACION"        Type="Date" />
                                             </Fields>
                                         </ext:JsonReader>
                                     </Reader>
@@ -224,9 +213,11 @@
                             </Store>
                             <ColumnModel>
                                 <Columns>
-                                    <ext:Column DataIndex="ESTADOS_NOTA_ID"          Header="Id" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="ESTADOS_NOTA_NOMBRE"      Header="Nombre" Sortable="true" Width="150"></ext:Column>
-                                    <ext:Column DataIndex="ESTADOS_NOTA_DESCRIPCION" Header="Descripción" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="ESTADOS_NOTA_ID"           Header="Id" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="ESTADOS_NOTA_PADRE_NOMBRE" Header="Estado Padre" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="ESTADOS_NOTA_LLAVE"        Header="Llave" Sortable="true" Width="150"></ext:Column>
+                                    <ext:Column DataIndex="ESTADOS_NOTA_NOMBRE"       Header="Nombre" Sortable="true" Width="150"></ext:Column>
+                                    <ext:Column DataIndex="ESTADOS_NOTA_DESCRIPCION"  Header="Descripción" Sortable="true"></ext:Column>
                                 </Columns>
                             </ColumnModel>
                             <SelectionModel>
@@ -235,19 +226,9 @@
                             <TopBar>
                                 <ext:Toolbar ID="Toolbar1" runat="server">
                                     <Items>
-                                        <ext:Button ID="AgregarBtn" runat="server" Text="Agregar" Icon="PageAdd" >
-                                            <Listeners>
-                                                <Click Handler="PageX.add();" />
-                                            </Listeners>
-                                        </ext:Button>
                                         <ext:Button ID="EditarBtn" runat="server" Text="Editar" Icon="PageEdit">
                                             <Listeners>
                                                 <Click Handler="PageX.edit();" />
-                                            </Listeners>
-                                        </ext:Button>
-                                        <ext:Button ID="EliminarBtn" runat="server" Text="Eliminar" Icon="PageDelete">
-                                            <Listeners>
-                                                <Click Handler="PageX.remove();" />
                                             </Listeners>
                                         </ext:Button>
                                     </Items>
@@ -265,6 +246,39 @@
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
                                                         </ext:NumberField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:ComboBox
+                                                            ID="f_ESTADOS_NOTA_PADRE" 
+                                                            runat="server"
+                                                            Icon="Find"
+                                                            AllowBlank="true"
+                                                            ForceSelection="true"
+                                                            StoreID="EstadosNotaPadreSt"
+                                                            ValueField="ESTADOS_NOTA_ID" 
+                                                            DisplayField="ESTADOS_NOTA_LLAVE" 
+                                                            Mode="Local"
+                                                            TypeAhead="true">
+                                                            <Triggers>
+                                                                <ext:FieldTrigger Icon="Clear"/>
+                                                            </Triggers>
+                                                            <Listeners>
+                                                                <Select Handler="PageX.reloadGridStore();" />
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                                <TriggerClick Handler="this.clearValue();" />
+                                                            </Listeners>
+                                                        </ext:ComboBox>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="f_ESTADOS_NOTA_LLAVE" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <Listeners>
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                            </Listeners>
+                                                        </ext:TextField>
                                                     </Component>
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
@@ -304,54 +318,6 @@
             </Items>
         </ext:Viewport>
 
-        <ext:Window ID="AgregarEstadosNotaWin"
-            runat="server"
-            Hidden="true"
-            Icon="PageAdd"
-            Title="Agregar Estado de Nota de Peso"
-            Width="500"
-            Layout="FormLayout"
-            AutoHeight="True"
-            Resizable="false"
-            Shadow="None"
-            Modal="true"
-            X="10" Y="30">
-            <Items>
-                <ext:FormPanel ID="AddEstadosNotaFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelWidth="120">
-                    <Listeners>
-                        <Show Handler="this.getForm().reset();" />
-                    </Listeners>
-                    <Items>
-                        <ext:Panel ID="Panel2" runat="server" Title="Información" Layout="AnchorLayout" AutoHeight="True"
-                            Resizable="false">
-                            <Items>
-                                <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
-                                    <Items>
-                                        <ext:NumberField runat="server" ID="AddIdTxt"               DataIndex="ESTADOS_NOTA_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Estado" AllowBlank="false" Text="0" Hidden="true" ReadOnly="true"></ext:NumberField>
-                                        <ext:TextField   runat="server" ID="AddNombreTxt"           DataIndex="ESTADOS_NOTA_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" IsRemoteValidation="true">
-                                            <RemoteValidation OnValidation="AddNombreTxt_Validate" />
-                                        </ext:TextField>
-                                        <ext:TextField   runat="server" ID="AddDescripcionTxt"      DataIndex="ESTADOS_NOTA_DESCRIPCION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100"></ext:TextField>
-                                        <ext:TextField   runat="server" ID="AddCreatedByTxt"        DataIndex="CREADO_POR"               LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado por" Hidden="true" ></ext:TextField>
-                                        <ext:TextField   runat="server" ID="AddCreatedDateTxt"      DataIndex="FECHA_CREACION"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
-                                        <ext:TextField   runat="server" ID="AddModifiedByTxt"       DataIndex="MODIFICADO_POR"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
-                                        <ext:TextField   runat="server" ID="AddModificationDateTxt" DataIndex="FECHA_MODIFICACION"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Modificacion" Hidden="true" ></ext:TextField>
-                                    </Items>
-                                </ext:Panel>
-                            </Items>
-                        </ext:Panel>
-                    </Items>
-                    <Buttons>
-                        <ext:Button ID="AddGuardarBtn" runat="server" Text="Guardar" Icon="Disk" FormBind="true">
-                            <Listeners>
-                                <Click Handler="#{AddCreatedByTxt}.setValue(#{LoggedUserHdn}.getValue()); PageX.insert();" />
-                            </Listeners>
-                        </ext:Button>
-                    </Buttons>
-                </ext:FormPanel>
-            </Items>
-        </ext:Window>
-
         <ext:Window ID="EditarEstadosNotaWin"
             runat="server"
             Hidden="true"
@@ -379,14 +345,36 @@
                                 <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                     <Items>
                                         <ext:NumberField runat="server" ID="EditIdTxt"            DataIndex="ESTADOS_NOTA_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Estado" AllowBlank="false" ReadOnly="true" Hidden="true"></ext:NumberField>
+                                        <%--<ext:NumberField runat="server" ID="EditPadreIdTxt"       DataIndex="ESTADOS_NOTA_PADRE"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Padre" ReadOnly="true"  ></ext:NumberField>--%>
+                                        <ext:ComboBox runat="server"    ID="EditPadreIdCmb"       DataIndex="ESTADOS_NOTA_PADRE"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Estado Padre" MsgTarget="Side"
+                                            StoreID="EstadosNotaPadreSt"
+                                            ValueField="ESTADOS_NOTA_ID" 
+                                            DisplayField="ESTADOS_NOTA_LLAVE"
+                                            ForceSelection="true"
+                                            Mode="Local"
+                                            TypeAhead="true">
+                                            <Triggers>
+                                                <ext:FieldTrigger Icon="Clear" HideTrigger="true" />
+                                            </Triggers>
+                                            <Listeners>
+                                                <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
+                                                <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
+                                                <Select Handler="this.triggers[0].show();" />
+                                            </Listeners>
+                                        </ext:ComboBox>
+                                        <ext:TextField runat="server"   ID="EditLlaveTxt"         DataIndex="ESTADOS_NOTA_LLAVE"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Llave" ReadOnly="true">
+                                            <ToolTips>
+                                                <ext:ToolTip ID="ToolTip1" runat="server" Html="La llave de estado es de solo lectura." Title="Llave de Estado" Width="200" TrackMouse="true" />
+                                            </ToolTips>
+                                        </ext:TextField>
                                         <ext:TextField runat="server"   ID="EditNombreTxt"        DataIndex="ESTADOS_NOTA_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" IsRemoteValidation="true">
                                             <RemoteValidation OnValidation="EditNombreTxt_Validate" />
                                         </ext:TextField>
                                         <ext:TextField runat="server"   ID="EditDescripcionTxt"   DataIndex="ESTADOS_NOTA_DESCRIPCION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100"></ext:TextField>
-                                        <ext:TextField runat="server"   ID="EditCreatedByTxt"     DataIndex="CREADO_POR"             LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
-                                        <ext:TextField runat="server"   ID="EditCreationDateTxt"  DataIndex="FECHA_CREACION"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
-                                        <ext:TextField runat="server"   ID="EditModifiedByTxt"    DataIndex="MODIFICADO_POR"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
-                                        <ext:TextField runat="server"   ID="EditModificationDate" DataIndex="FECHA_MODIFICACION"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Modificacion" Hidden="true" ></ext:TextField>
+                                        <ext:TextField runat="server"   ID="EditCreatedByTxt"     DataIndex="CREADO_POR"               LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
+                                        <ext:TextField runat="server"   ID="EditCreationDateTxt"  DataIndex="FECHA_CREACION"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
+                                        <ext:TextField runat="server"   ID="EditModifiedByTxt"    DataIndex="MODIFICADO_POR"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
+                                        <ext:TextField runat="server"   ID="EditModificationDate" DataIndex="FECHA_MODIFICACION"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Modificacion" Hidden="true" ></ext:TextField>
                                     </Items>
                                 </ext:Panel>
                             </Items>
