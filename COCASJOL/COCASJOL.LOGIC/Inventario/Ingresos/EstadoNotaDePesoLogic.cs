@@ -32,104 +32,6 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
-        public List<estado_nota_de_peso> GetEstadosNotaDePesoPesaje()
-        {
-            try
-            {
-                using (var db = new colinasEntities())
-                {
-                    db.estados_nota_de_peso.MergeOption = MergeOption.NoTracking;
-
-                    var query = from enp in db.estados_nota_de_peso
-                                //where enp.ESTADOS_NOTA_PADRE == null
-                                where enp.ESTADOS_NOTA_LLAVE == "PESAJE"
-                                select enp;
-
-                    estado_nota_de_peso padre = query.First();
-                    List<estado_nota_de_peso> estadolist = GetHijos(padre);
-
-                    return estadolist;
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        public List<estado_nota_de_peso> GetEstadosNotaDePesoCatacion()
-        {
-            try
-            {
-                using (var db = new colinasEntities())
-                {
-                    db.estados_nota_de_peso.MergeOption = MergeOption.NoTracking;
-
-                    var query = from enp in db.estados_nota_de_peso
-                                where enp.ESTADOS_NOTA_LLAVE == "CATACION"
-                                select enp;
-
-                    estado_nota_de_peso padre = query.First();
-                    List<estado_nota_de_peso> estadolist = GetHijos(padre);
-
-                    return estadolist;
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        public List<estado_nota_de_peso> GetEstadosNotaDePesoAdministracion()
-        {
-            try
-            {
-                using (var db = new colinasEntities())
-                {
-                    db.estados_nota_de_peso.MergeOption = MergeOption.NoTracking;
-
-                    var query = from enp in db.estados_nota_de_peso
-                                where enp.ESTADOS_NOTA_LLAVE == "ADMINISTRACION"
-                                select enp;
-
-                    estado_nota_de_peso padre = query.First();
-                    List<estado_nota_de_peso> estadolist = GetHijos(padre);
-
-                    return estadolist;
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        private List<estado_nota_de_peso> GetHijos(estado_nota_de_peso padre)
-        {
-            try
-            {
-                using (var db = new colinasEntities())
-                {
-                    List<estado_nota_de_peso> hijos = new List<estado_nota_de_peso>();
-                    hijos.Add(padre);
-                    foreach (estado_nota_de_peso hijo in padre.estados_nota_de_peso_hijos)
-                    {
-                        hijos.AddRange(GetHijos(hijo));
-                    }
-                    return hijos;
-                }
-            }
-            catch (Exception)
-            {
-                
-                throw;
-            }
-        }
-
         public List<estado_nota_de_peso> GetEstadosNotaDePeso
             (int ESTADOS_NOTA_ID,
             int? ESTADOS_NOTA_PADRE,
@@ -166,6 +68,55 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
             catch (Exception)
             {
+                throw;
+            }
+        }
+
+        public estado_nota_de_peso GetEstadoNotaDePeso(int ESTADOS_NOTA_ID)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    db.estados_nota_de_peso.MergeOption = MergeOption.NoTracking;
+
+                    //EntityKey k = new EntityKey("colinasEntities.estados_nota_de_peso", "ESTADOS_NOTA_ID", ESTADOS_NOTA_ID);
+
+                    //var esn = db.GetObjectByKey(k);
+
+                    //estado_nota_de_peso noteStatus = (estado_nota_de_peso)esn;
+                    var query = from esn in db.estados_nota_de_peso.Include("estados_nota_de_peso_padre").Include("estados_nota_de_peso_hijos")
+                                where esn.ESTADOS_NOTA_ID == ESTADOS_NOTA_ID
+                                select esn;
+
+                    return query.FirstOrDefault<estado_nota_de_peso>();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        
+        public estado_nota_de_peso GetEstadoNotaDePeso(string ESTADOS_NOTA_LLAVE)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    db.estados_nota_de_peso.MergeOption = MergeOption.NoTracking;
+
+                    var query = from en in db.estados_nota_de_peso
+                                where en.ESTADOS_NOTA_LLAVE == ESTADOS_NOTA_LLAVE
+                                select en;
+
+                    return query.FirstOrDefault();
+                }
+            }
+            catch (Exception)
+            {
+
                 throw;
             }
         }
@@ -302,28 +253,6 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             catch (Exception)
             {
 
-                throw;
-            }
-        }
-
-        public estado_nota_de_peso GetEstadoNotaDePeso(string ESTADOS_NOTA_LLAVE)
-        {
-            try
-            {
-                using (var db = new colinasEntities())
-                {
-                    db.estados_nota_de_peso.MergeOption = MergeOption.NoTracking;
-
-                    var query = from en in db.estados_nota_de_peso
-                                where en.ESTADOS_NOTA_LLAVE == ESTADOS_NOTA_LLAVE
-                                select en;
-
-                    return query.First();
-                }
-            }
-            catch (Exception)
-            {
-                
                 throw;
             }
         }

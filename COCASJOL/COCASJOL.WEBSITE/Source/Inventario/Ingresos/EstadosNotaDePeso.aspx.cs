@@ -44,7 +44,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
             try
             {
                 string nombreDeEstadoNotaDePeso = this.EditNombreTxt.Text;
-                int EstadoId = int.Parse(this.EditIdTxt.Text);
+                int EstadoId = Convert.ToInt32(this.EditIdTxt.Text);
 
                 EstadoNotaDePesoLogic estadoNotaDePesologic = new EstadoNotaDePesoLogic();
 

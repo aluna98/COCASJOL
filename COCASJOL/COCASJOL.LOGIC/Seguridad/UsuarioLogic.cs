@@ -12,7 +12,7 @@ namespace COCASJOL.LOGIC.Seguridad
     {
         public UsuarioLogic() { }
 
-        #region Select 
+        #region Select
 
         public IQueryable GetUsuarios()
         {

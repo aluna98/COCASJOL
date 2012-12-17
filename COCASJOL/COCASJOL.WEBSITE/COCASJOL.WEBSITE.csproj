@@ -99,7 +99,6 @@
     <Content Include="Source\Entorno\VariablesDeEntorno.aspx" />
     <Content Include="Source\Inventario\ClasificacionesDeCafe.aspx" />
     <Content Include="Source\Inventario\Ingresos\EstadosNotaDePeso.aspx" />
-    <Content Include="Source\Inventario\Ingresos\NotasDePeso.aspx" />
     <Content Include="Source\Inventario\Ingresos\NotasDePesoEnCatacion.aspx" />
     <Content Include="Source\Inventario\Ingresos\NotasDePesoEnPesaje.aspx" />
     <Content Include="Source\Inventario\InventarioDeCafePorSocio.aspx" />
@@ -158,13 +157,6 @@
     </Compile>
     <Compile Include="Source\Inventario\Ingresos\EstadosNotaDePeso.aspx.designer.cs">
       <DependentUpon>EstadosNotaDePeso.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Source\Inventario\Ingresos\NotasDePeso.aspx.cs">
-      <DependentUpon>NotasDePeso.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Source\Inventario\Ingresos\NotasDePeso.aspx.designer.cs">
-      <DependentUpon>NotasDePeso.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Inventario\Ingresos\NotasDePesoEnCatacion.aspx.cs">
       <DependentUpon>NotasDePesoEnCatacion.aspx</DependentUpon>

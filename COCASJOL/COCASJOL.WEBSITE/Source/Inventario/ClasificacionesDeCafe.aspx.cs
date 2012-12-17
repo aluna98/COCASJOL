@@ -20,7 +20,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario
             {
                 if (!X.IsAjaxRequest)
                 {
-                    
+
                 }
                 string loggedUsr = Session["username"] as string;//para tracking (auditoria)
                 this.LoggedUserHdn.Text = loggedUsr;

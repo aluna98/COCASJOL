@@ -625,7 +625,7 @@
         </ext:ResourceManager>
 
         <asp:ObjectDataSource ID="NotasDS" runat="server"
-                TypeName="COCASJOL.LOGIC.Inventario.Ingresos.NotaDePesoLogic"
+                TypeName="COCASJOL.LOGIC.Inventario.Ingresos.NotaDePesoEnPesajeLogic"
                 SelectMethod="GetNotasDePeso" onselecting="NotasDS_Selecting" >
                 <SelectParameters>
                     <asp:ControlParameter Name="NOTAS_ID"                        Type="Int32"    ControlID="f_NOTAS_ID"                PropertyName="Text" />
@@ -666,8 +666,8 @@
         </asp:ObjectDataSource>
 
         <asp:ObjectDataSource ID="EstadosNotaDS" runat="server"
-                TypeName="COCASJOL.LOGIC.Inventario.Ingresos.EstadoNotaDePesoLogic"
-                SelectMethod="GetEstadosNotaDePesoPesaje" >
+                TypeName="COCASJOL.LOGIC.Inventario.Ingresos.NotaDePesoEnPesajeLogic"
+                SelectMethod="GetEstadosNotaDePeso" >
         </asp:ObjectDataSource>
 
         <ext:Store ID="SocioSt" runat="server" DataSourceID="SociosDS">

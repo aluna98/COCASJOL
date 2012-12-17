@@ -100,17 +100,17 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 string pHumedad = this.EditPorcentajeHumedadTxt.Text.Replace("%", "");
 
                 notadepesologic.ActualizarNotaDePeso
-                    (int.Parse(this.EditNotaIdTxt.Text),
-                    int.Parse(this.EditEstadoNotaCmb.Text),
+                    (Convert.ToInt32(this.EditNotaIdTxt.Text),
+                    Convert.ToInt32(this.EditEstadoNotaCmb.Text),
                     this.EditSociosIdTxt.Text,
-                    int.Parse(this.EditClasificacionCafeCmb.Text),
+                    Convert.ToInt32(this.EditClasificacionCafeCmb.Text),
                     this.EditFechaNotaTxt.SelectedDate,
                     this.EditCooperativaRadio.Value == null ? false : true,
-                    decimal.Parse(pDefecto),
-                    decimal.Parse(pHumedad),
-                    decimal.Parse(this.EditSumaPesoBrutoTxt.Text),
-                    decimal.Parse(this.EditTaraTxt.Text),
-                    int.Parse(this.EditSacosRetenidosTxt.Text),
+                    Convert.ToDecimal(pDefecto),
+                    Convert.ToDecimal(pHumedad),
+                    Convert.ToDecimal(this.EditSumaPesoBrutoTxt.Text),
+                    Convert.ToDecimal(this.EditTaraTxt.Text),
+                    Convert.ToInt32(this.EditSacosRetenidosTxt.Text),
                     loggedUser,
                     detalles,
                     variables);
@@ -132,7 +132,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
 
                 NotaDePesoLogic notadepesologic = new NotaDePesoLogic();
 
-                this.EditNotaDetalleSt.DataSource = notadepesologic.GetDetalleNotaDePeso(int.Parse(notaId));
+                this.EditNotaDetalleSt.DataSource = notadepesologic.GetDetalleNotaDePeso(Convert.ToInt32(notaId));
                 this.EditNotaDetalleSt.DataBind();                
             }
             catch (Exception)
@@ -149,10 +149,9 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 if (string.IsNullOrEmpty(strNOTAS_ID) || string.IsNullOrWhiteSpace(strNOTAS_ID))
                     return;
 
-                int NOTAS_ID = int.Parse(strNOTAS_ID);
-                string loggedUser = this.LoggedUserHdn.Text;
+                int NOTAS_ID = Convert.ToInt32(strNOTAS_ID);
                 NotaDePesoLogic notadepesologic = new NotaDePesoLogic();
-                notadepesologic.EliminarNotaDePeso(NOTAS_ID, loggedUser);
+                notadepesologic.EliminarNotaDePeso(NOTAS_ID);
             }
             catch (Exception)
             {

@@ -55,23 +55,23 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
 
                 var detalles = JSON.Deserialize<Dictionary<string, string>[]>(Detalles);
 
-                NotaDePesoLogic notadepesologic = new NotaDePesoLogic();
+                NotaDePesoEnPesajeLogic notadepesologic = new NotaDePesoEnPesajeLogic();
 
 
                 string pDefecto = this.AddPorcentajeDefectoTxt.Text.Replace("%", "");
                 string pHumedad = this.AddPorcentajeHumedadTxt.Text.Replace("%", "");
 
                 notadepesologic.InsertarNotaDePeso
-                    (int.Parse(this.AddEstadoNotaCmb.Text),
+                    (Convert.ToInt32(this.AddEstadoNotaCmb.Text),
                     this.AddSociosIdTxt.Text,
-                    int.Parse(this.AddClasificacionCafeCmb.Text),
+                    Convert.ToInt32(this.AddClasificacionCafeCmb.Text),
                     this.AddFechaNotaTxt.SelectedDate,
                     this.AddCooperativaRadio.Value == null ? false : true,
-                    decimal.Parse(pDefecto),
-                    decimal.Parse(pHumedad),
-                    decimal.Parse(this.AddSumaPesoBrutoTxt.Text),
-                    decimal.Parse(this.AddTaraTxt.Text),
-                    int.Parse(this.AddSacosRetenidosTxt.Text),
+                    Convert.ToDecimal(pDefecto),
+                    Convert.ToDecimal(pHumedad),
+                    Convert.ToDecimal(this.AddSumaPesoBrutoTxt.Text),
+                    Convert.ToDecimal(this.AddTaraTxt.Text),
+                    Convert.ToInt32(this.AddSacosRetenidosTxt.Text),
                     loggedUser,
                     detalles,
                     variables);
@@ -95,24 +95,24 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
 
                 var detalles = JSON.Deserialize<Dictionary<string, string>[]>(Detalles);
 
-                NotaDePesoLogic notadepesologic = new NotaDePesoLogic();
+                NotaDePesoEnPesajeLogic notadepesologic = new NotaDePesoEnPesajeLogic();
 
 
                 string pDefecto = this.EditPorcentajeDefectoTxt.Text.Replace("%", "");
                 string pHumedad = this.EditPorcentajeHumedadTxt.Text.Replace("%", "");
 
                 notadepesologic.ActualizarNotaDePeso
-                    (int.Parse(this.EditNotaIdTxt.Text),
-                    int.Parse(this.EditEstadoNotaCmb.Text),
+                    (Convert.ToInt32(this.EditNotaIdTxt.Text),
+                    Convert.ToInt32(this.EditEstadoNotaCmb.Text),
                     this.EditSociosIdTxt.Text,
-                    int.Parse(this.EditClasificacionCafeCmb.Text),
+                    Convert.ToInt32(this.EditClasificacionCafeCmb.Text),
                     this.EditFechaNotaTxt.SelectedDate,
                     this.EditCooperativaRadio.Value == null ? false : true,
-                    decimal.Parse(pDefecto),
-                    decimal.Parse(pHumedad),
-                    decimal.Parse(this.EditSumaPesoBrutoTxt.Text),
-                    decimal.Parse(this.EditTaraTxt.Text),
-                    int.Parse(this.EditSacosRetenidosTxt.Text),
+                    Convert.ToDecimal(pDefecto),
+                    Convert.ToDecimal(pHumedad),
+                    Convert.ToDecimal(this.EditSumaPesoBrutoTxt.Text),
+                    Convert.ToDecimal(this.EditTaraTxt.Text),
+                    Convert.ToInt32(this.EditSacosRetenidosTxt.Text),
                     loggedUser,
                     detalles,
                     variables);
@@ -132,9 +132,9 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 if (string.IsNullOrEmpty(notaId))
                     return;
 
-                NotaDePesoLogic notadepesologic = new NotaDePesoLogic();
+                NotaDePesoEnPesajeLogic notadepesologic = new NotaDePesoEnPesajeLogic();
 
-                this.EditNotaDetalleSt.DataSource = notadepesologic.GetDetalleNotaDePeso(int.Parse(notaId));
+                this.EditNotaDetalleSt.DataSource = notadepesologic.GetDetalleNotaDePeso(Convert.ToInt32(notaId));
                 this.EditNotaDetalleSt.DataBind();
             }
             catch (Exception)
@@ -151,10 +151,9 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 if (string.IsNullOrEmpty(strNOTAS_ID) || string.IsNullOrWhiteSpace(strNOTAS_ID))
                     return;
 
-                int NOTAS_ID = int.Parse(strNOTAS_ID);
-                string loggedUser = this.LoggedUserHdn.Text;
-                NotaDePesoLogic notadepesologic = new NotaDePesoLogic();
-                notadepesologic.EliminarNotaDePeso(NOTAS_ID, loggedUser);
+                int NOTAS_ID = Convert.ToInt32(strNOTAS_ID);
+                NotaDePesoEnPesajeLogic notadepesologic = new NotaDePesoEnPesajeLogic();
+                notadepesologic.EliminarNotaDePeso(NOTAS_ID);
             }
             catch (Exception)
             {

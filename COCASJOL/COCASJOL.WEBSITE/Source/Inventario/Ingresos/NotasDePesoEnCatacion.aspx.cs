@@ -27,7 +27,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
 
                 string loggedUsr = Session["username"] as string;
                 this.LoggedUserHdn.Text = loggedUsr;//necesario actualizarlo siempre, para el tracking correcto
-                //this.ValidarCredenciales(typeof(NotasDePesoEnPesaje).Name);//necesario validar en todo momento las credenciales
             }
             catch (Exception)
             {
@@ -40,46 +39,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
         {
             if (!this.IsPostBack)
                 e.Cancel = true;
-        }
-
-        [DirectMethod(RethrowException = true, ShowMask = true, Target = MaskTarget.CustomTarget, CustomTarget = "AgregarNotasFormP")]
-        public void AddNotaDePeso_Click(string Detalles)
-        {
-            try
-            {
-                Dictionary<string, string> variables = this.GetVariables();
-                if (this.ValidarVariables(variables))
-                    return;
-
-                string loggedUser = this.LoggedUserHdn.Text;
-
-                var detalles = JSON.Deserialize<Dictionary<string, string>[]>(Detalles);
-
-                NotaDePesoLogic notadepesologic = new NotaDePesoLogic();
-
-
-                string pDefecto = this.AddPorcentajeDefectoTxt.Text.Replace("%", "");
-                string pHumedad = this.AddPorcentajeHumedadTxt.Text.Replace("%", "");
-
-                notadepesologic.InsertarNotaDePeso
-                    (int.Parse(this.AddEstadoNotaCmb.Text),
-                    this.AddSociosIdTxt.Text,
-                    int.Parse(this.AddClasificacionCafeCmb.Text),
-                    this.AddFechaNotaTxt.SelectedDate,
-                    this.AddCooperativaRadio.Value == null ? false : true,
-                    decimal.Parse(pDefecto),
-                    decimal.Parse(pHumedad),
-                    decimal.Parse(this.AddSumaPesoBrutoTxt.Text),
-                    decimal.Parse(this.AddTaraTxt.Text),
-                    int.Parse(this.AddSacosRetenidosTxt.Text),
-                    loggedUser,
-                    detalles,
-                    variables);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
         }
 
         [DirectMethod(RethrowException = true, ShowMask = true, Target = MaskTarget.CustomTarget, CustomTarget = "EditarNotasFormP")]
@@ -95,24 +54,24 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
 
                 var detalles = JSON.Deserialize<Dictionary<string, string>[]>(Detalles);
 
-                NotaDePesoLogic notadepesologic = new NotaDePesoLogic();
+                NotaDePesoEnCatacionLogic notadepesologic = new NotaDePesoEnCatacionLogic();
 
 
                 string pDefecto = this.EditPorcentajeDefectoTxt.Text.Replace("%", "");
                 string pHumedad = this.EditPorcentajeHumedadTxt.Text.Replace("%", "");
 
                 notadepesologic.ActualizarNotaDePeso
-                    (int.Parse(this.EditNotaIdTxt.Text),
-                    int.Parse(this.EditEstadoNotaCmb.Text),
+                    (Convert.ToInt32(this.EditNotaIdTxt.Text),
+                    Convert.ToInt32(this.EditEstadoNotaCmb.Text),
                     this.EditSociosIdTxt.Text,
-                    int.Parse(this.EditClasificacionCafeCmb.Text),
+                    Convert.ToInt32(this.EditClasificacionCafeCmb.Text),
                     this.EditFechaNotaTxt.SelectedDate,
                     this.EditCooperativaRadio.Value == null ? false : true,
-                    decimal.Parse(pDefecto),
-                    decimal.Parse(pHumedad),
-                    decimal.Parse(this.EditSumaPesoBrutoTxt.Text),
-                    decimal.Parse(this.EditTaraTxt.Text),
-                    int.Parse(this.EditSacosRetenidosTxt.Text),
+                    Convert.ToDecimal(pDefecto),
+                    Convert.ToDecimal(pHumedad),
+                    Convert.ToDecimal(this.EditSumaPesoBrutoTxt.Text),
+                    Convert.ToDecimal(this.EditTaraTxt.Text),
+                    Convert.ToInt32(this.EditSacosRetenidosTxt.Text),
                     loggedUser,
                     detalles,
                     variables);
@@ -132,29 +91,10 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 if (string.IsNullOrEmpty(notaId))
                     return;
 
-                NotaDePesoLogic notadepesologic = new NotaDePesoLogic();
+                NotaDePesoEnCatacionLogic notadepesologic = new NotaDePesoEnCatacionLogic();
 
-                this.EditNotaDetalleSt.DataSource = notadepesologic.GetDetalleNotaDePeso(int.Parse(notaId));
+                this.EditNotaDetalleSt.DataSource = notadepesologic.GetDetalleNotaDePeso(Convert.ToInt32(notaId));
                 this.EditNotaDetalleSt.DataBind();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        [DirectMethod(RethrowException = true)]
-        public void DeleteNotaDePeso_Click(string strNOTAS_ID)
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(strNOTAS_ID) || string.IsNullOrWhiteSpace(strNOTAS_ID))
-                    return;
-
-                int NOTAS_ID = int.Parse(strNOTAS_ID);
-                string loggedUser = this.LoggedUserHdn.Text;
-                NotaDePesoLogic notadepesologic = new NotaDePesoLogic();
-                notadepesologic.EliminarNotaDePeso(NOTAS_ID, loggedUser);
             }
             catch (Exception)
             {
