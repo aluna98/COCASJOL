@@ -123,7 +123,11 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 {
                     db.notas_de_peso.MergeOption = MergeOption.NoTracking;
 
-                    var query = from notasPeso in db.notas_de_peso.Include("socios").Include("clasificaciones_cafe").Include("estados_nota_de_peso")
+                    var queryEnPesaje = from notasPesoPesaje in db.notas_de_peso.Include("socios").Include("clasificaciones_cafe").Include("estados_nota_de_peso")
+                                        where this.ESTADOS_NOTA_ID.Equals(0) ? true : notasPesoPesaje.ESTADOS_NOTA_ID == this.ESTADOS_NOTA_ID
+                                        select notasPesoPesaje;
+
+                    var query = from notasPeso in queryEnPesaje
                                 where
                                 (NOTAS_ID.Equals(0) ? true : notasPeso.NOTAS_ID.Equals(NOTAS_ID)) &&
                                 (ESTADOS_NOTA_ID.Equals(0) ? true : notasPeso.ESTADOS_NOTA_ID.Equals(ESTADOS_NOTA_ID)) &&

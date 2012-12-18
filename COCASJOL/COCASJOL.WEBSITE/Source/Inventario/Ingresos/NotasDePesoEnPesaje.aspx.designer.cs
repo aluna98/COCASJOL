@@ -616,31 +616,31 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.Toolbar Toolbar2;
         
         /// <summary>
-        /// AgregarDetalleBtn control.
+        /// AddAgregarDetalleBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button AgregarDetalleBtn;
+        protected global::Ext.Net.Button AddAgregarDetalleBtn;
         
         /// <summary>
-        /// EditarDetalleBtn control.
+        /// AddEditarDetalleBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button EditarDetalleBtn;
+        protected global::Ext.Net.Button AddEditarDetalleBtn;
         
         /// <summary>
-        /// EliminarDetalleBtn control.
+        /// AddEliminarDetalleBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button EliminarDetalleBtn;
+        protected global::Ext.Net.Button AddEliminarDetalleBtn;
         
         /// <summary>
         /// AddResumenPnl control.
@@ -1201,31 +1201,31 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.Toolbar Toolbar3;
         
         /// <summary>
-        /// Button4 control.
+        /// EditAgregarDetalleBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button Button4;
+        protected global::Ext.Net.Button EditAgregarDetalleBtn;
         
         /// <summary>
-        /// Button5 control.
+        /// EditEditarDetalleBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button Button5;
+        protected global::Ext.Net.Button EditEditarDetalleBtn;
         
         /// <summary>
-        /// Button6 control.
+        /// EditEliminarDetalleBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button Button6;
+        protected global::Ext.Net.Button EditEliminarDetalleBtn;
         
         /// <summary>
         /// EditSacosResumenPnl control.
@@ -1307,6 +1307,24 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField EditModificationDateTxt;
+        
+        /// <summary>
+        /// EditPreviousBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button EditPreviousBtn;
+        
+        /// <summary>
+        /// EditNextBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button EditNextBtn;
         
         /// <summary>
         /// EditGuardarBtn control.

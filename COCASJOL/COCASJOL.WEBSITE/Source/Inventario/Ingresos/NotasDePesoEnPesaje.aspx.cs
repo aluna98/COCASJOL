@@ -48,7 +48,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
             try
             {
                 Dictionary<string, string> variables = this.GetVariables();
-                if (this.ValidarVariables(variables))
+                if (!this.ValidarVariables(variables))
                     return;
 
                 string loggedUser = this.LoggedUserHdn.Text;
@@ -66,7 +66,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                     this.AddSociosIdTxt.Text,
                     Convert.ToInt32(this.AddClasificacionCafeCmb.Text),
                     this.AddFechaNotaTxt.SelectedDate,
-                    this.AddCooperativaRadio.Value == null ? false : true,
+                    this.AddCooperativaRadio.Value == null ? false : Convert.ToBoolean(this.AddCooperativaRadio.Value),
                     Convert.ToDecimal(pDefecto),
                     Convert.ToDecimal(pHumedad),
                     Convert.ToDecimal(this.AddSumaPesoBrutoTxt.Text),
@@ -107,7 +107,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                     this.EditSociosIdTxt.Text,
                     Convert.ToInt32(this.EditClasificacionCafeCmb.Text),
                     this.EditFechaNotaTxt.SelectedDate,
-                    this.EditCooperativaRadio.Value == null ? false : true,
+                    this.EditCooperativaRadio.Value == null ? false : Convert.ToBoolean(this.EditCooperativaRadio.Value),
                     Convert.ToDecimal(pDefecto),
                     Convert.ToDecimal(pHumedad),
                     Convert.ToDecimal(this.EditSumaPesoBrutoTxt.Text),
@@ -136,6 +136,8 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
 
                 this.EditNotaDetalleSt.DataSource = notadepesologic.GetDetalleNotaDePeso(Convert.ToInt32(notaId));
                 this.EditNotaDetalleSt.DataBind();
+
+                //X.Js.Call("EditDetailX.updateSumTotals()");
             }
             catch (Exception)
             {

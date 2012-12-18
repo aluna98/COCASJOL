@@ -110,7 +110,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                 decimal NOTAS_PORCENTAJE_TRANSPORTE = 0;
                 if (NOTAS_TRANSPORTE_COOPERATIVA == true)
-                    NOTAS_PORCENTAJE_TRANSPORTE = NOTA_TRANSPORTECOOP;
+                    NOTAS_PORCENTAJE_TRANSPORTE = NOTA_TRANSPORTECOOP / 100;
 
                 decimal DESCUENTO_POR_TRANSPORTE = (NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_TRANSPORTE;
 
@@ -250,7 +250,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     note.notas_detalles.Clear();
 
                     foreach (Dictionary<string, string> detalle in Detalles)
-                        note.notas_detalles.Add(new nota_detalle() { DETALLES_PESO = Convert.ToDecimal(detalle["DETALLE_PESO"]), DETALLES_CANTIDAD_SACOS = Convert.ToInt32(detalle["DETALLE_CANTIDAD_SACOS"]) });
+                        note.notas_detalles.Add(new nota_detalle() { DETALLES_PESO = Convert.ToDecimal(detalle["DETALLES_PESO"]), DETALLES_CANTIDAD_SACOS = Convert.ToInt32(detalle["DETALLES_CANTIDAD_SACOS"]) });
 
                     db.notas_de_peso.AddObject(note);
 
@@ -336,7 +336,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                 decimal NOTAS_PORCENTAJE_TRANSPORTE = 0;
                 if (NOTAS_TRANSPORTE_COOPERATIVA == true)
-                    NOTAS_PORCENTAJE_TRANSPORTE = NOTA_TRANSPORTECOOP;
+                    NOTAS_PORCENTAJE_TRANSPORTE = NOTA_TRANSPORTECOOP / 100;
 
                 decimal DESCUENTO_POR_TRANSPORTE = (NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_TRANSPORTE;
 
@@ -492,9 +492,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     note.notas_detalles.Clear();
 
                     foreach (Dictionary<string, string> detalle in Detalles)
-                        note.notas_detalles.Add(new nota_detalle() { DETALLES_PESO = Convert.ToDecimal(detalle["DETALLE_PESO"]), DETALLES_CANTIDAD_SACOS = Convert.ToInt32(detalle["DETALLE_CANTIDAD_SACOS"]) });
-
-                    db.notas_de_peso.AddObject(note);
+                        note.notas_detalles.Add(new nota_detalle() { DETALLES_PESO = Convert.ToDecimal(detalle["DETALLES_PESO"]), DETALLES_CANTIDAD_SACOS = Convert.ToInt32(detalle["DETALLES_CANTIDAD_SACOS"]) });
 
                     db.SaveChanges();
                 }

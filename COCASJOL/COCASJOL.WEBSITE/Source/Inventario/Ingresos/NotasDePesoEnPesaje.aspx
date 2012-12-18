@@ -92,16 +92,16 @@
 
 
                 Ext.net.DirectMethods.AddNotaDePeso_Click(pesoJson,
-                { success: function () { 
-                        GridStore.reload();
-                        Ext.Msg.alert('Agregar Nota de Peso', 'Nota de peso agregada exitosamente.'); 
-                        AddForm.getForm().reset();
-                        AddNotaDetalleSt.removeAll();
-                    }
-                }, 
+                { success: function () {
+                    GridStore.reload();
+                    Ext.Msg.alert('Agregar Nota de Peso', 'Nota de peso agregada exitosamente.');
+                    AddForm.getForm().reset();
+                    AddNotaDetalleSt.removeAll();
+                }
+                },
                 { failure: function () {
-                        Ext.Msg.alert('Agregar Nota de Peso', 'Error al agregar nota de peso.');
-                    }
+                    Ext.Msg.alert('Agregar Nota de Peso', 'Error al agregar nota de peso.');
+                }
                 });
             },
 
@@ -155,9 +155,18 @@
                     EditWindow.show();
                     EditForm.getForm().loadRecord(rec);
                     EditForm.record = rec;
-                    EditNotaDetalleSt.reload();
+                    EditNotaDetalleSt.reload({
+                        callback: function (r, options, success) {
+                            if (EditNotaDetalleSt.getCount() <= 0)
+                                return;
+                            EditDetailX.updateSumTotals();
+                        }
+                    });
+
                     this.getNombreDeSocio(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditNombreTxt'));
                     this.getDireccionDeFinca(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditDireccionFincaTxt'));
+                    EditPorcentajeDefectoTxt.setValue(Ext.util.Format.number(EditPorcentajeDefectoTxt.getValue().replace(/[\%]/g, ''), '0.00%'));
+                    EditPorcentajeHumedadTxt.setValue(Ext.util.Format.number(EditPorcentajeHumedadTxt.getValue().replace(/[\%]/g, ''), '0.00%'));
                 }
             },
 
@@ -177,11 +186,11 @@
                                 GridStore.reload();
                                 Ext.Msg.alert('Editar Nota de Peso', 'Nota de peso actualizada exitosamente.');
                             }
-                        },
+                            },
                             { failure: function () {
                                 Ext.Msg.alert('Editar Nota de Peso', 'Error al actualizar la nota de peso.');
                             }
-                        });
+                            });
                     }
                 });
             },
@@ -363,6 +372,7 @@
                         if (btn == 'yes') {
                             var record = AddDetailGrid.getSelectionModel().getSelected();
                             AddDetailGrid.deleteRecord(record);
+                            AddEliminarDetalleBtn.focus(false, 200);
                         }
                     });
                 } else {
@@ -555,6 +565,7 @@
                         if (btn == 'yes') {
                             var record = EditDetailGrid.getSelectionModel().getSelected();
                             EditDetailGrid.deleteRecord(record);
+                            EditEliminarDetalleBtn.focus(false, 200);
                         }
                     });
                 } else {
@@ -725,9 +736,8 @@
                                         <ext:JsonReader IDProperty="NOTAS_ID">
                                             <Fields>
                                                 <ext:RecordField Name="NOTAS_ID"                        />
-                                                <%--<ext:RecordField Name="ESTADOS_NOTA_ID"                 />
-                                                <ext:RecordField Name="ESTADOS_NOTA_NOMBRE"             ServerMapping="estados_nota_de_peso.ESTADOS_NOTA_NOMBRE" />--%>
                                                 <ext:RecordField Name="SOCIOS_ID"                       />
+                                                <ext:RecordField Name="ESTADOS_NOTA_ID"                 />
                                                 <ext:RecordField Name="CLASIFICACIONES_CAFE_ID"         />
                                                 <ext:RecordField Name="CLASIFICACIONES_CAFE_NOMBRE"     ServerMapping="clasificaciones_cafe.CLASIFICACIONES_CAFE_NOMBRE"/>
                                                 <ext:RecordField Name="NOTAS_FECHA"                     Type="Date" />
@@ -759,7 +769,6 @@
                             <ColumnModel>
                                 <Columns>
                                     <ext:Column DataIndex="NOTAS_ID"                    Header="Numero" Sortable="true"></ext:Column>
-                                    <%--<ext:Column DataIndex="ESTADOS_NOTA_NOMBRE"         Header="Estado" Sortable="true" Width="150"></ext:Column>--%>
                                     <ext:Column DataIndex="SOCIOS_ID"                   Header="Socio" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="CLASIFICACIONES_CAFE_NOMBRE" Header="Clasificacion de Café" Sortable="true"></ext:Column>
                                     <ext:DateColumn DataIndex="NOTAS_FECHA"             Header="Fecha" Sortable="true" Width="150" ></ext:DateColumn>
@@ -803,30 +812,6 @@
                                                         </ext:NumberField>
                                                     </Component>
                                                 </ext:HeaderColumn>
-                                                <%--<ext:HeaderColumn Cls="x-small-editor">
-                                                    <Component>
-                                                        <ext:ComboBox
-                                                            ID="f_ESTADOS_NOTA_ID" 
-                                                            runat="server"
-                                                            Icon="Find"
-                                                            AllowBlank="true"
-                                                            ForceSelection="true"
-                                                            StoreID="EstadosNotaSt"
-                                                            ValueField="ESTADOS_NOTA_ID" 
-                                                            DisplayField="ESTADOS_NOTA_NOMBRE" 
-                                                            Mode="Local"
-                                                            TypeAhead="true">
-                                                            <Triggers>
-                                                                <ext:FieldTrigger Icon="Clear"/>
-                                                            </Triggers>
-                                                            <Listeners>
-                                                                <Select Handler="PageX.reloadGridStore();" />
-                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
-                                                                <TriggerClick Handler="this.clearValue();" />
-                                                            </Listeners>
-                                                        </ext:ComboBox>
-                                                    </Component>
-                                                </ext:HeaderColumn>--%>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
                                                         <ext:TextField ID="f_SOCIOS_ID" runat="server" EnableKeyEvents="true" Icon="Find">
@@ -958,7 +943,7 @@
             InitCenter="true"
             ConstrainHeader="true">
             <Listeners>
-                <Show Handler="#{AddFechaNotaTxt}.setValue(new Date());" />
+                <Show Handler="#{AddFechaNotaTxt}.setValue(new Date()); #{AddFechaNotaTxt}.focus(false,200);" />
                 <Hide Handler="#{AddNotaDetalleSt}.removeAll(); #{AgregarNotasFormP}.getForm().reset();" />
             </Listeners>
             <Items>
@@ -1096,7 +1081,7 @@
                                                                 </ext:RadioGroup>
                                                                 <ext:TextField runat="server" ID="AddPorcentajeHumedadTxt" DataIndex="NOTAS_PORCENTAJE_HUMEDAD" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Porcentaje de Humedad" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" >
                                                                     <Listeners>
-                                                                        <Change Handler="this.getEl().setValue(Ext.util.Format.number(newValue.replace(/[\$]/g, ''), '0.00%'));" />
+                                                                        <Change Handler="this.getEl().setValue(Ext.util.Format.number(newValue.replace(/[\%]/g, ''), '0.00%'));" />
                                                                     </Listeners>
                                                                 </ext:TextField>
                                                                 <ext:TriggerField runat="server" ID="AddPorcentajeDefectoTxt" DataIndex="NOTAS_PORCENTAJE_DEFECTO" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Porcentaje de Defecto" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" >
@@ -1104,7 +1089,7 @@
                                                                         <ext:FieldTrigger Icon="SimpleEllipsis" Tag="Calcular" Qtip="Calcular" />
                                                                     </Triggers>
                                                                     <Listeners>
-                                                                        <Change Handler="this.getEl().setValue(Ext.util.Format.number(newValue.replace(/[\$]/g, ''), '0.00%'));" />
+                                                                        <Change Handler="this.getEl().setValue(Ext.util.Format.number(newValue.replace(/[\%]/g, ''), '0.00%'));" />
                                                                         <TriggerClick Handler="AddDetailX.openDefectCalculation();" />
                                                                     </Listeners>
                                                                 </ext:TriggerField>
@@ -1140,17 +1125,17 @@
                                                                     <TopBar>
                                                                         <ext:Toolbar ID="Toolbar2" runat="server">
                                                                             <Items>
-                                                                                <ext:Button ID="AgregarDetalleBtn" runat="server" Text="Agregar" Icon="Add">
+                                                                                <ext:Button ID="AddAgregarDetalleBtn" runat="server" Text="Agregar" Icon="Add">
                                                                                     <Listeners>
                                                                                         <Click Handler="AddDetailX.add();" />
                                                                                     </Listeners>
                                                                                 </ext:Button>
-                                                                                <ext:Button ID="EditarDetalleBtn" runat="server" Text="Editar" Icon="Pencil">
+                                                                                <ext:Button ID="AddEditarDetalleBtn" runat="server" Text="Editar" Icon="Pencil">
                                                                                     <Listeners>
                                                                                         <Click Handler="AddDetailX.edit();" />
                                                                                     </Listeners>
                                                                                 </ext:Button>
-                                                                                <ext:Button ID="EliminarDetalleBtn" runat="server" Text="Eliminar" Icon="Delete">
+                                                                                <ext:Button ID="AddEliminarDetalleBtn" runat="server" Text="Eliminar" Icon="Delete">
                                                                                     <Listeners>
                                                                                         <Click Handler="AddDetailX.remove();" />
                                                                                     </Listeners>
@@ -1224,6 +1209,7 @@
             Constrain="true">
             <Listeners>
                 <Show Handler="#{AddCalculateDefectFormPnl}.getForm().reset();" />
+                <Hide Handler="#{AddPorcentajeDefectoTxt}.focus(false, 200);" />
             </Listeners>
             <Items>
                 <ext:FormPanel 
@@ -1273,6 +1259,7 @@
             Constrain="true">
             <Listeners>
                 <Show Handler="#{AddDetailAgregarDetallesFormPnl}.getForm().reset();" />
+                <Hide Handler="#{AddAgregarDetalleBtn}.focus(false, 200);" />
             </Listeners>
             <Items>
                 <ext:FormPanel 
@@ -1323,6 +1310,7 @@
             Constrain="true">
             <Listeners>
                 <Show Handler="#{AddDetailEditarDetallesFormPnl}.getForm().reset();" />
+                <Hide Handler="#{AddEditarDetalleBtn}.focus(false, 200);" />
             </Listeners>
             <Items>
                 <ext:FormPanel 
@@ -1366,7 +1354,7 @@
             </Buttons>
         </ext:Window>
 
-        <ext:Store ID="EditNotaDetalleSt" runat="server" WarningOnDirty="false" AutoSave="true" OnRefreshData="EditNotaDetalleSt_Refresh" >
+        <ext:Store ID="EditNotaDetalleSt" runat="server" WarningOnDirty="false" AutoSave="true" IgnoreExtraFields="true" OnRefreshData="EditNotaDetalleSt_Refresh" >
             <Reader>
                 <ext:JsonReader>
                     <Fields>
@@ -1376,6 +1364,7 @@
                 </ext:JsonReader>
             </Reader>
             <Listeners>
+                <Remove Handler="EditDetailX.updateSumTotals();" />
                 <BeforeSave Handler="EditDetailX.updateSumTotals(); return false;" />
             </Listeners>
         </ext:Store>
@@ -1399,7 +1388,7 @@
             <Items>
                 <ext:FormPanel ID="EditarNotasFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelAlign="Right" LabelWidth="130" >
                     <Listeners>
-                        <Show Handler="this.getForm().reset();" />
+                        <Show Handler="this.getForm().reset(); #{EditFechaNotaTxt}.focus(false, 200);" />
                     </Listeners>
                     <Items>
                         <ext:Panel ID="Panel10" runat="server" Title="Nota de Peso" Header="false" Layout="AnchorLayout" AutoHeight="True" Resizable="false" AnchorHorizontal="100%">
@@ -1417,7 +1406,7 @@
                                                             <Items>
                                                                 <ext:NumberField runat="server" ID="EditNotaIdTxt"  DataIndex="NOTAS_ID" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Nota Numero" AllowBlank="false" ReadOnly="true" MsgTarget="Side">
                                                                     <ToolTips>
-                                                                        <ext:ToolTip ID="ToolTip3" runat="server" Html="El numero de nota de peso es de solo lectura." Title="NUmero de Nota de Peso" Width="200" TrackMouse="true" />
+                                                                        <ext:ToolTip ID="ToolTip3" runat="server" Html="El numero de nota de peso es de solo lectura." Title="Numero de Nota de Peso" Width="200" TrackMouse="true" />
                                                                     </ToolTips>
                                                                 </ext:NumberField>
                                                                 <ext:DateField runat="server" ID="EditFechaNotaTxt" DataIndex="NOTAS_FECHA" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Fecha" AllowBlank="false" MsgTarget="Side" ></ext:DateField>
@@ -1582,17 +1571,17 @@
                                                                     <TopBar>
                                                                         <ext:Toolbar ID="Toolbar3" runat="server">
                                                                             <Items>
-                                                                                <ext:Button ID="Button4" runat="server" Text="Agregar" Icon="Add">
+                                                                                <ext:Button ID="EditAgregarDetalleBtn" runat="server" Text="Agregar" Icon="Add">
                                                                                     <Listeners>
                                                                                         <Click Handler="EditDetailX.add();" />
                                                                                     </Listeners>
                                                                                 </ext:Button>
-                                                                                <ext:Button ID="Button5" runat="server" Text="Editar" Icon="Pencil">
+                                                                                <ext:Button ID="EditEditarDetalleBtn" runat="server" Text="Editar" Icon="Pencil">
                                                                                     <Listeners>
                                                                                         <Click Handler="EditDetailX.edit();" />
                                                                                     </Listeners>
                                                                                 </ext:Button>
-                                                                                <ext:Button ID="Button6" runat="server" Text="Eliminar" Icon="Delete">
+                                                                                <ext:Button ID="EditEliminarDetalleBtn" runat="server" Text="Eliminar" Icon="Delete">
                                                                                     <Listeners>
                                                                                         <Click Handler="EditDetailX.remove();" />
                                                                                     </Listeners>
@@ -1639,6 +1628,16 @@
                         </ext:Panel>
                     </Items>
                     <Buttons>
+                        <ext:Button ID="EditPreviousBtn" runat="server" Text="Anterior" Icon="PreviousGreen">
+                            <Listeners>
+                                <Click Handler="PageX.previous();" />
+                            </Listeners>
+                        </ext:Button>
+                        <ext:Button ID="EditNextBtn" runat="server" Text="Siguiente" Icon="NextGreen">
+                            <Listeners>
+                                <Click Handler="PageX.next();" />
+                            </Listeners>
+                        </ext:Button>
                         <ext:Button ID="EditGuardarBtn" runat="server" Text="Guardar" Icon="Disk" FormBind="true" >
                             <Listeners>
                                 <Click Handler="#{EditCreatedByTxt}.setValue(#{LoggedUserHdn}.getValue()); PageX.update();" />
@@ -1666,6 +1665,7 @@
             Constrain="true">
             <Listeners>
                 <Show Handler="#{EditCalculateDefectFormPnl}.getForm().reset();" />
+                <Hide Handler="#{EditPorcentajeDefectoTxt}.focus(false, 200);" />
             </Listeners>
             <Items>
                 <ext:FormPanel 
@@ -1715,6 +1715,7 @@
             Constrain="true">
             <Listeners>
                 <Show Handler="#{EditDetailAgregarDetallesFormPnl}.getForm().reset();" />
+                <Hide Handler="#{EditAgregarDetalleBtn}.focus(false, 200);" />
             </Listeners>
             <Items>
                 <ext:FormPanel 
@@ -1765,6 +1766,7 @@
             Constrain="true">
             <Listeners>
                 <Show Handler="#{EditDetailEditarDetallesFormPnl}.getForm().reset();" />
+                <Hide Handler="#{EditEditarDetalleBtn}.focus(false, 200);" />
             </Listeners>
             <Items>
                 <ext:FormPanel 

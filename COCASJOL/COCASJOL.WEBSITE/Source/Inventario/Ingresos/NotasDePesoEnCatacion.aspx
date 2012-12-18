@@ -129,7 +129,15 @@
                     EditWindow.show();
                     EditForm.getForm().loadRecord(rec);
                     EditForm.record = rec;
-                    EditNotaDetalleSt.reload();
+                    //EditNotaDetalleSt.reload();
+                    EditNotaDetalleSt.reload({
+                        callback: function (r, options, success) {
+                            if (EditNotaDetalleSt.getCount() <= 0)
+                                return;
+                            EditDetailX.updateSumTotals();
+                        }
+                    });
+
                     this.getNombreDeSocio(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditNombreTxt'));
                     this.getDireccionDeFinca(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditDireccionFincaTxt'));
                 }
@@ -189,11 +197,32 @@
             }
         };
 
+        var EditDetailGrid = null;
         var EditDetailGridStore = null;
 
         var EditDetailX = {
             setReferences: function () {
                 EditDetailGridStore = EditNotaDetalleSt;
+                EditDetailGrid = EditNotaDetalleGridP
+            },
+
+            updateSumTotals: function () {
+                var bagSum = this.getSum(EditDetailGrid, 0);
+                var weigthSum = this.getSum(EditDetailGrid, 1);
+
+                EditSumaSacosTxt.setValue(bagSum);
+                EditSumaPesoBrutoTxt.setValue(weigthSum);
+            },
+
+            getSum: function (grid, index) {
+                var dataIndex = grid.getColumnModel().getDataIndex(index),
+                    sum = 0;
+
+                grid.getStore().each(function (record) {
+                    sum += record.get(dataIndex);
+                });
+
+                return sum;
             },
 
             pesoToJson: function () {
@@ -213,7 +242,7 @@
     <div>
         <ext:ResourceManager ID="ResourceManager1" runat="server" >
             <Listeners>
-                <DocumentReady Handler="PageX.setReferences();" />
+                <DocumentReady Handler="PageX.setReferences(); EditDetailX.setReferences();" />
             </Listeners>
         </ext:ResourceManager>
 
@@ -561,53 +590,15 @@
                                                             <Items>
                                                                 <ext:NumberField runat="server" ID="EditNotaIdTxt"  DataIndex="NOTAS_ID" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Nota Numero" AllowBlank="false" ReadOnly="true" MsgTarget="Side">
                                                                     <ToolTips>
-                                                                        <ext:ToolTip ID="ToolTip3" runat="server" Html="El numero de nota de peso es de solo lectura." Title="NUmero de Nota de Peso" Width="200" TrackMouse="true" />
+                                                                        <ext:ToolTip ID="ToolTip3" runat="server" Html="El numero de nota de peso es de solo lectura." Title="Numero de Nota de Peso" Width="200" TrackMouse="true" />
                                                                     </ToolTips>
                                                                 </ext:NumberField>
-                                                                <ext:DateField runat="server" ID="EditFechaNotaTxt" DataIndex="NOTAS_FECHA" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Fecha" AllowBlank="false" MsgTarget="Side" ></ext:DateField>
-                                                                <ext:ComboBox  runat="server" ID="EditSociosIdTxt"  DataIndex="SOCIOS_ID"   LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Codigo Socio" AllowBlank="false" MsgTarget="Side"
-                                                                    TypeAhead="true"
-                                                                    EmptyText="Seleccione un Socio"
-                                                                    ForceSelection="true" 
-                                                                    StoreID="SocioSt"
-                                                                    Mode="Local" 
-                                                                    DisplayField="SOCIOS_ID"
-                                                                    ValueField="SOCIOS_ID"
-                                                                    MinChars="2" 
-                                                                    ListWidth="450" 
-                                                                    PageSize="10" 
-                                                                    ItemSelector="tr.list-item" >
-                                                                    <Template ID="Template2" runat="server" Width="200">
-                                                                        <Html>
-					                                                        <tpl for=".">
-						                                                        <tpl if="[xindex] == 1">
-							                                                        <table class="cbStates-list">
-								                                                        <tr>
-								                	                                        <th>SOCIOS_ID</th>
-								                	                                        <th>SOCIOS_PRIMER_NOMBRE</th>
-                                                                                            <th>SOCIOS_PRIMER_APELLIDO</th>
-								                                                        </tr>
-						                                                        </tpl>
-						                                                        <tr class="list-item">
-							                                                        <td style="padding:3px 0px;">{SOCIOS_ID}</td>
-							                                                        <td>{SOCIOS_PRIMER_NOMBRE}</td>
-                                                                                    <td>{SOCIOS_PRIMER_APELLIDO}</td>
-						                                                        </tr>
-						                                                        <tpl if="[xcount-xindex]==0">
-							                                                        </table>
-						                                                        </tpl>
-					                                                        </tpl>
-				                                                        </Html>
-                                                                    </Template>
-                                                                    <Triggers>
-                                                                        <ext:FieldTrigger Icon="Clear" HideTrigger="true" />
-                                                                    </Triggers>
-                                                                    <Listeners>
-                                                                        <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
-                                                                        <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide(); Ext.getCmp('EditNombreTxt').reset(); Ext.getCmp('EditDireccionFincaTxt').reset(); }" />
-                                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditDireccionFincaTxt'));" />
-                                                                    </Listeners>
-                                                                </ext:ComboBox>
+                                                                <ext:DateField runat="server" ID="EditFechaNotaTxt" DataIndex="NOTAS_FECHA" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Fecha" AllowBlank="false" MsgTarget="Side" ReadOnly="true">
+                                                                    <ext:ToolTip ID="ToolTip3" runat="server" Html="La fecha de nota de peso es de solo lectura." Title="Fecha de Nota de Peso" Width="200" TrackMouse="true" />
+                                                                </ext:DateField>
+                                                                <ext:TextField  runat="server" ID="EditSociosIdTxt"  DataIndex="SOCIOS_ID"   LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Codigo Socio" AllowBlank="false" MsgTarget="Side" ReadOnly="true"
+                                                                    <ext:ToolTip ID="ToolTip3" runat="server" Html="El código de socio de la nota de peso es de solo lectura." Title="Socio" Width="200" TrackMouse="true" />
+                                                                </ext:TextField>
                                                             </Items>
                                                         </ext:Panel>
                                                         <ext:Panel ID="Panel13" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
@@ -672,34 +663,24 @@
                                                     <Items>
                                                         <ext:FieldSet ID="EditTransportePorcentajeFS" runat="server" Title="Forma de Entrega" Padding="5">
                                                             <Items>
-                                                                <ext:RadioGroup runat="server" ID="EditTipoTransporteRdGrp" LabelAlign="Right" AnchorHorizontal="100%"  FieldLabel="Forma de Transporte" ColumnsNumber="1" AutoHeight="true">
+                                                                <ext:RadioGroup runat="server" ID="EditTipoTransporteRdGrp" LabelAlign="Right" AnchorHorizontal="100%"  FieldLabel="Forma de Transporte" ColumnsNumber="1" AutoHeight="true" ReadOnly="true">
                                                                     <Items>
-                                                                        <ext:Radio ID="EditPropiRadio" runat="server" InputValue="0" BoxLabel="Carro Propio" ColumnWidth=".5" AnchorHorizontal="100%" Checked="true">
+                                                                        <ext:Radio ID="EditPropiRadio" runat="server" InputValue="0" BoxLabel="Carro Propio" ColumnWidth=".5" AnchorHorizontal="100%" Checked="true" ReadOnly="true">
                                                                         </ext:Radio>
-                                                                        <ext:Radio ID="EditCooperativaRadio" runat="server" InputValue="1" DataIndex="NOTAS_TRANSPORTE_COOPERATIVA" BoxLabel="Carro de la Cooperativa" ColumnWidth=".5" AnchorHorizontal="100%">
+                                                                        <ext:Radio ID="EditCooperativaRadio" runat="server" InputValue="1" DataIndex="NOTAS_TRANSPORTE_COOPERATIVA" BoxLabel="Carro de la Cooperativa" ColumnWidth=".5" AnchorHorizontal="100%" ReadOnly="true">
                                                                         </ext:Radio>
                                                                     </Items>
                                                                 </ext:RadioGroup>
-                                                                <ext:TextField runat="server" ID="EditPorcentajeHumedadTxt" DataIndex="NOTAS_PORCENTAJE_HUMEDAD" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Porcentaje de Humedad" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" >
-                                                                    <Listeners>
-                                                                        <Change Handler="this.getEl().setValue(Ext.util.Format.number(newValue.replace(/[\%]/g, ''), '0.00%'));" />
-                                                                    </Listeners>
+                                                                <ext:TextField runat="server" ID="EditPorcentajeHumedadTxt" DataIndex="NOTAS_PORCENTAJE_HUMEDAD" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Porcentaje de Humedad" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" ReadOnly="true" >
                                                                 </ext:TextField>
-                                                                <ext:TriggerField runat="server" ID="EditPorcentajeDefectoTxt" DataIndex="NOTAS_PORCENTAJE_DEFECTO" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Porcentaje de Defecto" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" >
-                                                                    <Triggers>
-                                                                        <ext:FieldTrigger Icon="SimpleEllipsis" Tag="Calcular" Qtip="Calcular" />
-                                                                    </Triggers>
-                                                                    <Listeners>
-                                                                        <Change Handler="this.getEl().setValue(Ext.util.Format.number(newValue.replace(/[\%]/g, ''), '0.00%'));" />
-                                                                        <TriggerClick Handler="EditDetailX.openDefectCalculation();" />
-                                                                    </Listeners>
-                                                                </ext:TriggerField>
+                                                                <ext:TextField runat="server" ID="EditPorcentajeDefectoTxt" DataIndex="NOTAS_PORCENTAJE_DEFECTO" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Porcentaje de Defecto" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" ReadOnly="true">
+                                                                </ext:TextField>
                                                             </Items>
                                                         </ext:FieldSet>
                                                         <ext:FieldSet ID="EditSacosFS" runat="server" Title="Sacos" Padding="7" >
                                                             <Items>
                                                                 <ext:NumberField runat="server" ID="EditSumaSacosTxt"                                            LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Cantidad de Sacos" Text="0" ReadOnly="true"></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditSacosRetenidosTxt" DataIndex="NOTAS_SACOS_RETENIDOS"     LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Sacos Retenidos" AllowBlank="false" MsgTarget="Side"></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditSacosRetenidosTxt" DataIndex="NOTAS_SACOS_RETENIDOS"     LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Sacos Retenidos" AllowBlank="false" MsgTarget="Side" ReadOnly="true"></ext:NumberField>
                                                             </Items>
                                                         </ext:FieldSet>
                                                     </Items>
@@ -744,7 +725,7 @@
                                                 <ext:Panel ID="Panel17" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
                                                     <Items>
                                                         <ext:NumberField runat="server" ID="EditSumaPesoBrutoTxt"  DataIndex="NOTAS_PESO_SUMA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Suma"      AllowBlank="false" Text="0" ReadOnly="true" MsgTarget="Side"></ext:NumberField>
-                                                        <ext:NumberField runat="server" ID="EditTaraTxt"           DataIndex="NOTAS_PESO_TARA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tara"      AllowBlank="false" MsgTarget="Side" ></ext:NumberField>
+                                                        <ext:NumberField runat="server" ID="EditTaraTxt"           DataIndex="NOTAS_PESO_TARA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tara"      AllowBlank="false" MsgTarget="Side" ReadOnly="true"></ext:NumberField>
                                                     </Items>
                                                 </ext:Panel>
                                             </Items>

@@ -66,7 +66,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                     this.EditSociosIdTxt.Text,
                     Convert.ToInt32(this.EditClasificacionCafeCmb.Text),
                     this.EditFechaNotaTxt.SelectedDate,
-                    this.EditCooperativaRadio.Value == null ? false : true,
+                    this.EditCooperativaRadio.Value == null ? false : Convert.ToBoolean(this.EditCooperativaRadio.Value),
                     Convert.ToDecimal(pDefecto),
                     Convert.ToDecimal(pHumedad),
                     Convert.ToDecimal(this.EditSumaPesoBrutoTxt.Text),

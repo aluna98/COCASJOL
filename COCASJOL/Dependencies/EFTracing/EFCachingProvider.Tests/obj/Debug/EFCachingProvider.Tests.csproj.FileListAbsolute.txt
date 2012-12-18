@@ -1,0 +1,9 @@
+C:\Users\REB\Desktop\C#\EFCachingProvider.Tests\bin\Debug\EFCachingProvider.Tests.dll
+C:\Users\REB\Desktop\C#\EFCachingProvider.Tests\bin\Debug\EFCachingProvider.Tests.pdb
+C:\Users\REB\Desktop\C#\EFCachingProvider.Tests\bin\Debug\EFCachingProvider.dll
+C:\Users\REB\Desktop\C#\EFCachingProvider.Tests\bin\Debug\EFProviderWrapperToolkit.dll
+C:\Users\REB\Desktop\C#\EFCachingProvider.Tests\bin\Debug\EFCachingProvider.pdb
+C:\Users\REB\Desktop\C#\EFCachingProvider.Tests\bin\Debug\EFProviderWrapperToolkit.pdb
+C:\Users\REB\Desktop\C#\EFCachingProvider.Tests\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\REB\Desktop\C#\EFCachingProvider.Tests\obj\Debug\EFCachingProvider.Tests.dll
+C:\Users\REB\Desktop\C#\EFCachingProvider.Tests\obj\Debug\EFCachingProvider.Tests.pdb

@@ -400,13 +400,22 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.DateField EditFechaNotaTxt;
         
         /// <summary>
-        /// EditSociosIdTxt control.
+        /// ToolTip3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox EditSociosIdTxt;
+        protected global::Ext.Net.ToolTip ToolTip3;
+        
+        /// <summary>
+        /// ToolTip3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip3;
         
         /// <summary>
         /// Panel13 control.
@@ -541,7 +550,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TriggerField EditPorcentajeDefectoTxt;
+        protected global::Ext.Net.TextField EditPorcentajeDefectoTxt;
         
         /// <summary>
         /// EditSacosFS control.

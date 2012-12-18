@@ -175,6 +175,7 @@
                         height: height,
                         maximizable: true,
                         minimizable: true,
+                        autoScroll: true,
                         closeAction: 'close',
                         shim: false,
                         animCollapse: false,
@@ -341,7 +342,7 @@
             },
 
             notasDePeso: function (app) {
-                DesktopX.createDynamicWindow(app, 'pagewhiteoffice', 'Notas De Peso', 'Inventario/Ingresos/NotasDePeso.aspx', 1000, 640);
+                DesktopX.createDynamicWindow(app, 'pagewhiteoffice', 'Notas De Peso', 'Inventario/Ingresos/NotasDePesoEnAdministracion.aspx', 1000, 640);
             },
 
             solicitudesDePrestamo: function (app) {

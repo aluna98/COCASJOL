@@ -1,0 +1,26 @@
+C:\Users\REB\Desktop\C#\EFTracingProvider\bin\Debug\EFTracingProvider.dll
+C:\Users\REB\Desktop\C#\EFTracingProvider\bin\Debug\EFTracingProvider.pdb
+C:\Users\REB\Desktop\C#\EFTracingProvider\bin\Debug\EFTracingProvider.dll.CodeAnalysisLog.xml
+C:\Users\REB\Desktop\C#\EFTracingProvider\bin\Debug\EFTracingProvider.dll.lastcodeanalysissucceeded
+C:\Users\REB\Desktop\C#\EFTracingProvider\bin\Debug\EFProviderWrapperToolkit.dll
+C:\Users\REB\Desktop\C#\EFTracingProvider\bin\Debug\EFProviderWrapperToolkit.pdb
+C:\Users\REB\Desktop\C#\EFTracingProvider\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\REB\Desktop\C#\EFTracingProvider\obj\Debug\EFTracingProvider.dll
+C:\Users\REB\Desktop\C#\EFTracingProvider\obj\Debug\EFTracingProvider.pdb
+C:\Users\REB\Documents\Proyecto de Graduación\Cocasjol\COCASJOL\COCASJOL\Dependencies\EFTracing\EFTracingProvider\bin\Debug\EFTracingProvider.dll
+C:\Users\REB\Documents\Proyecto de Graduación\Cocasjol\COCASJOL\COCASJOL\Dependencies\EFTracing\EFTracingProvider\bin\Debug\EFTracingProvider.pdb
+C:\Users\REB\Documents\Proyecto de Graduación\Cocasjol\COCASJOL\COCASJOL\Dependencies\EFTracing\EFTracingProvider\bin\Debug\EFTracingProvider.dll.CodeAnalysisLog.xml
+C:\Users\REB\Documents\Proyecto de Graduación\Cocasjol\COCASJOL\COCASJOL\Dependencies\EFTracing\EFTracingProvider\bin\Debug\EFTracingProvider.dll.lastcodeanalysissucceeded
+C:\Users\REB\Documents\Proyecto de Graduación\Cocasjol\COCASJOL\COCASJOL\Dependencies\EFTracing\EFTracingProvider\bin\Debug\EFProviderWrapperToolkit.dll
+C:\Users\REB\Documents\Proyecto de Graduación\Cocasjol\COCASJOL\COCASJOL\Dependencies\EFTracing\EFTracingProvider\bin\Debug\EFProviderWrapperToolkit.pdb
+C:\Users\REB\Documents\Proyecto de Graduación\Cocasjol\COCASJOL\COCASJOL\Dependencies\EFTracing\EFTracingProvider\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\REB\Documents\Proyecto de Graduación\Cocasjol\COCASJOL\COCASJOL\Dependencies\EFTracing\EFTracingProvider\obj\Debug\EFTracingProvider.dll
+C:\Users\REB\Documents\Proyecto de Graduación\Cocasjol\COCASJOL\COCASJOL\Dependencies\EFTracing\EFTracingProvider\obj\Debug\EFTracingProvider.pdb
+C:\Git\COCASJOL\COCASJOL\Dependencies\EFTracing\EFTracingProvider\bin\Debug\EFTracingProvider.dll
+C:\Git\COCASJOL\COCASJOL\Dependencies\EFTracing\EFTracingProvider\bin\Debug\EFTracingProvider.pdb
+C:\Git\COCASJOL\COCASJOL\Dependencies\EFTracing\EFTracingProvider\bin\Debug\EFTracingProvider.dll.CodeAnalysisLog.xml
+C:\Git\COCASJOL\COCASJOL\Dependencies\EFTracing\EFTracingProvider\bin\Debug\EFTracingProvider.dll.lastcodeanalysissucceeded
+C:\Git\COCASJOL\COCASJOL\Dependencies\EFTracing\EFTracingProvider\bin\Debug\EFProviderWrapperToolkit.dll
+C:\Git\COCASJOL\COCASJOL\Dependencies\EFTracing\EFTracingProvider\bin\Debug\EFProviderWrapperToolkit.pdb
+C:\Git\COCASJOL\COCASJOL\Dependencies\EFTracing\EFTracingProvider\obj\Debug\EFTracingProvider.dll
+C:\Git\COCASJOL\COCASJOL\Dependencies\EFTracing\EFTracingProvider\obj\Debug\EFTracingProvider.pdb

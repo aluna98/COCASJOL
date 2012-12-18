@@ -2,7 +2,7 @@
 
 <paginas>
   <pagina>
-    <Name>NotasDePeso</Name>
+    <Name>NotasDePesoEnPesaje</Name>
     <variables>
       <variable>
         <key>NOTA_PORCENTAJEHUMEDADMIN</key>
