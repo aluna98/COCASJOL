@@ -185,6 +185,7 @@
                             { success: function () {
                                 GridStore.reload();
                                 Ext.Msg.alert('Editar Nota de Peso', 'Nota de peso actualizada exitosamente.');
+                                EditWindow.hide();
                             }
                             },
                             { failure: function () {

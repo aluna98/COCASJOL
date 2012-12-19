@@ -48,6 +48,86 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
             Socios_Refresh(null, null);
         }
 
+        [DirectMethod]
+        public void RefrescarReferencias(int id)
+        {
+            try
+            {
+                SolicitudesLogic logica = new SolicitudesLogic();
+                StoreReferencias.DataSource = logica.getReferencia(id);
+                StoreReferencias.DataBind();
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        [DirectMethod]
+        public void InsertarReferencias()
+        {
+            try
+            {
+                SolicitudesLogic logica = new SolicitudesLogic();
+                if (logica.BuscarId(Convert.ToInt32(EditIdSolicitud.Text), AddReferenciaId.Text))
+                {
+                    logica.InsertarReferencia(AddReferenciaId.Text, Convert.ToInt32(EditIdSolicitud.Text), AddReferenciaNombre.Text, AddReferenciaTel.Text, AddReferenciaTipo.Value.ToString(), LoggedUserHdn.Text);
+                    this.NuevaReferenciaWin.Hide();
+                    RefrescarReferencias(Convert.ToInt32(EditIdSolicitud.Text));
+                    X.Msg.Alert("Referencia", "La referencia ha sido creada satisfactoriamente").Show();
+                }
+                else
+                {
+                    X.Msg.Alert("Referencia", "La referencia ya existe, imposible crear duplicados").Show();
+                }
+            }
+            catch (Exception)
+            {
+               throw;
+            }
+
+        }
+
+        [DirectMethod]
+        public void ActualizarReferencias(){
+            try
+            {
+                SolicitudesLogic logica = new SolicitudesLogic();
+                    logica.EditarReferencia(EditIdRef.Text, Convert.ToInt32(EditIdSolicitud.Text), EditNombreRef.Text, EditTelRef.Text, EditTipoRef.Text, LoggedUserHdn.Text);
+                    this.EditarReferenciaWin.Hide();
+                    RefrescarReferencias(Convert.ToInt32(EditIdSolicitud.Text));
+                    X.Msg.Alert("Referencia", "La referencia ha sido modificada satisfactoriamente").Show();
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
+        [DirectMethod]
+        public void EliminarReferencias()
+        {
+            try
+            {
+                SolicitudesLogic logica = new SolicitudesLogic();
+                logica.EliminarReferencia(EditIdRef.Text, Convert.ToInt32(EditIdSolicitud.Text));
+                RefrescarReferencias(Convert.ToInt32(EditIdSolicitud.Text));
+                X.Msg.Alert("Referencia", "La referencia ha sido eliminada satisfactoriamente").Show();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        protected void Referencias_Refresh(object sender, StoreRefreshDataEventArgs e)
+        {
+            int id = Convert.ToInt32(this.EditIdSolicitud.Text);
+            RefrescarReferencias(id);
+            
+        }
+
         protected void SolicitudesSt_Reload(object sender, StoreRefreshDataEventArgs e)
         {
             SolicitudesLogic prestamo = new SolicitudesLogic();
@@ -70,8 +150,9 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
                 logica.EditarSolicitud(id, monto, interes, EditPlazo.Text, EditPagoTxt.Text, EditDestinoTxt.Text, EditCargoTxt.Text, promedio3, promact, EditNorteTxt.Text, EditSurTxt.Text,
                     EditEsteTxt.Text, EditOesteTxt.Text, EditCarro.Checked ? 1 : 0, EditAgua.Checked ? 1 : 0, EditLuz.Checked ? 1 : 0, EditCasa.Checked ? 1 : 0, EditBeneficio.Checked ? 1 : 0, EditOtrosTxt.Text,
                     EditCalifCmb.Text, LoggedUserHdn.Text);
-                X.Msg.Alert("Solicitudes de Prestamos", "La solicitud se ha modificado satisfactoriamente.").Show();
                 EditarSolicitudWin.Hide();
+                X.Msg.Alert("Solicitudes de Prestamos", "La solicitud se ha modificado satisfactoriamente.").Show();
+                
             }
             catch (Exception)
             {
@@ -107,8 +188,9 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
                     AddPagoTxt.Text, AddDestinoTxt.Text, tipoPrestamo, AddCargoTxt.Text, promedio,
                     promact, AddNorteTxt.Text, AddSurTxt.Text, AddOesteTxt.Text, AddEsteTxt.Text, vehiculo, agua, luz, casa, beneficio,
                     AddOtrosTxt.Text, AddCalificacion.Text, LoggedUserHdn.Text);
-                X.Msg.Alert("Solicitudes de Prestamos", "La solicitud se ha creado satisfactoriamente.").Show();
                 NuevaSolicitudWin.Hide();
+                X.Msg.Alert("Solicitudes de Prestamos", "La solicitud se ha creado satisfactoriamente.").Show();
+                
             }
             catch (Exception)
             {

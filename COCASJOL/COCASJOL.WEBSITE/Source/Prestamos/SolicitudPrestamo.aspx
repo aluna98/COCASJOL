@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SolicitudPrestamo.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Prestamos.SolicitudPrestamo" %>
+
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -22,10 +23,16 @@
     </style>
     <script type="text/javascript">
          var Grid = null;
+         var GridRef = null;
          var EditWindow = null;
+         var EditRefWindow = null;
+         var EditRefForm = null;
          var EditForm = null;
          var AddWindow = null;
          var AddForm = null;
+         var AddRefForm = null;
+         var ConfirmMsgTitleRef = "Referencia";
+         var ConfirmUpdateRef = "Seguro que desea editar la Referencia?";
          var ConfirmMsgTitle = "Socio";
          var ConfirmUpdate = "Seguro que desea editar la Solicitud?";
          var ConfirmDelete = "Seguro desea rechazar la Solicitud?";
@@ -33,31 +40,83 @@
          var Confirmacion = "Se ha finalizado correctamente";
 
          var SolicitudX = {
-             _index: 0,
+             _index: 0, _indexRef: 0,
 
              setReferences: function () {
                  Grid = SolicitudesGriP;
+                 GridRef = ReferenciasGridP;
+                 EditRefWindow = EditarReferenciaWin;
+                 EditRefForm = EditarReferenciaForm;
                  EditWindow = EditarSolicitudWin;
                  EditForm = EditarSolicitudFormP;
                  AddWindow = NuevaSolicitudWin;
                  AddForm = NuevaSolicitudFormP;
+                 AddRefWin = NuevaReferenciaWin;
+                 AddRefForm = NuevaReferenciaForm;
+
+             },
+
+             getRecordRef: function () {
+                 var registro = GridRef.getStore().getAt(this.getIndexRef());
+                 if (registro != null) {
+                     return registro;
+                 }
              },
 
              getRecord: function () {
                  var registro = Grid.getStore().getAt(this.getIndex());
-
                  if (registro != null) {
                      return registro;
                  }
+             },
+
+             addRef: function () {
+                 AddRefWin.show();
              },
 
              add: function () {
                  AddWindow.show();
              },
 
+             removeRef: function () {
+                 if (EditRefForm.record == null) {
+                     return;
+                 }
+                 if (GridRef.getSelectionModel().hasSelection()) {
+                     Ext.Msg.confirm(ConfirmMsgTitleRef, ConfirmDelete, function (btn, text) {
+                         if (btn == 'yes') {
+                             var record = GridRef.getSelectionModel().getSelected();
+                             if (rec != null) {
+                                 EditRefForm.getForm().loadRecord(record);
+                                 EditRefForm.record = record;
+                                 DirectX.EliminarReferencias();
+                             }
+                         }
+                     });
+                 } else {
+                     var msg = Ext.Msg;
+                     Ext.Msg.alert('Atencion', 'Seleccione al menos 1 elemento');
+                 }
+             },
+
+             insertRef: function () {
+                 DirectX.InsertarReferencias();
+             },
+
              insert: function () {
                  var fields = AddForm.getForm().getFieldValues(false, "");
                  Grid.insertRecord(0, fields, false);
+             },
+
+             editRef: function () {
+                 if (GridRef.getSelectionModel().hasSelection()) {
+                     var record = GridRef.getSelectionModel().getSelected();
+                     var index = GridRef.store.indexOf(record);
+                     this.setIndexRef(index);
+                     this.openRef();
+                 } else {
+                     var msg = Ext
+                 }
              },
 
              edit: function () {
@@ -72,17 +131,39 @@
                  }
              },
 
+             edit2Ref: function (index) {
+                 this.setIndexRef(index);
+                 this.openRef();
+             },
+
              edit2: function (index) {
                  this.setIndex(index);
                  this.open();
+             },
+
+             nextRef: function () {
+                 this.edit2Ref(this.getIndexRef() + 1);
              },
 
              next: function () {
                  this.edit2(this.getIndex() + 1);
              },
 
+             PreviousRef: function () {
+                 this.edit2Ref(this.getIndexRef() - 1);
+             },
+
              previous: function () {
                  this.edit2(this.getIndex() - 1);
+             },
+
+             openRef: function () {
+                 rec = this.getRecordRef();
+                 if (rec != null) {
+                     EditRefWindow.show();
+                     EditRefForm.getForm().loadRecord(rec);
+                     EditRefForm.record = rec;
+                 }
              },
 
              open: function () {
@@ -92,7 +173,20 @@
                      EditForm.getForm().loadRecord(rec);
                      EditForm.record = rec;
                      DirectX.RefrescarSocio(rec.data.SOCIOS_ID);
+                     DirectX.RefrescarReferencias(rec.data.SOLICITUDES_ID);
                  }
+             },
+
+             updateRef: function () {
+                 if (EditRefForm.record == null) {
+                     return;
+                 }
+
+                 Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
+                     if (btn == 'yes') {
+                         EditRefForm.getForm().updateRecord(EditRefForm.record);
+                     }
+                 });
              },
 
              update: function () {
@@ -100,9 +194,8 @@
                      return;
                  }
 
-                 Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
+                 Ext.Msg.confirm(ConfirmMsgTitleRef, ConfirmUpdateRef, function (btn, text) {
                      if (btn == 'yes') {
-                         //EditForm.record.commit(false);
                          EditForm.getForm().updateRecord(EditForm.record);
                      }
                  });
@@ -112,9 +205,19 @@
                  return this._index;
              },
 
+             getIndexRef: function () {
+                 return this._indexRef;
+             },
+
              setIndex: function (index) {
                  if (index > -1 && index < Grid.getStore().getCount()) {
                      this._index = index;
+                 }
+             },
+
+             setIndexRef: function (index) {
+                 if (index > -1 && index < GridRef.getStore().getCount()) {
+                     this._indexRef = index;
                  }
              }
          };
@@ -431,6 +534,30 @@
                         <Items>
                              <ext:TabPanel ID="tabpanel1" runat="server">
                                 <Items>
+                                     <ext:Panel ID="PanelSocio" runat="server" Title="Datos de Socio" Layout="AnchorLayout" AutoHeight="true" Icon="UserComment" LabelWidth="150">
+                                        <Items>
+                                            <ext:Panel ID="Panel5" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
+                                                <Items>
+                                                    <ext:TextField ID="EditSocioid"         ReadOnly="true" runat="server" FieldLabel="ID Socio" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditPrimerNombre"    ReadOnly="true" runat="server" FieldLabel="Primer Nombre" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="Edit2doNombre"       ReadOnly="true" runat="server" FieldLabel="Segundo Nombre" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="Edit1erApellido"     ReadOnly="true" runat="server" FieldLabel="Primer Apellido" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="Edit2doApellido"     ReadOnly="true" runat="server" FieldLabel="Segundo Apellido" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditIdentidad"       ReadOnly="true" runat="server" FieldLabel="Identidad" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditLugarNcax"       ReadOnly="true" runat="server" FieldLabel="Lugar de Nacimiento" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditCarnetIHCAFE"    ReadOnly="true" runat="server" FieldLabel="Carnet IHCAFE" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditRTN"             ReadOnly="true" runat="server" FieldLabel="RTN" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditEstadoCivil"     ReadOnly="true" runat="server" FieldLabel="Estado Civil" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditProfesion"       ReadOnly="true" runat="server" FieldLabel="Profesion" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditTelefono"        ReadOnly="true" runat="server" FieldLabel="Telefono" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditResidencia"      ReadOnly="true" runat="server" FieldLabel="Residencia" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditManzanas"        ReadOnly="true" runat="server" FieldLabel="Manzanas Cultivadas" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditUbicacion"       ReadOnly="true" runat="server" FieldLabel="Ubicacion de la finca" AnchorHorizontal="90%" />
+                                                </Items>
+                                            </ext:Panel>
+                                        </Items>
+                                    </ext:Panel>
+
                                     <ext:Panel ID="PanelSolicitud" runat="server" Title="Datos de Solicitud" Layout="AnchorLayout" AutoHeight="true" Icon="User" LabelWidth="150" >
                                         <Items>
                                             <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
@@ -482,46 +609,87 @@
                                             </ext:Panel>
                                         </Items>
                                     </ext:Panel>
-                                    
-                                     <ext:Panel ID="PanelSocio" runat="server" Title="Datos de Socio" Layout="AnchorLayout" AutoHeight="true" Icon="UserComment">
-                                        <Items>
-                                            <ext:Panel ID="Panel5" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
-                                                <Items>
-                                                    <ext:TextField ID="EditSocioid"         ReadOnly="true" runat="server" FieldLabel="ID Socio" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="EditPrimerNombre"    ReadOnly="true" runat="server" FieldLabel="Primer Nombre" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="Edit2doNombre"       ReadOnly="true" runat="server" FieldLabel="Segundo Nombre" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="Edit1erApellido"     ReadOnly="true" runat="server" FieldLabel="Primer Apellido" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="Edit2doApellido"     ReadOnly="true" runat="server" FieldLabel="Segundo Apellido" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="EditIdentidad"       ReadOnly="true" runat="server" FieldLabel="Identidad" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="EditLugarNcax"       ReadOnly="true" runat="server" FieldLabel="Lugar de Nacimiento" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="EditCarnetIHCAFE"    ReadOnly="true" runat="server" FieldLabel="Carnet IHCAFE" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="EditRTN"             ReadOnly="true" runat="server" FieldLabel="RTN" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="EditEstadoCivil"     ReadOnly="true" runat="server" FieldLabel="Estado Civil" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="EditProfesion"       ReadOnly="true" runat="server" FieldLabel="Profesion" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="EditTelefono"        ReadOnly="true" runat="server" FieldLabel="Telefono" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="EditResidencia"      ReadOnly="true" runat="server" FieldLabel="Residencia" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="EditManzanas"        ReadOnly="true" runat="server" FieldLabel="Manzanas Cultivadas" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="EditUbicacion"       ReadOnly="true" runat="server" FieldLabel="Ubicacion de la finca" AnchorHorizontal="90%" />
-                                                </Items>
-                                            </ext:Panel>
-                                        </Items>
-                                    </ext:Panel>
 
                                     <ext:Panel ID="PanelRefer" runat="server" Title="Referencias" Layout="AnchorLayout" AutoHeight="true" Icon="GroupAdd">
                                         <Items>
                                             <ext:Panel ID="Panel4" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
-                                        
+                                                <Items>
+                                                    <ext:GridPanel ID="ReferenciasGridP" Height="250" runat="server" AutoExpandColumn="REFERENCIAS_NOMBRE" Title="Referencias p Socio" Header="false" SelectionMemory="Disabled">
+                                                        <Store>
+                                                            <ext:Store ID="StoreReferencias" runat="server" OnRefreshData="Referencias_Refresh">
+                                                                <Reader>
+                                                                    <ext:JsonReader IDProperty="REFERENCIAS_ID" >
+                                                                        <Fields>
+                                                                            <ext:RecordField Name="SOLICITUDES_ID" />
+                                                                            <ext:RecordField Name="REFERENCIAS_ID" />
+                                                                            <ext:RecordField Name="REFERENCIAS_NOMBRE" />
+                                                                            <ext:RecordField Name="REFERENCIAS_TELEFONO" />
+                                                                            <ext:RecordField Name="REFERENCIAS_TIPO" />
+                                                                        </Fields>
+                                                                    </ext:JsonReader>
+                                                                </Reader>
+                                                                <Listeners>
+                                                                    <LoadException Handler="Ext.Msg.alert('Ha ocurrido un problema cargando los beneficiarios!', e.message || response.statusText);" />
+                                                                </Listeners>
+                                                            </ext:Store>
+                                                        </Store>
+                                                        <ColumnModel>
+                                                            <Columns>
+                                                                <ext:Column DataIndex="SOLICITUDES_ID"          Header="ID SOLICITUD"   />         
+                                                                <ext:Column DataIndex="REFERENCIAS_ID"          Header="Identificacion" /> 
+                                                                <ext:Column DataIndex="REFERENCIAS_NOMBRE"      Header="Nombre"     /> 
+                                                                <ext:Column DataIndex="REFERENCIAS_TELEFONO"    Header="Telefono" />
+                                                                <ext:Column DataIndex="REFERENCIAS_TIPO"        Header="Tipo"      />
+                                                            </Columns>
+                                                        </ColumnModel>
+                                                        
+                                                        <SelectionModel>
+                                                            <ext:RowSelectionModel ID="RowSelectionModelReferencias" runat="server" SingleSelect="true">
+                                                                
+                                                            </ext:RowSelectionModel>
+                                                        </SelectionModel>
+                                                        <TopBar>
+                                                            <ext:Toolbar ID="ToolbarReferencias" runat="server">
+                                                                <Items>
+                                                                    <ext:Button ID="AgregarReferenciasBtn" runat="server" Text="Agregar" Icon="CogAdd">
+                                                                        <Listeners>
+                                                                            <Click Handler="SolicitudX.addRef()" />
+                                                                        </Listeners>
+                                                                    </ext:Button>
+                                                                    <ext:Button ID="EliminarReferenciasBtn" runat="server" Text="Eliminar" Icon="CogDelete">
+                                                                        <Listeners>
+                                                                            <click  handler="SolicitudX.removeRef()" />
+                                                                        </Listeners>
+                                                                    </ext:Button>
+                                                                    <ext:Button ID="EditarReferenciaBtn" runat="server" Text="Editar" Icon="CogEdit" >
+                                                                        <Listeners>
+                                                                            <Click Handler="SolicitudX.editRef()" />
+                                                                        </Listeners>
+                                                                    </ext:Button>
+                                                                </Items>
+                                                            </ext:Toolbar>
+                                                        </TopBar>
+                                                        <BottomBar>
+                                                            <ext:PagingToolbar ID="PaginacionBeneficiarios" runat="server" PageSize="5" StoreID="StoreReferencias" />
+                                                        </BottomBar>
+                                                        <LoadMask ShowMask="true" />
+                                                        <SaveMask ShowMask="true" />
+                                                        <Listeners>
+                                                            <RowDblClick Handler="SolicitudX.editRef()" />
+                                                        </Listeners>
+                                                    </ext:GridPanel>
+                                                </Items>
                                             </ext:Panel>
                                         </Items>
                                     </ext:Panel>
                                    
-                                    <ext:Panel ID="PanelAvales" runat="server" Title="Avales" Layout="AnchorLayout" AutoHeight="true" Icon="GroupKey">
+                                    <%--<ext:Panel ID="PanelAvales" runat="server" Title="Avales" Layout="AnchorLayout" AutoHeight="true" Icon="GroupKey">
                                         <Items>
                                             <ext:Panel ID="Panel6" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
-                                        
+                                                
                                             </ext:Panel>
                                         </Items>
-                                    </ext:Panel>
+                                    </ext:Panel>--%>
                                 </Items>
                             </ext:TabPanel>
                         </Items>
@@ -661,20 +829,6 @@
                                         </ext:Panel>
                                     </Items>
                                 </ext:Panel>
-                                <ext:Panel ID="AddPanelRef" runat="server" Title="Referencias" Layout="AnchorLayout" AutoHeight="true" Icon="GroupAdd">
-                                    <Items>
-                                        <ext:Panel ID="Panel8" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
-                                        
-                                        </ext:Panel>
-                                    </Items>
-                                </ext:Panel>
-                                <ext:Panel ID="AddPanelAval" runat="server" Title="Avales" Layout="AnchorLayout" AutoHeight="true" Icon="GroupKey">
-                                    <Items>
-                                        <ext:Panel ID="Panel9" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
-                                        
-                                        </ext:Panel>
-                                    </Items>
-                                </ext:Panel>
                             </Items>
                         </ext:TabPanel>
                     </Items>
@@ -682,6 +836,106 @@
                         <ext:Button ID="AddGuardarBtn" runat="server" Text="Crear" Icon="Add" formBind="true">
                             <Listeners>
                                 <Click Handler="SolicitudX.insert()" />
+                            </Listeners>
+                        </ext:Button>
+                    </Buttons>
+                </ext:FormPanel>
+            </Items>
+         </ext:Window>
+
+         <ext:Window ID="NuevaReferenciaWin"
+            runat= "server"
+            Hidden="true"
+            ICon="UserAdd"
+            Title="Agregar Referencia"
+            Width="550"
+            Layout="FormLayout"
+            Autoheight="True"
+            resizable="false"
+            Shadow="None"
+            modal="true"
+            x="15" Y="35" >
+            <Listeners>
+                <Hide Handler="NuevaReferenciaForm.getForm().reset()" />
+           </Listeners>   
+            <Items>
+                <ext:FormPanel runat="server" ID="NuevaReferenciaForm" Title="Form" Header="false" ButtonAlign="Right" MonitorValid="true">
+                    <Items>
+                        <ext:Panel ID="PanelRefencia" runat="server" Title="Datos Referencia Nueva" Layout="AnchorLayout" AutoHeight="true" Icon="UserAdd" LabelWidth="150">
+                            <Items>
+                                <ext:Panel ID="Panel" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
+                                    <Items>
+                                        <ext:TextField runat="server" ID="AddReferenciaId" FieldLabel="No. de Identificacion" AnchorHorizontal="90%" AllowBlank="false" /> 
+                                        <ext:TextField runat="server" ID="AddReferenciaNombre" FieldLabel="Nombre" AnchorHorizontal="90%" AllowBlank="false" />
+                                        <ext:TextField runat="server" ID="AddReferenciaTel" FieldLabel="Telefono" AnchorHorizontal="90%" AllowBlank="false" />
+                                        <ext:ComboBox ID="AddReferenciaTipo"
+                                            runat="server" 
+                                            Editable="false" FieldLabel="Tipo de Referencia"         
+                                            EmptyText="Seleccione un tipo..." AnchorHorizontal="90%">
+                                            <Items>
+                                                <ext:ListItem Text="Personal" Value="Personal" />
+                                                <ext:ListItem Text="Comercial" Value="Comercial" />
+                                            </Items>
+                                        </ext:ComboBox>
+                                    </Items>
+                                </ext:Panel>
+                            </Items>
+                        </ext:Panel>
+                    </Items>
+                    <Buttons>
+                        <ext:Button ID="AddReferenciaBtn" runat="server" Text="Crear" Icon="Add" FormBind="true">
+                            <Listeners>
+                                <Click Handler="SolicitudX.insertRef();" />
+                            </Listeners>
+                        </ext:Button>
+                    </Buttons>
+                </ext:FormPanel>
+            </Items>
+         </ext:Window>
+
+         <ext:Window ID="EditarReferenciaWin"
+            runat= "server"
+            Hidden="true"
+            ICon="UserEdit"
+            Title="Editar Referencia"
+            Width="550"
+            Layout="FormLayout"
+            Autoheight="True"
+            resizable="false"
+            Shadow="None"
+            modal="true"
+            x="15" Y="35" >
+            <Listeners>
+                <Hide Handler="EditarReferenciaForm.getForm().reset()" />
+           </Listeners>  
+            <Items>
+                <ext:FormPanel runat="server" ID="EditarReferenciaForm" Title="Form" Header="false" ButtonAlign="Right" MonitorValid="true">
+                    <Items>
+                        <ext:Panel ID="Panel7" runat="server" Title="Datos Referencia" Layout="AnchorLayout" AutoHeight="true" Icon="UserAdd" LabelWidth="150">
+                            <Items>
+                                <ext:Panel ID="Panel8" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
+                                    <Items>
+                                        <ext:TextField runat="server" ID="EditIdRef" DataIndex="REFERENCIAS_ID" FieldLabel="No. de Identificacion" AnchorHorizontal="90%" AllowBlank="false" ReadOnly="true" /> 
+                                        <ext:TextField runat="server" ID="EditNombreRef" DataIndex="REFERENCIAS_NOMBRE" FieldLabel="Nombre" AnchorHorizontal="90%" AllowBlank="false" />
+                                        <ext:TextField runat="server" ID="EditTelRef" DataIndex="REFERENCIAS_TELEFONO" FieldLabel="Telefono" AnchorHorizontal="90%" AllowBlank="false" />
+                                        <ext:ComboBox ID="EditTipoRef"
+                                            runat="server" DataIndex="REFERENCIAS_TIPO"
+                                            Editable="false" FieldLabel="Tipo de Referencia"         
+                                            EmptyText="Seleccione un tipo..." AnchorHorizontal="90%">
+                                            <Items>
+                                                <ext:ListItem Text="Personal" Value="Personal" />
+                                                <ext:ListItem Text="Comercial" Value="Comercial" />
+                                            </Items>
+                                        </ext:ComboBox>
+                                    </Items>
+                                </ext:Panel>
+                            </Items>
+                        </ext:Panel>
+                    </Items>
+                    <Buttons>
+                        <ext:Button ID="EditarRefBtn" runat="server" Text="Editar" Icon="UserEdit" FormBind="true">
+                            <Listeners>
+                                <Click Handler="DirectX.ActualizarReferencias()" />
                             </Listeners>
                         </ext:Button>
                     </Buttons>

@@ -382,13 +382,13 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.NumberField EditNotaIdTxt;
         
         /// <summary>
-        /// ToolTip3 control.
+        /// ToolTip1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ToolTip ToolTip3;
+        protected global::Ext.Net.ToolTip ToolTip1;
         
         /// <summary>
         /// EditFechaNotaTxt control.
@@ -400,22 +400,22 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.DateField EditFechaNotaTxt;
         
         /// <summary>
-        /// ToolTip3 control.
+        /// ToolTip2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ToolTip ToolTip3;
+        protected global::Ext.Net.ToolTip ToolTip2;
         
         /// <summary>
-        /// ToolTip3 control.
+        /// EditSociosIdTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ToolTip ToolTip3;
+        protected global::Ext.Net.ComboBox EditSociosIdTxt;
         
         /// <summary>
         /// Panel13 control.
@@ -659,6 +659,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.NumberField EditTaraTxt;
+        
+        /// <summary>
+        /// ToolTip3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip3;
         
         /// <summary>
         /// EditCreatedByTxt control.

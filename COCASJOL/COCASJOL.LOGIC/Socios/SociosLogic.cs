@@ -13,24 +13,24 @@ namespace COCASJOL.LOGIC.Socios
         public SociosLogic() { } 
 
         #region Select
-        public List<socio> getData()
-        {
-            try
+            public List<socio> getData()
             {
-                using (var db = new colinasEntities())
+                try
                 {
+                    using (var db = new colinasEntities())
+                    {
                     var query = from s in db.socios.Include("socios_generales").Include("socios_produccion").Include("beneficiario_x_socio")
-                                select s;
-                    return query.ToList<socio>();
+                                    select s;
+                        return query.ToList<socio>();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
                 }
             }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
 
-        public List<beneficiario_x_socio> getBenefxSocio(string socioid)
+            public List<beneficiario_x_socio> getBenefxSocio(string socioid)
         {
             try
             {

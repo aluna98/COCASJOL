@@ -37,7 +37,7 @@
   </privilege>
   <privilege>
     <key>MANT_NOTASPESO</key>
-    <page>NotasDePeso</page>
+    <page>NotasDePesoEnAdministracion</page>
     <module>NotasDePesoModule</module>
     <shortcut>scNotasDePeso</shortcut>
     <menuitem>NotasDePesoMenuItem</menuitem>

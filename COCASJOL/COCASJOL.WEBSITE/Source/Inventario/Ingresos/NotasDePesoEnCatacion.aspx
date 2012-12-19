@@ -140,6 +140,8 @@
 
                     this.getNombreDeSocio(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditNombreTxt'));
                     this.getDireccionDeFinca(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditDireccionFincaTxt'));
+                    EditPorcentajeDefectoTxt.setValue(Ext.util.Format.number(EditPorcentajeDefectoTxt.getValue().replace(/[\%]/g, ''), '0.00%'));
+                    EditPorcentajeHumedadTxt.setValue(Ext.util.Format.number(EditPorcentajeHumedadTxt.getValue().replace(/[\%]/g, ''), '0.00%'));
                 }
             },
 
@@ -158,6 +160,7 @@
                             { success: function () {
                                 GridStore.reload();
                                 Ext.Msg.alert('Editar Nota de Peso', 'Nota de peso actualizada exitosamente.');
+                                EditWindow.hide();
                             }
                             },
                             { failure: function () {
@@ -590,15 +593,61 @@
                                                             <Items>
                                                                 <ext:NumberField runat="server" ID="EditNotaIdTxt"  DataIndex="NOTAS_ID" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Nota Numero" AllowBlank="false" ReadOnly="true" MsgTarget="Side">
                                                                     <ToolTips>
-                                                                        <ext:ToolTip ID="ToolTip3" runat="server" Html="El numero de nota de peso es de solo lectura." Title="Numero de Nota de Peso" Width="200" TrackMouse="true" />
+                                                                        <ext:ToolTip ID="ToolTip1" runat="server" Html="El numero de nota de peso es de solo lectura." Title="Numero de Nota de Peso" Width="200" TrackMouse="true" />
                                                                     </ToolTips>
                                                                 </ext:NumberField>
                                                                 <ext:DateField runat="server" ID="EditFechaNotaTxt" DataIndex="NOTAS_FECHA" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Fecha" AllowBlank="false" MsgTarget="Side" ReadOnly="true">
-                                                                    <ext:ToolTip ID="ToolTip3" runat="server" Html="La fecha de nota de peso es de solo lectura." Title="Fecha de Nota de Peso" Width="200" TrackMouse="true" />
+                                                                    <ToolTips>
+                                                                        <ext:ToolTip ID="ToolTip2" runat="server" Html="La fecha de nota de peso es de solo lectura." Title="Fecha de Nota de Peso" Width="200" TrackMouse="true" />
+                                                                    </ToolTips>
                                                                 </ext:DateField>
-                                                                <ext:TextField  runat="server" ID="EditSociosIdTxt"  DataIndex="SOCIOS_ID"   LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Codigo Socio" AllowBlank="false" MsgTarget="Side" ReadOnly="true"
-                                                                    <ext:ToolTip ID="ToolTip3" runat="server" Html="El código de socio de la nota de peso es de solo lectura." Title="Socio" Width="200" TrackMouse="true" />
-                                                                </ext:TextField>
+                                                                <ext:ComboBox  runat="server" ID="EditSociosIdTxt"  DataIndex="SOCIOS_ID"   LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Codigo Socio" AllowBlank="false" MsgTarget="Side" ReadOnly="true"
+                                                                    TypeAhead="true"
+                                                                    EmptyText="Seleccione un Socio"
+                                                                    ForceSelection="true" 
+                                                                    StoreID="SocioSt"
+                                                                    Mode="Local" 
+                                                                    DisplayField="SOCIOS_ID"
+                                                                    ValueField="SOCIOS_ID"
+                                                                    MinChars="2"
+                                                                    ListWidth="450" 
+                                                                    PageSize="10" 
+                                                                    ItemSelector="tr.list-item" >
+                                                                    <ToolTips>
+                                                                        <ext:ToolTip runat="server" Html="El código de socio de nota de peso es de solo lectura." Title="Socio" Width="200" TrackMouse="true" />
+                                                                    </ToolTips>
+                                                                    <Template ID="Template2" runat="server" Width="200">
+                                                                        <Html>
+					                                                        <tpl for=".">
+						                                                        <tpl if="[xindex] == 1">
+							                                                        <table class="cbStates-list">
+								                                                        <tr>
+								                	                                        <th>SOCIOS_ID</th>
+								                	                                        <th>SOCIOS_PRIMER_NOMBRE</th>
+                                                                                            <th>SOCIOS_PRIMER_APELLIDO</th>
+								                                                        </tr>
+						                                                        </tpl>
+						                                                        <tr class="list-item">
+							                                                        <td style="padding:3px 0px;">{SOCIOS_ID}</td>
+							                                                        <td>{SOCIOS_PRIMER_NOMBRE}</td>
+                                                                                    <td>{SOCIOS_PRIMER_APELLIDO}</td>
+						                                                        </tr>
+						                                                        <tpl if="[xcount-xindex]==0">
+							                                                        </table>
+						                                                        </tpl>
+					                                                        </tpl>
+				                                                        </Html>
+                                                                    </Template>
+                                                                    <Triggers>
+                                                                        <ext:FieldTrigger Icon="Clear" HideTrigger="true" />
+                                                                        <ext:FieldTrigger Icon="Empty" />
+                                                                    </Triggers>
+                                                                    <Listeners>
+                                                                        <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
+                                                                        <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide(); Ext.getCmp('EditNombreTxt').reset(); Ext.getCmp('EditDireccionFincaTxt').reset(); }" />
+                                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditDireccionFincaTxt'));" />
+                                                                    </Listeners>
+                                                                </ext:ComboBox>
                                                             </Items>
                                                         </ext:Panel>
                                                         <ext:Panel ID="Panel13" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
@@ -670,17 +719,30 @@
                                                                         <ext:Radio ID="EditCooperativaRadio" runat="server" InputValue="1" DataIndex="NOTAS_TRANSPORTE_COOPERATIVA" BoxLabel="Carro de la Cooperativa" ColumnWidth=".5" AnchorHorizontal="100%" ReadOnly="true">
                                                                         </ext:Radio>
                                                                     </Items>
+                                                                    <ToolTips>
+                                                                        <ext:ToolTip runat="server" Html="La opción de forma de transporte de nota de peso es de solo lectura." Title="Forma de Transporte" Width="200" TrackMouse="true" />
+                                                                    </ToolTips>
                                                                 </ext:RadioGroup>
                                                                 <ext:TextField runat="server" ID="EditPorcentajeHumedadTxt" DataIndex="NOTAS_PORCENTAJE_HUMEDAD" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Porcentaje de Humedad" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" ReadOnly="true" >
+                                                                    <ToolTips>
+                                                                        <ext:ToolTip runat="server" Html="El porcentaje de humedad es de solo lectura." Title="Porcentaje de Humedad" Width="200" TrackMouse="true" />
+                                                                    </ToolTips>
                                                                 </ext:TextField>
                                                                 <ext:TextField runat="server" ID="EditPorcentajeDefectoTxt" DataIndex="NOTAS_PORCENTAJE_DEFECTO" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Porcentaje de Defecto" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" ReadOnly="true">
+                                                                    <ToolTips>
+                                                                        <ext:ToolTip runat="server" Html="El porcentaje de defecto es de solo lectura." Title="Porcentaje de Defecto" Width="200" TrackMouse="true" />
+                                                                    </ToolTips>
                                                                 </ext:TextField>
                                                             </Items>
                                                         </ext:FieldSet>
                                                         <ext:FieldSet ID="EditSacosFS" runat="server" Title="Sacos" Padding="7" >
                                                             <Items>
                                                                 <ext:NumberField runat="server" ID="EditSumaSacosTxt"                                            LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Cantidad de Sacos" Text="0" ReadOnly="true"></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditSacosRetenidosTxt" DataIndex="NOTAS_SACOS_RETENIDOS"     LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Sacos Retenidos" AllowBlank="false" MsgTarget="Side" ReadOnly="true"></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditSacosRetenidosTxt" DataIndex="NOTAS_SACOS_RETENIDOS"     LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Sacos Retenidos" AllowBlank="false" MsgTarget="Side" ReadOnly="true">
+                                                                    <ToolTips>
+                                                                        <ext:ToolTip runat="server" Html="La cantidad de sacos retenidos es de solo lectura." Title="Sacos Retenidos" Width="200" TrackMouse="true" />
+                                                                    </ToolTips>
+                                                                </ext:NumberField>
                                                             </Items>
                                                         </ext:FieldSet>
                                                     </Items>
@@ -725,7 +787,11 @@
                                                 <ext:Panel ID="Panel17" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
                                                     <Items>
                                                         <ext:NumberField runat="server" ID="EditSumaPesoBrutoTxt"  DataIndex="NOTAS_PESO_SUMA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Suma"      AllowBlank="false" Text="0" ReadOnly="true" MsgTarget="Side"></ext:NumberField>
-                                                        <ext:NumberField runat="server" ID="EditTaraTxt"           DataIndex="NOTAS_PESO_TARA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tara"      AllowBlank="false" MsgTarget="Side" ReadOnly="true"></ext:NumberField>
+                                                        <ext:NumberField runat="server" ID="EditTaraTxt"           DataIndex="NOTAS_PESO_TARA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tara"      AllowBlank="false" MsgTarget="Side" ReadOnly="true">
+                                                            <ToolTips>
+                                                                <ext:ToolTip ID="ToolTip3" runat="server" Html="La cantidad de peso de tara es de solo lectura." Title="Tara" Width="200" TrackMouse="true" />
+                                                            </ToolTips>
+                                                        </ext:NumberField>
                                                     </Items>
                                                 </ext:Panel>
                                             </Items>

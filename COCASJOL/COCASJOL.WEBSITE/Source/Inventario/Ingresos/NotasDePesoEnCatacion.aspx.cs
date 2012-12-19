@@ -10,7 +10,7 @@ using System.Data.Objects;
 using Ext.Net;
 
 using COCASJOL.LOGIC;
-using COCASJOL.LOGIC.Inventario.Ingresos; 
+using COCASJOL.LOGIC.Inventario.Ingresos;
 
 namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
 {

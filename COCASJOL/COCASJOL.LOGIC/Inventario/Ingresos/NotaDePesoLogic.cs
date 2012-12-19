@@ -10,7 +10,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 {
     public class NotaDePesoLogic
     {
-        protected int ESTADOS_NOTA_ID;
+        public int ESTADOS_NOTA_ID;
 
         public NotaDePesoLogic(string ESTADOS_NOTA_LLAVE)
         {

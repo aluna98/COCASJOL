@@ -198,6 +198,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     note.NOTAS_PORCENTAJE_HUMEDAD = NOTAS_PORCENTAJE_HUMEDAD;
                     note.NOTAS_PESO_DEFECTO = NOTAS_PESO_DEFECTO;
                     note.NOTAS_PESO_HUMEDAD = NOTAS_PESO_HUMEDAD;
+                    note.NOTAS_PESO_DESCUENTO = NOTAS_PESO_DESCUENTO;
                     note.NOTAS_PESO_TARA = NOTAS_PESO_TARA;
                     note.NOTAS_PESO_SUMA = NOTAS_PESO_SUMA;
                     note.NOTAS_PESO_TOTAL_RECIBIDO = NOTAS_PESO_TOTAL_RECIBIDO;
@@ -209,7 +210,6 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     // verificar si hubo cambio de estado
                     if (note.ESTADOS_NOTA_ID != this.ESTADOS_NOTA_ID)
                     {
-
                         /* --------Modificar Inventario de Café Actual-------- */
 
                         IEnumerable<KeyValuePair<string, object>> entityKeyValuesInventario =
@@ -438,6 +438,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     note.NOTAS_PORCENTAJE_HUMEDAD = NOTAS_PORCENTAJE_HUMEDAD;
                     note.NOTAS_PESO_DEFECTO = NOTAS_PESO_DEFECTO;
                     note.NOTAS_PESO_HUMEDAD = NOTAS_PESO_HUMEDAD;
+                    note.NOTAS_PESO_DESCUENTO = NOTAS_PESO_DESCUENTO;
                     note.NOTAS_PESO_TARA = NOTAS_PESO_TARA;
                     note.NOTAS_PESO_SUMA = NOTAS_PESO_SUMA;
                     note.NOTAS_PESO_TOTAL_RECIBIDO = NOTAS_PESO_TOTAL_RECIBIDO;

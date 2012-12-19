@@ -44,7 +44,7 @@ using System.Data;
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "FK_NOTA_DETALLE_NOTA_PESO", "notas_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.nota_de_peso), "nota_detalle", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.nota_detalle), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "ESTADOS_NOTA_PADRE_FK", "estados_nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.estado_nota_de_peso), "estados_nota_de_peso1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.estado_nota_de_peso), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "notas_de_peso_estado_fk", "estados_nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.estado_nota_de_peso), "nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.nota_de_peso), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "ÀPORTACIONES_SOCIOS_FK", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "aportaciones_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.aportacion_socio), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "APORTACIONES_SOCIOS_FK", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "aportaciones_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.aportacion_socio), true)]
 
 #endregion
 
@@ -929,16 +929,16 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "ÀPORTACIONES_SOCIOS_FK", "socio")]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "APORTACIONES_SOCIOS_FK", "socio")]
         public socio socios
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.ÀPORTACIONES_SOCIOS_FK", "socio").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.APORTACIONES_SOCIOS_FK", "socio").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.ÀPORTACIONES_SOCIOS_FK", "socio").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.APORTACIONES_SOCIOS_FK", "socio").Value = value;
             }
         }
         /// <summary>
@@ -950,13 +950,13 @@ namespace COCASJOL.LOGIC
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.ÀPORTACIONES_SOCIOS_FK", "socio");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.APORTACIONES_SOCIOS_FK", "socio");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<socio>("COLINASMODEL.ÀPORTACIONES_SOCIOS_FK", "socio", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<socio>("COLINASMODEL.APORTACIONES_SOCIOS_FK", "socio", value);
                 }
             }
         }
@@ -6450,16 +6450,16 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "ÀPORTACIONES_SOCIOS_FK", "aportaciones_socio")]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "APORTACIONES_SOCIOS_FK", "aportaciones_socio")]
         public aportacion_socio aportaciones_socio
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<aportacion_socio>("COLINASMODEL.ÀPORTACIONES_SOCIOS_FK", "aportaciones_socio").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<aportacion_socio>("COLINASMODEL.APORTACIONES_SOCIOS_FK", "aportaciones_socio").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<aportacion_socio>("COLINASMODEL.ÀPORTACIONES_SOCIOS_FK", "aportaciones_socio").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<aportacion_socio>("COLINASMODEL.APORTACIONES_SOCIOS_FK", "aportaciones_socio").Value = value;
             }
         }
         /// <summary>
@@ -6471,13 +6471,13 @@ namespace COCASJOL.LOGIC
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<aportacion_socio>("COLINASMODEL.ÀPORTACIONES_SOCIOS_FK", "aportaciones_socio");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<aportacion_socio>("COLINASMODEL.APORTACIONES_SOCIOS_FK", "aportaciones_socio");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<aportacion_socio>("COLINASMODEL.ÀPORTACIONES_SOCIOS_FK", "aportaciones_socio", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<aportacion_socio>("COLINASMODEL.APORTACIONES_SOCIOS_FK", "aportaciones_socio", value);
                 }
             }
         }

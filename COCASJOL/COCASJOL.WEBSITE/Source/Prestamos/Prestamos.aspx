@@ -420,7 +420,7 @@
                                     MonitorValid="true"
                                     LabelAlign="Right">
                             <Items>
-                                <ext:Panel ID="PanelInformacion" runat="server" 
+                                <ext:Panel ID="PanelInformacion" runat="server" LabelWidth="150"
                                     Title="Informacion Prestamo" Layout="AnchorLayout" AutoHeight="true"
                                      Icon="Coins" Border="false" Header="false">
                                         <Items>
@@ -482,7 +482,7 @@
                                     MonitorValid="true"
                                     LabelAlign="Right">
                             <Items>
-                                <ext:Panel ID="Panel2" runat="server" 
+                                <ext:Panel ID="Panel2" runat="server" LabelWidth="150" 
                                     Title="Informacion Prestamo" Layout="AnchorLayout" AutoHeight="true"
                                      Icon="Coins" Border="false" Header="false">
                                         <Items>

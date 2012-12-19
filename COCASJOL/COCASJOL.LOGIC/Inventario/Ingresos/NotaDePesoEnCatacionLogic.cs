@@ -172,6 +172,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                         }
                     }
 
+                    note.ESTADOS_NOTA_ID = ESTADOS_NOTA_ID;
                     note.MODIFICADO_POR = MODIFICADO_POR;
                     note.FECHA_MODIFICACION = DateTime.Today;
 

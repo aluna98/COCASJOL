@@ -17,8 +17,8 @@
         
         .shortcut-icon
         {
-            width: 48px;
-            height: 48px;
+            width: 32px;
+            height: 32px;
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/window.png", sizingMethod="scale");
         }
         
@@ -433,7 +433,7 @@
                     <Click Handler="DesktopX.tileFitWindows(#{MyDesktop}, true);" />
                 </Listeners>
             </ext:MenuItem>
-            <ext:MenuItem Text="Ventanas en grupo Vertical" Icon="ApplicationTileHorizontal">
+            <ext:MenuItem Text="Ventanas en grupo Vertical" Icon="ApplicationTileVertical">
                 <Listeners>
                     <Click Handler="DesktopX.tileFitWindows(#{MyDesktop}, false);" />
                 </Listeners>
@@ -710,7 +710,7 @@
                                             <click Handler="WindowX.estadosNotasDePeso(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
-                                    <ext:MenuItem ID="NotasDePesoEnPesajeMenuItem" Text="Notas De Peso en Area de Pesaje" Icon="PageWhiteOffice" >
+                                    <ext:MenuItem ID="NotasDePesoEnPesajeMenuItem" Text="Notas De Peso en Area de Pesaje" Icon="PageWhitePut" >
                                         <Listeners>
                                             <click Handler="WindowX.notasDePesoEnPesaje(#{MyDesktop});" />
                                         </Listeners>
@@ -720,7 +720,7 @@
                                             <click Handler="WindowX.notasDePesoEnCatacion(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
-                                    <ext:MenuItem ID="NotasDePesoMenuItem" Text="Notas de Peso" Icon="PageWhiteCup" >
+                                    <ext:MenuItem ID="NotasDePesoMenuItem" Text="Notas de Peso" Icon="PageWhiteOffice" >
                                         <Listeners>
                                             <click Handler="WindowX.notasDePeso(#{MyDesktop});" />
                                         </Listeners>

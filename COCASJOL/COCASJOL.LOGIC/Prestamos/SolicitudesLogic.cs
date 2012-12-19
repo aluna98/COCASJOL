@@ -67,22 +67,41 @@ namespace COCASJOL.LOGIC.Prestamos
         }
 
             public solicitud_prestamo getSolicitud(int id)
-        {
-            try
             {
-                using (var db = new colinasEntities())
+                try
                 {
-                    var query = from solicitud in db.solicitudes_prestamos.Include("socios")
-                                where solicitud.SOLICITUDES_ID == id
-                                select solicitud;
-                    return query.First();
+                    using (var db = new colinasEntities())
+                    {
+                        var query = from solicitud in db.solicitudes_prestamos.Include("socios")
+                                    where solicitud.SOLICITUDES_ID == id
+                                    select solicitud;
+                        return query.First();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
                 }
             }
-            catch (Exception)
+
+            public List<referencia_x_solicitud> getReferencia(int id)
             {
-                throw;
+                try
+                {
+                    using (var db = new colinasEntities())
+                    {
+                        var query = from referencia in db.referencias_x_solicitudes.Include("solicitudes_prestamos")
+                                    where referencia.SOLICITUDES_ID == id
+                                    select referencia;
+                        return query.ToList<referencia_x_solicitud>();
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw;
+                }
+
             }
-        }
         #endregion
 
         #region insert
@@ -132,72 +151,26 @@ namespace COCASJOL.LOGIC.Prestamos
                 throw;
             }
         }
-        #endregion
 
-        #region Update
-        public void EditarSolicitud(int idsolicitud, 
-            decimal monto, int interes, string plazo, string pago, 
-            string destino, string cargo, decimal promedio3, 
-            decimal prodact, string norte, string sur, 
-            string este, string oeste, int carro, int agua, 
-            int luz, int casa, int beneficio, string otros, 
-            string calificacion, string modificadopor)
+        public void InsertarReferencia(string id, int solicitudid, string nombre, string telefono, string tipo, string creadopor)
         {
-            colinasEntities db = null;
-            try
-            {
-                db = new colinasEntities();
-                var query = from solicitud in db.solicitudes_prestamos
-                            where idsolicitud == solicitud.SOLICITUDES_ID
-                            select solicitud;
-                solicitud_prestamo sol = query.First();
-                sol.SOLICITUDES_MONTO = monto;
-                sol.SOLICITUDES_INTERES = interes;
-                sol.SOLICITUDES_PLAZO = DateTime.Parse(plazo);
-                sol.SOLICITUDES_PAGO = pago;
-                sol.SOLICITUDES_DESTINO = destino;
-                sol.SOLICITUDES_CARGO = cargo;
-                sol.SOLICITUDES_PROMEDIO3 = promedio3;
-                sol.SOLICITUDES_PRODUCCIONACT = prodact;
-                sol.SOLICITUDES_NORTE = norte;
-                sol.SOLICITUDES_SUR = sur;
-                sol.SOLICITUDES_ESTE = este;
-                sol.SOLICITUDES_OESTE = oeste;
-                sol.SOLICITUDES_VEHICULO = (sbyte)carro;
-                sol.SOLICITUDES_AGUA = (sbyte)agua;
-                sol.SOLICITUDES_ENEE = (sbyte)luz;
-                sol.SOLICITUDES_CASA = (sbyte)casa;
-                sol.SOLICITUDES_BENEFICIO = (sbyte)beneficio;
-                sol.SOLICITUD_OTROSCULTIVOS = otros;
-                sol.SOLICITUD_CALIFICACION = calificacion;
-                sol.MODIFICADO_POR = modificadopor;
-                sol.FECHA_MODIFICACION = DateTime.Today;
-                db.SaveChanges();
-                db.Dispose();
-            }
-            catch (Exception e)
-            {
-                if(db != null){
-                    db.Dispose();
-                }
-                throw;
-            }
-        }
-        #endregion
-
-        #region Metodos
-
-        public socio_produccion getProduccion(string id)
-        {
+            
             try
             {
                 using (var db = new colinasEntities())
                 {
-
-                    var query = from carnet in db.socios_produccion
-                                where carnet.SOCIOS_ID == id
-                                select carnet;
-                    return query.First(); 
+                    referencia_x_solicitud referencia = new referencia_x_solicitud();
+                    referencia.SOLICITUDES_ID = solicitudid;
+                    referencia.REFERENCIAS_ID = id;
+                    referencia.REFERENCIAS_NOMBRE = nombre;
+                    referencia.REFERENCIAS_TELEFONO = telefono;
+                    referencia.REFERENCIAS_TIPO = tipo;
+                    referencia.CREADO_POR = referencia.MODIFICADO_POR = creadopor;
+                    referencia.FECHA_CREACION = DateTime.Today;
+                    referencia.FECHA_MODIFICACION = DateTime.Today;
+                    db.referencias_x_solicitudes.AddObject(referencia);
+                    db.SaveChanges();
+                    db.Dispose();
                 }
             }
             catch (Exception)
@@ -206,17 +179,171 @@ namespace COCASJOL.LOGIC.Prestamos
             }
         }
 
-        public string getIHCAFE(string id){
-            using (var db = new colinasEntities())
+        #endregion
+
+        #region Update
+            public void EditarSolicitud(int idsolicitud, 
+                decimal monto, int interes, string plazo, string pago, 
+                string destino, string cargo, decimal promedio3, 
+                decimal prodact, string norte, string sur, 
+                string este, string oeste, int carro, int agua, 
+                int luz, int casa, int beneficio, string otros, 
+                string calificacion, string modificadopor)
             {
-
-                var query = from carnet in db.socios_generales
-                            where carnet.SOCIOS_ID == id
-                            select carnet;
-
-                return query.First().GENERAL_CARNET_IHCAFE; 
+                colinasEntities db = null;
+                try
+                {
+                    db = new colinasEntities();
+                    var query = from solicitud in db.solicitudes_prestamos
+                                where idsolicitud == solicitud.SOLICITUDES_ID
+                                select solicitud;
+                    solicitud_prestamo sol = query.First();
+                    sol.SOLICITUDES_MONTO = monto;
+                    sol.SOLICITUDES_INTERES = interes;
+                    sol.SOLICITUDES_PLAZO = DateTime.Parse(plazo);
+                    sol.SOLICITUDES_PAGO = pago;
+                    sol.SOLICITUDES_DESTINO = destino;
+                    sol.SOLICITUDES_CARGO = cargo;
+                    sol.SOLICITUDES_PROMEDIO3 = promedio3;
+                    sol.SOLICITUDES_PRODUCCIONACT = prodact;
+                    sol.SOLICITUDES_NORTE = norte;
+                    sol.SOLICITUDES_SUR = sur;
+                    sol.SOLICITUDES_ESTE = este;
+                    sol.SOLICITUDES_OESTE = oeste;
+                    sol.SOLICITUDES_VEHICULO = (sbyte)carro;
+                    sol.SOLICITUDES_AGUA = (sbyte)agua;
+                    sol.SOLICITUDES_ENEE = (sbyte)luz;
+                    sol.SOLICITUDES_CASA = (sbyte)casa;
+                    sol.SOLICITUDES_BENEFICIO = (sbyte)beneficio;
+                    sol.SOLICITUD_OTROSCULTIVOS = otros;
+                    sol.SOLICITUD_CALIFICACION = calificacion;
+                    sol.MODIFICADO_POR = modificadopor;
+                    sol.FECHA_MODIFICACION = DateTime.Today;
+                    db.SaveChanges();
+                    db.Dispose();
+                }
+                catch (Exception e)
+                {
+                    if(db != null){
+                        db.Dispose();
+                    }
+                    throw;
+                }
             }
-        }
+
+            public void EditarReferencia(string id, int solicitudid, string nombre, string telefono, string tipo, string modificadopor)
+            {
+                try
+                {
+                    using (var db = new colinasEntities())
+                    {
+                        var query = from referencia in db.referencias_x_solicitudes
+                                    where referencia.SOLICITUDES_ID == solicitudid
+                                    select referencia;
+
+                        referencia_x_solicitud nueva =  query.First();
+                        nueva.REFERENCIAS_NOMBRE = nombre;
+                        nueva.REFERENCIAS_TELEFONO = telefono;
+                        nueva.REFERENCIAS_TIPO = tipo;
+                        nueva.MODIFICADO_POR = modificadopor;
+                        nueva.FECHA_MODIFICACION = DateTime.Today;
+                        db.SaveChanges();
+                        db.Dispose();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        #endregion
+
+        #region Delete
+            public void EliminarReferencia(string ReferenciaId, int SolicitudId)
+            {
+                try
+                {
+                    using (var db = new colinasEntities())
+                    {
+                        var query = from referencia in db.referencias_x_solicitudes
+                                    where referencia.REFERENCIAS_ID == ReferenciaId && referencia.SOLICITUDES_ID == SolicitudId
+                                    select referencia;
+                        referencia_x_solicitud nueva = query.First();
+                        db.referencias_x_solicitudes.DeleteObject(nueva);
+                        db.SaveChanges();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        #endregion
+
+        #region Metodos
+
+            public socio_produccion getProduccion(string id)
+            {
+                try
+                {
+                    using (var db = new colinasEntities())
+                    {
+
+                        var query = from carnet in db.socios_produccion
+                                    where carnet.SOCIOS_ID == id
+                                    select carnet;
+                        return query.First(); 
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+
+            public string getIHCAFE(string id){
+                using (var db = new colinasEntities())
+                {
+
+                    var query = from carnet in db.socios_generales
+                                where carnet.SOCIOS_ID == id
+                                select carnet;
+
+                    return query.First().GENERAL_CARNET_IHCAFE; 
+                }
+            }
+
+            public bool BuscarId(int SOLICITUDES_ID, string REFERENCIAS_ID)
+            {
+                colinasEntities db = null;
+                try
+                {
+                    db = new colinasEntities();
+                    List<referencia_x_solicitud> lista;
+                    var query = from nuevo in db.referencias_x_solicitudes
+                                where nuevo.SOLICITUDES_ID == SOLICITUDES_ID && nuevo.REFERENCIAS_ID == REFERENCIAS_ID
+                                select nuevo;
+
+                    lista = query.ToList<referencia_x_solicitud>();
+
+                    if (lista.Count == 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    if (db != null)
+                    {
+                        db.Dispose();
+                    }
+                    throw;
+                }
+            }
 
         #endregion
     }
