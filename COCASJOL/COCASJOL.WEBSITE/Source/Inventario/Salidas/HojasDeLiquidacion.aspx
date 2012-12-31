@@ -278,6 +278,7 @@
                     <asp:Parameter Name="FECHA_DESDE"                                  Type="DateTime" />
                     <asp:Parameter Name="FECHA_HASTA"                                  Type="DateTime" />
                     <asp:Parameter Name="CLASIFICACIONES_CAFE_ID"                      Type="Int32"    />
+                    <asp:Parameter Name="CLASIFICACIONES_CAFE_NOMBRE"                  Type="String"    />
                     <asp:Parameter Name="LIQUIDACIONES_TOTAL_LIBRAS"                   Type="Decimal"  />
                     <asp:Parameter Name="LIQUIDACIONES_PRECIO_LIBRAS"                  Type="Decimal"  />
                     <asp:Parameter Name="LIQUIDACIONES_VALOR_TOTAL"                    Type="Decimal"  />
@@ -550,7 +551,7 @@
             Icon="ScriptAdd"
             Title="Agregar Hoja de Liquidación"
             Width="800"
-            Height="640"
+            Height="480"
             Resizable="false"
             Shadow="None"
             Modal="true"
@@ -763,7 +764,7 @@
             Icon="ScriptEdit"
             Title="Editar Hoja de Liquidación"
             Width="800"
-            Height="640"
+            Height="480"
             Resizable="false"
             Shadow="None"
             Modal="true"

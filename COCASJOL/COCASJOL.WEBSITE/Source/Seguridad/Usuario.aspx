@@ -546,9 +546,14 @@
                                                 <ext:TextField runat="server" ID="EditSegundoNombreTxt"   DataIndex="USR_SEGUNDO_NOMBRE"   LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Segundo Nombre" MsgTarget="Side" Vtype="alpha"></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditApellidoTxt"        DataIndex="USR_APELLIDO"         LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Primer Apellido" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditSegundoApellidoTxt" DataIndex="USR_SEGUNDO_APELLIDO" LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Segundo Apellido" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditCedulaTxt"          DataIndex="USR_CEDULA"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="20" FieldLabel="Cedula" AllowBlank="false" MsgTarget="Side" Vtype="alphanum" IsRemoteValidation="true" >
-                                                    <RemoteValidation OnValidation="EditCedulaTxt_Change">
+                                                <ext:TextField runat="server" ID="EditCedulaTxt"          DataIndex="USR_CEDULA"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="20" FieldLabel="Cedula" AllowBlank="false" MsgTarget="Side" Vtype="alphanum" IsRemoteValidation="true" ValidationEvent="AfterRender" >
+                                                    <RemoteValidation OnValidation="EditCedulaTxt_Change" >
                                                     </RemoteValidation>
+                                                    <%--<Listeners>
+                                                        <BeforeRemoteValidation Handler="
+                                                        if (EditarUsuarioWin.hidden) return this.originalIsValid(true); 
+                                                        else return true;" />
+                                                    </Listeners>--%>
                                                 </ext:TextField>
                                                 <ext:TextField runat="server" ID="EditEmailTxt"           DataIndex="USR_CORREO"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="30" FieldLabel="Email" Vtype="email"  MsgTarget="Side"></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditPuestoTxt"          DataIndex="USR_PUESTO"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="30" FieldLabel="Puesto" ></ext:TextField>

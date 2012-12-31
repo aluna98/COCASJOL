@@ -568,6 +568,16 @@
                 </ext:DesktopModule>
                 <%--Notas De Peso--%>
 
+                <%--Hojas De Liquidación--%>
+                <ext:DesktopModule ModuleID="HojasDeLiquidacionModule">
+                    <Launcher ID="Launcher3" runat="server" Text="Hojas De Liquidación" Icon="Script" >
+                        <Listeners>
+                            <Click Handler="WindowX.hojasDeLiquidacion(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
+                <%--Hojas De Liquidación--%>
+
                 <%--Prestamos--%>
                 <ext:DesktopModule ModuleID="SolicitudesDePrestamoModule">
                     <Launcher ID="SolicitudesDePrestamoLauncher" runat="server" Text="Solicitudes de Prestamo" Icon="PageWhiteText" >
@@ -736,6 +746,19 @@
                                     <ext:MenuItem ID="NotasDePesoMenuItem" Text="Notas de Peso" Icon="PageWhiteOffice" >
                                         <Listeners>
                                             <click Handler="WindowX.notasDePeso(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                </Items>
+                            </ext:Menu>
+                        </Menu>
+                    </ext:MenuItem>
+                    <ext:MenuItem ID="LiquidacionesMenu" runat="server" Text="Hojas de Liquidación" Icon="Folder" HideOnClick="false">
+                        <Menu>
+                            <ext:Menu runat="server">
+                                <Items>
+                                    <ext:MenuItem ID="LiquidacionesMenuItem" Text="Hojas de Liquidación" Icon="Script" >
+                                        <Listeners>
+                                            <click Handler="WindowX.hojasDeLiquidacion(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
                                 </Items>

@@ -126,6 +126,16 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
 
         #region Insert
 
+        /*
+         *                  -----Flujo-----
+         * --------Guardar Hoja de Liquidación--------
+         * guardar datos de hoja de liquidación
+         * --------Modificar Inventario de Café--------
+         * modificar inventario de socio como salida
+         *      obtener el inventario de café actual
+         *      modificar inventario de café actual
+         * 
+         */
         public void InsertarHojaDeLiquidacion
             ( string SOCIOS_ID,
             DateTime LIQUIDACIONES_FECHA,
@@ -164,6 +174,8 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
             {
                 using (var db = new colinasEntities())
                 {
+                    /* --------Guardar Hoja de Liquidación-------- */
+                    // guardar datos de hoja de liquidación
                     liquidacion hojaliquidacion = new liquidacion();
 
                     hojaliquidacion.SOCIOS_ID = SOCIOS_ID;
@@ -197,6 +209,27 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                     hojaliquidacion.FECHA_MODIFICACION = hojaliquidacion.FECHA_CREACION;
 
                     db.liquidaciones.AddObject(hojaliquidacion);
+
+                    /* --------Modificar Inventario de Café-------- */
+                    // modificar inventario de socio como salida
+                    IEnumerable<KeyValuePair<string, object>> entityKeyValuesInventario =
+                            new KeyValuePair<string, object>[] {
+                                new KeyValuePair<string, object>("SOCIOS_ID", hojaliquidacion.SOCIOS_ID),
+                                new KeyValuePair<string, object>("CLASIFICACIONES_CAFE_ID", hojaliquidacion.CLASIFICACIONES_CAFE_ID) 
+                            };
+
+                    EntityKey kInventario = new EntityKey("colinasEntities.inventario_cafe_de_socio", entityKeyValuesInventario);
+
+                    // obtener el inventario de café actual
+                    var invCafSoc = db.GetObjectByKey(kInventario);
+
+                    // modificar inventario de café actual
+                    inventario_cafe_de_socio asocInventory = (inventario_cafe_de_socio)invCafSoc;
+
+                    asocInventory.INVENTARIO_CANTIDAD += hojaliquidacion.LIQUIDACIONES_VALOR_TOTAL;
+                    asocInventory.MODIFICADO_POR = MODIFICADO_POR;
+                    asocInventory.FECHA_MODIFICACION = DateTime.Now;
+
                     db.SaveChanges();
                 }
             }
