@@ -87,6 +87,7 @@
     <Content Include="resources\images\page_white_office.png" />
     <Content Include="resources\images\page_white_put.png" />
     <Content Include="resources\images\page_white_text.png" />
+    <Content Include="resources\images\script.png" />
     <Content Include="resources\images\user.png" />
     <Content Include="resources\images\user_edit.png" />
     <Content Include="resources\images\vista_start_button.gif" />
@@ -103,7 +104,7 @@
     <Content Include="Source\Inventario\Ingresos\NotasDePesoEnCatacion.aspx" />
     <Content Include="Source\Inventario\Ingresos\NotasDePesoEnPesaje.aspx" />
     <Content Include="Source\Inventario\InventarioDeCafePorSocio.aspx" />
-    <Content Include="Source\Inventario\Salidas\HojaDeLiquidacion.aspx" />
+    <Content Include="Source\Inventario\Salidas\HojasDeLiquidacion.aspx" />
     <Content Include="Source\Prestamos\Prestamos.aspx" />
     <Content Include="Source\Prestamos\SolicitudPrestamo.aspx" />
     <Content Include="Source\Productos\Productos.aspx" />
@@ -187,12 +188,12 @@
     <Compile Include="Source\Inventario\InventarioDeCafePorSocio.aspx.designer.cs">
       <DependentUpon>InventarioDeCafePorSocio.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Source\Inventario\Salidas\HojaDeLiquidacion.aspx.cs">
-      <DependentUpon>HojaDeLiquidacion.aspx</DependentUpon>
+    <Compile Include="Source\Inventario\Salidas\HojasDeLiquidacion.aspx.cs">
+      <DependentUpon>HojasDeLiquidacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Source\Inventario\Salidas\HojaDeLiquidacion.aspx.designer.cs">
-      <DependentUpon>HojaDeLiquidacion.aspx</DependentUpon>
+    <Compile Include="Source\Inventario\Salidas\HojasDeLiquidacion.aspx.designer.cs">
+      <DependentUpon>HojasDeLiquidacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Prestamos\Prestamos.aspx.cs">
       <DependentUpon>Prestamos.aspx</DependentUpon>

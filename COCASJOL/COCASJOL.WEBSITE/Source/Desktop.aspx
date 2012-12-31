@@ -82,6 +82,12 @@
             filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_office.png", sizingMethod="scale");
         }
         
+        .icon-hojaDeLiquidacion
+        {
+            background-image: url(../resources/images/script.png) !important;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/script.png", sizingMethod="scale");
+        }
+        
         .icon-solicitudesDePrestamo
         {
             background-image: url(../resources/images/page_white_text.png) !important;
@@ -345,6 +351,10 @@
                 DesktopX.createDynamicWindow(app, 'pagewhiteoffice', 'Notas De Peso', 'Inventario/Ingresos/NotasDePesoEnAdministracion.aspx', 1000, 640);
             },
 
+            hojasDeLiquidacion: function (app) {
+                DesktopX.createDynamicWindow(app, 'script', 'Hojas De Liquidación', 'Inventario/Salidas/HojasDeLiquidacion.aspx', 1000, 640);
+            },
+
             solicitudesDePrestamo: function (app) {
                 DesktopX.createDynamicWindow(app, 'pagewhitetext', 'Solicitudes de Prestamo', 'Prestamos/SolicitudPrestamo.aspx');
             },
@@ -395,6 +405,8 @@
                 WindowX.notasDePesoEnCatacion(app);
             } else if (id == 'scNotasDePeso') {
                 WindowX.notasDePeso(app);
+            } else if (id == 'scHojasDeLiquidacion') {
+                WindowX.hojasDeLiquidacion(app);
             } else if (id == 'scSolicitudesDePrestamo') {
                 WindowX.solicitudesDePrestamo(app);
             } else if (id == 'scPrestamos') {
@@ -621,6 +633,7 @@
                 <ext:DesktopShortcut ShortcutID="scNotasDePesoEnPesaje"      Text="Notas De Peso en Area de Pesaje"   IconCls="shortcut-icon icon-notasDePesoEnPesaje" />
                 <ext:DesktopShortcut ShortcutID="scNotasDePesoEnCatacion"    Text="Notas De Peso en Area de Catación" IconCls="shortcut-icon icon-notasDePesoEnCatacion" />
                 <ext:DesktopShortcut ShortcutID="scNotasDePeso"              Text="Notas de Peso"                     IconCls="shortcut-icon icon-notasDePeso" />
+                <ext:DesktopShortcut ShortcutID="scHojasDeLiquidacion"       Text="Hojas de Liquidación"              IconCls="shortcut-icon icon-hojaDeLiquidacion" />
                 <ext:DesktopShortcut ShortcutID="scSolicitudesDePrestamo"    Text="Solicitudes de Prestamo"           IconCls="shortcut-icon icon-solicitudesDePrestamo" />
                 <ext:DesktopShortcut ShortcutID="scPrestamos"                Text="Prestamos"                         IconCls="shortcut-icon icon-prestamos" />
                 <ext:DesktopShortcut ShortcutID="scClasificacionesDeCafe"    Text="Clasificaciones de Café"           IconCls="shortcut-icon icon-clasificacionesDeCafe" />

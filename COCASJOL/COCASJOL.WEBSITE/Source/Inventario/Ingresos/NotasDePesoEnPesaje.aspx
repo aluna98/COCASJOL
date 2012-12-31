@@ -221,7 +221,7 @@
 
             getNombreDeSocio: function (sociosIdTxt, nombreTxt) {
                 var comboBox = sociosIdTxt, value = comboBox.getValue();
-                record = comboBox.findRecord(value), index = comboBox.getStore().indexOf(record);
+                record = comboBox.findRecord(comboBox.valueField, value), index = comboBox.getStore().indexOf(record);
 
                 var nombreCompleto = record.data.SOCIOS_PRIMER_NOMBRE +
                                      (record.data.SOCIOS_SEGUNDO_NOMBRE != '' ? (' ' + record.data.SOCIOS_SEGUNDO_NOMBRE) : '') +
@@ -233,7 +233,7 @@
 
             getDireccionDeFinca: function (sociosIdTxt, direccionFincaTxt) {
                 var comboBox = sociosIdTxt, value = comboBox.getValue();
-                record = comboBox.findRecord(value), index = comboBox.getStore().indexOf(record);
+                record = comboBox.findRecord(comboBox.valueField, value), index = comboBox.getStore().indexOf(record);
 
                 direccionFincaTxt.setValue(record.data.PRODUCCION_UBICACION_FINCA);
             }
@@ -934,26 +934,26 @@
             runat="server"
             Hidden="true"
             Icon="PageWhiteAdd"
-            Title="Agregar Notas de Peso"
+            Title="Agregar Nota de Peso"
             Width="640"
-            AutoHeight="True"
+            AutoHeight="true"
             Resizable="false"
             Shadow="None"
             Modal="true"
-            Maximizable="true"
+            Maximizable="false"
             InitCenter="true"
-            ConstrainHeader="true">
+            ConstrainHeader="true" >
             <Listeners>
                 <Show Handler="#{AddFechaNotaTxt}.setValue(new Date()); #{AddFechaNotaTxt}.focus(false,200);" />
                 <Hide Handler="#{AddNotaDetalleSt}.removeAll(); #{AgregarNotasFormP}.getForm().reset();" />
             </Listeners>
             <Items>
-                <ext:FormPanel ID="AgregarNotasFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelAlign="Right" LabelWidth="130">
+                <ext:FormPanel ID="AgregarNotasFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelAlign="Right" LabelWidth="130" Layout="ContainerLayout" AutoScroll="true" >
                     <Listeners>
                         <Show Handler="this.getForm().reset();" />
                     </Listeners>
                     <Items>
-                        <ext:Panel ID="Panel2" runat="server" Title="Nota de Peso" Header="false" Layout="AnchorLayout" AutoHeight="True" Resizable="false" AnchorHorizontal="100%">
+                        <ext:Panel ID="Panel2" runat="server" Title="Nota de Peso" Header="true" Layout="AnchorLayout" AutoHeight="True" Resizable="false" AnchorHorizontal="100%">
                             <Items>
                                 <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" AnchorHorizontal="100%" Border="false">
                                     <Items>
@@ -1374,25 +1374,25 @@
             runat="server"
             Hidden="true"
             Icon="PageWhiteEdit"
-            Title="Editar Notas de Peso"
+            Title="Editar Nota de Peso"
             Width="640"
-            AutoHeight="True"
+            AutoHeight="true"
             Resizable="false"
             Shadow="None"
             Modal="true"
-            Maximizable="true"
+            Maximizable="false"
             InitCenter="true"
-            ConstrainHeader="true">
+            ConstrainHeader="true" >
             <Listeners>
                 <Hide Handler="#{EditNotaDetalleSt}.removeAll(); #{EditarNotasFormP}.getForm().reset();" />
             </Listeners>
             <Items>
-                <ext:FormPanel ID="EditarNotasFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelAlign="Right" LabelWidth="130" >
+                <ext:FormPanel ID="EditarNotasFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelAlign="Right" LabelWidth="130" Layout="ContainerLayout" AutoScroll="true" >
                     <Listeners>
                         <Show Handler="this.getForm().reset(); #{EditFechaNotaTxt}.focus(false, 200);" />
                     </Listeners>
                     <Items>
-                        <ext:Panel ID="Panel10" runat="server" Title="Nota de Peso" Header="false" Layout="AnchorLayout" AutoHeight="True" Resizable="false" AnchorHorizontal="100%">
+                        <ext:Panel ID="Panel10" runat="server" Title="Nota de Peso" Header="true" Layout="AnchorLayout" AutoHeight="True" Resizable="false" AnchorHorizontal="100%">
                             <Items>
                                 <ext:Panel ID="Panel11" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" AnchorHorizontal="100%" Border="false">
                                     <Items>

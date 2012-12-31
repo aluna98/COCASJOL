@@ -11,6 +11,6 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
     public class NotaDePesoEnAdministracionLogic : NotaDePesoLogic
     {
 
-        public NotaDePesoEnAdministracionLogic() : base("ADMINISTRACION") { }
+        public NotaDePesoEnAdministracionLogic() : base("") { }
     }
 }

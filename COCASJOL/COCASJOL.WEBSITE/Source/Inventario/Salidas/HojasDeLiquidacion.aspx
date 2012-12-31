@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="HojaDeLiquidacion.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Inventario.Salidas.HojaDeLiquidacion" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="HojasDeLiquidacion.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Inventario.Salidas.HojasDeLiquidacion" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 
