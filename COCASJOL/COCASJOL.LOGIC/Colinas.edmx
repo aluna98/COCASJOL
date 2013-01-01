@@ -238,6 +238,7 @@
           <Property Name="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA" Type="decimal" Nullable="false" Precision="5" Scale="2" />
           <Property Name="NOTAS_PORCENTAJE_DEFECTO" Type="decimal" Nullable="false" Precision="5" Scale="2" />
           <Property Name="NOTAS_PORCENTAJE_HUMEDAD" Type="decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="NOTAS_PESO_TRANSPORTE_COOPERATIVA" Type="decimal" Nullable="false" Precision="12" Scale="4" />
           <Property Name="NOTAS_PESO_DEFECTO" Type="decimal" Nullable="false" Precision="12" Scale="4" />
           <Property Name="NOTAS_PESO_HUMEDAD" Type="decimal" Nullable="false" Precision="12" Scale="4" />
           <Property Name="NOTAS_PESO_DESCUENTO" Type="decimal" Nullable="false" Precision="12" Scale="4" />
@@ -1494,6 +1495,7 @@
           <Property Type="Decimal" Name="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA" Nullable="false" />
           <Property Type="Decimal" Name="NOTAS_PORCENTAJE_DEFECTO" Nullable="false" />
           <Property Type="Decimal" Name="NOTAS_PORCENTAJE_HUMEDAD" Nullable="false" />
+          <Property Type="Decimal" Name="NOTAS_PESO_TRANSPORTE_COOPERATIVA" Nullable="false" />
           <Property Type="Decimal" Name="NOTAS_PESO_DEFECTO" Nullable="false" />
           <Property Type="Decimal" Name="NOTAS_PESO_HUMEDAD" Nullable="false" />
           <Property Type="Decimal" Name="NOTAS_PESO_DESCUENTO" Nullable="false" />
@@ -1943,6 +1945,7 @@
                 <ScalarProperty Name="NOTAS_PESO_DESCUENTO" ColumnName="NOTAS_PESO_DESCUENTO" />
                 <ScalarProperty Name="NOTAS_PESO_HUMEDAD" ColumnName="NOTAS_PESO_HUMEDAD" />
                 <ScalarProperty Name="NOTAS_PESO_DEFECTO" ColumnName="NOTAS_PESO_DEFECTO" />
+                <ScalarProperty Name="NOTAS_PESO_TRANSPORTE_COOPERATIVA" ColumnName="NOTAS_PESO_TRANSPORTE_COOPERATIVA" />
                 <ScalarProperty Name="NOTAS_PORCENTAJE_HUMEDAD" ColumnName="NOTAS_PORCENTAJE_HUMEDAD" />
                 <ScalarProperty Name="NOTAS_PORCENTAJE_DEFECTO" ColumnName="NOTAS_PORCENTAJE_DEFECTO" />
                 <ScalarProperty Name="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA" ColumnName="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA" />
@@ -1984,10 +1987,10 @@
         <EntityTypeShape EntityType="COLINASMODEL.socio" Width="1.5" PointX="3.625" PointY="5.125" Height="6.5955208333333353" />
         <AssociationConnector Association="COLINASMODEL.FK_BENEFICIARIO_X_SOCIO_socios" >
           <ConnectorPoint PointX="4.46875" PointY="11.912822265625" />
-          <ConnectorPoint PointX="4.46875" PointY="13.515808238522014" />
-          <ConnectorPoint PointX="3.8958333333333335" PointY="13.515808238522014" />
-          <ConnectorPoint PointX="3.7291666666666665" PointY="13.515808238522014" />
-          <ConnectorPoint PointX="2" PointY="13.515808238522014" />
+          <ConnectorPoint PointX="4.46875" PointY="13.501125288313496" />
+          <ConnectorPoint PointX="3.8958333333333335" PointY="13.501125288313496" />
+          <ConnectorPoint PointX="3.7291666666666665" PointY="13.501125288313496" />
+          <ConnectorPoint PointX="2" PointY="13.501125288313496" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.SOCIO_ID_FK" >
           <ConnectorPoint PointX="3.625" PointY="10.317047526041668" />
@@ -2041,12 +2044,12 @@
           <ConnectorPoint PointX="1.25" PointY="16.25" />
           <ConnectorPoint PointX="1.25" PointY="15.057190755208332" />
           <ConnectorPoint PointX="2.25" PointY="15.057190755208332" />
-          <ConnectorPoint PointX="2.25" PointY="14.781616184365177" />
-          <ConnectorPoint PointX="3.7291666666666665" PointY="14.781616184365177" />
-          <ConnectorPoint PointX="3.8958333333333335" PointY="14.781616184365177" />
-          <ConnectorPoint PointX="4.729166666666667" PointY="14.781616184365177" />
-          <ConnectorPoint PointX="4.895833333333333" PointY="14.781616184365177" />
-          <ConnectorPoint PointX="9" PointY="14.781616184365177" />
+          <ConnectorPoint PointX="2.25" PointY="14.469312644156748" />
+          <ConnectorPoint PointX="3.7291666666666665" PointY="14.469312644156748" />
+          <ConnectorPoint PointX="3.8958333333333335" PointY="14.469312644156748" />
+          <ConnectorPoint PointX="4.854166666666667" PointY="14.469312644156748" />
+          <ConnectorPoint PointX="5.020833333333333" PointY="14.469312644156748" />
+          <ConnectorPoint PointX="9" PointY="14.469312644156748" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.LIQUIDACIONES_SOCIOS_FK" >
           <ConnectorPoint PointX="5.125" PointY="9.28125" />
@@ -2078,23 +2081,23 @@
           <ConnectorPoint PointX="5.125" PointY="10.547841796874998" />
           <ConnectorPoint PointX="5.875" PointY="10.547841796874998" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="COLINASMODEL.nota_de_peso" Width="1.5" PointX="4.5" PointY="15.875" Height="5.8263151041666674" />
+        <EntityTypeShape EntityType="COLINASMODEL.nota_de_peso" Width="1.5" PointX="4.75" PointY="16.25" Height="6.0186165364583246" />
         <AssociationConnector Association="COLINASMODEL.notas_de_peso_clasificacion_cafe_fk" >
           <ConnectorPoint PointX="2" PointY="16.28125" />
           <ConnectorPoint PointX="3.7291666666666665" PointY="16.28125" />
           <ConnectorPoint PointX="3.8958333333333335" PointY="16.28125" />
-          <ConnectorPoint PointX="4.5" PointY="16.28125" />
+          <ConnectorPoint PointX="4.75" PointY="16.28125" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.notas_de_peso_estado_fk" >
-          <ConnectorPoint PointX="8.125" PointY="20.288157552083334" />
-          <ConnectorPoint PointX="6" PointY="20.288157552083334" />
+          <ConnectorPoint PointX="8.125" PointY="20.5381982421875" />
+          <ConnectorPoint PointX="6.25" PointY="20.5381982421875" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.FK_NOTA_DE_PESO_socios" >
-          <ConnectorPoint PointX="4.8125" PointY="11.912822265625" />
-          <ConnectorPoint PointX="4.8125" PointY="15.875" />
+          <ConnectorPoint PointX="4.9375" PointY="11.912822265625" />
+          <ConnectorPoint PointX="4.9375" PointY="16.25" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.FK_NOTA_DETALLE_NOTA_PESO" >
-          <ConnectorPoint PointX="6" PointY="17.365143229166669" />
+          <ConnectorPoint PointX="6.25" PointY="17.365143229166669" />
           <ConnectorPoint PointX="8.125" PointY="17.365143229166669" />
         </AssociationConnector>
         </Diagram>

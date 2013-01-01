@@ -3068,6 +3068,7 @@ namespace COCASJOL.LOGIC
         /// <param name="nOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA">Initial value of the NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA property.</param>
         /// <param name="nOTAS_PORCENTAJE_DEFECTO">Initial value of the NOTAS_PORCENTAJE_DEFECTO property.</param>
         /// <param name="nOTAS_PORCENTAJE_HUMEDAD">Initial value of the NOTAS_PORCENTAJE_HUMEDAD property.</param>
+        /// <param name="nOTAS_PESO_TRANSPORTE_COOPERATIVA">Initial value of the NOTAS_PESO_TRANSPORTE_COOPERATIVA property.</param>
         /// <param name="nOTAS_PESO_DEFECTO">Initial value of the NOTAS_PESO_DEFECTO property.</param>
         /// <param name="nOTAS_PESO_HUMEDAD">Initial value of the NOTAS_PESO_HUMEDAD property.</param>
         /// <param name="nOTAS_PESO_DESCUENTO">Initial value of the NOTAS_PESO_DESCUENTO property.</param>
@@ -3078,7 +3079,7 @@ namespace COCASJOL.LOGIC
         /// <param name="nOTAS_SACOS_RETENIDOS">Initial value of the NOTAS_SACOS_RETENIDOS property.</param>
         /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
         /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
-        public static nota_de_peso Createnota_de_peso(global::System.Int32 nOTAS_ID, global::System.Int32 eSTADOS_NOTA_ID, global::System.String sOCIOS_ID, global::System.Int32 cLASIFICACIONES_CAFE_ID, global::System.DateTime nOTAS_FECHA, global::System.Boolean nOTAS_TRANSPORTE_COOPERATIVA, global::System.Decimal nOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA, global::System.Decimal nOTAS_PORCENTAJE_DEFECTO, global::System.Decimal nOTAS_PORCENTAJE_HUMEDAD, global::System.Decimal nOTAS_PESO_DEFECTO, global::System.Decimal nOTAS_PESO_HUMEDAD, global::System.Decimal nOTAS_PESO_DESCUENTO, global::System.Decimal nOTAS_PESO_SUMA, global::System.Decimal nOTAS_PESO_TARA, global::System.Decimal nOTAS_PESO_TOTAL_RECIBIDO, global::System.String nOTAS_PESO_TOTAL_RECIBIDO_TEXTO, global::System.Int32 nOTAS_SACOS_RETENIDOS, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
+        public static nota_de_peso Createnota_de_peso(global::System.Int32 nOTAS_ID, global::System.Int32 eSTADOS_NOTA_ID, global::System.String sOCIOS_ID, global::System.Int32 cLASIFICACIONES_CAFE_ID, global::System.DateTime nOTAS_FECHA, global::System.Boolean nOTAS_TRANSPORTE_COOPERATIVA, global::System.Decimal nOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA, global::System.Decimal nOTAS_PORCENTAJE_DEFECTO, global::System.Decimal nOTAS_PORCENTAJE_HUMEDAD, global::System.Decimal nOTAS_PESO_TRANSPORTE_COOPERATIVA, global::System.Decimal nOTAS_PESO_DEFECTO, global::System.Decimal nOTAS_PESO_HUMEDAD, global::System.Decimal nOTAS_PESO_DESCUENTO, global::System.Decimal nOTAS_PESO_SUMA, global::System.Decimal nOTAS_PESO_TARA, global::System.Decimal nOTAS_PESO_TOTAL_RECIBIDO, global::System.String nOTAS_PESO_TOTAL_RECIBIDO_TEXTO, global::System.Int32 nOTAS_SACOS_RETENIDOS, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
         {
             nota_de_peso nota_de_peso = new nota_de_peso();
             nota_de_peso.NOTAS_ID = nOTAS_ID;
@@ -3090,6 +3091,7 @@ namespace COCASJOL.LOGIC
             nota_de_peso.NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA = nOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA;
             nota_de_peso.NOTAS_PORCENTAJE_DEFECTO = nOTAS_PORCENTAJE_DEFECTO;
             nota_de_peso.NOTAS_PORCENTAJE_HUMEDAD = nOTAS_PORCENTAJE_HUMEDAD;
+            nota_de_peso.NOTAS_PESO_TRANSPORTE_COOPERATIVA = nOTAS_PESO_TRANSPORTE_COOPERATIVA;
             nota_de_peso.NOTAS_PESO_DEFECTO = nOTAS_PESO_DEFECTO;
             nota_de_peso.NOTAS_PESO_HUMEDAD = nOTAS_PESO_HUMEDAD;
             nota_de_peso.NOTAS_PESO_DESCUENTO = nOTAS_PESO_DESCUENTO;
@@ -3324,6 +3326,30 @@ namespace COCASJOL.LOGIC
         private global::System.Decimal _NOTAS_PORCENTAJE_HUMEDAD;
         partial void OnNOTAS_PORCENTAJE_HUMEDADChanging(global::System.Decimal value);
         partial void OnNOTAS_PORCENTAJE_HUMEDADChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal NOTAS_PESO_TRANSPORTE_COOPERATIVA
+        {
+            get
+            {
+                return _NOTAS_PESO_TRANSPORTE_COOPERATIVA;
+            }
+            set
+            {
+                OnNOTAS_PESO_TRANSPORTE_COOPERATIVAChanging(value);
+                ReportPropertyChanging("NOTAS_PESO_TRANSPORTE_COOPERATIVA");
+                _NOTAS_PESO_TRANSPORTE_COOPERATIVA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NOTAS_PESO_TRANSPORTE_COOPERATIVA");
+                OnNOTAS_PESO_TRANSPORTE_COOPERATIVAChanged();
+            }
+        }
+        private global::System.Decimal _NOTAS_PESO_TRANSPORTE_COOPERATIVA;
+        partial void OnNOTAS_PESO_TRANSPORTE_COOPERATIVAChanging(global::System.Decimal value);
+        partial void OnNOTAS_PESO_TRANSPORTE_COOPERATIVAChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

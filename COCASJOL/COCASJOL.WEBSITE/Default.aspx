@@ -10,6 +10,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <%--<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 64x64" type="image/vnd.microsoft.icon" />--%>
     <title>Colinas Login</title>
     <style type="text/css"> 
         /*body
@@ -41,8 +42,9 @@
                 Ext.Msg.alert('Login', 'El nombre de usuario y contraseña son necesarios.');
                 return;
             } else {
-                txtPassword.setValue(faultylabs.MD5(txtPassword.getValue()));
-                Ext.net.DirectMethods.Button1_Click({ eventMask: { showMask: true, minDelay: 1000 } });
+                var encryptedpass = md5(txtPassword.getValue());
+                txtPassword.setValue(encryptedpass);
+                Ext.net.DirectMethods.Button1_Click({ eventMask: { showMask: true, minDelay: 1000} });
             }
         };
 
@@ -107,7 +109,7 @@
 </head>
 <body>
     <form runat="server">
-        <ext:ResourceManager runat="server">
+        <ext:ResourceManager runat="server" DisableViewState="true">
             <Listeners>
                 <DocumentReady Handler="alinearLogin();" />
             </Listeners>

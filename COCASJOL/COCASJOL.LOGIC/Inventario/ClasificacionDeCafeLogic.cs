@@ -199,6 +199,31 @@ namespace COCASJOL.LOGIC.Inventario
             }
         }
 
+        public bool NombreDeClasificacionDeCafeExiste(int CLASIFICACIONES_CAFE_ID, string CLASIFICACIONES_CAFE_NOMBRE)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    db.clasificaciones_cafe.MergeOption = MergeOption.NoTracking;
+
+                    var query = from tp in db.clasificaciones_cafe
+                                where tp.CLASIFICACIONES_CAFE_NOMBRE == CLASIFICACIONES_CAFE_NOMBRE && tp.CLASIFICACIONES_CAFE_ID != CLASIFICACIONES_CAFE_ID
+                                select tp;
+
+                    if (query.Count() > 0)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         #endregion
     }
 }

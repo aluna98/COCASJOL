@@ -424,7 +424,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <ext:ResourceManager ID="ResourceManager1" runat="server">
+        <ext:ResourceManager ID="ResourceManager1" runat="server" DisableViewState="false">
         </ext:ResourceManager>
 
         <ext:Menu runat="server" ID="cmenu">

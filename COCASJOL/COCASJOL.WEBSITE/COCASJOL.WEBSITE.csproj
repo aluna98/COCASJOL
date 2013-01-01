@@ -62,6 +62,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="ExpiredSession.aspx" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="NoAccess.aspx" />
     <Content Include="resources\css\ComboBox_Grid.css" />

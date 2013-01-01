@@ -15,7 +15,7 @@ using COCASJOL.LOGIC.Entorno;
 
 namespace COCASJOL.LOGIC.Web
 {
-    public class COCASJOLBASE : Page
+    public class COCASJOLBASE : System.Web.UI.Page
     {
         private string pagename;
         private XmlDocument docPrivilegios;

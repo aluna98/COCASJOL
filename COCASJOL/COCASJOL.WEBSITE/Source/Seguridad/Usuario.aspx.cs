@@ -109,8 +109,9 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
             try
             {
                 string cedula = this.EditCedulaTxt.Text;
+                string username = this.EditUsernameTxt.Text;
                 UsuarioLogic usuarioLogic = new UsuarioLogic();
-                if (usuarioLogic.CedulaExiste(cedula))
+                if (usuarioLogic.CedulaExiste(cedula, username))
                 {
                     e.Success = false;
                     e.ErrorMessage = "La cedula ingresada ya existe.";

@@ -91,7 +91,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                 // Descuento por Defecto = ((Peso Bruto) - Tara) * (% Defecto)
                 NOTAS_PORCENTAJE_DEFECTO = NOTAS_PORCENTAJE_DEFECTO / 100;
-                decimal DESCUENTO_POR_DEFECTO = (NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_DEFECTO;
+                decimal DESCUENTO_POR_DEFECTO = System.Math.Round((NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_DEFECTO);
 
                 // Descuento por Humedad = ((Peso Bruto) - Tara) * (% Humedad)
                 string strNOTA_PORCENTAJEHUMEDADMIN = Variables["NOTA_PORCENTAJEHUMEDADMIN"];
@@ -102,23 +102,27 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                 NOTAS_PORCENTAJE_HUMEDAD = NOTAS_PORCENTAJE_HUMEDAD / 100;
 
-                decimal DESCUENTO_POR_HUMEDAD = (NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_HUMEDAD;
+                decimal DESCUENTO_POR_HUMEDAD = System.Math.Round((NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_HUMEDAD);
 
                 // Descuento por Transporte = ((Peso Bruto) - Tara) * (% Transporte Cooperativa)
                 string strNOTA_TRANSPORTECOOP = Variables["NOTA_TRANSPORTECOOP"];
                 decimal NOTA_TRANSPORTECOOP = Convert.ToDecimal(strNOTA_TRANSPORTECOOP);
 
+                decimal NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA = 0;
                 decimal NOTAS_PORCENTAJE_TRANSPORTE = 0;
                 if (NOTAS_TRANSPORTE_COOPERATIVA == true)
+                {
+                    NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA = NOTA_TRANSPORTECOOP;
                     NOTAS_PORCENTAJE_TRANSPORTE = NOTA_TRANSPORTECOOP / 100;
+                }
 
-                decimal DESCUENTO_POR_TRANSPORTE = (NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_TRANSPORTE;
+                decimal DESCUENTO_POR_TRANSPORTE = System.Math.Round((NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_TRANSPORTE);
 
                 // Descuento = (Descuento por Defecto) + (Descuento por Humedad) + (Descuento por Transporte)
-                decimal DESCUENTO = DESCUENTO_POR_DEFECTO + DESCUENTO_POR_HUMEDAD + DESCUENTO_POR_TRANSPORTE;
+                decimal DESCUENTO = System.Math.Round(DESCUENTO_POR_DEFECTO + DESCUENTO_POR_HUMEDAD + DESCUENTO_POR_TRANSPORTE);
 
                 // Total = (Peso Bruto) - Tara - Descuento
-                decimal TOTAL = NOTAS_PESO_SUMA - NOTAS_PESO_TARA - DESCUENTO;
+                decimal TOTAL = System.Math.Round(NOTAS_PESO_SUMA - NOTAS_PESO_TARA - DESCUENTO);
 
                 string localization = System.Configuration.ConfigurationManager.AppSettings.Get("numerosALetrasLocalizacion");
 
@@ -142,6 +146,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     CLASIFICACIONES_CAFE_ID,
                     NOTAS_FECHA,
                     NOTAS_TRANSPORTE_COOPERATIVA,
+                    NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA,
                     NOTAS_PORCENTAJE_DEFECTO,
                     NOTAS_PORCENTAJE_HUMEDAD,
                     DESCUENTO_POR_DEFECTO,
@@ -169,6 +174,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             int CLASIFICACIONES_CAFE_ID,
             DateTime NOTAS_FECHA,
             Boolean NOTAS_TRANSPORTE_COOPERATIVA,
+            decimal NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA,
             decimal NOTAS_PORCENTAJE_DEFECTO,
             decimal NOTAS_PORCENTAJE_HUMEDAD,
             decimal NOTAS_PESO_DEFECTO,
@@ -194,6 +200,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     note.CLASIFICACIONES_CAFE_ID = CLASIFICACIONES_CAFE_ID;
                     note.NOTAS_FECHA = NOTAS_FECHA;
                     note.NOTAS_TRANSPORTE_COOPERATIVA = NOTAS_TRANSPORTE_COOPERATIVA;
+                    note.NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA = NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA;
                     note.NOTAS_PORCENTAJE_DEFECTO = NOTAS_PORCENTAJE_DEFECTO;
                     note.NOTAS_PORCENTAJE_HUMEDAD = NOTAS_PORCENTAJE_HUMEDAD;
                     note.NOTAS_PESO_DEFECTO = NOTAS_PESO_DEFECTO;
@@ -317,7 +324,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                 // Descuento por Defecto = ((Peso Bruto) - Tara) * (% Defecto)
                 NOTAS_PORCENTAJE_DEFECTO = NOTAS_PORCENTAJE_DEFECTO / 100;
-                decimal DESCUENTO_POR_DEFECTO = (NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_DEFECTO;
+                decimal DESCUENTO_POR_DEFECTO = System.Math.Round((NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_DEFECTO);
 
                 // Descuento por Humedad = ((Peso Bruto) - Tara) * (% Humedad)
                 string strNOTA_PORCENTAJEHUMEDADMIN = Variables["NOTA_PORCENTAJEHUMEDADMIN"];
@@ -328,23 +335,27 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                 NOTAS_PORCENTAJE_HUMEDAD = NOTAS_PORCENTAJE_HUMEDAD / 100;
 
-                decimal DESCUENTO_POR_HUMEDAD = (NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_HUMEDAD;
+                decimal DESCUENTO_POR_HUMEDAD = System.Math.Round((NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_HUMEDAD);
 
                 // Descuento por Transporte = ((Peso Bruto) - Tara) * (% Transporte Cooperativa)
                 string strNOTA_TRANSPORTECOOP = Variables["NOTA_TRANSPORTECOOP"];
                 decimal NOTA_TRANSPORTECOOP = Convert.ToDecimal(strNOTA_TRANSPORTECOOP);
 
+                decimal NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA = 0;
                 decimal NOTAS_PORCENTAJE_TRANSPORTE = 0;
                 if (NOTAS_TRANSPORTE_COOPERATIVA == true)
+                {
+                    NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA = NOTA_TRANSPORTECOOP;
                     NOTAS_PORCENTAJE_TRANSPORTE = NOTA_TRANSPORTECOOP / 100;
+                }
 
-                decimal DESCUENTO_POR_TRANSPORTE = (NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_TRANSPORTE;
+                decimal DESCUENTO_POR_TRANSPORTE = System.Math.Round((NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_TRANSPORTE);
 
                 // Descuento = (Descuento por Defecto) + (Descuento por Humedad) + (Descuento por Transporte)
-                decimal DESCUENTO = DESCUENTO_POR_DEFECTO + DESCUENTO_POR_HUMEDAD + DESCUENTO_POR_TRANSPORTE;
+                decimal DESCUENTO = System.Math.Round(DESCUENTO_POR_DEFECTO + DESCUENTO_POR_HUMEDAD + DESCUENTO_POR_TRANSPORTE);
 
                 // Total = (Peso Bruto) - Tara - Descuento
-                decimal TOTAL = NOTAS_PESO_SUMA - NOTAS_PESO_TARA - DESCUENTO;
+                decimal TOTAL = System.Math.Round(NOTAS_PESO_SUMA - NOTAS_PESO_TARA - DESCUENTO);
 
                 string localization = System.Configuration.ConfigurationManager.AppSettings.Get("numerosALetrasLocalizacion");
 
@@ -367,6 +378,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     CLASIFICACIONES_CAFE_ID,
                     NOTAS_FECHA,
                     NOTAS_TRANSPORTE_COOPERATIVA,
+                    NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA,
                     NOTAS_PORCENTAJE_DEFECTO,
                     NOTAS_PORCENTAJE_HUMEDAD,
                     DESCUENTO_POR_DEFECTO,
@@ -406,6 +418,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             int CLASIFICACIONES_CAFE_ID,
             DateTime NOTAS_FECHA,
             Boolean NOTAS_TRANSPORTE_COOPERATIVA,
+            decimal NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA,
             decimal NOTAS_PORCENTAJE_DEFECTO,
             decimal NOTAS_PORCENTAJE_HUMEDAD,
             decimal NOTAS_PESO_DEFECTO,
@@ -434,6 +447,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     note.CLASIFICACIONES_CAFE_ID = CLASIFICACIONES_CAFE_ID;
                     note.NOTAS_FECHA = NOTAS_FECHA;
                     note.NOTAS_TRANSPORTE_COOPERATIVA = NOTAS_TRANSPORTE_COOPERATIVA;
+                    note.NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA = NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA;
                     note.NOTAS_PORCENTAJE_DEFECTO = NOTAS_PORCENTAJE_DEFECTO;
                     note.NOTAS_PORCENTAJE_HUMEDAD = NOTAS_PORCENTAJE_HUMEDAD;
                     note.NOTAS_PESO_DEFECTO = NOTAS_PESO_DEFECTO;

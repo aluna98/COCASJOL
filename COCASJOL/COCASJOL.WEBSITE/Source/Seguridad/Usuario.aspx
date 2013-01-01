@@ -40,7 +40,7 @@
             },
 
             insert: function () {
-                AddPasswordTxt.setValue(faultylabs.MD5(AddPasswordTxt.getValue()));
+                AddPasswordTxt.setValue(md5(AddPasswordTxt.getValue()));
                 var fields = AddForm.getForm().getFieldValues(false, "dataIndex");
 
                 Grid.insertRecord(0, fields, false);
@@ -146,7 +146,7 @@
             updatePassword: function () {
                 Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
                     if (btn == 'yes') {
-                        var encrypted = faultylabs.MD5(CambiarClaveConfirmarTxt.getValue());
+                        var encrypted = md5(CambiarClaveConfirmarTxt.getValue());
                         CambiarClaveTxt.setValue(encrypted);
                         CambiarClaveConfirmarTxt.setValue(encrypted);
                         Ext.net.DirectMethods.CambiarClaveGuardarBtn_Click({ success: function () { Ext.Msg.alert('Cambiar Contraseña', 'Contraseña actualizada exitosamente.'); FormPanel2.getForm().reset(); CambiarClaveWin.hide(); } }, { eventMask: { showMask: true, target: 'customtarget', customTarget: FormPanel2} });
@@ -213,7 +213,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <ext:ResourceManager ID="ResourceManager1" runat="server">
+        <ext:ResourceManager ID="ResourceManager1" runat="server"  DisableViewState="true" >
             <Listeners>
                 <DocumentReady Handler="PageX.setReferences();" />
             </Listeners>
@@ -546,14 +546,9 @@
                                                 <ext:TextField runat="server" ID="EditSegundoNombreTxt"   DataIndex="USR_SEGUNDO_NOMBRE"   LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Segundo Nombre" MsgTarget="Side" Vtype="alpha"></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditApellidoTxt"        DataIndex="USR_APELLIDO"         LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Primer Apellido" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditSegundoApellidoTxt" DataIndex="USR_SEGUNDO_APELLIDO" LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Segundo Apellido" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditCedulaTxt"          DataIndex="USR_CEDULA"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="20" FieldLabel="Cedula" AllowBlank="false" MsgTarget="Side" Vtype="alphanum" IsRemoteValidation="true" ValidationEvent="AfterRender" >
-                                                    <RemoteValidation OnValidation="EditCedulaTxt_Change" >
+                                                <ext:TextField runat="server" ID="EditCedulaTxt"          DataIndex="USR_CEDULA"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="20" FieldLabel="Cedula" AllowBlank="false" MsgTarget="Side" Vtype="alphanum" IsRemoteValidation="true" >
+                                                    <RemoteValidation OnValidation="EditCedulaTxt_Change" ValidationEvent="blur">
                                                     </RemoteValidation>
-                                                    <%--<Listeners>
-                                                        <BeforeRemoteValidation Handler="
-                                                        if (EditarUsuarioWin.hidden) return this.originalIsValid(true); 
-                                                        else return true;" />
-                                                    </Listeners>--%>
                                                 </ext:TextField>
                                                 <ext:TextField runat="server" ID="EditEmailTxt"           DataIndex="USR_CORREO"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="30" FieldLabel="Email" Vtype="email"  MsgTarget="Side"></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditPuestoTxt"          DataIndex="USR_PUESTO"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="30" FieldLabel="Puesto" ></ext:TextField>

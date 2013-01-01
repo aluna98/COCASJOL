@@ -64,11 +64,12 @@ namespace COCASJOL.WEBSITE.Source.Inventario
         {
             try
             {
+                int idDeClasificacionDeCafe = Convert.ToInt32(this.EditIdTxt.Value);
                 string nombreDeClasificacionDeCafe = this.EditNombreTxt.Text;
 
                 ClasificacionDeCafeLogic clasificacionDeCafelogic = new ClasificacionDeCafeLogic();
 
-                if (clasificacionDeCafelogic.NombreDeClasificacionDeCafeExiste(nombreDeClasificacionDeCafe))
+                if (clasificacionDeCafelogic.NombreDeClasificacionDeCafeExiste(idDeClasificacionDeCafe, nombreDeClasificacionDeCafe))
                 {
                     e.Success = false;
                     e.ErrorMessage = "El nombre de la clasificación de café ingresada ya existe.";

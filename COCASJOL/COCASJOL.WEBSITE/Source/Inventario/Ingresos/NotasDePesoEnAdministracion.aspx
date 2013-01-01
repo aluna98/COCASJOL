@@ -129,7 +129,6 @@
                     EditWindow.show();
                     EditForm.getForm().loadRecord(rec);
                     EditForm.record = rec;
-                    //EditNotaDetalleSt.reload();
                     EditNotaDetalleSt.reload({
                         callback: function (r, options, success) {
                             if (EditNotaDetalleSt.getCount() <= 0)
@@ -146,6 +145,7 @@
                     this.getDireccionDeFinca(EditSocioId, EditDireccionFinca);
                     EditPorcentajeDefectoTxt.setValue(Ext.util.Format.number(EditPorcentajeDefectoTxt.getValue().replace(/[\%]/g, ''), '0.00%'));
                     EditPorcentajeHumedadTxt.setValue(Ext.util.Format.number(EditPorcentajeHumedadTxt.getValue().replace(/[\%]/g, ''), '0.00%'));
+                    EditPorcentajeTransporteTxt.setValue(Ext.util.Format.number(EditPorcentajeTransporteTxt.getValue().replace(/[\%]/g, ''), '0.00%'));
                 }
             },
 
@@ -184,8 +184,8 @@
             },
 
             getNombreDeSocio: function (sociosIdTxt, nombreTxt) {
-                var comboBox = sociosIdTxt, value = comboBox.getValue();
-                record = comboBox.findRecord(comboBox.valueField, value), index = comboBox.getStore().indexOf(record);
+                var value = sociosIdTxt.getValue();
+                var record = SocioSt.getById(value);
 
                 var nombreCompleto = record.data.SOCIOS_PRIMER_NOMBRE +
                                      (record.data.SOCIOS_SEGUNDO_NOMBRE != '' ? (' ' + record.data.SOCIOS_SEGUNDO_NOMBRE) : '') +
@@ -196,8 +196,8 @@
             },
 
             getDireccionDeFinca: function (sociosIdTxt, direccionFincaTxt) {
-                var comboBox = sociosIdTxt, value = comboBox.getValue();
-                record = comboBox.findRecord(comboBox.valueField, value), index = comboBox.getStore().indexOf(record);
+                var value = sociosIdTxt.getValue();
+                var record = SocioSt.getById(value);
 
                 direccionFincaTxt.setValue(record.data.PRODUCCION_UBICACION_FINCA);
             }
@@ -246,7 +246,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <ext:ResourceManager ID="ResourceManager1" runat="server" >
+        <ext:ResourceManager ID="ResourceManager1" runat="server"  DisableViewState="true" >
             <Listeners>
                 <DocumentReady Handler="PageX.setReferences(); EditDetailX.setReferences();" />
             </Listeners>
@@ -256,30 +256,31 @@
                 TypeName="COCASJOL.LOGIC.Inventario.Ingresos.NotaDePesoEnAdministracionLogic"
                 SelectMethod="GetNotasDePeso" onselecting="NotasDS_Selecting" >
                 <SelectParameters>
-                    <asp:ControlParameter Name="NOTAS_ID"                        Type="Int32"    ControlID="f_NOTAS_ID"                PropertyName="Text" />
-                    <asp:ControlParameter Name="ESTADOS_NOTA_ID"                 Type="Int32"    ControlID="nullHdn"                   PropertyName="Text" />
-                    <asp:ControlParameter Name="ESTADOS_NOTA_NOMBRE"             Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="SOCIOS_ID"                       Type="String"   ControlID="f_SOCIOS_ID"               PropertyName="Text" />
-                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_ID"         Type="Int32"    ControlID="f_CLASIFICACIONES_CAFE_ID" PropertyName="Text" />
-                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_NOMBRE"     Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="NOTAS_FECHA"                     Type="DateTime" ControlID="f_NOTAS_FECHA"             PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_DESDE"                     Type="DateTime" ControlID="f_DATE_FROM"               PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_HASTA"                     Type="DateTime" ControlID="f_DATE_TO"                 PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="NOTAS_TRANSPORTE_COOPERATIVA"    Type="Boolean"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="NOTAS_PORCENTAJE_DEFECTO"        Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PORCENTAJE_HUMEDAD"        Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PESO_DEFECTO"              Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PESO_HUMEDAD"              Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PESO_DESCUENTO"            Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PESO_SUMA"                 Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PESO_TARA"                 Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PESO_TOTAL_RECIBIDO"       Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO" Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="NOTAS_SACOS_RETENIDOS"           Type="Int32"    ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="CREADO_POR"                      Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_CREACION"                  Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="MODIFICADO_POR"                  Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_MODIFICACION"              Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="NOTAS_ID"                                   Type="Int32"    ControlID="f_NOTAS_ID"                PropertyName="Text" />
+                    <asp:ControlParameter Name="ESTADOS_NOTA_ID"                            Type="Int32"    ControlID="f_ESTADOS_NOTA_ID"         PropertyName="Text" />
+                    <asp:ControlParameter Name="ESTADOS_NOTA_NOMBRE"                        Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="SOCIOS_ID"                                  Type="String"   ControlID="f_SOCIOS_ID"               PropertyName="Text" />
+                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_ID"                    Type="Int32"    ControlID="f_CLASIFICACIONES_CAFE_ID" PropertyName="Text" />
+                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_NOMBRE"                Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="NOTAS_FECHA"                                Type="DateTime" ControlID="f_NOTAS_FECHA"             PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_DESDE"                                Type="DateTime" ControlID="f_DATE_FROM"               PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_HASTA"                                Type="DateTime" ControlID="f_DATE_TO"                 PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="NOTAS_TRANSPORTE_COOPERATIVA"               Type="Boolean"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA"    Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PORCENTAJE_DEFECTO"                   Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PORCENTAJE_HUMEDAD"                   Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PESO_DEFECTO"                         Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PESO_HUMEDAD"                         Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PESO_DESCUENTO"                       Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PESO_SUMA"                            Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PESO_TARA"                            Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PESO_TOTAL_RECIBIDO"                  Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO"            Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="NOTAS_SACOS_RETENIDOS"                      Type="Int32"    ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="CREADO_POR"                                 Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_CREACION"                             Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="MODIFICADO_POR"                             Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_MODIFICACION"                         Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
                 </SelectParameters>
         </asp:ObjectDataSource>
 
@@ -300,7 +301,7 @@
 
         <ext:Store ID="SocioSt" runat="server" DataSourceID="SociosDS">
             <Reader>
-                <ext:JsonReader>
+                <ext:JsonReader IDProperty="SOCIOS_ID">
                     <Fields>
                         <ext:RecordField Name="SOCIOS_ID" />
                         <ext:RecordField Name="SOCIOS_PRIMER_NOMBRE" />
@@ -352,30 +353,31 @@
                                     <Reader>
                                         <ext:JsonReader IDProperty="NOTAS_ID">
                                             <Fields>
-                                                <ext:RecordField Name="NOTAS_ID"                        />
-                                                <ext:RecordField Name="ESTADOS_NOTA_ID"                 />
-                                                <ext:RecordField Name="ESTADOS_NOTA_NOMBRE"             ServerMapping="estados_nota_de_peso.ESTADOS_NOTA_NOMBRE" />
-                                                <ext:RecordField Name="SOCIOS_ID"                       />
-                                                <ext:RecordField Name="CLASIFICACIONES_CAFE_ID"         />
-                                                <ext:RecordField Name="CLASIFICACIONES_CAFE_NOMBRE"     ServerMapping="clasificaciones_cafe.CLASIFICACIONES_CAFE_NOMBRE"/>
-                                                <ext:RecordField Name="NOTAS_FECHA"                     Type="Date" />
-                                                <ext:RecordField Name="FECHA_DESDE"                     Type="Date" DefaultValue="" />
-                                                <ext:RecordField Name="FECHA_HASTA"                     Type="Date" DefaultValue="" />
-                                                <ext:RecordField Name="NOTAS_TRANSPORTE_COOPERATIVA"    />
-                                                <ext:RecordField Name="NOTAS_PORCENTAJE_DEFECTO"        />
-                                                <ext:RecordField Name="NOTAS_PORCENTAJE_HUMEDAD"        />
-                                                <ext:RecordField Name="NOTAS_PESO_DEFECTO"              />
-                                                <ext:RecordField Name="NOTAS_PESO_HUMEDAD"              />
-                                                <ext:RecordField Name="NOTAS_PESO_DESCUENTO"            />
-                                                <ext:RecordField Name="NOTAS_PESO_SUMA"                 />
-                                                <ext:RecordField Name="NOTAS_PESO_TARA"                 />
-                                                <ext:RecordField Name="NOTAS_PESO_TOTAL_RECIBIDO"       />
-                                                <ext:RecordField Name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO" />
-                                                <ext:RecordField Name="NOTAS_SACOS_RETENIDOS"           />
-                                                <ext:RecordField Name="CREADO_POR"                      />
-                                                <ext:RecordField Name="FECHA_CREACION"                  Type="Date" />
-                                                <ext:RecordField Name="MODIFICADO_POR"                  />
-                                                <ext:RecordField Name="FECHA_MODIFICACION"              Type="Date" />
+                                                <ext:RecordField Name="NOTAS_ID"                                />
+                                                <ext:RecordField Name="ESTADOS_NOTA_ID"                         />
+                                                <ext:RecordField Name="ESTADOS_NOTA_NOMBRE"                     ServerMapping="estados_nota_de_peso.ESTADOS_NOTA_NOMBRE" />
+                                                <ext:RecordField Name="SOCIOS_ID"                               />
+                                                <ext:RecordField Name="CLASIFICACIONES_CAFE_ID"                 />
+                                                <ext:RecordField Name="CLASIFICACIONES_CAFE_NOMBRE"             ServerMapping="clasificaciones_cafe.CLASIFICACIONES_CAFE_NOMBRE"/>
+                                                <ext:RecordField Name="NOTAS_FECHA"                             Type="Date" />
+                                                <ext:RecordField Name="FECHA_DESDE"                             Type="Date" DefaultValue="" />
+                                                <ext:RecordField Name="FECHA_HASTA"                             Type="Date" DefaultValue="" />
+                                                <ext:RecordField Name="NOTAS_TRANSPORTE_COOPERATIVA"            />
+                                                <ext:RecordField Name="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA" />
+                                                <ext:RecordField Name="NOTAS_PORCENTAJE_DEFECTO"                />
+                                                <ext:RecordField Name="NOTAS_PORCENTAJE_HUMEDAD"                />
+                                                <ext:RecordField Name="NOTAS_PESO_DEFECTO"                      />
+                                                <ext:RecordField Name="NOTAS_PESO_HUMEDAD"                      />
+                                                <ext:RecordField Name="NOTAS_PESO_DESCUENTO"                    />
+                                                <ext:RecordField Name="NOTAS_PESO_SUMA"                         />
+                                                <ext:RecordField Name="NOTAS_PESO_TARA"                         />
+                                                <ext:RecordField Name="NOTAS_PESO_TOTAL_RECIBIDO"               />
+                                                <ext:RecordField Name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO"         />
+                                                <ext:RecordField Name="NOTAS_SACOS_RETENIDOS"                   />
+                                                <ext:RecordField Name="CREADO_POR"                              />
+                                                <ext:RecordField Name="FECHA_CREACION"                          Type="Date" />
+                                                <ext:RecordField Name="MODIFICADO_POR"                          />
+                                                <ext:RecordField Name="FECHA_MODIFICACION"                      Type="Date" />
                                             </Fields>
                                         </ext:JsonReader>
                                     </Reader>
@@ -387,7 +389,7 @@
                             <ColumnModel>
                                 <Columns>
                                     <ext:Column DataIndex="NOTAS_ID"                    Header="Numero" Sortable="true"></ext:Column>
-                                    <%--<ext:Column DataIndex="ESTADOS_NOTA_NOMBRE"         Header="Estado" Sortable="true" Width="150"></ext:Column>--%>
+                                    <ext:Column DataIndex="ESTADOS_NOTA_NOMBRE"         Header="Estado" Sortable="true" Width="150"></ext:Column>
                                     <ext:Column DataIndex="SOCIOS_ID"                   Header="Socio" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="CLASIFICACIONES_CAFE_NOMBRE" Header="Clasificacion de Café" Sortable="true"></ext:Column>
                                     <ext:DateColumn DataIndex="NOTAS_FECHA"             Header="Fecha" Sortable="true" Width="150" ></ext:DateColumn>
@@ -421,7 +423,7 @@
                                                         </ext:NumberField>
                                                     </Component>
                                                 </ext:HeaderColumn>
-                                                <%--<ext:HeaderColumn Cls="x-small-editor">
+                                                <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
                                                         <ext:ComboBox
                                                             ID="f_ESTADOS_NOTA_ID" 
@@ -444,7 +446,7 @@
                                                             </Listeners>
                                                         </ext:ComboBox>
                                                     </Component>
-                                                </ext:HeaderColumn>--%>
+                                                </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
                                                         <ext:TextField ID="f_SOCIOS_ID" runat="server" EnableKeyEvents="true" Icon="Find">
@@ -604,82 +606,25 @@
                                                                         <ext:ToolTip runat="server" Html="La fecha de nota de peso es de solo lectura." Title="Fecha de Nota de Peso" Width="200" TrackMouse="true" />
                                                                     </ToolTips>
                                                                 </ext:DateField>
-                                                                <ext:ComboBox  runat="server" ID="EditSociosIdTxt"  DataIndex="SOCIOS_ID"   LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Codigo Socio" AllowBlank="false" MsgTarget="Side" ReadOnly="true"
-                                                                    TypeAhead="true"
-                                                                    EmptyText="Seleccione un Socio"
-                                                                    ForceSelection="true" 
-                                                                    StoreID="SocioSt"
-                                                                    Mode="Local" 
-                                                                    DisplayField="SOCIOS_ID"
-                                                                    ValueField="SOCIOS_ID"
-                                                                    MinChars="2"
-                                                                    ListWidth="450" 
-                                                                    PageSize="10" 
-                                                                    ItemSelector="tr.list-item" >
+                                                                <ext:TextField runat="server" ID="EditSociosIdTxt" DataIndex="SOCIOS_ID" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Código Socio" AllowBlank="false" MsgTarget="Side" ReadOnly="true">
                                                                     <ToolTips>
-                                                                        <ext:ToolTip ID="ToolTip1" runat="server" Html="El código de socio de nota de peso es de solo lectura." Title="Socio" Width="200" TrackMouse="true" />
+                                                                        <ext:ToolTip runat="server" Html="El código de socio de nota de peso es de solo lectura." Title="Socio" Width="200" TrackMouse="true" />
                                                                     </ToolTips>
-                                                                    <Template ID="Template2" runat="server" Width="200">
-                                                                        <Html>
-					                                                        <tpl for=".">
-						                                                        <tpl if="[xindex] == 1">
-							                                                        <table class="cbStates-list">
-								                                                        <tr>
-								                	                                        <th>SOCIOS_ID</th>
-								                	                                        <th>SOCIOS_PRIMER_NOMBRE</th>
-                                                                                            <th>SOCIOS_PRIMER_APELLIDO</th>
-								                                                        </tr>
-						                                                        </tpl>
-						                                                        <tr class="list-item">
-							                                                        <td style="padding:3px 0px;">{SOCIOS_ID}</td>
-							                                                        <td>{SOCIOS_PRIMER_NOMBRE}</td>
-                                                                                    <td>{SOCIOS_PRIMER_APELLIDO}</td>
-						                                                        </tr>
-						                                                        <tpl if="[xcount-xindex]==0">
-							                                                        </table>
-						                                                        </tpl>
-					                                                        </tpl>
-				                                                        </Html>
-                                                                    </Template>
-                                                                    <Triggers>
-                                                                        <ext:FieldTrigger Icon="Empty" />
-                                                                    </Triggers>
-                                                                    <Listeners>
-                                                                        <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
-                                                                        <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide(); Ext.getCmp('EditNombreTxt').reset(); Ext.getCmp('EditDireccionFincaTxt').reset(); }" />
-                                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditDireccionFincaTxt'));" />
-                                                                    </Listeners>
-                                                                </ext:ComboBox>
+                                                                </ext:TextField>
                                                             </Items>
                                                         </ext:Panel>
                                                         <ext:Panel ID="Panel13" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
-                                                                <ext:TextField runat="server" ID="EditEstadoNotaCmb" DataIndex="ESTADOS_NOTA_ID" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Estado de Nota" AllowBlank="false" MsgTarget="Side" ReadOnly="true" Hidden="true" >
+                                                                <ext:TextField runat="server" ID="EditEstadoNotaCmb" DataIndex="ESTADOS_NOTA_NOMBRE" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Estado de Nota" AllowBlank="false" MsgTarget="Side" ReadOnly="true" >
                                                                     <ToolTips>
                                                                         <ext:ToolTip runat="server" Html="El estado de la nota de peso es de solo lectura." Title="Estado de Nota de Peso" Width="200" TrackMouse="true" />
                                                                     </ToolTips>
                                                                 </ext:TextField>
-                                                                <ext:ComboBox runat="server"    ID="EditClasificacionCafeCmb"     DataIndex="CLASIFICACIONES_CAFE_ID"          LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Tipo de Café" AllowBlank="false" MsgTarget="Side" ReadOnly="true" 
-                                                                    StoreID="ClasificacionesCafeSt"
-                                                                    EmptyText="Seleccione un Tipo"
-                                                                    ValueField="CLASIFICACIONES_CAFE_ID" 
-                                                                    DisplayField="CLASIFICACIONES_CAFE_NOMBRE"
-                                                                    ForceSelection="true"
-                                                                    Mode="Local"
-                                                                    TypeAhead="true">
-                                                                    <Triggers>
-                                                                        <ext:FieldTrigger Icon="Clear" HideTrigger="true" />
-                                                                    </Triggers>
-                                                                    <Listeners>
-                                                                        <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
-                                                                        <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
-                                                                        <Select Handler="this.triggers[0].show();" />
-                                                                    </Listeners>
+                                                                <ext:TextField runat="server" ID="EditClasificacionCafeCmb" DataIndex="CLASIFICACIONES_CAFE_NOMBRE" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Tipo de Café" AllowBlank="false" MsgTarget="Side" ReadOnly="true" >
                                                                     <ToolTips>
-                                                                        <ext:ToolTip runat="server" Html="La Clasificación de Café es de solo lectura."
-                                                                            Title="Clasificación de Café" Width="200" TrackMouse="true" />
+                                                                        <ext:ToolTip runat="server" Html="El tipo de café es de solo lectura." Title="Tipo de Café" Width="200" TrackMouse="true" />
                                                                     </ToolTips>
-                                                                </ext:ComboBox>
+                                                                </ext:TextField>
                                                             </Items>
                                                         </ext:Panel>
                                                     </Items>
@@ -713,33 +658,38 @@
                                                             <Items>
                                                                 <ext:RadioGroup runat="server" ID="EditTipoTransporteRdGrp" LabelAlign="Right" AnchorHorizontal="100%"  FieldLabel="Forma de Transporte" ColumnsNumber="1" AutoHeight="true" ReadOnly="true">
                                                                     <Items>
-                                                                        <ext:Radio ID="EditPropiRadio" runat="server" InputValue="0" BoxLabel="Carro Propio" ColumnWidth=".5" AnchorHorizontal="100%" Checked="true" ReadOnly="true">
+                                                                        <ext:Radio ID="EditPropiRadio" runat="server" InputValue="0" BoxLabel="Carro Propio" ColumnWidth=".5" AnchorHorizontal="100%" Checked="true" ReadOnly="true" Disabled="true">
                                                                         </ext:Radio>
-                                                                        <ext:Radio ID="EditCooperativaRadio" runat="server" InputValue="1" DataIndex="NOTAS_TRANSPORTE_COOPERATIVA" BoxLabel="Carro de la Cooperativa" ColumnWidth=".5" AnchorHorizontal="100%" ReadOnly="true">
+                                                                        <ext:Radio ID="EditCooperativaRadio" runat="server" InputValue="1" DataIndex="NOTAS_TRANSPORTE_COOPERATIVA" BoxLabel="Carro de la Cooperativa" ColumnWidth=".5" AnchorHorizontal="100%" ReadOnly="true" Disabled="true">
                                                                         </ext:Radio>
                                                                     </Items>
                                                                     <ToolTips>
                                                                         <ext:ToolTip ID="ToolTip2" runat="server" Html="La opción de forma de transporte de nota de peso es de solo lectura." Title="Forma de Transporte" Width="200" TrackMouse="true" />
                                                                     </ToolTips>
                                                                 </ext:RadioGroup>
+                                                                <ext:TextField runat="server" ID="EditPorcentajeTransporteTxt" DataIndex="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Porcentaje de Transporte" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" ReadOnly="true" >
+                                                                    <ToolTips>
+                                                                        <ext:ToolTip ID="ToolTip1" runat="server" Html="El porcentaje de Transporte es de solo lectura." Title="Porcentaje de Transporte" Width="200" TrackMouse="true" />
+                                                                    </ToolTips>
+                                                                </ext:TextField>
                                                                 <ext:TextField runat="server" ID="EditPorcentajeHumedadTxt" DataIndex="NOTAS_PORCENTAJE_HUMEDAD" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Porcentaje de Humedad" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" ReadOnly="true" >
                                                                     <ToolTips>
                                                                         <ext:ToolTip ID="ToolTip6" runat="server" Html="El porcentaje de humedad es de solo lectura." Title="Porcentaje de Humedad" Width="200" TrackMouse="true" />
                                                                     </ToolTips>
                                                                 </ext:TextField>
+                                                                <ext:NumberField runat="server" ID="EditDescuentoHumedadTxt" DataIndex="NOTAS_PESO_HUMEDAD" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Descuento por Humedad" AllowBlank="false" MsgTarget="Side" ReadOnly="true">
+                                                                    <ToolTips>
+                                                                        <ext:ToolTip runat="server" Html="La cantidad de descuento por humedad es de solo lectura." Title="Descuento por Humedad" Width="200" TrackMouse="true" />
+                                                                    </ToolTips>
+                                                                </ext:NumberField>
                                                                 <ext:TextField runat="server" ID="EditPorcentajeDefectoTxt" DataIndex="NOTAS_PORCENTAJE_DEFECTO" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Porcentaje de Defecto" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" ReadOnly="true">
                                                                     <ToolTips>
                                                                         <ext:ToolTip ID="ToolTip7" runat="server" Html="El porcentaje de defecto es de solo lectura." Title="Porcentaje de Defecto" Width="200" TrackMouse="true" />
                                                                     </ToolTips>
                                                                 </ext:TextField>
-                                                            </Items>
-                                                        </ext:FieldSet>
-                                                        <ext:FieldSet ID="EditSacosFS" runat="server" Title="Sacos" Padding="7" >
-                                                            <Items>
-                                                                <ext:NumberField runat="server" ID="EditSumaSacosTxt"                                            LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Cantidad de Sacos" Text="0" ReadOnly="true"></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditSacosRetenidosTxt" DataIndex="NOTAS_SACOS_RETENIDOS"     LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Sacos Retenidos" AllowBlank="false" MsgTarget="Side" ReadOnly="true">
+                                                                <ext:NumberField runat="server" ID="EditDescuentoDefectoTxt" DataIndex="NOTAS_PESO_DEFECTO" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Descuento por Defecto" AllowBlank="false" MsgTarget="Side" ReadOnly="true">
                                                                     <ToolTips>
-                                                                        <ext:ToolTip ID="ToolTip3" runat="server" Html="La cantidad de sacos retenidos es de solo lectura." Title="Sacos Retenidos" Width="200" TrackMouse="true" />
+                                                                        <ext:ToolTip runat="server" Html="La cantidad de descuento por defecto es de solo lectura." Title="Descuento por Defecto" Width="200" TrackMouse="true" />
                                                                     </ToolTips>
                                                                 </ext:NumberField>
                                                             </Items>
@@ -781,6 +731,16 @@
                                             <Items>
                                                 <ext:Panel ID="Panel16" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
                                                     <Items>
+                                                        <ext:FieldSet ID="EditSacosFS" runat="server" Title="Sacos" Padding="5" >
+                                                            <Items>
+                                                                <ext:NumberField runat="server" ID="EditSumaSacosTxt"                                            LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Cantidad de Sacos" Text="0" ReadOnly="true"></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditSacosRetenidosTxt" DataIndex="NOTAS_SACOS_RETENIDOS"     LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Sacos Retenidos" AllowBlank="false" MsgTarget="Side" ReadOnly="true">
+                                                                    <ToolTips>
+                                                                        <ext:ToolTip ID="ToolTip3" runat="server" Html="La cantidad de sacos retenidos es de solo lectura." Title="Sacos Retenidos" Width="200" TrackMouse="true" />
+                                                                    </ToolTips>
+                                                                </ext:NumberField>
+                                                            </Items>
+                                                        </ext:FieldSet>
                                                     </Items>
                                                 </ext:Panel>
                                                 <ext:Panel ID="Panel17" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >

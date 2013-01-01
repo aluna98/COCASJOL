@@ -505,6 +505,29 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        public bool CedulaExiste(string USR_USERNAME, string USR_CEDULA)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    db.usuarios.MergeOption = MergeOption.NoTracking;
+
+                    var query = from u in db.usuarios
+                                where u.USR_CEDULA == USR_CEDULA && u.USR_USERNAME != USR_USERNAME
+                                select u;
+                    if (query.Count() > 0)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public bool CedulaExiste(string USR_CEDULA)
         {
             try

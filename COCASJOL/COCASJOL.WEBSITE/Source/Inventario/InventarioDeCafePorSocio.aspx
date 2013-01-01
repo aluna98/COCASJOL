@@ -150,7 +150,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <ext:ResourceManager ID="ResourceManager1" runat="server">
+        <ext:ResourceManager ID="ResourceManager1" runat="server"  DisableViewState="true" >
             <Listeners>
                 <DocumentReady Handler="PageX.setReferences();" />
             </Listeners>
@@ -221,7 +221,7 @@
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
             <Items>
-                <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Productos" Icon="Basket" Layout="Fit">
+                <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Inventario de Café" Icon="Basket" Layout="Fit">
                     <Items>
                         <ext:GridPanel ID="InventarioCafeGridP" runat="server" AutoExpandColumn="CLASIFICACIONES_CAFE_NOMBRE" Height="300"
                             Title="Usuarios" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">

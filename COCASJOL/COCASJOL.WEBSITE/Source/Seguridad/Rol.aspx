@@ -183,7 +183,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <ext:ResourceManager ID="ResourceManager1" runat="server">
+        <ext:ResourceManager ID="ResourceManager1" runat="server"  DisableViewState="true" >
             <Listeners>
                 <DocumentReady Handler="PageX.setReferences();" />
             </Listeners>

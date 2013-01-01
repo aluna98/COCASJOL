@@ -146,7 +146,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <ext:ResourceManager ID="ResourceManager1" runat="server">
+        <ext:ResourceManager ID="ResourceManager1" runat="server"  DisableViewState="true" >
             <Listeners>
                 <DocumentReady Handler="PageX.setReferences();" />
             </Listeners>
@@ -401,7 +401,7 @@
                                             </ToolTips>
                                         </ext:TextField>
                                         <ext:TextField runat="server"   ID="EditNombreTxt"        DataIndex="VARIABLES_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" IsRemoteValidation="true" >
-                                            <RemoteValidation OnValidation="EditNombreTxt_Validate" />
+                                            <RemoteValidation OnValidation="EditNombreTxt_Validate" ValidationEvent="blur" />
                                         </ext:TextField>
                                         <ext:TextField runat="server"   ID="EditDescripcionTxt"   DataIndex="VARIABLES_DESCRIPCION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100"></ext:TextField>
                                         <ext:TextField runat="server"   ID="EditValorTxt"         DataIndex="VARIABLES_VALOR"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Valor" MaxLength="100" AllowBlank="false" MsgTarget="Side"></ext:TextField>

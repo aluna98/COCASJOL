@@ -630,7 +630,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <ext:ResourceManager ID="ResourceManager1" runat="server" >
+        <ext:ResourceManager ID="ResourceManager1" runat="server"  DisableViewState="true" >
             <Listeners>
                 <DocumentReady Handler="PageX.setReferences(); AddDetailX.setReferences(); EditDetailX.setReferences();" />
             </Listeners>
@@ -640,30 +640,31 @@
                 TypeName="COCASJOL.LOGIC.Inventario.Ingresos.NotaDePesoEnPesajeLogic"
                 SelectMethod="GetNotasDePeso" onselecting="NotasDS_Selecting" >
                 <SelectParameters>
-                    <asp:ControlParameter Name="NOTAS_ID"                        Type="Int32"    ControlID="f_NOTAS_ID"                PropertyName="Text" />
-                    <asp:ControlParameter Name="ESTADOS_NOTA_ID"                 Type="Int32"    ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="ESTADOS_NOTA_NOMBRE"             Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="SOCIOS_ID"                       Type="String"   ControlID="f_SOCIOS_ID"               PropertyName="Text" />
-                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_ID"         Type="Int32"    ControlID="f_CLASIFICACIONES_CAFE_ID" PropertyName="Text" />
-                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_NOMBRE"     Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="NOTAS_FECHA"                     Type="DateTime" ControlID="f_NOTAS_FECHA"             PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_DESDE"                     Type="DateTime" ControlID="f_DATE_FROM"               PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_HASTA"                     Type="DateTime" ControlID="f_DATE_TO"                 PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="NOTAS_TRANSPORTE_COOPERATIVA"    Type="Boolean"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="NOTAS_PORCENTAJE_DEFECTO"        Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PORCENTAJE_HUMEDAD"        Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PESO_DEFECTO"              Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PESO_HUMEDAD"              Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PESO_DESCUENTO"            Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PESO_SUMA"                 Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PESO_TARA"                 Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PESO_TOTAL_RECIBIDO"       Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO" Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="NOTAS_SACOS_RETENIDOS"           Type="Int32"    ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="CREADO_POR"                      Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_CREACION"                  Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="MODIFICADO_POR"                  Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_MODIFICACION"              Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="NOTAS_ID"                                   Type="Int32"    ControlID="f_NOTAS_ID"                PropertyName="Text" />
+                    <asp:ControlParameter Name="ESTADOS_NOTA_ID"                            Type="Int32"    ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="ESTADOS_NOTA_NOMBRE"                        Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="SOCIOS_ID"                                  Type="String"   ControlID="f_SOCIOS_ID"               PropertyName="Text" />
+                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_ID"                    Type="Int32"    ControlID="f_CLASIFICACIONES_CAFE_ID" PropertyName="Text" />
+                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_NOMBRE"                Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="NOTAS_FECHA"                                Type="DateTime" ControlID="f_NOTAS_FECHA"             PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_DESDE"                                Type="DateTime" ControlID="f_DATE_FROM"               PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_HASTA"                                Type="DateTime" ControlID="f_DATE_TO"                 PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="NOTAS_TRANSPORTE_COOPERATIVA"               Type="Boolean"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA"    Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PORCENTAJE_DEFECTO"                   Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PORCENTAJE_HUMEDAD"                   Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PESO_DEFECTO"                         Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PESO_HUMEDAD"                         Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PESO_DESCUENTO"                       Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PESO_SUMA"                            Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PESO_TARA"                            Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PESO_TOTAL_RECIBIDO"                  Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO"            Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="NOTAS_SACOS_RETENIDOS"                      Type="Int32"    ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="CREADO_POR"                                 Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_CREACION"                             Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="MODIFICADO_POR"                             Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_MODIFICACION"                         Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
                 </SelectParameters>
         </asp:ObjectDataSource>
 
@@ -736,29 +737,30 @@
                                     <Reader>
                                         <ext:JsonReader IDProperty="NOTAS_ID">
                                             <Fields>
-                                                <ext:RecordField Name="NOTAS_ID"                        />
-                                                <ext:RecordField Name="SOCIOS_ID"                       />
-                                                <ext:RecordField Name="ESTADOS_NOTA_ID"                 />
-                                                <ext:RecordField Name="CLASIFICACIONES_CAFE_ID"         />
-                                                <ext:RecordField Name="CLASIFICACIONES_CAFE_NOMBRE"     ServerMapping="clasificaciones_cafe.CLASIFICACIONES_CAFE_NOMBRE"/>
-                                                <ext:RecordField Name="NOTAS_FECHA"                     Type="Date" />
-                                                <ext:RecordField Name="FECHA_DESDE"                     Type="Date" DefaultValue="" />
-                                                <ext:RecordField Name="FECHA_HASTA"                     Type="Date" DefaultValue="" />
-                                                <ext:RecordField Name="NOTAS_TRANSPORTE_COOPERATIVA"    />
-                                                <ext:RecordField Name="NOTAS_PORCENTAJE_DEFECTO"        />
-                                                <ext:RecordField Name="NOTAS_PORCENTAJE_HUMEDAD"        />
-                                                <ext:RecordField Name="NOTAS_PESO_DEFECTO"              />
-                                                <ext:RecordField Name="NOTAS_PESO_HUMEDAD"              />
-                                                <ext:RecordField Name="NOTAS_PESO_DESCUENTO"            />
-                                                <ext:RecordField Name="NOTAS_PESO_SUMA"                 />
-                                                <ext:RecordField Name="NOTAS_PESO_TARA"                 />
-                                                <ext:RecordField Name="NOTAS_PESO_TOTAL_RECIBIDO"       />
-                                                <ext:RecordField Name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO" />
-                                                <ext:RecordField Name="NOTAS_SACOS_RETENIDOS"           />
-                                                <ext:RecordField Name="CREADO_POR"                      />
-                                                <ext:RecordField Name="FECHA_CREACION"                  Type="Date" />
-                                                <ext:RecordField Name="MODIFICADO_POR"                  />
-                                                <ext:RecordField Name="FECHA_MODIFICACION"              Type="Date" />
+                                                <ext:RecordField Name="NOTAS_ID"                                />
+                                                <ext:RecordField Name="SOCIOS_ID"                               />
+                                                <ext:RecordField Name="ESTADOS_NOTA_ID"                         />
+                                                <ext:RecordField Name="CLASIFICACIONES_CAFE_ID"                 />
+                                                <ext:RecordField Name="CLASIFICACIONES_CAFE_NOMBRE"             ServerMapping="clasificaciones_cafe.CLASIFICACIONES_CAFE_NOMBRE"/>
+                                                <ext:RecordField Name="NOTAS_FECHA"                             Type="Date" />
+                                                <ext:RecordField Name="FECHA_DESDE"                             Type="Date" DefaultValue="" />
+                                                <ext:RecordField Name="FECHA_HASTA"                             Type="Date" DefaultValue="" />
+                                                <ext:RecordField Name="NOTAS_TRANSPORTE_COOPERATIVA"            />
+                                                <ext:RecordField Name="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA" />
+                                                <ext:RecordField Name="NOTAS_PORCENTAJE_DEFECTO"                />
+                                                <ext:RecordField Name="NOTAS_PORCENTAJE_HUMEDAD"                />
+                                                <ext:RecordField Name="NOTAS_PESO_DEFECTO"                      />
+                                                <ext:RecordField Name="NOTAS_PESO_HUMEDAD"                      />
+                                                <ext:RecordField Name="NOTAS_PESO_DESCUENTO"                    />
+                                                <ext:RecordField Name="NOTAS_PESO_SUMA"                         />
+                                                <ext:RecordField Name="NOTAS_PESO_TARA"                         />
+                                                <ext:RecordField Name="NOTAS_PESO_TOTAL_RECIBIDO"               />
+                                                <ext:RecordField Name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO"         />
+                                                <ext:RecordField Name="NOTAS_SACOS_RETENIDOS"                   />
+                                                <ext:RecordField Name="CREADO_POR"                              />
+                                                <ext:RecordField Name="FECHA_CREACION"                          Type="Date" />
+                                                <ext:RecordField Name="MODIFICADO_POR"                          />
+                                                <ext:RecordField Name="FECHA_MODIFICACION"                      Type="Date" />
                                             </Fields>
                                         </ext:JsonReader>
                                     </Reader>

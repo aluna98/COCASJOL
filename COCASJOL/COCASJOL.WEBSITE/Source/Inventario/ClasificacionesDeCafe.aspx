@@ -146,7 +146,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <ext:ResourceManager ID="ResourceManager1" runat="server">
+        <ext:ResourceManager ID="ResourceManager1" runat="server"  DisableViewState="true" >
             <Listeners>
                 <DocumentReady Handler="PageX.setReferences();" />
             </Listeners>
@@ -380,7 +380,7 @@
                                     <Items>
                                         <ext:NumberField runat="server" ID="EditIdTxt"            DataIndex="CLASIFICACIONES_CAFE_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Clasificación" AllowBlank="false" ReadOnly="true" Hidden="true"></ext:NumberField>
                                         <ext:TextField runat="server"   ID="EditNombreTxt"        DataIndex="CLASIFICACIONES_CAFE_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" IsRemoteValidation="true">
-                                            <RemoteValidation OnValidation="EditNombreTxt_Validate" />
+                                            <RemoteValidation OnValidation="EditNombreTxt_Validate" ValidationEvent="blur" />
                                         </ext:TextField>
                                         <ext:TextField runat="server"   ID="EditDescripcionTxt"   DataIndex="CLASIFICACIONES_CAFE_DESCRIPCION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100"></ext:TextField>
                                         <ext:TextField runat="server"   ID="EditCreatedByTxt"     DataIndex="CREADO_POR"             LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>

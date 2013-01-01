@@ -239,17 +239,8 @@ namespace COCASJOL.LOGIC.Entorno
                 {
                     db.variables_de_entorno.MergeOption = MergeOption.NoTracking;
 
-                    EntityKey k = new EntityKey("colinasEntities.variables_de_entorno", "VARIABLES_LLAVE", VARIABLES_LLAVE);
-
-                    var envar = db.GetObjectByKey(k);
-
-                    variable_de_entorno environmentVariables = (variable_de_entorno)envar;
-
-                    if (environmentVariables.VARIABLES_NOMBRE == VARIABLES_NOMBRE)
-                        return false;// para que pase la validacion
-
                     var query = from env in db.variables_de_entorno
-                                where env.VARIABLES_NOMBRE == VARIABLES_NOMBRE
+                                where env.VARIABLES_NOMBRE == VARIABLES_NOMBRE && env.VARIABLES_LLAVE != VARIABLES_LLAVE
                                 select env;
 
                     if (query.Count() > 0)

@@ -415,7 +415,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox EditSociosIdTxt;
+        protected global::Ext.Net.TextField EditSociosIdTxt;
         
         /// <summary>
         /// Panel13 control.

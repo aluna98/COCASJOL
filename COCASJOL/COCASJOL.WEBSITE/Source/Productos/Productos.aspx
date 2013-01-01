@@ -150,7 +150,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <ext:ResourceManager ID="ResourceManager1" runat="server">
+        <ext:ResourceManager ID="ResourceManager1" runat="server"  DisableViewState="true" >
             <Listeners>
                 <DocumentReady Handler="PageX.setReferences();" />
             </Listeners>
@@ -500,7 +500,7 @@
                                             </Listeners>
                                         </ext:ComboBox>
                                         <ext:TextField runat="server"   ID="EditNombreTxt"        DataIndex="PRODUCTOS_NOMBRE"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" IsRemoteValidation="true">
-                                            <RemoteValidation OnValidation="EditNombreTxt_Validate" />
+                                            <RemoteValidation OnValidation="EditNombreTxt_Validate" ValidationEvent="blur" />
                                         </ext:TextField>
                                         <ext:TextField runat="server"   ID="EditDescripcionTxt"   DataIndex="PRODUCTOS_DESCRIPCION"  LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100"></ext:TextField>
                                         <ext:NumberField runat="server" ID="EditCantidadMinTxt"   DataIndex="PRODUCTOS_CANTIDAD_MIN" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cantidad Minima" AllowBlank="false" AllowNegative="false" ></ext:NumberField>

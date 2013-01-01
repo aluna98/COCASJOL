@@ -27,7 +27,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
 
                 string loggedUsr = Session["username"] as string;
                 this.LoggedUserHdn.Text = loggedUsr;//necesario actualizarlo siempre, para el tracking correcto
-                //this.ValidarCredenciales(typeof(NotasDePesoEnPesaje).Name);//necesario validar en todo momento las credenciales
             }
             catch (Exception)
             {

@@ -57,6 +57,13 @@
     <menuitem>NotasDePesoEnCatacionMenuItem</menuitem>
   </privilege>
   <privilege>
+    <key>MANT_HOJASLIQUIDACION</key>
+    <page>HojasDeLiquidacion</page>
+    <module>HojasDeLiquidacionModule</module>
+    <shortcut>scHojasDeLiquidacion</shortcut>
+    <menuitem>LiquidacionesMenuItem</menuitem>
+  </privilege>
+  <privilege>
     <key>MANT_ESTADOSNOTAPESO</key>
     <page>EstadosNotaDePeso</page>
     <module>EstadosNotasDePesoModule</module>

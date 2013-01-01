@@ -1,351 +1,184 @@
-/*
- Javascript MD5 library - version 0.4
+function md5cycle(x, k) {
+var a = x[0], b = x[1], c = x[2], d = x[3];
 
- Coded (2011) by Luigi Galli - LG@4e71.org - http://faultylabs.com
+a = ff(a, b, c, d, k[0], 7, -680876936);
+d = ff(d, a, b, c, k[1], 12, -389564586);
+c = ff(c, d, a, b, k[2], 17,  606105819);
+b = ff(b, c, d, a, k[3], 22, -1044525330);
+a = ff(a, b, c, d, k[4], 7, -176418897);
+d = ff(d, a, b, c, k[5], 12,  1200080426);
+c = ff(c, d, a, b, k[6], 17, -1473231341);
+b = ff(b, c, d, a, k[7], 22, -45705983);
+a = ff(a, b, c, d, k[8], 7,  1770035416);
+d = ff(d, a, b, c, k[9], 12, -1958414417);
+c = ff(c, d, a, b, k[10], 17, -42063);
+b = ff(b, c, d, a, k[11], 22, -1990404162);
+a = ff(a, b, c, d, k[12], 7,  1804603682);
+d = ff(d, a, b, c, k[13], 12, -40341101);
+c = ff(c, d, a, b, k[14], 17, -1502002290);
+b = ff(b, c, d, a, k[15], 22,  1236535329);
 
- Thanks to: Roberto Viola
+a = gg(a, b, c, d, k[1], 5, -165796510);
+d = gg(d, a, b, c, k[6], 9, -1069501632);
+c = gg(c, d, a, b, k[11], 14,  643717713);
+b = gg(b, c, d, a, k[0], 20, -373897302);
+a = gg(a, b, c, d, k[5], 5, -701558691);
+d = gg(d, a, b, c, k[10], 9,  38016083);
+c = gg(c, d, a, b, k[15], 14, -660478335);
+b = gg(b, c, d, a, k[4], 20, -405537848);
+a = gg(a, b, c, d, k[9], 5,  568446438);
+d = gg(d, a, b, c, k[14], 9, -1019803690);
+c = gg(c, d, a, b, k[3], 14, -187363961);
+b = gg(b, c, d, a, k[8], 20,  1163531501);
+a = gg(a, b, c, d, k[13], 5, -1444681467);
+d = gg(d, a, b, c, k[2], 9, -51403784);
+c = gg(c, d, a, b, k[7], 14,  1735328473);
+b = gg(b, c, d, a, k[12], 20, -1926607734);
 
- The below code is PUBLIC DOMAIN - NO WARRANTY!
+a = hh(a, b, c, d, k[5], 4, -378558);
+d = hh(d, a, b, c, k[8], 11, -2022574463);
+c = hh(c, d, a, b, k[11], 16,  1839030562);
+b = hh(b, c, d, a, k[14], 23, -35309556);
+a = hh(a, b, c, d, k[1], 4, -1530992060);
+d = hh(d, a, b, c, k[4], 11,  1272893353);
+c = hh(c, d, a, b, k[7], 16, -155497632);
+b = hh(b, c, d, a, k[10], 23, -1094730640);
+a = hh(a, b, c, d, k[13], 4,  681279174);
+d = hh(d, a, b, c, k[0], 11, -358537222);
+c = hh(c, d, a, b, k[3], 16, -722521979);
+b = hh(b, c, d, a, k[6], 23,  76029189);
+a = hh(a, b, c, d, k[9], 4, -640364487);
+d = hh(d, a, b, c, k[12], 11, -421815835);
+c = hh(c, d, a, b, k[15], 16,  530742520);
+b = hh(b, c, d, a, k[2], 23, -995338651);
 
- Changelog: 
-            Version 0.4   - 2011-06-19
-            + added compact version (md5_compact_min.js), this is a slower but smaller version 
-              (more than 4KB lighter before stripping/minification)
-            + added preliminary support for Typed Arrays (see: 
-              https://developer.mozilla.org/en/JavaScript_typed_arrays and 
-              http://www.khronos.org/registry/typedarray/specs/latest/)
-              MD5() now accepts input data as ArrayBuffer, Float32Array, Float64Array, 
-              Int16Array, Int32Array, Int8Array, Uint16Array, Uint32Array or Uint8Array 
-            - moved unit tests to md5_test.js
-            - minor refactoring 
+a = ii(a, b, c, d, k[0], 6, -198630844);
+d = ii(d, a, b, c, k[7], 10,  1126891415);
+c = ii(c, d, a, b, k[14], 15, -1416354905);
+b = ii(b, c, d, a, k[5], 21, -57434055);
+a = ii(a, b, c, d, k[12], 6,  1700485571);
+d = ii(d, a, b, c, k[3], 10, -1894986606);
+c = ii(c, d, a, b, k[10], 15, -1051523);
+b = ii(b, c, d, a, k[1], 21, -2054922799);
+a = ii(a, b, c, d, k[8], 6,  1873313359);
+d = ii(d, a, b, c, k[15], 10, -30611744);
+c = ii(c, d, a, b, k[6], 15, -1560198380);
+b = ii(b, c, d, a, k[13], 21,  1309151649);
+a = ii(a, b, c, d, k[4], 6, -145523070);
+d = ii(d, a, b, c, k[11], 10, -1120210379);
+c = ii(c, d, a, b, k[2], 15,  718787259);
+b = ii(b, c, d, a, k[9], 21, -343485551);
 
-            Version 0.3.* - 2011-06-##
-            - Internal dev versions
+x[0] = add32(a, x[0]);
+x[1] = add32(b, x[1]);
+x[2] = add32(c, x[2]);
+x[3] = add32(d, x[3]);
 
-            Version 0.2 - 2011-05-22 
-            ** FIXED: serious integer overflow problems which could cause a wrong MD5 hash being returned
-
-            Version 0.1 - 2011
-            -Initial version
-*/
-
-if (typeof faultylabs == 'undefined') {
-    faultylabs = {}
 }
 
-/*
-   MD5()
+function cmn(q, a, b, x, s, t) {
+a = add32(add32(a, q), add32(x, t));
+return add32((a << s) | (a >>> (32 - s)), b);
+}
 
-    Computes the MD5 hash for the given input data
+function ff(a, b, c, d, x, s, t) {
+return cmn((b & c) | ((~b) & d), a, b, x, s, t);
+}
 
-    input :  data as String - (Assumes Unicode code points are encoded as UTF-8. If you 
-                               attempt to digest Unicode strings using other encodings 
-                               you will get incorrect results!)
+function gg(a, b, c, d, x, s, t) {
+return cmn((b & d) | (c & (~d)), a, b, x, s, t);
+}
 
-             data as array of characters - (Assumes Unicode code points are encoded as UTF-8. If you 
-                              attempt to digest Unicode strings using other encodings 
-                              you will get incorrect results!)
+function hh(a, b, c, d, x, s, t) {
+return cmn(b ^ c ^ d, a, b, x, s, t);
+}
 
-             data as array of bytes (plain javascript array of integer numbers)
+function ii(a, b, c, d, x, s, t) {
+return cmn(c ^ (b | (~d)), a, b, x, s, t);
+}
 
-             data as ArrayBuffer (see: https://developer.mozilla.org/en/JavaScript_typed_arrays)
-            
-             data as Float32Array, Float64Array, Int16Array, Int32Array, Int8Array, Uint16Array, Uint32Array or Uint8Array (see: https://developer.mozilla.org/en/JavaScript_typed_arrays)
-             
-             (DataView is not supported yet)
+function md51(s) {
+txt = '';
+var n = s.length,
+state = [1732584193, -271733879, -1732584194, 271733878], i;
+for (i=64; i<=s.length; i+=64) {
+md5cycle(state, md5blk(s.substring(i-64, i)));
+}
+s = s.substring(i-64);
+var tail = [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0];
+for (i=0; i<s.length; i++)
+tail[i>>2] |= s.charCodeAt(i) << ((i%4) << 3);
+tail[i>>2] |= 0x80 << ((i%4) << 3);
+if (i > 55) {
+md5cycle(state, tail);
+for (i=0; i<16; i++) tail[i] = 0;
+}
+tail[14] = n*8;
+md5cycle(state, tail);
+return state;
+}
 
-   output: MD5 hash (as Hex Uppercase String)
-*/
+/* there needs to be support for Unicode here,
+ * unless we pretend that we can redefine the MD-5
+ * algorithm for multi-byte characters (perhaps
+ * by adding every four 16-bit characters and
+ * shortening the sum to 32 bits). Otherwise
+ * I suggest performing MD-5 as if every character
+ * was two bytes--e.g., 0040 0025 = @%--but then
+ * how will an ordinary MD-5 sum be matched?
+ * There is no way to standardize text to something
+ * like UTF-8 before transformation; speed cost is
+ * utterly prohibitive. The JavaScript standard
+ * itself needs to look at this: it should start
+ * providing access to strings as preformed UTF-8
+ * 8-bit unsigned value arrays.
+ */
+function md5blk(s) { /* I figured global was faster.   */
+var md5blks = [], i; /* Andy King said do it this way. */
+for (i=0; i<64; i+=4) {
+md5blks[i>>2] = s.charCodeAt(i)
++ (s.charCodeAt(i+1) << 8)
++ (s.charCodeAt(i+2) << 16)
++ (s.charCodeAt(i+3) << 24);
+}
+return md5blks;
+}
 
-faultylabs.MD5 = function(data) {
+var hex_chr = '0123456789abcdef'.split('');
 
-    // convert number to (unsigned) 32 bit hex, zero filled string
-    function to_zerofilled_hex(n) {     
-        var t1 = (n >>> 0).toString(16)
-        return "00000000".substr(0, 8 - t1.length) + t1
-    }
+function rhex(n)
+{
+var s='', j=0;
+for(; j<4; j++)
+s += hex_chr[(n >> (j * 8 + 4)) & 0x0F]
++ hex_chr[(n >> (j * 8)) & 0x0F];
+return s;
+}
 
-    // convert array of chars to array of bytes 
-    function chars_to_bytes(ac) {
-        var retval = []
-        for (var i = 0; i < ac.length; i++) {
-            retval = retval.concat(str_to_bytes(ac[i]))
-        }
-        return retval
-    }
+function hex(x) {
+for (var i=0; i<x.length; i++)
+x[i] = rhex(x[i]);
+return x.join('');
+}
 
+function md5(s) {
+return hex(md51(s));
+}
 
-    // convert a 64 bit unsigned number to array of bytes. Little endian
-    function int64_to_bytes(num) {
-        var retval = []
-        for (var i = 0; i < 8; i++) {
-            retval.push(num & 0xFF)
-            num = num >>> 8
-        }
-        return retval
-    }
+/* this function is much faster,
+so if possible we use it. Some IEs
+are the only ones I know of that
+need the idiotic second function,
+generated by an if clause.  */
 
-    //  32 bit left-rotation
-    function rol(num, places) {
-        return ((num << places) & 0xFFFFFFFF) | (num >>> (32 - places))
-    }
+function add32(a, b) {
+return (a + b) & 0xFFFFFFFF;
+}
 
-    // The 4 MD5 functions
-    function fF(b, c, d) {
-        return (b & c) | (~b & d)
-    }
-
-    function fG(b, c, d) {
-        return (d & b) | (~d & c)
-    }
-
-    function fH(b, c, d) {
-        return b ^ c ^ d
-    }
-
-    function fI(b, c, d) {
-        return c ^ (b | ~d)
-    }
-
-    // pick 4 bytes at specified offset. Little-endian is assumed
-    function bytes_to_int32(arr, off) {
-        return (arr[off + 3] << 24) | (arr[off + 2] << 16) | (arr[off + 1] << 8) | (arr[off])
-    }
-
-    /*
-    Conver string to array of bytes in UTF-8 encoding
-    See: 
-    http://www.dangrossman.info/2007/05/25/handling-utf-8-in-javascript-php-and-non-utf8-databases/
-    http://stackoverflow.com/questions/1240408/reading-bytes-from-a-javascript-string
-    How about a String.getBytes(<ENCODING>) for Javascript!? Isn't it time to add it?
-    */
-    function str_to_bytes(str) {
-        var retval = [ ]
-        for (var i = 0; i < str.length; i++)
-            if (str.charCodeAt(i) <= 0x7F) {
-                retval.push(str.charCodeAt(i))
-            } else {
-                var tmp = encodeURIComponent(str.charAt(i)).substr(1).split('%')
-                for (var j = 0; j < tmp.length; j++) {
-                    retval.push(parseInt(tmp[j], 0x10))
-                }
-            }
-        return retval
-    }
-
-
-    // convert the 4 32-bit buffers to a 128 bit hex string. (Little-endian is assumed)
-    function int128le_to_hex(a, b, c, d) {
-        var ra = ""
-        var t = 0
-        var ta = 0
-        for (var i = 3; i >= 0; i--) {
-            ta = arguments[i]
-            t = (ta & 0xFF)
-            ta = ta >>> 8
-            t = t << 8
-            t = t | (ta & 0xFF)
-            ta = ta >>> 8
-            t = t << 8
-            t = t | (ta & 0xFF)
-            ta = ta >>> 8
-            t = t << 8
-            t = t | ta
-            ra = ra + to_zerofilled_hex(t)
-        }
-        return ra
-    }
-
-    // conversion from typed byte array to plain javascript array 
-    function typed_to_plain(tarr) {
-        var retval = new Array(tarr.length)
-        for (var i = 0; i < tarr.length; i++) {
-            retval[i] = tarr[i]
-        }
-        return retval
-    }
-
-    // check input data type and perform conversions if needed
-    var databytes = null
-    // String
-    var type_mismatch = null
-    if (typeof data == 'string') {
-        // convert string to array bytes
-        databytes = str_to_bytes(data)
-    } else if (data.constructor == Array) {
-        if (data.length === 0) {
-            // if it's empty, just assume array of bytes
-            databytes = data
-        } else if (typeof data[0] == 'string') {
-            databytes = chars_to_bytes(data)
-        } else if (typeof data[0] == 'number') {
-            databytes = data
-        } else {
-            type_mismatch = typeof data[0]
-        }
-    } else if (typeof ArrayBuffer != 'undefined') {
-        if (data instanceof ArrayBuffer) {
-            databytes = typed_to_plain(new Uint8Array(data))
-        } else if ((data instanceof Uint8Array) || (data instanceof Int8Array)) {
-            databytes = typed_to_plain(data)
-        } else if ((data instanceof Uint32Array) || (data instanceof Int32Array) || 
-               (data instanceof Uint16Array) || (data instanceof Int16Array) || 
-               (data instanceof Float32Array) || (data instanceof Float64Array)
-         ) {
-            databytes = typed_to_plain(new Uint8Array(data.buffer))
-        } else {
-            type_mismatch = typeof data
-        }   
-    } else {
-        type_mismatch = typeof data
-    }
-
-    if (type_mismatch) {
-        alert('MD5 type mismatch, cannot process ' + type_mismatch)
-    }
-
-    function _add(n1, n2) {
-        return 0x0FFFFFFFF & (n1 + n2)
-    }
-
-
-    return do_digest()
-
-    function do_digest() {
-
-        // function update partial state for each run
-        function updateRun(nf, sin32, dw32, b32) {
-            var temp = d
-            d = c
-            c = b
-            //b = b + rol(a + (nf + (sin32 + dw32)), b32)
-            b = _add(b, 
-                rol( 
-                    _add(a, 
-                        _add(nf, _add(sin32, dw32))
-                    ), b32
-                )
-            )
-            a = temp
-        }
-
-        // save original length
-        var org_len = databytes.length
-
-        // first append the "1" + 7x "0"
-        databytes.push(0x80)
-
-        // determine required amount of padding
-        var tail = databytes.length % 64
-        // no room for msg length?
-        if (tail > 56) {
-            // pad to next 512 bit block
-            for (var i = 0; i < (64 - tail); i++) {
-                databytes.push(0x0)
-            }
-            tail = databytes.length % 64
-        }
-        for (i = 0; i < (56 - tail); i++) {
-            databytes.push(0x0)
-        }
-        // message length in bits mod 512 should now be 448
-        // append 64 bit, little-endian original msg length (in *bits*!)
-        databytes = databytes.concat(int64_to_bytes(org_len * 8))
-
-        // initialize 4x32 bit state
-        var h0 = 0x67452301
-        var h1 = 0xEFCDAB89
-        var h2 = 0x98BADCFE
-        var h3 = 0x10325476
-
-        // temp buffers
-        var a = 0, b = 0, c = 0, d = 0
-
-        // Digest message
-        for (i = 0; i < databytes.length / 64; i++) {
-            // initialize run
-            a = h0
-            b = h1
-            c = h2
-            d = h3
-
-            var ptr = i * 64
-
-            // do 64 runs
-            updateRun(fF(b, c, d), 0xd76aa478, bytes_to_int32(databytes, ptr), 7)
-            updateRun(fF(b, c, d), 0xe8c7b756, bytes_to_int32(databytes, ptr + 4), 12)
-            updateRun(fF(b, c, d), 0x242070db, bytes_to_int32(databytes, ptr + 8), 17)
-            updateRun(fF(b, c, d), 0xc1bdceee, bytes_to_int32(databytes, ptr + 12), 22)
-            updateRun(fF(b, c, d), 0xf57c0faf, bytes_to_int32(databytes, ptr + 16), 7)
-            updateRun(fF(b, c, d), 0x4787c62a, bytes_to_int32(databytes, ptr + 20), 12)
-            updateRun(fF(b, c, d), 0xa8304613, bytes_to_int32(databytes, ptr + 24), 17)
-            updateRun(fF(b, c, d), 0xfd469501, bytes_to_int32(databytes, ptr + 28), 22)
-            updateRun(fF(b, c, d), 0x698098d8, bytes_to_int32(databytes, ptr + 32), 7)
-            updateRun(fF(b, c, d), 0x8b44f7af, bytes_to_int32(databytes, ptr + 36), 12)
-            updateRun(fF(b, c, d), 0xffff5bb1, bytes_to_int32(databytes, ptr + 40), 17)
-            updateRun(fF(b, c, d), 0x895cd7be, bytes_to_int32(databytes, ptr + 44), 22)
-            updateRun(fF(b, c, d), 0x6b901122, bytes_to_int32(databytes, ptr + 48), 7)
-            updateRun(fF(b, c, d), 0xfd987193, bytes_to_int32(databytes, ptr + 52), 12)
-            updateRun(fF(b, c, d), 0xa679438e, bytes_to_int32(databytes, ptr + 56), 17)
-            updateRun(fF(b, c, d), 0x49b40821, bytes_to_int32(databytes, ptr + 60), 22)
-            updateRun(fG(b, c, d), 0xf61e2562, bytes_to_int32(databytes, ptr + 4), 5)
-            updateRun(fG(b, c, d), 0xc040b340, bytes_to_int32(databytes, ptr + 24), 9)
-            updateRun(fG(b, c, d), 0x265e5a51, bytes_to_int32(databytes, ptr + 44), 14)
-            updateRun(fG(b, c, d), 0xe9b6c7aa, bytes_to_int32(databytes, ptr), 20)
-            updateRun(fG(b, c, d), 0xd62f105d, bytes_to_int32(databytes, ptr + 20), 5)
-            updateRun(fG(b, c, d), 0x2441453, bytes_to_int32(databytes, ptr + 40), 9)
-            updateRun(fG(b, c, d), 0xd8a1e681, bytes_to_int32(databytes, ptr + 60), 14)
-            updateRun(fG(b, c, d), 0xe7d3fbc8, bytes_to_int32(databytes, ptr + 16), 20)
-            updateRun(fG(b, c, d), 0x21e1cde6, bytes_to_int32(databytes, ptr + 36), 5)
-            updateRun(fG(b, c, d), 0xc33707d6, bytes_to_int32(databytes, ptr + 56), 9)
-            updateRun(fG(b, c, d), 0xf4d50d87, bytes_to_int32(databytes, ptr + 12), 14)
-            updateRun(fG(b, c, d), 0x455a14ed, bytes_to_int32(databytes, ptr + 32), 20)
-            updateRun(fG(b, c, d), 0xa9e3e905, bytes_to_int32(databytes, ptr + 52), 5)
-            updateRun(fG(b, c, d), 0xfcefa3f8, bytes_to_int32(databytes, ptr + 8), 9)
-            updateRun(fG(b, c, d), 0x676f02d9, bytes_to_int32(databytes, ptr + 28), 14)
-            updateRun(fG(b, c, d), 0x8d2a4c8a, bytes_to_int32(databytes, ptr + 48), 20)
-            updateRun(fH(b, c, d), 0xfffa3942, bytes_to_int32(databytes, ptr + 20), 4)
-            updateRun(fH(b, c, d), 0x8771f681, bytes_to_int32(databytes, ptr + 32), 11)
-            updateRun(fH(b, c, d), 0x6d9d6122, bytes_to_int32(databytes, ptr + 44), 16)
-            updateRun(fH(b, c, d), 0xfde5380c, bytes_to_int32(databytes, ptr + 56), 23)
-            updateRun(fH(b, c, d), 0xa4beea44, bytes_to_int32(databytes, ptr + 4), 4)
-            updateRun(fH(b, c, d), 0x4bdecfa9, bytes_to_int32(databytes, ptr + 16), 11)
-            updateRun(fH(b, c, d), 0xf6bb4b60, bytes_to_int32(databytes, ptr + 28), 16)
-            updateRun(fH(b, c, d), 0xbebfbc70, bytes_to_int32(databytes, ptr + 40), 23)
-            updateRun(fH(b, c, d), 0x289b7ec6, bytes_to_int32(databytes, ptr + 52), 4)
-            updateRun(fH(b, c, d), 0xeaa127fa, bytes_to_int32(databytes, ptr), 11)
-            updateRun(fH(b, c, d), 0xd4ef3085, bytes_to_int32(databytes, ptr + 12), 16)
-            updateRun(fH(b, c, d), 0x4881d05, bytes_to_int32(databytes, ptr + 24), 23)
-            updateRun(fH(b, c, d), 0xd9d4d039, bytes_to_int32(databytes, ptr + 36), 4)
-            updateRun(fH(b, c, d), 0xe6db99e5, bytes_to_int32(databytes, ptr + 48), 11)
-            updateRun(fH(b, c, d), 0x1fa27cf8, bytes_to_int32(databytes, ptr + 60), 16)
-            updateRun(fH(b, c, d), 0xc4ac5665, bytes_to_int32(databytes, ptr + 8), 23)
-            updateRun(fI(b, c, d), 0xf4292244, bytes_to_int32(databytes, ptr), 6)
-            updateRun(fI(b, c, d), 0x432aff97, bytes_to_int32(databytes, ptr + 28), 10)
-            updateRun(fI(b, c, d), 0xab9423a7, bytes_to_int32(databytes, ptr + 56), 15)
-            updateRun(fI(b, c, d), 0xfc93a039, bytes_to_int32(databytes, ptr + 20), 21)
-            updateRun(fI(b, c, d), 0x655b59c3, bytes_to_int32(databytes, ptr + 48), 6)
-            updateRun(fI(b, c, d), 0x8f0ccc92, bytes_to_int32(databytes, ptr + 12), 10)
-            updateRun(fI(b, c, d), 0xffeff47d, bytes_to_int32(databytes, ptr + 40), 15)
-            updateRun(fI(b, c, d), 0x85845dd1, bytes_to_int32(databytes, ptr + 4), 21)
-            updateRun(fI(b, c, d), 0x6fa87e4f, bytes_to_int32(databytes, ptr + 32), 6)
-            updateRun(fI(b, c, d), 0xfe2ce6e0, bytes_to_int32(databytes, ptr + 60), 10)
-            updateRun(fI(b, c, d), 0xa3014314, bytes_to_int32(databytes, ptr + 24), 15)
-            updateRun(fI(b, c, d), 0x4e0811a1, bytes_to_int32(databytes, ptr + 52), 21)
-            updateRun(fI(b, c, d), 0xf7537e82, bytes_to_int32(databytes, ptr + 16), 6)
-            updateRun(fI(b, c, d), 0xbd3af235, bytes_to_int32(databytes, ptr + 44), 10)
-            updateRun(fI(b, c, d), 0x2ad7d2bb, bytes_to_int32(databytes, ptr + 8), 15)
-            updateRun(fI(b, c, d), 0xeb86d391, bytes_to_int32(databytes, ptr + 36), 21)
-
-            // update buffers
-            h0 = _add(h0, a)
-            h1 = _add(h1, b)
-            h2 = _add(h2, c)
-            h3 = _add(h3, d)
-        }
-        // Done! Convert buffers to 128 bit (LE)
-        return int128le_to_hex(h3, h2, h1, h0).toUpperCase()
-    }
-    
-    
+if (md5('hello') != '5d41402abc4b2a76b9719d911017c592') {
+function add32(x, y) {
+var lsw = (x & 0xFFFF) + (y & 0xFFFF),
+msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+return (msw << 16) | (lsw & 0xFFFF);
+}
 }
