@@ -653,6 +653,7 @@
                     <asp:ControlParameter Name="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA"    Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
                     <asp:ControlParameter Name="NOTAS_PORCENTAJE_DEFECTO"                   Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
                     <asp:ControlParameter Name="NOTAS_PORCENTAJE_HUMEDAD"                   Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PESO_TRANSPORTE_COOPERATIVA"          Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
                     <asp:ControlParameter Name="NOTAS_PESO_DEFECTO"                         Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
                     <asp:ControlParameter Name="NOTAS_PESO_HUMEDAD"                         Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
                     <asp:ControlParameter Name="NOTAS_PESO_DESCUENTO"                       Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
@@ -749,6 +750,7 @@
                                                 <ext:RecordField Name="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA" />
                                                 <ext:RecordField Name="NOTAS_PORCENTAJE_DEFECTO"                />
                                                 <ext:RecordField Name="NOTAS_PORCENTAJE_HUMEDAD"                />
+                                                <ext:RecordField Name="NOTAS_PESO_TRANSPORTE_COOPERATIVA"       />
                                                 <ext:RecordField Name="NOTAS_PESO_DEFECTO"                      />
                                                 <ext:RecordField Name="NOTAS_PESO_HUMEDAD"                      />
                                                 <ext:RecordField Name="NOTAS_PESO_DESCUENTO"                    />

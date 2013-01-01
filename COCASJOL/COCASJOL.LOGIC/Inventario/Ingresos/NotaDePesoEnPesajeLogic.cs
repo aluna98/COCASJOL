@@ -149,6 +149,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA,
                     NOTAS_PORCENTAJE_DEFECTO,
                     NOTAS_PORCENTAJE_HUMEDAD,
+                    DESCUENTO_POR_TRANSPORTE,
                     DESCUENTO_POR_DEFECTO,
                     DESCUENTO_POR_HUMEDAD,
                     DESCUENTO,
@@ -177,6 +178,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             decimal NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA,
             decimal NOTAS_PORCENTAJE_DEFECTO,
             decimal NOTAS_PORCENTAJE_HUMEDAD,
+            decimal NOTAS_PESO_TRANSPORTE_COOPERATIVA,
             decimal NOTAS_PESO_DEFECTO,
             decimal NOTAS_PESO_HUMEDAD,
             decimal NOTAS_PESO_DESCUENTO,
@@ -203,6 +205,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     note.NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA = NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA;
                     note.NOTAS_PORCENTAJE_DEFECTO = NOTAS_PORCENTAJE_DEFECTO;
                     note.NOTAS_PORCENTAJE_HUMEDAD = NOTAS_PORCENTAJE_HUMEDAD;
+                    note.NOTAS_PESO_TRANSPORTE_COOPERATIVA = NOTAS_PESO_TRANSPORTE_COOPERATIVA;
                     note.NOTAS_PESO_DEFECTO = NOTAS_PESO_DEFECTO;
                     note.NOTAS_PESO_HUMEDAD = NOTAS_PESO_HUMEDAD;
                     note.NOTAS_PESO_DESCUENTO = NOTAS_PESO_DESCUENTO;
@@ -381,6 +384,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA,
                     NOTAS_PORCENTAJE_DEFECTO,
                     NOTAS_PORCENTAJE_HUMEDAD,
+                    DESCUENTO_POR_TRANSPORTE,
                     DESCUENTO_POR_DEFECTO,
                     DESCUENTO_POR_HUMEDAD,
                     DESCUENTO,
@@ -421,6 +425,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             decimal NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA,
             decimal NOTAS_PORCENTAJE_DEFECTO,
             decimal NOTAS_PORCENTAJE_HUMEDAD,
+            decimal NOTAS_PESO_TRANSPORTE_COOPERATIVA,
             decimal NOTAS_PESO_DEFECTO,
             decimal NOTAS_PESO_HUMEDAD,
             decimal NOTAS_PESO_DESCUENTO,
@@ -450,6 +455,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     note.NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA = NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA;
                     note.NOTAS_PORCENTAJE_DEFECTO = NOTAS_PORCENTAJE_DEFECTO;
                     note.NOTAS_PORCENTAJE_HUMEDAD = NOTAS_PORCENTAJE_HUMEDAD;
+                    note.NOTAS_PESO_TRANSPORTE_COOPERATIVA = NOTAS_PESO_TRANSPORTE_COOPERATIVA;
                     note.NOTAS_PESO_DEFECTO = NOTAS_PESO_DEFECTO;
                     note.NOTAS_PESO_HUMEDAD = NOTAS_PESO_HUMEDAD;
                     note.NOTAS_PESO_DESCUENTO = NOTAS_PESO_DESCUENTO;

@@ -553,6 +553,24 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.ToolTip ToolTip1;
         
         /// <summary>
+        /// EditDescuentoTransporteTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditDescuentoTransporteTxt;
+        
+        /// <summary>
+        /// ToolTip10 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip10;
+        
+        /// <summary>
         /// EditPorcentajeHumedadTxt control.
         /// </summary>
         /// <remarks>

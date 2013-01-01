@@ -105,6 +105,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
              decimal NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA,
              decimal NOTAS_PORCENTAJE_DEFECTO,
              decimal NOTAS_PORCENTAJE_HUMEDAD,
+             decimal NOTAS_PESO_TRANSPORTE_COOPERATIVA,
              decimal NOTAS_PESO_DEFECTO,
              decimal NOTAS_PESO_HUMEDAD,
              decimal NOTAS_PESO_DESCUENTO,
@@ -137,8 +138,10 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                                 (default(DateTime) == FECHA_DESDE ? true : notasPeso.NOTAS_FECHA >= FECHA_DESDE) &&
                                 (default(DateTime) == FECHA_HASTA ? true : notasPeso.NOTAS_FECHA <= FECHA_HASTA) &&
                                 (NOTAS_TRANSPORTE_COOPERATIVA == null ? true : notasPeso.NOTAS_TRANSPORTE_COOPERATIVA == NOTAS_TRANSPORTE_COOPERATIVA) &&
+                                (NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA.Equals(-1) ? true : notasPeso.NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA.Equals(NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA)) &&
                                 (NOTAS_PORCENTAJE_DEFECTO.Equals(-1) ? true : notasPeso.NOTAS_PORCENTAJE_DEFECTO.Equals(NOTAS_PORCENTAJE_DEFECTO)) &&
                                 (NOTAS_PORCENTAJE_HUMEDAD.Equals(-1) ? true : notasPeso.NOTAS_PORCENTAJE_HUMEDAD.Equals(NOTAS_PORCENTAJE_HUMEDAD)) &&
+                                (NOTAS_PESO_TRANSPORTE_COOPERATIVA.Equals(-1) ? true : notasPeso.NOTAS_PESO_TRANSPORTE_COOPERATIVA.Equals(NOTAS_PESO_TRANSPORTE_COOPERATIVA)) &&
                                 (NOTAS_PESO_DEFECTO.Equals(-1) ? true : notasPeso.NOTAS_PESO_DEFECTO.Equals(NOTAS_PESO_DEFECTO)) &&
                                 (NOTAS_PESO_DESCUENTO.Equals(-1) ? true : notasPeso.NOTAS_PESO_DESCUENTO.Equals(NOTAS_PESO_DESCUENTO)) &&
                                 (NOTAS_PESO_HUMEDAD.Equals(-1) ? true : notasPeso.NOTAS_PESO_HUMEDAD.Equals(NOTAS_PESO_HUMEDAD)) &&

@@ -269,6 +269,7 @@
                     <asp:ControlParameter Name="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA"    Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
                     <asp:ControlParameter Name="NOTAS_PORCENTAJE_DEFECTO"                   Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
                     <asp:ControlParameter Name="NOTAS_PORCENTAJE_HUMEDAD"                   Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="NOTAS_PESO_TRANSPORTE_COOPERATIVA"          Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
                     <asp:ControlParameter Name="NOTAS_PESO_DEFECTO"                         Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
                     <asp:ControlParameter Name="NOTAS_PESO_HUMEDAD"                         Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
                     <asp:ControlParameter Name="NOTAS_PESO_DESCUENTO"                       Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
@@ -366,6 +367,7 @@
                                                 <ext:RecordField Name="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA" />
                                                 <ext:RecordField Name="NOTAS_PORCENTAJE_DEFECTO"                />
                                                 <ext:RecordField Name="NOTAS_PORCENTAJE_HUMEDAD"                />
+                                                <ext:RecordField Name="NOTAS_PESO_TRANSPORTE_COOPERATIVA"       />
                                                 <ext:RecordField Name="NOTAS_PESO_DEFECTO"                      />
                                                 <ext:RecordField Name="NOTAS_PESO_HUMEDAD"                      />
                                                 <ext:RecordField Name="NOTAS_PESO_DESCUENTO"                    />
@@ -672,6 +674,11 @@
                                                                         <ext:ToolTip ID="ToolTip1" runat="server" Html="El porcentaje de Transporte es de solo lectura." Title="Porcentaje de Transporte" Width="200" TrackMouse="true" />
                                                                     </ToolTips>
                                                                 </ext:TextField>
+                                                                <ext:NumberField runat="server" ID="EditDescuentoTransporteTxt" DataIndex="NOTAS_PESO_TRANSPORTE_COOPERATIVA" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Descuento por Transporte" AllowBlank="false" MsgTarget="Side" ReadOnly="true">
+                                                                    <ToolTips>
+                                                                        <ext:ToolTip ID="ToolTip10" runat="server" Html="La cantidad de descuento por transporte es de solo lectura." Title="Descuento por Transporte" Width="200" TrackMouse="true" />
+                                                                    </ToolTips>
+                                                                </ext:NumberField>
                                                                 <ext:TextField runat="server" ID="EditPorcentajeHumedadTxt" DataIndex="NOTAS_PORCENTAJE_HUMEDAD" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Porcentaje de Humedad" AllowBlank="false" MsgTarget="Side"  MaskRe="/[0-9\%\.]/" ReadOnly="true" >
                                                                     <ToolTips>
                                                                         <ext:ToolTip ID="ToolTip6" runat="server" Html="El porcentaje de humedad es de solo lectura." Title="Porcentaje de Humedad" Width="200" TrackMouse="true" />
@@ -701,7 +708,7 @@
                                                         <ext:Panel ID="EditDetallPnl" runat="server" Frame="false" Padding="5" Layout="FitLayout" Border="false">
                                                             <Items>
                                                                 <ext:GridPanel ID="EditNotaDetalleGridP" runat="server" AutoExpandColumn="DETALLES_PESO"
-                                                                    Height="250" Title="Detalle" Header="true" Border="true" StripeRows="true"
+                                                                    Height="290" Title="Detalle" Header="true" Border="true" StripeRows="true"
                                                                     TrackMouseOver="true" SelectionMemory="Disabled" StoreID="EditNotaDetalleSt" >
                                                                     <ColumnModel>
                                                                         <Columns>

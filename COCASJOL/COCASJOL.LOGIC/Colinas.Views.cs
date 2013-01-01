@@ -14,7 +14,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySetsFD0BB8CA8B486F7F47517F6CD0E60F094ACDBE76DE67B2217AC64CDE5EFF2EE1))]
+[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySetsA74DC2A41CA0E3CAA5D33EFA62AC043999E38EF9D6AE893E6070A051024674EE))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
@@ -23,18 +23,18 @@ namespace Edm_EntityMappingGeneratedViews
     /// <Summary>
     /// The type contains views for EntitySets and AssociationSets that were generated at design time.
     /// </Summary>
-    public sealed class ViewsForBaseEntitySetsFD0BB8CA8B486F7F47517F6CD0E60F094ACDBE76DE67B2217AC64CDE5EFF2EE1 : System.Data.Mapping.EntityViewContainer
+    public sealed class ViewsForBaseEntitySetsA74DC2A41CA0E3CAA5D33EFA62AC043999E38EF9D6AE893E6070A051024674EE : System.Data.Mapping.EntityViewContainer
     {
         
         /// <Summary>
         /// The constructor stores the views for the extents and also the hash values generated based on the metadata and mapping closure and views.
         /// </Summary>
-        public ViewsForBaseEntitySetsFD0BB8CA8B486F7F47517F6CD0E60F094ACDBE76DE67B2217AC64CDE5EFF2EE1()
+        public ViewsForBaseEntitySetsA74DC2A41CA0E3CAA5D33EFA62AC043999E38EF9D6AE893E6070A051024674EE()
         {
             this.EdmEntityContainerName = "colinasEntities";
             this.StoreEntityContainerName = "COLINASMODELStoreContainer";
-            this.HashOverMappingClosure = "176fd38cb6b3c6a8d1ee9cc9ccdeb4cd2ec96356e545cedee8b6659e1f1f800f";
-            this.HashOverAllExtentViews = "77a570e126ca371cf09c37cf3fc05a54ca86249b75f0710e6d37a30931d840e8";
+            this.HashOverMappingClosure = "87b272ae83bc51af520e8909d42272ce2b52f50f88366877c0c3ef086c55926b";
+            this.HashOverAllExtentViews = "862e5ba6006da148d1624bb44f446d133b7eaa9cb4ffb812ea77e75447217d1d";
             this.ViewCount = 48;
         }
         
@@ -691,41 +691,43 @@ namespace Edm_EntityMappingGeneratedViews
         /// </Summary>
         private System.Collections.Generic.KeyValuePair<string, string> GetView16()
         {
-            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2650);
+            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2808);
             viewString.Append("\r\n    SELECT VALUE -- Constructing notas_de_peso\r\n        [COLINASMODEL.Store.no");
             viewString.Append("tas_de_peso](T1.[notas_de_peso.NOTAS_ID], T1.[notas_de_peso.ESTADOS_NOTA_ID], T1");
             viewString.Append(".[notas_de_peso.SOCIOS_ID], T1.[notas_de_peso.CLASIFICACIONES_CAFE_ID], T1.[nota");
             viewString.Append("s_de_peso.NOTAS_FECHA], T1.[notas_de_peso.NOTAS_TRANSPORTE_COOPERATIVA], T1.[not");
             viewString.Append("as_de_peso.NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA], T1.[notas_de_peso.NOTAS_POR");
             viewString.Append("CENTAJE_DEFECTO], T1.[notas_de_peso.NOTAS_PORCENTAJE_HUMEDAD], T1.[notas_de_peso");
-            viewString.Append(".NOTAS_PESO_DEFECTO], T1.[notas_de_peso.NOTAS_PESO_HUMEDAD], T1.[notas_de_peso.N");
-            viewString.Append("OTAS_PESO_DESCUENTO], T1.[notas_de_peso.NOTAS_PESO_SUMA], T1.[notas_de_peso.NOTA");
-            viewString.Append("S_PESO_TARA], T1.[notas_de_peso.NOTAS_PESO_TOTAL_RECIBIDO], T1.[notas_de_peso.NO");
-            viewString.Append("TAS_PESO_TOTAL_RECIBIDO_TEXTO], T1.[notas_de_peso.NOTAS_SACOS_RETENIDOS], T1.[no");
-            viewString.Append("tas_de_peso.CREADO_POR], T1.[notas_de_peso.FECHA_CREACION], T1.[notas_de_peso.MO");
-            viewString.Append("DIFICADO_POR], T1.[notas_de_peso.FECHA_MODIFICACION])\r\n    FROM (\r\n        SELEC");
-            viewString.Append("T \r\n            T.NOTAS_ID AS [notas_de_peso.NOTAS_ID], \r\n            T.ESTADOS_");
-            viewString.Append("NOTA_ID AS [notas_de_peso.ESTADOS_NOTA_ID], \r\n            T.SOCIOS_ID AS [notas_");
-            viewString.Append("de_peso.SOCIOS_ID], \r\n            T.CLASIFICACIONES_CAFE_ID AS [notas_de_peso.CL");
-            viewString.Append("ASIFICACIONES_CAFE_ID], \r\n            T.NOTAS_FECHA AS [notas_de_peso.NOTAS_FECH");
-            viewString.Append("A], \r\n            T.NOTAS_TRANSPORTE_COOPERATIVA AS [notas_de_peso.NOTAS_TRANSPO");
-            viewString.Append("RTE_COOPERATIVA], \r\n            T.NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA AS [no");
-            viewString.Append("tas_de_peso.NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA], \r\n            T.NOTAS_PORC");
-            viewString.Append("ENTAJE_DEFECTO AS [notas_de_peso.NOTAS_PORCENTAJE_DEFECTO], \r\n            T.NOTA");
-            viewString.Append("S_PORCENTAJE_HUMEDAD AS [notas_de_peso.NOTAS_PORCENTAJE_HUMEDAD], \r\n            ");
-            viewString.Append("T.NOTAS_PESO_DEFECTO AS [notas_de_peso.NOTAS_PESO_DEFECTO], \r\n            T.NOTA");
-            viewString.Append("S_PESO_HUMEDAD AS [notas_de_peso.NOTAS_PESO_HUMEDAD], \r\n            T.NOTAS_PESO");
-            viewString.Append("_DESCUENTO AS [notas_de_peso.NOTAS_PESO_DESCUENTO], \r\n            T.NOTAS_PESO_S");
-            viewString.Append("UMA AS [notas_de_peso.NOTAS_PESO_SUMA], \r\n            T.NOTAS_PESO_TARA AS [nota");
-            viewString.Append("s_de_peso.NOTAS_PESO_TARA], \r\n            T.NOTAS_PESO_TOTAL_RECIBIDO AS [notas_");
-            viewString.Append("de_peso.NOTAS_PESO_TOTAL_RECIBIDO], \r\n            T.NOTAS_PESO_TOTAL_RECIBIDO_TE");
-            viewString.Append("XTO AS [notas_de_peso.NOTAS_PESO_TOTAL_RECIBIDO_TEXTO], \r\n            T.NOTAS_SA");
-            viewString.Append("COS_RETENIDOS AS [notas_de_peso.NOTAS_SACOS_RETENIDOS], \r\n            T.CREADO_P");
-            viewString.Append("OR AS [notas_de_peso.CREADO_POR], \r\n            T.FECHA_CREACION AS [notas_de_pe");
-            viewString.Append("so.FECHA_CREACION], \r\n            T.MODIFICADO_POR AS [notas_de_peso.MODIFICADO_");
-            viewString.Append("POR], \r\n            T.FECHA_MODIFICACION AS [notas_de_peso.FECHA_MODIFICACION], ");
-            viewString.Append("\r\n            True AS _from0\r\n        FROM colinasEntities.notas_de_peso AS T\r\n ");
-            viewString.Append("   ) AS T1");
+            viewString.Append(".NOTAS_PESO_TRANSPORTE_COOPERATIVA], T1.[notas_de_peso.NOTAS_PESO_DEFECTO], T1.[");
+            viewString.Append("notas_de_peso.NOTAS_PESO_HUMEDAD], T1.[notas_de_peso.NOTAS_PESO_DESCUENTO], T1.[");
+            viewString.Append("notas_de_peso.NOTAS_PESO_SUMA], T1.[notas_de_peso.NOTAS_PESO_TARA], T1.[notas_de");
+            viewString.Append("_peso.NOTAS_PESO_TOTAL_RECIBIDO], T1.[notas_de_peso.NOTAS_PESO_TOTAL_RECIBIDO_TE");
+            viewString.Append("XTO], T1.[notas_de_peso.NOTAS_SACOS_RETENIDOS], T1.[notas_de_peso.CREADO_POR], T");
+            viewString.Append("1.[notas_de_peso.FECHA_CREACION], T1.[notas_de_peso.MODIFICADO_POR], T1.[notas_d");
+            viewString.Append("e_peso.FECHA_MODIFICACION])\r\n    FROM (\r\n        SELECT \r\n            T.NOTAS_ID");
+            viewString.Append(" AS [notas_de_peso.NOTAS_ID], \r\n            T.ESTADOS_NOTA_ID AS [notas_de_peso.");
+            viewString.Append("ESTADOS_NOTA_ID], \r\n            T.SOCIOS_ID AS [notas_de_peso.SOCIOS_ID], \r\n    ");
+            viewString.Append("        T.CLASIFICACIONES_CAFE_ID AS [notas_de_peso.CLASIFICACIONES_CAFE_ID], \r\n");
+            viewString.Append("            T.NOTAS_FECHA AS [notas_de_peso.NOTAS_FECHA], \r\n            T.NOTAS_");
+            viewString.Append("TRANSPORTE_COOPERATIVA AS [notas_de_peso.NOTAS_TRANSPORTE_COOPERATIVA], \r\n      ");
+            viewString.Append("      T.NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA AS [notas_de_peso.NOTAS_PORCENTA");
+            viewString.Append("JE_TRANSPORTE_COOPERATIVA], \r\n            T.NOTAS_PORCENTAJE_DEFECTO AS [notas_d");
+            viewString.Append("e_peso.NOTAS_PORCENTAJE_DEFECTO], \r\n            T.NOTAS_PORCENTAJE_HUMEDAD AS [n");
+            viewString.Append("otas_de_peso.NOTAS_PORCENTAJE_HUMEDAD], \r\n            T.NOTAS_PESO_TRANSPORTE_CO");
+            viewString.Append("OPERATIVA AS [notas_de_peso.NOTAS_PESO_TRANSPORTE_COOPERATIVA], \r\n            T.");
+            viewString.Append("NOTAS_PESO_DEFECTO AS [notas_de_peso.NOTAS_PESO_DEFECTO], \r\n            T.NOTAS_");
+            viewString.Append("PESO_HUMEDAD AS [notas_de_peso.NOTAS_PESO_HUMEDAD], \r\n            T.NOTAS_PESO_D");
+            viewString.Append("ESCUENTO AS [notas_de_peso.NOTAS_PESO_DESCUENTO], \r\n            T.NOTAS_PESO_SUM");
+            viewString.Append("A AS [notas_de_peso.NOTAS_PESO_SUMA], \r\n            T.NOTAS_PESO_TARA AS [notas_");
+            viewString.Append("de_peso.NOTAS_PESO_TARA], \r\n            T.NOTAS_PESO_TOTAL_RECIBIDO AS [notas_de");
+            viewString.Append("_peso.NOTAS_PESO_TOTAL_RECIBIDO], \r\n            T.NOTAS_PESO_TOTAL_RECIBIDO_TEXT");
+            viewString.Append("O AS [notas_de_peso.NOTAS_PESO_TOTAL_RECIBIDO_TEXTO], \r\n            T.NOTAS_SACO");
+            viewString.Append("S_RETENIDOS AS [notas_de_peso.NOTAS_SACOS_RETENIDOS], \r\n            T.CREADO_POR");
+            viewString.Append(" AS [notas_de_peso.CREADO_POR], \r\n            T.FECHA_CREACION AS [notas_de_peso");
+            viewString.Append(".FECHA_CREACION], \r\n            T.MODIFICADO_POR AS [notas_de_peso.MODIFICADO_PO");
+            viewString.Append("R], \r\n            T.FECHA_MODIFICACION AS [notas_de_peso.FECHA_MODIFICACION], \r\n");
+            viewString.Append("            True AS _from0\r\n        FROM colinasEntities.notas_de_peso AS T\r\n   ");
+            viewString.Append(" ) AS T1");
             return new System.Collections.Generic.KeyValuePair<string, string>("COLINASMODELStoreContainer.notas_de_peso", viewString.ToString());
         }
         
@@ -1142,40 +1144,42 @@ namespace Edm_EntityMappingGeneratedViews
         /// </Summary>
         private System.Collections.Generic.KeyValuePair<string, string> GetView31()
         {
-            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2612);
+            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2768);
             viewString.Append("\r\n    SELECT VALUE -- Constructing notas_de_peso\r\n        [COLINASMODEL.nota_de_");
             viewString.Append("peso](T1.[nota_de_peso.NOTAS_ID], T1.[nota_de_peso.ESTADOS_NOTA_ID], T1.[nota_de");
             viewString.Append("_peso.SOCIOS_ID], T1.[nota_de_peso.CLASIFICACIONES_CAFE_ID], T1.[nota_de_peso.NO");
             viewString.Append("TAS_FECHA], T1.[nota_de_peso.NOTAS_TRANSPORTE_COOPERATIVA], T1.[nota_de_peso.NOT");
             viewString.Append("AS_PORCENTAJE_TRANSPORTE_COOPERATIVA], T1.[nota_de_peso.NOTAS_PORCENTAJE_DEFECTO");
-            viewString.Append("], T1.[nota_de_peso.NOTAS_PORCENTAJE_HUMEDAD], T1.[nota_de_peso.NOTAS_PESO_DEFEC");
-            viewString.Append("TO], T1.[nota_de_peso.NOTAS_PESO_HUMEDAD], T1.[nota_de_peso.NOTAS_PESO_DESCUENTO");
-            viewString.Append("], T1.[nota_de_peso.NOTAS_PESO_SUMA], T1.[nota_de_peso.NOTAS_PESO_TARA], T1.[not");
-            viewString.Append("a_de_peso.NOTAS_PESO_TOTAL_RECIBIDO], T1.[nota_de_peso.NOTAS_PESO_TOTAL_RECIBIDO");
-            viewString.Append("_TEXTO], T1.[nota_de_peso.NOTAS_SACOS_RETENIDOS], T1.[nota_de_peso.CREADO_POR], ");
-            viewString.Append("T1.[nota_de_peso.FECHA_CREACION], T1.[nota_de_peso.MODIFICADO_POR], T1.[nota_de_");
-            viewString.Append("peso.FECHA_MODIFICACION])\r\n    FROM (\r\n        SELECT \r\n            T.NOTAS_ID A");
-            viewString.Append("S [nota_de_peso.NOTAS_ID], \r\n            T.ESTADOS_NOTA_ID AS [nota_de_peso.ESTA");
-            viewString.Append("DOS_NOTA_ID], \r\n            T.SOCIOS_ID AS [nota_de_peso.SOCIOS_ID], \r\n         ");
-            viewString.Append("   T.CLASIFICACIONES_CAFE_ID AS [nota_de_peso.CLASIFICACIONES_CAFE_ID], \r\n      ");
-            viewString.Append("      T.NOTAS_FECHA AS [nota_de_peso.NOTAS_FECHA], \r\n            T.NOTAS_TRANSPO");
-            viewString.Append("RTE_COOPERATIVA AS [nota_de_peso.NOTAS_TRANSPORTE_COOPERATIVA], \r\n            T.");
-            viewString.Append("NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA AS [nota_de_peso.NOTAS_PORCENTAJE_TRANSP");
-            viewString.Append("ORTE_COOPERATIVA], \r\n            T.NOTAS_PORCENTAJE_DEFECTO AS [nota_de_peso.NOT");
-            viewString.Append("AS_PORCENTAJE_DEFECTO], \r\n            T.NOTAS_PORCENTAJE_HUMEDAD AS [nota_de_pes");
-            viewString.Append("o.NOTAS_PORCENTAJE_HUMEDAD], \r\n            T.NOTAS_PESO_DEFECTO AS [nota_de_peso");
-            viewString.Append(".NOTAS_PESO_DEFECTO], \r\n            T.NOTAS_PESO_HUMEDAD AS [nota_de_peso.NOTAS_");
-            viewString.Append("PESO_HUMEDAD], \r\n            T.NOTAS_PESO_DESCUENTO AS [nota_de_peso.NOTAS_PESO_");
-            viewString.Append("DESCUENTO], \r\n            T.NOTAS_PESO_SUMA AS [nota_de_peso.NOTAS_PESO_SUMA], \r");
-            viewString.Append("\n            T.NOTAS_PESO_TARA AS [nota_de_peso.NOTAS_PESO_TARA], \r\n            ");
-            viewString.Append("T.NOTAS_PESO_TOTAL_RECIBIDO AS [nota_de_peso.NOTAS_PESO_TOTAL_RECIBIDO], \r\n     ");
-            viewString.Append("       T.NOTAS_PESO_TOTAL_RECIBIDO_TEXTO AS [nota_de_peso.NOTAS_PESO_TOTAL_RECIB");
-            viewString.Append("IDO_TEXTO], \r\n            T.NOTAS_SACOS_RETENIDOS AS [nota_de_peso.NOTAS_SACOS_R");
-            viewString.Append("ETENIDOS], \r\n            T.CREADO_POR AS [nota_de_peso.CREADO_POR], \r\n          ");
-            viewString.Append("  T.FECHA_CREACION AS [nota_de_peso.FECHA_CREACION], \r\n            T.MODIFICADO_");
-            viewString.Append("POR AS [nota_de_peso.MODIFICADO_POR], \r\n            T.FECHA_MODIFICACION AS [not");
-            viewString.Append("a_de_peso.FECHA_MODIFICACION], \r\n            True AS _from0\r\n        FROM COLINA");
-            viewString.Append("SMODELStoreContainer.notas_de_peso AS T\r\n    ) AS T1");
+            viewString.Append("], T1.[nota_de_peso.NOTAS_PORCENTAJE_HUMEDAD], T1.[nota_de_peso.NOTAS_PESO_TRANS");
+            viewString.Append("PORTE_COOPERATIVA], T1.[nota_de_peso.NOTAS_PESO_DEFECTO], T1.[nota_de_peso.NOTAS");
+            viewString.Append("_PESO_HUMEDAD], T1.[nota_de_peso.NOTAS_PESO_DESCUENTO], T1.[nota_de_peso.NOTAS_P");
+            viewString.Append("ESO_SUMA], T1.[nota_de_peso.NOTAS_PESO_TARA], T1.[nota_de_peso.NOTAS_PESO_TOTAL_");
+            viewString.Append("RECIBIDO], T1.[nota_de_peso.NOTAS_PESO_TOTAL_RECIBIDO_TEXTO], T1.[nota_de_peso.N");
+            viewString.Append("OTAS_SACOS_RETENIDOS], T1.[nota_de_peso.CREADO_POR], T1.[nota_de_peso.FECHA_CREA");
+            viewString.Append("CION], T1.[nota_de_peso.MODIFICADO_POR], T1.[nota_de_peso.FECHA_MODIFICACION])\r\n");
+            viewString.Append("    FROM (\r\n        SELECT \r\n            T.NOTAS_ID AS [nota_de_peso.NOTAS_ID], ");
+            viewString.Append("\r\n            T.ESTADOS_NOTA_ID AS [nota_de_peso.ESTADOS_NOTA_ID], \r\n           ");
+            viewString.Append(" T.SOCIOS_ID AS [nota_de_peso.SOCIOS_ID], \r\n            T.CLASIFICACIONES_CAFE_I");
+            viewString.Append("D AS [nota_de_peso.CLASIFICACIONES_CAFE_ID], \r\n            T.NOTAS_FECHA AS [not");
+            viewString.Append("a_de_peso.NOTAS_FECHA], \r\n            T.NOTAS_TRANSPORTE_COOPERATIVA AS [nota_de");
+            viewString.Append("_peso.NOTAS_TRANSPORTE_COOPERATIVA], \r\n            T.NOTAS_PORCENTAJE_TRANSPORTE");
+            viewString.Append("_COOPERATIVA AS [nota_de_peso.NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA], \r\n      ");
+            viewString.Append("      T.NOTAS_PORCENTAJE_DEFECTO AS [nota_de_peso.NOTAS_PORCENTAJE_DEFECTO], \r\n ");
+            viewString.Append("           T.NOTAS_PORCENTAJE_HUMEDAD AS [nota_de_peso.NOTAS_PORCENTAJE_HUMEDAD]");
+            viewString.Append(", \r\n            T.NOTAS_PESO_TRANSPORTE_COOPERATIVA AS [nota_de_peso.NOTAS_PESO_");
+            viewString.Append("TRANSPORTE_COOPERATIVA], \r\n            T.NOTAS_PESO_DEFECTO AS [nota_de_peso.NOT");
+            viewString.Append("AS_PESO_DEFECTO], \r\n            T.NOTAS_PESO_HUMEDAD AS [nota_de_peso.NOTAS_PESO");
+            viewString.Append("_HUMEDAD], \r\n            T.NOTAS_PESO_DESCUENTO AS [nota_de_peso.NOTAS_PESO_DESC");
+            viewString.Append("UENTO], \r\n            T.NOTAS_PESO_SUMA AS [nota_de_peso.NOTAS_PESO_SUMA], \r\n   ");
+            viewString.Append("         T.NOTAS_PESO_TARA AS [nota_de_peso.NOTAS_PESO_TARA], \r\n            T.NO");
+            viewString.Append("TAS_PESO_TOTAL_RECIBIDO AS [nota_de_peso.NOTAS_PESO_TOTAL_RECIBIDO], \r\n         ");
+            viewString.Append("   T.NOTAS_PESO_TOTAL_RECIBIDO_TEXTO AS [nota_de_peso.NOTAS_PESO_TOTAL_RECIBIDO_");
+            viewString.Append("TEXTO], \r\n            T.NOTAS_SACOS_RETENIDOS AS [nota_de_peso.NOTAS_SACOS_RETEN");
+            viewString.Append("IDOS], \r\n            T.CREADO_POR AS [nota_de_peso.CREADO_POR], \r\n            T.");
+            viewString.Append("FECHA_CREACION AS [nota_de_peso.FECHA_CREACION], \r\n            T.MODIFICADO_POR ");
+            viewString.Append("AS [nota_de_peso.MODIFICADO_POR], \r\n            T.FECHA_MODIFICACION AS [nota_de");
+            viewString.Append("_peso.FECHA_MODIFICACION], \r\n            True AS _from0\r\n        FROM COLINASMOD");
+            viewString.Append("ELStoreContainer.notas_de_peso AS T\r\n    ) AS T1");
             return new System.Collections.Generic.KeyValuePair<string, string>("colinasEntities.notas_de_peso", viewString.ToString());
         }
         
