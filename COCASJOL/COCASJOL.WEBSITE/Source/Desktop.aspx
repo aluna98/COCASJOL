@@ -9,423 +9,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Colinas</title>
-    <style type="text/css" > 
-        .start-button
-        {
-            background-image: url(../resources/images/cocasjol_start_button.gif) !important;
-        }
-        
-        .shortcut-icon
-        {
-            width: 32px;
-            height: 32px;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/window.png", sizingMethod="scale");
-        }
-        
-        .icon-grid48
-        {
-            background-image: url(../resources/images/grid48x48.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/grid48x48.png", sizingMethod="scale");
-        }
-        
-        .icon-usuarios
-        {
-            background-image: url(../resources/images/user.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/user.png", sizingMethod="scale");
-        }
-        
-        .icon-roles
-        {
-            background-image: url(../resources/images/gear_in.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/gear_in.png", sizingMethod="scale");
-        }
-        
-        .icon-socios
-        {
-            background-image: url(../resources/images/group.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/group.png", sizingMethod="scale");
-        }
-        
-        .icon-tiposDeProducto
-        {
-            background-image: url(../resources/images/basket.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/basket.png", sizingMethod="scale");
-        }
-        
-        .icon-productos
-        {
-            background-image: url(../resources/images/cart.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/cart.png", sizingMethod="scale");
-        }
-        
-        .icon-estadosNotasDePeso
-        {
-            background-image: url(../resources/images/page_go.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_go.png", sizingMethod="scale");
-        }
-        
-        .icon-notasDePesoEnPesaje
-        {
-            background-image: url(../resources/images/page_white_put.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_put.png", sizingMethod="scale");
-        }
-        
-        .icon-notasDePesoEnCatacion
-        {
-            background-image: url(../resources/images/page_white_cup.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_cup.png", sizingMethod="scale");
-        }
-        
-        .icon-notasDePeso
-        {
-            background-image: url(../resources/images/page_white_office.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_office.png", sizingMethod="scale");
-        }
-        
-        .icon-hojaDeLiquidacion
-        {
-            background-image: url(../resources/images/script.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/script.png", sizingMethod="scale");
-        }
-        
-        .icon-solicitudesDePrestamo
-        {
-            background-image: url(../resources/images/page_white_text.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_text.png", sizingMethod="scale");
-        }
-        
-        .icon-prestamos
-        {
-            background-image: url(../resources/images/cheque.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/cheque.png", sizingMethod="scale");
-        }
-        
-        .icon-prestamos16
-        {
-            background-image: url("../resources/images/cheque16x16.png") !important;
-        }
-        
-        .icon-clasificacionesDeCafe
-        {
-            background-image: url(../resources/images/cup.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/cup.png", sizingMethod="scale");
-        }
-        
-        .icon-inventarioDeCafePorSocio
-        {
-            background-image: url(../resources/images/bricks.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/bricks.png", sizingMethod="scale");
-        }
-        
-        .icon-variablesEntorno
-        {
-            background-image: url(../resources/images/database.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/database.png", sizingMethod="scale");
-        }
-        
-        .icon-window48
-        {
-            background-image: url(../resources/images/window48x48.png) !important;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/window48x48.png", sizingMethod="scale");
-        }
-        
-        #poweredby
-        {
-            position: absolute;
-            bottom: 40px;
-            right: 20px;
-            z-index: 15000; /* IE 5-7 */
-            filter: alpha(opacity=70); /* Netscape */
-            -moz-opacity: 0.7; /* Safari 1.x */
-            -khtml-opacity: 0.7; /* Good browsers */
-            opacity: 0.7;
-        }
-        #poweredby div
-        {
-            position: relative;
-            width: 104px;
-            height: 50px;
-            background-image: url(../resources/images/dev-by-unitec.png);
-            background-repeat: no-repeat;
-        }
-        /* The simple background image PNG does not work in IE6-8, but does in IE9 */
-        .x-ie6 #poweredby div, .x-ie7 #poweredby div, .x-ie8 #poweredby div
-        {
-            background-image: none;
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../resources/images/dev-by-unitec.png', sizingMethod='scale');
-        }
-        
-        body
-        {
-            background-image: url(../resources/images/Logo_COCASJOL.jpg);
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-    </style>
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href="../favicon.ico" type="image/x-icon"/>
+
+    <link rel="Stylesheet" type="text/css" href="../resources/css/Desktop.css" />
+    <link rel="Stylesheet" type="text/css" href="../resources/css/DesktopShortcuts.css" />
     <script type="text/javascript" src="../resources/js/md5.js"></script>
-    <script type="text/javascript">
-        var DesktopX = {
-            createDynamicWindow: function (app, ico, title, url, width, height) {
-                width = width == null ? 640 : width;
-                height = height == null ? 480 : height;
-
-                var desk = app.getDesktop();
-
-                var w = desk.getWindow(title + '-win');
-                if (!w) {
-                    w = desk.createWindow({
-                        id: title + '-win',
-                        iconCls: 'icon-' + ico,
-                        title: title,
-                        width: width,
-                        height: height,
-                        maximizable: true,
-                        minimizable: true,
-                        autoScroll: true,
-                        closeAction: 'close',
-                        shim: false,
-                        animCollapse: false,
-                        constrainHeader: true,
-                        layout: 'fit',
-                        autoLoad: {
-                            url: url,
-                            mode: "iframe",
-                            showMask: true
-                        }
-                    });
-                    w.center();
-                }
-                w.show();
-            },
-
-            cascadeWindows: function (app) {
-                app.getDesktop().cascade();
-            },
-
-            tileWindows: function (app) {
-                app.getDesktop().tile();
-            },
-
-            checkerboardWindows: function (app) {
-                var desk = app.getDesktop();
-
-                var availWidth = desk.getWinWidth();
-                var availHeight = desk.getWinHeight();
-
-                var x = 0, y = 0;
-                var lastx = 0, lasty = 0;
-
-                var square = 400;
-
-                desk.getManager().each(function (win) {
-                    if (win.isVisible()) {
-                        win.setWidth(square - 10);
-                        win.setHeight(square - 10);
-
-                        win.setPosition(x, y);
-                        x += square;
-
-                        if (x + square > availWidth) {
-                            x = lastx;
-                            y += square;
-
-                            if (y > availHeight) {
-                                lastx += 20;
-                                lasty += 20;
-                                x = lastx;
-                                y = lasty;
-                            }
-                        }
-                    }
-                }, this);
-            },
-
-            tileFitWindows: function (app, horizontal) {
-                var desk = app.getDesktop();
-                var availWidth = desk.getWinWidth();
-                var availHeight = desk.getWinHeight();
-
-                var x = 0, y = 0;
-
-                var snapCount = 0;
-
-                desk.getManager().each(function (win) {
-                    if (win.isVisible()) {
-                        snapCount++;
-                    }
-                }, this);
-
-                var snapSize = parseInt(availWidth / snapCount);
-
-                if (!horizontal)
-                    snapSize = parseInt(availHeight / snapCount);
-
-                if (snapSize > 0) {
-                    desk.getManager().each(function (win) {
-                        if (win.isVisible()) {
-                            if (horizontal) {
-                                win.setWidth(snapSize);
-                                win.setHeight(availHeight);
-                            } else {
-                                win.setWidth(availWidth);
-                                win.setHeight(snapSize);
-                            }
-
-                            win.setPosition(x, y);
-
-                            if (horizontal)
-                                x += snapSize;
-                            else
-                                y += snapSize;
-                        }
-                    }, this);
-                }
-            },
-
-            closeAllWindows: function (app) {
-                Ext.Msg.confirm('Cerrar Ventanas', 'Todo el trabajo sin guardar en cada una de las ventanas se perdera. Seguro desea cerrar todas las ventanas?', function (btn, text) {
-                    if (btn == 'yes') {
-                        var desk = app.getDesktop();
-                        desk.getManager().each(function (win) {
-                            var w = desk.getWindow(win.title + '-win');
-                            if (w)
-                                w.close();
-                        });
-                    }
-                });
-            },
-
-            minimizeAllWindows: function (app) {
-                var desk = app.getDesktop();
-                desk.getManager().each(function (win) {
-                    var w = desk.getWindow(win.title + '-win');
-                    if (w && w.isVisible())
-                        win.minimize();
-                });
-            },
-
-            showAllWindows: function (app) {
-                var desk = app.getDesktop();
-                desk.getManager().each(function (win) {
-                    var w = desk.getWindow(win.title + '-win');
-                    if (w && w.minimized)
-                        win.show();
-                });
-            }
-        };
-
-        var WindowX = {
-            usuarios: function (app) {
-                DesktopX.createDynamicWindow(app, 'user', 'Usuarios', 'Seguridad/Usuario.aspx');
-            },
-
-            roles: function (app) {
-                DesktopX.createDynamicWindow(app, 'cog', 'Roles', 'Seguridad/Rol.aspx');
-            },
-
-            socios: function (app) {
-                DesktopX.createDynamicWindow(app, 'group', 'Socios', 'Socios/Socios.aspx', 800, 600);
-            },
-
-            tiposDeProductos: function (app) {
-                DesktopX.createDynamicWindow(app, 'basket', 'Tipos de producto', 'Productos/TiposDeProductos.aspx');
-            },
-
-            productos: function (app) {
-                DesktopX.createDynamicWindow(app, 'cart', 'Productos', 'Productos/Productos.aspx');
-            },
-
-            estadosNotasDePeso: function (app) {
-                DesktopX.createDynamicWindow(app, 'pagego', 'Estados de Notas De Peso', 'Inventario/Ingresos/EstadosNotaDePeso.aspx');
-            },
-
-            notasDePesoEnPesaje: function (app) {
-                DesktopX.createDynamicWindow(app, 'pagewhiteput', 'Notas De Peso en Area de Pesaje', 'Inventario/Ingresos/NotasDePesoEnPesaje.aspx', 1000, 640);
-            },
-
-            notasDePesoEnCatacion: function (app) {
-                DesktopX.createDynamicWindow(app, 'pagewhitecup', 'Notas De Peso en Area de Catación', 'Inventario/Ingresos/NotasDePesoEnCatacion.aspx', 1000, 640);
-            },
-
-            notasDePeso: function (app) {
-                DesktopX.createDynamicWindow(app, 'pagewhiteoffice', 'Notas De Peso', 'Inventario/Ingresos/NotasDePesoEnAdministracion.aspx', 1000, 640);
-            },
-
-            hojasDeLiquidacion: function (app) {
-                DesktopX.createDynamicWindow(app, 'script', 'Hojas De Liquidación', 'Inventario/Salidas/HojasDeLiquidacion.aspx', 1000, 640);
-            },
-
-            solicitudesDePrestamo: function (app) {
-                DesktopX.createDynamicWindow(app, 'pagewhitetext', 'Solicitudes de Prestamo', 'Prestamos/SolicitudPrestamo.aspx');
-            },
-
-            prestamos: function (app) {
-                DesktopX.createDynamicWindow(app, 'prestamos16', 'Prestamos', 'Prestamos/Prestamos.aspx');
-            },
-
-            clasificacionesDeCafe: function (app) {
-                DesktopX.createDynamicWindow(app, 'cup', 'Clasificaciones de Café', 'Inventario/ClasificacionesDeCafe.aspx');
-            },
-
-            inventarioDeCafePorSocio: function (app) {
-                DesktopX.createDynamicWindow(app, 'bricks', 'Inventario de Café por socio', 'Inventario/InventarioDeCafePorSocio.aspx');
-            },
-
-            variablesDeEntorno: function (app) {
-                DesktopX.createDynamicWindow(app, 'database', 'Variables de Entorno', 'Entorno/VariablesDeEntorno.aspx');
-            },
-
-            settings: function () {
-                SettingsWin.show();
-            },
-
-            about: function () {
-                AboutWin.show();
-            }
-        };
-
-        var ShorcutClickHandler = function (app, id) {
-            var d = app.getDesktop();
-
-            if (id == 'scUsuarios') {
-                WindowX.usuarios(app);
-            } else if (id == 'scRoles') {
-                WindowX.roles(app);
-            } else if (id == 'scSocios') {
-                WindowX.socios(app);
-            } else if (id == 'scTiposDeProductos') {
-                WindowX.tiposDeProductos(app);
-            } else if (id == 'scProductos') {
-                WindowX.productos(app);
-            } else if (id == 'scEstadosNotasDePeso') {
-                WindowX.estadosNotasDePeso(app);
-            } else if (id == 'scNotasDePesoEnPesaje') {
-                WindowX.notasDePesoEnPesaje(app);
-            } else if (id == 'scNotasDePesoEnCatacion') {
-                WindowX.notasDePesoEnCatacion(app);
-            } else if (id == 'scNotasDePeso') {
-                WindowX.notasDePeso(app);
-            } else if (id == 'scHojasDeLiquidacion') {
-                WindowX.hojasDeLiquidacion(app);
-            } else if (id == 'scSolicitudesDePrestamo') {
-                WindowX.solicitudesDePrestamo(app);
-            } else if (id == 'scPrestamos') {
-                WindowX.prestamos(app);
-            } else if (id == 'scClasificacionesDeCafe') {
-                WindowX.clasificacionesDeCafe(app);
-            } else if (id == 'scInventarioDeCafePorSocio') {
-                WindowX.inventarioDeCafePorSocio(app);
-            } else if (id == 'scVariablesDeEntorno') {
-                WindowX.variablesDeEntorno(app);
-            }
-        };
-    </script>
+    <script type="text/javascript" src="../resources/js/desktop.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
-        <ext:ResourceManager ID="ResourceManager1" runat="server" DisableViewState="false">
+        <ext:ResourceManager ID="ResourceManager1" runat="server" DisableViewState="true">
         </ext:ResourceManager>
+
+        <%--Context Menu--%>
 
         <ext:Menu runat="server" ID="cmenu">
             <Items>
@@ -479,6 +77,10 @@
             </ext:MenuItem>
             </Items>
         </ext:Menu>
+        
+        <%--Context Menu--%>
+
+        <%--Desktop--%>
 
         <ext:Desktop
             ID="MyDesktop" 
@@ -648,9 +250,6 @@
                 <ext:DesktopShortcut ShortcutID="scPrestamos"                Text="Prestamos"                         IconCls="shortcut-icon icon-prestamos" />
                 <ext:DesktopShortcut ShortcutID="scClasificacionesDeCafe"    Text="Clasificaciones de Café"           IconCls="shortcut-icon icon-clasificacionesDeCafe" />
                 <ext:DesktopShortcut ShortcutID="scInventarioDeCafePorSocio" Text="Inventario de Café por Socio"      IconCls="shortcut-icon icon-inventarioDeCafePorSocio" />
-
-                <%--<ext:DesktopShortcut ShortcutID="scTile" Text="Tile windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-90" />
-                <ext:DesktopShortcut ShortcutID="scCascade" Text="Cascade windows" IconCls="shortcut-icon icon-window48" X="{DX}-90" Y="{DY}-170" />--%>
             </Shortcuts>
 
             <StartMenu Height="550" Width="360" ToolsWidth="127" Title="Start Menu" Icon="UserSuit">
@@ -819,6 +418,8 @@
             </StartMenu>
         </ext:Desktop>
 
+        <%--Desktop--%>
+
         <%--shortcuts' tooltips--%>
 
         <ext:ToolTip runat="server" ID="scUsuariosTooltip"                  Html="Usuarios"                          Target="scUsuarios-shortcut"                 ></ext:ToolTip>
@@ -831,6 +432,7 @@
         <ext:ToolTip runat="server" ID="scNotasDePesoEnPesajeTooltip"       Html="Notas De Peso en Area de Pesaje"   Target="scNotasDePesoEnPesaje-shortcut"      ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scNotasDePesoEnCatacionTooltip"     Html="Notas De Peso en Area de Catación" Target="scNotasDePesoEnCatacion-shortcut"    ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scNotasDePesoTooltip"               Html="Notas de Peso"                     Target="scNotasDePeso-shortcut"              ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scHojasDeLiquidacionTooltip"        Html="Hojas de Liquidación"              Target="scHojasDeLiquidacion-shortcut"       ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scSolicitudesDePrestamoTooltip"     Html="Solicitudes de Prestamo"           Target="scSolicitudesDePrestamo-shortcut"    ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scPrestamosTooltip"                 Html="Prestamos"                         Target="scPrestamos-shortcut"                ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scClasificacionesDeCafeTooltip"     Html="Clasificaciones de Café"           Target="scClasificacionesDeCafe-shortcut"    ></ext:ToolTip>
@@ -930,6 +532,6 @@
         <cclave:CambiarClave runat="server" ID="CambiarClaveCtl" />
     </div>
     </form>
-    <a href="http://www.unitec.edu" target="_blank" alt="Powered by Ext .Net"id="poweredby"><div></div></a>
+    <a href="http://www.unitec.edu" target="_blank" alt="Powered by Ext .Net"id="poweredby"> <div></div> </a>
 </body>
 </html>

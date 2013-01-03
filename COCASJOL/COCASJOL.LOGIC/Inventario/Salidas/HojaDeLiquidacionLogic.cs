@@ -226,7 +226,7 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                     // modificar inventario de café actual
                     inventario_cafe_de_socio asocInventory = (inventario_cafe_de_socio)invCafSoc;
 
-                    asocInventory.INVENTARIO_CANTIDAD += hojaliquidacion.LIQUIDACIONES_VALOR_TOTAL;
+                    asocInventory.INVENTARIO_CANTIDAD -= hojaliquidacion.LIQUIDACIONES_VALOR_TOTAL;
                     asocInventory.MODIFICADO_POR = MODIFICADO_POR;
                     asocInventory.FECHA_MODIFICACION = DateTime.Now;
 

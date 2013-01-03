@@ -66,6 +66,8 @@
     <Content Include="Global.asax" />
     <Content Include="NoAccess.aspx" />
     <Content Include="resources\css\ComboBox_Grid.css" />
+    <Content Include="resources\css\Desktop.css" />
+    <Content Include="resources\css\DesktopShortcuts.css" />
     <Content Include="resources\images\background1.jpg" />
     <Content Include="resources\images\basket.png" />
     <Content Include="resources\images\bricks.png" />
@@ -93,6 +95,7 @@
     <Content Include="resources\images\user_edit.png" />
     <Content Include="resources\images\vista_start_button.gif" />
     <Content Include="resources\images\window48x48.png" />
+    <Content Include="resources\js\desktop.js" />
     <Content Include="resources\js\md5.js" />
     <Content Include="resources\xml\VariablesDeEntorno.xml">
       <SubType>Designer</SubType>

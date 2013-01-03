@@ -10,8 +10,6 @@
     <script type="text/javascript">
         var Grid = null;
         var GridStore = null;
-        var AddWindow = null;
-        var AddForm = null;
         var EditWindow = null;
         var EditForm = null;
 
@@ -28,21 +26,8 @@
             setReferences: function () {
                 Grid = InventarioCafeGridP;
                 GridStore = InventarioCafeSt;
-                AddWindow = AgregarProductosWin;
-                AddForm = AddTipoFormP;
                 EditWindow = EditarInventarioCafeWin;
                 EditForm = EditarTipoFormP;
-            },
-
-            add: function () {
-                AddWindow.show();
-            },
-
-            insert: function () {
-                var fields = AddForm.getForm().getFieldValues(false, "dataIndex");
-
-                Grid.insertRecord(0, fields, false);
-                AddForm.getForm().reset();
             },
 
             getIndex: function () {
@@ -163,14 +148,14 @@
                 UpdateMethod="ActualizarProducto"
                 DeleteMethod="EliminarProducto" onselecting="InventarioCafeDS_Selecting" >
                 <SelectParameters>
-                    <asp:ControlParameter Name="SOCIOS_ID"                   Type="String"    ControlID="f_SOCIOS_ID"           PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_ID"     Type="Int32"    ControlID="f_CLASIFICACIONES_CAFE_ID"          PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_NOMBRE" Type="String"   ControlID="nullHdn"                  PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="INVENTARIO_CANTIDAD"         Type="Decimal"    ControlID="f_INVENTARIO_CANTIDAD" PropertyName="Text" DefaultValue="-1"/>
-                    <asp:ControlParameter Name="CREADO_POR"                  Type="String"   ControlID="nullHdn"                  PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_CREACION"              Type="DateTime" ControlID="nullHdn"                  PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="MODIFICADO_POR"              Type="String"   ControlID="nullHdn"                  PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_MODIFICACION"          Type="DateTime" ControlID="nullHdn"                  PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="SOCIOS_ID"                   Type="String"   ControlID="f_SOCIOS_ID"               PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_ID"     Type="Int32"    ControlID="f_CLASIFICACIONES_CAFE_ID" PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_NOMBRE" Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="INVENTARIO_CANTIDAD"         Type="Decimal"  ControlID="f_INVENTARIO_CANTIDAD"     PropertyName="Text" DefaultValue="-1"/>
+                    <asp:ControlParameter Name="CREADO_POR"                  Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_CREACION"              Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="MODIFICADO_POR"              Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_MODIFICACION"          Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
                 </SelectParameters>
                 <InsertParameters>
                     <asp:Parameter Name="SOCIOS_ID"                   Type="Int32" />
@@ -260,11 +245,6 @@
                             <TopBar>
                                 <ext:Toolbar ID="Toolbar1" runat="server">
                                     <Items>
-                                        <ext:Button ID="AgregarBtn" runat="server" Text="Agregar" Icon="BrickAdd" Hidden="true" >
-                                            <Listeners>
-                                                <Click Handler="PageX.add();" />
-                                            </Listeners>
-                                        </ext:Button>
                                         <ext:Button ID="EditarBtn" runat="server" Text="Editar" Icon="BrickEdit">
                                             <Listeners>
                                                 <Click Handler="PageX.edit();" />
@@ -285,11 +265,11 @@
                                             <Columns>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:NumberField ID="f_SOCIOS_ID" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                        <ext:TextField ID="f_SOCIOS_ID" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="5">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
-                                                        </ext:NumberField>
+                                                        </ext:TextField>
                                                     </Component>
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
@@ -344,73 +324,6 @@
             </Items>
         </ext:Viewport>
 
-        <ext:Window ID="AgregarProductosWin"
-            runat="server"
-            Hidden="true"
-            Icon="CartAdd"
-            Title="Producto"
-            Width="500"
-            Layout="FormLayout"
-            AutoHeight="True"
-            Resizable="false"
-            Shadow="None"
-            Modal="true"
-            X="10" Y="30">
-            <Items>
-                <ext:FormPanel ID="AddTipoFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelWidth="120">
-                    <Listeners>
-                        <Show Handler="this.getForm().reset();" />
-                    </Listeners>
-                    <Items>
-                        <ext:Panel ID="Panel2" runat="server" Title="Información" Layout="AnchorLayout" AutoHeight="True"
-                            Resizable="false">
-                            <Items>
-                                <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
-                                    <Items>
-                                        <ext:ComboBox runat="server"    ID="AddTipoDeProdIdCmb"     DataIndex="CLASIFICACIONES_CAFE_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Producto" AllowBlank="false" MsgTarget="Side"
-                                            StoreID="ClasificacionesCafeSt"
-                                            EmptyText="Seleccione un Tipo"
-                                            ValueField="CLASIFICACIONES_CAFE_ID" 
-                                            DisplayField="CLASIFICACIONES_CAFE_NOMBRE"
-                                            ForceSelection="true"
-                                            Mode="Local"
-                                            TypeAhead="true" ReadOnly="true">
-                                            <Triggers>
-                                                        <ext:FieldTrigger Icon="Clear" HideTrigger="true" />
-                                            </Triggers>
-                                            <Listeners>
-                                                <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
-                                                <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
-                                                <Select Handler="this.triggers[0].show();" />
-                                            </Listeners>
-                                        </ext:ComboBox>
-                                        <ext:NumberField runat="server" ID="AddIdTxt"               DataIndex="SOCIOS_ID"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Producto" AllowBlank="false" Text="0" Hidden="true" ReadOnly="true"></ext:NumberField>
-                                        <ext:TextField   runat="server" ID="AddNombreTxt"           DataIndex="PRODUCTOS_NOMBRE"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" IsRemoteValidation="true">
-                                            <RemoteValidation OnValidation="AddNombreTxt_Validate" />
-                                        </ext:TextField>
-                                        <ext:TextField   runat="server" ID="AddDescripcionTxt"      DataIndex="PRODUCTOS_DESCRIPCION"  LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100"></ext:TextField>
-                                        <ext:NumberField runat="server" ID="AddCantidadMinTxt"      DataIndex="INVENTARIO_CANTIDAD" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cantidad Minima" AllowBlank="false" AllowNegative="false" ></ext:NumberField>
-                                        <ext:NumberField runat="server" ID="AddExistenciaTxt"       DataIndex="PRODUCTOS_EXISTENCIA"   LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Existencia Inicial" AllowBlank="false" AllowNegative="false" ></ext:NumberField>
-                                        <ext:TextField   runat="server" ID="AddCreatedByTxt"        DataIndex="CREADO_POR"             LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado por" Hidden="true" ></ext:TextField>
-                                        <ext:TextField   runat="server" ID="AddCreatedDateTxt"      DataIndex="FECHA_CREACION"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
-                                        <ext:TextField   runat="server" ID="AddModifiedByTxt"       DataIndex="MODIFICADO_POR"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
-                                        <ext:TextField   runat="server" ID="AddModificationDateTxt" DataIndex="FECHA_MODIFICACION"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Modificacion" Hidden="true" ></ext:TextField>
-                                    </Items>
-                                </ext:Panel>
-                            </Items>
-                        </ext:Panel>
-                    </Items>
-                    <Buttons>
-                        <ext:Button ID="AddGuardarBtn" runat="server" Text="Guardar" Icon="Disk" FormBind="true">
-                            <Listeners>
-                                <Click Handler="#{AddCreatedByTxt}.setValue(#{LoggedUserHdn}.getValue()); PageX.insert();" />
-                            </Listeners>
-                        </ext:Button>
-                    </Buttons>
-                </ext:FormPanel>
-            </Items>
-        </ext:Window>
-
         <ext:Window ID="EditarInventarioCafeWin"
             runat="server"
             Hidden="true"
@@ -437,35 +350,25 @@
                             <Items>
                                 <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false" AnchorHorizontal="100%">
                                     <Items>
-                                        <ext:TextField runat="server" ID="EditIdTxt"            DataIndex="SOCIOS_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Socio" AllowBlank="false" ReadOnly="true">
+                                        <ext:TextField runat="server" ID="EditIdTxt"             DataIndex="SOCIOS_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Socio" AllowBlank="false" ReadOnly="true">
                                             <ToolTips>
-                                                <ext:ToolTip ID="ToolTip1" runat="server" Title="Id de Socio" Html="El Id de Socio es de solo lectura." Width="200" TrackMouse="true" />
+                                                <ext:ToolTip runat="server" Title="Id de Socio" Html="El Id de Socio es de solo lectura." Width="200" TrackMouse="true" />
                                             </ToolTips>
                                         </ext:TextField>
-                                        <ext:ComboBox runat="server"    ID="EditTipoDeProdIdCmb"  DataIndex="CLASIFICACIONES_CAFE_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Producto" AllowBlank="false" MsgTarget="Side"
-                                            StoreID="ClasificacionesCafeSt" 
-                                            EmptyText="Seleccione un Tipo"
-                                            ValueField="CLASIFICACIONES_CAFE_ID" 
-                                            DisplayField="CLASIFICACIONES_CAFE_NOMBRE" 
-                                            Mode="Local"
-                                            TypeAhead="true" ReadOnly="true">
-                                            <Triggers>
-                                                <ext:FieldTrigger Icon="Clear" HideTrigger="true" />
-                                            </Triggers>
-                                            <Listeners>
-                                                <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
-                                                <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
-                                                <Select Handler="this.triggers[0].show();" />
-                                            </Listeners>
+                                        <ext:TextField runat="server" ID="EditTipoDeCafeIdtxt"   DataIndex="CLASIFICACIONES_CAFE_NOMBRE"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Café" AllowBlank="false" ReadOnly="true" MsgTarget="Side">
                                             <ToolTips>
-                                                <ext:ToolTip ID="ToolTip2" runat="server" Title="Clasificación de Café" Html="La clasificación de café es de solo lectura." Width="200" TrackMouse="true" />
+                                                <ext:ToolTip runat="server" Title="Tipo de Café" Html="El tipo de café es de solo lectura." Width="200" TrackMouse="true" />
                                             </ToolTips>
-                                        </ext:ComboBox>
-                                        <ext:NumberField runat="server" ID="EditCantidadMinTxt"   DataIndex="INVENTARIO_CANTIDAD" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cantidad" AllowBlank="false" AllowNegative="false" ></ext:NumberField>
-                                        <ext:TextField runat="server"   ID="EditCreatedByTxt"     DataIndex="CREADO_POR"             LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
-                                        <ext:TextField runat="server"   ID="EditCreationDateTxt"  DataIndex="FECHA_CREACION"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
-                                        <ext:TextField runat="server"   ID="EditModifiedByTxt"    DataIndex="MODIFICADO_POR"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
-                                        <ext:TextField runat="server"   ID="EditModificationDate" DataIndex="FECHA_MODIFICACION"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Modificacion" Hidden="true" ></ext:TextField>
+                                        </ext:TextField>
+                                        <ext:NumberField runat="server" ID="EditInventarioCantidadTxt"  DataIndex="INVENTARIO_CANTIDAD" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cantidad" AllowBlank="false" ReadOnly="true" MsgTarget="Side">
+                                            <ToolTips>
+                                                <ext:ToolTip runat="server" Title="Cantidad" Html="La cantidad de inventario es de solo lectura." Width="200" TrackMouse="true" />
+                                            </ToolTips>
+                                        </ext:NumberField>
+                                        <ext:TextField runat="server"   ID="EditCreatedByTxt"     DataIndex="CREADO_POR"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
+                                        <ext:TextField runat="server"   ID="EditCreationDateTxt"  DataIndex="FECHA_CREACION"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
+                                        <ext:TextField runat="server"   ID="EditModifiedByTxt"    DataIndex="MODIFICADO_POR"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
+                                        <ext:TextField runat="server"   ID="EditModificationDate" DataIndex="FECHA_MODIFICACION"  LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Modificacion" Hidden="true" ></ext:TextField>
                                     </Items>
                                 </ext:Panel>
                             </Items>

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 using Ext.Net;
 
+using COCASJOL.LOGIC;
 using COCASJOL.LOGIC.Entorno;
 using COCASJOL.LOGIC.Web;
  
@@ -20,7 +21,8 @@ namespace COCASJOL.WEBSITE.Source.Entorno
             {
                 if (!X.IsAjaxRequest)
                 {
-                    
+                    this.VariablesEntornoGridP.RemoveProperty("tmp");//remove temp propertygrid parameter
+                    Variables_Refresh(null, null);
                 }
 
                 string loggedUsr = Session["username"] as string;
@@ -33,81 +35,55 @@ namespace COCASJOL.WEBSITE.Source.Entorno
             }
         }
 
-        protected void VariablesEntornoDS_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
-        {
-            if (!this.IsPostBack)
-                e.Cancel = true;
-        }
-
-        #region Validaciones
-
-        protected void AddLlaveTxt_Validate(object sender, RemoteValidationEventArgs e)
+        private void Variables_Refresh(object sender, DirectEventArgs e)
         {
             try
             {
-                string llaveDeVariablesDeEntorno = this.AddLlaveTxt.Text;
+                VariablesDeEntornoLogic varenvslogic = new VariablesDeEntornoLogic();
+                var variables = varenvslogic.GetVariablesDeEntorno();
 
-                VariablesDeEntornoLogic VariablesDeEntornologic = new VariablesDeEntornoLogic();
-
-                if (VariablesDeEntornologic.LlaveDeVariableDeEntornoExiste(llaveDeVariablesDeEntorno))
+                foreach (variable_de_entorno varenv in variables)
                 {
-                    e.Success = false;
-                    e.ErrorMessage = "La llave de la variable de entorno ingresada ya existe.";
+                    this.VariablesEntornoGridP.AddProperty(new PropertyGridParameter
+                    {
+                        Name = varenv.VARIABLES_LLAVE,
+                        Value = varenv.VARIABLES_VALOR,
+                        DisplayName = varenv.VARIABLES_NOMBRE,
+                        Editor =
+                            {
+                                new TextField
+                                {
+                                    AllowBlank = false,
+                                    MsgTarget = MessageTarget.Qtip
+                                }
+                            }
+                    });
                 }
-                else
-                    e.Success = true;
             }
             catch (Exception)
             {
+                
                 throw;
             }
         }
 
-        protected void AddNombreTxt_Validate(object sender, RemoteValidationEventArgs e)
+        protected void GuardarVariablesBtn_Click(object sender, DirectEventArgs e)
         {
             try
             {
-                string nombreDeVariablesDeEntorno = this.AddNombreTxt.Text;
+                string loggeduser = LoggedUserHdn.Text;
 
-                VariablesDeEntornoLogic VariablesDeEntornologic = new VariablesDeEntornoLogic();
+                string paramsVars = this.VariablesEntornoGridP.Source.ToJsonObject();
+                var VariablesDeEntorno = Ext.Net.JSON.Deserialize<Dictionary<string, string>>(paramsVars);
 
-                if (VariablesDeEntornologic.NombreDeVariableDeEntornoExiste(nombreDeVariablesDeEntorno))
-                {
-                    e.Success = false;
-                    e.ErrorMessage = "El nombre de de la variable de entorno ingresada ya existe.";
-                }
-                else
-                    e.Success = true;
+                VariablesDeEntornoLogic varenvlogic = new VariablesDeEntornoLogic();
+                varenvlogic.ActualizarVariablesDeEntorno(VariablesDeEntorno, loggeduser);
             }
             catch (Exception)
             {
+                
                 throw;
             }
         }
-
-        protected void EditNombreTxt_Validate(object sender, RemoteValidationEventArgs e)
-        {
-            try
-            {
-                string nombreDeVariablesDeEntorno = this.EditNombreTxt.Text;
-                string llaveDeVariablesDeEntorno = this.EditLlaveTxt.Text;
-
-                VariablesDeEntornoLogic VariablesDeEntornologic = new VariablesDeEntornoLogic();
-
-                if (VariablesDeEntornologic.NombreDeVariableDeEntornoExiste(llaveDeVariablesDeEntorno, nombreDeVariablesDeEntorno))
-                {
-                    e.Success = false;
-                    e.ErrorMessage = "El nombre de de la variable de entorno ingresada ya existe.";
-                }
-                else
-                    e.Success = true;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        #endregion
     }
 }

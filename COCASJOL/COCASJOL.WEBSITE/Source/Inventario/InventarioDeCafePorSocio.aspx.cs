@@ -40,49 +40,5 @@ namespace COCASJOL.WEBSITE.Source.Inventario
             if (!this.IsPostBack)
                 e.Cancel = true;
         }
-
-        protected void AddNombreTxt_Validate(object sender, RemoteValidationEventArgs e)
-        {
-            try
-            {
-                string nombreDeProducto = this.AddNombreTxt.Text;
-
-                ProductoLogic productologic = new ProductoLogic();
-
-                if (productologic.NombreDeProductoExiste(nombreDeProducto))
-                {
-                    e.Success = false;
-                    e.ErrorMessage = "El nombre de producto ingresado ya existe.";
-                }
-                else
-                    e.Success = true;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        protected void EditNombreTxt_Validate(object sender, RemoteValidationEventArgs e)
-        {
-            try
-            {
-                string nombreDeProducto = this.AddNombreTxt.Text;
-
-                ProductoLogic productologic = new ProductoLogic();
-
-                if (productologic.NombreDeProductoExiste(nombreDeProducto))
-                {
-                    e.Success = false;
-                    e.ErrorMessage = "El nombre de producto ingresado ya existe.";
-                }
-                else
-                    e.Success = true;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
     }
 }

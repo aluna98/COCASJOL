@@ -346,6 +346,15 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.ToolTip scNotasDePesoTooltip;
         
         /// <summary>
+        /// scHojasDeLiquidacionTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scHojasDeLiquidacionTooltip;
+        
+        /// <summary>
         /// scSolicitudesDePrestamoTooltip control.
         /// </summary>
         /// <remarks>

@@ -274,7 +274,7 @@
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="f_ESTADOS_NOTA_LLAVE" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                        <ext:TextField ID="f_ESTADOS_NOTA_LLAVE" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="25">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
@@ -283,7 +283,7 @@
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="f_ESTADOS_NOTA_NOMBRE" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                        <ext:TextField ID="f_ESTADOS_NOTA_NOMBRE" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="45">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
@@ -292,7 +292,7 @@
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="f_ESTADOS_NOTA_DESCRIPCION" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                        <ext:TextField ID="f_ESTADOS_NOTA_DESCRIPCION" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="100">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
@@ -345,7 +345,6 @@
                                 <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                     <Items>
                                         <ext:NumberField runat="server" ID="EditIdTxt"            DataIndex="ESTADOS_NOTA_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Estado" AllowBlank="false" ReadOnly="true" Hidden="true"></ext:NumberField>
-                                        <%--<ext:NumberField runat="server" ID="EditPadreIdTxt"       DataIndex="ESTADOS_NOTA_PADRE"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Padre" ReadOnly="true"  ></ext:NumberField>--%>
                                         <ext:ComboBox runat="server"    ID="EditPadreIdCmb"       DataIndex="ESTADOS_NOTA_PADRE"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Estado Padre" MsgTarget="Side"
                                             StoreID="EstadosNotaPadreSt"
                                             ValueField="ESTADOS_NOTA_ID" 

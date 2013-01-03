@@ -332,7 +332,7 @@
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="f_PRODUCTOS_NOMBRE" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                        <ext:TextField ID="f_PRODUCTOS_NOMBRE" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="45">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
@@ -341,7 +341,7 @@
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="f_PRODUCTOS_DESCRIPCION" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                        <ext:TextField ID="f_PRODUCTOS_DESCRIPCION" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="100">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
