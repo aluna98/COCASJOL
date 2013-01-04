@@ -18,6 +18,14 @@
     <script type="text/javascript" src="../resources/js/desktop.js"></script>
 </head>
 <body>
+    <script type="text/javascript">
+        function CheckNotifications() {
+            //Ext.net.DirectMethods.Notificacion('Prueba', 'Mensaje de Prueba :P');
+            Ext.net.DirectMethods.CheckForNotifications();
+        }
+
+        setInterval(CheckNotifications, 5000);
+    </script>
     <form id="form1" runat="server">
     <div>
         <ext:ResourceManager ID="ResourceManager1" runat="server" DisableViewState="true">

@@ -3,23 +3,133 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using System.Data;
+using System.Data.Objects;
+
 namespace COCASJOL.LOGIC.Utiles
 {
+    public enum EstadosNotificacion
+    {
+        Creado = 0,
+        Notificado = 1,
+        Leido = 2
+    }
+
     public class NotificacionLogic
     {
         public NotificacionLogic() { }
 
         #region Select
 
-        public List<Notificacion> GetNotificaciones()
+        public List<notificacion> GetNotificaciones()
         {
             try
             {
-                throw new NotImplementedException();
+                using (var db = new colinasEntities())
+                {
+                    return db.notificaciones.ToList<notificacion>();
+                }
             }
             catch (Exception)
             {
                 
+                throw;
+            }
+        }
+
+        public List<notificacion> GetNotificacionesDeUsuario(string USR_USERNAME)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    EntityKey k = new EntityKey("colinasEntities.usuarios", "USR_USERNAME", USR_USERNAME);
+
+                    var u = db.GetObjectByKey(k);
+
+                    usuario user = (usuario)u;
+
+                    return user.notificaciones.ToList<notificacion>();
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
+        public List<notificacion> GetNotificacionesDeUsuarioCreado(string USR_USERNAME)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    EntityKey k = new EntityKey("colinasEntities.usuarios", "USR_USERNAME", USR_USERNAME);
+
+                    var u = db.GetObjectByKey(k);
+
+                    usuario user = (usuario)u;
+
+                    var query = from n in user.notificaciones
+                                where EstadosNotificacion.Creado.CompareTo(n.NOTIFICACION_ESTADO) == 0
+                                select n;
+
+                    return query.ToList<notificacion>();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<notificacion> GetNotificacionesDeUsuarioNotificado(string USR_USERNAME)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    EntityKey k = new EntityKey("colinasEntities.usuarios", "USR_USERNAME", USR_USERNAME);
+
+                    var u = db.GetObjectByKey(k);
+
+                    usuario user = (usuario)u;
+
+                    var query = from n in user.notificaciones
+                                where EstadosNotificacion.Notificado.CompareTo(n.NOTIFICACION_ESTADO) == 0
+                                select n;
+
+                    return query.ToList<notificacion>();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<notificacion> GetNotificacionesDeUsuarioLeido(string USR_USERNAME)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    EntityKey k = new EntityKey("colinasEntities.usuarios", "USR_USERNAME", USR_USERNAME);
+
+                    var u = db.GetObjectByKey(k);
+
+                    usuario user = (usuario)u;
+
+                    var query = from n in user.notificaciones
+                                where EstadosNotificacion.Leido.CompareTo(n.NOTIFICACION_ESTADO) == 0
+                                select n;
+
+                    return query.ToList<notificacion>();
+                }
+            }
+            catch (Exception)
+            {
                 throw;
             }
         }
@@ -28,45 +138,23 @@ namespace COCASJOL.LOGIC.Utiles
 
         #region Insert
 
-
-
-        #endregion
-
-        #region Update
-        #endregion
-
-        #region Delete
-        #endregion
-    }
-
-    public enum EstadosNotificacion
-    {
-        Creado,
-        Notificado,
-        Leido
-    }
-
-    public class Notificacion
-    {
-        #region Propiedades
-
-        string _UserName; 
-        string _Title;
-        string _Message;
-        EstadosNotificacion _Estado;
-
-        #endregion
-
-        #region Constructores
-
-        public Notificacion(string UserName, string Title, string Message, EstadosNotificacion Estado)
+        public void InsertarNotificacion(string USR_USERNAME, string TITLE, string MENSAJE)
         {
             try
             {
-                this._UserName = UserName;
-                this._Title = Title;
-                this._Message = Message;
-                this._Estado = Estado;
+                using (var db = new colinasEntities())
+                {
+                    notificacion notification = new notificacion();
+
+                    notification.NOTIFICACION_ESTADO = (int)EstadosNotificacion.Creado;
+                    notification.NOTIFICACION_TITLE = TITLE;
+                    notification.NOTIFICACION_MENSAJE = MENSAJE;
+                    notification.USR_USERNAME = USR_USERNAME;
+
+                    db.notificaciones.AddObject(notification);
+
+                    db.SaveChanges();
+                }
             }
             catch (Exception)
             {
@@ -77,32 +165,35 @@ namespace COCASJOL.LOGIC.Utiles
 
         #endregion
 
-        #region Gets y Sets
+        #region Update
 
-        public string UserName
+        public void ActualizarNotificacion(int NOTIFICACION_ID, EstadosNotificacion NOTIFICACION_ESTADO)
         {
-            get { return this._UserName; }
-            set { this._UserName = value; }
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    EntityKey k = new EntityKey("colinasEntities.notifiaciones", "NOTIFICACION_ID", NOTIFICACION_ID);
+
+                    var n = db.GetObjectByKey(k);
+
+                    notificacion notification = (notificacion)n;
+
+                    notification.NOTIFICACION_ESTADO = (int)NOTIFICACION_ESTADO;
+
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
-        public string Title
-        {
-            get { return this._Title; }
-            set { this._Title = value; }
-        }
+        #endregion
 
-        public string Message
-        {
-            get { return this._Message; }
-            set { this._Message = value; }
-        }
-
-        public EstadosNotificacion Estado
-        {
-            get { return this._Estado; }
-            set { this._Estado = value; }
-        }
-
+        #region Delete
         #endregion
     }
 }

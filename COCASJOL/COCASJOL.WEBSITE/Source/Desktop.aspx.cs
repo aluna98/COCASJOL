@@ -6,13 +6,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 using Ext.Net;
+using System.Xml;
+using System.Data;
+using System.Data.Objects; 
 
 using COCASJOL.LOGIC;
 using COCASJOL.LOGIC.Web;
 using COCASJOL.LOGIC.Seguridad;
-using System.Xml;
-using System.Data;
-using System.Data.Objects; 
+using COCASJOL.LOGIC.Utiles;
 
 namespace COCASJOL.WEBSITE
 {
@@ -30,10 +31,11 @@ namespace COCASJOL.WEBSITE
             {
                 if (!X.IsAjaxRequest)
                 {
-                    string loggedUser = Session["username"] as string;
-                    //this.MyDesktop.Wallpaper = "../resources/images/background1.jpg";
-                    this.MyDesktop.StartMenu.Title = loggedUser;
+                    
                 }
+
+                string loggedUser = Session["username"] as string;
+                this.MyDesktop.StartMenu.Title = loggedUser;
             }
             catch (Exception ex)
             {
@@ -158,7 +160,42 @@ namespace COCASJOL.WEBSITE
             }
         }
 
-        public static void Notificacion(string title, string message)
+        [DirectMethod(RethrowException=true)]
+        public void CheckForNotifications()
+        {
+            try
+            {
+                string loggedUser = Session["username"] as string;
+                List<notificacion> NotificacionesList = Application["NotificacionesList"] as List<notificacion>;
+
+                if (NotificacionesList == null)
+                    return;
+
+                var query = from n in NotificacionesList
+                            where n.USR_USERNAME == loggedUser && (n.NOTIFICACION_ESTADO.Equals(EstadosNotificacion.Creado))
+                            select n;
+
+                if (query.Count() > 0)
+                {
+
+                    NotificacionLogic notificacionlogic = new NotificacionLogic();
+                    foreach (notificacion notif in NotificacionesList)
+                    {
+                        Notificacion(notif.NOTIFICACION_TITLE, notif.NOTIFICACION_MENSAJE);
+                        notificacionlogic.ActualizarNotificacion(notif.NOTIFICACION_ID, EstadosNotificacion.Notificado);
+                    }
+
+                    Application["NotificacionesList"] = notificacionlogic.GetNotificaciones();
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
+        private void Notificacion(string title, string message)
         {
             try
             {
@@ -166,6 +203,7 @@ namespace COCASJOL.WEBSITE
                 {
                     Title = title,
                     Html = message,
+                    BringToFront = false,
                     ShowPin = true,
                     Pinned = true
                 });

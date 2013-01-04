@@ -45,6 +45,7 @@ using System.Data;
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "notas_de_peso_estado_fk", "estado_nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.estado_nota_de_peso), "notas_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.nota_de_peso), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "FK_NOTA_DE_PESO_socios", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "notas_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.nota_de_peso), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "FK_NOTA_DETALLE_NOTA_PESO", "notas_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.nota_de_peso), "nota_detalle", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.nota_detalle), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "NOTIFICACION_USERNAME", "usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.usuario), "notificaciones", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.notificacion), true)]
 
 #endregion
 
@@ -537,6 +538,22 @@ namespace COCASJOL.LOGIC
             }
         }
         private ObjectSet<nota_de_peso> _notas_de_peso;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<notificacion> notificaciones
+        {
+            get
+            {
+                if ((_notificaciones == null))
+                {
+                    _notificaciones = base.CreateObjectSet<notificacion>("notificaciones");
+                }
+                return _notificaciones;
+            }
+        }
+        private ObjectSet<notificacion> _notificaciones;
 
         #endregion
         #region AddTo Methods
@@ -715,6 +732,14 @@ namespace COCASJOL.LOGIC
         public void AddTonotas_de_peso(nota_de_peso nota_de_peso)
         {
             base.AddObject("notas_de_peso", nota_de_peso);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the notificaciones EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTonotificaciones(notificacion notificacion)
+        {
+            base.AddObject("notificaciones", notificacion);
         }
 
         #endregion
@@ -3952,6 +3977,206 @@ namespace COCASJOL.LOGIC
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<nota_de_peso>("COLINASMODEL.FK_NOTA_DETALLE_NOTA_PESO", "notas_de_peso", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="COLINASMODEL", Name="notificacion")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class notificacion : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new notificacion object.
+        /// </summary>
+        /// <param name="nOTIFICACION_ID">Initial value of the NOTIFICACION_ID property.</param>
+        /// <param name="uSR_USERNAME">Initial value of the USR_USERNAME property.</param>
+        /// <param name="nOTIFICACION_TITLE">Initial value of the NOTIFICACION_TITLE property.</param>
+        /// <param name="nOTIFICACION_MENSAJE">Initial value of the NOTIFICACION_MENSAJE property.</param>
+        /// <param name="nOTIFICACION_ESTADO">Initial value of the NOTIFICACION_ESTADO property.</param>
+        public static notificacion Createnotificacion(global::System.Int32 nOTIFICACION_ID, global::System.String uSR_USERNAME, global::System.String nOTIFICACION_TITLE, global::System.String nOTIFICACION_MENSAJE, global::System.Int32 nOTIFICACION_ESTADO)
+        {
+            notificacion notificacion = new notificacion();
+            notificacion.NOTIFICACION_ID = nOTIFICACION_ID;
+            notificacion.USR_USERNAME = uSR_USERNAME;
+            notificacion.NOTIFICACION_TITLE = nOTIFICACION_TITLE;
+            notificacion.NOTIFICACION_MENSAJE = nOTIFICACION_MENSAJE;
+            notificacion.NOTIFICACION_ESTADO = nOTIFICACION_ESTADO;
+            return notificacion;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 NOTIFICACION_ID
+        {
+            get
+            {
+                return _NOTIFICACION_ID;
+            }
+            set
+            {
+                if (_NOTIFICACION_ID != value)
+                {
+                    OnNOTIFICACION_IDChanging(value);
+                    ReportPropertyChanging("NOTIFICACION_ID");
+                    _NOTIFICACION_ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("NOTIFICACION_ID");
+                    OnNOTIFICACION_IDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _NOTIFICACION_ID;
+        partial void OnNOTIFICACION_IDChanging(global::System.Int32 value);
+        partial void OnNOTIFICACION_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String USR_USERNAME
+        {
+            get
+            {
+                return _USR_USERNAME;
+            }
+            set
+            {
+                OnUSR_USERNAMEChanging(value);
+                ReportPropertyChanging("USR_USERNAME");
+                _USR_USERNAME = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("USR_USERNAME");
+                OnUSR_USERNAMEChanged();
+            }
+        }
+        private global::System.String _USR_USERNAME;
+        partial void OnUSR_USERNAMEChanging(global::System.String value);
+        partial void OnUSR_USERNAMEChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String NOTIFICACION_TITLE
+        {
+            get
+            {
+                return _NOTIFICACION_TITLE;
+            }
+            set
+            {
+                OnNOTIFICACION_TITLEChanging(value);
+                ReportPropertyChanging("NOTIFICACION_TITLE");
+                _NOTIFICACION_TITLE = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("NOTIFICACION_TITLE");
+                OnNOTIFICACION_TITLEChanged();
+            }
+        }
+        private global::System.String _NOTIFICACION_TITLE;
+        partial void OnNOTIFICACION_TITLEChanging(global::System.String value);
+        partial void OnNOTIFICACION_TITLEChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String NOTIFICACION_MENSAJE
+        {
+            get
+            {
+                return _NOTIFICACION_MENSAJE;
+            }
+            set
+            {
+                OnNOTIFICACION_MENSAJEChanging(value);
+                ReportPropertyChanging("NOTIFICACION_MENSAJE");
+                _NOTIFICACION_MENSAJE = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("NOTIFICACION_MENSAJE");
+                OnNOTIFICACION_MENSAJEChanged();
+            }
+        }
+        private global::System.String _NOTIFICACION_MENSAJE;
+        partial void OnNOTIFICACION_MENSAJEChanging(global::System.String value);
+        partial void OnNOTIFICACION_MENSAJEChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 NOTIFICACION_ESTADO
+        {
+            get
+            {
+                return _NOTIFICACION_ESTADO;
+            }
+            set
+            {
+                OnNOTIFICACION_ESTADOChanging(value);
+                ReportPropertyChanging("NOTIFICACION_ESTADO");
+                _NOTIFICACION_ESTADO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NOTIFICACION_ESTADO");
+                OnNOTIFICACION_ESTADOChanged();
+            }
+        }
+        private global::System.Int32 _NOTIFICACION_ESTADO;
+        partial void OnNOTIFICACION_ESTADOChanging(global::System.Int32 value);
+        partial void OnNOTIFICACION_ESTADOChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "NOTIFICACION_USERNAME", "usuario")]
+        public usuario usuarios
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<usuario>("COLINASMODEL.NOTIFICACION_USERNAME", "usuario").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<usuario>("COLINASMODEL.NOTIFICACION_USERNAME", "usuario").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<usuario> usuariosReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<usuario>("COLINASMODEL.NOTIFICACION_USERNAME", "usuario");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<usuario>("COLINASMODEL.NOTIFICACION_USERNAME", "usuario", value);
                 }
             }
         }
@@ -8610,6 +8835,28 @@ namespace COCASJOL.LOGIC
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<rol>("COLINASMODEL.roles_x_usuarios", "rol", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "NOTIFICACION_USERNAME", "notificaciones")]
+        public EntityCollection<notificacion> notificaciones
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<notificacion>("COLINASMODEL.NOTIFICACION_USERNAME", "notificaciones");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<notificacion>("COLINASMODEL.NOTIFICACION_USERNAME", "notificaciones", value);
                 }
             }
         }

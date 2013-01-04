@@ -5,15 +5,26 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 
+using COCASJOL.LOGIC;
+using COCASJOL.LOGIC.Utiles;
+
 namespace COCASJOL.WEBSITE
 {
     public class Global : System.Web.HttpApplication
     {
-
         void Application_Start(object sender, EventArgs e)
         {
-            // Code that runs on application startup
-
+            try
+            {
+                // Code that runs on application startup
+                NotificacionLogic notificacionLogic = new NotificacionLogic();
+                Application["NotificacionesList"] = notificacionLogic.GetNotificaciones();
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
         }
 
         void Application_End(object sender, EventArgs e)
