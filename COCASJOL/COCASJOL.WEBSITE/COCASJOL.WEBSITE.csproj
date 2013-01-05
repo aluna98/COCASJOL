@@ -68,8 +68,10 @@
     <Content Include="resources\css\ComboBox_Grid.css" />
     <Content Include="resources\css\Desktop.css" />
     <Content Include="resources\css\DesktopShortcuts.css" />
+    <Content Include="resources\css\Notification.css" />
     <Content Include="resources\images\background1.jpg" />
     <Content Include="resources\images\basket.png" />
+    <Content Include="resources\images\bg.gif" />
     <Content Include="resources\images\bricks.png" />
     <Content Include="resources\images\cart.png" />
     <Content Include="resources\images\cheque.png" />
@@ -79,12 +81,16 @@
     <Content Include="resources\images\database.png" />
     <Content Include="resources\images\desktop.jpg" />
     <Content Include="resources\images\dev-by-unitec.png" />
+    <Content Include="resources\images\fondo.jpg" />
     <Content Include="resources\images\gear_in.png" />
     <Content Include="resources\images\grid48x48.png" />
+    <Content Include="resources\images\group-expand-sprite.gif" />
     <Content Include="resources\images\group.png" />
     <Content Include="resources\images\key.png" />
     <Content Include="resources\images\login.jpg" />
     <Content Include="resources\images\Logo_COCASJOL.jpg" />
+    <Content Include="resources\images\logo_transparente.gif" />
+    <Content Include="resources\images\mail_box.png" />
     <Content Include="resources\images\page_go.png" />
     <Content Include="resources\images\page_white_cup.png" />
     <Content Include="resources\images\page_white_office.png" />
@@ -97,6 +103,7 @@
     <Content Include="resources\images\window48x48.png" />
     <Content Include="resources\js\desktop.js" />
     <Content Include="resources\js\md5.js" />
+    <Content Include="resources\js\notification.js" />
     <Content Include="resources\xml\VariablesDeEntorno.xml">
       <SubType>Designer</SubType>
     </Content>

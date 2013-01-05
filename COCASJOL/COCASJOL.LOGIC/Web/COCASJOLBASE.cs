@@ -246,7 +246,7 @@ namespace COCASJOL.LOGIC.Web
             }
         }
 
-        private void ShowPinnedNotification(string title, string message)
+        protected virtual void ShowPinnedNotification(string title, string message)
         {
             try
             {

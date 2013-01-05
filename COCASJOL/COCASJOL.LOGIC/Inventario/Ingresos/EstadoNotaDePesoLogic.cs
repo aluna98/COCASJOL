@@ -80,11 +80,6 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 {
                     db.estados_nota_de_peso.MergeOption = MergeOption.NoTracking;
 
-                    //EntityKey k = new EntityKey("colinasEntities.estados_nota_de_peso", "ESTADOS_NOTA_ID", ESTADOS_NOTA_ID);
-
-                    //var esn = db.GetObjectByKey(k);
-
-                    //estado_nota_de_peso noteStatus = (estado_nota_de_peso)esn;
                     var query = from esn in db.estados_nota_de_peso.Include("estados_nota_de_peso_padre").Include("estados_nota_de_peso_hijos")
                                 where esn.ESTADOS_NOTA_ID == ESTADOS_NOTA_ID
                                 select esn;

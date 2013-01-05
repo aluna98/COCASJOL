@@ -479,10 +479,10 @@
                                                 <ext:TextField runat="server" ID="AddUsernameTxt"         DataIndex="USR_USERNAME"         LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Nombre de Usuario" AllowBlank="false" MsgTarget="Side" Vtype="alphanum" IsRemoteValidation="true" >
                                                     <RemoteValidation OnValidation="AddUsernameTxt_Change" />
                                                 </ext:TextField>
-                                                <ext:TextField runat="server" ID="AddNombreTxt"           DataIndex="USR_NOMBRE"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Primer Nombre" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddSegundoNombreTxt"    DataIndex="USR_SEGUNDO_NOMBRE"   LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Segundo Nombre" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddApellidoTxt"         DataIndex="USR_APELLIDO"         LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Primer Apellido" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                                                <ext:TextField runat="server" ID="AddSegundoApellidoTxt"  DataIndex="USR_SEGUNDO_APELLIDO" LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Segundo Apellido" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddNombreTxt"           DataIndex="USR_NOMBRE"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Primer Nombre" AllowBlank="false" MsgTarget="Side" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddSegundoNombreTxt"    DataIndex="USR_SEGUNDO_NOMBRE"   LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Segundo Nombre" MsgTarget="Side" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddApellidoTxt"         DataIndex="USR_APELLIDO"         LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Primer Apellido" AllowBlank="false" MsgTarget="Side" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddSegundoApellidoTxt"  DataIndex="USR_SEGUNDO_APELLIDO" LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Segundo Apellido" MsgTarget="Side" ></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddCedulaTxt"           DataIndex="USR_CEDULA"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="20" FieldLabel="Cedula" AllowBlank="false" MsgTarget="Side" Vtype="alphanum" IsRemoteValidation="true">
                                                     <RemoteValidation OnValidation="AddCedulaTxt_Change" />
                                                 </ext:TextField>
@@ -523,6 +523,9 @@
             Shadow="None"
             Modal="true"
             X="10" Y="30">
+            <Listeners>
+                <Show Handler="#{RolesDeUsuarioSt}.removeAll();" />
+            </Listeners>
             <Items>
                 <ext:FormPanel ID="EditarUsuarioFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelWidth="120">
                     <Items>
@@ -542,10 +545,10 @@
                                                             Title="Nombre de Usuario" Width="200" TrackMouse="true" />
                                                     </ToolTips>
                                                 </ext:TextField>
-                                                <ext:TextField runat="server" ID="EditNombreTxt"          DataIndex="USR_NOMBRE"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditSegundoNombreTxt"   DataIndex="USR_SEGUNDO_NOMBRE"   LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Segundo Nombre" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditApellidoTxt"        DataIndex="USR_APELLIDO"         LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Primer Apellido" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                                                <ext:TextField runat="server" ID="EditSegundoApellidoTxt" DataIndex="USR_SEGUNDO_APELLIDO" LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Segundo Apellido" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditNombreTxt"          DataIndex="USR_NOMBRE"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditSegundoNombreTxt"   DataIndex="USR_SEGUNDO_NOMBRE"   LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Segundo Nombre" MsgTarget="Side" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditApellidoTxt"        DataIndex="USR_APELLIDO"         LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Primer Apellido" AllowBlank="false" MsgTarget="Side" ></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditSegundoApellidoTxt" DataIndex="USR_SEGUNDO_APELLIDO" LabelAlign="Right" AnchorHorizontal="90%" MaxLength="45" FieldLabel="Segundo Apellido" MsgTarget="Side" ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditCedulaTxt"          DataIndex="USR_CEDULA"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="20" FieldLabel="Cedula" AllowBlank="false" MsgTarget="Side" Vtype="alphanum" IsRemoteValidation="true" >
                                                     <RemoteValidation OnValidation="EditCedulaTxt_Change" ValidationEvent="blur">
                                                     </RemoteValidation>
@@ -564,7 +567,8 @@
                                 <ext:Panel ID="Panel14" runat="server" Title="Roles" Layout="AnchorLayout" AutoHeight="True"
                                     Resizable="false">
                                     <Listeners>
-                                        <Activate Handler="HideButtons(); Ext.getCmp('RolesDeUsuarioGridP').getSelectionModel().clearSelections();" />
+                                        <Activate Handler="HideButtons(); #{RolesDeUsuarioSt}.reload();" />
+                                        <Deactivate Handler="#{RolesDeUsuarioSt}.removeAll();" />
                                     </Listeners>
                                     <Items>
                                         <ext:Panel ID="Panel16" runat="server" Frame="false" Padding="5" Layout="AnchorLayout"
@@ -682,7 +686,8 @@
             Width="400" Layout="FormLayout" AutoHeight="True" Resizable="false" Shadow="None"
             X="30" Y="70" Modal="true">
             <Listeners>
-                <Show Handler="Ext.getCmp('RolesNoDeUsuarioGridP').getSelectionModel().clearSelections();" />
+                <Show Handler="#{RolesNoDeUsuarioSt}.reload();" />
+                <Hide Handler="#{RolesNoDeUsuarioSt}.removeAll();" />
             </Listeners>
             <Items>
                 <ext:FormPanel ID="FormPanel1" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right">

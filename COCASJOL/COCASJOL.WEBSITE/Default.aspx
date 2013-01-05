@@ -5,8 +5,7 @@
 <%@ Import Namespace="COCASJOL.LOGIC.Seguridad" %>
 <%@ Import Namespace="System.Data" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -14,22 +13,22 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon"/>
 
     <title>Colinas Login</title>
-    <style type="text/css"> 
-        /*body
-          {
-              background-image: url('resources/images/login.jpg') !important;
-              background-position: center;
-              background-repeat: no-repeat;
-          }*/
-        
+
+    <style type="text/css">         
         html, body
         {
-            background: Black url('resources/images/login.jpg') no-repeat center;
+            background: Black url('resources/images/fondo.jpg') no-repeat center;
             margin: 0;
             padding: 0;
             border: 0 none;
             overflow: hidden;
             height: 100%;
+        }
+        
+        .bg_logo
+        {
+            background: url(resources/images/logo_transparente.gif) no-repeat center;
+            progid:DXImageTransform.Microsoft.AlphaImageLoader(src='resources/images/logo_transparente.gif', sizingMethod='center');
         }
         
         .loginEl
@@ -88,7 +87,7 @@
             {
                 UsuarioLogic usuarioLogic = new UsuarioLogic();
                 if (usuarioLogic.Autenticar(this.txtUsername.Text, this.txtPassword.Text) == true)
-                {
+                {                    
                     Session["username"] = this.txtUsername.Text;
 
                     Window1.Close();
@@ -101,7 +100,7 @@
                     X.Msg.Alert("Inicio de Sesión", "El nombre de usuario o contraseña son incorrectos.", "#{txtUsername}.focus();").Show();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //log
                 throw;
@@ -110,14 +109,13 @@
     </script>
 </head>
 <body>
-    <form runat="server">
-        <ext:ResourceManager runat="server" DisableViewState="true">
+    <form id="form1" runat="server">
+        <div class="bg_logo">
+        <ext:ResourceManager ID="ResourceManager1" runat="server" DisableViewState="true">
             <Listeners>
                 <DocumentReady Handler="alinearLogin();" />
             </Listeners>
         </ext:ResourceManager>
-        <div id="bg">
-        <%--<img src="resources/images/login.jpg" alt="" />--%>
         <ext:Window
             ID="Window1"
             runat="server"
@@ -129,7 +127,8 @@
             Draggable="false"
             Width="350"
             Layout="FitLayout"
-            Cls="loginEl" MonitorResize="true">
+            Cls="loginEl"
+            MonitorResize="true">
             <Items>
                 <ext:FormPanel ID="FormPanel1" runat="server" Title="Form Panel" Header="false" Frame="false" ButtonAlign="Right" Border="false" MonitorValid="true">
                     <Items>
@@ -160,7 +159,6 @@
             </Buttons>
         </ext:Window>
         </div>
-        
     </form>
 </body>
 </html>

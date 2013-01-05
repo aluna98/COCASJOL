@@ -66,6 +66,29 @@ namespace COCASJOL.LOGIC.Seguridad
                 throw;
             }
         }
+
+        public List<usuario> GetUsuariosWithPrivilege(string PRIV_LLAVE)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    var query = from p in db.privilegios
+                                from r in p.roles
+                                from u in r.usuarios
+                                where p.PRIV_LLAVE == PRIV_LLAVE
+                                select u;
+
+                    return query.ToList<usuario>();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         #endregion
     }
 }

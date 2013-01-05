@@ -27,7 +27,7 @@ namespace COCASJOL.LOGIC.Utiles
             {
                 using (var db = new colinasEntities())
                 {
-                    return db.notificaciones.ToList<notificacion>();
+                    return db.notificaciones.Where(n => n.NOTIFICACION_ESTADO != (int)EstadosNotificacion.Leido).ToList<notificacion>();
                 }
             }
             catch (Exception)
@@ -55,81 +55,6 @@ namespace COCASJOL.LOGIC.Utiles
             catch (Exception)
             {
                 
-                throw;
-            }
-        }
-
-        public List<notificacion> GetNotificacionesDeUsuarioCreado(string USR_USERNAME)
-        {
-            try
-            {
-                using (var db = new colinasEntities())
-                {
-                    EntityKey k = new EntityKey("colinasEntities.usuarios", "USR_USERNAME", USR_USERNAME);
-
-                    var u = db.GetObjectByKey(k);
-
-                    usuario user = (usuario)u;
-
-                    var query = from n in user.notificaciones
-                                where EstadosNotificacion.Creado.CompareTo(n.NOTIFICACION_ESTADO) == 0
-                                select n;
-
-                    return query.ToList<notificacion>();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public List<notificacion> GetNotificacionesDeUsuarioNotificado(string USR_USERNAME)
-        {
-            try
-            {
-                using (var db = new colinasEntities())
-                {
-                    EntityKey k = new EntityKey("colinasEntities.usuarios", "USR_USERNAME", USR_USERNAME);
-
-                    var u = db.GetObjectByKey(k);
-
-                    usuario user = (usuario)u;
-
-                    var query = from n in user.notificaciones
-                                where EstadosNotificacion.Notificado.CompareTo(n.NOTIFICACION_ESTADO) == 0
-                                select n;
-
-                    return query.ToList<notificacion>();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public List<notificacion> GetNotificacionesDeUsuarioLeido(string USR_USERNAME)
-        {
-            try
-            {
-                using (var db = new colinasEntities())
-                {
-                    EntityKey k = new EntityKey("colinasEntities.usuarios", "USR_USERNAME", USR_USERNAME);
-
-                    var u = db.GetObjectByKey(k);
-
-                    usuario user = (usuario)u;
-
-                    var query = from n in user.notificaciones
-                                where EstadosNotificacion.Leido.CompareTo(n.NOTIFICACION_ESTADO) == 0
-                                select n;
-
-                    return query.ToList<notificacion>();
-                }
-            }
-            catch (Exception)
-            {
                 throw;
             }
         }
@@ -173,7 +98,7 @@ namespace COCASJOL.LOGIC.Utiles
             {
                 using (var db = new colinasEntities())
                 {
-                    EntityKey k = new EntityKey("colinasEntities.notifiaciones", "NOTIFICACION_ID", NOTIFICACION_ID);
+                    EntityKey k = new EntityKey("colinasEntities.notificaciones", "NOTIFICACION_ID", NOTIFICACION_ID);
 
                     var n = db.GetObjectByKey(k);
 
@@ -194,6 +119,57 @@ namespace COCASJOL.LOGIC.Utiles
         #endregion
 
         #region Delete
+
+        public void EliminarNotificacionesDeUsuario(string USR_USERNAME)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    EntityKey k = new EntityKey("colinasEntities.usuarios", "USR_USERNAME", USR_USERNAME);
+
+                    var u = db.GetObjectByKey(k);
+
+                    usuario user = (usuario)u;
+
+                    foreach (notificacion notif in user.notificaciones.ToList<notificacion>())
+                        db.notificaciones.DeleteObject(notif);
+
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public void EliminarNotificacionesLeidas()
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    var query = from n in db.notificaciones
+                                where n.NOTIFICACION_ESTADO == (int)EstadosNotificacion.Leido
+                                select n;
+
+                    foreach (notificacion notification in query.ToList<notificacion>())
+                    {
+                        db.notificaciones.DeleteObject(notification);
+                    }
+
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
         #endregion
     }
 }

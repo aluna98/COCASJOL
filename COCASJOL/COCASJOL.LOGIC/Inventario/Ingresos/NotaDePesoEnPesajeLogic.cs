@@ -6,6 +6,9 @@ using System.Text;
 using System.Data;
 using System.Data.Objects;
 
+using COCASJOL.LOGIC.Seguridad;
+using COCASJOL.LOGIC.Utiles;
+
 namespace COCASJOL.LOGIC.Inventario.Ingresos
 {
     public class NotaDePesoEnPesajeLogic : NotaDePesoLogic
@@ -255,6 +258,21 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                             db.inventario_cafe_de_socio.AddObject(asocInventory);
                         }
+
+                        // notificar a usuarios
+                        PrivilegioLogic privilegiologic = new Seguridad.PrivilegioLogic();
+                        List<usuario> usuarios = privilegiologic.GetUsuariosWithPrivilege("MANT_NOTASPESOENCATACION");
+
+                        foreach (usuario usr in usuarios)
+                        {
+                            notificacion notification = new notificacion();
+                            notification.NOTIFICACION_ESTADO = (int)EstadosNotificacion.Creado;
+                            notification.USR_USERNAME = usr.USR_USERNAME;
+                            notification.NOTIFICACION_TITLE = "Notas de Peso en Catación";
+                            notification.NOTIFICACION_MENSAJE = "Ya tiene disponible la nota de peso #" + note.NOTAS_ID + ".";
+
+                            db.notificaciones.AddObject(notification);
+                        }
                     }
 
                     note.notas_detalles.Clear();
@@ -406,12 +424,15 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
         /*
          *                  -----Flujo-----
-         * 
-         * --------Modificar Inventario de Café Actual--------
-         * cambiar clasificacion de café a la clasificación actual
-         * intentar obtener el inventario de café actual
-         *     si hay inventario de café actual modificarlo
-         *     si no hay inventario de café actual crearlo
+         *  verificar si hubo cambio de estado
+         *  cambiar estado a nuevo estado
+         *      --------Modificar Inventario de Café Actual--------
+         *      cambiar clasificacion de café a la clasificación actual
+         *      intentar obtener el inventario de café actual
+         *          si hay inventario de café actual modificarlo
+         *          si no hay inventario de café actual crearlo
+         *          
+         *          notificar a usuarios
          *
          */
 
@@ -507,6 +528,21 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                             asocInventory.FECHA_MODIFICACION = asocInventory.FECHA_CREACION;
 
                             db.inventario_cafe_de_socio.AddObject(asocInventory);
+                        }
+
+                        // notificar a usuarios
+                        PrivilegioLogic privilegiologic = new Seguridad.PrivilegioLogic();
+                        List<usuario> usuarios = privilegiologic.GetUsuariosWithPrivilege("MANT_NOTASPESOENCATACION");
+
+                        foreach (usuario usr in usuarios)
+                        {
+                            notificacion notification = new notificacion();
+                            notification.NOTIFICACION_ESTADO = (int)EstadosNotificacion.Creado;
+                            notification.USR_USERNAME = usr.USR_USERNAME;
+                            notification.NOTIFICACION_TITLE = "Notas de Peso en Catación";
+                            notification.NOTIFICACION_MENSAJE = "Ya tiene disponible la nota de peso #" + note.NOTAS_ID + ".";
+
+                            db.notificaciones.AddObject(notification);
                         }
                     }
 

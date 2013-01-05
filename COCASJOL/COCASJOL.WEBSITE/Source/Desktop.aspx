@@ -14,21 +14,25 @@
 
     <link rel="Stylesheet" type="text/css" href="../resources/css/Desktop.css" />
     <link rel="Stylesheet" type="text/css" href="../resources/css/DesktopShortcuts.css" />
-    <script type="text/javascript" src="../resources/js/md5.js"></script>
-    <script type="text/javascript" src="../resources/js/desktop.js"></script>
+    <link rel="Stylesheet" type="text/css" href="../resources/css/Notification.css" />
+    <script type="text/javascript" src="../resources/js/md5.js" ></script>
+    <script type="text/javascript" src="../resources/js/desktop.js" ></script>
+    <script type="text/javascript" src="../resources/js/notification.js" ></script>
 </head>
 <body>
     <script type="text/javascript">
         function CheckNotifications() {
-            //Ext.net.DirectMethods.Notificacion('Prueba', 'Mensaje de Prueba :P');
             Ext.net.DirectMethods.CheckForNotifications();
         }
 
-        setInterval(CheckNotifications, 5000);
+        var DesktopintervalVariable = setInterval(CheckNotifications, 5000);
     </script>
     <form id="form1" runat="server">
-    <div>
+    <div class="desktop_body">
         <ext:ResourceManager ID="ResourceManager1" runat="server" DisableViewState="true">
+            <Listeners>
+                <DocumentReady Handler="DesktopX.initialCheckForNotification();" />
+            </Listeners>
         </ext:ResourceManager>
 
         <%--Context Menu--%>
@@ -233,6 +237,9 @@
                 <ext:DesktopModule ModuleID="SettingsModule" WindowID="SettingsWin" >
                     <Launcher ID="SettingsLauncher" runat="server" Text="Configuración" Icon="Wrench" />
                 </ext:DesktopModule>
+                <ext:DesktopModule ModuleID="NotificacioModule" WindowID="NotificationsWin" >
+                    <Launcher ID="NotificacioLauncher" runat="server" Text="Notificaciones" Icon="Mail" />
+                </ext:DesktopModule>
                 <ext:DesktopModule ModuleID="UsuarioActualModule" WindowID="UsuarioActualWin" >
                     <Launcher ID="UsuarioActualLauncher" runat="server" Text="Editar Usuario" Icon="UserEdit" />
                 </ext:DesktopModule>
@@ -269,7 +276,7 @@
                     </ext:MenuItem>
                     <ext:MenuItem Text="Salir" Icon="Disconnect">
                         <DirectEvents>
-                            <Click OnEvent="Logout_Click">
+                            <Click OnEvent="Logout_Click" After="window.clearInterval(DesktopintervalVariable)">
                                 <EventMask ShowMask="true" Msg="Adios..." MinDelay="1000" />
                             </Click>
                         </DirectEvents>
@@ -428,26 +435,6 @@
 
         <%--Desktop--%>
 
-        <%--shortcuts' tooltips--%>
-
-        <ext:ToolTip runat="server" ID="scUsuariosTooltip"                  Html="Usuarios"                          Target="scUsuarios-shortcut"                 ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scRolesTooltip"                     Html="Roles"                             Target="scRoles-shortcut"                    ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scVariablesDeEntornoTooltip"        Html="Variables de Entorno"              Target="scVariablesDeEntorno-shortcut"       ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scSociosTooltip"                    Html="Socios"                            Target="scSocios-shortcut"                   ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scTiposDeProductosTooltip"          Html="Tipos de Productos"                Target="scTiposDeProductos-shortcut"         ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scProductosTooltip"                 Html="Productos"                         Target="scProductos-shortcut"                ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scEstadosNotasDePesoTooltip"        Html="Estados de Notas de Peso"          Target="scEstadosNotasDePeso-shortcut"       ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scNotasDePesoEnPesajeTooltip"       Html="Notas De Peso en Area de Pesaje"   Target="scNotasDePesoEnPesaje-shortcut"      ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scNotasDePesoEnCatacionTooltip"     Html="Notas De Peso en Area de Catación" Target="scNotasDePesoEnCatacion-shortcut"    ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scNotasDePesoTooltip"               Html="Notas de Peso"                     Target="scNotasDePeso-shortcut"              ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scHojasDeLiquidacionTooltip"        Html="Hojas de Liquidación"              Target="scHojasDeLiquidacion-shortcut"       ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scSolicitudesDePrestamoTooltip"     Html="Solicitudes de Prestamo"           Target="scSolicitudesDePrestamo-shortcut"    ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scPrestamosTooltip"                 Html="Prestamos"                         Target="scPrestamos-shortcut"                ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scClasificacionesDeCafeTooltip"     Html="Clasificaciones de Café"           Target="scClasificacionesDeCafe-shortcut"    ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scInventarioDeCafePorSocioTooltip"  Html="Inventario de Café por Socio"      Target="scInventarioDeCafePorSocio-shortcut" ></ext:ToolTip>
-
-        <%--shortcuts' tooltips--%>
-
         <ext:DesktopWindow
             ID="SettingsWin"
             runat="server"
@@ -462,6 +449,42 @@
             Shadow="None"
             Layout="AccordionLayout">
             <Items>
+                <ext:Panel ID="Panel2" runat="server" Height="200" Title="Notificaciones" Layout="FitLayout">
+                    <Items>
+                        <ext:Portal ID="portal2" runat="server" AutoHeight="true" Header="false" Layout="Column">
+                            <Items>
+                                <ext:PortalColumn ID="portalcolumn1" runat="server" StyleSpec="padding:10px 10px 10px 10px"
+                                    ColumnWidth="1" Layout="Anchor" Height="200" >
+                                    <Items>
+                                        <ext:Portlet runat="server" Title="Bandeja de Notificaciones" Selectable="true" ID="Portlet12" Draggable="false" Collapsible="false" Icon="Mail">
+                                            <Items>
+                                                <ext:TableLayout ID="TableLayout2" runat="server" >
+                                                    <Cells>
+                                                        <ext:Cell>
+                                                            <ext:ImageButton ID="NotificacioneBtn" runat="server" Height="32" Width="32"
+                                                                ImageUrl="../resources/images/mail_box.png">
+                                                                <Listeners>
+                                                                    <Click Handler="#{NotificationsWin}.show();" />
+                                                                </Listeners>
+                                                            </ext:ImageButton>
+                                                        </ext:Cell>
+                                                        <ext:Cell CellCls="labelCell">
+                                                            <ext:Label ID="Label111" runat="server" Text="Ver todas las notificaciones recibidas.">
+                                                                <ToolTips>
+                                                                    <ext:ToolTip runat="server" Html="Presione click sobre la imagen."></ext:ToolTip>
+                                                                </ToolTips>
+                                                            </ext:Label>
+                                                        </ext:Cell>
+                                                    </Cells>
+                                                </ext:TableLayout>
+                                            </Items>
+                                        </ext:Portlet>
+                                    </Items>
+                                </ext:PortalColumn>
+                            </Items>
+                        </ext:Portal>
+                    </Items>
+                </ext:Panel>
                 <ext:Panel ID="Panel1" runat="server" AutoHeight="true" Title="Editar Usuario" Layout="FitLayout">
                     <Items>
                         <ext:Portal ID="portal1" runat="server" AutoHeight="true" Header="false" Layout="Column">
@@ -481,8 +504,12 @@
                                                                 </Listeners>
                                                             </ext:ImageButton>
                                                         </ext:Cell>
-                                                        <ext:Cell>
-                                                            <ext:Label ID="Label11" runat="server" Text="Permite Cambiar la información del usuario actual."></ext:Label>
+                                                        <ext:Cell CellCls="labelCell">
+                                                            <ext:Label ID="Label11" runat="server" Text="Permite Cambiar la información del usuario actual.">
+                                                                <ToolTips>
+                                                                    <ext:ToolTip runat="server" Html="Presione click sobre la imagen."></ext:ToolTip>
+                                                                </ToolTips>
+                                                            </ext:Label>
                                                         </ext:Cell>
                                                     </Cells>
                                                 </ext:TableLayout>
@@ -500,8 +527,11 @@
                                                                 </Listeners>
                                                             </ext:ImageButton>
                                                         </ext:Cell>
-                                                        <ext:Cell>
-                                                            <ext:Label ID="Label12" runat="server" Text="Permite Cambiar la contraseña del usuario actual.">
+                                                        <ext:Cell CellCls="labelCell">
+                                                            <ext:Label ID="Label12" runat="server" Text="Permite Cambiar la contraseña del usuario actual." >
+                                                                <ToolTips>
+                                                                    <ext:ToolTip runat="server" Html="Presione click sobre la imagen."></ext:ToolTip>
+                                                                </ToolTips>
                                                             </ext:Label>
                                                         </ext:Cell>
                                                     </Cells>
@@ -514,8 +544,141 @@
                         </ext:Portal>
                     </Items>
                 </ext:Panel>
-                <%--<ext:Panel ID="Panel2" runat="server" Height="200" Title="Fondo de Escritorio" Layout="FitLayout">
-                </ext:Panel>--%>
+            </Items>
+        </ext:DesktopWindow>
+
+        <ext:Store ID="dsReport" runat="server" OnRefreshData="dsReport_Refresh">
+            <Reader>
+                <ext:JsonReader IDProperty="NOTIFICACION_ID">
+                    <Fields>
+                        <ext:RecordField Name="NOTIFICACION_ID" />
+                        <ext:RecordField Name="NOTIFICACION_ESTADO" >
+                            <Convert Handler="
+                            switch(value)
+                            {
+                                case 1: return 'Notificando';
+                                case 2: return 'Leido';
+                               default: return 'Creado';
+                            }"
+                            />
+                        </ext:RecordField>
+                        <ext:RecordField Name="USR_USERNAME" />
+                        <ext:RecordField Name="NOTIFICACION_TITLE" />
+                        <ext:RecordField Name="NOTIFICACION_MENSAJE" />
+                        <%--<ext:RecordField Name="Customers" IsComplex="true" />--%>
+                    </Fields>
+                </ext:JsonReader>
+            </Reader>
+        </ext:Store>
+
+        <ext:Menu ID="DataViewContextMenu" runat="server">
+            <Items>
+                <ext:MenuTextItem ID="notificationLabel" runat="server" CtCls="notification-label"  />
+                <ext:MenuItem ID="MenuItem2" runat="server" Text="Ver Detalles" Icon="ApplicationFormEdit">
+                    <Listeners>
+                        <Click Handler="Ext.Msg.alert('Detalle', Ext.encode(this.parentMenu.node));" />
+                    </Listeners>
+                </ext:MenuItem>
+            </Items>
+           <Listeners>
+                <BeforeShow Handler="#{notificationLabel}.setText(this.node.Usuario);" />
+            </Listeners>
+        </ext:Menu>
+
+        <ext:DesktopWindow
+            ID="NotificationsWin"
+            runat="server"
+            Title="Notificaciones"
+            Width="480"
+            Maximizable="false"
+            CloseAction="Hide"
+            InitCenter="true"
+            Icon="Mail"
+            AutoHeight="true"
+            Layout="FitLayout"
+            Resizable="false"
+            Hidden="true">
+            <TopBar>
+                <ext:Toolbar ID="Toolbar1" runat="server">
+                    <Items>
+                        <ext:Button runat="server" ID="DeleteReadNotificationBtn" Text="Eliminar Leidos" Icon="Delete">
+                            <Listeners>
+                                <Click Handler="DesktopX.deleteReadNotifications();" />
+                            </Listeners>
+                        </ext:Button>
+                    </Items>
+                </ext:Toolbar>
+            </TopBar>
+            <Listeners>
+                <Show Handler="#{dsReport}.reload();" />
+                <Hide Handler="#{dsReport}.removeAll();" />
+            </Listeners>
+            <Items>
+                <ext:FormPanel ID="FormPanel1" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" AutoScroll="true" Layout="FormLayout" AutoHeight="true">
+                    <Items>
+                        <ext:Panel ID="Panel9" runat="server" Frame="false" Padding="5" Height="250" BodyStyle="background-color: white;" >
+                            <%--<TopBar>
+                                <ext:Toolbar runat="server">
+                                    <Items>
+                                        <ext:Button runat="server" ID="DeleteReadNotificationBtn" Text="Eliminar Leidos" Icon="Delete">
+                                            <Listeners>
+                                                <Click Handler="DesktopX.deleteReadNotifications();" />
+                                            </Listeners>
+                                        </ext:Button>
+                                    </Items>
+                                </ext:Toolbar>
+                            </TopBar>--%>
+                            <Items>
+                                <ext:DataView ID="DataView1" 
+                                    runat="server" 
+                                    StoreID="dsReport"
+                                    SingleSelect="true"
+                                    ItemSelector="tr.notification-record" 
+                                    OverClass="notif-name-over"
+                                    EmptyText="No hay notifications para mostrar."
+                                    Height="250">
+                                    <Template ID="Template1" runat="server">
+                                        <Html>
+	                            			<div id="notifications-ct">
+	                            				<div class="header">
+	                            					<p>Bandeja de Notificaciones</p>                                                                        
+	                            				</div>
+	                            				<table>
+	                            					<tr>
+                                                        <th>Usuario</th>
+	                            						<th>Estado</th>
+	                            						<th>Titulo</th>
+	                            						<th>Mensaje</th>
+	                            					</tr>
+	                            				
+	                            					<tpl for=".">
+	                            							<tr>
+	                            								<td class="notification-row" colspan="6">
+	                            									<div><h2 class="notification-selector">{NOTIFICACION_ESTADO}</h2></div>
+	                            								</td>
+	                            							</tr>
+	                            							<tpl for=".">
+	                            								<tr class="notification-record l-{parent.NOTIFICACION_ESTADO}">
+	                            									<td class="notif-name" notifID="{NOTIFICACION_ID}" estado="{NOTIFICACION_ESTADO}" title="{NOTIFICACION_TITLE}" message="{NOTIFICACION_MENSAJE}">{USR_USERNAME}</td>
+                                                                    <td>&nbsp;{NOTIFICACION_ESTADO}</td>
+	                            									<td>&nbsp;{NOTIFICACION_TITLE}</td>
+	                            									<td>&nbsp;{NOTIFICACION_MENSAJE}</td>
+	                            								</tr>
+	                            							</tpl>
+	                            					</tpl>                    
+	                            				</table>
+	                            			</div>
+	                            		</Html>
+                                    </Template>
+                                    <Listeners>
+                                        <ContainerClick Fn="viewClick" />
+                                        <Click Fn="nodeClick" />
+                                    </Listeners>
+                                </ext:DataView>
+                            </Items>
+                        </ext:Panel>
+                    </Items>
+                </ext:FormPanel>
             </Items>
         </ext:DesktopWindow>
 
@@ -535,6 +698,26 @@
                 Proyecto de Graduación para Ingeniería en Sistemas Computacionales.
             </Content>
         </ext:Window>
+
+        <%--shortcuts' tooltips--%>
+
+        <ext:ToolTip runat="server" ID="scUsuariosTooltip"                  Html="Usuarios"                          Target="scUsuarios-shortcut"                 ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scRolesTooltip"                     Html="Roles"                             Target="scRoles-shortcut"                    ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scVariablesDeEntornoTooltip"        Html="Variables de Entorno"              Target="scVariablesDeEntorno-shortcut"       ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scSociosTooltip"                    Html="Socios"                            Target="scSocios-shortcut"                   ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scTiposDeProductosTooltip"          Html="Tipos de Productos"                Target="scTiposDeProductos-shortcut"         ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scProductosTooltip"                 Html="Productos"                         Target="scProductos-shortcut"                ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scEstadosNotasDePesoTooltip"        Html="Estados de Notas de Peso"          Target="scEstadosNotasDePeso-shortcut"       ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scNotasDePesoEnPesajeTooltip"       Html="Notas De Peso en Area de Pesaje"   Target="scNotasDePesoEnPesaje-shortcut"      ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scNotasDePesoEnCatacionTooltip"     Html="Notas De Peso en Area de Catación" Target="scNotasDePesoEnCatacion-shortcut"    ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scNotasDePesoTooltip"               Html="Notas de Peso"                     Target="scNotasDePeso-shortcut"              ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scHojasDeLiquidacionTooltip"        Html="Hojas de Liquidación"              Target="scHojasDeLiquidacion-shortcut"       ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scSolicitudesDePrestamoTooltip"     Html="Solicitudes de Prestamo"           Target="scSolicitudesDePrestamo-shortcut"    ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scPrestamosTooltip"                 Html="Prestamos"                         Target="scPrestamos-shortcut"                ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scClasificacionesDeCafeTooltip"     Html="Clasificaciones de Café"           Target="scClasificacionesDeCafe-shortcut"    ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scInventarioDeCafePorSocioTooltip"  Html="Inventario de Café por Socio"      Target="scInventarioDeCafePorSocio-shortcut" ></ext:ToolTip>
+
+        <%--shortcuts' tooltips--%>
 
         <usera:UsuarioActual runat="server" ID="UsuarioActualCtl" />
         <cclave:CambiarClave runat="server" ID="CambiarClaveCtl" />

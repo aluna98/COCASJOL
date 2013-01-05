@@ -1,0 +1,50 @@
+﻿#notifications-ct table { width : 100% !important; }
+        
+#notifications-ct th {
+    background : #F0F4F5 url(../images/bg.gif) repeat-x scroll left top;
+    font-weight : bold;
+    padding : 8px 5px;
+}
+
+#notifications-ct td {
+    padding : 5px;
+    border-bottom : 1px solid silver;
+}
+
+#notifications-ct .notification-row {
+    padding-top : 15px;
+    border : none;
+}
+
+#notifications-ct .notification-row h2 { font-size : 2em; }
+
+#notifications-ct .header { padding : 10px 0px 10px 5px; }
+
+#notifications-ct .header p { font-size : 2em; }
+
+#notifications-ct .header a { margin-bottom : 10px; }
+
+.notif-name-over {
+    cursor : pointer;
+    background-color : #efefef;
+}
+
+#notifications-ct .notification-row div {
+    border-bottom : 2px solid #99bbe8;
+    cursor : pointer;
+    background : transparent url(../images/group-expand-sprite.gif) no-repeat 0px -42px;
+    margin-bottom : 5px;
+}
+
+#notifications-ct .notification-row div h2  { padding-left : 18px; }
+
+#notifications-ct .notification-row div.collapsed { background-position : 0px 8px; }
+
+#notifications-ct tr.collapsed { display : none; }
+
+.notification-label {
+    font-weight : bold;
+    font-size : 12px;
+    padding : 5px 0px 5px 28px;            
+    width : 150px;
+}

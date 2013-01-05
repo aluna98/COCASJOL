@@ -1,4 +1,7 @@
-﻿var DesktopX = {
+﻿/// <reference name="Ext.Net.Build.Ext.Net.extjs.adapter.ext.ext-base-debug.js" assembly="Ext.Net" />
+/// <reference name="Ext.Net.Build.Ext.Net.extjs.ext-all-debug-w-comments.js" assembly="Ext.Net" />
+
+var DesktopX = {
     createDynamicWindow: function (app, ico, title, url, width, height) {
         width = width == null ? 640 : width;
         height = height == null ? 480 : height;
@@ -144,6 +147,24 @@
             var w = desk.getWindow(win.title + '-win');
             if (w && w.minimized)
                 win.show();
+        });
+    },
+
+    initialCheckForNotification: function () {
+        Ext.net.DirectMethods.InitialCheckForNotifications();
+    },
+
+    markAsReadNotification: function (notificacion_id) {
+        Ext.net.DirectMethods.MarkAsReadNotification(notificacion_id);
+    },
+
+    deleteReadNotifications: function () {
+        if (dsReport.getCount() == 0)
+            return;
+        Ext.Msg.confirm('Eliminar Notificaciones Leidas', 'Seguro desea eliminar las notificaciones leidas?', function (btn, text) {
+            if (btn == 'yes') {
+                Ext.net.DirectMethods.DeleteReadNotifications();
+            }
         });
     }
 };

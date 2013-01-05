@@ -40,10 +40,10 @@
                                         Title="Nombre de Usuario" Width="200" TrackMouse="true" />
                                 </ToolTips>
                             </ext:TextField>
-                            <ext:TextField runat="server" ID="EditNombreTxt"          MaxLength="45" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Primer Nombre" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                            <ext:TextField runat="server" ID="EditSegundoNombreTxt"   MaxLength="45" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Segundo Nombre" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                            <ext:TextField runat="server" ID="EditApellidoTxt"        MaxLength="45" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Primer Apellido" AllowBlank="false" MsgTarget="Side" Vtype="alpha"></ext:TextField>
-                            <ext:TextField runat="server" ID="EditSegundoApellidoTxt" MaxLength="45" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Segundo Apellido" MsgTarget="Side" Vtype="alpha"></ext:TextField>
+                            <ext:TextField runat="server" ID="EditNombreTxt"          MaxLength="45" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Primer Nombre" AllowBlank="false" MsgTarget="Side" ></ext:TextField>
+                            <ext:TextField runat="server" ID="EditSegundoNombreTxt"   MaxLength="45" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Segundo Nombre" MsgTarget="Side" ></ext:TextField>
+                            <ext:TextField runat="server" ID="EditApellidoTxt"        MaxLength="45" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Primer Apellido" AllowBlank="false" MsgTarget="Side" ></ext:TextField>
+                            <ext:TextField runat="server" ID="EditSegundoApellidoTxt" MaxLength="45" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Segundo Apellido" MsgTarget="Side" ></ext:TextField>
                             <ext:TextField runat="server" ID="EditEmailTxt"           MaxLength="30" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Email" Vtype="email" MsgTarget="Side"></ext:TextField>
                         </Items>
                     </ext:Panel>

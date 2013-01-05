@@ -17,7 +17,7 @@ using COCASJOL.LOGIC.Utiles;
 
 namespace COCASJOL.WEBSITE
 {
-    public partial class Desktop : COCASJOLBASE //System.Web.UI.Page
+    public partial class Desktop : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
         protected override void OnInit(EventArgs e)
         {
@@ -31,7 +31,8 @@ namespace COCASJOL.WEBSITE
             {
                 if (!X.IsAjaxRequest)
                 {
-                    
+                    NotificacionLogic notificacionlogic = new NotificacionLogic();
+                    Application["NotificacionesList"] = notificacionlogic.GetNotificaciones();
                 }
 
                 string loggedUser = Session["username"] as string;
@@ -150,12 +151,45 @@ namespace COCASJOL.WEBSITE
             try
             {
                 // Logout from Authenticated Session
+                Session.RemoveAll();
                 Session.Abandon();
                 this.Response.Redirect("~/Default.aspx");
             }
             catch (Exception ex)
             {
                 //log
+                throw;
+            }
+        }
+
+        [DirectMethod(RethrowException = true)]
+        public void InitialCheckForNotifications()
+        {
+            try
+            {
+                string loggedUser = Session["username"] as string;
+                List<notificacion> NotificacionesList = Application["NotificacionesList"] as List<notificacion>;
+
+                if (NotificacionesList == null)
+                    return;
+
+                var query = from n in NotificacionesList
+                            where n.USR_USERNAME == loggedUser && n.NOTIFICACION_ESTADO.Equals((int)EstadosNotificacion.Notificado)
+                            select n;
+
+                if (query.Count() > 0)
+                {
+                    NotificacionLogic notificacionlogic = new NotificacionLogic();
+
+                    foreach (notificacion notif in query.ToList<notificacion>())
+                    {
+                        this.ShowPinnedNotification(notif.NOTIFICACION_TITLE, notif.NOTIFICACION_MENSAJE, notif.NOTIFICACION_ID);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
                 throw;
             }
         }
@@ -172,16 +206,16 @@ namespace COCASJOL.WEBSITE
                     return;
 
                 var query = from n in NotificacionesList
-                            where n.USR_USERNAME == loggedUser && (n.NOTIFICACION_ESTADO.Equals(EstadosNotificacion.Creado))
+                            where n.USR_USERNAME == loggedUser && n.NOTIFICACION_ESTADO.Equals((int)EstadosNotificacion.Creado)
                             select n;
 
                 if (query.Count() > 0)
                 {
-
                     NotificacionLogic notificacionlogic = new NotificacionLogic();
-                    foreach (notificacion notif in NotificacionesList)
+
+                    foreach (notificacion notif in query.ToList<notificacion>())
                     {
-                        Notificacion(notif.NOTIFICACION_TITLE, notif.NOTIFICACION_MENSAJE);
+                        this.ShowPinnedNotification(notif.NOTIFICACION_TITLE, notif.NOTIFICACION_MENSAJE);
                         notificacionlogic.ActualizarNotificacion(notif.NOTIFICACION_ID, EstadosNotificacion.Notificado);
                     }
 
@@ -195,18 +229,88 @@ namespace COCASJOL.WEBSITE
             }
         }
 
-        private void Notificacion(string title, string message)
+        [DirectMethod(RethrowException = true)]
+        public void MarkAsReadNotification(string NOTIFICACION_ID)
         {
             try
             {
-                Ext.Net.Notification.Show(new Ext.Net.NotificationConfig
+                NotificacionLogic notificacionlogic = new NotificacionLogic();
+                notificacionlogic.ActualizarNotificacion(Convert.ToInt32(NOTIFICACION_ID) , EstadosNotificacion.Leido);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [DirectMethod(RethrowException = true)]
+        public void DeleteReadNotifications()
+        {
+            try
+            {
+                string loggedUser = Session["username"] as string;
+
+#if DEBUG
+                if (loggedUser == "DEVELOPER")
+                    return;
+#endif
+
+                NotificacionLogic notificacionlogic = new NotificacionLogic();
+                notificacionlogic.EliminarNotificacionesDeUsuario(loggedUser);
+                dsReport_Refresh(null, null);
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
+        private void ShowPinnedNotification(string title, string message, int NOTIFICACION_ID)
+        {
+            try
+            {
+                Ext.Net.Notification PinnedNotification = Ext.Net.Notification.Show(new Ext.Net.NotificationConfig
                 {
                     Title = title,
                     Html = message,
-                    BringToFront = false,
+                    Pinned = true,
                     ShowPin = true,
-                    Pinned = true
+                    Width = 300,
+                    AlignCfg = new NotificationAlignConfig{ El = this.ClientID, TargetAnchor = AnchorPoint.BottomRight },
+                    ShowFx =  new SlideIn { Anchor = AnchorPoint.Bottom },
+                    HideFx = new SlideOut { Anchor = AnchorPoint.Bottom },
+                    Tools = new ToolsCollection
+                    {
+                        new Tool
+                        {
+                            Type = ToolType.Save, Handler = "DesktopX.markAsReadNotification('" + NOTIFICACION_ID.ToString() + "');"
+                        }
+                    }
                 });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        protected void dsReport_Refresh(object sender, StoreRefreshDataEventArgs e)
+        {
+            try
+            {
+                string loggedUser = Session["username"] as string;
+
+#if DEBUG
+                if (loggedUser == "DEVELOPER")
+                    return;
+#endif
+
+                NotificacionLogic notificacionlogic = new NotificacionLogic();
+                this.dsReport.DataSource = notificacionlogic.GetNotificacionesDeUsuario(loggedUser);
+                this.dsReport.DataBind();
             }
             catch (Exception)
             {

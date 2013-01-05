@@ -403,6 +403,9 @@
             Shadow="None"
             Modal="true"
             X="10" Y="30">
+            <Listeners>
+                <Show Handler="#{PrivilegiosDeRolSt}.removeAll();" />
+            </Listeners>
             <Items>
                 <ext:FormPanel ID="EditarRolFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelWidth="120">
                     <Listeners>
@@ -433,7 +436,8 @@
                                 <ext:Panel ID="Panel14" runat="server" Title="Privilegios" Layout="AnchorLayout" AutoHeight="True"
                                     Resizable="false">
                                     <Listeners>
-                                        <Activate Handler="HideButtons();" />
+                                        <Activate Handler="HideButtons(); #{PrivilegiosDeRolSt}.reload();" />
+                                        <Deactivate Handler="#{PrivilegiosDeRolSt}.removeAll();" />
                                     </Listeners>
                                     <Items>
                                         <ext:Panel ID="Panel16" runat="server" Frame="false" Padding="5" Layout="AnchorLayout"
@@ -562,7 +566,8 @@
             Width="500" Layout="FormLayout" AutoHeight="True" Resizable="false" Shadow="None"
             X="30" Y="70" Modal="true">
             <Listeners>
-                <Show Handler="Ext.getCmp('PrivilegiosNoDeRolGridP').getSelectionModel().clearSelections();" />
+                <Show Handler="#{PrivilegiosNoDeRolesSt}.reload();" />
+                <Hide Handler="#{PrivilegiosNoDeRolesSt}.removeAll();" />
             </Listeners>
             <Items>
                 <ext:FormPanel ID="FormPanel1" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right">
