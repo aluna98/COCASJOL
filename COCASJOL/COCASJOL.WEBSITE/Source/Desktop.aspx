@@ -14,10 +14,8 @@
 
     <link rel="Stylesheet" type="text/css" href="../resources/css/Desktop.css" />
     <link rel="Stylesheet" type="text/css" href="../resources/css/DesktopShortcuts.css" />
-    <link rel="Stylesheet" type="text/css" href="../resources/css/Notification.css" />
     <script type="text/javascript" src="../resources/js/md5.js" ></script>
     <script type="text/javascript" src="../resources/js/desktop.js" ></script>
-    <script type="text/javascript" src="../resources/js/notification.js" ></script>
 </head>
 <body>
     <script type="text/javascript">
@@ -547,7 +545,7 @@
             </Items>
         </ext:DesktopWindow>
 
-        <ext:Store ID="dsReport" runat="server" OnRefreshData="dsReport_Refresh">
+        <ext:Store ID="dsReport" runat="server" OnRefreshData="dsReport_Refresh" AutoLoad="false">
             <Reader>
                 <ext:JsonReader IDProperty="NOTIFICACION_ID">
                     <Fields>
@@ -565,25 +563,13 @@
                         <ext:RecordField Name="USR_USERNAME" />
                         <ext:RecordField Name="NOTIFICACION_TITLE" />
                         <ext:RecordField Name="NOTIFICACION_MENSAJE" />
-                        <%--<ext:RecordField Name="Customers" IsComplex="true" />--%>
                     </Fields>
                 </ext:JsonReader>
             </Reader>
-        </ext:Store>
-
-        <ext:Menu ID="DataViewContextMenu" runat="server">
-            <Items>
-                <ext:MenuTextItem ID="notificationLabel" runat="server" CtCls="notification-label"  />
-                <ext:MenuItem ID="MenuItem2" runat="server" Text="Ver Detalles" Icon="ApplicationFormEdit">
-                    <Listeners>
-                        <Click Handler="Ext.Msg.alert('Detalle', Ext.encode(this.parentMenu.node));" />
-                    </Listeners>
-                </ext:MenuItem>
-            </Items>
-           <Listeners>
-                <BeforeShow Handler="#{notificationLabel}.setText(this.node.Usuario);" />
+            <Listeners>
+                <BeforeLoad Handler="#{NotificacionesGridP}.plugins[0].collapseAll();" />
             </Listeners>
-        </ext:Menu>
+        </ext:Store>
 
         <ext:DesktopWindow
             ID="NotificationsWin"
@@ -616,65 +602,48 @@
             <Items>
                 <ext:FormPanel ID="FormPanel1" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" AutoScroll="true" Layout="FormLayout" AutoHeight="true">
                     <Items>
-                        <ext:Panel ID="Panel9" runat="server" Frame="false" Padding="5" Height="250" BodyStyle="background-color: white;" >
-                            <%--<TopBar>
-                                <ext:Toolbar runat="server">
-                                    <Items>
-                                        <ext:Button runat="server" ID="DeleteReadNotificationBtn" Text="Eliminar Leidos" Icon="Delete">
-                                            <Listeners>
-                                                <Click Handler="DesktopX.deleteReadNotifications();" />
-                                            </Listeners>
-                                        </ext:Button>
-                                    </Items>
-                                </ext:Toolbar>
-                            </TopBar>--%>
+                        <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5">
                             <Items>
-                                <ext:DataView ID="DataView1" 
-                                    runat="server" 
-                                    StoreID="dsReport"
-                                    SingleSelect="true"
-                                    ItemSelector="tr.notification-record" 
-                                    OverClass="notif-name-over"
-                                    EmptyText="No hay notifications para mostrar."
-                                    Height="250">
-                                    <Template ID="Template1" runat="server">
-                                        <Html>
-	                            			<div id="notifications-ct">
-	                            				<div class="header">
-	                            					<p>Bandeja de Notificaciones</p>                                                                        
-	                            				</div>
-	                            				<table>
-	                            					<tr>
-                                                        <th>Usuario</th>
-	                            						<th>Estado</th>
-	                            						<th>Titulo</th>
-	                            						<th>Mensaje</th>
-	                            					</tr>
-	                            				
-	                            					<tpl for=".">
-	                            							<tr>
-	                            								<td class="notification-row" colspan="6">
-	                            									<div><h2 class="notification-selector">{NOTIFICACION_ESTADO}</h2></div>
-	                            								</td>
-	                            							</tr>
-	                            							<tpl for=".">
-	                            								<tr class="notification-record l-{parent.NOTIFICACION_ESTADO}">
-	                            									<td class="notif-name" notifID="{NOTIFICACION_ID}" estado="{NOTIFICACION_ESTADO}" title="{NOTIFICACION_TITLE}" message="{NOTIFICACION_MENSAJE}">{USR_USERNAME}</td>
-                                                                    <td>&nbsp;{NOTIFICACION_ESTADO}</td>
-	                            									<td>&nbsp;{NOTIFICACION_TITLE}</td>
-	                            									<td>&nbsp;{NOTIFICACION_MENSAJE}</td>
-	                            								</tr>
-	                            							</tpl>
-	                            					</tpl>                    
-	                            				</table>
-	                            			</div>
-	                            		</Html>
-                                    </Template>
-                                    <Listeners>
-                                        <ContainerClick Fn="viewClick" />
-                                        <Click Fn="nodeClick" />
-                                    </Listeners>
-                                </ext:DataView>
+                                <ext:GridPanel ID="NotificacionesGridP" runat="server" AutoExpandColumn="NOTIFICACION_TITLE"
+                                    Height="250" Title="Notificaciones" Header="false" Border="true" StripeRows="true"
+                                    TrackMouseOver="true" SelectionMemory="Enabled" StoreID="dsReport">
+                                    <Store>
+                                    </Store>
+                                    <ColumnModel ID="ColumnModel2">
+                                        <Columns>
+                                            <ext:Column DataIndex="NOTIFICACION_ID" Header="Id" Sortable="true"></ext:Column>
+                                            <ext:Column DataIndex="NOTIFICACION_ESTADO" Header="Estado" Sortable="true"></ext:Column>
+                                            <ext:Column DataIndex="NOTIFICACION_TITLE" Header="Título" Sortable="true"></ext:Column>
+                                        </Columns>
+                                    </ColumnModel>
+                                    <Plugins>
+                                        <ext:RowExpander ID="RowExpander1" runat="server">
+                                            <Template ID="Template1" runat="server">
+                                                <Html>
+                                                    <div style="padding:5px;">
+		                            				<b>Titulo: 
+                                                        <div style="margin-left: 25px;">{NOTIFICACION_TITLE}</div>
+                                                    </b>
+                                                    <br />
+                                                    <b>Estado: 
+                                                        <div style="margin-left: 25px;">{NOTIFICACION_ESTADO}</div>
+                                                    </b>
+                                                    <br />
+		                            				<b>Mensaje:
+                                                        <div style="margin-left:25px !important; ">
+                                                            {NOTIFICACION_MENSAJE}
+                                                        </div>
+                                                    </b>
+                                                    </div>
+		                            			</Html>
+                                            </Template>
+                                        </ext:RowExpander>
+                                    </Plugins>
+                                    <BottomBar>
+                                        <ext:PagingToolbar ID="PagingToolbar4" runat="server" PageSize="10" StoreID="dsReport" />
+                                    </BottomBar>
+                                    <LoadMask ShowMask="true" />
+                                </ext:GridPanel>
                             </Items>
                         </ext:Panel>
                     </Items>

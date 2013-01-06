@@ -1,4 +1,4 @@
-<%@ Page Language="C#" %>
+ï»¿<%@ Page Language="C#" %>
 
 <%@ Register assembly="Ext.Net" namespace="Ext.Net" tagprefix="ext" %>
 
@@ -29,6 +29,8 @@
         {
             background: url(resources/images/logo_transparente.gif) no-repeat center;
             progid:DXImageTransform.Microsoft.AlphaImageLoader(src='resources/images/logo_transparente.gif', sizingMethod='center');
+            width: 100%;
+            height: 100%;
         }
         
         .loginEl
@@ -40,7 +42,7 @@
     <script type="text/javascript">
         var validate = function () {
             if (!Ext.getCmp('txtUsername').validate() || !Ext.getCmp('txtPassword').validate()) {
-                Ext.Msg.alert('Login', 'El nombre de usuario y contraseña son necesarios.');
+                Ext.Msg.alert('Login', 'El nombre de usuario y contraseï¿½a son necesarios.');
                 return;
             } else {
                 var encryptedpass = md5(txtPassword.getValue());
@@ -97,7 +99,7 @@
                 {
                     this.txtUsername.Clear();
                     this.txtPassword.Clear();
-                    X.Msg.Alert("Inicio de Sesión", "El nombre de usuario o contraseña son incorrectos.", "#{txtUsername}.focus();").Show();
+                    X.Msg.Alert("Inicio de Sesiï¿½n", "El nombre de usuario o contraseï¿½a son incorrectos.", "#{txtUsername}.focus();").Show();
                 }
             }
             catch (Exception)
@@ -109,8 +111,8 @@
     </script>
 </head>
 <body>
+    <div class="bg_logo">
     <form id="form1" runat="server">
-        <div class="bg_logo">
         <ext:ResourceManager ID="ResourceManager1" runat="server" DisableViewState="true">
             <Listeners>
                 <DocumentReady Handler="alinearLogin();" />
@@ -158,7 +160,7 @@
                 </ext:Button>
             </Buttons>
         </ext:Window>
-        </div>
     </form>
+    </div>
 </body>
 </html>

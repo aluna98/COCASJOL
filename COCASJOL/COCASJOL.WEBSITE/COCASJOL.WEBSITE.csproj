@@ -59,7 +59,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="404.aspx" />
-    <Content Include="Default.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="ExpiredSession.aspx" />
     <Content Include="favicon.ico" />
@@ -68,7 +67,6 @@
     <Content Include="resources\css\ComboBox_Grid.css" />
     <Content Include="resources\css\Desktop.css" />
     <Content Include="resources\css\DesktopShortcuts.css" />
-    <Content Include="resources\css\Notification.css" />
     <Content Include="resources\images\background1.jpg" />
     <Content Include="resources\images\basket.png" />
     <Content Include="resources\images\bg.gif" />
@@ -103,10 +101,10 @@
     <Content Include="resources\images\window48x48.png" />
     <Content Include="resources\js\desktop.js" />
     <Content Include="resources\js\md5.js" />
-    <Content Include="resources\js\notification.js" />
     <Content Include="resources\xml\VariablesDeEntorno.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Default.aspx" />
     <Content Include="Source\Desktop.aspx" />
     <Content Include="Source\Entorno\VariablesDeEntorno.aspx" />
     <Content Include="Source\Inventario\ClasificacionesDeCafe.aspx" />

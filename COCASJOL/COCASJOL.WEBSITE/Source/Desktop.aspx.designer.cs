@@ -427,33 +427,6 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.Store dsReport;
         
         /// <summary>
-        /// DataViewContextMenu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Menu DataViewContextMenu;
-        
-        /// <summary>
-        /// notificationLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuTextItem notificationLabel;
-        
-        /// <summary>
-        /// MenuItem2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem MenuItem2;
-        
-        /// <summary>
         /// NotificationsWin control.
         /// </summary>
         /// <remarks>
@@ -490,22 +463,40 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.FormPanel FormPanel1;
         
         /// <summary>
-        /// Panel9 control.
+        /// Panel3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel Panel9;
+        protected global::Ext.Net.Panel Panel3;
         
         /// <summary>
-        /// DataView1 control.
+        /// NotificacionesGridP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DataView DataView1;
+        protected global::Ext.Net.GridPanel NotificacionesGridP;
+        
+        /// <summary>
+        /// RowExpander1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.RowExpander RowExpander1;
+        
+        /// <summary>
+        /// PagingToolbar4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.PagingToolbar PagingToolbar4;
         
         /// <summary>
         /// AboutWin control.

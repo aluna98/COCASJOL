@@ -278,9 +278,6 @@ namespace COCASJOL.WEBSITE
                     Pinned = true,
                     ShowPin = true,
                     Width = 300,
-                    AlignCfg = new NotificationAlignConfig{ El = this.ClientID, TargetAnchor = AnchorPoint.BottomRight },
-                    ShowFx =  new SlideIn { Anchor = AnchorPoint.Bottom },
-                    HideFx = new SlideOut { Anchor = AnchorPoint.Bottom },
                     Tools = new ToolsCollection
                     {
                         new Tool
