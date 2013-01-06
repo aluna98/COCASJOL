@@ -50,6 +50,24 @@ namespace COCASJOL.LOGIC.Socios
                 throw;
             }
         }
+
+            public List<socio> getSociosActivos()
+            {
+                try
+                {
+                    using (var db = new colinasEntities())
+                    {
+                        var query = from s in db.socios.Include("socios_generales").Include("socios_produccion").Include("beneficiario_x_socio")
+                                    where s.SOCIOS_ESTATUS == 1
+                                    select s;
+                        return query.ToList<socio>();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
         #endregion
 
         #region Update
@@ -517,6 +535,41 @@ namespace COCASJOL.LOGIC.Socios
                 throw;
             }
             return true;
+        }
+
+        public bool Igual100(string SOCIOS_ID)
+        {
+            colinasEntities db = null;
+            try
+            {
+                db = new colinasEntities();
+                List<beneficiario_x_socio> lista;
+                var query = from nuevo in db.beneficiario_x_socio
+                            where nuevo.SOCIOS_ID == SOCIOS_ID
+                            select nuevo;
+                lista = query.ToList<beneficiario_x_socio>();
+                int total = 0;
+                foreach (beneficiario_x_socio ben in lista)
+                {
+                    total += ben.BENEFICIARIO_PORCENTAJE.Value;
+                }
+                if (total == 100)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                }
+                throw;
+            }
         }
         #endregion
     }
