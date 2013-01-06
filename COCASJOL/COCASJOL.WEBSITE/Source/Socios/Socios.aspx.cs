@@ -103,6 +103,21 @@ namespace COCASJOL.WEBSITE.Socios
         }
 
         [DirectMethod]
+        public void CienPorciento()
+        {
+            SociosLogic logica = new SociosLogic();
+            bool answer = logica.Igual100(this.EditsocioIdTxt.Text);
+            if (answer)
+            {
+                this.NuevoBeneficiarioWin.Show();
+            }
+            else
+            {
+                X.Msg.Alert("Alerta", "No se puede asignar mas del 100% de las aportaciones").Show();
+            }
+        }
+
+        [DirectMethod]
         public void AgregarBeneficiarioBtn_Click()
         {
             SociosLogic socios = new SociosLogic();
@@ -113,7 +128,12 @@ namespace COCASJOL.WEBSITE.Socios
                     socios.InsertarBeneficiario(this.EditsocioIdTxt.Text, this.AddBenefID.Text,
                         this.AddBenefNombre.Text, this.AddBenefParentezco.Text, this.AddBenefFechaNacimiento.Text,
                         this.AddBenefLugarNac.Text, this.AddBenefPorcentaje.Text);
-                    this.NuevoBeneficiarioWin.Hide();
+                    bool answer = socios.Igual100(EditsocioIdTxt.Text);
+                    if (!answer)
+                    {
+                        this.NuevoBeneficiarioWin.Hide();
+                    }
+                    this.NuevoBeneficiarioForm.Reset();
                     Beneficiarios_Refresh(null, null);
                     X.Msg.Alert("Beneficiario", "Beneficiario Agregado Correctamente.").Show();
                 }
@@ -136,6 +156,7 @@ namespace COCASJOL.WEBSITE.Socios
             socios.EliminarBeneficiario(this.EditsocioIdTxt.Text, this.EditBenefId.Text);
             X.Msg.Alert("Beneficiario", "Beneficiario Eliminado Correctamente.").Show();
         }
+
         [DirectMethod]
         public void DoYesDisable()
         {
@@ -153,6 +174,14 @@ namespace COCASJOL.WEBSITE.Socios
         [DirectMethod]
         public void DoNo() { }
 
+        [DirectMethod]
+        public void Error100()
+        {
+            SociosLogic logica = new SociosLogic();
+            bool answer = logica.Igual100(this.EditsocioIdTxt.Text);
+            if(answer)
+                X.Msg.Alert("Beneficiario", "Advertencia: Se le informa que no tiene asignado el 100% de sus aportaciones").Show();
+        }
 
         protected void Beneficiarios_Refresh(object sender, StoreRefreshDataEventArgs e)
         {

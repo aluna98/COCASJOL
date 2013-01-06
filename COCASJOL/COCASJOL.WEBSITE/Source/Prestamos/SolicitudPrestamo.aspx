@@ -493,7 +493,7 @@
                                     <ext:Column ColumnID="SolicitudId" Header="Solicitud ID" DataIndex="SOLICITUDES_ID" />
                                     <ext:Column ColumnID="SociosNombre" Header="Nombre Socio" DataIndex="SOCIOS_PRIMER_NOMBRE" />
                                     <ext:Column ColumnID="SolicitudMonto" Header="Monto" DataIndex="SOLICITUDES_MONTO" />
-                                    <ext:DateColumn ColumnID="SolicitudPlazo" Header="Plazo" DataIndex="SOLICITUDES_PLAZO" Format="d MMM y" />
+                                    <ext:DateColumn ColumnID="SolicitudPlazo" Header="Plazo" DataIndex="SOLICITUDES_PLAZO" />
                                     <ext:Column Width="28" DataIndex="SOCIOS_ID" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
                                         <Renderer Handler="return '';" />
                                     </ext:Column>
@@ -564,7 +564,7 @@
                                                 <Items>
                                                     <ext:TextField      runat="server" ID="EditIdSolicitud" DataIndex="SOLICITUDES_ID" AnchorHorizontal="90%" FieldLabel="Solicitud Id" ReadOnly="true" AllowBlank="false" />
                                                     <ext:NumberField    runat="server" ID="EditMontoTxt"     DataIndex="SOLICITUDES_MONTO"           AnchorHorizontal="90%"      FieldLabel="Monto                     " AllowBlank="false" MaxLength="11" AllowDecimals="true" DecimalPrecision="3" DecimalSeparator="." />
-                                                    <ext:DateField      runat="server" ID="EditPlazo"     DataIndex="SOLICITUDES_PLAZO"           AnchorHorizontal="90%"      FieldLabel="Fecha de Plazo            " AllowBlank="false" Format="d MMM y" />
+                                                    <ext:DateField      runat="server" ID="EditPlazo"     DataIndex="SOLICITUDES_PLAZO"           AnchorHorizontal="90%"      FieldLabel="Fecha de Plazo            " AllowBlank="false" />
                                                     <ext:TextField      runat="server" ID="EditPagoTxt"      DataIndex="SOLICITUDES_PAGO"            AnchorHorizontal="90%"      FieldLabel="Tipo de Pago              " AllowBlank="false" MaxLength="45" />
                                                     <ext:TextField      runat="server" ID="EditDestinoTxt"   DataIndex="SOLICITUDES_DESTINO"         AnchorHorizontal="90%"      FieldLabel="Destino                   " AllowBlank="false" MaxLength="45" />
                                                     <ext:ComboBox runat="server"    ID="EditCmbPrestamo"     DataIndex="PRESTAMOS_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Prestamo" AllowBlank="false" MsgTarget="Side"
@@ -676,6 +676,7 @@
                                                         <SaveMask ShowMask="true" />
                                                         <Listeners>
                                                             <RowDblClick Handler="SolicitudX.editRef()" />
+                                                            <%--<Activate Handler="Referencias_Refresh(null, null);" />--%>
                                                         </Listeners>
                                                     </ext:GridPanel>
                                                 </Items>
@@ -740,16 +741,16 @@
                                             <Items>
                                                 <ext:ComboBox ID="cbSociosId" runat="server" EmptyText="Seleccione Socio"  TypeAhead="true"
                                                     ForceSelection="true" StoreID="ComboBoxSt" Mode="Local" DisplayField="SOCIOS_ID" FieldLabel="Codigo Socio" 
-                                                    ValueField="SOCIOS_ID" MinChars="2" ListWidth="450" PageSize="10" ItemSelector="tr.list-item" AnchorHorizontal="90%">
+                                                    ValueField="SOCIOS_ID" MinChars="2" ListWidth="350" PageSize="10" ItemSelector="tr.list-item" AnchorHorizontal="90%">
                                                     <Template ID="Template1" runat="server" Width="200">
                                                         <Html>
 					                                        <tpl for=".">
 						                                        <tpl if="[xindex] == 1">
 							                                        <table class="cbStates-list">
 								                                        <tr>
-									                                        <th>SOCIOS_ID</th>
-									                                        <th>SOCIOS_PRIMER_NOMBRE</th>
-                                                                            <th>SOCIOS_PRIMER_APELLIDO</th>
+									                                        <th>Id Socio</th>
+									                                        <th>Primer Nombre</th>
+                                                                            <th>Primer Apellido</th>
 								                                        </tr>
 						                                        </tpl>
 						                                        <tr class="list-item">
@@ -773,7 +774,7 @@
                                                     </Listeners>
                                                 </ext:ComboBox>
                                                 <ext:NumberField    runat="server" ID="AddMontoTxt"     DataIndex="SOLICITUDES_MONTO"           AnchorHorizontal="90%"      FieldLabel="Monto                     " AllowBlank="false" MaxLength="14" MinValue="0" />
-                                                <ext:DateField      runat="server" ID="AddPlazoTxt"     DataIndex="SOLICITUDES_PLAZO"           AnchorHorizontal="90%"      FieldLabel="Fecha de Plazo            " AllowBlank="false" Format="d MMM y" />
+                                                <ext:DateField      runat="server" ID="AddPlazoTxt"     DataIndex="SOLICITUDES_PLAZO"           AnchorHorizontal="90%"      FieldLabel="Fecha de Plazo            " AllowBlank="false" />
                                                 <ext:TextField      runat="server" ID="AddPagoTxt"      DataIndex="SOLICITUDES_PAGO"            AnchorHorizontal="90%"      FieldLabel="Tipo de Pago              " AllowBlank="false" MaxLength="45" />
                                                 <ext:TextField      runat="server" ID="AddDestinoTxt"   DataIndex="SOLICITUDES_DESTINO"         AnchorHorizontal="90%"      FieldLabel="Destino                   " AllowBlank="false" MaxLength="45" />
                                                 <ext:ComboBox runat="server"    ID="AddTipoDeProdIdCmb"     DataIndex="PRESTAMOS_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Prestamo" AllowBlank="false" MsgTarget="Side"

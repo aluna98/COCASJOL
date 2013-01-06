@@ -65,7 +65,7 @@
              },
 
              addben: function () {
-                 AddBenWindow.show();
+                 CompanyX.CienPorciento();
              },
 
              insert: function () {
@@ -688,21 +688,21 @@
                                             <Items>
                                                 <ext:TextField runat="server" ID="EditsocioIdTxt"           DataIndex="SOCIOS_ID"                    FieldLabel="Id de Socio         "   AnchorHorizontal="90%" AllowBlank="false"   ReadOnly="true"></ext:TextField>
                                                 <ext:TextField runat="server" ID="Edit1erNombreTxt"         DataIndex="SOCIOS_PRIMER_NOMBRE"         FieldLabel="Primer Nombre       "   AnchorHorizontal="90%" MaxLength="45" AllowBlank="false" ></ext:TextField>
-                                                <ext:TextField runat="server" ID="Edit2doNombreTxt"         DataIndex="SOCIOS_SEGUNDO_NOMBRE"        FieldLabel="Segundo Nombre      "   AnchorHorizontal="90%" MaxLength="45" Vtype="alpha"></ext:TextField>
+                                                <ext:TextField runat="server" ID="Edit2doNombreTxt"         DataIndex="SOCIOS_SEGUNDO_NOMBRE"        FieldLabel="Segundo Nombre      "   AnchorHorizontal="90%" MaxLength="45" ></ext:TextField>
                                                 <ext:TextField runat="server" ID="Edit1erApellidoTxt"       DataIndex="SOCIOS_PRIMER_APELLIDO"       FieldLabel="Primer Apellido     "   AnchorHorizontal="90%" MaxLength="45" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="Edit2doApellidoTxt"       DataIndex="SOCIOS_SEGUNDO_APELLIDO"      FieldLabel="Segundo Apellido    "   AnchorHorizontal="90%" MaxLength="45" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditResidenciaTxt"        DataIndex="SOCIOS_RESIDENCIA"            FieldLabel="Residencia          "   AnchorHorizontal="90%" MaxLength="100" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditEstadoCivilTxt"       DataIndex="SOCIOS_ESTADO_CIVIL"          FieldLabel="Estado Civil        "   AnchorHorizontal="90%" MaxLength="20" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditLugarNacimientoTxt"   DataIndex="SOCIOS_LUGAR_DE_NACIMIENTO"   FieldLabel="Lugar de Nacimiento "   AnchorHorizontal="90%" MaxLength="100" AllowBlank="false"   ></ext:TextField>
-                                                <ext:DateField runat="server" ID="EditFechaNacimientoTxt"   DataIndex="SOCIOS_FECHA_DE_NACIMIENTO"   FieldLabel="Fecha de Nacimiento "   AnchorHorizontal="90%"                 AllowBlank="false"   Format="d MMM y" ></ext:DateField>
+                                                <ext:DateField runat="server" ID="EditFechaNacimientoTxt"   DataIndex="SOCIOS_FECHA_DE_NACIMIENTO"   FieldLabel="Fecha de Nacimiento "   AnchorHorizontal="90%"                 AllowBlank="false" ></ext:DateField>
                                                 <ext:TextField runat="server" ID="EditNivelEducativoTxt"    DataIndex="SOCIOS_NIVEL_EDUCATIVO"       FieldLabel="Nivel Educativo     "   AnchorHorizontal="90%" MaxLength="45" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditSocioProfesionTxt"    DataIndex="SOCIOS_PROFESION"             FieldLabel="Profesion           "   AnchorHorizontal="90%" MaxLength="45" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditSocioRTNTxt"          DataIndex="SOCIOS_RTN"                   FieldLabel="RTN                 "   AnchorHorizontal="90%" MaxLength="25" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditSocioTelfono"         DataIndex="SOCIOS_TELEFONO"              FieldLabel="Telefono            "   AnchorHorizontal="90%" MaxLength="20" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditIdentidadTxt"         DataIndex="SOCIOS_IDENTIDAD"             FieldLabel="Tarjeta de Identidad"   AnchorHorizontal="90%" MaxLength="20" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditLugarEmisionTxt"      DataIndex="SOCIOS_LUGAR_DE_EMISION"      FieldLabel="Lugar de Emision    "   AnchorHorizontal="90%" MaxLength="100" AllowBlank="false"   ></ext:TextField>
-                                                <ext:DateField runat="server" ID="EditFechaEmisionTxt"      DataIndex="SOCIOS_FECHA_DE_EMISION"      FieldLabel="Fecha de Emision    "   AnchorHorizontal="90%" AllowBlank="false"   Format="d MMM y"></ext:DateField>
-                                                <ext:DateField runat="server" ID="EditAceptacionTxt"        DataIndex="GENERAL_FECHA_ACEPTACION"     FieldLabel="Fecha Aceptacion"  AnchorHorizontal="90%" Format="d MMM y" AllowBlank="false"></ext:DateField>
+                                                <ext:DateField runat="server" ID="EditFechaEmisionTxt"      DataIndex="SOCIOS_FECHA_DE_EMISION"      FieldLabel="Fecha de Emision    "   AnchorHorizontal="90%" AllowBlank="false" ></ext:DateField>
+                                                <ext:DateField runat="server" ID="EditAceptacionTxt"        DataIndex="GENERAL_FECHA_ACEPTACION"     FieldLabel="Fecha Aceptacion"  AnchorHorizontal="90%" AllowBlank="false"></ext:DateField>
                                             </Items>                                                               
                                         </ext:Panel>
                                     </Items>
@@ -742,6 +742,9 @@
                                     </Items>
                                 </ext:Panel>
                                 <ext:Panel ID="PanelBeneficiarios" runat="server" Title="Beneficiarios" Layout="AnchorLayout" AutoHeight="true" Icon="GroupAdd" LabelWidth="120">
+                                    <Listeners>
+                                        <Activate Handler="CompanyX.RefrescarBeneficiarios();" />
+                                    </Listeners>
                                     <Items>
                                         <ext:Panel ID="Panel4" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                             <Items>
@@ -772,7 +775,7 @@
                                                             <ext:Column DataIndex="BENEFICIARIO_NOMBRE"             Header="Nombre"   />         
                                                             <ext:Column DataIndex="BENEFICIARIO_IDENTIFICACION"     Header="Identificacion" /> 
                                                             <ext:Column DataIndex="BENEFICIARIO_PARENTEZCO"         Header="Parentezco"     /> 
-                                                            <ext:DateColumn DataIndex="BENEFICIARIO_NACIMIENTO"         Header="Fecha Nacimiento" Format="d MMM y"/>
+                                                            <ext:DateColumn DataIndex="BENEFICIARIO_NACIMIENTO"         Header="Fecha Nacimiento"/>
                                                             <ext:Column DataIndex="BENEFICIARIO_LUGAR_NACIMIENTO"   Header="Lugar Nacimiento" />
                                                             <ext:Column DataIndex="BENEFICIARIO_PORCENTAJE"         Header="Porcentaje"      />
                                                         </Columns>
@@ -869,15 +872,15 @@
                                                 <ext:TextField runat="server" ID="AddResidenciaTxt"         DataIndex="SOCIOS_RESIDENCIA"           FieldLabel="Residencia"             AnchorHorizontal="90%" MaxLength="100" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddEstadoCivilTxt"        DataIndex="SOCIOS_ESTADO_CIVIL"         FieldLabel="Estado Civil"           AnchorHorizontal="90%" MaxLength="20" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddLugarNacTxt"           DataIndex="SOCIOS_LUGAR_DE_NACIMIENTO"  FieldLabel="Lugar de Nacimiento"    AnchorHorizontal="90%" MaxLength="100" AllowBlank="false"   ></ext:TextField>
-                                                <ext:DateField runat="server" ID="AddFechaNacTxt"           DataIndex="SOCIOS_FECHA_DE_NACIMIENTO"  FieldLabel="Fecha de Nacimiento"    AnchorHorizontal="90%"                AllowBlank="false"   Format="d MMM y" ></ext:DateField>
+                                                <ext:DateField runat="server" ID="AddFechaNacTxt"           DataIndex="SOCIOS_FECHA_DE_NACIMIENTO"  FieldLabel="Fecha de Nacimiento"    AnchorHorizontal="90%"                AllowBlank="false" ></ext:DateField>
                                                 <ext:TextField runat="server" ID="AddNivelEducTxt"          DataIndex="SOCIOS_NIVEL_EDUCATIVO"      FieldLabel="Nivel Educativo"        AnchorHorizontal="90%" MaxLength="45" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddProfesionTxt"          DataIndex="SOCIOS_PROFESION"            FieldLabel="Profesion"              AnchorHorizontal="90%" MaxLength="45" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddRTNTxt"                DataIndex="SOCIOS_RTN"                  FieldLabel="RTN"                    AnchorHorizontal="90%" MaxLength="25" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddTelefonoTxt"           DataIndex="SOCIOS_TELEFONO"             FieldLabel="Telefono"               AnchorHorizontal="90%" MaxLength="20" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddIdentidadTxt"          DataIndex="SOCIOS_IDENTIDAD"            FieldLabel="Tarjeta de Identidad"   AnchorHorizontal="90%" MaxLength="20" AllowBlank="false"   ></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddLugarEmisionTxt"       DataIndex="SOCIOS_LUGAR_DE_EMISION"     FieldLabel="Lugar de Emision"       AnchorHorizontal="90%" MaxLength="100" AllowBlank="false"   ></ext:TextField>
-                                                <ext:DateField runat="server" ID="AddFechaEmisionTxt"       DataIndex="SOCIOS_FECHA_DE_EMISION"     FieldLabel="Fecha de Emision"       AnchorHorizontal="90%" AllowBlank="false"   Format="d MMM y"></ext:DateField>
-                                                <ext:DateField runat="server" ID="AddFechaAceptacionTxt"    DataIndex="GENERAL_FECHA_ACEPTACION"    FieldLabel="Fecha de Aceptacion"   AnchorHorizontal="90%" AllowBlank="false"   Format="d MMM y" />
+                                                <ext:DateField runat="server" ID="AddFechaEmisionTxt"       DataIndex="SOCIOS_FECHA_DE_EMISION"     FieldLabel="Fecha de Emision"       AnchorHorizontal="90%" AllowBlank="false" ></ext:DateField>
+                                                <ext:DateField runat="server" ID="AddFechaAceptacionTxt"    DataIndex="GENERAL_FECHA_ACEPTACION"    FieldLabel="Fecha de Aceptacion"   AnchorHorizontal="90%" AllowBlank="false"  />
                                             </Items>                                                               
                                         </ext:Panel>
                                     </Items>
@@ -944,10 +947,10 @@
             Modal="true" 
             X="15" Y="35">
             <Listeners>
-                <Hide Handler="NuevoBeneficiarioForm.getForm().reset()" />
+                <Hide Handler="NuevoBeneficiarioForm.getForm().reset(); CompanyX.Error100();" />
             </Listeners>
             <Items>
-                <ext:FormPanel runat="server" ID="NuevoBeneficiarioForm" Title="Form Panel" Handler="false" ButtonAlign="Right" MonitorValid="true">
+                <ext:FormPanel runat="server" ID="NuevoBeneficiarioForm" Title="Form Panel" Handler="false" ButtonAlign="Right" MonitorValid="true" Header="false">
                     <Items>
                         <ext:Panel ID="PanelBeneficiario" runat="server" Title="Datos Beneficiario Nuevo" Layout="AnchorLayout" AutoHeight="True" Icon="User" LabelWidth="150">
                             <Items>
@@ -956,7 +959,7 @@
                                         <ext:TextField runat="server" ID="AddBenefID"            DataIndex="BENEFICIARIO_IDENTIFICACION"           FieldLabel="Identificacion"    AnchorHorizontal="90%" AllowBlank="false" ></ext:TextField>
                                         <ext:TextField runat="server" ID="AddBenefNombre"        DataIndex="BENEFICIARIO_NOMBRE"                   FieldLabel="Nombre"            AnchorHorizontal="90%" AllowBlank="false" ></ext:TextField>
                                         <ext:TextField runat="server" ID="AddBenefParentezco"    DataIndex="BENEFICIARIO_PARENTEZCO"               FieldLabel="Parentezco"        AnchorHorizontal="90%" AllowBlank="false" ></ext:TextField>
-                                        <ext:DateField runat="server" ID="AddBenefFechaNacimiento"    DataIndex="BENEFICIARIO_NACIMIENTO"               FieldLabel="Fecha Nacimiento"  AnchorHorizontal="90%" AllowBlank="false" Format="d MMM y"></ext:DateField>
+                                        <ext:DateField runat="server" ID="AddBenefFechaNacimiento"    DataIndex="BENEFICIARIO_NACIMIENTO"               FieldLabel="Fecha Nacimiento"  AnchorHorizontal="90%" AllowBlank="false"></ext:DateField>
                                         <ext:TextField runat="server" ID="AddBenefLugarNac"      DataIndex="BENEFICIARIO_LUGAR_NACIMIENTO"         FieldLabel="Lugar Nacimiento"  AnchorHorizontal="90%" ></ext:TextField>
                                         <ext:NumberField runat="server" ID="AddBenefPorcentaje"    DataIndex="BENEFICIARIO_PORCENTAJE"               FieldLabel="Porcentaje"        AnchorHorizontal="90%" AllowBlank="false" AllowDecimals="false" MaxValue="100" MinValue="0" ></ext:NumberField>
                                     </Items>                                                               
@@ -992,16 +995,16 @@
                 <Hide Handler="EditarBeneficiarioForm.getForm().reset()" />
             </Listeners>
             <Items>
-                <ext:FormPanel runat="server" ID="EditarBeneficiarioForm" Title="Form Panel" Handler="false" ButtonAlign="Right" MonitorValid="true">
+                <ext:FormPanel runat="server" ID="EditarBeneficiarioForm" Title="Form Panel" Header="false" Handler="false" ButtonAlign="Right" MonitorValid="true">
                     <Items>
                         <ext:Panel ID="PanelEditarBeneficiario" runat="server" Title="Datos Beneficiario" Layout="AnchorLayout" AutoHeight="True" Icon="User" LabelWidth="150">
                             <Items>
                                 <ext:Panel ID="Panel10" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                     <Items>
                                         <ext:TextField runat="server" ID="EditBenefId"            DataIndex="BENEFICIARIO_IDENTIFICACION"           FieldLabel="Identificacion"    AnchorHorizontal="90%" AllowBlank="false"  ReadOnly="true"></ext:TextField>
-                                        <ext:TextField runat="server" ID="EditBenefNombre"        DataIndex="BENEFICIARIO_NOMBRE"                   FieldLabel="Nombre"            AnchorHorizontal="90%" AllowBlank="false" Vtype="alpha"></ext:TextField>
-                                        <ext:TextField runat="server" ID="EditBenefParentezco"    DataIndex="BENEFICIARIO_PARENTEZCO"               FieldLabel="Parentezco"        AnchorHorizontal="90%" AllowBlank="false" Vtype="alpha"></ext:TextField>
-                                        <ext:DateField runat="server" ID="EditBenefNacimiento"    DataIndex="BENEFICIARIO_NACIMIENTO"               FieldLabel="Fecha Nacimiento"  AnchorHorizontal="90%" AllowBlank="false" Format="d MMM y"></ext:DateField>
+                                        <ext:TextField runat="server" ID="EditBenefNombre"        DataIndex="BENEFICIARIO_NOMBRE"                   FieldLabel="Nombre"            AnchorHorizontal="90%" AllowBlank="false"></ext:TextField>
+                                        <ext:TextField runat="server" ID="EditBenefParentezco"    DataIndex="BENEFICIARIO_PARENTEZCO"               FieldLabel="Parentezco"        AnchorHorizontal="90%" AllowBlank="false"></ext:TextField>
+                                        <ext:DateField runat="server" ID="EditBenefNacimiento"    DataIndex="BENEFICIARIO_NACIMIENTO"               FieldLabel="Fecha Nacimiento"  AnchorHorizontal="90%" AllowBlank="false" ></ext:DateField>
                                         <ext:TextField runat="server" ID="EditBenLugarNac"      DataIndex="BENEFICIARIO_LUGAR_NACIMIENTO"         FieldLabel="Lugar Nacimiento"  AnchorHorizontal="90%" ></ext:TextField>
                                         <ext:NumberField runat="server" ID="EditBenefPorcentaje"    DataIndex="BENEFICIARIO_PORCENTAJE"               FieldLabel="Porcentaje"        AnchorHorizontal="90%" AllowBlank="false" AllowDecimals="false" MaxValue="100" MinValue="0" ></ext:NumberField>
                                     </Items>                                                               
