@@ -18,7 +18,6 @@ var DesktopX = {
                 height: height,
                 maximizable: true,
                 minimizable: true,
-                autoScroll: true,
                 closeAction: 'close',
                 shim: false,
                 animCollapse: false,

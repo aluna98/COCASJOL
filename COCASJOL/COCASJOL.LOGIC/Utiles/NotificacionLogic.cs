@@ -101,13 +101,19 @@ namespace COCASJOL.LOGIC.Utiles
                 {
                     EntityKey k = new EntityKey("colinasEntities.notificaciones", "NOTIFICACION_ID", NOTIFICACION_ID);
 
-                    var n = db.GetObjectByKey(k);
+                    Object n = null;
 
-                    notificacion notification = (notificacion)n;
+                    //var n = db.GetObjectByKey(k);
 
-                    notification.NOTIFICACION_ESTADO = (int)NOTIFICACION_ESTADO;
+                    if (db.TryGetObjectByKey(k, out n))
+                    {
 
-                    db.SaveChanges();
+                        notificacion notification = (notificacion)n;
+
+                        notification.NOTIFICACION_ESTADO = (int)NOTIFICACION_ESTADO;
+
+                        db.SaveChanges();
+                    }
                 }
             }
             catch (Exception)
@@ -133,7 +139,11 @@ namespace COCASJOL.LOGIC.Utiles
 
                     usuario user = (usuario)u;
 
-                    foreach (notificacion notif in user.notificaciones.ToList<notificacion>())
+                    var query = from n in user.notificaciones
+                                where n.NOTIFICACION_ESTADO == (int)EstadosNotificacion.Leido
+                                select n;
+
+                    foreach (notificacion notif in query.ToList<notificacion>())
                         db.notificaciones.DeleteObject(notif);
 
                     db.SaveChanges();

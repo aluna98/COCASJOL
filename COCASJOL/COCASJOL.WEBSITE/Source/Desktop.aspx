@@ -563,7 +563,7 @@
                         <ext:RecordField Name="USR_USERNAME" />
                         <ext:RecordField Name="NOTIFICACION_TITLE" />
                         <ext:RecordField Name="NOTIFICACION_MENSAJE" />
-                        <ext:RecordField Name="NOTIFICACION_FECHA" Type="Date" DateFormat="yyyy-MM-ddThh:mm:ss"/>
+                        <ext:RecordField Name="NOTIFICACION_FECHA" Type="Date" DateFormat="yyyy-MM-ddTHH:mm:ss"/>
                     </Fields>
                 </ext:JsonReader>
             </Reader>
@@ -623,9 +623,10 @@
                                             <Template ID="Template1" runat="server">
                                                 <Html>
                                                     <div style="padding:5px;">
-                                                    <b>Fecha: 
-                                                        <div style="margin-left: 25px;">{NOTIFICACION_FECHA}</div>
+                                                    <b>
+                                                        {NOTIFICACION_FECHA}
                                                     </b>
+                                                    <br />
 		                            				<b>Titulo: 
                                                         <div style="margin-left: 25px;">{NOTIFICACION_TITLE}</div>
                                                     </b>
