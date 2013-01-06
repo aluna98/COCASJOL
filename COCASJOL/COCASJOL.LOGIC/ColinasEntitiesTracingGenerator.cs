@@ -4138,6 +4138,30 @@ namespace COCASJOL.LOGIC
         private global::System.Int32 _NOTIFICACION_ESTADO;
         partial void OnNOTIFICACION_ESTADOChanging(global::System.Int32 value);
         partial void OnNOTIFICACION_ESTADOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> NOTIFICACION_FECHA
+        {
+            get
+            {
+                return _NOTIFICACION_FECHA;
+            }
+            set
+            {
+                OnNOTIFICACION_FECHAChanging(value);
+                ReportPropertyChanging("NOTIFICACION_FECHA");
+                _NOTIFICACION_FECHA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NOTIFICACION_FECHA");
+                OnNOTIFICACION_FECHAChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _NOTIFICACION_FECHA;
+        partial void OnNOTIFICACION_FECHAChanging(Nullable<global::System.DateTime> value);
+        partial void OnNOTIFICACION_FECHAChanged();
 
         #endregion
     

@@ -563,6 +563,7 @@
                         <ext:RecordField Name="USR_USERNAME" />
                         <ext:RecordField Name="NOTIFICACION_TITLE" />
                         <ext:RecordField Name="NOTIFICACION_MENSAJE" />
+                        <ext:RecordField Name="NOTIFICACION_FECHA" Type="Date" DateFormat="yyyy-MM-ddThh:mm:ss"/>
                     </Fields>
                 </ext:JsonReader>
             </Reader>
@@ -611,9 +612,10 @@
                                     </Store>
                                     <ColumnModel ID="ColumnModel2">
                                         <Columns>
-                                            <ext:Column DataIndex="NOTIFICACION_ID" Header="Id" Sortable="true"></ext:Column>
-                                            <ext:Column DataIndex="NOTIFICACION_ESTADO" Header="Estado" Sortable="true"></ext:Column>
-                                            <ext:Column DataIndex="NOTIFICACION_TITLE" Header="Título" Sortable="true"></ext:Column>
+                                            <ext:Column     DataIndex="NOTIFICACION_ID"     Header="Id" Sortable="true"></ext:Column>
+                                            <ext:DateColumn DataIndex="NOTIFICACION_FECHA"  Header="Fecha" Sortable="true" Format="yyyy-MM-dd" ></ext:DateColumn>
+                                            <ext:Column     DataIndex="NOTIFICACION_ESTADO" Header="Estado" Sortable="true"></ext:Column>
+                                            <ext:Column     DataIndex="NOTIFICACION_TITLE"  Header="Título" Sortable="true"></ext:Column>
                                         </Columns>
                                     </ColumnModel>
                                     <Plugins>
@@ -621,6 +623,9 @@
                                             <Template ID="Template1" runat="server">
                                                 <Html>
                                                     <div style="padding:5px;">
+                                                    <b>Fecha: 
+                                                        <div style="margin-left: 25px;">{NOTIFICACION_FECHA}</div>
+                                                    </b>
 		                            				<b>Titulo: 
                                                         <div style="margin-left: 25px;">{NOTIFICACION_TITLE}</div>
                                                     </b>

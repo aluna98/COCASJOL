@@ -276,6 +276,7 @@
           <Property Name="NOTIFICACION_TITLE" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="NOTIFICACION_MENSAJE" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="NOTIFICACION_ESTADO" Type="int" Nullable="false" />
+          <Property Name="NOTIFICACION_FECHA" Type="datetime" />
         </EntityType>
         <EntityType Name="prestamos">
           <Key>
@@ -1605,6 +1606,7 @@
           <Property Type="String" Name="NOTIFICACION_TITLE" Nullable="false" />
           <Property Type="String" Name="NOTIFICACION_MENSAJE" Nullable="false" />
           <Property Type="Int32" Name="NOTIFICACION_ESTADO" Nullable="false" />
+          <Property Type="DateTime" Name="NOTIFICACION_FECHA" />
           <NavigationProperty Name="usuarios" Relationship="COLINASMODEL.NOTIFICACION_USERNAME" FromRole="notificaciones" ToRole="usuario" />
         </EntityType>
         <Association Name="NOTIFICACION_USERNAME">
@@ -2019,6 +2021,7 @@
           <EntitySetMapping Name="notificaciones">
             <EntityTypeMapping TypeName="COLINASMODEL.notificacion">
               <MappingFragment StoreEntitySet="notificaciones">
+                <ScalarProperty Name="NOTIFICACION_FECHA" ColumnName="NOTIFICACION_FECHA" />
                 <ScalarProperty Name="NOTIFICACION_ESTADO" ColumnName="NOTIFICACION_ESTADO" />
                 <ScalarProperty Name="NOTIFICACION_MENSAJE" ColumnName="NOTIFICACION_MENSAJE" />
                 <ScalarProperty Name="NOTIFICACION_TITLE" ColumnName="NOTIFICACION_TITLE" />
@@ -2059,20 +2062,20 @@
           <ConnectorPoint PointX="4.375" PointY="13.359656322078374" />
           <ConnectorPoint PointX="3.8958333333333335" PointY="13.359656322078374" />
           <ConnectorPoint PointX="3.7291666666666665" PointY="13.359656322078374" />
-          <ConnectorPoint PointX="2.3333333333333335" PointY="13.359656322078374" />
-          <ConnectorPoint PointX="2.1666666666666665" PointY="13.359656322078374" />
+          <ConnectorPoint PointX="2.3333358333333334" PointY="13.359656322078374" />
+          <ConnectorPoint PointX="2.1666691666666664" PointY="13.359656322078374" />
           <ConnectorPoint PointX="2" PointY="13.359656322078374" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.SOCIO_ID_FK" >
           <ConnectorPoint PointX="3.625" PointY="10.317047526041668" />
-          <ConnectorPoint PointX="2.3333333333333335" PointY="10.317047526041668" />
-          <ConnectorPoint PointX="2.1666666666666665" PointY="10.317047526041668" />
+          <ConnectorPoint PointX="2.3333358333333334" PointY="10.317047526041668" />
+          <ConnectorPoint PointX="2.1666691666666664" PointY="10.317047526041668" />
           <ConnectorPoint PointX="2" PointY="10.317047526041668" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.SOCIOS_ID_FK2" >
           <ConnectorPoint PointX="3.625" PointY="6.7881982421875007" />
-          <ConnectorPoint PointX="2.3333333333333335" PointY="6.7881982421875" />
-          <ConnectorPoint PointX="2.1666666666666665" PointY="6.7881982421875007" />
+          <ConnectorPoint PointX="2.3333358333333334" PointY="6.7881982421875" />
+          <ConnectorPoint PointX="2.1666691666666664" PointY="6.7881982421875007" />
           <ConnectorPoint PointX="2" PointY="6.7881982421875007" />
         </AssociationConnector>
         <EntityTypeShape EntityType="COLINASMODEL.prestamo" Width="1.5" PointX="9.625" PointY="5" Height="3.1340950520833335" />
@@ -2088,8 +2091,8 @@
         <EntityTypeShape EntityType="COLINASMODEL.rol" Width="1.5" PointX="2.75" PointY="0.5" Height="2.7494921875000031" />
         <EntityTypeShape EntityType="COLINASMODEL.usuario" Width="1.5" PointX="0.5" PointY="0.5" Height="3.7109993489583388" />
         <AssociationConnector Association="COLINASMODEL.roles_x_usuarios" >
-          <ConnectorPoint PointX="2.75" PointY="1.8747460937500016" />
-          <ConnectorPoint PointX="2" PointY="1.8747460937500016" />
+          <ConnectorPoint PointX="2.75" PointY="1.8747460937500018" />
+          <ConnectorPoint PointX="2" PointY="1.8747460937500018" />
         </AssociationConnector>
         <EntityTypeShape EntityType="COLINASMODEL.producto" Width="1.75" PointX="13.875" PointY="16.25" Height="3.1340950520833317" />
         <EntityTypeShape EntityType="COLINASMODEL.nota_detalle" Width="1.5" PointX="8.125" PointY="16.375" Height="1.9802864583333353" />
@@ -2102,8 +2105,8 @@
         <EntityTypeShape EntityType="COLINASMODEL.inventario_cafe_de_socio" Width="1.5" PointX="2.5" PointY="16.375" Height="2.7494921875000102" />
         <AssociationConnector Association="COLINASMODEL.inventario_clasificacion_cafe_fk" >
           <ConnectorPoint PointX="2" PointY="17.749746093750005" />
-          <ConnectorPoint PointX="2.1666666666666665" PointY="17.749746093750005" />
-          <ConnectorPoint PointX="2.3333333333333335" PointY="17.749746093750005" />
+          <ConnectorPoint PointX="2.1666691666666664" PointY="17.749746093750005" />
+          <ConnectorPoint PointX="2.3333358333333334" PointY="17.749746093750005" />
           <ConnectorPoint PointX="2.5" PointY="17.749746093750005" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.FK_INVENTARIO_socios" >
@@ -2118,15 +2121,17 @@
         <EntityTypeShape EntityType="COLINASMODEL.variable_de_entorno" Width="1.5" PointX="10.125" PointY="0.5" Height="2.5571907552083246" />
         <EntityTypeShape EntityType="COLINASMODEL.liquidacion" Width="1.5" PointX="9" PointY="8.875" Height="7.1724251302083388" />
         <AssociationConnector Association="COLINASMODEL.LIQUIDACIONES_CLASIFICACIONES_FK" >
-          <ConnectorPoint PointX="1.25" PointY="16.25" />
-          <ConnectorPoint PointX="1.25" PointY="15.057190755208332" />
-          <ConnectorPoint PointX="2.25" PointY="15.057190755208332" />
-          <ConnectorPoint PointX="2.25" PointY="14.469312644156748" />
-          <ConnectorPoint PointX="3.7291666666666665" PointY="14.469312644156748" />
-          <ConnectorPoint PointX="3.8958333333333335" PointY="14.469312644156748" />
-          <ConnectorPoint PointX="4.854166666666667" PointY="14.469312644156748" />
-          <ConnectorPoint PointX="5.020833333333333" PointY="14.469312644156748" />
-          <ConnectorPoint PointX="9" PointY="14.469312644156748" />
+          <ConnectorPoint PointX="1.2187480000000002" PointY="16.25" />
+          <ConnectorPoint PointX="1.2187480000000002" PointY="15.057190755208332" />
+          <ConnectorPoint PointX="2.1666691666666664" PointY="15.057190755208332" />
+          <ConnectorPoint PointX="2.3333358333333334" PointY="15.057190755208332" />
+          <ConnectorPoint PointX="2.5" PointY="15.057190755208332" />
+          <ConnectorPoint PointX="2.5" PointY="14.703540226143357" />
+          <ConnectorPoint PointX="3.7291666666666665" PointY="14.703540226143357" />
+          <ConnectorPoint PointX="3.8958333333333335" PointY="14.703540226143357" />
+          <ConnectorPoint PointX="4.854166666666667" PointY="14.703540226143357" />
+          <ConnectorPoint PointX="5.020833333333333" PointY="14.703540226143357" />
+          <ConnectorPoint PointX="9" PointY="14.703540226143357" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.LIQUIDACIONES_SOCIOS_FK" >
           <ConnectorPoint PointX="5.125" PointY="9.28125" />
@@ -2161,8 +2166,8 @@
         <EntityTypeShape EntityType="COLINASMODEL.nota_de_peso" Width="1.5" PointX="4.75" PointY="16.25" Height="6.0186165364583246" />
         <AssociationConnector Association="COLINASMODEL.notas_de_peso_clasificacion_cafe_fk" >
           <ConnectorPoint PointX="2" PointY="16.28125" />
-          <ConnectorPoint PointX="2.1666666666666665" PointY="16.28125" />
-          <ConnectorPoint PointX="2.3333333333333335" PointY="16.28125" />
+          <ConnectorPoint PointX="2.1666691666666664" PointY="16.28125" />
+          <ConnectorPoint PointX="2.3333358333333334" PointY="16.28125" />
           <ConnectorPoint PointX="3.7291666666666665" PointY="16.28125" />
           <ConnectorPoint PointX="3.8958333333333335" PointY="16.28125" />
           <ConnectorPoint PointX="4.75" PointY="16.28125" />
@@ -2179,13 +2184,11 @@
           <ConnectorPoint PointX="6.25" PointY="17.365143229166669" />
           <ConnectorPoint PointX="8.125" PointY="17.365143229166669" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="COLINASMODEL.notificacion" Width="1.5" PointX="2.75" PointY="23.375" Height="2.172587890624996" />
+        <EntityTypeShape EntityType="COLINASMODEL.notificacion" Width="1.5" PointX="1.5" PointY="19.875" Height="2.3648893229166674" />
         <AssociationConnector Association="COLINASMODEL.NOTIFICACION_USERNAME" >
-          <ConnectorPoint PointX="1.25" PointY="4.40330078125" />
-          <ConnectorPoint PointX="1.25" PointY="4.875" />
-          <ConnectorPoint PointX="2.25" PointY="4.875" />
-          <ConnectorPoint PointX="2.25" PointY="24.461293945312498" />
-          <ConnectorPoint PointX="2.75" PointY="24.461293945312498" />
+          <ConnectorPoint PointX="2" PointY="3.1702754375000017" />
+          <ConnectorPoint PointX="2.2500025" PointY="3.1702754375000017" />
+          <ConnectorPoint PointX="2.2500025" PointY="19.875" />
         </AssociationConnector>
         </Diagram>
     </Diagrams>

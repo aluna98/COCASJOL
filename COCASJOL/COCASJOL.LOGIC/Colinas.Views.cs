@@ -14,7 +14,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySetsAC1314067DB027E847040790772A6685218B0AADA958607946364ED03B8662E0))]
+[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets02E17FF9A8CB9ECBDE2FA98095450948B10A2D4169DF111A9B1A1BEBEE757CD7))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
@@ -23,18 +23,18 @@ namespace Edm_EntityMappingGeneratedViews
     /// <Summary>
     /// The type contains views for EntitySets and AssociationSets that were generated at design time.
     /// </Summary>
-    public sealed class ViewsForBaseEntitySetsAC1314067DB027E847040790772A6685218B0AADA958607946364ED03B8662E0 : System.Data.Mapping.EntityViewContainer
+    public sealed class ViewsForBaseEntitySets02E17FF9A8CB9ECBDE2FA98095450948B10A2D4169DF111A9B1A1BEBEE757CD7 : System.Data.Mapping.EntityViewContainer
     {
         
         /// <Summary>
         /// The constructor stores the views for the extents and also the hash values generated based on the metadata and mapping closure and views.
         /// </Summary>
-        public ViewsForBaseEntitySetsAC1314067DB027E847040790772A6685218B0AADA958607946364ED03B8662E0()
+        public ViewsForBaseEntitySets02E17FF9A8CB9ECBDE2FA98095450948B10A2D4169DF111A9B1A1BEBEE757CD7()
         {
             this.EdmEntityContainerName = "colinasEntities";
             this.StoreEntityContainerName = "COLINASMODELStoreContainer";
-            this.HashOverMappingClosure = "330b9dc48c3a4aacf6bf9c8549f87d3f0dfe82dbef98e9ec617e0f04b863f64e";
-            this.HashOverAllExtentViews = "199ca034b1240dd70832b95e11803ac952b585fdb52c7293e1fc44890e0b3b91";
+            this.HashOverMappingClosure = "ec1ada4015e626b188f36772c141c30d6057513c86b4b2788e76e7fb26240656";
+            this.HashOverAllExtentViews = "5b8f528672de84d344babcd09a2ea97fbac31af2cfb4e5e8e63f4170855258ec";
             this.ViewCount = 50;
         }
         
@@ -1271,7 +1271,7 @@ namespace Edm_EntityMappingGeneratedViews
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("COLINASMODELStoreContainer.notificaciones", @"
     SELECT VALUE -- Constructing notificaciones
-        [COLINASMODEL.Store.notificaciones](T1.[notificaciones.NOTIFICACION_ID], T1.[notificaciones.USR_USERNAME], T1.[notificaciones.NOTIFICACION_TITLE], T1.[notificaciones.NOTIFICACION_MENSAJE], T1.[notificaciones.NOTIFICACION_ESTADO])
+        [COLINASMODEL.Store.notificaciones](T1.[notificaciones.NOTIFICACION_ID], T1.[notificaciones.USR_USERNAME], T1.[notificaciones.NOTIFICACION_TITLE], T1.[notificaciones.NOTIFICACION_MENSAJE], T1.[notificaciones.NOTIFICACION_ESTADO], T1.[notificaciones.NOTIFICACION_FECHA])
     FROM (
         SELECT 
             T.NOTIFICACION_ID AS [notificaciones.NOTIFICACION_ID], 
@@ -1279,6 +1279,7 @@ namespace Edm_EntityMappingGeneratedViews
             T.NOTIFICACION_TITLE AS [notificaciones.NOTIFICACION_TITLE], 
             T.NOTIFICACION_MENSAJE AS [notificaciones.NOTIFICACION_MENSAJE], 
             T.NOTIFICACION_ESTADO AS [notificaciones.NOTIFICACION_ESTADO], 
+            T.NOTIFICACION_FECHA AS [notificaciones.NOTIFICACION_FECHA], 
             True AS _from0
         FROM colinasEntities.notificaciones AS T
     ) AS T1");
@@ -1398,7 +1399,7 @@ namespace Edm_EntityMappingGeneratedViews
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("colinasEntities.notificaciones", @"
     SELECT VALUE -- Constructing notificaciones
-        [COLINASMODEL.notificacion](T1.[notificacion.NOTIFICACION_ID], T1.[notificacion.USR_USERNAME], T1.[notificacion.NOTIFICACION_TITLE], T1.[notificacion.NOTIFICACION_MENSAJE], T1.[notificacion.NOTIFICACION_ESTADO])
+        [COLINASMODEL.notificacion](T1.[notificacion.NOTIFICACION_ID], T1.[notificacion.USR_USERNAME], T1.[notificacion.NOTIFICACION_TITLE], T1.[notificacion.NOTIFICACION_MENSAJE], T1.[notificacion.NOTIFICACION_ESTADO], T1.[notificacion.NOTIFICACION_FECHA])
     FROM (
         SELECT 
             T.NOTIFICACION_ID AS [notificacion.NOTIFICACION_ID], 
@@ -1406,6 +1407,7 @@ namespace Edm_EntityMappingGeneratedViews
             T.NOTIFICACION_TITLE AS [notificacion.NOTIFICACION_TITLE], 
             T.NOTIFICACION_MENSAJE AS [notificacion.NOTIFICACION_MENSAJE], 
             T.NOTIFICACION_ESTADO AS [notificacion.NOTIFICACION_ESTADO], 
+            T.NOTIFICACION_FECHA AS [notificacion.NOTIFICACION_FECHA], 
             True AS _from0
         FROM COLINASMODELStoreContainer.notificaciones AS T
     ) AS T1");

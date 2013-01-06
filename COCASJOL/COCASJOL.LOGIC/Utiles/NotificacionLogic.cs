@@ -75,6 +75,7 @@ namespace COCASJOL.LOGIC.Utiles
                     notification.NOTIFICACION_TITLE = TITLE;
                     notification.NOTIFICACION_MENSAJE = MENSAJE;
                     notification.USR_USERNAME = USR_USERNAME;
+                    notification.NOTIFICACION_FECHA = DateTime.Now;
 
                     db.notificaciones.AddObject(notification);
 
