@@ -128,6 +128,12 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
             
         }
 
+        protected void Avales_Refresh(object sender, StoreRefreshDataEventArgs e)
+        {
+            int id = Convert.ToInt32(this.EditIdSolicitud.Text);
+
+        }
+
         protected void SolicitudesSt_Reload(object sender, StoreRefreshDataEventArgs e)
         {
             SolicitudesLogic prestamo = new SolicitudesLogic();

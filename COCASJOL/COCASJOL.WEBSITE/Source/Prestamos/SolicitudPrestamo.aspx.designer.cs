@@ -715,6 +715,96 @@ namespace COCASJOL.WEBSITE.Source.Prestamos {
         protected global::Ext.Net.PagingToolbar PaginacionBeneficiarios;
         
         /// <summary>
+        /// PanelAvales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel PanelAvales;
+        
+        /// <summary>
+        /// Panel10 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Panel10;
+        
+        /// <summary>
+        /// AvalesGridP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.GridPanel AvalesGridP;
+        
+        /// <summary>
+        /// StoreAvales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store StoreAvales;
+        
+        /// <summary>
+        /// RowSelectionModelAvales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.RowSelectionModel RowSelectionModelAvales;
+        
+        /// <summary>
+        /// ToolbarAvales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Toolbar ToolbarAvales;
+        
+        /// <summary>
+        /// AgregarAvalesBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button AgregarAvalesBtn;
+        
+        /// <summary>
+        /// EliminarAvalesBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button EliminarAvalesBtn;
+        
+        /// <summary>
+        /// EditarAvalesBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button EditarAvalesBtn;
+        
+        /// <summary>
+        /// PaginacionAvales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.PagingToolbar PaginacionAvales;
+        
+        /// <summary>
         /// EditPreviousBtn control.
         /// </summary>
         /// <remarks>

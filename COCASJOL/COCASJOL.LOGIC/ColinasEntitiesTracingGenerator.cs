@@ -36,9 +36,6 @@ using System.Data;
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "privilegios_x_roles", "privilegios", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.privilegio), "rol", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.rol))]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "LIQUIDACIONES_CLASIFICACIONES_FK", "clasificacion_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.clasificacion_cafe), "liquidaciones", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.liquidacion), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "LIQUIDACIONES_SOCIOS_FK", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "liquidaciones", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.liquidacion), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "SolicitudesPrestamofk", "prestamo", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.prestamo), "solicitudes_prestamos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.solicitud_prestamo), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "Solicitudfk", "solicitudes_prestamos", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.solicitud_prestamo), "referencias_x_solicitudes", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.referencia_x_solicitud), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "Solicitudesxsociofk", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "solicitudes_prestamos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.solicitud_prestamo), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "ESTADOS_NOTA_PADRE_FK", "estados_nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.estado_nota_de_peso), "estados_nota_de_peso1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.estado_nota_de_peso), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "APORTACIONES_SOCIOS_FK", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "aportaciones_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.aportacion_socio), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "notas_de_peso_clasificacion_cafe_fk", "clasificacion_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.clasificacion_cafe), "notas_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.nota_de_peso), true)]
@@ -46,6 +43,11 @@ using System.Data;
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "FK_NOTA_DE_PESO_socios", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "notas_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.nota_de_peso), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "FK_NOTA_DETALLE_NOTA_PESO", "notas_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.nota_de_peso), "nota_detalle", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.nota_detalle), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "NOTIFICACION_USERNAME", "usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.usuario), "notificaciones", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.notificacion), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "Avales_socio_fk", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "avales_x_solicitud", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.aval_x_solicitud), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "Avales_solicitud_fk", "solicitudes_prestamos", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.solicitud_prestamo), "avales_x_solicitud", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.aval_x_solicitud), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "SolicitudesPrestamofk", "prestamo", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.prestamo), "solicitudes_prestamos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.solicitud_prestamo), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "Solicitudfk", "solicitudes_prestamos", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.solicitud_prestamo), "referencia_x_solicitud", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.referencia_x_solicitud), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "Solicitudesxsociofk", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "solicitudes_prestamos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.solicitud_prestamo), true)]
 
 #endregion
 
@@ -478,22 +480,6 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<solicitud_prestamo> solicitudes_prestamos
-        {
-            get
-            {
-                if ((_solicitudes_prestamos == null))
-                {
-                    _solicitudes_prestamos = base.CreateObjectSet<solicitud_prestamo>("solicitudes_prestamos");
-                }
-                return _solicitudes_prestamos;
-            }
-        }
-        private ObjectSet<solicitud_prestamo> _solicitudes_prestamos;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<estado_nota_de_peso> estados_nota_de_peso
         {
             get
@@ -554,6 +540,38 @@ namespace COCASJOL.LOGIC
             }
         }
         private ObjectSet<notificacion> _notificaciones;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<aval_x_solicitud> avales_x_solicitud
+        {
+            get
+            {
+                if ((_avales_x_solicitud == null))
+                {
+                    _avales_x_solicitud = base.CreateObjectSet<aval_x_solicitud>("avales_x_solicitud");
+                }
+                return _avales_x_solicitud;
+            }
+        }
+        private ObjectSet<aval_x_solicitud> _avales_x_solicitud;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<solicitud_prestamo> solicitudes_prestamos
+        {
+            get
+            {
+                if ((_solicitudes_prestamos == null))
+                {
+                    _solicitudes_prestamos = base.CreateObjectSet<solicitud_prestamo>("solicitudes_prestamos");
+                }
+                return _solicitudes_prestamos;
+            }
+        }
+        private ObjectSet<solicitud_prestamo> _solicitudes_prestamos;
 
         #endregion
         #region AddTo Methods
@@ -703,14 +721,6 @@ namespace COCASJOL.LOGIC
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the solicitudes_prestamos EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTosolicitudes_prestamos(solicitud_prestamo solicitud_prestamo)
-        {
-            base.AddObject("solicitudes_prestamos", solicitud_prestamo);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the estados_nota_de_peso EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToestados_nota_de_peso(estado_nota_de_peso estado_nota_de_peso)
@@ -740,6 +750,22 @@ namespace COCASJOL.LOGIC
         public void AddTonotificaciones(notificacion notificacion)
         {
             base.AddObject("notificaciones", notificacion);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the avales_x_solicitud EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToavales_x_solicitud(aval_x_solicitud aval_x_solicitud)
+        {
+            base.AddObject("avales_x_solicitud", aval_x_solicitud);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the solicitudes_prestamos EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTosolicitudes_prestamos(solicitud_prestamo solicitud_prestamo)
+        {
+            base.AddObject("solicitudes_prestamos", solicitud_prestamo);
         }
 
         #endregion
@@ -982,6 +1008,241 @@ namespace COCASJOL.LOGIC
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<socio>("COLINASMODEL.APORTACIONES_SOCIOS_FK", "socio", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="COLINASMODEL", Name="aval_x_solicitud")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class aval_x_solicitud : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new aval_x_solicitud object.
+        /// </summary>
+        /// <param name="sOCIOS_ID">Initial value of the SOCIOS_ID property.</param>
+        /// <param name="sOLICITUDES_ID">Initial value of the SOLICITUDES_ID property.</param>
+        public static aval_x_solicitud Createaval_x_solicitud(global::System.String sOCIOS_ID, global::System.Int32 sOLICITUDES_ID)
+        {
+            aval_x_solicitud aval_x_solicitud = new aval_x_solicitud();
+            aval_x_solicitud.SOCIOS_ID = sOCIOS_ID;
+            aval_x_solicitud.SOLICITUDES_ID = sOLICITUDES_ID;
+            return aval_x_solicitud;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String SOCIOS_ID
+        {
+            get
+            {
+                return _SOCIOS_ID;
+            }
+            set
+            {
+                if (_SOCIOS_ID != value)
+                {
+                    OnSOCIOS_IDChanging(value);
+                    ReportPropertyChanging("SOCIOS_ID");
+                    _SOCIOS_ID = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("SOCIOS_ID");
+                    OnSOCIOS_IDChanged();
+                }
+            }
+        }
+        private global::System.String _SOCIOS_ID;
+        partial void OnSOCIOS_IDChanging(global::System.String value);
+        partial void OnSOCIOS_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SOLICITUDES_ID
+        {
+            get
+            {
+                return _SOLICITUDES_ID;
+            }
+            set
+            {
+                if (_SOLICITUDES_ID != value)
+                {
+                    OnSOLICITUDES_IDChanging(value);
+                    ReportPropertyChanging("SOLICITUDES_ID");
+                    _SOLICITUDES_ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("SOLICITUDES_ID");
+                    OnSOLICITUDES_IDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _SOLICITUDES_ID;
+        partial void OnSOLICITUDES_IDChanging(global::System.Int32 value);
+        partial void OnSOLICITUDES_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> AVALES_ANTIGUEDAD
+        {
+            get
+            {
+                return _AVALES_ANTIGUEDAD;
+            }
+            set
+            {
+                OnAVALES_ANTIGUEDADChanging(value);
+                ReportPropertyChanging("AVALES_ANTIGUEDAD");
+                _AVALES_ANTIGUEDAD = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AVALES_ANTIGUEDAD");
+                OnAVALES_ANTIGUEDADChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _AVALES_ANTIGUEDAD;
+        partial void OnAVALES_ANTIGUEDADChanging(Nullable<global::System.Int32> value);
+        partial void OnAVALES_ANTIGUEDADChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AVALES_APORTACIONES
+        {
+            get
+            {
+                return _AVALES_APORTACIONES;
+            }
+            set
+            {
+                OnAVALES_APORTACIONESChanging(value);
+                ReportPropertyChanging("AVALES_APORTACIONES");
+                _AVALES_APORTACIONES = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AVALES_APORTACIONES");
+                OnAVALES_APORTACIONESChanged();
+            }
+        }
+        private global::System.String _AVALES_APORTACIONES;
+        partial void OnAVALES_APORTACIONESChanging(global::System.String value);
+        partial void OnAVALES_APORTACIONESChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AVALES_CALIFICACION
+        {
+            get
+            {
+                return _AVALES_CALIFICACION;
+            }
+            set
+            {
+                OnAVALES_CALIFICACIONChanging(value);
+                ReportPropertyChanging("AVALES_CALIFICACION");
+                _AVALES_CALIFICACION = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AVALES_CALIFICACION");
+                OnAVALES_CALIFICACIONChanged();
+            }
+        }
+        private global::System.String _AVALES_CALIFICACION;
+        partial void OnAVALES_CALIFICACIONChanging(global::System.String value);
+        partial void OnAVALES_CALIFICACIONChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "Avales_socio_fk", "socio")]
+        public socio socios
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.Avales_socio_fk", "socio").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.Avales_socio_fk", "socio").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<socio> sociosReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.Avales_socio_fk", "socio");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<socio>("COLINASMODEL.Avales_socio_fk", "socio", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "Avales_solicitud_fk", "solicitudes_prestamos")]
+        public solicitud_prestamo solicitudes_prestamos
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<solicitud_prestamo>("COLINASMODEL.Avales_solicitud_fk", "solicitudes_prestamos").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<solicitud_prestamo>("COLINASMODEL.Avales_solicitud_fk", "solicitudes_prestamos").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<solicitud_prestamo> solicitudes_prestamosReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<solicitud_prestamo>("COLINASMODEL.Avales_solicitud_fk", "solicitudes_prestamos");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<solicitud_prestamo>("COLINASMODEL.Avales_solicitud_fk", "solicitudes_prestamos", value);
                 }
             }
         }
@@ -6707,28 +6968,6 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "Solicitudesxsociofk", "solicitudes_prestamos")]
-        public EntityCollection<solicitud_prestamo> solicitudes_prestamos
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<solicitud_prestamo>("COLINASMODEL.Solicitudesxsociofk", "solicitudes_prestamos");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<solicitud_prestamo>("COLINASMODEL.Solicitudesxsociofk", "solicitudes_prestamos", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "APORTACIONES_SOCIOS_FK", "aportaciones_socio")]
         public aportacion_socio aportaciones_socio
         {
@@ -6779,6 +7018,50 @@ namespace COCASJOL.LOGIC
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<nota_de_peso>("COLINASMODEL.FK_NOTA_DE_PESO_socios", "notas_de_peso", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "Avales_socio_fk", "avales_x_solicitud")]
+        public EntityCollection<aval_x_solicitud> avales_x_solicitud
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<aval_x_solicitud>("COLINASMODEL.Avales_socio_fk", "avales_x_solicitud");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<aval_x_solicitud>("COLINASMODEL.Avales_socio_fk", "avales_x_solicitud", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "Solicitudesxsociofk", "solicitudes_prestamos")]
+        public EntityCollection<solicitud_prestamo> solicitudes_prestamos
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<solicitud_prestamo>("COLINASMODEL.Solicitudesxsociofk", "solicitudes_prestamos");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<solicitud_prestamo>("COLINASMODEL.Solicitudesxsociofk", "solicitudes_prestamos", value);
                 }
             }
         }
@@ -8012,54 +8295,6 @@ namespace COCASJOL.LOGIC
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.SByte> SOLICITUDES_APROB_JUNTADIRECTIVA
-        {
-            get
-            {
-                return _SOLICITUDES_APROB_JUNTADIRECTIVA;
-            }
-            set
-            {
-                OnSOLICITUDES_APROB_JUNTADIRECTIVAChanging(value);
-                ReportPropertyChanging("SOLICITUDES_APROB_JUNTADIRECTIVA");
-                _SOLICITUDES_APROB_JUNTADIRECTIVA = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SOLICITUDES_APROB_JUNTADIRECTIVA");
-                OnSOLICITUDES_APROB_JUNTADIRECTIVAChanged();
-            }
-        }
-        private Nullable<global::System.SByte> _SOLICITUDES_APROB_JUNTADIRECTIVA;
-        partial void OnSOLICITUDES_APROB_JUNTADIRECTIVAChanging(Nullable<global::System.SByte> value);
-        partial void OnSOLICITUDES_APROB_JUNTADIRECTIVAChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.SByte> SOLICITUDES_APROB_COMITECREDITO
-        {
-            get
-            {
-                return _SOLICITUDES_APROB_COMITECREDITO;
-            }
-            set
-            {
-                OnSOLICITUDES_APROB_COMITECREDITOChanging(value);
-                ReportPropertyChanging("SOLICITUDES_APROB_COMITECREDITO");
-                _SOLICITUDES_APROB_COMITECREDITO = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SOLICITUDES_APROB_COMITECREDITO");
-                OnSOLICITUDES_APROB_COMITECREDITOChanged();
-            }
-        }
-        private Nullable<global::System.SByte> _SOLICITUDES_APROB_COMITECREDITO;
-        partial void OnSOLICITUDES_APROB_COMITECREDITOChanging(Nullable<global::System.SByte> value);
-        partial void OnSOLICITUDES_APROB_COMITECREDITOChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String CREADO_POR
         {
             get
@@ -8150,10 +8385,56 @@ namespace COCASJOL.LOGIC
         private Nullable<global::System.DateTime> _FECHA_MODIFICACION;
         partial void OnFECHA_MODIFICACIONChanging(Nullable<global::System.DateTime> value);
         partial void OnFECHA_MODIFICACIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.SByte> SOLICITUD_ESTADO
+        {
+            get
+            {
+                return _SOLICITUD_ESTADO;
+            }
+            set
+            {
+                OnSOLICITUD_ESTADOChanging(value);
+                ReportPropertyChanging("SOLICITUD_ESTADO");
+                _SOLICITUD_ESTADO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SOLICITUD_ESTADO");
+                OnSOLICITUD_ESTADOChanged();
+            }
+        }
+        private Nullable<global::System.SByte> _SOLICITUD_ESTADO;
+        partial void OnSOLICITUD_ESTADOChanging(Nullable<global::System.SByte> value);
+        partial void OnSOLICITUD_ESTADOChanged();
 
         #endregion
     
         #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "Avales_solicitud_fk", "avales_x_solicitud")]
+        public EntityCollection<aval_x_solicitud> avales_x_solicitud
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<aval_x_solicitud>("COLINASMODEL.Avales_solicitud_fk", "avales_x_solicitud");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<aval_x_solicitud>("COLINASMODEL.Avales_solicitud_fk", "avales_x_solicitud", value);
+                }
+            }
+        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -8199,18 +8480,18 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "Solicitudfk", "referencias_x_solicitudes")]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "Solicitudfk", "referencia_x_solicitud")]
         public EntityCollection<referencia_x_solicitud> referencias_x_solicitudes
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<referencia_x_solicitud>("COLINASMODEL.Solicitudfk", "referencias_x_solicitudes");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<referencia_x_solicitud>("COLINASMODEL.Solicitudfk", "referencia_x_solicitud");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<referencia_x_solicitud>("COLINASMODEL.Solicitudfk", "referencias_x_solicitudes", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<referencia_x_solicitud>("COLINASMODEL.Solicitudfk", "referencia_x_solicitud", value);
                 }
             }
         }
