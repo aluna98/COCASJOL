@@ -69,7 +69,6 @@
     <Content Include="resources\css\DesktopShortcuts.css" />
     <Content Include="resources\images\background1.jpg" />
     <Content Include="resources\images\basket.png" />
-    <Content Include="resources\images\bg.gif" />
     <Content Include="resources\images\bricks.png" />
     <Content Include="resources\images\cart.png" />
     <Content Include="resources\images\cheque.png" />
@@ -82,10 +81,8 @@
     <Content Include="resources\images\fondo.jpg" />
     <Content Include="resources\images\gear_in.png" />
     <Content Include="resources\images\grid48x48.png" />
-    <Content Include="resources\images\group-expand-sprite.gif" />
     <Content Include="resources\images\group.png" />
     <Content Include="resources\images\key.png" />
-    <Content Include="resources\images\login.jpg" />
     <Content Include="resources\images\Logo_COCASJOL.jpg" />
     <Content Include="resources\images\logo_transparente.gif" />
     <Content Include="resources\images\mail_box.png" />
@@ -105,6 +102,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Default.aspx" />
+    <Content Include="Source\Auditoria\Auditoria.ascx" />
     <Content Include="Source\Desktop.aspx" />
     <Content Include="Source\Entorno\VariablesDeEntorno.aspx" />
     <Content Include="Source\Inventario\ClasificacionesDeCafe.aspx" />
@@ -141,6 +139,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Source\Auditoria\Auditoria.ascx.cs">
+      <DependentUpon>Auditoria.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Auditoria\Auditoria.ascx.designer.cs">
+      <DependentUpon>Auditoria.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Source\Desktop.aspx.cs">
       <DependentUpon>Desktop.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

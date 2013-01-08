@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TiposDeProductos.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Productos.TiposDeProductos" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
+<%@ Register Src="~/Source/Auditoria/Auditoria.ascx" TagPrefix="aud" TagName="Auditoria" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -152,6 +153,8 @@
             </Listeners>
         </ext:ResourceManager>
 
+        <aud:Auditoria runat="server" ID="AudWin" />
+
         <asp:ObjectDataSource ID="TiposProductoDS" runat="server"
                 TypeName="COCASJOL.LOGIC.Productos.TipoDeProductoLogic"
                 SelectMethod="GetTiposDeProducto"
@@ -248,6 +251,12 @@
                                         <ext:Button ID="EliminarBtn" runat="server" Text="Eliminar" Icon="BasketDelete">
                                             <Listeners>
                                                 <Click Handler="PageX.remove();" />
+                                            </Listeners>
+                                        </ext:Button>
+                                        <ext:ToolbarFill ID="ToolbarFill1" runat="server" />
+                                        <ext:Button ID="AuditoriaBtn" runat="server" Text="Auditoria" Icon="Cog">
+                                            <Listeners>
+                                                <Click Handler="PageX.showAudit();" />
                                             </Listeners>
                                         </ext:Button>
                                     </Items>

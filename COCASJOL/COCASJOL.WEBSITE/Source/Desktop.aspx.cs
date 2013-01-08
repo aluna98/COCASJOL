@@ -31,8 +31,11 @@ namespace COCASJOL.WEBSITE
             {
                 if (!X.IsAjaxRequest)
                 {
-                    NotificacionLogic notificacionlogic = new NotificacionLogic();
-                    Application["NotificacionesList"] = notificacionlogic.GetNotificaciones();
+                    if (Application["NotificacionesList"] == null)
+                    {
+                        NotificacionLogic notificacionlogic = new NotificacionLogic();
+                        Application["NotificacionesList"] = notificacionlogic.GetNotificaciones();
+                    }
                 }
 
                 string loggedUser = Session["username"] as string;
@@ -194,6 +197,8 @@ namespace COCASJOL.WEBSITE
             }
         }
 
+        private static object lockObj = new object();
+
         [DirectMethod(RethrowException=true)]
         public void CheckForNotifications()
         {
@@ -211,15 +216,18 @@ namespace COCASJOL.WEBSITE
 
                 if (query.Count() > 0)
                 {
-                    NotificacionLogic notificacionlogic = new NotificacionLogic();
-
-                    foreach (notificacion notif in query.ToList<notificacion>())
+                    lock (lockObj)
                     {
-                        this.ShowPinnedNotification(notif.NOTIFICACION_TITLE, notif.NOTIFICACION_MENSAJE);
-                        notificacionlogic.ActualizarNotificacion(notif.NOTIFICACION_ID, EstadosNotificacion.Notificado);
-                    }
+                        NotificacionLogic notificacionlogic = new NotificacionLogic();
 
-                    Application["NotificacionesList"] = notificacionlogic.GetNotificaciones();
+                        foreach (notificacion notif in query.ToList<notificacion>())
+                        {
+                            this.ShowPinnedNotification(notif.NOTIFICACION_TITLE, notif.NOTIFICACION_MENSAJE);
+                            notificacionlogic.ActualizarNotificacion(notif.NOTIFICACION_ID, EstadosNotificacion.Notificado);
+                        }
+
+                        Application["NotificacionesList"] = notificacionlogic.GetNotificaciones();
+                    }
                 }
             }
             catch (Exception)

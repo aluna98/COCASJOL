@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ClasificacionesDeCafe.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Inventario.ClasificacionesDeCafe" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
+<%@ Register Src="~/Source/Auditoria/Auditoria.ascx" TagPrefix="aud" TagName="Auditoria" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -152,6 +153,8 @@
             </Listeners>
         </ext:ResourceManager>
 
+        <aud:Auditoria runat="server" ID="AudWin" />
+
         <asp:ObjectDataSource ID="ClasificacionesCafeDS" runat="server"
                 TypeName="COCASJOL.LOGIC.Inventario.ClasificacionDeCafeLogic"
                 SelectMethod="GetClasificacionesDeCafe"
@@ -248,6 +251,12 @@
                                         <ext:Button ID="EliminarBtn" runat="server" Text="Eliminar" Icon="CupDelete">
                                             <Listeners>
                                                 <Click Handler="PageX.remove();" />
+                                            </Listeners>
+                                        </ext:Button>
+                                        <ext:ToolbarFill ID="ToolbarFill1" runat="server" />
+                                        <ext:Button ID="AuditoriaBtn" runat="server" Text="Auditoria" Icon="Cog">
+                                            <Listeners>
+                                                <Click Handler="PageX.showAudit();" />
                                             </Listeners>
                                         </ext:Button>
                                     </Items>
