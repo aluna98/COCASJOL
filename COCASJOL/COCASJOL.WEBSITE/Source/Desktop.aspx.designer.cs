@@ -76,6 +76,24 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.MenuItem RolesMenuItem;
         
         /// <summary>
+        /// UtilsMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem UtilsMenu;
+        
+        /// <summary>
+        /// PlantillasNotificacionesMenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem PlantillasNotificacionesMenuItem;
+        
+        /// <summary>
         /// AsociatesMenu control.
         /// </summary>
         /// <remarks>
@@ -524,6 +542,15 @@ namespace COCASJOL.WEBSITE {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ToolTip scRolesTooltip;
+        
+        /// <summary>
+        /// scPlantillasNotificacionesTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scPlantillasNotificacionesTooltip;
         
         /// <summary>
         /// scVariablesDeEntornoTooltip control.

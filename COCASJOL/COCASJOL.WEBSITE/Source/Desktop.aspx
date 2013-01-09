@@ -122,6 +122,18 @@
                 </ext:DesktopModule>
                 <%--Seguridad--%>
 
+                <%--Utiles--%>
+
+                <ext:DesktopModule ModuleID="PlantillasNotificacionesModule">
+                    <Launcher ID="PlantillasNotificacionesLauncher" runat="server" Text="Plantillas de Notificaciones" IconCls="icon-plantillasNotificaciones16" >
+                        <Listeners>
+                            <Click Handler="WindowX.plantillasNotificaciones(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
+
+                <%--Utiles--%>
+
                 <%--Socios--%>
                 <ext:DesktopModule ModuleID="SociosModule">
                     <Launcher ID="SociosLauncher" runat="server" Text="Socios" Icon="Group" >
@@ -250,6 +262,7 @@
             <Shortcuts>
                 <ext:DesktopShortcut ShortcutID="scUsuarios"                 Text="Usuarios"                          IconCls="shortcut-icon icon-usuarios" />
                 <ext:DesktopShortcut ShortcutID="scRoles"                    Text="Roles"                             IconCls="shortcut-icon icon-roles" />
+                <ext:DesktopShortcut ShortcutID="scPlantillasNotificaciones" Text="Plantillas de Notificaciones"      IconCls="shortcut-icon icon-plantillasNotificaciones" />
                 <ext:DesktopShortcut ShortcutID="scVariablesDeEntorno"       Text="Variables de Entorno"              IconCls="shortcut-icon icon-variablesEntorno" />
                 <ext:DesktopShortcut ShortcutID="scSocios"                   Text="Socios"                            IconCls="shortcut-icon icon-socios" />
                 <ext:DesktopShortcut ShortcutID="scTiposDeProductos"         Text="Tipos de Productos"                IconCls="shortcut-icon icon-tiposDeProducto" />
@@ -299,6 +312,19 @@
                                     <ext:MenuItem ID="RolesMenuItem" Text="Roles" Icon="Cog">
                                         <Listeners>
                                             <Click Handler="WindowX.roles(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                </Items>
+                            </ext:Menu>
+                        </Menu>
+                    </ext:MenuItem>
+                    <ext:MenuItem ID="UtilsMenu" runat="server" Text="Utiles" Icon="Folder" HideOnClick="false">
+                        <Menu>
+                            <ext:Menu runat="server">
+                                <Items>
+                                    <ext:MenuItem ID="PlantillasNotificacionesMenuItem" Text="Plantillas de Notificaciones" IconCls="icon-plantillasNotificaciones16">
+                                        <Listeners>
+                                            <Click Handler="WindowX.plantillasNotificaciones(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
                                 </Items>
@@ -678,6 +704,7 @@
 
         <ext:ToolTip runat="server" ID="scUsuariosTooltip"                  Html="Usuarios"                          Target="scUsuarios-shortcut"                 ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scRolesTooltip"                     Html="Roles"                             Target="scRoles-shortcut"                    ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scPlantillasNotificacionesTooltip"  Html="Plantillas de Notificaciones"      Target="scPlantillasNotificaciones-shortcut" ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scVariablesDeEntornoTooltip"        Html="Variables de Entorno"              Target="scVariablesDeEntorno-shortcut"       ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scSociosTooltip"                    Html="Socios"                            Target="scSocios-shortcut"                   ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scTiposDeProductosTooltip"          Html="Tipos de Productos"                Target="scTiposDeProductos-shortcut"         ></ext:ToolTip>

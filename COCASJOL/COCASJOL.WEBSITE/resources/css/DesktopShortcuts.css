@@ -8,79 +8,90 @@
 .icon-grid48
 {
     background-image: url(../images/grid48x48.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/grid48x48.png", sizingMethod="scale");
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/grid48x48.png", sizingMethod="center");
 }
 
 .icon-usuarios
 {
     background-image: url(../images/user.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/user.png", sizingMethod="scale");
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/user.png", sizingMethod="center");
 }
 
 .icon-roles
 {
     background-image: url(../images/gear_in.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/gear_in.png", sizingMethod="scale");
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/gear_in.png", sizingMethod="center");
+}
+
+.icon-plantillasNotificaciones16
+{
+    background-image: url("../images/mail_server_setting16.png") !important;
+}
+
+.icon-plantillasNotificaciones
+{
+    background-image: url(../images/mail_server_setting.png) !important;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/mail_server_setting.png", sizingMethod="center");
 }
 
 .icon-socios
 {
     background-image: url(../images/group.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/group.png", sizingMethod="scale");
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/group.png", sizingMethod="center");
 }
 
 .icon-tiposDeProducto
 {
     background-image: url(../images/basket.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/basket.png", sizingMethod="scale");
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/basket.png", sizingMethod="center");
 }
 
 .icon-productos
 {
     background-image: url(../images/cart.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/cart.png", sizingMethod="scale");
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/cart.png", sizingMethod="center");
 }
 
 .icon-estadosNotasDePeso
 {
     background-image: url(../images/page_go.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_go.png", sizingMethod="scale");
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_go.png", sizingMethod="center");
 }
 
 .icon-notasDePesoEnPesaje
 {
     background-image: url(../images/page_white_put.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_put.png", sizingMethod="scale");
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_put.png", sizingMethod="center");
 }
 
 .icon-notasDePesoEnCatacion
 {
     background-image: url(../images/page_white_cup.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_cup.png", sizingMethod="scale");
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_cup.png", sizingMethod="center");
 }
 
 .icon-notasDePeso
 {
     background-image: url(../images/page_white_office.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_office.png", sizingMethod="scale");
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_office.png", sizingMethod="center");
 }
 
 .icon-hojaDeLiquidacion
 {
     background-image: url(../images/script.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/script.png", sizingMethod="scale");
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/script.png", sizingMethod="center");
 }
 
 .icon-solicitudesDePrestamo
 {
     background-image: url(../images/page_white_text.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_text.png", sizingMethod="scale");
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_text.png", sizingMethod="center");
 }
 
 .icon-prestamos
 {
     background-image: url(../images/cheque.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/cheque.png", sizingMethod="scale");
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/cheque.png", sizingMethod="center");
 }
 
 .icon-prestamos16
@@ -91,23 +102,23 @@
 .icon-clasificacionesDeCafe
 {
     background-image: url(../images/cup.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/cup.png", sizingMethod="scale");
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/cup.png", sizingMethod="center");
 }
 
 .icon-inventarioDeCafePorSocio
 {
     background-image: url(../images/bricks.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/bricks.png", sizingMethod="scale");
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/bricks.png", sizingMethod="center");
 }
 
 .icon-variablesEntorno
 {
     background-image: url(../images/database.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/database.png", sizingMethod="scale");
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/database.png", sizingMethod="center");
 }
 
 .icon-window48
 {
     background-image: url(../images/window48x48.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/window48x48.png", sizingMethod="scale");
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/window48x48.png", sizingMethod="center");
 }

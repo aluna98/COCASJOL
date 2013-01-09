@@ -15,6 +15,13 @@
     <menuitem>RolesMenuItem</menuitem>
   </privilege>
   <privilege>
+    <key>SYS_PLANTILLASNOTIF</key>
+    <page>PlantillasDeNotificaciones</page>
+    <module>PlantillasNotificacionesModule</module>
+    <shortcut>scPlantillasNotificaciones</shortcut>
+    <menuitem>PlantillasNotificacionesMenuItem</menuitem>
+  </privilege>
+  <privilege>
     <key>MANT_SOCIOS</key>
     <page>Socios</page>
     <module>SociosModule</module>

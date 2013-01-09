@@ -22,7 +22,7 @@ namespace COCASJOL.WEBSITE.Source.Utiles
             {
                 if (!X.IsAjaxRequest)
                 {
-                    EmailLogic.EnviarCorreoUsuarioNuevo("pesador", "lol123");
+
                 }
 
                 string loggedUsr = Session["username"] as string;

@@ -86,6 +86,8 @@
     <Content Include="resources\images\Logo_COCASJOL.jpg" />
     <Content Include="resources\images\logo_transparente.gif" />
     <Content Include="resources\images\mail_box.png" />
+    <Content Include="resources\images\mail_server_setting.png" />
+    <Content Include="resources\images\mail_server_setting16.png" />
     <Content Include="resources\images\page_go.png" />
     <Content Include="resources\images\page_white_cup.png" />
     <Content Include="resources\images\page_white_office.png" />
