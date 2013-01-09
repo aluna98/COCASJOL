@@ -24,13 +24,18 @@
     <script type="text/javascript">
          var Grid = null;
          var GridRef = null;
+         var GridAval = null;
          var EditWindow = null;
          var EditRefWindow = null;
+         var EditAvalWindow = null;
          var EditRefForm = null;
          var EditForm = null;
+         var EditAvalForm = null;
          var AddWindow = null;
          var AddForm = null;
          var AddRefForm = null;
+         var AddWindowAval = null;
+         var AddAvalForm = null;
          var ConfirmMsgTitleRef = "Referencia";
          var ConfirmUpdateRef = "Seguro que desea editar la Referencia?";
          var ConfirmMsgTitle = "Socio";
@@ -40,11 +45,12 @@
          var Confirmacion = "Se ha finalizado correctamente";
 
          var SolicitudX = {
-             _index: 0, _indexRef: 0,
+             _index: 0, _indexRef: 0, _indexAval: 0,
 
              setReferences: function () {
                  Grid = SolicitudesGriP;
                  GridRef = ReferenciasGridP;
+                 GridAval = AvalesGridP;
                  EditRefWindow = EditarReferenciaWin;
                  EditRefForm = EditarReferenciaForm;
                  EditWindow = EditarSolicitudWin;
@@ -676,7 +682,6 @@
                                                         <SaveMask ShowMask="true" />
                                                         <Listeners>
                                                             <RowDblClick Handler="SolicitudX.editRef()" />
-                                                            <%--<Activate Handler="Referencias_Refresh(null, null);" />--%>
                                                         </Listeners>
                                                     </ext:GridPanel>
                                                 </Items>
@@ -684,13 +689,80 @@
                                         </Items>
                                     </ext:Panel>
                                    
-                                    <%--<ext:Panel ID="PanelAvales" runat="server" Title="Avales" Layout="AnchorLayout" AutoHeight="true" Icon="GroupKey">
+                                    <ext:Panel ID="PanelAvales" runat="server" Title="Avales" Layout="AnchorLayout" AutoHeight="true" Icon="GroupKey">
                                         <Items>
-                                            <ext:Panel ID="Panel6" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
-                                                
+                                            <ext:Panel ID="Panel10" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
+                                                <Items>
+                                                    <ext:GridPanel ID="AvalesGridP" Height="250" runat="server" Title="Avales por Solicitud" Header="false" SelectionMemory="Disabled">
+                                                        <Store>
+                                                            <ext:Store ID="StoreAvales" runat="server" OnRefreshData="Avales_Refresh">
+                                                                <Reader>
+                                                                    <ext:JsonReader IDProperty="SOCIOS_ID" >
+                                                                        <Fields>
+                                                                            <ext:RecordField Name="SOCIOS_ID" />
+                                                                            <ext:RecordField Name="SOCIOS_PRIMER_NOMBRE" ServerMapping="socios.SOCIOS_PRIMER_NOMBRE" />
+                                                                            <ext:RecordField Name="SOCIOS_PRIMER_APELLIDO" ServerMapping="socios.SOCIOS_PRIMER_APELLIDO" />
+                                                                            <ext:RecordField Name="SOLICITUDES_ID" />
+                                                                            <ext:RecordField Name="AVALES_ANTIGUEDAD" />
+                                                                            <ext:RecordField Name="AVALES_APORTACIONES" />
+                                                                            <ext:RecordField Name="AVALES_CALIFICACION" />
+                                                                        </Fields>
+                                                                    </ext:JsonReader>
+                                                                </Reader>
+                                                                <Listeners>
+                                                                    <LoadException Handler="Ext.Msg.alert('Ha ocurrido un problema cargando los Avales de la solicitud!', e.message || response.statusText);" />
+                                                                </Listeners>
+                                                            </ext:Store>
+                                                        </Store>
+                                                        <ColumnModel>
+                                                            <Columns>
+                                                                <ext:Column DataIndex="SOLICITUDES_ID"          Header="ID SOLICITUD"   />         
+                                                                <ext:Column DataIndex="SOCIOS_ID"          Header="Codigo Socio" /> 
+                                                                <ext:Column DataIndex="SOCIOS_PRIMER_NOMBRE"      Header="Nombre"     /> 
+                                                                <ext:Column DataIndex="SOCIOS_PRIMER_APELLIDO"    Header="Apellido" />
+                                                                <ext:Column DataIndex="AVALES_CALIFICACION"        Header="Calificacion"      />
+                                                            </Columns>
+                                                        </ColumnModel>
+                                                        
+                                                        <SelectionModel>
+                                                            <ext:RowSelectionModel ID="RowSelectionModelAvales" runat="server" SingleSelect="true">
+                                                                
+                                                            </ext:RowSelectionModel>
+                                                        </SelectionModel>
+                                                        <TopBar>
+                                                            <ext:Toolbar ID="ToolbarAvales" runat="server">
+                                                                <Items>
+                                                                    <ext:Button ID="AgregarAvalesBtn" runat="server" Text="Agregar" Icon="CogAdd">
+                                                                        <%--<Listeners>
+                                                                            <Click Handler="SolicitudX.addRef()" />
+                                                                        </Listeners>--%>
+                                                                    </ext:Button>
+                                                                    <ext:Button ID="EliminarAvalesBtn" runat="server" Text="Eliminar" Icon="CogDelete">
+                                                                        <%--<Listeners>
+                                                                            <click  handler="SolicitudX.removeRef()" />
+                                                                        </Listeners>--%>
+                                                                    </ext:Button>
+                                                                    <ext:Button ID="EditarAvalesBtn" runat="server" Text="Editar" Icon="CogEdit" >
+                                                                        <%--<Listeners>
+                                                                            <Click Handler="SolicitudX.editRef()" />
+                                                                        </Listeners>--%>
+                                                                    </ext:Button>
+                                                                </Items>
+                                                            </ext:Toolbar>
+                                                        </TopBar>
+                                                        <BottomBar>
+                                                            <ext:PagingToolbar ID="PaginacionAvales" runat="server" PageSize="5" StoreID="StoreAvales" />
+                                                        </BottomBar>
+                                                        <LoadMask ShowMask="true" />
+                                                        <SaveMask ShowMask="true" />
+                                                        <Listeners>
+                                                            <RowDblClick />
+                                                        </Listeners>
+                                                    </ext:GridPanel>
+                                                </Items>
                                             </ext:Panel>
                                         </Items>
-                                    </ext:Panel>--%>
+                                    </ext:Panel>
                                 </Items>
                             </ext:TabPanel>
                         </Items>
