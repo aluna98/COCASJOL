@@ -37,34 +37,16 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 {
                     db.notas_de_peso.MergeOption = MergeOption.NoTracking;
 
-                    return db.notas_de_peso.Include("notas_de_peso").Include("socios").Include("clasificaciones_cafe").ToList<nota_de_peso>();
+                    var query = from n in db.notas_de_peso.Include("notas_de_peso").Include("socios").Include("clasificaciones_cafe")
+                                where n.socios.SOCIOS_ESTATUS == 1
+                                select n;
+
+                    return query.ToList<nota_de_peso>();
                 }
             }
             catch (Exception)
             {
 
-                throw;
-            }
-        }
-
-        public nota_de_peso GetNotaDePeso(int NOTAS_ID)
-        {
-            try
-            {
-                using (var db = new colinasEntities())
-                {
-                    EntityKey k = new EntityKey("colinasEntities.notas_de_peso", "NOTAS_ID", NOTAS_ID);
-
-                    var n = db.GetObjectByKey(k);
-
-                    nota_de_peso note = (nota_de_peso)n;
-
-                    return note;
-                }
-            }
-            catch (Exception)
-            {
-                
                 throw;
             }
         }
@@ -126,7 +108,8 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     db.notas_de_peso.MergeOption = MergeOption.NoTracking;
 
                     var queryEnPesaje = from notasPesoPesaje in db.notas_de_peso.Include("socios").Include("clasificaciones_cafe").Include("estados_nota_de_peso")
-                                        where this.ESTADOS_NOTA_ID.Equals(0) ? true : notasPesoPesaje.ESTADOS_NOTA_ID == this.ESTADOS_NOTA_ID
+                                        where notasPesoPesaje.socios.SOCIOS_ESTATUS == 1 &&
+                                        (this.ESTADOS_NOTA_ID.Equals(0) ? true : notasPesoPesaje.ESTADOS_NOTA_ID == this.ESTADOS_NOTA_ID)
                                         select notasPesoPesaje;
 
                     var query = from notasPeso in queryEnPesaje

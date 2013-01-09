@@ -275,6 +275,7 @@
     </Compile>
     <Compile Include="Source\Utiles\PlantillasDeNotificaciones.aspx.cs">
       <DependentUpon>PlantillasDeNotificaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Source\Utiles\PlantillasDeNotificaciones.aspx.designer.cs">
       <DependentUpon>PlantillasDeNotificaciones.aspx</DependentUpon>

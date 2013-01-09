@@ -84,6 +84,7 @@
                     EditWindow.show();
                     EditForm.getForm().loadRecord(rec);
                     EditForm.record = rec;
+                    FormatKeysSt.reload();
                 }
             },
 
@@ -270,9 +271,20 @@
             </Items>
         </ext:Viewport>
 
+        <ext:Store ID="FormatKeysSt" runat="server" SkipIdForNewRecords="false" AutoLoad="false" OnRefreshData="FormatKeysSt_Refresh">
+            <Reader>
+                <ext:JsonReader IDProperty="Value">
+                    <Fields>
+                        <ext:RecordField Name="Value" />
+                        <ext:RecordField Name="Text" />
+                    </Fields>
+                </ext:JsonReader>
+            </Reader>
+        </ext:Store>
+
         <ext:Window ID="EditarPlantillasWin"
             runat="server"
-            Hidden="false"
+            Hidden="true"
             Icon="EmailEdit"
             Title="Editar Plantilla de Notificación"
             Width="600"
@@ -281,6 +293,9 @@
             Shadow="None"
             Modal="true"
             X="10" Y="30">
+            <Listeners>
+                <Show Handler="#{EditMensajeTxt}.show();" />
+            </Listeners>
             <Items>
                 <ext:FormPanel ID="EditarPlantillaFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" Layout="FormLayout">
                     <Items>
@@ -289,16 +304,33 @@
                                 <Activate Handler="ShowButtons();" />
                             </Listeners>
                             <Items>
-                                <ext:TextField runat="server" ID="EditLlaveTxt"            DataIndex="PRODUCTOS_ID"          LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Id de Producto" AllowBlank="false" ReadOnly="true">
+                                <ext:TextField runat="server" ID="EditLlaveTxt"            DataIndex="PLANTILLAS_LLAVE"  LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Id de Producto" AllowBlank="false" ReadOnly="true">
                                     <ToolTips>
                                         <ext:ToolTip ID="ToolTip1" runat="server" Title="Id de Producto" Html="El Id de Producto es de solo lectura." Width="200" TrackMouse="true" />
                                     </ToolTips>
                                 </ext:TextField>
                                 <ext:TextField runat="server"   ID="EditNombreTxt"        DataIndex="PLANTILLAS_NOMBRE"  LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" ></ext:TextField>
                                 <ext:TextField runat="server"   ID="EditAsuntoTxt"        DataIndex="PLANTILLAS_ASUNTO"  LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Asunto" MaxLength="100"></ext:TextField>
+                                <ext:ComboBox runat="server"    ID="EditInsertFormatKey"                                 LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Agregar Detalles"
+                                    StoreID="FormatKeysSt" 
+                                    EmptyText="Seleccione un Detalle"
+                                    ValueField="Value" 
+                                    DisplayField="Text" 
+                                    Mode="Local"
+                                    TypeAhead="true">
+                                    <Triggers>
+                                        <ext:FieldTrigger Icon="Clear" HideTrigger="true" />
+                                        <ext:FieldTrigger Icon="SimpleAdd" Qtip="Agregar Detalle" />
+                                    </Triggers>
+                                    <Listeners>
+                                        <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
+                                        <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide(); } else { #{EditMensajeTxt}.insertAtCursor(#{EditInsertFormatKey}.getText()); }" />
+                                        <Select Handler="this.triggers[0].show();" />
+                                    </Listeners>
+                                </ext:ComboBox>
                                 <ext:Container ID="Container1" runat="server" Layout="Form" >
                                     <Items>
-                                        <ext:HtmlEditor runat="server" ID="EditMensajeTxt" DataIndex="PLANTILLAS_MENSAJE" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Mensaje" AllowBlank="false" MsgTarget="Side" MaxLength="45" HideLabel="true" Height="300" />
+                                        <ext:HtmlEditor runat="server" ID="EditMensajeTxt" DataIndex="PLANTILLAS_MENSAJE" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Mensaje" AllowBlank="false" MsgTarget="Side" MaxLength="45" HideLabel="true" Height="300" Hidden="true" />
                                     </Items>
                                 </ext:Container>
                                 <ext:TextField runat="server"   ID="EditCreatedByTxt"     DataIndex="CREADO_POR"         LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>

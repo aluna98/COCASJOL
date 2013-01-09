@@ -26,7 +26,8 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     db.notas_de_peso.MergeOption = MergeOption.NoTracking;
 
                     var query = from n in db.notas_de_peso.Include("notas_de_peso").Include("socios").Include("clasificaciones_cafe")
-                                where n.ESTADOS_NOTA_ID == this.ESTADOS_NOTA_ID
+                                where n.socios.SOCIOS_ESTATUS == 1 &&
+                                (n.ESTADOS_NOTA_ID == this.ESTADOS_NOTA_ID)
                                 select n;
 
                     return query.ToList<nota_de_peso>();

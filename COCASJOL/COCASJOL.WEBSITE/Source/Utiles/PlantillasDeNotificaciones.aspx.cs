@@ -9,7 +9,7 @@ using System.Data;
 using System.Data.Objects;
 using Ext.Net;
 
-using COCASJOL.LOGIC.Productos;
+using COCASJOL.LOGIC.Utiles;
 using COCASJOL.LOGIC.Web;
 
 namespace COCASJOL.WEBSITE.Source.Utiles
@@ -22,7 +22,7 @@ namespace COCASJOL.WEBSITE.Source.Utiles
             {
                 if (!X.IsAjaxRequest)
                 {
-
+                    EmailLogic.EnviarCorreoUsuarioNuevo("pesador", "lol123");
                 }
 
                 string loggedUsr = Session["username"] as string;
@@ -41,26 +41,21 @@ namespace COCASJOL.WEBSITE.Source.Utiles
                 e.Cancel = true;
         }
 
-        //protected void EditNombreTxt_Validate(object sender, RemoteValidationEventArgs e)
-        //{
-        //    try
-        //    {
-        //        string nombreDeProducto = this.EditNombreTxt.Text;
+        protected void FormatKeysSt_Refresh(object sender, StoreRefreshDataEventArgs e)
+        {
+            try
+            {
+                string formatKey = this.EditLlaveTxt.Text;
+                PlantillaLogic plantillalogic = new PlantillaLogic();
 
-        //        ProductoLogic productologic = new ProductoLogic();
-
-        //        if (productologic.NombreDeProductoExiste(nombreDeProducto))
-        //        {
-        //            e.Success = false;
-        //            e.ErrorMessage = "El nombre de producto ingresado ya existe.";
-        //        }
-        //        else
-        //            e.Success = true;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-        //}
+                this.FormatKeysSt.DataSource = plantillalogic.GetFormatKeys(formatKey);
+                this.FormatKeysSt.DataBind();
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
     }
 }

@@ -22,7 +22,11 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                 {
                     db.liquidaciones.MergeOption = MergeOption.NoTracking;
 
-                    return db.liquidaciones.Include("socios").Include("clasificaciones_cafe").ToList<liquidacion>();
+                    var query = from l in db.liquidaciones.Include("socios").Include("clasificaciones_cafe")
+                                where l.socios.SOCIOS_ESTATUS == 1
+                                select l;
+
+                    return query.ToList<liquidacion>();
                 }
             }
             catch (Exception)
@@ -74,7 +78,11 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                 {
                     db.liquidaciones.MergeOption = MergeOption.NoTracking;
 
-                    var query = from hojaliq in db.liquidaciones.Include("socios").Include("clasificaciones_cafe")
+                    var prequery = from l in db.liquidaciones.Include("socios").Include("clasificaciones_cafe")
+                                   where l.socios.SOCIOS_ESTATUS == 1
+                                   select l;
+
+                    var query = from hojaliq in prequery
                                 where
                                 (LIQUIDACIONES_ID.Equals(0)                              ? true : hojaliq.LIQUIDACIONES_ID.Equals(LIQUIDACIONES_ID)) &&
                                 (string.IsNullOrEmpty(SOCIOS_ID)                         ? true : hojaliq.SOCIOS_ID.Contains(SOCIOS_ID)) &&

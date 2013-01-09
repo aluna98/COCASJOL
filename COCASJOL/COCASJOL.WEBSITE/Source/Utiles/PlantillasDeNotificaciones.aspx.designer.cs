@@ -202,6 +202,15 @@ namespace COCASJOL.WEBSITE.Source.Utiles {
         protected global::Ext.Net.PagingToolbar PagingToolbar1;
         
         /// <summary>
+        /// FormatKeysSt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store FormatKeysSt;
+        
+        /// <summary>
         /// EditarPlantillasWin control.
         /// </summary>
         /// <remarks>
@@ -263,6 +272,15 @@ namespace COCASJOL.WEBSITE.Source.Utiles {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField EditAsuntoTxt;
+        
+        /// <summary>
+        /// EditInsertFormatKey control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox EditInsertFormatKey;
         
         /// <summary>
         /// Container1 control.

@@ -16,6 +16,54 @@ namespace COCASJOL.LOGIC.Utiles
 
         #region SELECT
 
+        public List<object> GetFormatKeys(string PLANTILLAS_LLAVE)
+        {
+            try
+            {
+                int count = 0;
+                List<object> Formatkeys = new List<object>();
+
+                if (PLANTILLAS_LLAVE == "USUARIONUEVO")
+                {
+                    Formatkeys = new List<object> 
+                    {
+                        new {Text = "{NOMBRE}", Value = count++},
+                        new {Text = "{USUARIO}", Value = count++}
+                    };
+
+                    Formatkeys.Add(new { Text = "{CONTRASEÑA}", Value = count++ });
+                }
+                else if (PLANTILLAS_LLAVE == "ROLNUEVO")
+                {
+                    Formatkeys = new List<object> 
+                    {
+                        new {Text = "{NOMBRE}", Value = count++},
+                        new {Text = "{USUARIO}", Value = count++}
+                    };
+
+                    Formatkeys.Add(new { Text = "{ROL}", Value = count++ });
+                    Formatkeys.Add(new { Text = "{PRIVILEGIOS}", Value = count++ });
+                }
+                else if (PLANTILLAS_LLAVE == "PRIVILEGIONUEVO")
+                {
+                    Formatkeys = new List<object> 
+                    {
+                        new {Text = "{NOMBRE}", Value = count++},
+                        new {Text = "{USUARIO}", Value = count++}
+                    };
+
+                    Formatkeys.Add(new { Text = "{PRIVILEGIO}", Value = count++ });
+                }
+
+                return Formatkeys;
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
         public List<plantilla_notificacion> GetPlantillas()
         {
             try

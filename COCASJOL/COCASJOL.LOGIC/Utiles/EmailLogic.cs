@@ -138,7 +138,7 @@ namespace COCASJOL.LOGIC.Utiles
                 message = message.Replace("{USUARIO}", USR_USERNAME);
                 message = message.Replace("{PRIVILEGIO}", priv);
 
-                EnviarCorreo(mailto, subject, message);
+                //EnviarCorreo(mailto, subject, message);
             }
             catch (Exception)
             {
@@ -182,6 +182,10 @@ namespace COCASJOL.LOGIC.Utiles
                 smtpcliente.Send(correo);
                 correo.Dispose();
             }
+            catch (SmtpException)
+            {
+                //continue
+            }
             catch (Exception)
             {
 
@@ -203,6 +207,10 @@ namespace COCASJOL.LOGIC.Utiles
                 };
                 smtpcliente.Send(correo);
                 correo.Dispose();
+            }
+            catch (SmtpException)
+            {
+                //continue
             }
             catch (Exception)
             {
