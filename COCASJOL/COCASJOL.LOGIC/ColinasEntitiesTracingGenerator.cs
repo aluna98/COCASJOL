@@ -572,6 +572,22 @@ namespace COCASJOL.LOGIC
             }
         }
         private ObjectSet<solicitud_prestamo> _solicitudes_prestamos;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<plantilla_notificacion> plantillas_notificaciones
+        {
+            get
+            {
+                if ((_plantillas_notificaciones == null))
+                {
+                    _plantillas_notificaciones = base.CreateObjectSet<plantilla_notificacion>("plantillas_notificaciones");
+                }
+                return _plantillas_notificaciones;
+            }
+        }
+        private ObjectSet<plantilla_notificacion> _plantillas_notificaciones;
 
         #endregion
         #region AddTo Methods
@@ -766,6 +782,14 @@ namespace COCASJOL.LOGIC
         public void AddTosolicitudes_prestamos(solicitud_prestamo solicitud_prestamo)
         {
             base.AddObject("solicitudes_prestamos", solicitud_prestamo);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the plantillas_notificaciones EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToplantillas_notificaciones(plantilla_notificacion plantilla_notificacion)
+        {
+            base.AddObject("plantillas_notificaciones", plantilla_notificacion);
         }
 
         #endregion
@@ -1166,6 +1190,30 @@ namespace COCASJOL.LOGIC
         private global::System.String _AVALES_CALIFICACION;
         partial void OnAVALES_CALIFICACIONChanging(global::System.String value);
         partial void OnAVALES_CALIFICACIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String avales_x_solicitudcol
+        {
+            get
+            {
+                return _avales_x_solicitudcol;
+            }
+            set
+            {
+                Onavales_x_solicitudcolChanging(value);
+                ReportPropertyChanging("avales_x_solicitudcol");
+                _avales_x_solicitudcol = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("avales_x_solicitudcol");
+                Onavales_x_solicitudcolChanged();
+            }
+        }
+        private global::System.String _avales_x_solicitudcol;
+        partial void Onavales_x_solicitudcolChanging(global::System.String value);
+        partial void Onavales_x_solicitudcolChanged();
 
         #endregion
     
@@ -4467,6 +4515,239 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="COLINASMODEL", Name="plantilla_notificacion")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class plantilla_notificacion : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new plantilla_notificacion object.
+        /// </summary>
+        /// <param name="pLANTILLAS_LLAVE">Initial value of the PLANTILLAS_LLAVE property.</param>
+        /// <param name="pLANTILLAS_NOMBRE">Initial value of the PLANTILLAS_NOMBRE property.</param>
+        /// <param name="pLANTILLAS_ASUNTO">Initial value of the PLANTILLAS_ASUNTO property.</param>
+        /// <param name="pLANTILLAS_MENSAJE">Initial value of the PLANTILLAS_MENSAJE property.</param>
+        /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
+        /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
+        public static plantilla_notificacion Createplantilla_notificacion(global::System.String pLANTILLAS_LLAVE, global::System.String pLANTILLAS_NOMBRE, global::System.String pLANTILLAS_ASUNTO, global::System.String pLANTILLAS_MENSAJE, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
+        {
+            plantilla_notificacion plantilla_notificacion = new plantilla_notificacion();
+            plantilla_notificacion.PLANTILLAS_LLAVE = pLANTILLAS_LLAVE;
+            plantilla_notificacion.PLANTILLAS_NOMBRE = pLANTILLAS_NOMBRE;
+            plantilla_notificacion.PLANTILLAS_ASUNTO = pLANTILLAS_ASUNTO;
+            plantilla_notificacion.PLANTILLAS_MENSAJE = pLANTILLAS_MENSAJE;
+            plantilla_notificacion.CREADO_POR = cREADO_POR;
+            plantilla_notificacion.FECHA_CREACION = fECHA_CREACION;
+            return plantilla_notificacion;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String PLANTILLAS_LLAVE
+        {
+            get
+            {
+                return _PLANTILLAS_LLAVE;
+            }
+            set
+            {
+                if (_PLANTILLAS_LLAVE != value)
+                {
+                    OnPLANTILLAS_LLAVEChanging(value);
+                    ReportPropertyChanging("PLANTILLAS_LLAVE");
+                    _PLANTILLAS_LLAVE = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("PLANTILLAS_LLAVE");
+                    OnPLANTILLAS_LLAVEChanged();
+                }
+            }
+        }
+        private global::System.String _PLANTILLAS_LLAVE;
+        partial void OnPLANTILLAS_LLAVEChanging(global::System.String value);
+        partial void OnPLANTILLAS_LLAVEChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String PLANTILLAS_NOMBRE
+        {
+            get
+            {
+                return _PLANTILLAS_NOMBRE;
+            }
+            set
+            {
+                OnPLANTILLAS_NOMBREChanging(value);
+                ReportPropertyChanging("PLANTILLAS_NOMBRE");
+                _PLANTILLAS_NOMBRE = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("PLANTILLAS_NOMBRE");
+                OnPLANTILLAS_NOMBREChanged();
+            }
+        }
+        private global::System.String _PLANTILLAS_NOMBRE;
+        partial void OnPLANTILLAS_NOMBREChanging(global::System.String value);
+        partial void OnPLANTILLAS_NOMBREChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String PLANTILLAS_ASUNTO
+        {
+            get
+            {
+                return _PLANTILLAS_ASUNTO;
+            }
+            set
+            {
+                OnPLANTILLAS_ASUNTOChanging(value);
+                ReportPropertyChanging("PLANTILLAS_ASUNTO");
+                _PLANTILLAS_ASUNTO = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("PLANTILLAS_ASUNTO");
+                OnPLANTILLAS_ASUNTOChanged();
+            }
+        }
+        private global::System.String _PLANTILLAS_ASUNTO;
+        partial void OnPLANTILLAS_ASUNTOChanging(global::System.String value);
+        partial void OnPLANTILLAS_ASUNTOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String PLANTILLAS_MENSAJE
+        {
+            get
+            {
+                return _PLANTILLAS_MENSAJE;
+            }
+            set
+            {
+                OnPLANTILLAS_MENSAJEChanging(value);
+                ReportPropertyChanging("PLANTILLAS_MENSAJE");
+                _PLANTILLAS_MENSAJE = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("PLANTILLAS_MENSAJE");
+                OnPLANTILLAS_MENSAJEChanged();
+            }
+        }
+        private global::System.String _PLANTILLAS_MENSAJE;
+        partial void OnPLANTILLAS_MENSAJEChanging(global::System.String value);
+        partial void OnPLANTILLAS_MENSAJEChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CREADO_POR
+        {
+            get
+            {
+                return _CREADO_POR;
+            }
+            set
+            {
+                OnCREADO_PORChanging(value);
+                ReportPropertyChanging("CREADO_POR");
+                _CREADO_POR = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CREADO_POR");
+                OnCREADO_PORChanged();
+            }
+        }
+        private global::System.String _CREADO_POR;
+        partial void OnCREADO_PORChanging(global::System.String value);
+        partial void OnCREADO_PORChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime FECHA_CREACION
+        {
+            get
+            {
+                return _FECHA_CREACION;
+            }
+            set
+            {
+                OnFECHA_CREACIONChanging(value);
+                ReportPropertyChanging("FECHA_CREACION");
+                _FECHA_CREACION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_CREACION");
+                OnFECHA_CREACIONChanged();
+            }
+        }
+        private global::System.DateTime _FECHA_CREACION;
+        partial void OnFECHA_CREACIONChanging(global::System.DateTime value);
+        partial void OnFECHA_CREACIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MODIFICADO_POR
+        {
+            get
+            {
+                return _MODIFICADO_POR;
+            }
+            set
+            {
+                OnMODIFICADO_PORChanging(value);
+                ReportPropertyChanging("MODIFICADO_POR");
+                _MODIFICADO_POR = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MODIFICADO_POR");
+                OnMODIFICADO_PORChanged();
+            }
+        }
+        private global::System.String _MODIFICADO_POR;
+        partial void OnMODIFICADO_PORChanging(global::System.String value);
+        partial void OnMODIFICADO_PORChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> FECHA_MODIFICACION
+        {
+            get
+            {
+                return _FECHA_MODIFICACION;
+            }
+            set
+            {
+                OnFECHA_MODIFICACIONChanging(value);
+                ReportPropertyChanging("FECHA_MODIFICACION");
+                _FECHA_MODIFICACION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_MODIFICACION");
+                OnFECHA_MODIFICACIONChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _FECHA_MODIFICACION;
+        partial void OnFECHA_MODIFICACIONChanging(Nullable<global::System.DateTime> value);
+        partial void OnFECHA_MODIFICACIONChanged();
+
+        #endregion
+    
     }
     
     /// <summary>

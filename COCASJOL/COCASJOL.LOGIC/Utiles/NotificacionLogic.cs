@@ -103,8 +103,6 @@ namespace COCASJOL.LOGIC.Utiles
 
                     Object n = null;
 
-                    //var n = db.GetObjectByKey(k);
-
                     if (db.TryGetObjectByKey(k, out n))
                     {
 

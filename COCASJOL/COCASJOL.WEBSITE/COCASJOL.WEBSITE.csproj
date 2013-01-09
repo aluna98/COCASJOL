@@ -121,6 +121,7 @@
     <Content Include="Source\Seguridad\Usuario.aspx" />
     <Content Include="Source\Seguridad\UsuarioActual.ascx" />
     <Content Include="Source\Socios\Socios.aspx" />
+    <Content Include="Source\Utiles\PlantillasDeNotificaciones.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -271,6 +272,12 @@
     </Compile>
     <Compile Include="Source\Socios\Socios.aspx.designer.cs">
       <DependentUpon>Socios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Utiles\PlantillasDeNotificaciones.aspx.cs">
+      <DependentUpon>PlantillasDeNotificaciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Utiles\PlantillasDeNotificaciones.aspx.designer.cs">
+      <DependentUpon>PlantillasDeNotificaciones.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

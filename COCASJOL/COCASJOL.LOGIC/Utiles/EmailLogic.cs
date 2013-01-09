@@ -15,6 +15,42 @@ namespace COCASJOL.LOGIC.Utiles
 {
     public class EmailLogic
     {
+        public static void EnviarCorreoUsuarioNuevo(string USR_USERNAME, string USR_PASSWORD)
+        {
+            try
+            {
+                UsuarioLogic usuariologica = new UsuarioLogic();
+                usuario user = usuariologica.GetUsuario(USR_USERNAME);
+
+                string mailto = user.USR_CORREO;
+                string nombre = user.USR_NOMBRE + user.USR_APELLIDO;
+
+                string subject = "";
+                string message = "";
+
+                using (var db = new colinasEntities())
+                {
+                    EntityKey k = new EntityKey("colinasEntities.plantillas_notificaciones", "PLANTILLAS_LLAVE", "USUARIONUEVO");
+                    var pl = db.GetObjectByKey(k);
+                    plantilla_notificacion plantilla = (plantilla_notificacion)pl;
+
+                    subject = plantilla.PLANTILLAS_ASUNTO;
+                    message = plantilla.PLANTILLAS_MENSAJE;
+                }
+
+                message = message.Replace("{NOMBRE}", nombre);
+                message = message.Replace("{USUARIO}", USR_USERNAME);
+                message = message.Replace("{CONTRASEÑA}", USR_PASSWORD);
+
+                EnviarCorreo(mailto, subject, message);
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
         public static void EnviarCorreoRolNuevo(string USR_USERNAME, int ROL_ID)
         {
             try
@@ -41,6 +77,14 @@ namespace COCASJOL.LOGIC.Utiles
 
                     foreach (privilegio p in role.privilegios)
                         privs += p.PRIV_NOMBRE + ", ";
+
+
+                    EntityKey k2 = new EntityKey("colinasEntities.plantillas_notificaciones", "PLANTILLAS_LLAVE", "ROLNUEVO");
+                    var pl = db.GetObjectByKey(k2);
+                    plantilla_notificacion plantilla = (plantilla_notificacion)pl;
+
+                    subject = plantilla.PLANTILLAS_ASUNTO;
+                    message = plantilla.PLANTILLAS_MENSAJE;
                 }
 
                 message = message.Replace("{NOMBRE}", nombre);
@@ -48,19 +92,7 @@ namespace COCASJOL.LOGIC.Utiles
                 message = message.Replace("{ROL}", rol);
                 message = message.Replace("{PRIVILEGIOS}", privs);
 
-                string strUsePassword = System.Configuration.ConfigurationManager.AppSettings.Get("CorreoUsarPassword");
-                string mailfrom = System.Configuration.ConfigurationManager.AppSettings.Get("CorreoLocal");
-                string host = System.Configuration.ConfigurationManager.AppSettings.Get("SMTP_SERVER");
-
-                bool usePassword = Convert.ToBoolean(strUsePassword);
-
-                if (usePassword)
-                {
-                    string fromPassword = System.Configuration.ConfigurationManager.AppSettings.Get("CorreoLocalPassword");
-                    sendMail(mailto, mailfrom, fromPassword, message, subject, host);
-                }
-                else
-                    sendMail(mailto, mailfrom, message, subject, host);
+                EnviarCorreo(mailto, subject, message);
             }
             catch (Exception)
             {
@@ -93,12 +125,32 @@ namespace COCASJOL.LOGIC.Utiles
                     privilegio priv2 = (privilegio)p;
 
                     priv = priv2.PRIV_NOMBRE;
+
+                    EntityKey k2 = new EntityKey("colinasEntities.plantillas_notificaciones", "PLANTILLAS_LLAVE", "PRIVILEGIONUEVO");
+                    var pl = db.GetObjectByKey(k2);
+                    plantilla_notificacion plantilla = (plantilla_notificacion)pl;
+
+                    subject = plantilla.PLANTILLAS_ASUNTO;
+                    message = plantilla.PLANTILLAS_MENSAJE;
                 }
 
                 message = message.Replace("{NOMBRE}", nombre);
                 message = message.Replace("{USUARIO}", USR_USERNAME);
                 message = message.Replace("{PRIVILEGIO}", priv);
 
+                EnviarCorreo(mailto, subject, message);
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
+        private static void EnviarCorreo(string mailto, string subject, string message)
+        {
+            try
+            {
                 string strUsePassword = System.Configuration.ConfigurationManager.AppSettings.Get("CorreoUsarPassword");
                 string mailfrom = System.Configuration.ConfigurationManager.AppSettings.Get("CorreoLocal");
                 string host = System.Configuration.ConfigurationManager.AppSettings.Get("SMTP_SERVER");

@@ -91,6 +91,7 @@
     <Compile Include="Utiles\EmailLogic.cs" />
     <Compile Include="Utiles\NotificacionLogic.cs" />
     <Compile Include="Utiles\Numalet.cs" />
+    <Compile Include="Utiles\PlantillaLogic.cs" />
     <Compile Include="Web\COCASJOLBASE.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

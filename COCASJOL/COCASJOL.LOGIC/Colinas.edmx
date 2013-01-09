@@ -17,6 +17,7 @@
           <EntitySet Name="notas_de_peso" EntityType="COLINASMODEL.Store.notas_de_peso" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="notas_detalles" EntityType="COLINASMODEL.Store.notas_detalles" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="notificaciones" EntityType="COLINASMODEL.Store.notificaciones" store:Type="Tables" Schema="colinas" />
+          <EntitySet Name="plantillas_notificaciones" EntityType="COLINASMODEL.Store.plantillas_notificaciones" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="prestamos" EntityType="COLINASMODEL.Store.prestamos" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="prestamos x socio" EntityType="COLINASMODEL.Store.prestamos x socio" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="privilegios" EntityType="COLINASMODEL.Store.privilegios" store:Type="Tables" Schema="colinas" />
@@ -154,6 +155,7 @@
           <Property Name="AVALES_ANTIGUEDAD" Type="int" />
           <Property Name="AVALES_APORTACIONES" Type="mediumtext" />
           <Property Name="AVALES_CALIFICACION" Type="varchar" MaxLength="20" />
+          <Property Name="avales_x_solicitudcol" Type="varchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="beneficiario_x_socio">
           <Key>
@@ -297,6 +299,19 @@
           <Property Name="NOTIFICACION_MENSAJE" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="NOTIFICACION_ESTADO" Type="int" Nullable="false" />
           <Property Name="NOTIFICACION_FECHA" Type="datetime" />
+        </EntityType>
+        <EntityType Name="plantillas_notificaciones">
+          <Key>
+            <PropertyRef Name="PLANTILLAS_LLAVE" />
+          </Key>
+          <Property Name="PLANTILLAS_LLAVE" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="PLANTILLAS_NOMBRE" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="PLANTILLAS_ASUNTO" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="PLANTILLAS_MENSAJE" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="CREADO_POR" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
+          <Property Name="MODIFICADO_POR" Type="varchar" MaxLength="45" />
+          <Property Name="FECHA_MODIFICACION" Type="date" />
         </EntityType>
         <EntityType Name="prestamos">
           <Key>
@@ -1017,6 +1032,7 @@
             <End Role="socio" EntitySet="socios" />
             <End Role="solicitudes_prestamos" EntitySet="solicitudes_prestamos" />
           </AssociationSet>
+          <EntitySet Name="plantillas_notificaciones" EntityType="COLINASMODEL.plantilla_notificacion" />
           </EntityContainer>
         <EntityType Name="codigo">
           <Key>
@@ -1618,6 +1634,7 @@
           <Property Type="String" Name="AVALES_CALIFICACION" />
           <NavigationProperty Name="socios" Relationship="COLINASMODEL.Avales_socio_fk" FromRole="avales_x_solicitud" ToRole="socio" />
           <NavigationProperty Name="solicitudes_prestamos" Relationship="COLINASMODEL.Avales_solicitud_fk" FromRole="avales_x_solicitud" ToRole="solicitudes_prestamos" />
+          <Property Type="String" Name="avales_x_solicitudcol" />
         </EntityType>
         <EntityType Name="solicitud_prestamo">
           <Key>
@@ -1715,6 +1732,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="plantilla_notificacion">
+          <Key>
+            <PropertyRef Name="PLANTILLAS_LLAVE" />
+          </Key>
+          <Property Type="String" Name="PLANTILLAS_LLAVE" Nullable="false" />
+          <Property Type="String" Name="PLANTILLAS_NOMBRE" Nullable="false" />
+          <Property Type="String" Name="PLANTILLAS_ASUNTO" Nullable="false" />
+          <Property Type="String" Name="PLANTILLAS_MENSAJE" Nullable="false" />
+          <Property Type="String" Name="CREADO_POR" Nullable="false" />
+          <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
+          <Property Type="String" Name="MODIFICADO_POR" />
+          <Property Type="DateTime" Name="FECHA_MODIFICACION" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2093,6 +2123,7 @@
           <EntitySetMapping Name="avales_x_solicitud">
             <EntityTypeMapping TypeName="COLINASMODEL.aval_x_solicitud">
               <MappingFragment StoreEntitySet="avales_x_solicitud">
+                <ScalarProperty Name="avales_x_solicitudcol" ColumnName="avales_x_solicitudcol" />
                 <ScalarProperty Name="AVALES_CALIFICACION" ColumnName="AVALES_CALIFICACION" />
                 <ScalarProperty Name="AVALES_APORTACIONES" ColumnName="AVALES_APORTACIONES" />
                 <ScalarProperty Name="AVALES_ANTIGUEDAD" ColumnName="AVALES_ANTIGUEDAD" />
@@ -2134,6 +2165,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="plantillas_notificaciones">
+            <EntityTypeMapping TypeName="COLINASMODEL.plantilla_notificacion">
+              <MappingFragment StoreEntitySet="plantillas_notificaciones">
+                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
+                <ScalarProperty Name="MODIFICADO_POR" ColumnName="MODIFICADO_POR" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
+                <ScalarProperty Name="PLANTILLAS_MENSAJE" ColumnName="PLANTILLAS_MENSAJE" />
+                <ScalarProperty Name="PLANTILLAS_ASUNTO" ColumnName="PLANTILLAS_ASUNTO" />
+                <ScalarProperty Name="PLANTILLAS_NOMBRE" ColumnName="PLANTILLAS_NOMBRE" />
+                <ScalarProperty Name="PLANTILLAS_LLAVE" ColumnName="PLANTILLAS_LLAVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -2155,7 +2200,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Colinas" ZoomLevel="74" ShowGrid="false">
+      <Diagram Name="Colinas" ZoomLevel="73" ShowGrid="false">
         <EntityTypeShape EntityType="COLINASMODEL.codigo" Width="1.5" PointX="7.625" PointY="0.5" Height="1.4033821614583317" />
         <EntityTypeShape EntityType="COLINASMODEL.socio_produccion" Width="1.5" PointX="0.5" PointY="5.125" Height="3.3263964843750014" />
         <EntityTypeShape EntityType="COLINASMODEL.beneficiario_x_socio" Width="1.5" PointX="0.5" PointY="12.25" Height="2.5571907552083317" />
@@ -2284,12 +2329,12 @@
         <EntityTypeShape EntityType="COLINASMODEL.aval_x_solicitud" Width="1.5" PointX="14.125" PointY="10.25" Height="2.3648893229166674" />
         <EntityTypeShape EntityType="COLINASMODEL.solicitud_prestamo" Width="1.5" PointX="11.875" PointY="5.125" Height="6.9801236979166674" />
         <AssociationConnector Association="COLINASMODEL.Avales_socio_fk" >
-          <ConnectorPoint PointX="5.125" PointY="8.4275569075520842" />
-          <ConnectorPoint PointX="11.625" PointY="8.4275569075520842" />
+          <ConnectorPoint PointX="5.125" PointY="8.4161223779296854" />
+          <ConnectorPoint PointX="11.625" PointY="8.4161223779296854" />
           <ConnectorPoint PointX="11.625" PointY="12.355123697916667" />
           <ConnectorPoint PointX="13.875" PointY="12.355123697916667" />
-          <ConnectorPoint PointX="13.875" PointY="10.066793619791666" />
-          <ConnectorPoint PointX="14.875" PointY="10.066793619791666" />
+          <ConnectorPoint PointX="13.875" PointY="10.066793619791667" />
+          <ConnectorPoint PointX="14.875" PointY="10.066793619791667" />
           <ConnectorPoint PointX="14.875" PointY="10.25" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.Avales_solicitud_fk" >
@@ -2307,11 +2352,12 @@
           <ConnectorPoint PointX="14.125" PointY="8.3458968098958337" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.Solicitudesxsociofk" >
-          <ConnectorPoint PointX="5.125" PointY="8.7210237630208329" />
-          <ConnectorPoint PointX="11.541666666666666" PointY="8.7210237630208329" />
-          <ConnectorPoint PointX="11.708333333333334" PointY="8.7210237630208329" />
-          <ConnectorPoint PointX="11.875" PointY="8.7210237630208329" />
+          <ConnectorPoint PointX="5.125" PointY="8.69815470377604" />
+          <ConnectorPoint PointX="11.541666666666666" PointY="8.69815470377604" />
+          <ConnectorPoint PointX="11.708333333333334" PointY="8.69815470377604" />
+          <ConnectorPoint PointX="11.875" PointY="8.69815470377604" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="COLINASMODEL.plantilla_notificacion" Width="1.5" PointX="12.375" PointY="0.75" Height="2.5571907552083246" />
         </Diagram>
     </Diagrams>
   </Designer>
