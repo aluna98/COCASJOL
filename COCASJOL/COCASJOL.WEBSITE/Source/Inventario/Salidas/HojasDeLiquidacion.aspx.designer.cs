@@ -607,6 +607,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         protected global::Ext.Net.NumberField AddExcedenteXRendimientoCafeTxt;
         
         /// <summary>
+        /// AddExcedentePeriodoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField AddExcedentePeriodoTxt;
+        
+        /// <summary>
         /// AddPrestamoHipotecarioTxt control.
         /// </summary>
         /// <remarks>
@@ -1082,6 +1091,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.NumberField EditExcedenteXRendimientoCafeTxt;
+        
+        /// <summary>
+        /// EditExcedentePeriodoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditExcedentePeriodoTxt;
         
         /// <summary>
         /// EditPrestamoHipotecarioTxt control.

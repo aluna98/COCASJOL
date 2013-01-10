@@ -14,7 +14,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySetsEFFD9ABA8FC299D3B98CDBACE2732750C3816BD28458E74B5D1D1469A587BEA5))]
+[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySetsB7365DAD096AF72E9885C55DE95FB97043D4BAAF4C57F21BFE61AF63BBEE513C))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
@@ -23,18 +23,18 @@ namespace Edm_EntityMappingGeneratedViews
     /// <Summary>
     /// The type contains views for EntitySets and AssociationSets that were generated at design time.
     /// </Summary>
-    public sealed class ViewsForBaseEntitySetsEFFD9ABA8FC299D3B98CDBACE2732750C3816BD28458E74B5D1D1469A587BEA5 : System.Data.Mapping.EntityViewContainer
+    public sealed class ViewsForBaseEntitySetsB7365DAD096AF72E9885C55DE95FB97043D4BAAF4C57F21BFE61AF63BBEE513C : System.Data.Mapping.EntityViewContainer
     {
         
         /// <Summary>
         /// The constructor stores the views for the extents and also the hash values generated based on the metadata and mapping closure and views.
         /// </Summary>
-        public ViewsForBaseEntitySetsEFFD9ABA8FC299D3B98CDBACE2732750C3816BD28458E74B5D1D1469A587BEA5()
+        public ViewsForBaseEntitySetsB7365DAD096AF72E9885C55DE95FB97043D4BAAF4C57F21BFE61AF63BBEE513C()
         {
             this.EdmEntityContainerName = "colinasEntities";
             this.StoreEntityContainerName = "COLINASMODELStoreContainer";
-            this.HashOverMappingClosure = "118cf0ced150073ac8f2c0e7d04e12d8f1dd7e35f1197ed7a9694d5f29aeed4d";
-            this.HashOverAllExtentViews = "d8ea5f40b9355a56509c7829d17f889c5b36554ff9b1f45ed2b46681a2203c7e";
+            this.HashOverMappingClosure = "812fa79ce457f54da877854397b67a23ba04549e970a4a49f206f278f43a0564";
+            this.HashOverAllExtentViews = "bc186ace3c3f6db6537d88071be8d46b37be929e700993a56af3d88de9bf8373";
             this.ViewCount = 54;
         }
         
@@ -522,75 +522,9 @@ namespace Edm_EntityMappingGeneratedViews
         }
         
         /// <Summary>
-        /// return view for COLINASMODELStoreContainer.liquidaciones
-        /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView11()
-        {
-            System.Text.StringBuilder viewString = new System.Text.StringBuilder(4513);
-            viewString.Append("\r\n    SELECT VALUE -- Constructing liquidaciones\r\n        [COLINASMODEL.Store.li");
-            viewString.Append("quidaciones](T1.[liquidaciones.LIQUIDACIONES_ID], T1.[liquidaciones.SOCIOS_ID], ");
-            viewString.Append("T1.[liquidaciones.LIQUIDACIONES_FECHA], T1.[liquidaciones.CLASIFICACIONES_CAFE_I");
-            viewString.Append("D], T1.[liquidaciones.LIQUIDACIONES_TOTAL_LIBRAS], T1.[liquidaciones.LIQUIDACION");
-            viewString.Append("ES_PRECIO_LIBRAS], T1.[liquidaciones.LIQUIDACIONES_VALOR_TOTAL], T1.[liquidacion");
-            viewString.Append("es.LIQUIDACIONES_D_CUOTA_INGRESO], T1.[liquidaciones.LIQUIDACIONES_D_GASTOS_ADMI");
-            viewString.Append("N], T1.[liquidaciones.LIQUIDACIONES_D_APORTACION_ORDINARIO], T1.[liquidaciones.L");
-            viewString.Append("IQUIDACIONES_D_APORTACION_EXTRAORDINARIA], T1.[liquidaciones.LIQUIDACIONES_D_CUO");
-            viewString.Append("TA_ADMIN], T1.[liquidaciones.LIQUIDACIONES_D_CAPITALIZACION_RETENCION], T1.[liqu");
-            viewString.Append("idaciones.LIQUIDACIONES_D_SERVICIO_SECADO_CAFE], T1.[liquidaciones.LIQUIDACIONES");
-            viewString.Append("_D_INTERESES_S_APORTACIONES], T1.[liquidaciones.LIQUIDACIONES_D_EXCEDENTE_X_REND");
-            viewString.Append("IMIENTO_CAFE], T1.[liquidaciones.LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO], T1.[liqu");
-            viewString.Append("idaciones.LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO], T1.[liquidaciones.LIQUIDACIONES_");
-            viewString.Append("D_PRESTAMO_PRENDARIO], T1.[liquidaciones.LIQUIDACIONES_D_CUENTAS_X_COBRAR], T1.[");
-            viewString.Append("liquidaciones.LIQUIDACIONES_D_INTERESES_X_COBRAR], T1.[liquidaciones.LIQUIDACION");
-            viewString.Append("ES_D_RETENCION_X_TORREFACCION], T1.[liquidaciones.LIQUIDACIONES_D_OTRAS_DEDUCCIO");
-            viewString.Append("NES], T1.[liquidaciones.LIQUIDACIONES_D_TOTAL_DEDUCCIONES], T1.[liquidaciones.LI");
-            viewString.Append("QUIDACIONES_D_AF_SOCIO], T1.[liquidaciones.LIQUIDACIONES_D_TOTAL], T1.[liquidaci");
-            viewString.Append("ones.CREADO_POR], T1.[liquidaciones.FECHA_CREACION], T1.[liquidaciones.MODIFICAD");
-            viewString.Append("O_POR], T1.[liquidaciones.FECHA_MODIFICACION])\r\n    FROM (\r\n        SELECT \r\n   ");
-            viewString.Append("         T.LIQUIDACIONES_ID AS [liquidaciones.LIQUIDACIONES_ID], \r\n            T");
-            viewString.Append(".SOCIOS_ID AS [liquidaciones.SOCIOS_ID], \r\n            T.LIQUIDACIONES_FECHA AS ");
-            viewString.Append("[liquidaciones.LIQUIDACIONES_FECHA], \r\n            T.CLASIFICACIONES_CAFE_ID AS ");
-            viewString.Append("[liquidaciones.CLASIFICACIONES_CAFE_ID], \r\n            T.LIQUIDACIONES_TOTAL_LIB");
-            viewString.Append("RAS AS [liquidaciones.LIQUIDACIONES_TOTAL_LIBRAS], \r\n            T.LIQUIDACIONES");
-            viewString.Append("_PRECIO_LIBRAS AS [liquidaciones.LIQUIDACIONES_PRECIO_LIBRAS], \r\n            T.L");
-            viewString.Append("IQUIDACIONES_VALOR_TOTAL AS [liquidaciones.LIQUIDACIONES_VALOR_TOTAL], \r\n       ");
-            viewString.Append("     T.LIQUIDACIONES_D_CUOTA_INGRESO AS [liquidaciones.LIQUIDACIONES_D_CUOTA_ING");
-            viewString.Append("RESO], \r\n            T.LIQUIDACIONES_D_GASTOS_ADMIN AS [liquidaciones.LIQUIDACIO");
-            viewString.Append("NES_D_GASTOS_ADMIN], \r\n            T.LIQUIDACIONES_D_APORTACION_ORDINARIO AS [li");
-            viewString.Append("quidaciones.LIQUIDACIONES_D_APORTACION_ORDINARIO], \r\n            T.LIQUIDACIONES");
-            viewString.Append("_D_APORTACION_EXTRAORDINARIA AS [liquidaciones.LIQUIDACIONES_D_APORTACION_EXTRAO");
-            viewString.Append("RDINARIA], \r\n            T.LIQUIDACIONES_D_CUOTA_ADMIN AS [liquidaciones.LIQUIDA");
-            viewString.Append("CIONES_D_CUOTA_ADMIN], \r\n            T.LIQUIDACIONES_D_CAPITALIZACION_RETENCION ");
-            viewString.Append("AS [liquidaciones.LIQUIDACIONES_D_CAPITALIZACION_RETENCION], \r\n            T.LIQ");
-            viewString.Append("UIDACIONES_D_SERVICIO_SECADO_CAFE AS [liquidaciones.LIQUIDACIONES_D_SERVICIO_SEC");
-            viewString.Append("ADO_CAFE], \r\n            T.LIQUIDACIONES_D_INTERESES_S_APORTACIONES AS [liquidac");
-            viewString.Append("iones.LIQUIDACIONES_D_INTERESES_S_APORTACIONES], \r\n            T.LIQUIDACIONES_D");
-            viewString.Append("_EXCEDENTE_X_RENDIMIENTO_CAFE AS [liquidaciones.LIQUIDACIONES_D_EXCEDENTE_X_REND");
-            viewString.Append("IMIENTO_CAFE], \r\n            T.LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO AS [liquidac");
-            viewString.Append("iones.LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO], \r\n            T.LIQUIDACIONES_D_PRE");
-            viewString.Append("STAMO_FIDUCIARIO AS [liquidaciones.LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO], \r\n     ");
-            viewString.Append("       T.LIQUIDACIONES_D_PRESTAMO_PRENDARIO AS [liquidaciones.LIQUIDACIONES_D_PR");
-            viewString.Append("ESTAMO_PRENDARIO], \r\n            T.LIQUIDACIONES_D_CUENTAS_X_COBRAR AS [liquidac");
-            viewString.Append("iones.LIQUIDACIONES_D_CUENTAS_X_COBRAR], \r\n            T.LIQUIDACIONES_D_INTERES");
-            viewString.Append("ES_X_COBRAR AS [liquidaciones.LIQUIDACIONES_D_INTERESES_X_COBRAR], \r\n           ");
-            viewString.Append(" T.LIQUIDACIONES_D_RETENCION_X_TORREFACCION AS [liquidaciones.LIQUIDACIONES_D_RE");
-            viewString.Append("TENCION_X_TORREFACCION], \r\n            T.LIQUIDACIONES_D_OTRAS_DEDUCCIONES AS [l");
-            viewString.Append("iquidaciones.LIQUIDACIONES_D_OTRAS_DEDUCCIONES], \r\n            T.LIQUIDACIONES_D");
-            viewString.Append("_TOTAL_DEDUCCIONES AS [liquidaciones.LIQUIDACIONES_D_TOTAL_DEDUCCIONES], \r\n     ");
-            viewString.Append("       T.LIQUIDACIONES_D_AF_SOCIO AS [liquidaciones.LIQUIDACIONES_D_AF_SOCIO], \r");
-            viewString.Append("\n            T.LIQUIDACIONES_D_TOTAL AS [liquidaciones.LIQUIDACIONES_D_TOTAL], \r");
-            viewString.Append("\n            T.CREADO_POR AS [liquidaciones.CREADO_POR], \r\n            T.FECHA_C");
-            viewString.Append("REACION AS [liquidaciones.FECHA_CREACION], \r\n            T.MODIFICADO_POR AS [li");
-            viewString.Append("quidaciones.MODIFICADO_POR], \r\n            T.FECHA_MODIFICACION AS [liquidacione");
-            viewString.Append("s.FECHA_MODIFICACION], \r\n            True AS _from0\r\n        FROM colinasEntitie");
-            viewString.Append("s.liquidaciones AS T\r\n    ) AS T1");
-            return new System.Collections.Generic.KeyValuePair<string, string>("COLINASMODELStoreContainer.liquidaciones", viewString.ToString());
-        }
-        
-        /// <Summary>
         /// return view for COLINASMODELStoreContainer.referencias_x_solicitudes
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView12()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView11()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("COLINASMODELStoreContainer.referencias_x_solicitudes", @"
     SELECT VALUE -- Constructing referencias_x_solicitudes
@@ -614,7 +548,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for COLINASMODELStoreContainer.estados_nota_de_peso
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView13()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView12()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("COLINASMODELStoreContainer.estados_nota_de_peso", @"
     SELECT VALUE -- Constructing estados_nota_de_peso
@@ -638,7 +572,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for COLINASMODELStoreContainer.notas_de_peso
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView14()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView13()
         {
             System.Text.StringBuilder viewString = new System.Text.StringBuilder(2808);
             viewString.Append("\r\n    SELECT VALUE -- Constructing notas_de_peso\r\n        [COLINASMODEL.Store.no");
@@ -683,7 +617,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for COLINASMODELStoreContainer.avales_x_solicitud
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView15()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView14()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("COLINASMODELStoreContainer.avales_x_solicitud", @"
     SELECT VALUE -- Constructing avales_x_solicitud
@@ -704,7 +638,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for COLINASMODELStoreContainer.solicitudes_prestamos
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView16()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView15()
         {
             System.Text.StringBuilder viewString = new System.Text.StringBuilder(3631);
             viewString.Append("\r\n    SELECT VALUE -- Constructing solicitudes_prestamos\r\n        [COLINASMODEL.");
@@ -759,7 +693,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for COLINASMODELStoreContainer.aportaciones_socio
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView17()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView16()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("COLINASMODELStoreContainer.aportaciones_socio", @"
     SELECT VALUE -- Constructing aportaciones_socio
@@ -775,6 +709,74 @@ namespace Edm_EntityMappingGeneratedViews
             True AS _from0
         FROM colinasEntities.aportaciones_socio AS T
     ) AS T1");
+        }
+        
+        /// <Summary>
+        /// return view for COLINASMODELStoreContainer.liquidaciones
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView17()
+        {
+            System.Text.StringBuilder viewString = new System.Text.StringBuilder(4671);
+            viewString.Append("\r\n    SELECT VALUE -- Constructing liquidaciones\r\n        [COLINASMODEL.Store.li");
+            viewString.Append("quidaciones](T1.[liquidaciones.LIQUIDACIONES_ID], T1.[liquidaciones.SOCIOS_ID], ");
+            viewString.Append("T1.[liquidaciones.LIQUIDACIONES_FECHA], T1.[liquidaciones.CLASIFICACIONES_CAFE_I");
+            viewString.Append("D], T1.[liquidaciones.LIQUIDACIONES_TOTAL_LIBRAS], T1.[liquidaciones.LIQUIDACION");
+            viewString.Append("ES_PRECIO_LIBRAS], T1.[liquidaciones.LIQUIDACIONES_VALOR_TOTAL], T1.[liquidacion");
+            viewString.Append("es.LIQUIDACIONES_D_CUOTA_INGRESO], T1.[liquidaciones.LIQUIDACIONES_D_GASTOS_ADMI");
+            viewString.Append("N], T1.[liquidaciones.LIQUIDACIONES_D_APORTACION_ORDINARIO], T1.[liquidaciones.L");
+            viewString.Append("IQUIDACIONES_D_APORTACION_EXTRAORDINARIA], T1.[liquidaciones.LIQUIDACIONES_D_CUO");
+            viewString.Append("TA_ADMIN], T1.[liquidaciones.LIQUIDACIONES_D_CAPITALIZACION_RETENCION], T1.[liqu");
+            viewString.Append("idaciones.LIQUIDACIONES_D_SERVICIO_SECADO_CAFE], T1.[liquidaciones.LIQUIDACIONES");
+            viewString.Append("_D_INTERESES_S_APORTACIONES], T1.[liquidaciones.LIQUIDACIONES_D_EXCEDENTE_X_REND");
+            viewString.Append("IMIENTO_CAFE], T1.[liquidaciones.LIQUIDACIONES_D_EXCEDENTE_PERIODO], T1.[liquida");
+            viewString.Append("ciones.LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO], T1.[liquidaciones.LIQUIDACIONES_D_");
+            viewString.Append("PRESTAMO_FIDUCIARIO], T1.[liquidaciones.LIQUIDACIONES_D_PRESTAMO_PRENDARIO], T1.");
+            viewString.Append("[liquidaciones.LIQUIDACIONES_D_CUENTAS_X_COBRAR], T1.[liquidaciones.LIQUIDACIONE");
+            viewString.Append("S_D_INTERESES_X_COBRAR], T1.[liquidaciones.LIQUIDACIONES_D_RETENCION_X_TORREFACC");
+            viewString.Append("ION], T1.[liquidaciones.LIQUIDACIONES_D_OTRAS_DEDUCCIONES], T1.[liquidaciones.LI");
+            viewString.Append("QUIDACIONES_D_TOTAL_DEDUCCIONES], T1.[liquidaciones.LIQUIDACIONES_D_AF_SOCIO], T");
+            viewString.Append("1.[liquidaciones.LIQUIDACIONES_D_TOTAL], T1.[liquidaciones.CREADO_POR], T1.[liqu");
+            viewString.Append("idaciones.FECHA_CREACION], T1.[liquidaciones.MODIFICADO_POR], T1.[liquidaciones.");
+            viewString.Append("FECHA_MODIFICACION])\r\n    FROM (\r\n        SELECT \r\n            T.LIQUIDACIONES_I");
+            viewString.Append("D AS [liquidaciones.LIQUIDACIONES_ID], \r\n            T.SOCIOS_ID AS [liquidacion");
+            viewString.Append("es.SOCIOS_ID], \r\n            T.LIQUIDACIONES_FECHA AS [liquidaciones.LIQUIDACION");
+            viewString.Append("ES_FECHA], \r\n            T.CLASIFICACIONES_CAFE_ID AS [liquidaciones.CLASIFICACI");
+            viewString.Append("ONES_CAFE_ID], \r\n            T.LIQUIDACIONES_TOTAL_LIBRAS AS [liquidaciones.LIQU");
+            viewString.Append("IDACIONES_TOTAL_LIBRAS], \r\n            T.LIQUIDACIONES_PRECIO_LIBRAS AS [liquida");
+            viewString.Append("ciones.LIQUIDACIONES_PRECIO_LIBRAS], \r\n            T.LIQUIDACIONES_VALOR_TOTAL A");
+            viewString.Append("S [liquidaciones.LIQUIDACIONES_VALOR_TOTAL], \r\n            T.LIQUIDACIONES_D_CUO");
+            viewString.Append("TA_INGRESO AS [liquidaciones.LIQUIDACIONES_D_CUOTA_INGRESO], \r\n            T.LIQ");
+            viewString.Append("UIDACIONES_D_GASTOS_ADMIN AS [liquidaciones.LIQUIDACIONES_D_GASTOS_ADMIN], \r\n   ");
+            viewString.Append("         T.LIQUIDACIONES_D_APORTACION_ORDINARIO AS [liquidaciones.LIQUIDACIONES_");
+            viewString.Append("D_APORTACION_ORDINARIO], \r\n            T.LIQUIDACIONES_D_APORTACION_EXTRAORDINAR");
+            viewString.Append("IA AS [liquidaciones.LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA], \r\n            T");
+            viewString.Append(".LIQUIDACIONES_D_CUOTA_ADMIN AS [liquidaciones.LIQUIDACIONES_D_CUOTA_ADMIN], \r\n ");
+            viewString.Append("           T.LIQUIDACIONES_D_CAPITALIZACION_RETENCION AS [liquidaciones.LIQUIDAC");
+            viewString.Append("IONES_D_CAPITALIZACION_RETENCION], \r\n            T.LIQUIDACIONES_D_SERVICIO_SECA");
+            viewString.Append("DO_CAFE AS [liquidaciones.LIQUIDACIONES_D_SERVICIO_SECADO_CAFE], \r\n            T");
+            viewString.Append(".LIQUIDACIONES_D_INTERESES_S_APORTACIONES AS [liquidaciones.LIQUIDACIONES_D_INTE");
+            viewString.Append("RESES_S_APORTACIONES], \r\n            T.LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_C");
+            viewString.Append("AFE AS [liquidaciones.LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE], \r\n         ");
+            viewString.Append("   T.LIQUIDACIONES_D_EXCEDENTE_PERIODO AS [liquidaciones.LIQUIDACIONES_D_EXCEDEN");
+            viewString.Append("TE_PERIODO], \r\n            T.LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO AS [liquidacio");
+            viewString.Append("nes.LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO], \r\n            T.LIQUIDACIONES_D_PREST");
+            viewString.Append("AMO_FIDUCIARIO AS [liquidaciones.LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO], \r\n       ");
+            viewString.Append("     T.LIQUIDACIONES_D_PRESTAMO_PRENDARIO AS [liquidaciones.LIQUIDACIONES_D_PRES");
+            viewString.Append("TAMO_PRENDARIO], \r\n            T.LIQUIDACIONES_D_CUENTAS_X_COBRAR AS [liquidacio");
+            viewString.Append("nes.LIQUIDACIONES_D_CUENTAS_X_COBRAR], \r\n            T.LIQUIDACIONES_D_INTERESES");
+            viewString.Append("_X_COBRAR AS [liquidaciones.LIQUIDACIONES_D_INTERESES_X_COBRAR], \r\n            T");
+            viewString.Append(".LIQUIDACIONES_D_RETENCION_X_TORREFACCION AS [liquidaciones.LIQUIDACIONES_D_RETE");
+            viewString.Append("NCION_X_TORREFACCION], \r\n            T.LIQUIDACIONES_D_OTRAS_DEDUCCIONES AS [liq");
+            viewString.Append("uidaciones.LIQUIDACIONES_D_OTRAS_DEDUCCIONES], \r\n            T.LIQUIDACIONES_D_T");
+            viewString.Append("OTAL_DEDUCCIONES AS [liquidaciones.LIQUIDACIONES_D_TOTAL_DEDUCCIONES], \r\n       ");
+            viewString.Append("     T.LIQUIDACIONES_D_AF_SOCIO AS [liquidaciones.LIQUIDACIONES_D_AF_SOCIO], \r\n ");
+            viewString.Append("           T.LIQUIDACIONES_D_TOTAL AS [liquidaciones.LIQUIDACIONES_D_TOTAL], \r\n ");
+            viewString.Append("           T.CREADO_POR AS [liquidaciones.CREADO_POR], \r\n            T.FECHA_CRE");
+            viewString.Append("ACION AS [liquidaciones.FECHA_CREACION], \r\n            T.MODIFICADO_POR AS [liqu");
+            viewString.Append("idaciones.MODIFICADO_POR], \r\n            T.FECHA_MODIFICACION AS [liquidaciones.");
+            viewString.Append("FECHA_MODIFICACION], \r\n            True AS _from0\r\n        FROM colinasEntities.");
+            viewString.Append("liquidaciones AS T\r\n    ) AS T1");
+            return new System.Collections.Generic.KeyValuePair<string, string>("COLINASMODELStoreContainer.liquidaciones", viewString.ToString());
         }
         
         /// <Summary>
@@ -1001,73 +1003,9 @@ namespace Edm_EntityMappingGeneratedViews
         }
         
         /// <Summary>
-        /// return view for colinasEntities.liquidaciones
-        /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView27()
-        {
-            System.Text.StringBuilder viewString = new System.Text.StringBuilder(4396);
-            viewString.Append("\r\n    SELECT VALUE -- Constructing liquidaciones\r\n        [COLINASMODEL.liquidac");
-            viewString.Append("ion](T1.[liquidacion.LIQUIDACIONES_ID], T1.[liquidacion.SOCIOS_ID], T1.[liquidac");
-            viewString.Append("ion.LIQUIDACIONES_FECHA], T1.[liquidacion.CLASIFICACIONES_CAFE_ID], T1.[liquidac");
-            viewString.Append("ion.LIQUIDACIONES_TOTAL_LIBRAS], T1.[liquidacion.LIQUIDACIONES_PRECIO_LIBRAS], T");
-            viewString.Append("1.[liquidacion.LIQUIDACIONES_VALOR_TOTAL], T1.[liquidacion.LIQUIDACIONES_D_CUOTA");
-            viewString.Append("_INGRESO], T1.[liquidacion.LIQUIDACIONES_D_GASTOS_ADMIN], T1.[liquidacion.LIQUID");
-            viewString.Append("ACIONES_D_APORTACION_ORDINARIO], T1.[liquidacion.LIQUIDACIONES_D_APORTACION_EXTR");
-            viewString.Append("AORDINARIA], T1.[liquidacion.LIQUIDACIONES_D_CUOTA_ADMIN], T1.[liquidacion.LIQUI");
-            viewString.Append("DACIONES_D_CAPITALIZACION_RETENCION], T1.[liquidacion.LIQUIDACIONES_D_SERVICIO_S");
-            viewString.Append("ECADO_CAFE], T1.[liquidacion.LIQUIDACIONES_D_INTERESES_S_APORTACIONES], T1.[liqu");
-            viewString.Append("idacion.LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE], T1.[liquidacion.LIQUIDACI");
-            viewString.Append("ONES_D_PRESTAMO_HIPOTECARIO], T1.[liquidacion.LIQUIDACIONES_D_PRESTAMO_FIDUCIARI");
-            viewString.Append("O], T1.[liquidacion.LIQUIDACIONES_D_PRESTAMO_PRENDARIO], T1.[liquidacion.LIQUIDA");
-            viewString.Append("CIONES_D_CUENTAS_X_COBRAR], T1.[liquidacion.LIQUIDACIONES_D_INTERESES_X_COBRAR],");
-            viewString.Append(" T1.[liquidacion.LIQUIDACIONES_D_RETENCION_X_TORREFACCION], T1.[liquidacion.LIQU");
-            viewString.Append("IDACIONES_D_OTRAS_DEDUCCIONES], T1.[liquidacion.LIQUIDACIONES_D_TOTAL_DEDUCCIONE");
-            viewString.Append("S], T1.[liquidacion.LIQUIDACIONES_D_AF_SOCIO], T1.[liquidacion.LIQUIDACIONES_D_T");
-            viewString.Append("OTAL], T1.[liquidacion.CREADO_POR], T1.[liquidacion.FECHA_CREACION], T1.[liquida");
-            viewString.Append("cion.MODIFICADO_POR], T1.[liquidacion.FECHA_MODIFICACION])\r\n    FROM (\r\n        ");
-            viewString.Append("SELECT \r\n            T.LIQUIDACIONES_ID AS [liquidacion.LIQUIDACIONES_ID], \r\n   ");
-            viewString.Append("         T.SOCIOS_ID AS [liquidacion.SOCIOS_ID], \r\n            T.LIQUIDACIONES_F");
-            viewString.Append("ECHA AS [liquidacion.LIQUIDACIONES_FECHA], \r\n            T.CLASIFICACIONES_CAFE_");
-            viewString.Append("ID AS [liquidacion.CLASIFICACIONES_CAFE_ID], \r\n            T.LIQUIDACIONES_TOTAL");
-            viewString.Append("_LIBRAS AS [liquidacion.LIQUIDACIONES_TOTAL_LIBRAS], \r\n            T.LIQUIDACION");
-            viewString.Append("ES_PRECIO_LIBRAS AS [liquidacion.LIQUIDACIONES_PRECIO_LIBRAS], \r\n            T.L");
-            viewString.Append("IQUIDACIONES_VALOR_TOTAL AS [liquidacion.LIQUIDACIONES_VALOR_TOTAL], \r\n         ");
-            viewString.Append("   T.LIQUIDACIONES_D_CUOTA_INGRESO AS [liquidacion.LIQUIDACIONES_D_CUOTA_INGRESO");
-            viewString.Append("], \r\n            T.LIQUIDACIONES_D_GASTOS_ADMIN AS [liquidacion.LIQUIDACIONES_D_");
-            viewString.Append("GASTOS_ADMIN], \r\n            T.LIQUIDACIONES_D_APORTACION_ORDINARIO AS [liquidac");
-            viewString.Append("ion.LIQUIDACIONES_D_APORTACION_ORDINARIO], \r\n            T.LIQUIDACIONES_D_APORT");
-            viewString.Append("ACION_EXTRAORDINARIA AS [liquidacion.LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA],");
-            viewString.Append(" \r\n            T.LIQUIDACIONES_D_CUOTA_ADMIN AS [liquidacion.LIQUIDACIONES_D_CUO");
-            viewString.Append("TA_ADMIN], \r\n            T.LIQUIDACIONES_D_CAPITALIZACION_RETENCION AS [liquidac");
-            viewString.Append("ion.LIQUIDACIONES_D_CAPITALIZACION_RETENCION], \r\n            T.LIQUIDACIONES_D_S");
-            viewString.Append("ERVICIO_SECADO_CAFE AS [liquidacion.LIQUIDACIONES_D_SERVICIO_SECADO_CAFE], \r\n   ");
-            viewString.Append("         T.LIQUIDACIONES_D_INTERESES_S_APORTACIONES AS [liquidacion.LIQUIDACIONE");
-            viewString.Append("S_D_INTERESES_S_APORTACIONES], \r\n            T.LIQUIDACIONES_D_EXCEDENTE_X_RENDI");
-            viewString.Append("MIENTO_CAFE AS [liquidacion.LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE], \r\n   ");
-            viewString.Append("         T.LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO AS [liquidacion.LIQUIDACIONES_D_");
-            viewString.Append("PRESTAMO_HIPOTECARIO], \r\n            T.LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO AS [l");
-            viewString.Append("iquidacion.LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO], \r\n            T.LIQUIDACIONES_D");
-            viewString.Append("_PRESTAMO_PRENDARIO AS [liquidacion.LIQUIDACIONES_D_PRESTAMO_PRENDARIO], \r\n     ");
-            viewString.Append("       T.LIQUIDACIONES_D_CUENTAS_X_COBRAR AS [liquidacion.LIQUIDACIONES_D_CUENTA");
-            viewString.Append("S_X_COBRAR], \r\n            T.LIQUIDACIONES_D_INTERESES_X_COBRAR AS [liquidacion.");
-            viewString.Append("LIQUIDACIONES_D_INTERESES_X_COBRAR], \r\n            T.LIQUIDACIONES_D_RETENCION_X");
-            viewString.Append("_TORREFACCION AS [liquidacion.LIQUIDACIONES_D_RETENCION_X_TORREFACCION], \r\n     ");
-            viewString.Append("       T.LIQUIDACIONES_D_OTRAS_DEDUCCIONES AS [liquidacion.LIQUIDACIONES_D_OTRAS");
-            viewString.Append("_DEDUCCIONES], \r\n            T.LIQUIDACIONES_D_TOTAL_DEDUCCIONES AS [liquidacion");
-            viewString.Append(".LIQUIDACIONES_D_TOTAL_DEDUCCIONES], \r\n            T.LIQUIDACIONES_D_AF_SOCIO AS");
-            viewString.Append(" [liquidacion.LIQUIDACIONES_D_AF_SOCIO], \r\n            T.LIQUIDACIONES_D_TOTAL A");
-            viewString.Append("S [liquidacion.LIQUIDACIONES_D_TOTAL], \r\n            T.CREADO_POR AS [liquidacio");
-            viewString.Append("n.CREADO_POR], \r\n            T.FECHA_CREACION AS [liquidacion.FECHA_CREACION], \r");
-            viewString.Append("\n            T.MODIFICADO_POR AS [liquidacion.MODIFICADO_POR], \r\n            T.F");
-            viewString.Append("ECHA_MODIFICACION AS [liquidacion.FECHA_MODIFICACION], \r\n            True AS _fr");
-            viewString.Append("om0\r\n        FROM COLINASMODELStoreContainer.liquidaciones AS T\r\n    ) AS T1");
-            return new System.Collections.Generic.KeyValuePair<string, string>("colinasEntities.liquidaciones", viewString.ToString());
-        }
-        
-        /// <Summary>
         /// return view for colinasEntities.referencias_x_solicitudes
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView28()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView27()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("colinasEntities.referencias_x_solicitudes", @"
     SELECT VALUE -- Constructing referencias_x_solicitudes
@@ -1091,7 +1029,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for colinasEntities.estados_nota_de_peso
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView29()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView28()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("colinasEntities.estados_nota_de_peso", @"
     SELECT VALUE -- Constructing estados_nota_de_peso
@@ -1115,7 +1053,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for colinasEntities.notas_de_peso
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView30()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView29()
         {
             System.Text.StringBuilder viewString = new System.Text.StringBuilder(2768);
             viewString.Append("\r\n    SELECT VALUE -- Constructing notas_de_peso\r\n        [COLINASMODEL.nota_de_");
@@ -1159,7 +1097,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for colinasEntities.avales_x_solicitud
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView31()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView30()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("colinasEntities.avales_x_solicitud", @"
     SELECT VALUE -- Constructing avales_x_solicitud
@@ -1180,7 +1118,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for colinasEntities.solicitudes_prestamos
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView32()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView31()
         {
             System.Text.StringBuilder viewString = new System.Text.StringBuilder(3471);
             viewString.Append("\r\n    SELECT VALUE -- Constructing solicitudes_prestamos\r\n        [COLINASMODEL.");
@@ -1233,7 +1171,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for colinasEntities.aportaciones_socio
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView33()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView32()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("colinasEntities.aportaciones_socio", @"
     SELECT VALUE -- Constructing aportaciones_socio
@@ -1249,6 +1187,72 @@ namespace Edm_EntityMappingGeneratedViews
             True AS _from0
         FROM COLINASMODELStoreContainer.aportaciones_socio AS T
     ) AS T1");
+        }
+        
+        /// <Summary>
+        /// return view for colinasEntities.liquidaciones
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView33()
+        {
+            System.Text.StringBuilder viewString = new System.Text.StringBuilder(4550);
+            viewString.Append("\r\n    SELECT VALUE -- Constructing liquidaciones\r\n        [COLINASMODEL.liquidac");
+            viewString.Append("ion](T1.[liquidacion.LIQUIDACIONES_ID], T1.[liquidacion.SOCIOS_ID], T1.[liquidac");
+            viewString.Append("ion.LIQUIDACIONES_FECHA], T1.[liquidacion.CLASIFICACIONES_CAFE_ID], T1.[liquidac");
+            viewString.Append("ion.LIQUIDACIONES_TOTAL_LIBRAS], T1.[liquidacion.LIQUIDACIONES_PRECIO_LIBRAS], T");
+            viewString.Append("1.[liquidacion.LIQUIDACIONES_VALOR_TOTAL], T1.[liquidacion.LIQUIDACIONES_D_CUOTA");
+            viewString.Append("_INGRESO], T1.[liquidacion.LIQUIDACIONES_D_GASTOS_ADMIN], T1.[liquidacion.LIQUID");
+            viewString.Append("ACIONES_D_APORTACION_ORDINARIO], T1.[liquidacion.LIQUIDACIONES_D_APORTACION_EXTR");
+            viewString.Append("AORDINARIA], T1.[liquidacion.LIQUIDACIONES_D_CUOTA_ADMIN], T1.[liquidacion.LIQUI");
+            viewString.Append("DACIONES_D_CAPITALIZACION_RETENCION], T1.[liquidacion.LIQUIDACIONES_D_SERVICIO_S");
+            viewString.Append("ECADO_CAFE], T1.[liquidacion.LIQUIDACIONES_D_INTERESES_S_APORTACIONES], T1.[liqu");
+            viewString.Append("idacion.LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE], T1.[liquidacion.LIQUIDACI");
+            viewString.Append("ONES_D_EXCEDENTE_PERIODO], T1.[liquidacion.LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO]");
+            viewString.Append(", T1.[liquidacion.LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO], T1.[liquidacion.LIQUIDAC");
+            viewString.Append("IONES_D_PRESTAMO_PRENDARIO], T1.[liquidacion.LIQUIDACIONES_D_CUENTAS_X_COBRAR], ");
+            viewString.Append("T1.[liquidacion.LIQUIDACIONES_D_INTERESES_X_COBRAR], T1.[liquidacion.LIQUIDACION");
+            viewString.Append("ES_D_RETENCION_X_TORREFACCION], T1.[liquidacion.LIQUIDACIONES_D_OTRAS_DEDUCCIONE");
+            viewString.Append("S], T1.[liquidacion.LIQUIDACIONES_D_TOTAL_DEDUCCIONES], T1.[liquidacion.LIQUIDAC");
+            viewString.Append("IONES_D_AF_SOCIO], T1.[liquidacion.LIQUIDACIONES_D_TOTAL], T1.[liquidacion.CREAD");
+            viewString.Append("O_POR], T1.[liquidacion.FECHA_CREACION], T1.[liquidacion.MODIFICADO_POR], T1.[li");
+            viewString.Append("quidacion.FECHA_MODIFICACION])\r\n    FROM (\r\n        SELECT \r\n            T.LIQUI");
+            viewString.Append("DACIONES_ID AS [liquidacion.LIQUIDACIONES_ID], \r\n            T.SOCIOS_ID AS [liq");
+            viewString.Append("uidacion.SOCIOS_ID], \r\n            T.LIQUIDACIONES_FECHA AS [liquidacion.LIQUIDA");
+            viewString.Append("CIONES_FECHA], \r\n            T.CLASIFICACIONES_CAFE_ID AS [liquidacion.CLASIFICA");
+            viewString.Append("CIONES_CAFE_ID], \r\n            T.LIQUIDACIONES_TOTAL_LIBRAS AS [liquidacion.LIQU");
+            viewString.Append("IDACIONES_TOTAL_LIBRAS], \r\n            T.LIQUIDACIONES_PRECIO_LIBRAS AS [liquida");
+            viewString.Append("cion.LIQUIDACIONES_PRECIO_LIBRAS], \r\n            T.LIQUIDACIONES_VALOR_TOTAL AS ");
+            viewString.Append("[liquidacion.LIQUIDACIONES_VALOR_TOTAL], \r\n            T.LIQUIDACIONES_D_CUOTA_I");
+            viewString.Append("NGRESO AS [liquidacion.LIQUIDACIONES_D_CUOTA_INGRESO], \r\n            T.LIQUIDACI");
+            viewString.Append("ONES_D_GASTOS_ADMIN AS [liquidacion.LIQUIDACIONES_D_GASTOS_ADMIN], \r\n           ");
+            viewString.Append(" T.LIQUIDACIONES_D_APORTACION_ORDINARIO AS [liquidacion.LIQUIDACIONES_D_APORTACI");
+            viewString.Append("ON_ORDINARIO], \r\n            T.LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA AS [liq");
+            viewString.Append("uidacion.LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA], \r\n            T.LIQUIDACION");
+            viewString.Append("ES_D_CUOTA_ADMIN AS [liquidacion.LIQUIDACIONES_D_CUOTA_ADMIN], \r\n            T.L");
+            viewString.Append("IQUIDACIONES_D_CAPITALIZACION_RETENCION AS [liquidacion.LIQUIDACIONES_D_CAPITALI");
+            viewString.Append("ZACION_RETENCION], \r\n            T.LIQUIDACIONES_D_SERVICIO_SECADO_CAFE AS [liqu");
+            viewString.Append("idacion.LIQUIDACIONES_D_SERVICIO_SECADO_CAFE], \r\n            T.LIQUIDACIONES_D_I");
+            viewString.Append("NTERESES_S_APORTACIONES AS [liquidacion.LIQUIDACIONES_D_INTERESES_S_APORTACIONES");
+            viewString.Append("], \r\n            T.LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE AS [liquidacion.");
+            viewString.Append("LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE], \r\n            T.LIQUIDACIONES_D_E");
+            viewString.Append("XCEDENTE_PERIODO AS [liquidacion.LIQUIDACIONES_D_EXCEDENTE_PERIODO], \r\n         ");
+            viewString.Append("   T.LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO AS [liquidacion.LIQUIDACIONES_D_PRESTA");
+            viewString.Append("MO_HIPOTECARIO], \r\n            T.LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO AS [liquida");
+            viewString.Append("cion.LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO], \r\n            T.LIQUIDACIONES_D_PREST");
+            viewString.Append("AMO_PRENDARIO AS [liquidacion.LIQUIDACIONES_D_PRESTAMO_PRENDARIO], \r\n           ");
+            viewString.Append(" T.LIQUIDACIONES_D_CUENTAS_X_COBRAR AS [liquidacion.LIQUIDACIONES_D_CUENTAS_X_CO");
+            viewString.Append("BRAR], \r\n            T.LIQUIDACIONES_D_INTERESES_X_COBRAR AS [liquidacion.LIQUID");
+            viewString.Append("ACIONES_D_INTERESES_X_COBRAR], \r\n            T.LIQUIDACIONES_D_RETENCION_X_TORRE");
+            viewString.Append("FACCION AS [liquidacion.LIQUIDACIONES_D_RETENCION_X_TORREFACCION], \r\n           ");
+            viewString.Append(" T.LIQUIDACIONES_D_OTRAS_DEDUCCIONES AS [liquidacion.LIQUIDACIONES_D_OTRAS_DEDUC");
+            viewString.Append("CIONES], \r\n            T.LIQUIDACIONES_D_TOTAL_DEDUCCIONES AS [liquidacion.LIQUI");
+            viewString.Append("DACIONES_D_TOTAL_DEDUCCIONES], \r\n            T.LIQUIDACIONES_D_AF_SOCIO AS [liqu");
+            viewString.Append("idacion.LIQUIDACIONES_D_AF_SOCIO], \r\n            T.LIQUIDACIONES_D_TOTAL AS [liq");
+            viewString.Append("uidacion.LIQUIDACIONES_D_TOTAL], \r\n            T.CREADO_POR AS [liquidacion.CREA");
+            viewString.Append("DO_POR], \r\n            T.FECHA_CREACION AS [liquidacion.FECHA_CREACION], \r\n     ");
+            viewString.Append("       T.MODIFICADO_POR AS [liquidacion.MODIFICADO_POR], \r\n            T.FECHA_M");
+            viewString.Append("ODIFICACION AS [liquidacion.FECHA_MODIFICACION], \r\n            True AS _from0\r\n ");
+            viewString.Append("       FROM COLINASMODELStoreContainer.liquidaciones AS T\r\n    ) AS T1");
+            return new System.Collections.Generic.KeyValuePair<string, string>("colinasEntities.liquidaciones", viewString.ToString());
         }
         
         /// <Summary>

@@ -34,8 +34,6 @@ using System.Data;
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "inventario_clasificacion_cafe_fk", "clasificaciones_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.clasificacion_cafe), "inventario_cafe_de_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.inventario_cafe_de_socio), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "FK_INVENTARIO_socios", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "inventario_cafe_de_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.inventario_cafe_de_socio), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "privilegios_x_roles", "privilegios", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.privilegio), "rol", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.rol))]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "LIQUIDACIONES_CLASIFICACIONES_FK", "clasificacion_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.clasificacion_cafe), "liquidaciones", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.liquidacion), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "LIQUIDACIONES_SOCIOS_FK", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "liquidaciones", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.liquidacion), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "ESTADOS_NOTA_PADRE_FK", "estados_nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.estado_nota_de_peso), "estados_nota_de_peso1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.estado_nota_de_peso), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "notas_de_peso_clasificacion_cafe_fk", "clasificacion_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.clasificacion_cafe), "notas_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.nota_de_peso), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "notas_de_peso_estado_fk", "estado_nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.estado_nota_de_peso), "notas_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.nota_de_peso), true)]
@@ -48,6 +46,8 @@ using System.Data;
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "Solicitudfk", "solicitudes_prestamos", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.solicitud_prestamo), "referencia_x_solicitud", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.referencia_x_solicitud), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "Solicitudesxsociofk", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "solicitudes_prestamos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.solicitud_prestamo), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "APORTACIONES_SOCIOS_FK", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "aportaciones_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.aportacion_socio), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "LIQUIDACIONES_CLASIFICACIONES_FK", "clasificacion_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.clasificacion_cafe), "liquidaciones", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.liquidacion), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "LIQUIDACIONES_SOCIOS_FK", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "liquidaciones", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.liquidacion), true)]
 
 #endregion
 
@@ -448,22 +448,6 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<liquidacion> liquidaciones
-        {
-            get
-            {
-                if ((_liquidaciones == null))
-                {
-                    _liquidaciones = base.CreateObjectSet<liquidacion>("liquidaciones");
-                }
-                return _liquidaciones;
-            }
-        }
-        private ObjectSet<liquidacion> _liquidaciones;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<referencia_x_solicitud> referencias_x_solicitudes
         {
             get
@@ -588,6 +572,22 @@ namespace COCASJOL.LOGIC
             }
         }
         private ObjectSet<aportacion_socio> _aportaciones_socio;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<liquidacion> liquidaciones
+        {
+            get
+            {
+                if ((_liquidaciones == null))
+                {
+                    _liquidaciones = base.CreateObjectSet<liquidacion>("liquidaciones");
+                }
+                return _liquidaciones;
+            }
+        }
+        private ObjectSet<liquidacion> _liquidaciones;
 
         #endregion
         #region AddTo Methods
@@ -721,14 +721,6 @@ namespace COCASJOL.LOGIC
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the liquidaciones EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToliquidaciones(liquidacion liquidacion)
-        {
-            base.AddObject("liquidaciones", liquidacion);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the referencias_x_solicitudes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToreferencias_x_solicitudes(referencia_x_solicitud referencia_x_solicitud)
@@ -790,6 +782,14 @@ namespace COCASJOL.LOGIC
         public void AddToaportaciones_socio(aportacion_socio aportacion_socio)
         {
             base.AddObject("aportaciones_socio", aportacion_socio);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the liquidaciones EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToliquidaciones(liquidacion liquidacion)
+        {
+            base.AddObject("liquidaciones", liquidacion);
         }
 
         #endregion
@@ -1880,28 +1880,6 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "LIQUIDACIONES_CLASIFICACIONES_FK", "liquidaciones")]
-        public EntityCollection<liquidacion> liquidaciones
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<liquidacion>("COLINASMODEL.LIQUIDACIONES_CLASIFICACIONES_FK", "liquidaciones");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<liquidacion>("COLINASMODEL.LIQUIDACIONES_CLASIFICACIONES_FK", "liquidaciones", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "notas_de_peso_clasificacion_cafe_fk", "notas_de_peso")]
         public EntityCollection<nota_de_peso> notas_de_peso
         {
@@ -1914,6 +1892,28 @@ namespace COCASJOL.LOGIC
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<nota_de_peso>("COLINASMODEL.notas_de_peso_clasificacion_cafe_fk", "notas_de_peso", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "LIQUIDACIONES_CLASIFICACIONES_FK", "liquidaciones")]
+        public EntityCollection<liquidacion> liquidaciones
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<liquidacion>("COLINASMODEL.LIQUIDACIONES_CLASIFICACIONES_FK", "liquidaciones");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<liquidacion>("COLINASMODEL.LIQUIDACIONES_CLASIFICACIONES_FK", "liquidaciones", value);
                 }
             }
         }
@@ -3060,6 +3060,30 @@ namespace COCASJOL.LOGIC
         private Nullable<global::System.Decimal> _LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE;
         partial void OnLIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFEChanging(Nullable<global::System.Decimal> value);
         partial void OnLIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFEChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> LIQUIDACIONES_D_EXCEDENTE_PERIODO
+        {
+            get
+            {
+                return _LIQUIDACIONES_D_EXCEDENTE_PERIODO;
+            }
+            set
+            {
+                OnLIQUIDACIONES_D_EXCEDENTE_PERIODOChanging(value);
+                ReportPropertyChanging("LIQUIDACIONES_D_EXCEDENTE_PERIODO");
+                _LIQUIDACIONES_D_EXCEDENTE_PERIODO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LIQUIDACIONES_D_EXCEDENTE_PERIODO");
+                OnLIQUIDACIONES_D_EXCEDENTE_PERIODOChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _LIQUIDACIONES_D_EXCEDENTE_PERIODO;
+        partial void OnLIQUIDACIONES_D_EXCEDENTE_PERIODOChanging(Nullable<global::System.Decimal> value);
+        partial void OnLIQUIDACIONES_D_EXCEDENTE_PERIODOChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -7327,28 +7351,6 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "LIQUIDACIONES_SOCIOS_FK", "liquidaciones")]
-        public EntityCollection<liquidacion> liquidaciones
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<liquidacion>("COLINASMODEL.LIQUIDACIONES_SOCIOS_FK", "liquidaciones");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<liquidacion>("COLINASMODEL.LIQUIDACIONES_SOCIOS_FK", "liquidaciones", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "FK_NOTA_DE_PESO_socios", "notas_de_peso")]
         public EntityCollection<nota_de_peso> notas_de_peso
         {
@@ -7443,6 +7445,28 @@ namespace COCASJOL.LOGIC
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<aportacion_socio>("COLINASMODEL.APORTACIONES_SOCIOS_FK", "aportaciones_socio", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "LIQUIDACIONES_SOCIOS_FK", "liquidaciones")]
+        public EntityCollection<liquidacion> liquidaciones
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<liquidacion>("COLINASMODEL.LIQUIDACIONES_SOCIOS_FK", "liquidaciones");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<liquidacion>("COLINASMODEL.LIQUIDACIONES_SOCIOS_FK", "liquidaciones", value);
                 }
             }
         }
