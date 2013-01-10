@@ -11,9 +11,9 @@ using Ext.Net;
 
 using COCASJOL.LOGIC.Web;
 
-namespace COCASJOL.WEBSITE.Source.Inventario
+namespace COCASJOL.WEBSITE.Source.Aportaciones
 {
-    public partial class InventarioDeCafePorSocio : COCASJOL.LOGIC.Web.COCASJOLBASE
+    public partial class AportacionesPorSocio : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -21,7 +21,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario
             {
                 if (!X.IsAjaxRequest)
                 {
-                    
+
                 }
 
                 string loggedUsr = Session["username"] as string;
@@ -34,7 +34,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario
             }
         }
 
-        protected void InventarioCafeDS_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        protected void AportacionesDs_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
         {
             if (!this.IsPostBack)
                 e.Cancel = true;

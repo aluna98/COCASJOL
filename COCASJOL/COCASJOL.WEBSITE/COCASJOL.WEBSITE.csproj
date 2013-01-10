@@ -104,6 +104,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Default.aspx" />
+    <Content Include="Source\Aportaciones\AportacionesPorSocio.aspx" />
     <Content Include="Source\Auditoria\Auditoria.ascx" />
     <Content Include="Source\Desktop.aspx" />
     <Content Include="Source\Entorno\VariablesDeEntorno.aspx" />
@@ -142,6 +143,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Source\Aportaciones\AportacionesPorSocio.aspx.cs">
+      <DependentUpon>AportacionesPorSocio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Aportaciones\AportacionesPorSocio.aspx.designer.cs">
+      <DependentUpon>AportacionesPorSocio.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Source\Auditoria\Auditoria.ascx.cs">
       <DependentUpon>Auditoria.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

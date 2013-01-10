@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace COCASJOL.WEBSITE.Source.Inventario {
+namespace COCASJOL.WEBSITE.Source.Aportaciones {
     
     
-    public partial class InventarioDeCafePorSocio {
+    public partial class AportacionesPorSocio {
         
         /// <summary>
         /// Head1 control.
@@ -49,31 +49,13 @@ namespace COCASJOL.WEBSITE.Source.Inventario {
         protected global::COCASJOL.WEBSITE.Source.Auditoria.Auditoria AudWin;
         
         /// <summary>
-        /// InventarioCafeDS control.
+        /// AportacionesDs control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource InventarioCafeDS;
-        
-        /// <summary>
-        /// ClasificacionesCafeDS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ClasificacionesCafeDS;
-        
-        /// <summary>
-        /// ClasificacionesCafeSt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store ClasificacionesCafeSt;
+        protected global::System.Web.UI.WebControls.ObjectDataSource AportacionesDs;
         
         /// <summary>
         /// nullHdn control.
@@ -112,22 +94,22 @@ namespace COCASJOL.WEBSITE.Source.Inventario {
         protected global::Ext.Net.Panel Panel1;
         
         /// <summary>
-        /// InventarioCafeGridP control.
+        /// AportacionesGridP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.GridPanel InventarioCafeGridP;
+        protected global::Ext.Net.GridPanel AportacionesGridP;
         
         /// <summary>
-        /// InventarioCafeSt control.
+        /// AportacionesSt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store InventarioCafeSt;
+        protected global::Ext.Net.Store AportacionesSt;
         
         /// <summary>
         /// RowSelectionModel1 control.
@@ -155,15 +137,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button EditarBtn;
-        
-        /// <summary>
-        /// EliminarBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Button EliminarBtn;
         
         /// <summary>
         /// ToolbarFill1 control.
@@ -202,22 +175,13 @@ namespace COCASJOL.WEBSITE.Source.Inventario {
         protected global::Ext.Net.TextField f_SOCIOS_ID;
         
         /// <summary>
-        /// f_CLASIFICACIONES_CAFE_ID control.
+        /// f_APORTACIONES_SALDO control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox f_CLASIFICACIONES_CAFE_ID;
-        
-        /// <summary>
-        /// f_INVENTARIO_CANTIDAD control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.NumberField f_INVENTARIO_CANTIDAD;
+        protected global::Ext.Net.NumberField f_APORTACIONES_SALDO;
         
         /// <summary>
         /// PagingToolbar1 control.
@@ -229,22 +193,22 @@ namespace COCASJOL.WEBSITE.Source.Inventario {
         protected global::Ext.Net.PagingToolbar PagingToolbar1;
         
         /// <summary>
-        /// EditarInventarioCafeWin control.
+        /// EditarAportacionWin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Window EditarInventarioCafeWin;
+        protected global::Ext.Net.Window EditarAportacionWin;
         
         /// <summary>
-        /// EditarTipoFormP control.
+        /// EditarAportacionFormP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.FormPanel EditarTipoFormP;
+        protected global::Ext.Net.FormPanel EditarAportacionFormP;
         
         /// <summary>
         /// Panel12 control.
@@ -274,6 +238,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario {
         protected global::Ext.Net.TextField EditIdTxt;
         
         /// <summary>
+        /// ToolTip1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip1;
+        
+        /// <summary>
         /// EditNombreTxt control.
         /// </summary>
         /// <remarks>
@@ -283,22 +256,31 @@ namespace COCASJOL.WEBSITE.Source.Inventario {
         protected global::Ext.Net.TextField EditNombreTxt;
         
         /// <summary>
-        /// EditTipoDeCafeIdtxt control.
+        /// ToolTip2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField EditTipoDeCafeIdtxt;
+        protected global::Ext.Net.ToolTip ToolTip2;
         
         /// <summary>
-        /// EditInventarioCantidadTxt control.
+        /// EditAportacionSaldoTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField EditInventarioCantidadTxt;
+        protected global::Ext.Net.NumberField EditAportacionSaldoTxt;
+        
+        /// <summary>
+        /// ToolTip3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip3;
         
         /// <summary>
         /// EditCreatedByTxt control.
