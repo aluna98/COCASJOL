@@ -32,6 +32,16 @@
     </variables>
   </pagina>
   <pagina>
+    <Name>HojasDeLiquidacion</Name>
+    <variables>
+      <variable>
+        <key>HOJAS_CAPITALIZACIONRETN</key>
+        <descripcion>El porcentaje de capitalización por retencion en hojas de liquidación.</descripcion>
+        <type>int</type>
+      </variable>
+    </variables>
+  </pagina>
+  <pagina>
     <Name>Socios</Name>
     <variables>
       <variable>

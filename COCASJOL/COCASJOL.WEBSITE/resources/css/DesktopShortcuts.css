@@ -76,29 +76,6 @@
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_office.png", sizingMethod="center");
 }
 
-.icon-hojaDeLiquidacion
-{
-    background-image: url(../images/script.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/script.png", sizingMethod="center");
-}
-
-.icon-solicitudesDePrestamo
-{
-    background-image: url(../images/page_white_text.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_text.png", sizingMethod="center");
-}
-
-.icon-prestamos
-{
-    background-image: url(../images/cheque.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/cheque.png", sizingMethod="center");
-}
-
-.icon-prestamos16
-{
-    background-image: url("../images/cheque16x16.png") !important;
-}
-
 .icon-clasificacionesDeCafe
 {
     background-image: url(../images/cup.png) !important;
@@ -109,6 +86,40 @@
 {
     background-image: url(../images/bricks.png) !important;
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/bricks.png", sizingMethod="center");
+}
+
+.icon-hojaDeLiquidacion
+{
+    background-image: url(../images/script.png) !important;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/script.png", sizingMethod="center");
+}
+
+.icon-aportacionesPorSocio16
+{
+    background-image: url("../images/coins_in_hand16.png") !important;
+}
+
+.icon-aportacionesPorSocio
+{
+    background-image: url(../images/coins_in_hand.png) !important;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/coins_in_hand.png", sizingMethod="center");
+}
+
+.icon-solicitudesDePrestamo
+{
+    background-image: url(../images/page_white_text.png) !important;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_text.png", sizingMethod="center");
+}
+
+.icon-prestamos16
+{
+    background-image: url("../images/cheque16x16.png") !important;
+}
+
+.icon-prestamos
+{
+    background-image: url(../images/cheque.png) !important;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/cheque.png", sizingMethod="center");
 }
 
 .icon-variablesEntorno

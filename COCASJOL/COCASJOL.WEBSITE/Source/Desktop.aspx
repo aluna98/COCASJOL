@@ -192,15 +192,42 @@
                 </ext:DesktopModule>
                 <%--Notas De Peso--%>
 
+                <%--Inventario de Cafe por Socio --%>
+                <ext:DesktopModule ModuleID="ClasificacionesDeCafeModule">
+                    <Launcher ID="ClasificacionesDeCafeLauncher" runat="server" Text="Clasificaciones de Café" Icon="TableGo" >
+                        <Listeners>
+                            <Click Handler="WindowX.clasificacionesDeCafe(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
+                <ext:DesktopModule ModuleID="InventarioDeCafePorSocioModule">
+                    <Launcher ID="InventarioDeCafePorSocioLauncher" runat="server" Text="Inventario de Café por Socio" Icon="Bricks" >
+                        <Listeners>
+                            <Click Handler="WindowX.inventarioDeCafePorSocio(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
+                <%--Inventario de Cafe por Socio --%>
+
                 <%--Hojas De Liquidación--%>
                 <ext:DesktopModule ModuleID="HojasDeLiquidacionModule">
-                    <Launcher ID="Launcher3" runat="server" Text="Hojas De Liquidación" Icon="Script" >
+                    <Launcher ID="HojasDeLiquidacionLauncher" runat="server" Text="Hojas De Liquidación" Icon="Script" >
                         <Listeners>
                             <Click Handler="WindowX.hojasDeLiquidacion(#{MyDesktop});" />
                         </Listeners>
                     </Launcher>
                 </ext:DesktopModule>
                 <%--Hojas De Liquidación--%>
+
+                <%--Aportaciones por Socio--%>
+                <ext:DesktopModule ModuleID="AportacionesPorSocioModule">
+                    <Launcher ID="AportacionesPorSocioLauncher" runat="server" Text="Aportaciones por Socio" IconCls="icon-aportacionesPorSocio16" >
+                        <Listeners>
+                            <Click Handler="WindowX.aportacionesPorSocio(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
+                <%--Aportaciones por Socio--%>
 
                 <%--Prestamos--%>
                 <ext:DesktopModule ModuleID="SolicitudesDePrestamoModule">
@@ -218,23 +245,6 @@
                     </Launcher>
                 </ext:DesktopModule>
                 <%--Prestamos--%>
-
-                <%--Inventario de Cafe por Socio --%>
-                <ext:DesktopModule ModuleID="ClasificacionesDeCafeModule">
-                    <Launcher ID="ClasificacionesDeCafeLauncher" runat="server" Text="Clasificaciones de Café" Icon="TableGo" >
-                        <Listeners>
-                            <Click Handler="WindowX.clasificacionesDeCafe(#{MyDesktop});" />
-                        </Listeners>
-                    </Launcher>
-                </ext:DesktopModule>
-                <ext:DesktopModule ModuleID="InventarioDeCafePorSocioModule">
-                    <Launcher ID="InventarioDeCafePorSocioLauncher" runat="server" Text="Inventario de Café por Socio" Icon="Bricks" >
-                        <Listeners>
-                            <Click Handler="WindowX.inventarioDeCafePorSocio(#{MyDesktop});" />
-                        </Listeners>
-                    </Launcher>
-                </ext:DesktopModule>
-                <%--Inventario de Cafe por Socio --%>
 
                 <%--Configuracion--%>
                 <ext:DesktopModule ModuleID="VariablesDeEntornoModule">
@@ -271,11 +281,12 @@
                 <ext:DesktopShortcut ShortcutID="scNotasDePesoEnPesaje"      Text="Notas De Peso en Area de Pesaje"   IconCls="shortcut-icon icon-notasDePesoEnPesaje" />
                 <ext:DesktopShortcut ShortcutID="scNotasDePesoEnCatacion"    Text="Notas De Peso en Area de Catación" IconCls="shortcut-icon icon-notasDePesoEnCatacion" />
                 <ext:DesktopShortcut ShortcutID="scNotasDePeso"              Text="Notas de Peso"                     IconCls="shortcut-icon icon-notasDePeso" />
-                <ext:DesktopShortcut ShortcutID="scHojasDeLiquidacion"       Text="Hojas de Liquidación"              IconCls="shortcut-icon icon-hojaDeLiquidacion" />
-                <ext:DesktopShortcut ShortcutID="scSolicitudesDePrestamo"    Text="Solicitudes de Prestamo"           IconCls="shortcut-icon icon-solicitudesDePrestamo" />
-                <ext:DesktopShortcut ShortcutID="scPrestamos"                Text="Prestamos"                         IconCls="shortcut-icon icon-prestamos" />
                 <ext:DesktopShortcut ShortcutID="scClasificacionesDeCafe"    Text="Clasificaciones de Café"           IconCls="shortcut-icon icon-clasificacionesDeCafe" />
                 <ext:DesktopShortcut ShortcutID="scInventarioDeCafePorSocio" Text="Inventario de Café por Socio"      IconCls="shortcut-icon icon-inventarioDeCafePorSocio" />
+                <ext:DesktopShortcut ShortcutID="scHojasDeLiquidacion"       Text="Hojas de Liquidación"              IconCls="shortcut-icon icon-hojaDeLiquidacion" />
+                <ext:DesktopShortcut ShortcutID="scAportacionesPorSocio"     Text="Aportaciones por Socio"            IconCls="shortcut-icon icon-aportacionesPorSocio" />
+                <ext:DesktopShortcut ShortcutID="scSolicitudesDePrestamo"    Text="Solicitudes de Prestamo"           IconCls="shortcut-icon icon-solicitudesDePrestamo" />
+                <ext:DesktopShortcut ShortcutID="scPrestamos"                Text="Prestamos"                         IconCls="shortcut-icon icon-prestamos" />
             </Shortcuts>
 
             <StartMenu Height="550" Width="360" ToolsWidth="127" Title="Start Menu" Icon="UserSuit">
@@ -390,6 +401,24 @@
                             </ext:Menu>
                         </Menu>
                     </ext:MenuItem>
+                    <ext:MenuItem ID="InventarioDeCafePorSocioMenu" runat="server" Text="Inventario de Café por Socio" Icon="Folder" HideOnClick="false">
+                        <Menu>
+                            <ext:Menu ID="Menu1" runat="server">
+                                <Items>
+                                    <ext:MenuItem ID="ClasificacionesDeCafeMenuItem" Text="Clasificaciones de Café" Icon="Cup" >
+                                        <Listeners>
+                                            <click Handler="WindowX.clasificacionesDeCafe(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                    <ext:MenuItem ID="InventarioDeCafePorSocioMenuItem" Text="Inventario de Café por Socio" Icon="Bricks" >
+                                        <Listeners>
+                                            <click Handler="WindowX.inventarioDeCafePorSocio(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                </Items>
+                            </ext:Menu>
+                        </Menu>
+                    </ext:MenuItem>
                     <ext:MenuItem ID="LiquidacionesMenu" runat="server" Text="Hojas de Liquidación" Icon="Folder" HideOnClick="false">
                         <Menu>
                             <ext:Menu runat="server">
@@ -397,6 +426,19 @@
                                     <ext:MenuItem ID="LiquidacionesMenuItem" Text="Hojas de Liquidación" Icon="Script" >
                                         <Listeners>
                                             <click Handler="WindowX.hojasDeLiquidacion(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                </Items>
+                            </ext:Menu>
+                        </Menu>
+                    </ext:MenuItem>
+                    <ext:MenuItem ID="AportacionesPorSocioMenu" runat="server" Text="Aportaciones por Socio" Icon="Folder" HideOnClick="false">
+                        <Menu>
+                            <ext:Menu runat="server">
+                                <Items>
+                                    <ext:MenuItem ID="AportacionesPorSocioMenuItem" Text="Aportaciones por Socio" IconCls="icon-aportacionesPorSocio16" >
+                                        <Listeners>
+                                            <click Handler="WindowX.aportacionesPorSocio(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
                                 </Items>
@@ -415,24 +457,6 @@
                                     <ext:MenuItem ID="PrestamosMenuItem" Text="Prestamos" IconCls="icon-prestamos16" >
                                         <Listeners>
                                             <click Handler="WindowX.prestamos(#{MyDesktop});" />
-                                        </Listeners>
-                                    </ext:MenuItem>
-                                </Items>
-                            </ext:Menu>
-                        </Menu>
-                    </ext:MenuItem>
-                    <ext:MenuItem ID="InventarioDeCafePorSocioMenu" runat="server" Text="Inventario de Café por Socio" Icon="Folder" HideOnClick="false">
-                        <Menu>
-                            <ext:Menu runat="server">
-                                <Items>
-                                    <ext:MenuItem ID="ClasificacionesDeCafeMenuItem" Text="Clasificaciones de Café" Icon="Cup" >
-                                        <Listeners>
-                                            <click Handler="WindowX.clasificacionesDeCafe(#{MyDesktop});" />
-                                        </Listeners>
-                                    </ext:MenuItem>
-                                    <ext:MenuItem ID="InventarioDeCafePorSocioMenuItem" Text="Inventario de Café por Socio" Icon="Bricks" >
-                                        <Listeners>
-                                            <click Handler="WindowX.inventarioDeCafePorSocio(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
                                 </Items>
@@ -713,11 +737,12 @@
         <ext:ToolTip runat="server" ID="scNotasDePesoEnPesajeTooltip"       Html="Notas De Peso en Area de Pesaje"   Target="scNotasDePesoEnPesaje-shortcut"      ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scNotasDePesoEnCatacionTooltip"     Html="Notas De Peso en Area de Catación" Target="scNotasDePesoEnCatacion-shortcut"    ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scNotasDePesoTooltip"               Html="Notas de Peso"                     Target="scNotasDePeso-shortcut"              ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scHojasDeLiquidacionTooltip"        Html="Hojas de Liquidación"              Target="scHojasDeLiquidacion-shortcut"       ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scSolicitudesDePrestamoTooltip"     Html="Solicitudes de Prestamo"           Target="scSolicitudesDePrestamo-shortcut"    ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scPrestamosTooltip"                 Html="Prestamos"                         Target="scPrestamos-shortcut"                ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scClasificacionesDeCafeTooltip"     Html="Clasificaciones de Café"           Target="scClasificacionesDeCafe-shortcut"    ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scInventarioDeCafePorSocioTooltip"  Html="Inventario de Café por Socio"      Target="scInventarioDeCafePorSocio-shortcut" ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scHojasDeLiquidacionTooltip"        Html="Hojas de Liquidación"              Target="scHojasDeLiquidacion-shortcut"       ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scAportacionesPorSocioTooltip"      Html="Aportaciones por Socio"            Target="scAportacionesPorSocio-shortcut"     ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scSolicitudesDePrestamoTooltip"     Html="Solicitudes de Prestamo"           Target="scSolicitudesDePrestamo-shortcut"    ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scPrestamosTooltip"                 Html="Prestamos"                         Target="scPrestamos-shortcut"                ></ext:ToolTip>
 
         <%--shortcuts' tooltips--%>
 
@@ -725,6 +750,6 @@
         <cclave:CambiarClave runat="server" ID="CambiarClaveCtl" />
     </div>
     </form>
-    <a href="http://www.unitec.edu" target="_blank" alt="Powered by Ext .Net"id="poweredby"> <div></div> </a>
+    <a href="http://www.unitec.edu" target="_blank" alt="Powered by Ext .Net" id="poweredby"> <div></div> </a>
 </body>
 </html>

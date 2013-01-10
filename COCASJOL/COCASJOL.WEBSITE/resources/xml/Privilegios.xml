@@ -43,11 +43,11 @@
     <menuitem>ProductosMenuItem</menuitem>
   </privilege>
   <privilege>
-    <key>MANT_NOTASPESO</key>
-    <page>NotasDePesoEnAdministracion</page>
-    <module>NotasDePesoModule</module>
-    <shortcut>scNotasDePeso</shortcut>
-    <menuitem>NotasDePesoMenuItem</menuitem>
+    <key>MANT_ESTADOSNOTAPESO</key>
+    <page>EstadosNotaDePeso</page>
+    <module>EstadosNotasDePesoModule</module>
+    <shortcut>scEstadosNotasDePeso</shortcut>
+    <menuitem>EstadosNotasDePesoMenuItem</menuitem>
   </privilege>
   <privilege>
     <key>MANT_NOTASPESOENPESAJE</key>
@@ -64,25 +64,11 @@
     <menuitem>NotasDePesoEnCatacionMenuItem</menuitem>
   </privilege>
   <privilege>
-    <key>MANT_HOJASLIQUIDACION</key>
-    <page>HojasDeLiquidacion</page>
-    <module>HojasDeLiquidacionModule</module>
-    <shortcut>scHojasDeLiquidacion</shortcut>
-    <menuitem>LiquidacionesMenuItem</menuitem>
-  </privilege>
-  <privilege>
-    <key>MANT_ESTADOSNOTAPESO</key>
-    <page>EstadosNotaDePeso</page>
-    <module>EstadosNotasDePesoModule</module>
-    <shortcut>scEstadosNotasDePeso</shortcut>
-    <menuitem>EstadosNotasDePesoMenuItem</menuitem>
-  </privilege>
-  <privilege>
-    <key>MANT_VARIABLESENTORNO</key>
-    <page>VariablesDeEntorno</page>
-    <module>VariablesDeEntornoModule</module>
-    <shortcut>scVariablesDeEntorno</shortcut>
-    <menuitem>VariablesDeEntornoMenuItem</menuitem>
+    <key>MANT_NOTASPESO</key>
+    <page>NotasDePesoEnAdministracion</page>
+    <module>NotasDePesoModule</module>
+    <shortcut>scNotasDePeso</shortcut>
+    <menuitem>NotasDePesoMenuItem</menuitem>
   </privilege>
   <privilege>
     <key>MANT_CLASIFICACIONESCAFE</key>
@@ -97,6 +83,27 @@
     <module>InventarioDeCafePorSocioModule</module>
     <shortcut>scInventarioDeCafePorSocio</shortcut>
     <menuitem>InventarioDeCafePorSocioMenuItem</menuitem>
+  </privilege>
+  <privilege>
+    <key>MANT_HOJASLIQUIDACION</key>
+    <page>HojasDeLiquidacion</page>
+    <module>HojasDeLiquidacionModule</module>
+    <shortcut>scHojasDeLiquidacion</shortcut>
+    <menuitem>LiquidacionesMenuItem</menuitem>
+  </privilege>
+  <privilege>
+    <key>MANT_APORTACIONESPORSOCIO</key>
+    <page>AportacionesPorSocio</page>
+    <module>AportacionesPorSocioModule</module>
+    <shortcut>scAportacionesPorSocio</shortcut>
+    <menuitem>AportacionesPorSocioMenuItem</menuitem>
+  </privilege>
+  <privilege>
+    <key>MANT_VARIABLESENTORNO</key>
+    <page>VariablesDeEntorno</page>
+    <module>VariablesDeEntornoModule</module>
+    <shortcut>scVariablesDeEntorno</shortcut>
+    <menuitem>VariablesDeEntornoMenuItem</menuitem>
   </privilege>
   <privilege>
     <key>MANT_PRESTAMOS</key>

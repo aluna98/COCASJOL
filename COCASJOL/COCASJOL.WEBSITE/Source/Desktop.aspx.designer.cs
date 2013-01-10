@@ -184,6 +184,42 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.MenuItem NotasDePesoMenuItem;
         
         /// <summary>
+        /// InventarioDeCafePorSocioMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem InventarioDeCafePorSocioMenu;
+        
+        /// <summary>
+        /// Menu1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Menu Menu1;
+        
+        /// <summary>
+        /// ClasificacionesDeCafeMenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem ClasificacionesDeCafeMenuItem;
+        
+        /// <summary>
+        /// InventarioDeCafePorSocioMenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem InventarioDeCafePorSocioMenuItem;
+        
+        /// <summary>
         /// LiquidacionesMenu control.
         /// </summary>
         /// <remarks>
@@ -200,6 +236,24 @@ namespace COCASJOL.WEBSITE {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.MenuItem LiquidacionesMenuItem;
+        
+        /// <summary>
+        /// AportacionesPorSocioMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem AportacionesPorSocioMenu;
+        
+        /// <summary>
+        /// AportacionesPorSocioMenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem AportacionesPorSocioMenuItem;
         
         /// <summary>
         /// PrestamosMenu control.
@@ -227,33 +281,6 @@ namespace COCASJOL.WEBSITE {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.MenuItem PrestamosMenuItem;
-        
-        /// <summary>
-        /// InventarioDeCafePorSocioMenu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem InventarioDeCafePorSocioMenu;
-        
-        /// <summary>
-        /// ClasificacionesDeCafeMenuItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem ClasificacionesDeCafeMenuItem;
-        
-        /// <summary>
-        /// InventarioDeCafePorSocioMenuItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem InventarioDeCafePorSocioMenuItem;
         
         /// <summary>
         /// EnvironmentMenu control.
@@ -625,6 +652,24 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.ToolTip scNotasDePesoTooltip;
         
         /// <summary>
+        /// scClasificacionesDeCafeTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scClasificacionesDeCafeTooltip;
+        
+        /// <summary>
+        /// scInventarioDeCafePorSocioTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scInventarioDeCafePorSocioTooltip;
+        
+        /// <summary>
         /// scHojasDeLiquidacionTooltip control.
         /// </summary>
         /// <remarks>
@@ -632,6 +677,15 @@ namespace COCASJOL.WEBSITE {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ToolTip scHojasDeLiquidacionTooltip;
+        
+        /// <summary>
+        /// scAportacionesPorSocioTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scAportacionesPorSocioTooltip;
         
         /// <summary>
         /// scSolicitudesDePrestamoTooltip control.
@@ -650,24 +704,6 @@ namespace COCASJOL.WEBSITE {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ToolTip scPrestamosTooltip;
-        
-        /// <summary>
-        /// scClasificacionesDeCafeTooltip control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ToolTip scClasificacionesDeCafeTooltip;
-        
-        /// <summary>
-        /// scInventarioDeCafePorSocioTooltip control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ToolTip scInventarioDeCafePorSocioTooltip;
         
         /// <summary>
         /// UsuarioActualCtl control.

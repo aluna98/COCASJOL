@@ -178,7 +178,7 @@ var WindowX = {
     },
 
     plantillasNotificaciones: function (app) {
-        DesktopX.createDynamicWindow(app, 'plantillasNotificaciones16', 'Plantillas de Notificaciones', 'Utiles/PlantillasDeNotificaciones.aspx');
+        DesktopX.createDynamicWindow(app, 'plantillasNotificaciones16', 'Plantillas de Notificaciones', 'Utiles/PlantillasDeNotificaciones.aspx', 1000, 640);
     },
 
     socios: function (app) {
@@ -209,8 +209,16 @@ var WindowX = {
         DesktopX.createDynamicWindow(app, 'pagewhiteoffice', 'Notas De Peso', 'Inventario/Ingresos/NotasDePesoEnAdministracion.aspx', 1000, 640);
     },
 
+    inventarioDeCafePorSocio: function (app) {
+        DesktopX.createDynamicWindow(app, 'bricks', 'Inventario de Café por socio', 'Inventario/InventarioDeCafePorSocio.aspx');
+    },
+
     hojasDeLiquidacion: function (app) {
         DesktopX.createDynamicWindow(app, 'script', 'Hojas De Liquidación', 'Inventario/Salidas/HojasDeLiquidacion.aspx', 1000, 640);
+    },
+
+    aportacionesPorSocio: function (app) {
+        DesktopX.createDynamicWindow(app, 'aportacionesPorSocio16', 'Aportaciones por Socio', 'Aportaciones/AportacionesPorSocio.aspx');
     },
 
     solicitudesDePrestamo: function (app) {
@@ -225,12 +233,8 @@ var WindowX = {
         DesktopX.createDynamicWindow(app, 'cup', 'Clasificaciones de Café', 'Inventario/ClasificacionesDeCafe.aspx');
     },
 
-    inventarioDeCafePorSocio: function (app) {
-        DesktopX.createDynamicWindow(app, 'bricks', 'Inventario de Café por socio', 'Inventario/InventarioDeCafePorSocio.aspx');
-    },
-
     variablesDeEntorno: function (app) {
-        DesktopX.createDynamicWindow(app, 'database', 'Variables de Entorno', 'Entorno/VariablesDeEntorno.aspx', 480, 320);
+        DesktopX.createDynamicWindow(app, 'database', 'Variables de Entorno', 'Entorno/VariablesDeEntorno.aspx', 640, 480);
     },
 
     settings: function () {
@@ -265,16 +269,18 @@ var ShorcutClickHandler = function (app, id) {
         WindowX.notasDePesoEnCatacion(app);
     } else if (id == 'scNotasDePeso') {
         WindowX.notasDePeso(app);
+    } else if (id == 'scInventarioDeCafePorSocio') {
+        WindowX.inventarioDeCafePorSocio(app);
     } else if (id == 'scHojasDeLiquidacion') {
         WindowX.hojasDeLiquidacion(app);
+    } else if (id == 'scAportacionesPorSocio') {
+        WindowX.aportacionesPorSocio(app);
     } else if (id == 'scSolicitudesDePrestamo') {
         WindowX.solicitudesDePrestamo(app);
     } else if (id == 'scPrestamos') {
         WindowX.prestamos(app);
     } else if (id == 'scClasificacionesDeCafe') {
         WindowX.clasificacionesDeCafe(app);
-    } else if (id == 'scInventarioDeCafePorSocio') {
-        WindowX.inventarioDeCafePorSocio(app);
     } else if (id == 'scVariablesDeEntorno') {
         WindowX.variablesDeEntorno(app);
     }

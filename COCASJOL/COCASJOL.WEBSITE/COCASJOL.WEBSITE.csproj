@@ -74,6 +74,8 @@
     <Content Include="resources\images\cheque.png" />
     <Content Include="resources\images\cheque16x16.png" />
     <Content Include="resources\images\cocasjol_start_button.gif" />
+    <Content Include="resources\images\coins_in_hand.png" />
+    <Content Include="resources\images\coins_in_hand16.png" />
     <Content Include="resources\images\cup.png" />
     <Content Include="resources\images\database.png" />
     <Content Include="resources\images\desktop.jpg" />

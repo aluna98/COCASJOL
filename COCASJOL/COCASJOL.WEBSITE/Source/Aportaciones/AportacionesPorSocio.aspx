@@ -168,7 +168,7 @@
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
             <Items>
-                <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Inventario de Café" Icon="Basket" Layout="Fit">
+                <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Aportaciones" Icon="Coins" Layout="Fit">
                     <Items>
                         <ext:GridPanel ID="AportacionesGridP" runat="server" AutoExpandColumn="APORTACIONES_SALDO" Height="300"
                             Title="Usuarios" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">

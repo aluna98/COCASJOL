@@ -804,8 +804,8 @@
                                                     <Items>
                                                         <ext:Panel ID="Panel14" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
-                                                                <ext:DateField runat="server" ID="EditFechaHojaTxt" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Fecha" AllowBlank="false" MsgTarget="Side"></ext:DateField>
-                                                                <ext:ComboBox  runat="server" ID="EditSociosIdTxt" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Código Socio" AllowBlank="false" MsgTarget="Side"
+                                                                <ext:DateField runat="server" ID="EditFechaHojaTxt" DataIndex="LIQUIDACIONES_FECHA" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Fecha" AllowBlank="false" MsgTarget="Side"></ext:DateField>
+                                                                <ext:ComboBox  runat="server" ID="EditSociosIdTxt"  DataIndex="SOCIOS_ID"           LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Código Socio" AllowBlank="false" MsgTarget="Side"
                                                                     TypeAhead="true"
                                                                     EmptyText="Seleccione un Socio"
                                                                     ForceSelection="true" 
@@ -852,7 +852,7 @@
                                                         </ext:Panel>
                                                         <ext:Panel ID="Panel15" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
-                                                                <ext:ComboBox runat="server"    ID="ComboBox1" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Tipo de Café" AllowBlank="false" MsgTarget="Side"
+                                                                <ext:ComboBox runat="server"    ID="ComboBox1" DataIndex="CLASIFICACIONES_CAFE_ID" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Tipo de Café" AllowBlank="false" MsgTarget="Side"
                                                                     StoreID="ClasificacionesCafeSt"
                                                                     EmptyText="Seleccione un Tipo"
                                                                     ValueField="CLASIFICACIONES_CAFE_ID" 
@@ -895,9 +895,9 @@
                                                     <Items>
                                                         <ext:FieldSet ID="EditCalculosFS" runat="server" Title="Calculo de Valor del Producto" Padding="5" LabelWidth="200" >
                                                             <Items>
-                                                                <ext:NumberField runat="server" ID="EditTotalLibrasTxt"   LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="false" MsgTarget="Side" FieldLabel="Total Lbs. Netas" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditPrecioLibraTxt"   LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="false" MsgTarget="Side" FieldLabel="Precio por Libra" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditTotalProductoTxt" LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="false" MsgTarget="Side" FieldLabel="Valor Total del Producto" ReadOnly="true" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditTotalLibrasTxt"   DataIndex="LIQUIDACIONES_TOTAL_LIBRAS" LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="false" MsgTarget="Side" FieldLabel="Total Lbs. Netas" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditPrecioLibraTxt"   DataIndex="LIQUIDACIONES_PRECIO_LIBRAS" LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="false" MsgTarget="Side" FieldLabel="Precio por Libra" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditTotalProductoTxt" DataIndex="LIQUIDACIONES_VALOR_TOTAL" LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="false" MsgTarget="Side" FieldLabel="Valor Total del Producto" ReadOnly="true" ></ext:NumberField>
                                                             </Items>
                                                         </ext:FieldSet>
                                                     </Items>
@@ -906,25 +906,25 @@
                                                     <Items>
                                                         <ext:FieldSet ID="EditDeduccionesFS" runat="server" Title="Deducciones" Padding="5" LabelWidth="200" >
                                                             <Items>
-                                                                <ext:NumberField runat="server" ID="EditCuotaIngresoTxt"               LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Cuota de Ingreso" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditGastosAdminTxt"                LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Gastos de Administración" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditAportacionOrdinariaTxt"        LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Aportación Ordinaria" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditAportacionExtraOrdinariaTxt"   LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Aportación Extraordinaria" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditCuotaAdminTxt"                 LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Cuota de Administración" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditCapitalizacionXRetencionTxt"   LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Capitalización por Retención" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditServicioSecadoCafeTxt"         LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Servicio de Secado de Café" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditInteresesSobreAportacionesTxt" LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Intereses sobre Aportaciones" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditExcedenteXRendimientoCafeTxt"  LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Excedente por Rendimiento de Café" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditExcedentePeriodoTxt"           LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Excedente por Período" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditPrestamoHipotecarioTxt"        LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Prestamo Hipotecario" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditPrestamoFiduciarioTxt"         LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Prestamo Fiduciario" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditPrestamoPrendarioTxt"          LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Prestamo Prendario" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditCuentasXCobrarTxt"             LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Cuentas por Cobrar" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditInteresesXCobrarTxt"           LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Intereses por Cobrar" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditRetencionXTorrefaccionTxt"     LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Reteción por Torrefacción" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditOtrasDeduccionesTxt"           LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Otras Deducciones" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditTotalDeduccionesTxt"           LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Total Deducciones" ReadOnly="true" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditAFSocioTxt"                    LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="A/F del Socio" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditCuotaIngresoTxt"               DataIndex="LIQUIDACIONES_D_CUOTA_INGRESO"                LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Cuota de Ingreso" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditGastosAdminTxt"                DataIndex="LIQUIDACIONES_D_GASTOS_ADMIN"                 LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Gastos de Administración" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditAportacionOrdinariaTxt"        DataIndex="LIQUIDACIONES_D_APORTACION_ORDINARIO"         LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Aportación Ordinaria" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditAportacionExtraOrdinariaTxt"   DataIndex="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA"    LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Aportación Extraordinaria" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditCuotaAdminTxt"                 DataIndex="LIQUIDACIONES_D_CUOTA_ADMIN"                  LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Cuota de Administración" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditCapitalizacionXRetencionTxt"   DataIndex="LIQUIDACIONES_D_CAPITALIZACION_RETENCION"     LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Capitalización por Retención" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditServicioSecadoCafeTxt"         DataIndex="LIQUIDACIONES_D_SERVICIO_SECADO_CAFE"         LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Servicio de Secado de Café" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditInteresesSobreAportacionesTxt" DataIndex="LIQUIDACIONES_D_INTERESES_S_APORTACIONES"     LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Intereses sobre Aportaciones" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditExcedenteXRendimientoCafeTxt"  DataIndex="LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE" LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Excedente por Rendimiento de Café" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditExcedentePeriodoTxt"           DataIndex="LIQUIDACIONES_D_EXCEDENTE_PERIODO"            LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Excedente por Período" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditPrestamoHipotecarioTxt"        DataIndex="LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO"         LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Prestamo Hipotecario" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditPrestamoFiduciarioTxt"         DataIndex="LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO"          LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Prestamo Fiduciario" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditPrestamoPrendarioTxt"          DataIndex="LIQUIDACIONES_D_PRESTAMO_PRENDARIO"           LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Prestamo Prendario" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditCuentasXCobrarTxt"             DataIndex="LIQUIDACIONES_D_CUENTAS_X_COBRAR"             LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Cuentas por Cobrar" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditInteresesXCobrarTxt"           DataIndex="LIQUIDACIONES_D_INTERESES_X_COBRAR"           LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Intereses por Cobrar" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditRetencionXTorrefaccionTxt"     DataIndex="LIQUIDACIONES_D_RETENCION_X_TORREFACCION"     LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Reteción por Torrefacción" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditOtrasDeduccionesTxt"           DataIndex="LIQUIDACIONES_D_OTRAS_DEDUCCIONES"            LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Otras Deducciones" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditTotalDeduccionesTxt"           DataIndex="LIQUIDACIONES_D_TOTAL_DEDUCCIONES"            LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Total Deducciones" ReadOnly="true" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditAFSocioTxt"                    DataIndex="LIQUIDACIONES_D_AF_SOCIO"                     LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="A/F del Socio" ></ext:NumberField>
                                                             </Items>
                                                         </ext:FieldSet>
                                                     </Items>
@@ -950,7 +950,7 @@
                                                     <Items>
                                                         <ext:Panel ID="EditTotalDeducciones2Pnl" runat="server" Padding="5" LabelWidth="200" Frame="true" >
                                                             <Items>
-                                                                <ext:NumberField runat="server" ID="EditTotalDeduccionesFSTxt" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Total" MsgTarget="Side" ReadOnly="true" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditTotalDeduccionesFSTxt" DataIndex="LIQUIDACIONES_D_TOTAL" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Total" MsgTarget="Side" ReadOnly="true" ></ext:NumberField>
                                                             </Items>
                                                         </ext:Panel>
                                                     </Items>
@@ -977,7 +977,7 @@
                                 <Click Handler="PageX.next();" />
                             </Listeners>
                         </ext:Button>
-                        <ext:Button ID="EditGuardarBtn" runat="server" Text="Guardar" Icon="Disk" FormBind="true" >
+                        <ext:Button ID="EditGuardarBtn" runat="server" Text="Guardar" Icon="Disk" FormBind="true" Hidden="true" >
                             <Listeners>
                                 <Click Handler="#{EditCreatedByTxt}.setValue(#{LoggedUserHdn}.getValue()); PageX.update();" />
                             </Listeners>
