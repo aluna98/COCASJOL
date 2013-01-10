@@ -41,10 +41,12 @@
             },
 
             insert: function () {
+                var pss = AddPasswordTxt.getValue();
                 AddPasswordTxt.setValue(md5(AddPasswordTxt.getValue()));
                 var fields = AddForm.getForm().getFieldValues(false, "dataIndex");
 
                 Grid.insertRecord(0, fields, false);
+                Ext.net.DirectMethods.EnviarCorreoUsuarioNuevo(pss);
                 AddForm.getForm().reset();
             },
 
@@ -52,7 +54,15 @@
                 if (RolesNoDeUsuarioGridP.getSelectionModel().hasSelection()) {
                     Ext.Msg.confirm('Agregar Roles', 'Seguro desea agregar estos roles?', function (btn, text) {
                         if (btn == 'yes') {
-                            Ext.net.DirectMethods.AddRolesAddRolBtn_Click({ success: function () { RolesDeUsuarioSt.reload(); RolesNoDeUsuarioSt.reload(); Ext.Msg.alert('Agregar Roles', 'Roles agregado exitosamente.'); } }, { eventMask: { showMask: true, target: 'customtarget', customTarget: RolesNoDeUsuarioGridP} }, { failure: function () { Ext.Msg.alert('Agregar Roles', 'Error al agregar roles.'); } });
+                            Ext.net.DirectMethods.AddRolesAddRolBtn_Click({
+                                success: function () {
+                                    RolesDeUsuarioSt.reload();
+                                    Ext.net.DirectMethods.EnviarCorreoRolesNuevos();
+                                    RolesNoDeUsuarioSt.reload();
+                                    RolesNoDeUsuarioGridP.getSelectionModel().clearSelections();
+                                    Ext.Msg.alert('Agregar Roles', 'Roles agregado exitosamente.');
+                                }
+                            }, { eventMask: { showMask: true, target: 'customtarget', customTarget: RolesNoDeUsuarioGridP} }, { failure: function () { Ext.Msg.alert('Agregar Roles', 'Error al agregar roles.'); } });
                         }
                     });
                 } else {
@@ -147,10 +157,18 @@
             updatePassword: function () {
                 Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
                     if (btn == 'yes') {
+                        var pss = CambiarClaveConfirmarTxt.getValue();
                         var encrypted = md5(CambiarClaveConfirmarTxt.getValue());
                         CambiarClaveTxt.setValue(encrypted);
                         CambiarClaveConfirmarTxt.setValue(encrypted);
-                        Ext.net.DirectMethods.CambiarClaveGuardarBtn_Click({ success: function () { Ext.Msg.alert('Cambiar Contraseña', 'Contraseña actualizada exitosamente.'); FormPanel2.getForm().reset(); CambiarClaveWin.hide(); } }, { eventMask: { showMask: true, target: 'customtarget', customTarget: FormPanel2} });
+                        Ext.net.DirectMethods.CambiarClaveGuardarBtn_Click({
+                            success: function () {
+                                Ext.net.DirectMethods.EnviarCorreoUsuarioPasswordNuevo(pss);
+                                Ext.Msg.alert('Cambiar Contraseña', 'Contraseña actualizada exitosamente.');
+                                FormPanel2.getForm().reset();
+                                CambiarClaveWin.hide();
+                            } 
+                        }, { eventMask: { showMask: true, target: 'customtarget', customTarget: FormPanel2} });
                     }
                 });
             },
@@ -495,7 +513,7 @@
                                                 <ext:TextField runat="server" ID="AddCedulaTxt"           DataIndex="USR_CEDULA"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="20" FieldLabel="Cedula" AllowBlank="false" MsgTarget="Side" Vtype="alphanum" IsRemoteValidation="true">
                                                     <RemoteValidation OnValidation="AddCedulaTxt_Change" />
                                                 </ext:TextField>
-                                                <ext:TextField runat="server" ID="AddEmailTxt"            DataIndex="USR_CORREO"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="30" FieldLabel="Email" Vtype="email"  MsgTarget="Side"></ext:TextField>
+                                                <ext:TextField runat="server" ID="AddEmailTxt"            DataIndex="USR_CORREO"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="30" FieldLabel="Email" Vtype="email" AllowBlank="false" MsgTarget="Side"></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddPuestoTxt"           DataIndex="USR_PUESTO"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="30" FieldLabel="Puesto" ></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddPasswordTxt"         DataIndex="USR_PASSWORD"         LabelAlign="Right" AnchorHorizontal="90%" MaxLength="32" FieldLabel="Clave" InputType="Password" AllowBlank="false" MsgTarget="Side" MinLength="6"></ext:TextField>
                                                 <ext:TextField runat="server" ID="AddCreatedByTxt"        DataIndex="CREADO_POR"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado por" Hidden="true" ></ext:TextField>
@@ -562,7 +580,7 @@
                                                     <RemoteValidation OnValidation="EditCedulaTxt_Change" ValidationEvent="blur">
                                                     </RemoteValidation>
                                                 </ext:TextField>
-                                                <ext:TextField runat="server" ID="EditEmailTxt"           DataIndex="USR_CORREO"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="30" FieldLabel="Email" Vtype="email"  MsgTarget="Side"></ext:TextField>
+                                                <ext:TextField runat="server" ID="EditEmailTxt"           DataIndex="USR_CORREO"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="30" FieldLabel="Email" Vtype="email" AllowBlank="false" MsgTarget="Side"></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditPuestoTxt"          DataIndex="USR_PUESTO"           LabelAlign="Right" AnchorHorizontal="90%" MaxLength="30" FieldLabel="Puesto" ></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditPasswordTxt"        DataIndex="USR_PASSWORD"         LabelAlign="Right" AnchorHorizontal="90%" MaxLength="32" FieldLabel="Clave" InputType="Password" AllowBlank="false" MsgTarget="Side" Hidden="true" ReadOnly="true"></ext:TextField>
                                                 <ext:TextField runat="server" ID="EditCreatedByTxt"       DataIndex="CREADO_POR"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>

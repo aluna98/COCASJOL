@@ -65,6 +65,28 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        public rol GetRol(int ROL_ID)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+
+                    EntityKey k = new EntityKey("colinasEntities.roles", "ROL_ID", ROL_ID);
+
+                    var r = db.GetObjectByKey(k);
+
+                    rol role = (rol)r;
+
+                    return role;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public List<privilegio> GetPrivilegios(int ROL_ID, int PRIV_ID, string PRIV_NOMBRE, string PRIV_LLAVE)
         {
             try

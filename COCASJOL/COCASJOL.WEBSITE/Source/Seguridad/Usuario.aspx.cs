@@ -10,11 +10,11 @@ using System.Data.Objects;
 using Ext.Net;
 
 using COCASJOL.LOGIC.Seguridad;
-using COCASJOL.LOGIC.Web; 
+using COCASJOL.LOGIC.Utiles;
 
 namespace COCASJOL.WEBSITE.Source.Seguridad
 {
-    public partial class Usuario : COCASJOLBASE //System.Web.UI.Page
+    public partial class Usuario : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -211,11 +211,64 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                 UsuarioLogic usuariologica = new UsuarioLogic();
                 usuariologica.InsertarRoles(user, roles);
 
-                this.RolesNoDeUsuarioSelectionM.ClearSelections();
+                //this.RolesNoDeUsuarioSelectionM.ClearSelections();
             }
             catch (Exception)
             {
                 
+                throw;
+            }
+        }
+
+        #endregion
+
+        #region Correos
+
+        [DirectMethod(RethrowException = true)]
+        public void EnviarCorreoUsuarioNuevo(string USR_PASSWORD)
+        {
+            try
+            {
+                string USR_USERNAME = this.AddUsernameTxt.Text;
+                EmailLogic.EnviarCorreoUsuarioNuevo(USR_USERNAME, USR_PASSWORD);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [DirectMethod(RethrowException = true)]
+        public void EnviarCorreoUsuarioPasswordNuevo(string USR_PASSWORD)
+        {
+            try
+            {
+                string USR_USERNAME = this.CambiarClaveUsernameTxt.Text;
+                EmailLogic.EnviarCorreoUsuarioPasswordNuevo(USR_USERNAME, USR_PASSWORD);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [DirectMethod(RethrowException = true)]
+        public void EnviarCorreoRolesNuevos()
+        {
+            try
+            {
+                string USR_USERNAME = this.EditUsernameTxt.Text;
+
+                List<string> rolesList = this.RolesNoDeUsuarioSelectionM.SelectedRows.Select(s => s.RecordID).ToList<string>();
+
+                foreach (string r in rolesList)
+                    EmailLogic.EnviarCorreoRolNuevo(USR_USERNAME, Convert.ToInt32(r));
+            }
+            catch (Exception)
+            {
+
                 throw;
             }
         }

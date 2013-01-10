@@ -23,7 +23,7 @@ namespace COCASJOL.LOGIC.Utiles
                 usuario user = usuariologica.GetUsuario(USR_USERNAME);
 
                 string mailto = user.USR_CORREO;
-                string nombre = user.USR_NOMBRE + user.USR_APELLIDO;
+                string nombre = user.USR_NOMBRE + " " + user.USR_APELLIDO;
 
                 string subject = "";
                 string message = "";
@@ -51,6 +51,42 @@ namespace COCASJOL.LOGIC.Utiles
             }
         }
 
+        public static void EnviarCorreoUsuarioPasswordNuevo(string USR_USERNAME, string USR_PASSWORD)
+        {
+            try
+            {
+                UsuarioLogic usuariologica = new UsuarioLogic();
+                usuario user = usuariologica.GetUsuario(USR_USERNAME);
+
+                string mailto = user.USR_CORREO;
+                string nombre = user.USR_NOMBRE + " " + user.USR_APELLIDO;
+
+                string subject = "";
+                string message = "";
+
+                using (var db = new colinasEntities())
+                {
+                    EntityKey k = new EntityKey("colinasEntities.plantillas_notificaciones", "PLANTILLAS_LLAVE", "PASSWORDNUEVO");
+                    var pl = db.GetObjectByKey(k);
+                    plantilla_notificacion plantilla = (plantilla_notificacion)pl;
+
+                    subject = plantilla.PLANTILLAS_ASUNTO;
+                    message = plantilla.PLANTILLAS_MENSAJE;
+                }
+
+                message = message.Replace("{NOMBRE}", nombre);
+                message = message.Replace("{USUARIO}", USR_USERNAME);
+                message = message.Replace("{CONTRASEÑA}", USR_PASSWORD);
+
+                EnviarCorreo(mailto, subject, message);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public static void EnviarCorreoRolNuevo(string USR_USERNAME, int ROL_ID)
         {
             try
@@ -59,7 +95,7 @@ namespace COCASJOL.LOGIC.Utiles
                 usuario user = usuariologica.GetUsuario(USR_USERNAME);
 
                 string mailto = user.USR_CORREO;
-                string nombre = user.USR_NOMBRE + user.USR_APELLIDO;
+                string nombre = user.USR_NOMBRE + " " + user.USR_APELLIDO;
 
                 string rol = "";
                 string privs = "";
@@ -77,6 +113,9 @@ namespace COCASJOL.LOGIC.Utiles
 
                     foreach (privilegio p in role.privilegios)
                         privs += p.PRIV_NOMBRE + ", ";
+
+                    if (privs.Length > 2)
+                        privs.Remove(privs.Length - 2);
 
 
                     EntityKey k2 = new EntityKey("colinasEntities.plantillas_notificaciones", "PLANTILLAS_LLAVE", "ROLNUEVO");
@@ -101,15 +140,12 @@ namespace COCASJOL.LOGIC.Utiles
             }
         }
 
-        public static void EnviarCorreoPrivilegioNuevo(string USR_USERNAME, int PRIV_ID)
+        public static void EnviarCorreosPrivilegiosNuevos(int ROL_ID, List<string> PRIVS_ID)
         {
             try
             {
-                UsuarioLogic usuariologica = new UsuarioLogic();
-                usuario user = usuariologica.GetUsuario(USR_USERNAME);
-
-                string mailto = user.USR_CORREO;
-                string nombre = user.USR_NOMBRE + user.USR_APELLIDO;
+                string mailto = "";
+                string nombre = "";
 
                 string priv = "";
 
@@ -118,27 +154,47 @@ namespace COCASJOL.LOGIC.Utiles
 
                 using (var db = new colinasEntities())
                 {
-                    EntityKey k = new EntityKey("colinasEntities.privilegios", "PRIV_ID", PRIV_ID);
+                    EntityKey k = new EntityKey("colinasEntities.roles", "ROL_ID", ROL_ID);
 
-                    var p = db.GetObjectByKey(k);
+                    var r = db.GetObjectByKey(k);
 
-                    privilegio priv2 = (privilegio)p;
+                    rol role = (rol)r;
 
-                    priv = priv2.PRIV_NOMBRE;
+                    foreach (string privRec in PRIVS_ID)
+                    {
+                        int PRIV_ID = Convert.ToInt32(privRec);
 
-                    EntityKey k2 = new EntityKey("colinasEntities.plantillas_notificaciones", "PLANTILLAS_LLAVE", "PRIVILEGIONUEVO");
-                    var pl = db.GetObjectByKey(k2);
+                        EntityKey k2 = new EntityKey("colinasEntities.privilegios", "PRIV_ID", PRIV_ID);
+
+                        var p = db.GetObjectByKey(k2);
+
+                        privilegio priv2 = (privilegio)p;
+
+                        priv += priv2.PRIV_NOMBRE + ", ";
+                    }
+
+                    if (priv.Length > 2)
+                        priv.Remove(priv.Length - 2);
+
+                    EntityKey k3 = new EntityKey("colinasEntities.plantillas_notificaciones", "PLANTILLAS_LLAVE", "PRIVILEGIONUEVO");
+                    var pl = db.GetObjectByKey(k3);
                     plantilla_notificacion plantilla = (plantilla_notificacion)pl;
 
                     subject = plantilla.PLANTILLAS_ASUNTO;
                     message = plantilla.PLANTILLAS_MENSAJE;
+
+                    foreach (usuario user in role.usuarios)
+                    {
+                        mailto = user.USR_CORREO;
+                        nombre = user.USR_NOMBRE + " " + user.USR_APELLIDO;
+
+                        message = message.Replace("{NOMBRE}", nombre);
+                        message = message.Replace("{USUARIO}", user.USR_USERNAME);
+                        message = message.Replace("{PRIVILEGIO}", priv);
+
+                        EnviarCorreo(mailto, subject, message);
+                    }
                 }
-
-                message = message.Replace("{NOMBRE}", nombre);
-                message = message.Replace("{USUARIO}", USR_USERNAME);
-                message = message.Replace("{PRIVILEGIO}", priv);
-
-                //EnviarCorreo(mailto, subject, message);
             }
             catch (Exception)
             {
@@ -202,6 +258,7 @@ namespace COCASJOL.LOGIC.Utiles
                 SmtpClient smtpcliente = new SmtpClient 
                 {
                     Host = server,
+                    Port = 25,
                     UseDefaultCredentials = false,
                     Credentials = new NetworkCredential(from, fromPassword)
                 };

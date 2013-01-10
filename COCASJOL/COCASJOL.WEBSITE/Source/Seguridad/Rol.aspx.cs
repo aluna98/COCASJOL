@@ -10,6 +10,7 @@ using System.Data.Objects;
 using Ext.Net;
 
 using COCASJOL.LOGIC.Seguridad;
+using COCASJOL.LOGIC.Utiles;
 using COCASJOL.LOGIC.Web;
 
 namespace COCASJOL.WEBSITE.Source.Seguridad
@@ -79,7 +80,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
 
                 rollogic.EliminarPrivilegios(rol_id, privs);
 
-                this.PrivilegiosDeRolSelectionM.ClearSelections();
+                //this.PrivilegiosDeRolSelectionM.ClearSelections();
             }
             catch (Exception)
             {
@@ -129,6 +130,27 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
             catch (Exception)
             {
                 
+                throw;
+            }
+        }
+
+        #endregion
+
+        #region Correo
+
+        [DirectMethod(RethrowException = true)]
+        public void EnviarCorreoPrivilegiosNuevos()
+        {
+            try
+            {
+                int ROL_ID = Convert.ToInt32(this.EditIdTxt.Value);
+                List<string> privsList = this.PrivilegiosNoDeRolSelectionM.SelectedRows.Select(s => s.RecordID).ToList<string>();
+
+                EmailLogic.EnviarCorreosPrivilegiosNuevos(Convert.ToInt32(ROL_ID), privsList);
+            }
+            catch (Exception)
+            {
+
                 throw;
             }
         }

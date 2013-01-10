@@ -46,11 +46,18 @@
                 AddForm.getForm().reset();
             },
 
-            insertRol: function () {
+            insertPrivilege: function () {
                 if (PrivilegiosNoDeRolGridP.getSelectionModel().hasSelection()) {
                     Ext.Msg.confirm('Agregar Privilegios', 'Seguro desea agregar estos privilegios?', function (btn, text) {
                         if (btn == 'yes') {
-                            Ext.net.DirectMethods.AddPrivilegiosAddPrivilegioBtn_Click({ success: function () { PrivilegiosDeRolSt.reload(); PrivilegiosNoDeRolesSt.reload(); Ext.Msg.alert('Agregar Privilegios', 'Privilegios agregado exitosamente.'); } }, { eventMask: { showMask: true, target: 'customtarget', customTarget: PrivilegiosNoDeRolGridP} }, { failure: function () { Ext.Msg.alert('Agregar Privilegios', 'Error al agregar privilegios.'); } });
+                            Ext.net.DirectMethods.AddPrivilegiosAddPrivilegioBtn_Click(
+                            { success: function () {
+                                PrivilegiosDeRolSt.reload();
+                                Ext.net.DirectMethods.EnviarCorreoPrivilegiosNuevos();
+                                PrivilegiosNoDeRolesSt.reload();
+                                PrivilegiosNoDeRolGridP.getSelectionModel().clearSelections();
+                                Ext.Msg.alert('Agregar Privilegios', 'Privilegios agregado exitosamente.'); 
+                            } }, { eventMask: { showMask: true, target: 'customtarget', customTarget: PrivilegiosNoDeRolGridP} }, { failure: function () { Ext.Msg.alert('Agregar Privilegios', 'Error al agregar privilegios.'); } });
                         }
                     });
                 } else {
@@ -139,7 +146,7 @@
                 }
             },
 
-            removeRol: function () {
+            removePrivilege: function () {
                 if (PrivilegiosDeRolGridP.getSelectionModel().hasSelection()) {
                     Ext.Msg.confirm('Eliminar Privilegios', 'Seguro desea eliminar estos privilegios?', function (btn, text) {
                         if (btn == 'yes') {
@@ -531,7 +538,7 @@
                                                                 </ext:Button>
                                                                 <ext:Button ID="EditRolDeletePrivilegioBtn" runat="server" Text="Eliminar" Icon="KeyDelete">
                                                                     <Listeners>
-                                                                        <Click Handler="PageX.removeRol();" />
+                                                                        <Click Handler="PageX.removePrivilege();" />
                                                                     </Listeners>
                                                                 </ext:Button>
                                                             </Items>
@@ -655,7 +662,7 @@
                                             <Items>
                                                 <ext:Button ID="AddPrivilegiosAddPrivilegioBtn" runat="server" Text="Agregar" Icon="KeyAdd">
                                                     <Listeners>
-                                                        <Click Handler="PageX.insertRol();" />
+                                                        <Click Handler="PageX.insertPrivilege();" />
                                                     </Listeners>
                                                 </ext:Button>
                                             </Items>
