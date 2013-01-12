@@ -56,8 +56,9 @@
                                 Ext.net.DirectMethods.EnviarCorreoPrivilegiosNuevos();
                                 PrivilegiosNoDeRolesSt.reload();
                                 PrivilegiosNoDeRolGridP.getSelectionModel().clearSelections();
-                                Ext.Msg.alert('Agregar Privilegios', 'Privilegios agregado exitosamente.'); 
-                            } }, { eventMask: { showMask: true, target: 'customtarget', customTarget: PrivilegiosNoDeRolGridP} }, { failure: function () { Ext.Msg.alert('Agregar Privilegios', 'Error al agregar privilegios.'); } });
+                                Ext.Msg.alert('Agregar Privilegios', 'Privilegios agregado exitosamente.');
+                            }
+                            }, { eventMask: { showMask: true, target: 'customtarget', customTarget: PrivilegiosNoDeRolGridP} }, { failure: function () { Ext.Msg.alert('Agregar Privilegios', 'Error al agregar privilegios.'); } });
                         }
                     });
                 } else {
@@ -172,20 +173,44 @@
             keyUpEvent3: function (sender, e) {
                 if (e.getKey() == 13)
                     PrivilegiosNoDeRolesSt.reload();
+            },
+
+            clearFilter: function () {
+                f_ROL_ID.reset();
+                f_ROL_NOMBRE.reset();
+                f_ROL_DESCRIPCION.reset();
+
+                RolesSt.reload();
+            },
+
+            clearFilterPrivs: function () {
+                f_PRIV_ID.reset();
+                f_PRIV_LLAVE.reset();
+                f_PRIV_NOMBRE.reset();
+
+                PrivilegiosDeRolSt.reload();
+            },
+
+            clearFilterNotPrivs: function () {
+                f2_PRIV_ID.reset();
+                f2_PRIV_LLAVE.reset();
+                f2_PRIV_NOMBRE.reset();
+
+                PrivilegiosNoDeRolesSt.reload();
+            },
+
+            HideButtons: function () {
+                EditPreviousBtn.hide();
+                EditNextBtn.hide();
+                EditGuardarBtn.hide();
+            },
+
+            ShowButtons: function () {
+                EditPreviousBtn.show();
+                EditNextBtn.show();
+                EditGuardarBtn.show();
             }
         };
-
-        var HideButtons = function () {
-            EditPreviousBtn.hide();
-            EditNextBtn.hide();
-            EditGuardarBtn.hide();
-        }
-
-        var ShowButtons = function () {
-            EditPreviousBtn.show();
-            EditNextBtn.show();
-            EditGuardarBtn.show();
-        }
     </script>
 </head>
 <body>
@@ -248,7 +273,7 @@
                 <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Roles" Icon="GroupGear" Layout="Fit">
                     <Items>
                         <ext:GridPanel ID="RolesGridP" runat="server" AutoExpandColumn="ROL_DESCRIPCION" Height="300"
-                            Title="Usuarios" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
+                            Title="Roles" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
                             <Store>
                                 <ext:Store ID="RolesSt" runat="server" DataSourceID="RolDS" AutoSave="true" SkipIdForNewRecords="false" >
                                     <Reader>
@@ -274,6 +299,10 @@
                                     <ext:Column DataIndex="ROL_ID"          Header="Id de Rol" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="ROL_NOMBRE"      Header="Nombre" Sortable="true" Width="150"></ext:Column>
                                     <ext:Column DataIndex="ROL_DESCRIPCION" Header="Descripción" Sortable="true"></ext:Column>
+
+                                    <ext:Column DataIndex="ROL_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
+                                        <Renderer Handler="return '';" />
+                                    </ext:Column>
                                 </Columns>
                             </ColumnModel>
                             <SelectionModel>
@@ -336,6 +365,19 @@
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
                                                         </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+
+                                                <ext:HeaderColumn AutoWidthElement="false">
+                                                    <Component>
+                                                        <ext:Button ID="ClearFilterButton" runat="server" Icon="Cancel">
+                                                            <ToolTips>
+                                                                <ext:ToolTip ID="ToolTip4" runat="server" Html="Clear filter" />
+                                                            </ToolTips>
+                                                            <Listeners>
+                                                                <Click Handler="PageX.clearFilter();" />
+                                                            </Listeners>                                            
+                                                        </ext:Button>
                                                     </Component>
                                                 </ext:HeaderColumn>
                                             </Columns>
@@ -433,7 +475,7 @@
                                 <ext:Panel ID="Panel12" runat="server" Title="Información" Layout="AnchorLayout" AutoHeight="True"
                                     Resizable="false">
                                     <Listeners>
-                                        <Activate Handler="ShowButtons();" />
+                                        <Activate Handler="PageX.ShowButtons();" />
                                     </Listeners>
                                     <Items>
                                         <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
@@ -452,7 +494,7 @@
                                 <ext:Panel ID="Panel14" runat="server" Title="Privilegios" Layout="AnchorLayout" AutoHeight="True"
                                     Resizable="false">
                                     <Listeners>
-                                        <Activate Handler="HideButtons(); #{PrivilegiosDeRolSt}.reload();" />
+                                        <Activate Handler="PageX.HideButtons(); #{PrivilegiosDeRolSt}.reload();" />
                                         <Deactivate Handler="#{PrivilegiosDeRolSt}.removeAll();" />
                                     </Listeners>
                                     <Items>
@@ -484,6 +526,10 @@
                                                             <ext:Column DataIndex="PRIV_ID" Header="Id" Sortable="true"></ext:Column>
                                                             <ext:Column DataIndex="PRIV_LLAVE" Header="Llave" Sortable="true"></ext:Column>
                                                             <ext:Column DataIndex="PRIV_NOMBRE" Header="Nombre" Sortable="true"></ext:Column>
+
+                                                            <ext:Column DataIndex="PRIV_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
+                                                                <Renderer Handler="return '';" />
+                                                            </ext:Column>
                                                         </Columns>
                                                     </ColumnModel>
                                                     <View>
@@ -517,6 +563,19 @@
                                                                                         <KeyUp Handler="PageX.keyUpEvent2(this, e);" />
                                                                                     </Listeners>
                                                                                 </ext:TextField>
+                                                                            </Component>
+                                                                        </ext:HeaderColumn>
+                                                                                       
+                                                                        <ext:HeaderColumn AutoWidthElement="false">
+                                                                            <Component>
+                                                                                <ext:Button ID="ClearFilterButtonPrivs" runat="server" Icon="Cancel">
+                                                                                    <ToolTips>
+                                                                                        <ext:ToolTip ID="ToolTip1" runat="server" Html="Clear filter" />
+                                                                                    </ToolTips>
+                                                                                    <Listeners>
+                                                                                        <Click Handler="PageX.clearFilterPrivs();" />
+                                                                                    </Listeners>                                            
+                                                                                </ext:Button>
                                                                             </Component>
                                                                         </ext:HeaderColumn>
                                                                     </Columns>
@@ -613,6 +672,10 @@
                                             <ext:Column DataIndex="PRIV_ID" Header="Id" Sortable="true"></ext:Column>
                                             <ext:Column DataIndex="PRIV_LLAVE" Header="Llave" Sortable="true"></ext:Column>
                                             <ext:Column DataIndex="PRIV_NOMBRE" Header="Nombre" Sortable="true"></ext:Column>
+
+                                            <ext:Column DataIndex="PRIV_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
+                                                <Renderer Handler="return '';" />
+                                            </ext:Column>
                                         </Columns>
                                     </ColumnModel>
                                     <View>
@@ -646,6 +709,19 @@
                                                                         <KeyUp Handler="PageX.keyUpEvent3(this, e);" />
                                                                     </Listeners>
                                                                 </ext:TextField>
+                                                            </Component>
+                                                        </ext:HeaderColumn>
+                                                                       
+                                                        <ext:HeaderColumn AutoWidthElement="false">
+                                                            <Component>
+                                                                <ext:Button ID="ClearFilterButtonNotPrivs" runat="server" Icon="Cancel">
+                                                                    <ToolTips>
+                                                                        <ext:ToolTip ID="ToolTip2" runat="server" Html="Clear filter" />
+                                                                    </ToolTips>
+                                                                    <Listeners>
+                                                                        <Click Handler="PageX.clearFilterNotPrivs();" />
+                                                                    </Listeners>                                            
+                                                                </ext:Button>
                                                             </Component>
                                                         </ext:HeaderColumn>
                                                     </Columns>

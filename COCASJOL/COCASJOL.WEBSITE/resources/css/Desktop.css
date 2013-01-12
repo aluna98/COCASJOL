@@ -45,3 +45,8 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+
+.desktopEl
+{
+    position: absolute !important;
+}

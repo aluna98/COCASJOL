@@ -19,7 +19,7 @@
         var AlertSelMsgTitle = "Atención";
         var AlertSelMsg = "Debe seleccionar 1 elemento";
 
-        var ConfirmMsgTitle = "Clasificación de café";
+        var ConfirmMsgTitle = "Clasificación de Café";
         var ConfirmUpdate = "Seguro desea modificar la clasificación de café?";
         var ConfirmDelete = "Seguro desea eliminar la clasificación de café?";
 
@@ -128,20 +128,16 @@
             keyUpEvent: function (sender, e) {
                 if (e.getKey() == 13)
                     GridStore.reload();
+            },
+
+            clearFilter: function () {
+                f_CLASIFICACIONES_CAFE_ID.reset();
+                f_CLASIFICACIONES_CAFE_NOMBRE.reset();
+                f_CLASIFICACIONES_CAFE_DESCRIPCION.reset();
+
+                ClasificacionesCafeSt.reload();
             }
         };
-
-        var HideButtons = function () {
-            EditPreviousBtn.hide();
-            EditNextBtn.hide();
-            EditGuardarBtn.hide();
-        }
-
-        var ShowButtons = function () {
-            EditPreviousBtn.show();
-            EditNextBtn.show();
-            EditGuardarBtn.show();
-        }
     </script>
 </head>
 <body>
@@ -204,7 +200,7 @@
                 <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="ClasificacionesDeCafe" Icon="Cup" Layout="Fit">
                     <Items>
                         <ext:GridPanel ID="ClasificacionesCafeGridP" runat="server" AutoExpandColumn="CLASIFICACIONES_CAFE_DESCRIPCION" Height="300"
-                            Title="Usuarios" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
+                            Title="Clasificaciones de Café" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
                             <Store>
                                 <ext:Store ID="ClasificacionesCafeSt" runat="server" DataSourceID="ClasificacionesCafeDS" AutoSave="true" SkipIdForNewRecords="false" >
                                     <Reader>
@@ -230,6 +226,10 @@
                                     <ext:Column DataIndex="CLASIFICACIONES_CAFE_ID"          Header="Id" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="CLASIFICACIONES_CAFE_NOMBRE"      Header="Nombre" Sortable="true" Width="150"></ext:Column>
                                     <ext:Column DataIndex="CLASIFICACIONES_CAFE_DESCRIPCION" Header="Descripción" Sortable="true"></ext:Column>
+
+                                    <ext:Column DataIndex="CLASIFICACIONES_CAFE_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
+                                        <Renderer Handler="return '';" />
+                                    </ext:Column>
                                 </Columns>
                             </ColumnModel>
                             <SelectionModel>
@@ -292,6 +292,19 @@
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
                                                         </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                               
+                                                <ext:HeaderColumn AutoWidthElement="false">
+                                                    <Component>
+                                                        <ext:Button ID="ClearFilterButton" runat="server" Icon="Cancel">
+                                                            <ToolTips>
+                                                                <ext:ToolTip ID="ToolTip4" runat="server" Html="Clear filter" />
+                                                            </ToolTips>
+                                                            <Listeners>
+                                                                <Click Handler="PageX.clearFilter();" />
+                                                            </Listeners>                                            
+                                                        </ext:Button>
                                                     </Component>
                                                 </ext:HeaderColumn>
                                             </Columns>
@@ -381,9 +394,6 @@
                     <Items>
                         <ext:Panel ID="Panel12" runat="server" Title="Información" Layout="AnchorLayout" AutoHeight="True"
                             Resizable="false">
-                            <Listeners>
-                                <Activate Handler="ShowButtons();" />
-                            </Listeners>
                             <Items>
                                 <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                     <Items>

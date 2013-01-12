@@ -107,20 +107,16 @@
 
             reloadGridStore: function () {
                 GridStore.reload();
+            },
+
+            clearFilter: function () {
+                f_PLANTILLAS_LLAVE.reset();
+                f_PLANTILLAS_NOMBRE.reset();
+                f_PLANTILLAS_ASUNTO.reset();
+
+                PlantillasSt.reload();
             }
         };
-
-        var HideButtons = function () {
-            EditPreviousBtn.hide();
-            EditNextBtn.hide();
-            EditGuardarBtn.hide();
-        }
-
-        var ShowButtons = function () {
-            EditPreviousBtn.show();
-            EditNextBtn.show();
-            EditGuardarBtn.show();
-        }
     </script>
 </head>
 <body>
@@ -198,6 +194,10 @@
                                     <ext:Column DataIndex="PLANTILLAS_LLAVE"   Header="Llave" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="PLANTILLAS_NOMBRE"  Header="Nombre" Sortable="true" ></ext:Column>
                                     <ext:Column DataIndex="PLANTILLAS_ASUNTO"  Header="Asunto" Sortable="true"></ext:Column>
+
+                                    <ext:Column DataIndex="PLANTILLAS_LLAVE" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
+                                        <Renderer Handler="return '';" />
+                                    </ext:Column>
                                 </Columns>
                             </ColumnModel>
                             <SelectionModel>
@@ -252,6 +252,19 @@
                                                         </ext:TextField>
                                                     </Component>
                                                 </ext:HeaderColumn>
+
+                                                <ext:HeaderColumn AutoWidthElement="false">
+                                                    <Component>
+                                                        <ext:Button ID="ClearFilterButton" runat="server" Icon="Cancel">
+                                                            <ToolTips>
+                                                                <ext:ToolTip ID="ToolTip2" runat="server" Html="Clear filter" />
+                                                            </ToolTips>
+                                                            <Listeners>
+                                                                <Click Handler="PageX.clearFilter();" />
+                                                            </Listeners>                                            
+                                                        </ext:Button>
+                                                    </Component>
+                                                </ext:HeaderColumn>
                                             </Columns>
                                         </ext:HeaderRow>
                                     </HeaderRows>
@@ -300,9 +313,6 @@
                 <ext:FormPanel ID="EditarPlantillaFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" Layout="FormLayout">
                     <Items>
                         <ext:Panel ID="Panel12" runat="server" Title="Plantilla" Layout="FormLayout" Padding="5" Resizable="false">
-                            <Listeners>
-                                <Activate Handler="ShowButtons();" />
-                            </Listeners>
                             <Items>
                                 <ext:TextField runat="server" ID="EditLlaveTxt"            DataIndex="PLANTILLAS_LLAVE"  LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Id de Producto" AllowBlank="false" ReadOnly="true">
                                     <ToolTips>

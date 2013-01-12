@@ -134,20 +134,16 @@
 
             reloadGridStore: function () {
                 GridStore.reload();
+            },
+
+            clearFilter: function () {
+                f_SOCIOS_ID.reset();
+                f_CLASIFICACIONES_CAFE_ID.reset();
+                f_INVENTARIO_CANTIDAD.reset();
+
+                InventarioCafeSt.reload();
             }
         };
-
-        var HideButtons = function () {
-            EditPreviousBtn.hide();
-            EditNextBtn.hide();
-            EditGuardarBtn.hide();
-        }
-
-        var ShowButtons = function () {
-            EditPreviousBtn.show();
-            EditNextBtn.show();
-            EditGuardarBtn.show();
-        }
     </script>
 </head>
 <body>
@@ -229,7 +225,7 @@
                 <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Inventario de Café" Icon="Basket" Layout="Fit">
                     <Items>
                         <ext:GridPanel ID="InventarioCafeGridP" runat="server" AutoExpandColumn="CLASIFICACIONES_CAFE_NOMBRE" Height="300"
-                            Title="Usuarios" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
+                            Title="Inventario de Café" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
                             <Store>
                                 <ext:Store ID="InventarioCafeSt" runat="server" DataSourceID="InventarioCafeDS" AutoSave="true" SkipIdForNewRecords="false" >
                                     <Reader>
@@ -257,6 +253,10 @@
                                     <ext:Column DataIndex="SOCIOS_ID"           Header="Id de Socio" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="CLASIFICACIONES_CAFE_NOMBRE"      Header="Clasificación de Café" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="INVENTARIO_CANTIDAD" Header="Cantidad" Sortable="true"></ext:Column>
+
+                                    <ext:Column DataIndex="SOCIOS_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
+                                        <Renderer Handler="return '';" />
+                                    </ext:Column>
                                 </Columns>
                             </ColumnModel>
                             <SelectionModel>
@@ -331,6 +331,19 @@
                                                         </ext:NumberField>
                                                     </Component>
                                                 </ext:HeaderColumn>
+                                                               
+                                                <ext:HeaderColumn AutoWidthElement="false">
+                                                    <Component>
+                                                        <ext:Button ID="ClearFilterButton" runat="server" Icon="Cancel">
+                                                            <ToolTips>
+                                                                <ext:ToolTip ID="ToolTip4" runat="server" Html="Clear filter" />
+                                                            </ToolTips>
+                                                            <Listeners>
+                                                                <Click Handler="PageX.clearFilter();" />
+                                                            </Listeners>                                            
+                                                        </ext:Button>
+                                                    </Component>
+                                                </ext:HeaderColumn>
                                             </Columns>
                                         </ext:HeaderRow>
                                     </HeaderRows>
@@ -364,15 +377,9 @@
             X="10" Y="30">
             <Items>
                 <ext:FormPanel ID="EditarTipoFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelWidth="120">
-                    <Listeners>
-                        <Show Handler="this.getForm().reset();" />
-                    </Listeners>
                     <Items>
                         <ext:Panel ID="Panel12" runat="server" Title="Inventario" Layout="AnchorLayout" AutoHeight="True"
                             Resizable="false">
-                            <Listeners>
-                                <Activate Handler="ShowButtons();" />
-                            </Listeners>
                             <Items>
                                 <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false" AnchorHorizontal="100%">
                                     <Items>

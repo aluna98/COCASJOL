@@ -256,6 +256,24 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         protected global::Ext.Net.TextField f_USR_PUESTO;
         
         /// <summary>
+        /// ClearFilterButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button ClearFilterButton;
+        
+        /// <summary>
+        /// ToolTip4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip4;
+        
+        /// <summary>
         /// PagingToolbar1 control.
         /// </summary>
         /// <remarks>
@@ -661,6 +679,24 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         protected global::Ext.Net.TextField f_ROL_NOMBRE;
         
         /// <summary>
+        /// ClearFilterButtonRols control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button ClearFilterButtonRols;
+        
+        /// <summary>
+        /// ToolTip1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip1;
+        
+        /// <summary>
         /// RolesDeUsuarioSelectionM control.
         /// </summary>
         /// <remarks>
@@ -803,6 +839,24 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField f2_ROL_NOMBRE;
+        
+        /// <summary>
+        /// ClearFilterButtonNotRols control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button ClearFilterButtonNotRols;
+        
+        /// <summary>
+        /// ToolTip2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip2;
         
         /// <summary>
         /// RolesNoDeUsuarioSelectionM control.

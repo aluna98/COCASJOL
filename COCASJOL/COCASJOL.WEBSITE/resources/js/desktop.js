@@ -2,6 +2,10 @@
 /// <reference name="Ext.Net.Build.Ext.Net.extjs.ext-all-debug-w-comments.js" assembly="Ext.Net" />
 
 var DesktopX = {
+    alignPanels: function () {
+        pnlSample.getEl().alignTo(Ext.getBody(), "tr", [-405, 5], false)
+    },
+
     createDynamicWindow: function (app, ico, title, url, width, height) {
         width = width == null ? 640 : width;
         height = height == null ? 480 : height;

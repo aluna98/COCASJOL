@@ -30,13 +30,12 @@
 
                 var strDate = dateFrom + (dateFrom == "" || dateTo == "" ? "" : " - ") + dateTo;
 
-                Ext.getCmp('f_NOTAS_FECHA').setValue("", strDate);
+                Ext.getCmp('f_LIQUIDACIONES_FECHA').setValue("", strDate);
                 GridStore.reload();
             },
 
             clearFecha: function () {
-                Ext.getCmp('f_DATE_FROM').setValue(null);
-                Ext.getCmp('f_DATE_TO').setValue(null);
+                this.resetDateFields(Ext.getCmp('f_DATE_FROM'), Ext.getCmp('f_DATE_TO'));
                 this.setFecha();
             },
 
@@ -46,7 +45,7 @@
                 if (this.startDateField) {
                     field = Ext.getCmp(this.startDateField);
                     field.setMaxValue();
-                    this.dateRabgeMax = null;
+                    this.dateRangeMax = null;
                 } else if (this.endDateField) {
                     field = Ext.getCmp(this.endDateField);
                     field.setMinValue();
@@ -54,6 +53,15 @@
                 }
 
                 field.validate();
+            },
+
+            resetDateFields: function (field1, field2) {
+                field1.dateRangeMin = null;
+                field2.dateRangeMax = null;
+                field1.setMaxValue();
+                field2.setMinValue();
+                field1.reset();
+                field2.reset();
             }
         };
 
@@ -208,20 +216,17 @@
                 record = comboBox.findRecord(comboBox.valueField, value), index = comboBox.getStore().indexOf(record);
 
                 direccionFincaTxt.setValue(record.data.PRODUCCION_UBICACION_FINCA);
+            },
+
+            clearFilter: function () {
+                f_LIQUIDACIONES_ID.reset();
+                f_SOCIOS_ID.reset();
+                f_CLASIFICACIONES_CAFE_ID.reset();
+                calendar.clearFecha();
+
+                HojasSt.reload();
             }
         };
-
-        var HideButtons = function () {
-            EditPreviousBtn.hide();
-            EditNextBtn.hide();
-            EditGuardarBtn.hide();
-        }
-
-        var ShowButtons = function () {
-            EditPreviousBtn.show();
-            EditNextBtn.show();
-            EditGuardarBtn.show();
-        }
     </script>
 </head>
 <body>
@@ -360,11 +365,11 @@
                 <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Hoja de Liquidación" Icon="Script" Layout="Fit">
                     <Items>
                         <ext:GridPanel ID="HojasGridP" runat="server" AutoExpandColumn="CLASIFICACIONES_CAFE_NOMBRE" Height="300"
-                            Title="Usuarios" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
+                            Title="Hojas de Liquidación" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
                             <Store>
                                 <ext:Store ID="HojasSt" runat="server" DataSourceID="HojasDS" AutoSave="true" SkipIdForNewRecords="false" >
                                     <Reader>
-                                        <ext:JsonReader IDProperty="NOTAS_ID">
+                                        <ext:JsonReader IDProperty="LIQUIDACIONES_ID">
                                             <Fields>
                                                 <ext:RecordField Name="LIQUIDACIONES_ID"                             />
                                                 <ext:RecordField Name="SOCIOS_ID"                                    />
@@ -413,6 +418,10 @@
                                     <ext:Column     DataIndex="SOCIOS_ID"                   Header="Socio" Sortable="true"></ext:Column>
                                     <ext:Column     DataIndex="CLASIFICACIONES_CAFE_NOMBRE" Header="Clasificación de Café" Sortable="true"></ext:Column>
                                     <ext:DateColumn DataIndex="LIQUIDACIONES_FECHA"         Header="Fecha" Sortable="true" Width="150" ></ext:DateColumn>
+
+                                    <ext:Column DataIndex="LIQUIDACIONES_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
+                                        <Renderer Handler="return '';" />
+                                    </ext:Column>
                                 </Columns>
                             </ColumnModel>
                             <SelectionModel>
@@ -536,6 +545,19 @@
                                                                 </ext:FormPanel>
                                                                 </Component>
                                                         </ext:DropDownField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                               
+                                                <ext:HeaderColumn AutoWidthElement="false">
+                                                    <Component>
+                                                        <ext:Button ID="ClearFilterButton" runat="server" Icon="Cancel">
+                                                            <ToolTips>
+                                                                <ext:ToolTip ID="ToolTip4" runat="server" Html="Clear filter" />
+                                                            </ToolTips>
+                                                            <Listeners>
+                                                                <Click Handler="PageX.clearFilter();" />
+                                                            </Listeners>                                            
+                                                        </ext:Button>
                                                     </Component>
                                                 </ext:HeaderColumn>
                                             </Columns>

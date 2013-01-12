@@ -132,20 +132,17 @@
 
             reloadGridStore: function () {
                 GridStore.reload();
+            },
+
+            clearFilter: function () {
+                f_PRODUCTOS_ID.reset();
+                f_PRODUCTOS_NOMBRE.reset();
+                f_PRODUCTOS_DESCRIPCION.reset();
+                f_PRODUCTOS_CANTIDAD_MIN.reset();
+
+                ProductosSt.reload();
             }
         };
-
-        var HideButtons = function () {
-            EditPreviousBtn.hide();
-            EditNextBtn.hide();
-            EditGuardarBtn.hide();
-        }
-
-        var ShowButtons = function () {
-            EditPreviousBtn.show();
-            EditNextBtn.show();
-            EditGuardarBtn.show();
-        }
     </script>
 </head>
 <body>
@@ -236,7 +233,7 @@
                 <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Productos" Icon="Basket" Layout="Fit">
                     <Items>
                         <ext:GridPanel ID="ProductosGridP" runat="server" AutoExpandColumn="PRODUCTOS_DESCRIPCION" Height="300"
-                            Title="Usuarios" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
+                            Title="Productos" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
                             <Store>
                                 <ext:Store ID="ProductosSt" runat="server" DataSourceID="ProductosDS" AutoSave="true" SkipIdForNewRecords="false" >
                                     <Reader>
@@ -269,6 +266,10 @@
                                     <ext:Column DataIndex="PRODUCTOS_DESCRIPCION"  Header="Descripción" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="PRODUCTOS_CANTIDAD_MIN" Header="Cantidad Minima" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="PRODUCTOS_EXISTENCIA"   Header="Existencia" Sortable="true"></ext:Column>
+
+                                    <ext:Column DataIndex="PRODUCTOS_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
+                                        <Renderer Handler="return '';" />
+                                    </ext:Column>
                                 </Columns>
                             </ColumnModel>
                             <SelectionModel>
@@ -373,6 +374,19 @@
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
                                                         </ext:NumberField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                               
+                                                <ext:HeaderColumn AutoWidthElement="false">
+                                                    <Component>
+                                                        <ext:Button ID="ClearFilterButton" runat="server" Icon="Cancel">
+                                                            <ToolTips>
+                                                                <ext:ToolTip ID="ToolTip4" runat="server" Html="Clear filter" />
+                                                            </ToolTips>
+                                                            <Listeners>
+                                                                <Click Handler="PageX.clearFilter();" />
+                                                            </Listeners>                                            
+                                                        </ext:Button>
                                                     </Component>
                                                 </ext:HeaderColumn>
                                             </Columns>
@@ -481,9 +495,6 @@
                     <Items>
                         <ext:Panel ID="Panel12" runat="server" Title="Información" Layout="AnchorLayout" AutoHeight="True"
                             Resizable="false">
-                            <Listeners>
-                                <Activate Handler="ShowButtons();" />
-                            </Listeners>
                             <Items>
                                 <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                     <Items>

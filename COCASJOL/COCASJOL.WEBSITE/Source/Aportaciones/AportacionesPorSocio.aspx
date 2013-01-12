@@ -120,20 +120,14 @@
 
             reloadGridStore: function () {
                 GridStore.reload();
+            },
+
+            clearFilter: function () {
+                f_SOCIOS_ID.reset();
+                f_APORTACIONES_SALDO.reset();
+                AportacionesSt.reload();
             }
         };
-
-        var HideButtons = function () {
-            EditPreviousBtn.hide();
-            EditNextBtn.hide();
-            EditGuardarBtn.hide();
-        }
-
-        var ShowButtons = function () {
-            EditPreviousBtn.show();
-            EditNextBtn.show();
-            EditGuardarBtn.show();
-        }
     </script>
 </head>
 <body>
@@ -171,7 +165,7 @@
                 <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Aportaciones" Icon="Coins" Layout="Fit">
                     <Items>
                         <ext:GridPanel ID="AportacionesGridP" runat="server" AutoExpandColumn="APORTACIONES_SALDO" Height="300"
-                            Title="Usuarios" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
+                            Title="Aportaciones" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
                             <Store>
                                 <ext:Store ID="AportacionesSt" runat="server" DataSourceID="AportacionesDs" AutoSave="true" SkipIdForNewRecords="false" >
                                     <Reader>
@@ -195,6 +189,10 @@
                                 <Columns>
                                     <ext:Column       DataIndex="SOCIOS_ID"           Header="Id de Socio" Sortable="true"></ext:Column>
                                     <ext:NumberColumn DataIndex="APORTACIONES_SALDO"  Header="Saldo" Sortable="true"></ext:NumberColumn>
+
+                                    <ext:Column DataIndex="SOCIOS_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
+                                        <Renderer Handler="return '';" />
+                                    </ext:Column>
                                 </Columns>
                             </ColumnModel>
                             <SelectionModel>
@@ -240,6 +238,19 @@
                                                         </ext:NumberField>
                                                     </Component>
                                                 </ext:HeaderColumn>
+                                                               
+                                                <ext:HeaderColumn AutoWidthElement="false">
+                                                    <Component>
+                                                        <ext:Button ID="ClearFilterButton" runat="server" Icon="Cancel">
+                                                            <ToolTips>
+                                                                <ext:ToolTip ID="ToolTip4" runat="server" Html="Clear filter" />
+                                                            </ToolTips>
+                                                            <Listeners>
+                                                                <Click Handler="PageX.clearFilter();" />
+                                                            </Listeners>                                            
+                                                        </ext:Button>
+                                                    </Component>
+                                                </ext:HeaderColumn>
                                             </Columns>
                                         </ext:HeaderRow>
                                     </HeaderRows>
@@ -276,9 +287,6 @@
                     <Items>
                         <ext:Panel ID="Panel12" runat="server" Title="Aportaciones" Layout="AnchorLayout" AutoHeight="True"
                             Resizable="false">
-                            <Listeners>
-                                <Activate Handler="ShowButtons();" />
-                            </Listeners>
                             <Items>
                                 <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false" AnchorHorizontal="100%">
                                     <Items>

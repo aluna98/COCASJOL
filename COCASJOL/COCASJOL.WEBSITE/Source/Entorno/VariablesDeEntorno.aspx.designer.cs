@@ -40,6 +40,24 @@ namespace COCASJOL.WEBSITE.Source.Entorno {
         protected global::Ext.Net.ResourceManager ResourceManager1;
         
         /// <summary>
+        /// AudWin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::COCASJOL.WEBSITE.Source.Auditoria.Auditoria AudWin;
+        
+        /// <summary>
+        /// VariablesEntornoDS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource VariablesEntornoDS;
+        
+        /// <summary>
         /// nullHdn control.
         /// </summary>
         /// <remarks>
@@ -82,16 +100,25 @@ namespace COCASJOL.WEBSITE.Source.Entorno {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.PropertyGrid VariablesEntornoGridP;
+        protected global::Ext.Net.GridPanel VariablesEntornoGridP;
         
         /// <summary>
-        /// GridView1 control.
+        /// VariablesEntornoSt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.GridView GridView1;
+        protected global::Ext.Net.Store VariablesEntornoSt;
+        
+        /// <summary>
+        /// EditableGrid1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.EditableGrid EditableGrid1;
         
         /// <summary>
         /// Toolbar1 control.
@@ -110,5 +137,32 @@ namespace COCASJOL.WEBSITE.Source.Entorno {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button GuardarVariablesBtn;
+        
+        /// <summary>
+        /// AuditoriaBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button AuditoriaBtn;
+        
+        /// <summary>
+        /// RowSelectionModel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.RowSelectionModel RowSelectionModel1;
+        
+        /// <summary>
+        /// GridView1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.GridView GridView1;
     }
 }

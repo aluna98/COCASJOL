@@ -167,7 +167,7 @@
                                 Ext.Msg.alert('Cambiar Contraseña', 'Contraseña actualizada exitosamente.');
                                 FormPanel2.getForm().reset();
                                 CambiarClaveWin.hide();
-                            } 
+                            }
                         }, { eventMask: { showMask: true, target: 'customtarget', customTarget: FormPanel2} });
                     }
                 });
@@ -213,20 +213,47 @@
             keyUpEvent3: function (sender, e) {
                 if (e.getKey() == 13)
                     RolesNoDeUsuarioSt.reload();
+            },
+
+            HideButtons: function () {
+                EditPreviousBtn.hide();
+                EditNextBtn.hide();
+                EditGuardarBtn.hide();
+            },
+
+            ShowButtons: function () {
+                EditPreviousBtn.show();
+                EditNextBtn.show();
+                EditGuardarBtn.show();
+            },
+
+            clearFilter: function () {
+                f_USR_USERNAME.reset();
+                f_USR_NOMBRE.reset();
+                f_USR_SEGUNDO_NOMBRE.reset();
+                f_USR_APELLIDO.reset();
+                f_USR_SEGUNDO_APELLIDO.reset();
+                f_USR_CEDULA.reset();
+                f_USR_CORREO.reset();
+                f_USR_PUESTO.reset();
+
+                UsuariosSt.reload();
+            },
+
+            clearFilterRols: function () {
+                f_ROL_ID.reset();
+                f_ROL_NOMBRE.reset();
+
+                RolesDeUsuarioSt.reload();
+            },
+
+            clearFilterNotRols: function () {
+                f2_ROL_ID.reset();
+                f2_ROL_NOMBRE.reset();
+
+                RolesNoDeUsuarioSt.reload();
             }
         };
-
-        var HideButtons = function () {
-            EditPreviousBtn.hide();
-            EditNextBtn.hide();
-            EditGuardarBtn.hide();
-        }
-
-        var ShowButtons = function () {
-            EditPreviousBtn.show();
-            EditNextBtn.show();
-            EditGuardarBtn.show();
-        }
     </script>
 </head>
 <body>
@@ -345,6 +372,10 @@
                                     <ext:Column DataIndex="USR_CEDULA"           Header="Cedula" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="USR_CORREO"           Header="Email" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="USR_PUESTO"           Header="Puesto" Sortable="true"></ext:Column>
+
+                                    <ext:Column DataIndex="USR_USERNAME" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
+                                        <Renderer Handler="return '';" />
+                                    </ext:Column>
                                 </Columns>
                             </ColumnModel>
                             <SelectionModel>
@@ -459,6 +490,19 @@
                                                         </ext:TextField>
                                                     </Component>
                                                 </ext:HeaderColumn>
+                                                               
+                                                <ext:HeaderColumn AutoWidthElement="false">
+                                                    <Component>
+                                                        <ext:Button ID="ClearFilterButton" runat="server" Icon="Cancel">
+                                                            <ToolTips>
+                                                                <ext:ToolTip ID="ToolTip4" runat="server" Html="Clear filter" />
+                                                            </ToolTips>
+                                                            <Listeners>
+                                                                <Click Handler="PageX.clearFilter();" />
+                                                            </Listeners>                                            
+                                                        </ext:Button>
+                                                    </Component>
+                                                </ext:HeaderColumn>
                                             </Columns>
                                         </ext:HeaderRow>
                                     </HeaderRows>
@@ -561,7 +605,7 @@
                                 <ext:Panel ID="Panel12" runat="server" Title="Información" Layout="AnchorLayout" AutoHeight="True"
                                     Resizable="false">
                                     <Listeners>
-                                        <Activate Handler="ShowButtons();" />
+                                        <Activate Handler="PageX.ShowButtons();" />
                                     </Listeners>
                                     <Items>
                                         <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
@@ -594,7 +638,7 @@
                                 <ext:Panel ID="Panel14" runat="server" Title="Roles" Layout="AnchorLayout" AutoHeight="True"
                                     Resizable="false">
                                     <Listeners>
-                                        <Activate Handler="HideButtons(); #{RolesDeUsuarioSt}.reload();" />
+                                        <Activate Handler="PageX.HideButtons(); #{RolesDeUsuarioSt}.reload();" />
                                         <Deactivate Handler="#{RolesDeUsuarioSt}.removeAll();" />
                                     </Listeners>
                                     <Items>
@@ -624,6 +668,10 @@
                                                         <Columns>
                                                             <ext:Column DataIndex="ROL_ID" Header="Id" Sortable="true"></ext:Column>
                                                             <ext:Column DataIndex="ROL_NOMBRE" Header="Nombre" Sortable="true"></ext:Column>
+
+                                                            <ext:Column DataIndex="ROL_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
+                                                                <Renderer Handler="return '';" />
+                                                            </ext:Column>
                                                         </Columns>
                                                     </ColumnModel>
                                                     <View>
@@ -648,6 +696,19 @@
                                                                                         <KeyUp Handler="PageX.keyUpEvent2(this, e);" />
                                                                                     </Listeners>
                                                                                 </ext:TextField>
+                                                                            </Component>
+                                                                        </ext:HeaderColumn>
+                                                                                       
+                                                                        <ext:HeaderColumn AutoWidthElement="false">
+                                                                            <Component>
+                                                                                <ext:Button ID="ClearFilterButtonRols" runat="server" Icon="Cancel">
+                                                                                    <ToolTips>
+                                                                                        <ext:ToolTip ID="ToolTip1" runat="server" Html="Clear filter" />
+                                                                                    </ToolTips>
+                                                                                    <Listeners>
+                                                                                        <Click Handler="PageX.clearFilterRols();" />
+                                                                                    </Listeners>                                            
+                                                                                </ext:Button>
                                                                             </Component>
                                                                         </ext:HeaderColumn>
                                                                     </Columns>
@@ -742,6 +803,10 @@
                                         <Columns>
                                             <ext:Column DataIndex="ROL_ID" Header="Id" Sortable="true"></ext:Column>
                                             <ext:Column DataIndex="ROL_NOMBRE" Header="Nombre" Sortable="true"></ext:Column>
+
+                                            <ext:Column DataIndex="ROL_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
+                                                <Renderer Handler="return '';" />
+                                            </ext:Column>
                                         </Columns>
                                     </ColumnModel>
                                     <View>
@@ -766,6 +831,19 @@
                                                                         <KeyUp Handler="PageX.keyUpEvent3(this, e);" />
                                                                     </Listeners>
                                                                 </ext:TextField>
+                                                            </Component>
+                                                        </ext:HeaderColumn>
+                                                                       
+                                                        <ext:HeaderColumn AutoWidthElement="false">
+                                                            <Component>
+                                                                <ext:Button ID="ClearFilterButtonNotRols" runat="server" Icon="Cancel">
+                                                                    <ToolTips>
+                                                                        <ext:ToolTip ID="ToolTip2" runat="server" Html="Clear filter" />
+                                                                    </ToolTips>
+                                                                    <Listeners>
+                                                                        <Click Handler="PageX.clearFilterNotRols();" />
+                                                                    </Listeners>                                            
+                                                                </ext:Button>
                                                             </Component>
                                                         </ext:HeaderColumn>
                                                     </Columns>

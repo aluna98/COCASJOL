@@ -103,20 +103,18 @@
 
             reloadGridStore: function () {
                 GridStore.reload();
+            },
+
+            clearFilter: function () {
+                f_ESTADOS_NOTA_ID.reset();
+                f_ESTADOS_NOTA_PADRE.reset();
+                f_ESTADOS_NOTA_LLAVE.reset();
+                f_ESTADOS_NOTA_NOMBRE.reset();
+                f_ESTADOS_NOTA_DESCRIPCION.reset();
+
+                EstadosNotaSt.reload();
             }
         };
-
-        var HideButtons = function () {
-            EditPreviousBtn.hide();
-            EditNextBtn.hide();
-            EditGuardarBtn.hide();
-        }
-
-        var ShowButtons = function () {
-            EditPreviousBtn.show();
-            EditNextBtn.show();
-            EditGuardarBtn.show();
-        }
     </script>
 </head>
 <body>
@@ -218,6 +216,10 @@
                                     <ext:Column DataIndex="ESTADOS_NOTA_LLAVE"        Header="Llave" Sortable="true" Width="150"></ext:Column>
                                     <ext:Column DataIndex="ESTADOS_NOTA_NOMBRE"       Header="Nombre" Sortable="true" Width="150"></ext:Column>
                                     <ext:Column DataIndex="ESTADOS_NOTA_DESCRIPCION"  Header="Descripción" Sortable="true"></ext:Column>
+
+                                    <ext:Column DataIndex="ESTADOS_NOTA_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
+                                        <Renderer Handler="return '';" />
+                                    </ext:Column>
                                 </Columns>
                             </ColumnModel>
                             <SelectionModel>
@@ -297,6 +299,19 @@
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
                                                         </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                               
+                                                <ext:HeaderColumn AutoWidthElement="false">
+                                                    <Component>
+                                                        <ext:Button ID="ClearFilterButton" runat="server" Icon="Cancel">
+                                                            <ToolTips>
+                                                                <ext:ToolTip ID="ToolTip4" runat="server" Html="Clear filter" />
+                                                            </ToolTips>
+                                                            <Listeners>
+                                                                <Click Handler="PageX.clearFilter();" />
+                                                            </Listeners>                                            
+                                                        </ext:Button>
                                                     </Component>
                                                 </ext:HeaderColumn>
                                             </Columns>
