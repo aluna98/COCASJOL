@@ -185,19 +185,27 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                         note.ESTADOS_NOTA_ID = ESTADOS_NOTA_ID;
 
                         // notificar a usuarios
-                        PrivilegioLogic privilegiologic = new Seguridad.PrivilegioLogic();
-                        List<usuario> usuarios = privilegiologic.GetUsuariosWithPrivilege("MANT_NOTASPESO");
+                        int[] notaid = { note.NOTAS_ID };
 
-                        foreach (usuario usr in usuarios)
-                        {
-                            notificacion notification = new notificacion();
-                            notification.NOTIFICACION_ESTADO = (int)EstadosNotificacion.Creado;
-                            notification.USR_USERNAME = usr.USR_USERNAME;
-                            notification.NOTIFICACION_TITLE = "Notas de Peso en Administración";
-                            notification.NOTIFICACION_MENSAJE = "Ya tiene disponible la nota de peso #" + note.NOTAS_ID + ".";
+                        PlantillaLogic plantillalogic = new PlantillaLogic();
+                        plantilla_notificacion pl = plantillalogic.GetPlantilla("NOTASADMINISTRACION");
 
-                            db.notificaciones.AddObject(notification);
-                        }
+                        NotificacionLogic notificacionlogic = new NotificacionLogic();
+                        notificacionlogic.NotifyUsers("MANT_NOTASPESO", EstadosNotificacion.Creado, pl.PLANTILLAS_ASUNTO, pl.PLANTILLAS_MENSAJE, notaid);
+
+                        //PrivilegioLogic privilegiologic = new Seguridad.PrivilegioLogic();
+                        //List<usuario> usuarios = privilegiologic.GetUsuariosWithPrivilege("MANT_NOTASPESO");
+
+                        //foreach (usuario usr in usuarios)
+                        //{
+                        //    notificacion notification = new notificacion();
+                        //    notification.NOTIFICACION_ESTADO = (int)EstadosNotificacion.Creado;
+                        //    notification.USR_USERNAME = usr.USR_USERNAME;
+                        //    notification.NOTIFICACION_TITLE = "Notas de Peso en Administración";
+                        //    notification.NOTIFICACION_MENSAJE = "Ya tiene disponible la nota de peso #" + note.NOTAS_ID + ".";
+
+                        //    db.notificaciones.AddObject(notification);
+                        //}
                     }
 
                     note.MODIFICADO_POR = MODIFICADO_POR;

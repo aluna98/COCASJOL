@@ -216,7 +216,10 @@ namespace COCASJOL.LOGIC.Utiles
                 if (usePassword)
                 {
                     string fromPassword = System.Configuration.ConfigurationManager.AppSettings.Get("CorreoLocalPassword");
-                    sendMail(mailto, mailfrom, fromPassword, message, subject, host);
+                    string port = System.Configuration.ConfigurationManager.AppSettings.Get("CorreoLocalPort");
+                    string enableSSL = System.Configuration.ConfigurationManager.AppSettings.Get("CorreoLocalUsarSSL");
+
+                    sendMail(mailto, mailfrom, fromPassword, message, subject, host, Convert.ToInt32(port), Convert.ToBoolean(enableSSL));
                 }
                 else
                     sendMail(mailto, mailfrom, message, subject, host);
@@ -240,7 +243,7 @@ namespace COCASJOL.LOGIC.Utiles
             }
             catch (SmtpException)
             {
-                //continue
+                //log & continue
             }
             catch (Exception)
             {
@@ -249,7 +252,7 @@ namespace COCASJOL.LOGIC.Utiles
             }
         }
 
-        private static void sendMail(string to, string from, string fromPassword, string message, string subject, string server)
+        private static void sendMail(string to, string from, string fromPassword, string message, string subject, string server, int port, bool enableSSL)
         {
             try
             {
@@ -258,8 +261,8 @@ namespace COCASJOL.LOGIC.Utiles
                 SmtpClient smtpcliente = new SmtpClient 
                 {
                     Host = server,
-                    Port = 25,
-                    UseDefaultCredentials = false,
+                    Port = port,
+                    EnableSsl = enableSSL,
                     Credentials = new NetworkCredential(from, fromPassword)
                 };
                 smtpcliente.Send(correo);
@@ -267,7 +270,7 @@ namespace COCASJOL.LOGIC.Utiles
             }
             catch (SmtpException)
             {
-                //continue
+                //log & continue
             }
             catch (Exception)
             {

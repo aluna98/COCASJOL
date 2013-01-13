@@ -488,6 +488,11 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     note.MODIFICADO_POR = MODIFICADO_POR;
                     note.FECHA_MODIFICACION = FECHA_MODIFICACION;
 
+                    note.notas_detalles.Clear();
+
+                    foreach (Dictionary<string, string> detalle in Detalles)
+                        note.notas_detalles.Add(new nota_detalle() { DETALLES_PESO = Convert.ToDecimal(detalle["DETALLES_PESO"]), DETALLES_CANTIDAD_SACOS = Convert.ToInt32(detalle["DETALLES_CANTIDAD_SACOS"]) });
+
                     // verificar si hubo cambio de estado
                     if (ESTADOS_NOTA_ID != this.ESTADOS_NOTA_ID)
                     {
@@ -531,25 +536,28 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                         }
 
                         // notificar a usuarios
-                        PrivilegioLogic privilegiologic = new Seguridad.PrivilegioLogic();
-                        List<usuario> usuarios = privilegiologic.GetUsuariosWithPrivilege("MANT_NOTASPESOENCATACION");
+                        int[] notaid = { note.NOTAS_ID };
 
-                        foreach (usuario usr in usuarios)
-                        {
-                            notificacion notification = new notificacion();
-                            notification.NOTIFICACION_ESTADO = (int)EstadosNotificacion.Creado;
-                            notification.USR_USERNAME = usr.USR_USERNAME;
-                            notification.NOTIFICACION_TITLE = "Notas de Peso en Catación";
-                            notification.NOTIFICACION_MENSAJE = "Ya tiene disponible la nota de peso #" + note.NOTAS_ID + ".";
+                        PlantillaLogic plantillalogic = new PlantillaLogic();
+                        plantilla_notificacion pl = plantillalogic.GetPlantilla("NOTASCATACION");
 
-                            db.notificaciones.AddObject(notification);
-                        }
+                        NotificacionLogic notificacionlogic = new NotificacionLogic();
+                        notificacionlogic.NotifyUsers("MANT_NOTASPESOENCATACION", EstadosNotificacion.Creado, pl.PLANTILLAS_ASUNTO, pl.PLANTILLAS_MENSAJE, notaid);
+
+                        //PrivilegioLogic privilegiologic = new Seguridad.PrivilegioLogic();
+                        //List<usuario> usuarios = privilegiologic.GetUsuariosWithPrivilege("MANT_NOTASPESOENCATACION");
+
+                        //foreach (usuario usr in usuarios)
+                        //{
+                        //    notificacion notification = new notificacion();
+                        //    notification.NOTIFICACION_ESTADO = (int)EstadosNotificacion.Creado;
+                        //    notification.USR_USERNAME = usr.USR_USERNAME;
+                        //    notification.NOTIFICACION_TITLE = "Notas de Peso en Catación";
+                        //    notification.NOTIFICACION_MENSAJE = "Ya tiene disponible la nota de peso #" + note.NOTAS_ID + ".";
+
+                        //    db.notificaciones.AddObject(notification);
+                        //}
                     }
-
-                    note.notas_detalles.Clear();
-
-                    foreach (Dictionary<string, string> detalle in Detalles)
-                        note.notas_detalles.Add(new nota_detalle() { DETALLES_PESO = Convert.ToDecimal(detalle["DETALLES_PESO"]), DETALLES_CANTIDAD_SACOS = Convert.ToInt32(detalle["DETALLES_CANTIDAD_SACOS"]) });
 
                     db.SaveChanges();
                 }

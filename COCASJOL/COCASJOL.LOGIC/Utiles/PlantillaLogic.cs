@@ -116,6 +116,26 @@ namespace COCASJOL.LOGIC.Utiles
             }
         }
 
+        public plantilla_notificacion GetPlantilla(string PLANTILLAS_LLAVE)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    EntityKey k = new EntityKey("colinasEntities.plantillas_notificaciones", "PLANTILLAS_LLAVE", PLANTILLAS_LLAVE);
+                    var pl = db.GetObjectByKey(k);
+                    plantilla_notificacion plantilla = (plantilla_notificacion)pl;
+
+                    return plantilla;
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
         #endregion
 
         #region UPDATE

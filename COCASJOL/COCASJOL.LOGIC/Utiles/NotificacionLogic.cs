@@ -180,5 +180,38 @@ namespace COCASJOL.LOGIC.Utiles
         }
 
         #endregion
+
+        public void NotifyUsers(string PRIVS_LLAVE, EstadosNotificacion estado, string titulo, string mensaje, params object[] mensajeParams)
+        {
+            try
+            {
+                Seguridad.PrivilegioLogic privilegiologic = new Seguridad.PrivilegioLogic();
+                List<usuario> usuarios = privilegiologic.GetUsuariosWithPrivilege(PRIVS_LLAVE);
+
+                StringBuilder mensajeBuilder = new StringBuilder();
+                string mensajeFormateado = mensajeBuilder.AppendFormat(mensaje, mensajeParams).ToString();
+
+                using (var db = new colinasEntities())
+                {
+                    foreach (usuario usr in usuarios)
+                    {
+                        notificacion notification = new notificacion();
+                        notification.NOTIFICACION_ESTADO = (int)estado;
+                        notification.USR_USERNAME = usr.USR_USERNAME;
+                        notification.NOTIFICACION_TITLE = titulo; //"Notas de Peso en Catación";
+                        notification.NOTIFICACION_MENSAJE = mensajeFormateado ;  //"Ya tiene disponible la nota de peso #" + note.NOTAS_ID + ".";
+
+                        db.notificaciones.AddObject(notification);
+                    }
+
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
     }
 }
