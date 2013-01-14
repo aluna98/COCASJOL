@@ -22,7 +22,7 @@ namespace COCASJOL.LOGIC.Productos
                 {
                     db.tipos_productos.MergeOption = MergeOption.NoTracking;
 
-                    return db.tipos_productos.ToList<tipo_producto>();
+                    return db.tipos_productos.OrderBy(tp => tp.TIPOS_PROD_NOMBRE).ToList<tipo_producto>();
                 }
             }
             catch (Exception)
@@ -58,7 +58,7 @@ namespace COCASJOL.LOGIC.Productos
                                 (default(DateTime) == FECHA_MODIFICACION ? true : tprods.FECHA_MODIFICACION == FECHA_MODIFICACION)
                                 select tprods;
 
-                    return query.ToList<tipo_producto>();
+                    return query.OrderBy(tp => tp.TIPOS_PROD_NOMBRE).OrderByDescending(tp => tp.FECHA_MODIFICACION).ToList<tipo_producto>();
                 }
             }
             catch (Exception)

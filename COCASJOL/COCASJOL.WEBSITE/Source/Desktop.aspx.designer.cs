@@ -643,6 +643,42 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.Window AboutWin;
         
         /// <summary>
+        /// WebAssemblyTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label WebAssemblyTitle;
+        
+        /// <summary>
+        /// WebAssemblyVersion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label WebAssemblyVersion;
+        
+        /// <summary>
+        /// LogicAssemblyTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label LogicAssemblyTitle;
+        
+        /// <summary>
+        /// LogicAssemblyVersion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label LogicAssemblyVersion;
+        
+        /// <summary>
         /// scUsuariosTooltip control.
         /// </summary>
         /// <remarks>

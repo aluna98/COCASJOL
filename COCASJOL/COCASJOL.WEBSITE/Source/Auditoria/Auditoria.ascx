@@ -9,10 +9,13 @@
             if ( PageX != undefined )
             {
                 PageX.showAudit = function () {
-                var record = this.getRecord();
-                if ( record != undefined )
-                    showAudit(record.data);
+                    var record = Grid.getSelectionModel().getSelected();
+                    var index = Grid.store.indexOf(record);
+                    this.setIndex(index);
+                    var record = this.getRecord();
 
+                    if ( record != undefined )
+                        showAudit(record.data);
                 };
             }
             if ( Grid != undefined ) {

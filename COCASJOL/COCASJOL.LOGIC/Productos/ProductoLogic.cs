@@ -14,7 +14,7 @@ namespace COCASJOL.LOGIC.Productos
 
         #region Select
 
-        public IQueryable GetProductos()
+        public List<producto> GetProductos()
         {
             try
             {
@@ -22,7 +22,7 @@ namespace COCASJOL.LOGIC.Productos
                 {
                     db.productos.MergeOption = MergeOption.NoTracking;
 
-                    return db.productos;
+                    return db.productos.Include("tipos_productos").OrderBy(p => p.PRODUCTOS_NOMBRE).ToList<producto>();
                 }
             }
             catch (Exception)
@@ -65,7 +65,7 @@ namespace COCASJOL.LOGIC.Productos
                                 (default(DateTime) == FECHA_MODIFICACION ? true : prods.FECHA_MODIFICACION == FECHA_MODIFICACION)
                                 select prods;
 
-                    return query.ToList<producto>();
+                    return query.OrderBy(p => p.PRODUCTOS_NOMBRE).OrderByDescending(p => p.FECHA_MODIFICACION).ToList<producto>();
                 }
             }
             catch (Exception)

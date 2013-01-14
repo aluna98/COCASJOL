@@ -154,8 +154,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
         {
             try
             {
-                UsuarioLogic usuariologica = new UsuarioLogic();
-
+                string loggeduser = this.LoggedUserHdn.Text;
                 string user = this.EditUsernameTxt.Text;
 
                 List<int> roles = new List<int>();
@@ -165,7 +164,8 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                     roles.Add(Convert.ToInt32(row.RecordID));
                 }
 
-                usuariologica.EliminarRoles(user, roles);
+                UsuarioLogic usuariologica = new UsuarioLogic();
+                usuariologica.EliminarRoles(user, roles, loggeduser);
 
                 this.RolesDeUsuarioSelectionM.ClearSelections();
             }
@@ -199,6 +199,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
         {
             try
             {
+                string loggeduser = this.LoggedUserHdn.Text;
                 string user = this.EditUsernameTxt.Text;
 
                 List<int> roles = new List<int>();
@@ -209,7 +210,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                 }
 
                 UsuarioLogic usuariologica = new UsuarioLogic();
-                usuariologica.InsertarRoles(user, roles);
+                usuariologica.InsertarRoles(user, roles, loggeduser);
 
                 //this.RolesNoDeUsuarioSelectionM.ClearSelections();
             }

@@ -30,7 +30,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                                 (n.ESTADOS_NOTA_ID == this.ESTADOS_NOTA_ID)
                                 select n;
 
-                    return query.ToList<nota_de_peso>();
+                    return query.OrderBy(n => n.SOCIOS_ID).ToList<nota_de_peso>();
                 }
             }
             catch (Exception)
@@ -136,7 +136,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                             inventario_cafe_de_socio asocInventoryAnterior = (inventario_cafe_de_socio)invCafSocAnterior;
                             asocInventoryAnterior.INVENTARIO_CANTIDAD -= note.NOTAS_PESO_TOTAL_RECIBIDO;
                             asocInventoryAnterior.MODIFICADO_POR = MODIFICADO_POR;
-                            asocInventoryAnterior.FECHA_MODIFICACION = DateTime.Now;
+                            asocInventoryAnterior.FECHA_MODIFICACION = DateTime.Today;
                         }
 
                         /* --------Modificar Inventario de Café Actual-------- */
@@ -161,7 +161,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                             asocInventory.INVENTARIO_CANTIDAD += note.NOTAS_PESO_TOTAL_RECIBIDO;
                             asocInventory.MODIFICADO_POR = MODIFICADO_POR;
-                            asocInventory.FECHA_MODIFICACION = DateTime.Now;
+                            asocInventory.FECHA_MODIFICACION = DateTime.Today;
                         }
                         else
                         {
@@ -171,7 +171,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                             asocInventory.CLASIFICACIONES_CAFE_ID = note.CLASIFICACIONES_CAFE_ID;
                             asocInventory.INVENTARIO_CANTIDAD = note.NOTAS_PESO_TOTAL_RECIBIDO;
                             asocInventory.CREADO_POR = asocInventory.MODIFICADO_POR = MODIFICADO_POR;
-                            asocInventory.FECHA_CREACION = DateTime.Now;
+                            asocInventory.FECHA_CREACION = DateTime.Today;
                             asocInventory.FECHA_MODIFICACION = asocInventory.FECHA_CREACION;
 
                             db.inventario_cafe_de_socio.AddObject(asocInventory);

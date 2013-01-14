@@ -27,7 +27,7 @@ namespace COCASJOL.LOGIC.Utiles
             {
                 using (var db = new colinasEntities())
                 {
-                    return db.notificaciones.Where(n => n.NOTIFICACION_ESTADO != (int)EstadosNotificacion.Leido).ToList<notificacion>();
+                    return db.notificaciones.Where(n => n.NOTIFICACION_ESTADO != (int)EstadosNotificacion.Leido).OrderBy(nt => nt.NOTIFICACION_FECHA).ToList<notificacion>();
                 }
             }
             catch (Exception)
@@ -49,7 +49,7 @@ namespace COCASJOL.LOGIC.Utiles
 
                     usuario user = (usuario)u;
 
-                    return user.notificaciones.ToList<notificacion>();
+                    return user.notificaciones.OrderByDescending(nt => nt.NOTIFICACION_FECHA).ToList<notificacion>();
                 }
             }
             catch (Exception)

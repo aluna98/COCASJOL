@@ -24,7 +24,7 @@ namespace COCASJOL.LOGIC.Aportaciones
                                 where a.socios.SOCIOS_ESTATUS == 1
                                 select a;
 
-                    return query.ToList<aportacion_socio>();
+                    return query.OrderBy(a => a.SOCIOS_ID).ToList<aportacion_socio>();
                 }
             }
             catch (Exception)
@@ -56,7 +56,7 @@ namespace COCASJOL.LOGIC.Aportaciones
                                 (default(DateTime) == FECHA_MODIFICACION ? true : ap.FECHA_MODIFICACION == FECHA_MODIFICACION)
                                 select ap;
 
-                    return query.ToList<aportacion_socio>();
+                    return query.OrderBy(a => a.SOCIOS_ID).OrderByDescending(a => a.FECHA_MODIFICACION).ToList<aportacion_socio>();
                 }
             }
             catch (Exception)

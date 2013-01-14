@@ -22,7 +22,7 @@ namespace COCASJOL.LOGIC.Inventario
                 {
                     db.inventario_cafe_de_socio.MergeOption = MergeOption.NoTracking;
 
-                    return db.inventario_cafe_de_socio.Include("socios").Include("clasificaciones_cafe").ToList<inventario_cafe_de_socio>();
+                    return db.inventario_cafe_de_socio.Include("socios").Include("clasificaciones_cafe").OrderBy(ic => ic.SOCIOS_ID).ToList<inventario_cafe_de_socio>();
                 }
             }
             catch (Exception)
@@ -59,7 +59,7 @@ namespace COCASJOL.LOGIC.Inventario
                                 (default(DateTime) == FECHA_MODIFICACION ? true : invCafeSocio.FECHA_MODIFICACION == FECHA_MODIFICACION)
                                 select invCafeSocio;
 
-                    return query.ToList<inventario_cafe_de_socio>();
+                    return query.OrderBy(ic => ic.SOCIOS_ID).OrderByDescending(ic => ic.FECHA_MODIFICACION).ToList<inventario_cafe_de_socio>();
                 }
             }
             catch (Exception)

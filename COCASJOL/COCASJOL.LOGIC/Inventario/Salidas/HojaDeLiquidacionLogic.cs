@@ -26,7 +26,7 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                                 where l.socios.SOCIOS_ESTATUS == 1
                                 select l;
 
-                    return query.ToList<liquidacion>();
+                    return query.OrderBy(h => h.SOCIOS_ID).ToList<liquidacion>();
                 }
             }
             catch (Exception)
@@ -122,7 +122,7 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                                 (default(DateTime) == FECHA_MODIFICACION                ? true : hojaliq.FECHA_MODIFICACION == FECHA_MODIFICACION)
                                 select hojaliq;
 
-                    return query.ToList<liquidacion>();
+                    return query.OrderBy(h => h.SOCIOS_ID).OrderByDescending(h => h.FECHA_MODIFICACION).OrderByDescending(h => h.LIQUIDACIONES_FECHA).ToList<liquidacion>();
                 }
             }
             catch (Exception)
@@ -243,7 +243,7 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
 
                     asocInventory.INVENTARIO_CANTIDAD -= hojaliquidacion.LIQUIDACIONES_VALOR_TOTAL;
                     asocInventory.MODIFICADO_POR = MODIFICADO_POR;
-                    asocInventory.FECHA_MODIFICACION = DateTime.Now;
+                    asocInventory.FECHA_MODIFICACION = DateTime.Today;
 
                     db.SaveChanges();
                 }

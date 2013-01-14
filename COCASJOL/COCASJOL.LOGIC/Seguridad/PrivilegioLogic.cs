@@ -14,13 +14,15 @@ namespace COCASJOL.LOGIC.Seguridad
 
         #region Select
 
-        public IQueryable GetPrivilegios()
+        public List<privilegio> GetPrivilegios()
         {
             try
             {
                 using (var db = new colinasEntities())
                 {
-                    return db.privilegios;
+                    db.productos.MergeOption = MergeOption.NoTracking;
+
+                    return db.privilegios.OrderBy(p => p.PRIV_LLAVE).ToList<privilegio>();
                 }
             }
             catch (Exception ex)
@@ -57,7 +59,7 @@ namespace COCASJOL.LOGIC.Seguridad
                                 (default(DateTime) == FECHA_MODIFICACION ? true : privs.FECHA_MODIFICACION == FECHA_MODIFICACION)
                                 select privs;
 
-                    return query.ToList<privilegio>();
+                    return query.OrderBy(p => p.PRIV_LLAVE).ToList<privilegio>();
                 }
 
             }

@@ -14,13 +14,15 @@ namespace COCASJOL.LOGIC.Seguridad
          
         #region Select
 
-        public IQueryable GetRoles()
+        public List<rol> GetRoles()
         {
             try
             {
                 using (var db = new colinasEntities())
                 {
-                    return db.roles;
+                    db.roles.MergeOption = MergeOption.NoTracking;
+
+                    return db.roles.OrderBy(r => r.ROL_NOMBRE).ToList<rol>();
                 }
             }
             catch (Exception ex)
@@ -55,7 +57,7 @@ namespace COCASJOL.LOGIC.Seguridad
                                 (default(DateTime) == FECHA_MODIFICACION ? true : rls.FECHA_MODIFICACION == FECHA_MODIFICACION)
                                 select rls;
 
-                    return query.ToList<rol>();
+                    return query.OrderBy(r => r.ROL_NOMBRE).OrderByDescending(r => r.FECHA_MODIFICACION).ToList<rol>();
                 }
 
             }
@@ -106,7 +108,7 @@ namespace COCASJOL.LOGIC.Seguridad
                                  (string.IsNullOrEmpty(PRIV_LLAVE) ? true : privs.PRIV_LLAVE.Contains(PRIV_LLAVE))
                                  select privs;
 
-                    return filter.ToList<privilegio>();
+                    return filter.OrderBy(p => p.PRIV_LLAVE).ToList<privilegio>();
                 }
             }
             catch (Exception ex)
@@ -130,7 +132,7 @@ namespace COCASJOL.LOGIC.Seguridad
                                  (string.IsNullOrEmpty(PRIV_LLAVE) ? true : privs.PRIV_LLAVE.Contains(PRIV_LLAVE))
                                  select privs;
 
-                    return filter.ToList<privilegio>();
+                    return filter.OrderBy(p => p.PRIV_LLAVE).ToList<privilegio>();
                 }
             }
             catch (Exception ex)
@@ -175,7 +177,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
-        public void InsertarPrivilegios(int ROL_ID, List<int> lprivilegios)
+        public void InsertarPrivilegios(int ROL_ID, List<int> lprivilegios, string MODIFICADO_POR)
         {
             try
             {
@@ -194,6 +196,9 @@ namespace COCASJOL.LOGIC.Seguridad
                         privilegio privilegioEntity = (privilegio)p;
                         role.privilegios.Add(privilegioEntity);
                     }
+
+                    role.MODIFICADO_POR = MODIFICADO_POR;
+                    role.FECHA_MODIFICACION = DateTime.Today;
 
                     db.SaveChanges();
                 }
@@ -233,7 +238,7 @@ namespace COCASJOL.LOGIC.Seguridad
                     role.CREADO_POR = CREADO_POR;
                     role.FECHA_CREACION = FECHA_CREACION;
                     role.MODIFICADO_POR = MODIFICADO_POR;
-                    role.FECHA_MODIFICACION = DateTime.Now;
+                    role.FECHA_MODIFICACION = DateTime.Today;
 
                     db.SaveChanges();
                 }
@@ -272,7 +277,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
-        public void EliminarPrivilegios(int ROL_ID, List<int> lprivilegios)
+        public void EliminarPrivilegios(int ROL_ID, List<int> lprivilegios, string MODIFICADO_POR)
         {
             try
             {
@@ -291,6 +296,9 @@ namespace COCASJOL.LOGIC.Seguridad
                         privilegio privilegioEntity = (privilegio)p;
                         role.privilegios.Remove(privilegioEntity);
                     }
+
+                    role.MODIFICADO_POR = MODIFICADO_POR;
+                    role.FECHA_MODIFICACION = DateTime.Today;
 
                     db.SaveChanges();
                 }

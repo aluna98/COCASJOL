@@ -15,6 +15,8 @@ using COCASJOL.LOGIC.Web;
 using COCASJOL.LOGIC.Seguridad;
 using COCASJOL.LOGIC.Utiles;
 
+using System.Reflection;
+
 namespace COCASJOL.WEBSITE
 {
     public partial class Desktop : COCASJOL.LOGIC.Web.COCASJOLBASE
@@ -36,6 +38,12 @@ namespace COCASJOL.WEBSITE
                         NotificacionLogic notificacionlogic = new NotificacionLogic();
                         Application["NotificacionesList"] = notificacionlogic.GetNotificaciones();
                     }
+
+                    this.WebAssemblyTitle.Text = this.WAssemblyTitle;
+                    this.WebAssemblyVersion.Text = this.WAssemblyVersion;
+
+                    this.LogicAssemblyTitle.Text = this.LAssemblyTitle;
+                    this.LogicAssemblyVersion.Text = this.LAssemblyVersion;
                 }
 
                 string loggedUser = Session["username"] as string;
@@ -323,5 +331,59 @@ namespace COCASJOL.WEBSITE
                 throw;
             }
         }
+
+        #region About
+
+        public string WAssemblyTitle
+        {
+            get
+            {
+                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
+                if (attributes.Length > 0)
+                {
+                    AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0];
+                    if (titleAttribute.Title != "")
+                    {
+                        return titleAttribute.Title;
+                    }
+                }
+                return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
+            }
+        }
+
+        public string WAssemblyVersion
+        {
+            get
+            {
+                return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            }
+        }
+
+        public string LAssemblyTitle
+        {
+            get
+            {
+                object[] attributes = Assembly.LoadFrom(Server.MapPath("~/bin/COCASJOL.LOGIC.dll")).GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
+                if (attributes.Length > 0)
+                {
+                    AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0];
+                    if (titleAttribute.Title != "")
+                    {
+                        return titleAttribute.Title;
+                    }
+                }
+                return System.IO.Path.GetFileNameWithoutExtension(Assembly.LoadFrom(Server.MapPath("~/bin/COCASJOL.LOGIC.dll")).CodeBase);
+            }
+        }
+
+        public string LAssemblyVersion
+        {
+            get
+            {
+                return Assembly.LoadFrom(Server.MapPath("~/bin/COCASJOL.LOGIC.dll")).GetName().Version.ToString();
+            }
+        }
+
+        #endregion
     }
 }

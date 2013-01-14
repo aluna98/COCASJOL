@@ -67,6 +67,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
         {
             try
             {
+                string loggeduser = this.LoggedUserHdn.Text;
                 RolLogic rollogic = new RolLogic();
 
                 int rol_id = Convert.ToInt32(this.EditIdTxt.Text);
@@ -78,9 +79,9 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                     privs.Add(Convert.ToInt32(row.RecordID));
                 }
 
-                rollogic.EliminarPrivilegios(rol_id, privs);
+                rollogic.EliminarPrivilegios(rol_id, privs, loggeduser);
 
-                //this.PrivilegiosDeRolSelectionM.ClearSelections();
+                this.PrivilegiosDeRolSelectionM.ClearSelections();
             }
             catch (Exception)
             {
@@ -112,6 +113,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
         {
             try
             {
+                string loggeduser = this.LoggedUserHdn.Text;
                 int rol_id = Convert.ToInt32(this.EditIdTxt.Text);
 
                 List<int> privs = new List<int>();
@@ -123,9 +125,9 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
 
 
                 RolLogic rollogic = new RolLogic();
-                rollogic.InsertarPrivilegios(rol_id, privs);
+                rollogic.InsertarPrivilegios(rol_id, privs, loggeduser);
 
-                this.PrivilegiosNoDeRolSelectionM.ClearSelections();
+                //this.PrivilegiosNoDeRolSelectionM.ClearSelections();
             }
             catch (Exception)
             {

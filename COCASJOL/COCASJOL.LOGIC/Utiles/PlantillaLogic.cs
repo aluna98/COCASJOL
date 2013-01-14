@@ -14,7 +14,7 @@ namespace COCASJOL.LOGIC.Utiles
     {
         public PlantillaLogic() { }
 
-        #region SELECT
+        #region Select
 
         public List<object> GetFormatKeys(string PLANTILLAS_LLAVE)
         {
@@ -70,7 +70,7 @@ namespace COCASJOL.LOGIC.Utiles
             {
                 using (var db = new colinasEntities())
                 {
-                    return db.plantillas_notificaciones.ToList<plantilla_notificacion>();
+                    return db.plantillas_notificaciones.OrderBy(pl => pl.PLANTILLAS_LLAVE).ToList<plantilla_notificacion>();
                 }
             }
             catch (Exception)
@@ -106,7 +106,7 @@ namespace COCASJOL.LOGIC.Utiles
                                 (default(DateTime) == FECHA_MODIFICACION ? true : p.FECHA_MODIFICACION == FECHA_MODIFICACION)
                                 select p;
 
-                    return query.ToList<plantilla_notificacion>();
+                    return query.OrderBy(pl => pl.PLANTILLAS_LLAVE).OrderByDescending(pl => pl.FECHA_MODIFICACION).ToList<plantilla_notificacion>();
                 }
             }
             catch (Exception)
@@ -138,7 +138,7 @@ namespace COCASJOL.LOGIC.Utiles
 
         #endregion
 
-        #region UPDATE
+        #region Update
 
         public void ActualizarPlantilla
             ( string PLANTILLAS_LLAVE,

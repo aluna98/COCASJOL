@@ -219,6 +219,15 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     note.NOTAS_SACOS_RETENIDOS = NOTAS_SACOS_RETENIDOS;
                     note.CREADO_POR = CREADO_POR;
                     note.FECHA_CREACION = FECHA_CREACION;
+                    note.MODIFICADO_POR = CREADO_POR;
+                    note.FECHA_MODIFICACION = FECHA_CREACION;
+
+                    note.notas_detalles.Clear();
+
+                    foreach (Dictionary<string, string> detalle in Detalles)
+                        note.notas_detalles.Add(new nota_detalle() { DETALLES_PESO = Convert.ToDecimal(detalle["DETALLES_PESO"]), DETALLES_CANTIDAD_SACOS = Convert.ToInt32(detalle["DETALLES_CANTIDAD_SACOS"]) });
+
+                    db.notas_de_peso.AddObject(note);
 
                     // verificar si hubo cambio de estado
                     if (note.ESTADOS_NOTA_ID != this.ESTADOS_NOTA_ID)
@@ -243,7 +252,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                             asocInventory.INVENTARIO_CANTIDAD += note.NOTAS_PESO_TOTAL_RECIBIDO;
                             asocInventory.MODIFICADO_POR = CREADO_POR;
-                            asocInventory.FECHA_MODIFICACION = DateTime.Now;
+                            asocInventory.FECHA_MODIFICACION = DateTime.Today;
                         }
                         else
                         {
@@ -253,34 +262,35 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                             asocInventory.CLASIFICACIONES_CAFE_ID = note.CLASIFICACIONES_CAFE_ID;
                             asocInventory.INVENTARIO_CANTIDAD = note.NOTAS_PESO_TOTAL_RECIBIDO;
                             asocInventory.CREADO_POR = asocInventory.MODIFICADO_POR = CREADO_POR;
-                            asocInventory.FECHA_CREACION = DateTime.Now;
-                            asocInventory.FECHA_MODIFICACION = asocInventory.FECHA_CREACION;
+                            asocInventory.FECHA_CREACION = FECHA_CREACION;
+                            asocInventory.FECHA_MODIFICACION = FECHA_CREACION;
 
                             db.inventario_cafe_de_socio.AddObject(asocInventory);
                         }
 
                         // notificar a usuarios
-                        PrivilegioLogic privilegiologic = new Seguridad.PrivilegioLogic();
-                        List<usuario> usuarios = privilegiologic.GetUsuariosWithPrivilege("MANT_NOTASPESOENCATACION");
+                        int[] notaid = { note.NOTAS_ID };
 
-                        foreach (usuario usr in usuarios)
-                        {
-                            notificacion notification = new notificacion();
-                            notification.NOTIFICACION_ESTADO = (int)EstadosNotificacion.Creado;
-                            notification.USR_USERNAME = usr.USR_USERNAME;
-                            notification.NOTIFICACION_TITLE = "Notas de Peso en Catación";
-                            notification.NOTIFICACION_MENSAJE = "Ya tiene disponible la nota de peso #" + note.NOTAS_ID + ".";
+                        PlantillaLogic plantillalogic = new PlantillaLogic();
+                        plantilla_notificacion pl = plantillalogic.GetPlantilla("NOTASCATACION");
 
-                            db.notificaciones.AddObject(notification);
-                        }
+                        NotificacionLogic notificacionlogic = new NotificacionLogic();
+                        notificacionlogic.NotifyUsers("MANT_NOTASPESOENCATACION", EstadosNotificacion.Creado, pl.PLANTILLAS_ASUNTO, pl.PLANTILLAS_MENSAJE, notaid);
+
+                        //PrivilegioLogic privilegiologic = new Seguridad.PrivilegioLogic();
+                        //List<usuario> usuarios = privilegiologic.GetUsuariosWithPrivilege("MANT_NOTASPESOENCATACION");
+
+                        //foreach (usuario usr in usuarios)
+                        //{
+                        //    notificacion notification = new notificacion();
+                        //    notification.NOTIFICACION_ESTADO = (int)EstadosNotificacion.Creado;
+                        //    notification.USR_USERNAME = usr.USR_USERNAME;
+                        //    notification.NOTIFICACION_TITLE = "Notas de Peso en Catación";
+                        //    notification.NOTIFICACION_MENSAJE = "Ya tiene disponible la nota de peso #" + note.NOTAS_ID + ".";
+
+                        //    db.notificaciones.AddObject(notification);
+                        //}
                     }
-
-                    note.notas_detalles.Clear();
-
-                    foreach (Dictionary<string, string> detalle in Detalles)
-                        note.notas_detalles.Add(new nota_detalle() { DETALLES_PESO = Convert.ToDecimal(detalle["DETALLES_PESO"]), DETALLES_CANTIDAD_SACOS = Convert.ToInt32(detalle["DETALLES_CANTIDAD_SACOS"]) });
-
-                    db.notas_de_peso.AddObject(note);
 
                     db.SaveChanges();
                 }
@@ -519,7 +529,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                             asocInventory.INVENTARIO_CANTIDAD += note.NOTAS_PESO_TOTAL_RECIBIDO;
                             asocInventory.MODIFICADO_POR = MODIFICADO_POR;
-                            asocInventory.FECHA_MODIFICACION = DateTime.Now;
+                            asocInventory.FECHA_MODIFICACION = DateTime.Today;
                         }
                         else
                         {
@@ -529,8 +539,8 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                             asocInventory.CLASIFICACIONES_CAFE_ID = note.CLASIFICACIONES_CAFE_ID;
                             asocInventory.INVENTARIO_CANTIDAD = note.NOTAS_PESO_TOTAL_RECIBIDO;
                             asocInventory.CREADO_POR = asocInventory.MODIFICADO_POR = MODIFICADO_POR;
-                            asocInventory.FECHA_CREACION = DateTime.Now;
-                            asocInventory.FECHA_MODIFICACION = asocInventory.FECHA_CREACION;
+                            asocInventory.FECHA_CREACION = FECHA_MODIFICACION;
+                            asocInventory.FECHA_MODIFICACION = FECHA_MODIFICACION;
 
                             db.inventario_cafe_de_socio.AddObject(asocInventory);
                         }

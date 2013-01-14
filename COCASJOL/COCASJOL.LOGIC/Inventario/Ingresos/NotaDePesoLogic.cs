@@ -41,7 +41,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                                 where n.socios.SOCIOS_ESTATUS == 1
                                 select n;
 
-                    return query.ToList<nota_de_peso>();
+                    return query.OrderBy(n => n.SOCIOS_ID).ToList<nota_de_peso>();
                 }
             }
             catch (Exception)
@@ -63,7 +63,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                     nota_de_peso note = (nota_de_peso)n;
 
-                    return note.notas_detalles.ToList<nota_detalle>();
+                    return note.notas_detalles.OrderByDescending(nd => nd.DETALLES_PESO).ToList<nota_detalle>();
                 }
             }
             catch (Exception)
@@ -139,7 +139,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                                 (default(DateTime) == FECHA_MODIFICACION ? true : notasPeso.FECHA_MODIFICACION == FECHA_MODIFICACION)
                                 select notasPeso;
 
-                    return query.ToList<nota_de_peso>();
+                    return query.OrderBy(n => n.SOCIOS_ID).OrderByDescending(n => n.FECHA_MODIFICACION).OrderByDescending(n => n.NOTAS_FECHA).ToList<nota_de_peso>();
                 }
             }
             catch (Exception)

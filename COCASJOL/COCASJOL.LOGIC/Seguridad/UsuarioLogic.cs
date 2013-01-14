@@ -14,7 +14,7 @@ namespace COCASJOL.LOGIC.Seguridad
 
         #region Select
 
-        public IQueryable GetUsuarios()
+        public List<usuario> GetUsuarios()
         {
             try
             {
@@ -22,7 +22,7 @@ namespace COCASJOL.LOGIC.Seguridad
                 {
                     db.usuarios.MergeOption = MergeOption.NoTracking;//optimizacion
 
-                    return db.usuarios;
+                    return db.usuarios.OrderBy(u => u.USR_USERNAME).ToList<usuario>();
                 }
             }
             catch (Exception ex)
@@ -69,7 +69,7 @@ namespace COCASJOL.LOGIC.Seguridad
                                 (default(DateTime) == FECHA_MODIFICACION ? true : usr.FECHA_MODIFICACION == FECHA_MODIFICACION)
                                 select usr;
 
-                    return query.ToList<usuario>();
+                    return query.OrderBy(u => u.USR_USERNAME).OrderByDescending(u => u.FECHA_MODIFICACION).ToList<usuario>();
                 }
 
             }
@@ -102,7 +102,7 @@ namespace COCASJOL.LOGIC.Seguridad
                                  (string.IsNullOrEmpty(ROL_NOMBRE) ? true : rls.ROL_NOMBRE.Contains(ROL_NOMBRE))
                                  select rls;
 
-                    return filter.ToList<rol>();
+                    return filter.OrderBy(r => r.ROL_NOMBRE).ToList<rol>();
                 }
             }
             catch (Exception ex)
@@ -127,7 +127,7 @@ namespace COCASJOL.LOGIC.Seguridad
                                  (string.IsNullOrEmpty(ROL_NOMBRE) ? true : rls.ROL_NOMBRE.Contains(ROL_NOMBRE))
                                  select rls;
 
-                    return filter.ToList<rol>();
+                    return filter.OrderBy(r => r.ROL_NOMBRE).ToList<rol>();
                 }
             }
             catch (Exception ex)
@@ -253,7 +253,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
-        public void InsertarRoles(string USR_USERNAME, List<int> roles)
+        public void InsertarRoles(string USR_USERNAME, List<int> roles, string MODIFICADO_POR)
         {
             try
             {
@@ -272,6 +272,9 @@ namespace COCASJOL.LOGIC.Seguridad
                         rol rolEntity = (rol)r;
                         user.roles.Add(rolEntity);
                     }
+
+                    user.MODIFICADO_POR = MODIFICADO_POR;
+                    user.FECHA_MODIFICACION = DateTime.Today;
 
                     db.SaveChanges();
                 }
@@ -319,10 +322,8 @@ namespace COCASJOL.LOGIC.Seguridad
                     user.USR_CORREO = USR_CORREO;
                     user.USR_PUESTO = USR_PUESTO;
                     user.USR_PASSWORD = USR_PASSWORD;
-                    user.CREADO_POR = CREADO_POR;
-                    user.FECHA_CREACION = FECHA_CREACION;
                     user.MODIFICADO_POR = MODIFICADO_POR;
-                    user.FECHA_MODIFICACION = DateTime.Now;
+                    user.FECHA_MODIFICACION = DateTime.Today;
 
                     db.SaveChanges();
                 }
@@ -347,7 +348,7 @@ namespace COCASJOL.LOGIC.Seguridad
 
                     user.USR_PASSWORD = USR_PASSWORD;
                     user.MODIFICADO_POR = MODIFICADO_POR;
-                    user.FECHA_MODIFICACION = DateTime.Now;
+                    user.FECHA_MODIFICACION = DateTime.Today;
 
                     db.SaveChanges();
                 }
@@ -383,7 +384,7 @@ namespace COCASJOL.LOGIC.Seguridad
                     user.USR_SEGUNDO_APELLIDO = USR_SEGUNDO_APELLIDO;
                     user.USR_CORREO = USR_CORREO;
                     user.MODIFICADO_POR = MODIFICADO_POR;
-                    user.FECHA_MODIFICACION = DateTime.Now;
+                    user.FECHA_MODIFICACION = DateTime.Today;
 
                     db.SaveChanges();
                 }
@@ -421,7 +422,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
-        public void EliminarRoles(string USR_USERNAME, List<int> roles)
+        public void EliminarRoles(string USR_USERNAME, List<int> roles, string MODIFICADO_POR)
         {
             try
             {
@@ -440,6 +441,9 @@ namespace COCASJOL.LOGIC.Seguridad
                         rol rolEntity = (rol)r;
                         user.roles.Remove(rolEntity);
                     }
+
+                    user.MODIFICADO_POR = MODIFICADO_POR;
+                    user.FECHA_MODIFICACION = DateTime.Today;
 
                     db.SaveChanges();
                 }

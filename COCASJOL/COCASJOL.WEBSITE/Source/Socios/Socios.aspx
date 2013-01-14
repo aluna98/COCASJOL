@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Socios.aspx.cs" Inherits="COCASJOL.WEBSITE.Socios.Socios" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
+<%@ Register Src="~/Source/Auditoria/Auditoria.ascx" TagPrefix="aud" TagName="Auditoria" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -27,7 +28,7 @@
          var ConfirmDeleteBen = "Seguro desea Eliminar el Beneficiario?";
          var Confirmacion = "Se ha finalizado correctamente";
 
-         var SocioX = {
+         var PageX = {
              _index: 0, _indexBen: 0,
 
              setReferences: function () {
@@ -324,9 +325,12 @@
   <form id="form1" runat="server">
     <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Slate">
         <Listeners>
-            <DocumentReady Handler="SocioX.setReferences()" />
+            <DocumentReady Handler="PageX.setReferences()" />
         </Listeners>
     </ext:ResourceManager>
+
+    <aud:Auditoria runat="server" ID="AudWin" />
+
     <div>
         <ext:Hidden ID="LoggedUserHdn" runat="server" >
         </ext:Hidden>
@@ -361,6 +365,11 @@
                                                 <ext:RecordField Name="SOCIOS_ESTATUS">
                                                     <Convert Handler="return value === 1;" />
                                                 </ext:RecordField>
+                                                <ext:RecordField Name="CREADO_POR" />
+                                                <ext:RecordField Name="FECHA_CREACION" Type="Date" />
+                                                <ext:RecordField Name="MODIFICADO_POR" />
+                                                <ext:RecordField Name="FECHA_MODIFICACION" Type="Date" />
+
                                                 <ext:RecordField Name="GENERAL_CARNET_IHCAFE" ServerMapping="socios_generales.GENERAL_CARNET_IHCAFE"/>
                                                 <ext:RecordField Name="GENERAL_ORGANIZACION_SECUNDARIA" ServerMapping="socios_generales.GENERAL_ORGANIZACION_SECUNDARIA" />
                                                 <ext:RecordField Name="GENERAL_NUMERO_CARNET" ServerMapping="socios_generales.GENERAL_NUMERO_CARNET" />
@@ -474,12 +483,12 @@
                                     <Items>
                                         <ext:Button ID="Button1" runat="server" Text="Agregar" Icon="Add">
                                             <Listeners>
-                                                <Click Handler="SocioX.add()" />
+                                                <Click Handler="PageX.add()" />
                                             </Listeners>
                                         </ext:Button>
                                         <ext:Button ID="Button3" runat="server" Text="Editar" Icon="ApplicationEdit">
                                             <Listeners>
-                                                <Click Handler="SocioX.edit()" />
+                                                <Click Handler="PageX.edit()" />
                                             </Listeners>
                                         </ext:Button>
                                         <ext:Button ID="Button2" runat="server" Text="Desactivar" Icon="StatusBusy">
@@ -490,6 +499,12 @@
                                         <ext:Button ID="Button4" runat="server" Text="Activar" Icon="StatusOnline">
                                             <Listeners>
                                                 <Click Handler="CompanyX.DoConfirmEnable()" />
+                                            </Listeners>
+                                        </ext:Button>
+                                        <ext:ToolbarFill ID="ToolbarFill1" runat="server" />
+                                        <ext:Button ID="AuditoriaBtn" runat="server" Text="Auditoria" Icon="Cog">
+                                            <Listeners>
+                                                <Click Handler="PageX.showAudit();" />
                                             </Listeners>
                                         </ext:Button>
                                     </Items>
@@ -645,7 +660,7 @@
                             </BottomBar>
                             <LoadMask ShowMask="true"/>
                             <Listeners>
-                                <RowDblClick Handler="SocioX.edit()"/>
+                                <RowDblClick Handler="PageX.edit()"/>
                             </Listeners>
                         </ext:GridPanel>
                     </Items>
@@ -789,17 +804,17 @@
                                                             <Items>
                                                                 <ext:Button ID="AgregarBeneficiarioBtn" runat="server" Text="Agregar" Icon="CogAdd">
                                                                     <Listeners>
-                                                                        <Click Handler="SocioX.addben()" />
+                                                                        <Click Handler="PageX.addben()" />
                                                                     </Listeners>
                                                                 </ext:Button>
                                                                 <ext:Button ID="EliminarBeneficiarioBtn" runat="server" Text="Eliminar" Icon="CogDelete">
                                                                     <Listeners>
-                                                                        <Click  Handler="SocioX.removeben()" />
+                                                                        <Click  Handler="PageX.removeben()" />
                                                                     </Listeners>
                                                                 </ext:Button>
                                                                 <ext:Button ID="EditarBeneficiarioBtn" runat="server" Text="Editar" Icon="CogEdit" >
                                                                     <Listeners>
-                                                                        <Click Handler="SocioX.editben()" />
+                                                                        <Click Handler="PageX.editben()" />
                                                                     </Listeners>
                                                                 </ext:Button>
                                                             </Items>
@@ -821,17 +836,17 @@
                     <Buttons>
                         <ext:Button ID="EditPreviousBtn" runat="server" Text="Anterior" Icon="PreviousGreen">
                             <Listeners>
-                                <Click Handler="SocioX.previous(); CompanyX.RefrescarBeneficiarios()" />
+                                <Click Handler="PageX.previous(); CompanyX.RefrescarBeneficiarios()" />
                             </Listeners>
                         </ext:Button>
                         <ext:Button ID="EditNextBtn" runat="server" Text="Siguiente" Icon="NextGreen">
                             <Listeners>
-                                <Click Handler="SocioX.next(); CompanyX.RefrescarBeneficiarios()" />
+                                <Click Handler="PageX.next(); CompanyX.RefrescarBeneficiarios()" />
                             </Listeners>
                         </ext:Button>
                         <ext:Button ID="EditGuardarBtn" runat="server" Text="Guardar" Icon="Disk" FormBind="true">
                             <Listeners>
-                                <Click Handler="SocioX.update()" />
+                                <Click Handler="PageX.update()" />
                             </Listeners>
                         </ext:Button>
                     </Buttons>
@@ -925,7 +940,7 @@
                     <Buttons>
                         <ext:Button ID="AddGuardarBtn" runat="server" Text="Crear" Icon="Add" FormBind="true">
                             <Listeners>
-                                <Click Handler="SocioX.insert()" />
+                                <Click Handler="PageX.insert()" />
                             </Listeners>
                         </ext:Button>
                     </Buttons>
@@ -970,7 +985,7 @@
                     <Buttons>
                         <ext:Button ID="AddBenefBtn" runat="server" Text="Crear" Icon="Add" FormBind="true">
                             <Listeners>
-                                <Click Handler="SocioX.insertben()" />
+                                <Click Handler="PageX.insertben()" />
                             </Listeners>
                         </ext:Button>
                     </Buttons>
@@ -1015,7 +1030,7 @@
                     <Buttons>
                         <ext:Button ID="Button5" runat="server" Text="Guardar" Icon="Disk" FormBind="true">
                             <Listeners>
-                                <Click Handler="SocioX.updateben()" />
+                                <Click Handler="PageX.updateben()" />
                             </Listeners>
                         </ext:Button>
                     </Buttons>

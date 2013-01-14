@@ -23,7 +23,7 @@ namespace COCASJOL.LOGIC.Entorno
                 {
                     db.variables_de_entorno.MergeOption = MergeOption.NoTracking;
 
-                    return db.variables_de_entorno.ToList<variable_de_entorno>();
+                    return db.variables_de_entorno.OrderBy(v => v.VARIABLES_NOMBRE).ToList<variable_de_entorno>();
                 }
             }
             catch (Exception)
@@ -49,7 +49,7 @@ namespace COCASJOL.LOGIC.Entorno
                 {
                     db.variables_de_entorno.MergeOption = MergeOption.NoTracking;
 
-                    return db.variables_de_entorno.ToList<variable_de_entorno>();
+                    return db.variables_de_entorno.OrderBy(v => v.VARIABLES_NOMBRE).ToList<variable_de_entorno>();
                 }
             }
             catch (Exception)

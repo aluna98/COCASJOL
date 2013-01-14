@@ -779,6 +779,10 @@
             Hidden="true">
             <Content>
                 Proyecto de Graduación para Ingeniería en Sistemas Computacionales.
+                <ext:Label runat="server" ID="WebAssemblyTitle"></ext:Label> - 
+                <ext:Label runat="server" ID="WebAssemblyVersion"></ext:Label>
+                <ext:Label runat="server" ID="LogicAssemblyTitle"></ext:Label>
+                <ext:Label runat="server" ID="LogicAssemblyVersion"></ext:Label>
             </Content>
         </ext:Window>
 

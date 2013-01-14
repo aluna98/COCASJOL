@@ -49,6 +49,15 @@ namespace COCASJOL.WEBSITE.Socios {
         protected global::Ext.Net.ResourceManager ResourceManager1;
         
         /// <summary>
+        /// AudWin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::COCASJOL.WEBSITE.Source.Auditoria.Auditoria AudWin;
+        
+        /// <summary>
         /// LoggedUserHdn control.
         /// </summary>
         /// <remarks>
@@ -137,6 +146,24 @@ namespace COCASJOL.WEBSITE.Socios {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button Button4;
+        
+        /// <summary>
+        /// ToolbarFill1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolbarFill ToolbarFill1;
+        
+        /// <summary>
+        /// AuditoriaBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button AuditoriaBtn;
         
         /// <summary>
         /// GridView1 control.
