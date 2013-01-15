@@ -40,6 +40,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario {
         protected global::Ext.Net.ResourceManager ResourceManager1;
         
         /// <summary>
+        /// KeyNav1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.KeyNav KeyNav1;
+        
+        /// <summary>
         /// AudWin control.
         /// </summary>
         /// <remarks>

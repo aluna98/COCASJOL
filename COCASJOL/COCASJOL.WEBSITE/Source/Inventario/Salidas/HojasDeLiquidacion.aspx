@@ -225,6 +225,45 @@
                 calendar.clearFecha();
 
                 HojasSt.reload();
+            },
+
+            gridKeyUpEvent: function (sender, e) {
+                var k = e.getKey();
+
+                switch (k) {
+                    case 45: //INSERT
+                        this.add();
+                        break;
+                    case 13: //ENTER
+                        this.edit();
+                        break;
+                    default:
+                        break;
+                }
+
+            },
+
+            navHome: function () {
+                if (Grid.getStore().getTotalCount() == 0)
+                    Grid.getStore().reload();
+                PagingToolbar1.moveFirst();
+            },
+
+            navPrev: function () {
+                if (Grid.getStore().getTotalCount() > 0)
+                    PagingToolbar1.movePrevious();
+            },
+
+            navNext: function () {
+                if (Grid.getStore().getTotalCount() > 0)
+                    if (Grid.getStore().getTotalCount() > (PagingToolbar1.cursor + PagingToolbar1.pageSize))
+                        PagingToolbar1.moveNext();
+            },
+
+            navEnd: function () {
+                if (Grid.getStore().getTotalCount() == 0)
+                    Grid.getStore().reload();
+                PagingToolbar1.moveLast();
             }
         };
     </script>
@@ -237,6 +276,13 @@
                 <DocumentReady Handler="PageX.setReferences();" />
             </Listeners>
         </ext:ResourceManager>
+
+        <ext:KeyNav ID="KeyNav1" runat="server" Target="={document.body}" >
+            <Home Handler="PageX.navHome();" />
+            <PageUp Handler="PageX.navPrev();" />
+            <PageDown Handler="PageX.navNext();" />
+            <End Handler="PageX.navEnd();" />
+        </ext:KeyNav>
 
         <aud:Auditoria runat="server" ID="AudWin" />
 
@@ -366,6 +412,17 @@
                     <Items>
                         <ext:GridPanel ID="HojasGridP" runat="server" AutoExpandColumn="CLASIFICACIONES_CAFE_NOMBRE" Height="300"
                             Title="Hojas de Liquidación" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
+                            <KeyMap>
+                                <ext:KeyBinding>
+                                    <Keys>
+                                        <ext:Key Code="INSERT" />
+                                        <ext:Key Code="ENTER" />
+                                    </Keys>
+                                    <Listeners>
+                                        <Event Handler="PageX.gridKeyUpEvent(this, e);" />
+                                    </Listeners>
+                                </ext:KeyBinding>
+                            </KeyMap>
                             <Store>
                                 <ext:Store ID="HojasSt" runat="server" DataSourceID="HojasDS" AutoSave="true" SkipIdForNewRecords="false" >
                                     <Reader>

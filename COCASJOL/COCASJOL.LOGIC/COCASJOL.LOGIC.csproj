@@ -31,8 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ext.Net">
-      <HintPath>..\Dependencies\Ext.NET.Community.1.5.0\lib\Ext.Net.dll</HintPath>
+    <Reference Include="Ext.Net, Version=1.5.0.0, Culture=neutral, PublicKeyToken=2e12ce3d0176cd87, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Ext.NET.Community.1.6.0\lib\Ext.Net.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\Dependencies\log4net-1.2.11-src\log4net-1.2.11\build\bin\net\2.0\debug\log4net.dll</HintPath>
