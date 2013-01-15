@@ -35,17 +35,13 @@ namespace COCASJOL.WEBSITE
             {
                 if (!X.IsAjaxRequest)
                 {
+                    ConsolidadoDeInventarioDeCafeLogic consolidadoinventariologic = new ConsolidadoDeInventarioDeCafeLogic();
+                    //Application["ReporteConsolidadoDeCafe"] = consolidadoinventariologic.GetReporte();
+
                     ReporteConsolidadoDeCafe reporteConsolidadoDeCafe = Application["ReporteConsolidadoDeCafe"] as ReporteConsolidadoDeCafe;
                     this.TotalIngresadoTxt.Text = reporteConsolidadoDeCafe.TotalIngresado.ToString();
                     this.TotalCompradoTxt.Text = reporteConsolidadoDeCafe.TotalComprado.ToString();
                     this.TotalDepositoTxt.Text = reporteConsolidadoDeCafe.TotalDeposito.ToString();
-                    //ConsolidadoDeInventarioDeCafeLogic ccafelogic = new ConsolidadoDeInventarioDeCafeLogic();
-                    //ReporteConsolidadoDeCafe rptCafe1 = ccafelogic.GetReporte();
-                    
-                    //this.TotalIngresadoTxt.Text = rptCafe1.TotalIngresado.ToString();
-                    //this.TotalCompradoTxt.Text = rptCafe1.TotalComprado.ToString();
-                    //this.TotalDepositoTxt.Text = rptCafe1.TotalDeposito.ToString();
-
 
                     if (Application["NotificacionesList"] == null)
                     {

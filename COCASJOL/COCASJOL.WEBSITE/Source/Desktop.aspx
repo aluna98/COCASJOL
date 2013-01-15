@@ -104,28 +104,28 @@
                                 Ext.get('ux-taskbar').on('contextmenu', function(e){e.stopEvent();e.preventDefault();cmenu.showAt(e.getPoint());});" />
             </Listeners>
             <Content>
-                <ext:Panel 
-                    ID="pnlSample" 
-                    runat="server" 
+                <ext:Panel
+                    ID="pnlSample"
+                    runat="server"
                     Title="Reporte Consolidado de Inventario de Café"
-                    Cls="desktopEl" 
-                    Height="150" 
+                    Cls="desktopEl"
+                    Height="150"
                     Width="400"
                     Padding="5"
                     Collapsible="true">
                     <Items>
                         <ext:BorderLayout ID="BorderLayout1" runat="server" >
                             <Center MarginsSummary="5 5 5 5" >
-                                <ext:FormPanel 
-                                    ID="IngresosFormP" 
-                                    runat="server" 
+                                <ext:FormPanel
+                                    ID="IngresosFormP"
+                                    runat="server"
                                     Title="Ingresos de Café a la Fecha"
                                     Padding="5"
                                     Layout="AnchorLayout">
                                     <Items>
-                                        <ext:TextField runat="server" ID="TotalIngresadoTxt" FieldLabel="Total Ingresado (QQ)" AnchorHorizontal="90%" ReadOnly="true" ></ext:TextField>
-                                        <ext:TextField runat="server" ID="TotalCompradoTxt" FieldLabel="Total Comprado (QQ)" AnchorHorizontal="90%" ReadOnly="true" ></ext:TextField>
-                                        <ext:TextField runat="server" ID="TotalDepositoTxt" FieldLabel="Total Deposito (QQ)" AnchorHorizontal="90%" ReadOnly="true" ></ext:TextField>
+                                        <ext:TextField runat="server" ID="TotalIngresadoTxt" FieldLabel="Total Ingresado (QQ)" AnchorHorizontal="90%" ReadOnly="true" LabelAlign="Right" LabelWidth="150" ></ext:TextField>
+                                        <ext:TextField runat="server" ID="TotalCompradoTxt" FieldLabel="Total Comprado (QQ)" AnchorHorizontal="90%" ReadOnly="true" LabelAlign="Right" LabelWidth="150" ></ext:TextField>
+                                        <ext:TextField runat="server" ID="TotalDepositoTxt" FieldLabel="Total Deposito (QQ)" AnchorHorizontal="90%" ReadOnly="true" LabelAlign="Right" LabelWidth="150" ></ext:TextField>
                                     </Items>
                                 </ext:FormPanel>
                             </Center>

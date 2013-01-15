@@ -50,11 +50,11 @@ namespace COCASJOL.LOGIC.Reportes
             {
                 using (var db = new colinasEntities())
                 {
-                    var queryIngresado = from n in db.notas_de_peso
-                                         select n;
+                    var queryIngresado = (from n in db.notas_de_peso
+                                          select n).ToList();
 
-                    var queryComprado = from l in db.liquidaciones
-                                        select l;
+                    var queryComprado = (from l in db.liquidaciones
+                                        select l).ToList();
 
                     decimal TotalIngresado = queryIngresado.Sum(n => n.NOTAS_PESO_TOTAL_RECIBIDO);
                     decimal TotalComprado = Convert.ToDecimal(queryComprado.Sum(l => l.LIQUIDACIONES_D_TOTAL_DEDUCCIONES));
