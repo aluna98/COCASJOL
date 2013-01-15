@@ -107,52 +107,27 @@
                 <ext:Panel 
                     ID="pnlSample" 
                     runat="server" 
-                    Title="Información del Dia"
+                    Title="Reporte Consolidado de Inventario de Café"
                     Cls="desktopEl" 
-                    Height="240" 
+                    Height="150" 
                     Width="400"
                     Padding="5"
                     Collapsible="true">
                     <Items>
-                        <ext:BorderLayout ID="BorderLayout1" runat="server">
-                            <North Collapsible="false" 
-                                Split="true" 
-                                MarginsSummary="5 5 5 5" >
-                                <ext:Panel ID="Panel8" runat="server" Height="80" Title="Precios de Café" Layout="ColumnLayout" >
-                                    <LayoutConfig>
-                                        <ext:ColumnLayoutConfig FitHeight="true" />
-                                    </LayoutConfig>
-                                    <Items>
-                                        <ext:FieldSet runat="server" ColumnWidth=".33" AnchorHorizontal="100%" LabelAlign="Top">
-                                            <Items>
-                                                <ext:TextField runat="server" ID="PrecioCafeTxt" FieldLabel="Precio $" AnchorHorizontal="100%" ReadOnly="true" ></ext:TextField>
-                                            </Items>
-                                        </ext:FieldSet>
-                                        <ext:FieldSet runat="server" ColumnWidth=".34" LabelAlign="Top">
-                                            <Items>
-                                                <ext:TextField runat="server" ID="PrecioCargaTxt" FieldLabel="Lps Carga" AnchorHorizontal="100%" ReadOnly="true" ></ext:TextField>
-                                            </Items>
-                                        </ext:FieldSet>
-                                        <ext:FieldSet runat="server" ColumnWidth=".33" LabelAlign="Top">
-                                            <Items>
-                                                <ext:DateField runat="server" ID="FechaTxt" FieldLabel="Fecha" AnchorHorizontal="100%" ReadOnly="true" ></ext:DateField>
-                                            </Items>
-                                        </ext:FieldSet>
-                                    </Items>
-                                </ext:Panel>
-                            </North>
-                            <Center MarginsSummary="5 5 5 5">
-                                <ext:Panel 
-                                    ID="Panel5" 
+                        <ext:BorderLayout ID="BorderLayout1" runat="server" >
+                            <Center MarginsSummary="5 5 5 5" >
+                                <ext:FormPanel 
+                                    ID="IngresosFormP" 
                                     runat="server" 
                                     Title="Ingresos de Café a la Fecha"
-                                    Padding="5" Layout="AnchorLayout">
+                                    Padding="5"
+                                    Layout="AnchorLayout">
                                     <Items>
                                         <ext:TextField runat="server" ID="TotalIngresadoTxt" FieldLabel="Total Ingresado" AnchorHorizontal="90%" ReadOnly="true" ></ext:TextField>
                                         <ext:TextField runat="server" ID="TotalCompradoTxt" FieldLabel="Total Comprado" AnchorHorizontal="90%" ReadOnly="true" ></ext:TextField>
                                         <ext:TextField runat="server" ID="TotalDepositoTxt" FieldLabel="Total Deposito" AnchorHorizontal="90%" ReadOnly="true" ></ext:TextField>
                                     </Items>
-                                </ext:Panel>
+                                </ext:FormPanel>
                             </Center>
                         </ext:BorderLayout>
                     </Items>

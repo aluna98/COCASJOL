@@ -15,6 +15,8 @@ using COCASJOL.LOGIC.Web;
 using COCASJOL.LOGIC.Seguridad;
 using COCASJOL.LOGIC.Utiles;
 
+using COCASJOL.LOGIC.Reportes;
+
 using System.Reflection;
 
 namespace COCASJOL.WEBSITE
@@ -33,6 +35,14 @@ namespace COCASJOL.WEBSITE
             {
                 if (!X.IsAjaxRequest)
                 {
+                    ConsolidadoDeInventarioDeCafeLogic ccafelogic = new ConsolidadoDeInventarioDeCafeLogic();
+                    ReporteConsolidadoDeCafe rptCafe1 = ccafelogic.GetReporte();
+                    
+                    this.TotalIngresadoTxt.Text = rptCafe1.TotalIngresado.ToString();
+                    this.TotalCompradoTxt.Text = rptCafe1.TotalComprado.ToString();
+                    this.TotalDepositoTxt.Text = rptCafe1.TotalDeposito.ToString();
+
+
                     if (Application["NotificacionesList"] == null)
                     {
                         NotificacionLogic notificacionlogic = new NotificacionLogic();

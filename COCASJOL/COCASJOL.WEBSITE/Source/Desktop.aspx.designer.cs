@@ -67,49 +67,13 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.BorderLayout BorderLayout1;
         
         /// <summary>
-        /// Panel8 control.
+        /// IngresosFormP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel Panel8;
-        
-        /// <summary>
-        /// PrecioCafeTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField PrecioCafeTxt;
-        
-        /// <summary>
-        /// PrecioCargaTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField PrecioCargaTxt;
-        
-        /// <summary>
-        /// FechaTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.DateField FechaTxt;
-        
-        /// <summary>
-        /// Panel5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Panel Panel5;
+        protected global::Ext.Net.FormPanel IngresosFormP;
         
         /// <summary>
         /// TotalIngresadoTxt control.
