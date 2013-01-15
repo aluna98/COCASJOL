@@ -172,6 +172,19 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
+
+        /*
+         *                  -----Flujo-----
+         *  verificar si hubo cambio de estado
+         *  cambiar estado a nuevo estado
+         *  si hay inventario de café actual modificarlo
+         *  si no hay inventario de café actual crearlo
+         *  
+         *  actualizar ReporteConsolidado en Application
+         *  notificar a usuarios
+         *
+         */
+
         private void InsertarNotaDePeso
             (int ESTADOS_NOTA_ID,
             string SOCIOS_ID,
@@ -276,20 +289,6 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                         NotificacionLogic notificacionlogic = new NotificacionLogic();
                         notificacionlogic.NotifyUsers("MANT_NOTASPESOENCATACION", EstadosNotificacion.Creado, pl.PLANTILLAS_ASUNTO, pl.PLANTILLAS_MENSAJE, notaid);
-
-                        //PrivilegioLogic privilegiologic = new Seguridad.PrivilegioLogic();
-                        //List<usuario> usuarios = privilegiologic.GetUsuariosWithPrivilege("MANT_NOTASPESOENCATACION");
-
-                        //foreach (usuario usr in usuarios)
-                        //{
-                        //    notificacion notification = new notificacion();
-                        //    notification.NOTIFICACION_ESTADO = (int)EstadosNotificacion.Creado;
-                        //    notification.USR_USERNAME = usr.USR_USERNAME;
-                        //    notification.NOTIFICACION_TITLE = "Notas de Peso en Catación";
-                        //    notification.NOTIFICACION_MENSAJE = "Ya tiene disponible la nota de peso #" + note.NOTAS_ID + ".";
-
-                        //    db.notificaciones.AddObject(notification);
-                        //}
                     }
 
                     db.SaveChanges();
@@ -553,20 +552,6 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                         NotificacionLogic notificacionlogic = new NotificacionLogic();
                         notificacionlogic.NotifyUsers("MANT_NOTASPESOENCATACION", EstadosNotificacion.Creado, pl.PLANTILLAS_ASUNTO, pl.PLANTILLAS_MENSAJE, notaid);
-
-                        //PrivilegioLogic privilegiologic = new Seguridad.PrivilegioLogic();
-                        //List<usuario> usuarios = privilegiologic.GetUsuariosWithPrivilege("MANT_NOTASPESOENCATACION");
-
-                        //foreach (usuario usr in usuarios)
-                        //{
-                        //    notificacion notification = new notificacion();
-                        //    notification.NOTIFICACION_ESTADO = (int)EstadosNotificacion.Creado;
-                        //    notification.USR_USERNAME = usr.USR_USERNAME;
-                        //    notification.NOTIFICACION_TITLE = "Notas de Peso en Catación";
-                        //    notification.NOTIFICACION_MENSAJE = "Ya tiene disponible la nota de peso #" + note.NOTAS_ID + ".";
-
-                        //    db.notificaciones.AddObject(notification);
-                        //}
                     }
 
                     db.SaveChanges();

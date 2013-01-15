@@ -123,9 +123,9 @@
                                     Padding="5"
                                     Layout="AnchorLayout">
                                     <Items>
-                                        <ext:TextField runat="server" ID="TotalIngresadoTxt" FieldLabel="Total Ingresado" AnchorHorizontal="90%" ReadOnly="true" ></ext:TextField>
-                                        <ext:TextField runat="server" ID="TotalCompradoTxt" FieldLabel="Total Comprado" AnchorHorizontal="90%" ReadOnly="true" ></ext:TextField>
-                                        <ext:TextField runat="server" ID="TotalDepositoTxt" FieldLabel="Total Deposito" AnchorHorizontal="90%" ReadOnly="true" ></ext:TextField>
+                                        <ext:TextField runat="server" ID="TotalIngresadoTxt" FieldLabel="Total Ingresado (QQ)" AnchorHorizontal="90%" ReadOnly="true" ></ext:TextField>
+                                        <ext:TextField runat="server" ID="TotalCompradoTxt" FieldLabel="Total Comprado (QQ)" AnchorHorizontal="90%" ReadOnly="true" ></ext:TextField>
+                                        <ext:TextField runat="server" ID="TotalDepositoTxt" FieldLabel="Total Deposito (QQ)" AnchorHorizontal="90%" ReadOnly="true" ></ext:TextField>
                                     </Items>
                                 </ext:FormPanel>
                             </Center>

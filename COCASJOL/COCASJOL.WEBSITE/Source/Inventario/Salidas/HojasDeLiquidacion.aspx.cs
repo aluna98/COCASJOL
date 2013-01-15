@@ -40,5 +40,25 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
             if (!this.IsPostBack)
                 e.Cancel = true;
         }
+
+        private static object lockObj = new object();
+
+        [DirectMethod(RethrowException=true)]
+        public void UpdateReporteConsolidadoDeInventarioDeCafe()
+        {
+            try
+            {
+                lock (lockObj)
+                {
+                    COCASJOL.LOGIC.Reportes.ConsolidadoDeInventarioDeCafeLogic consolidadoinventariologic = new LOGIC.Reportes.ConsolidadoDeInventarioDeCafeLogic();
+                    Application["ReporteConsolidadoDeCafe"] = consolidadoinventariologic.GetReporte();
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
     }
 }

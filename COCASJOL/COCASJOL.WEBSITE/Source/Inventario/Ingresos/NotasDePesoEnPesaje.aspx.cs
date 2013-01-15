@@ -41,6 +41,8 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 e.Cancel = true;
         }
 
+        private static object lockObj = new object();
+
         [DirectMethod(RethrowException = true, ShowMask = true, Target = MaskTarget.CustomTarget, CustomTarget = "AgregarNotasFormP")]
         public void AddNotaDePeso_Click(string Detalles)
         {
@@ -74,6 +76,13 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                     loggedUser,
                     detalles,
                     variables);
+
+
+                lock (lockObj)
+                {
+                    COCASJOL.LOGIC.Reportes.ConsolidadoDeInventarioDeCafeLogic consolidadoinventariologic = new LOGIC.Reportes.ConsolidadoDeInventarioDeCafeLogic();
+                    Application["ReporteConsolidadoDeCafe"] = consolidadoinventariologic.GetReporte();
+                }
             }
             catch (Exception)
             {
@@ -135,8 +144,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
 
                 this.EditNotaDetalleSt.DataSource = notadepesologic.GetDetalleNotaDePeso(Convert.ToInt32(notaId));
                 this.EditNotaDetalleSt.DataBind();
-
-                //X.Js.Call("EditDetailX.updateSumTotals()");
             }
             catch (Exception)
             {

@@ -35,12 +35,16 @@ namespace COCASJOL.WEBSITE
             {
                 if (!X.IsAjaxRequest)
                 {
-                    ConsolidadoDeInventarioDeCafeLogic ccafelogic = new ConsolidadoDeInventarioDeCafeLogic();
-                    ReporteConsolidadoDeCafe rptCafe1 = ccafelogic.GetReporte();
+                    ReporteConsolidadoDeCafe reporteConsolidadoDeCafe = Application["ReporteConsolidadoDeCafe"] as ReporteConsolidadoDeCafe;
+                    this.TotalIngresadoTxt.Text = reporteConsolidadoDeCafe.TotalIngresado.ToString();
+                    this.TotalCompradoTxt.Text = reporteConsolidadoDeCafe.TotalComprado.ToString();
+                    this.TotalDepositoTxt.Text = reporteConsolidadoDeCafe.TotalDeposito.ToString();
+                    //ConsolidadoDeInventarioDeCafeLogic ccafelogic = new ConsolidadoDeInventarioDeCafeLogic();
+                    //ReporteConsolidadoDeCafe rptCafe1 = ccafelogic.GetReporte();
                     
-                    this.TotalIngresadoTxt.Text = rptCafe1.TotalIngresado.ToString();
-                    this.TotalCompradoTxt.Text = rptCafe1.TotalComprado.ToString();
-                    this.TotalDepositoTxt.Text = rptCafe1.TotalDeposito.ToString();
+                    //this.TotalIngresadoTxt.Text = rptCafe1.TotalIngresado.ToString();
+                    //this.TotalCompradoTxt.Text = rptCafe1.TotalComprado.ToString();
+                    //this.TotalDepositoTxt.Text = rptCafe1.TotalDeposito.ToString();
 
 
                     if (Application["NotificacionesList"] == null)
@@ -203,9 +207,7 @@ namespace COCASJOL.WEBSITE
                     NotificacionLogic notificacionlogic = new NotificacionLogic();
 
                     foreach (notificacion notif in query.ToList<notificacion>())
-                    {
                         this.ShowPinnedNotification(notif.NOTIFICACION_TITLE, notif.NOTIFICACION_MENSAJE, notif.NOTIFICACION_ID);
-                    }
                 }
             }
             catch (Exception)
@@ -222,6 +224,13 @@ namespace COCASJOL.WEBSITE
         {
             try
             {
+                //actualizar reporte consolidado de inventario de cafe
+                ReporteConsolidadoDeCafe reporteConsolidadoDeCafe = Application["ReporteConsolidadoDeCafe"] as ReporteConsolidadoDeCafe;
+                this.TotalIngresadoTxt.Text = reporteConsolidadoDeCafe.TotalIngresado.ToString();
+                this.TotalCompradoTxt.Text = reporteConsolidadoDeCafe.TotalComprado.ToString();
+                this.TotalDepositoTxt.Text = reporteConsolidadoDeCafe.TotalDeposito.ToString();
+
+                //check for notification
                 string loggedUser = Session["username"] as string;
                 List<notificacion> NotificacionesList = Application["NotificacionesList"] as List<notificacion>;
 
