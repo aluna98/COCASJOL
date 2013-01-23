@@ -748,11 +748,6 @@
                 SelectMethod="GetClasificacionesDeCafe" >
         </asp:ObjectDataSource>
 
-        <asp:ObjectDataSource ID="EstadosNotaDS" runat="server"
-                TypeName="COCASJOL.LOGIC.Inventario.Ingresos.NotaDePesoEnPesajeLogic"
-                SelectMethod="GetEstadosNotaDePeso" >
-        </asp:ObjectDataSource>
-
         <ext:Store ID="SocioSt" runat="server" DataSourceID="SociosDS">
             <Reader>
                 <ext:JsonReader>
@@ -779,7 +774,18 @@
             </Reader>
         </ext:Store>
         
-        <ext:Store ID="EstadosNotaSt" runat="server" DataSourceID="EstadosNotaDS">
+        <ext:Store ID="AddEstadosNotaSt" runat="server" AutoLoad="false" OnRefreshData="AddEstadosNotaSt_Refresh">
+            <Reader>
+                <ext:JsonReader>
+                    <Fields>
+                        <ext:RecordField Name="ESTADOS_NOTA_ID" />
+                        <ext:RecordField Name="ESTADOS_NOTA_NOMBRE" />
+                    </Fields>
+                </ext:JsonReader>
+            </Reader>
+        </ext:Store>
+
+        <ext:Store ID="EditEstadosNotaSt" runat="server" AutoLoad="false" OnRefreshData="EditEstadosNotaSt_Refresh">
             <Reader>
                 <ext:JsonReader>
                     <Fields>
@@ -1052,7 +1058,7 @@
             InitCenter="true"
             ConstrainHeader="true" >
             <Listeners>
-                <Show Handler="#{AddFechaNotaTxt}.setValue(new Date()); #{AddFechaNotaTxt}.focus(false,200);" />
+                <Show Handler="#{AddEstadosNotaSt}.reload(); #{AddFechaNotaTxt}.setValue(new Date()); #{AddFechaNotaTxt}.focus(false,200);" />
                 <Hide Handler="#{AddNotaDetalleSt}.removeAll(); #{AgregarNotasFormP}.getForm().reset();" />
             </Listeners>
             <Items>
@@ -1123,7 +1129,7 @@
                                                         <ext:Panel ID="Panel5" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
                                                                 <ext:ComboBox runat="server" ID="AddEstadoNotaCmb"           LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Estado de Nota" AllowBlank="false" MsgTarget="Side"
-                                                                    StoreID="EstadosNotaSt"
+                                                                    StoreID="AddEstadosNotaSt"
                                                                     EmptyText="Seleccione un Estado"
                                                                     ValueField="ESTADOS_NOTA_ID" 
                                                                     DisplayField="ESTADOS_NOTA_NOMBRE"
@@ -1153,7 +1159,7 @@
                                                                     <Listeners>
                                                                         <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
                                                                         <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
-                                                                        <Select Handler="this.triggers[0].show();" />
+                                                                        <Select Handler="this.triggers[0].show(); #{AddEstadosNotaSt}.reload();" />
                                                                     </Listeners>
                                                                 </ext:ComboBox>
                                                             </Items>
@@ -1492,6 +1498,7 @@
             InitCenter="true"
             ConstrainHeader="true" >
             <Listeners>
+                <Show Handler="#{EditEstadosNotaSt}.reload();" />
                 <Hide Handler="#{EditNotaDetalleSt}.removeAll(); #{EditarNotasFormP}.getForm().reset();" />
             </Listeners>
             <Items>
@@ -1567,7 +1574,7 @@
                                                         <ext:Panel ID="Panel13" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
                                                                 <ext:ComboBox runat="server" ID="EditEstadoNotaCmb" DataIndex="ESTADOS_NOTA_ID" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Estado de Nota" AllowBlank="false" MsgTarget="Side"
-                                                                    StoreID="EstadosNotaSt"
+                                                                    StoreID="EditEstadosNotaSt"
                                                                     EmptyText="Seleccione un Estado"
                                                                     ValueField="ESTADOS_NOTA_ID" 
                                                                     DisplayField="ESTADOS_NOTA_NOMBRE"
@@ -1597,7 +1604,7 @@
                                                                     <Listeners>
                                                                         <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
                                                                         <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
-                                                                        <Select Handler="this.triggers[0].show();" />
+                                                                        <Select Handler="this.triggers[0].show(); #{EditEstadosNotaSt}.reload();" />
                                                                     </Listeners>
                                                                 </ext:ComboBox>
                                                             </Items>

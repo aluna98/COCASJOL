@@ -210,15 +210,17 @@
                     <asp:ControlParameter Name="CLASIFICACIONES_CAFE_ID"          Type="Int32"    ControlID="f_CLASIFICACIONES_CAFE_ID"          PropertyName="Text" />
                     <asp:ControlParameter Name="CLASIFICACIONES_CAFE_NOMBRE"      Type="String"   ControlID="f_CLASIFICACIONES_CAFE_NOMBRE"      PropertyName="Text" />
                     <asp:ControlParameter Name="CLASIFICACIONES_CAFE_DESCRIPCION" Type="String"   ControlID="f_CLASIFICACIONES_CAFE_DESCRIPCION" PropertyName="Text" />
-                    <asp:ControlParameter Name="CREADO_POR"                       Type="String"   ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_CREACION"                   Type="DateTime" ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="MODIFICADO_POR"                   Type="String"   ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_MODIFICACION"               Type="DateTime" ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_CATACION"    Type="Boolean"  ControlID="nullHdn" PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="CREADO_POR"                       Type="String"   ControlID="nullHdn" PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_CREACION"                   Type="DateTime" ControlID="nullHdn" PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="MODIFICADO_POR"                   Type="String"   ControlID="nullHdn" PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_MODIFICACION"               Type="DateTime" ControlID="nullHdn" PropertyName="Text" DefaultValue="" />
                 </SelectParameters>
                 <InsertParameters>
                     <asp:Parameter Name="CLASIFICACIONES_CAFE_ID"          Type="Int32" />
                     <asp:Parameter Name="CLASIFICACIONES_CAFE_NOMBRE"      Type="String" />
                     <asp:Parameter Name="CLASIFICACIONES_CAFE_DESCRIPCION" Type="String" />
+                    <asp:Parameter Name="CLASIFICACIONES_CAFE_CATACION"    Type="Boolean" />
                     <asp:Parameter Name="CREADO_POR"                       Type="String" />
                     <asp:Parameter Name="FECHA_CREACION"                   Type="DateTime" />
                     <asp:Parameter Name="MODIFICADO_POR"                   Type="String" />
@@ -228,6 +230,7 @@
                     <asp:Parameter Name="CLASIFICACIONES_CAFE_ID"          Type="Int32" />
                     <asp:Parameter Name="CLASIFICACIONES_CAFE_NOMBRE"      Type="String" />
                     <asp:Parameter Name="CLASIFICACIONES_CAFE_DESCRIPCION" Type="String" />
+                    <asp:Parameter Name="CLASIFICACIONES_CAFE_CATACION"    Type="Boolean" />
                     <asp:Parameter Name="CREADO_POR"                       Type="String" />
                     <asp:Parameter Name="FECHA_CREACION"                   Type="DateTime" />
                     <asp:Parameter Name="MODIFICADO_POR"                   Type="String" />
@@ -270,6 +273,7 @@
                                                 <ext:RecordField Name="CLASIFICACIONES_CAFE_ID"          />
                                                 <ext:RecordField Name="CLASIFICACIONES_CAFE_NOMBRE"      />
                                                 <ext:RecordField Name="CLASIFICACIONES_CAFE_DESCRIPCION" />
+                                                <ext:RecordField Name="CLASIFICACIONES_CAFE_CATACION" Type="Boolean" />
                                                 <ext:RecordField Name="CREADO_POR"             />
                                                 <ext:RecordField Name="FECHA_CREACION"         Type="Date" />
                                                 <ext:RecordField Name="MODIFICADO_POR"         />
@@ -415,10 +419,11 @@
                                             <RemoteValidation OnValidation="AddNombreTxt_Validate" />
                                         </ext:TextField>
                                         <ext:TextField   runat="server" ID="AddDescripcionTxt"      DataIndex="CLASIFICACIONES_CAFE_DESCRIPCION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100"></ext:TextField>
-                                        <ext:TextField   runat="server" ID="AddCreatedByTxt"        DataIndex="CREADO_POR"               LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado por" Hidden="true" ></ext:TextField>
-                                        <ext:TextField   runat="server" ID="AddCreatedDateTxt"      DataIndex="FECHA_CREACION"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
-                                        <ext:TextField   runat="server" ID="AddModifiedByTxt"       DataIndex="MODIFICADO_POR"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
-                                        <ext:TextField   runat="server" ID="AddModificationDateTxt" DataIndex="FECHA_MODIFICACION"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Modificacion" Hidden="true" ></ext:TextField>
+                                        <ext:Checkbox    runat="server" ID="AddCatacionChk"         DataIndex="CLASIFICACIONES_CAFE_CATACION"    LabelAlign="Right"                        FieldLabel="Debe Ser Catado" ></ext:Checkbox>
+                                        <ext:TextField   runat="server" ID="AddCreatedByTxt"        DataIndex="CREADO_POR"                       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado por" Hidden="true" ></ext:TextField>
+                                        <ext:TextField   runat="server" ID="AddCreatedDateTxt"      DataIndex="FECHA_CREACION"                   LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
+                                        <ext:TextField   runat="server" ID="AddModifiedByTxt"       DataIndex="MODIFICADO_POR"                   LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
+                                        <ext:TextField   runat="server" ID="AddModificationDateTxt" DataIndex="FECHA_MODIFICACION"               LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Modificacion" Hidden="true" ></ext:TextField>
                                     </Items>
                                 </ext:Panel>
                             </Items>
@@ -463,10 +468,11 @@
                                             <RemoteValidation OnValidation="EditNombreTxt_Validate" ValidationEvent="blur" />
                                         </ext:TextField>
                                         <ext:TextField runat="server"   ID="EditDescripcionTxt"   DataIndex="CLASIFICACIONES_CAFE_DESCRIPCION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100"></ext:TextField>
-                                        <ext:TextField runat="server"   ID="EditCreatedByTxt"     DataIndex="CREADO_POR"             LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
-                                        <ext:TextField runat="server"   ID="EditCreationDateTxt"  DataIndex="FECHA_CREACION"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
-                                        <ext:TextField runat="server"   ID="EditModifiedByTxt"    DataIndex="MODIFICADO_POR"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
-                                        <ext:TextField runat="server"   ID="EditModificationDate" DataIndex="FECHA_MODIFICACION"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Modificacion" Hidden="true" ></ext:TextField>
+                                        <ext:Checkbox  runat="server"   ID="EditCatacionChk"      DataIndex="CLASIFICACIONES_CAFE_CATACION"    LabelAlign="Right"                        FieldLabel="Debe Ser Catado" ></ext:Checkbox>
+                                        <ext:TextField runat="server"   ID="EditCreatedByTxt"     DataIndex="CREADO_POR"                       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
+                                        <ext:TextField runat="server"   ID="EditCreationDateTxt"  DataIndex="FECHA_CREACION"                   LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
+                                        <ext:TextField runat="server"   ID="EditModifiedByTxt"    DataIndex="MODIFICADO_POR"                   LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
+                                        <ext:TextField runat="server"   ID="EditModificationDate" DataIndex="FECHA_MODIFICACION"               LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Modificacion" Hidden="true" ></ext:TextField>
                                     </Items>
                                 </ext:Panel>
                             </Items>

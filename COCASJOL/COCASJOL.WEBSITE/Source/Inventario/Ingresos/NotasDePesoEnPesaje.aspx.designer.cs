@@ -85,15 +85,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::System.Web.UI.WebControls.ObjectDataSource ClasificacionesCafeDS;
         
         /// <summary>
-        /// EstadosNotaDS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource EstadosNotaDS;
-        
-        /// <summary>
         /// SocioSt control.
         /// </summary>
         /// <remarks>
@@ -112,13 +103,22 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.Store ClasificacionesCafeSt;
         
         /// <summary>
-        /// EstadosNotaSt control.
+        /// AddEstadosNotaSt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store EstadosNotaSt;
+        protected global::Ext.Net.Store AddEstadosNotaSt;
+        
+        /// <summary>
+        /// EditEstadosNotaSt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store EditEstadosNotaSt;
         
         /// <summary>
         /// nullHdn control.

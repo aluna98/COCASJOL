@@ -433,10 +433,10 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
         /*
          *                  -----Flujo-----
+         *  cambiar clasificacion de café a la clasificación actual
          *  verificar si hubo cambio de estado
          *  cambiar estado a nuevo estado
          *      --------Modificar Inventario de Café Actual--------
-         *      cambiar clasificacion de café a la clasificación actual
          *      intentar obtener el inventario de café actual
          *          si hay inventario de café actual modificarlo
          *          si no hay inventario de café actual crearlo
@@ -479,7 +479,6 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     nota_de_peso note = (nota_de_peso)n;
 
                     note.SOCIOS_ID = SOCIOS_ID;
-                    note.CLASIFICACIONES_CAFE_ID = CLASIFICACIONES_CAFE_ID;
                     note.NOTAS_FECHA = NOTAS_FECHA;
                     note.NOTAS_TRANSPORTE_COOPERATIVA = NOTAS_TRANSPORTE_COOPERATIVA;
                     note.NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA = NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA;
@@ -496,6 +495,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     note.NOTAS_SACOS_RETENIDOS = NOTAS_SACOS_RETENIDOS;
                     note.MODIFICADO_POR = MODIFICADO_POR;
                     note.FECHA_MODIFICACION = FECHA_MODIFICACION;
+
+                    // cambiar clasificacion de café a la clasificación actual
+                    note.CLASIFICACIONES_CAFE_ID = CLASIFICACIONES_CAFE_ID;
 
                     note.notas_detalles.Clear();
 

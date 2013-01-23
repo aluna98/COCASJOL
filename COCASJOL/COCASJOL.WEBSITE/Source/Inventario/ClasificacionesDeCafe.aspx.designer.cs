@@ -310,6 +310,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario {
         protected global::Ext.Net.TextField AddDescripcionTxt;
         
         /// <summary>
+        /// AddCatacionChk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox AddCatacionChk;
+        
+        /// <summary>
         /// AddCreatedByTxt control.
         /// </summary>
         /// <remarks>
@@ -416,6 +425,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField EditDescripcionTxt;
+        
+        /// <summary>
+        /// EditCatacionChk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox EditCatacionChk;
         
         /// <summary>
         /// EditCreatedByTxt control.

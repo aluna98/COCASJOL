@@ -41,6 +41,52 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 e.Cancel = true;
         }
 
+        protected void AddEstadosNotaSt_Refresh(object sender, StoreRefreshDataEventArgs e)
+        {
+            try
+            {
+                this.DataBindEstadosNotasDePesoStore(this.AddEstadosNotaSt, AddClasificacionCafeCmb.Text);
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
+        protected void EditEstadosNotaSt_Refresh(object sender, StoreRefreshDataEventArgs e)
+        {
+            try
+            {
+                this.DataBindEstadosNotasDePesoStore(this.EditEstadosNotaSt, EditClasificacionCafeCmb.Text);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void DataBindEstadosNotasDePesoStore(Store EstadosNotasDePesoStore, string ClasificacionDeCafe)
+        {
+            try
+            {
+                EstadoNotaDePesoLogic estadosnotalogic = new EstadoNotaDePesoLogic();
+
+                if (string.IsNullOrEmpty(ClasificacionDeCafe))
+                    EstadosNotasDePesoStore.DataSource = estadosnotalogic.GetEstadosNotaDePeso();
+                else
+                    EstadosNotasDePesoStore.DataSource = estadosnotalogic.GetEstadosNotaDePesoEnPesaje(Convert.ToInt32(ClasificacionDeCafe));
+
+                EstadosNotasDePesoStore.DataBind();
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
         private static object lockObj = new object();
 
         [DirectMethod(RethrowException = true, ShowMask = true, Target = MaskTarget.CustomTarget, CustomTarget = "AgregarNotasFormP")]

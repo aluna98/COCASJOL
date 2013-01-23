@@ -72,6 +72,33 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
+        public List<estado_nota_de_peso> GetEstadosNotaDePesoEnPesaje(int CLASIFICACIONES_CAFE_ID)
+        {
+            try
+            {
+                List<estado_nota_de_peso> estadosList = null;
+
+                ClasificacionDeCafeLogic clasificaciondecafelogic = new ClasificacionDeCafeLogic();
+                bool catacionFlag = clasificaciondecafelogic.ClasificacionDeCafePasaPorCatacion(CLASIFICACIONES_CAFE_ID);
+
+                if (catacionFlag)
+                {
+                    estadosList = new List<estado_nota_de_peso>();
+
+                    estadosList.Add(GetEstadoNotaDePeso("CATACION"));
+                    estadosList.Add(GetEstadoNotaDePeso("PESAJE"));
+                }
+                else
+                    estadosList = GetEstadosNotaDePeso();
+
+                return estadosList;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public estado_nota_de_peso GetEstadoNotaDePeso(int ESTADOS_NOTA_ID)
         {
             try
@@ -106,7 +133,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                                 where en.ESTADOS_NOTA_LLAVE == ESTADOS_NOTA_LLAVE
                                 select en;
 
-                    return query.FirstOrDefault();
+                    return query.FirstOrDefault<estado_nota_de_peso>();
                 }
             }
             catch (Exception)

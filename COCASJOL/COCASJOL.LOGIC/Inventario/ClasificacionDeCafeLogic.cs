@@ -36,6 +36,7 @@ namespace COCASJOL.LOGIC.Inventario
             (int CLASIFICACIONES_CAFE_ID,
             string CLASIFICACIONES_CAFE_NOMBRE,
             string CLASIFICACIONES_CAFE_DESCRIPCION,
+            bool CLASIFICACIONES_CAFE_CATACION,
             string CREADO_POR,
             DateTime FECHA_CREACION,
             string MODIFICADO_POR,
@@ -75,6 +76,7 @@ namespace COCASJOL.LOGIC.Inventario
             (int CLASIFICACIONES_CAFE_ID,
             string CLASIFICACIONES_CAFE_NOMBRE,
             string CLASIFICACIONES_CAFE_DESCRIPCION,
+            bool CLASIFICACIONES_CAFE_CATACION,
             string CREADO_POR,
             DateTime FECHA_CREACION,
             string MODIFICADO_POR,
@@ -88,6 +90,7 @@ namespace COCASJOL.LOGIC.Inventario
 
                     coffeeClassif.CLASIFICACIONES_CAFE_NOMBRE = CLASIFICACIONES_CAFE_NOMBRE;
                     coffeeClassif.CLASIFICACIONES_CAFE_DESCRIPCION = CLASIFICACIONES_CAFE_DESCRIPCION;
+                    coffeeClassif.CLASIFICACIONES_CAFE_CATACION = CLASIFICACIONES_CAFE_CATACION;
                     coffeeClassif.CREADO_POR = CREADO_POR;
                     coffeeClassif.FECHA_CREACION = DateTime.Today;
                     coffeeClassif.MODIFICADO_POR = CREADO_POR;
@@ -112,6 +115,7 @@ namespace COCASJOL.LOGIC.Inventario
             (int CLASIFICACIONES_CAFE_ID,
             string CLASIFICACIONES_CAFE_NOMBRE,
             string CLASIFICACIONES_CAFE_DESCRIPCION,
+            bool CLASIFICACIONES_CAFE_CATACION,
             string CREADO_POR,
             DateTime FECHA_CREACION,
             string MODIFICADO_POR,
@@ -129,6 +133,7 @@ namespace COCASJOL.LOGIC.Inventario
 
                     coffeeClassif.CLASIFICACIONES_CAFE_NOMBRE = CLASIFICACIONES_CAFE_NOMBRE;
                     coffeeClassif.CLASIFICACIONES_CAFE_DESCRIPCION = CLASIFICACIONES_CAFE_DESCRIPCION;
+                    coffeeClassif.CLASIFICACIONES_CAFE_CATACION = CLASIFICACIONES_CAFE_CATACION;
                     coffeeClassif.MODIFICADO_POR = MODIFICADO_POR;
                     coffeeClassif.FECHA_MODIFICACION = DateTime.Today;
 
@@ -173,6 +178,28 @@ namespace COCASJOL.LOGIC.Inventario
         #endregion
 
         #region Methods
+
+        public bool ClasificacionDeCafePasaPorCatacion(int CLASIFICACIONES_CAFE_ID)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+
+                    EntityKey k = new EntityKey("colinasEntities.clasificaciones_cafe", "CLASIFICACIONES_CAFE_ID", CLASIFICACIONES_CAFE_ID);
+
+                    var tp = db.GetObjectByKey(k);
+
+                    clasificacion_cafe coffeeClassif = (clasificacion_cafe)tp;
+
+                    return coffeeClassif.CLASIFICACIONES_CAFE_CATACION;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         public bool NombreDeClasificacionDeCafeExiste(string CLASIFICACIONES_CAFE_NOMBRE)
         {
