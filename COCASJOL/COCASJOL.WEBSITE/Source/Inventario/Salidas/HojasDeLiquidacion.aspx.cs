@@ -10,6 +10,7 @@ using System.Data.Objects;
 using Ext.Net;
 
 using COCASJOL.LOGIC;
+using COCASJOL.LOGIC.Inventario;
 using COCASJOL.LOGIC.Inventario.Salidas;
 
 namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
@@ -53,6 +54,25 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
                     COCASJOL.LOGIC.Reportes.ConsolidadoDeInventarioDeCafeLogic consolidadoinventariologic = new LOGIC.Reportes.ConsolidadoDeInventarioDeCafeLogic();
                     Application["ReporteConsolidadoDeCafe"] = consolidadoinventariologic.GetReporte();
                 }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
+        [DirectMethod(RethrowException=true)]
+        public void GetCantidadDeInventarioDeCafe(string SOCIOS_ID, int CLASIFICACIONES_CAFE_ID)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(SOCIOS_ID) || CLASIFICACIONES_CAFE_ID == 0)
+                    return;
+
+                InventarioDeCafeLogic inventarioliquidacionlogic = new InventarioDeCafeLogic();
+                decimal inventarioSocio = inventarioliquidacionlogic.GetInventarioDeCafe(SOCIOS_ID, CLASIFICACIONES_CAFE_ID, false);
+                this.AddInventarioCafeTxt.Value = inventarioSocio;
             }
             catch (Exception)
             {

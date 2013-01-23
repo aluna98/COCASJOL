@@ -68,6 +68,58 @@ namespace COCASJOL.LOGIC.Inventario
             }
         }
 
+        public decimal GetInventarioDeCafe(string SOCIOS_ID, int CLASIFICACIONES_CAFE_ID, bool MostrarEnCatacion)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    db.inventario_cafe_de_socio.MergeOption = MergeOption.NoTracking;
+
+                    IEnumerable<KeyValuePair<string, object>> entityKeyValues =
+                        new KeyValuePair<string, object>[] {
+                            new KeyValuePair<string, object>("SOCIOS_ID", SOCIOS_ID),
+                            new KeyValuePair<string, object>("CLASIFICACIONES_CAFE_ID", CLASIFICACIONES_CAFE_ID) };
+
+                    EntityKey k = new EntityKey("colinasEntities.inventario_cafe_de_socio", entityKeyValues);
+
+
+                    Object invCafSoc = null;
+
+                    if (db.TryGetObjectByKey(k, out invCafSoc))
+                    {
+                        inventario_cafe_de_socio asocInventory = (inventario_cafe_de_socio)invCafSoc;
+
+                        if (MostrarEnCatacion)
+                            return asocInventory.INVENTARIO_CANTIDAD;
+                        else
+                        {
+                            db.notas_de_peso.MergeOption = MergeOption.NoTracking;
+
+                            var query = (from n in db.notas_de_peso
+                                         where
+                                         n.estados_nota_de_peso.ESTADOS_NOTA_LLAVE == "ENCATACION" &&
+                                         n.SOCIOS_ID == SOCIOS_ID &&
+                                         n.CLASIFICACIONES_CAFE_ID == CLASIFICACIONES_CAFE_ID
+                                         select n.NOTAS_PESO_TOTAL_RECIBIDO).ToList();
+
+                            decimal InventarioEnCatacion = query.Sum();
+                            asocInventory.INVENTARIO_CANTIDAD -= InventarioEnCatacion;
+
+                            return asocInventory.INVENTARIO_CANTIDAD;
+                        }
+                    }
+                    else
+                        return 0;
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
         #endregion
 
         #region Insert

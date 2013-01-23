@@ -42,6 +42,27 @@
     </variables>
   </pagina>
   <pagina>
+    <Name>HojasDeLiquidacion</Name>
+    <variables>
+      <variable>
+        <key>HOJAS_CUOTAINGRESO</key>
+        <descripcion>La cuota de ingreso a pagar para socios nuevos en hojas de liquidación.</descripcion>
+        <type>decimal</type>
+      </variable>
+    </variables>
+  </pagina>
+  <pagina>
+    <Name>HojasDeLiquidacion</Name>
+    <variables>
+      <variable>
+        <key>HOJAS_GASTOADMINISTRACION</key>
+        <descripcion>La cantidad de gastos de administración para socios nuevos en hojas de liquidación.</descripcion>
+        <type>decimal</type>
+      </variable>
+    </variables>
+  </pagina>
+
+  <pagina>
     <Name>Socios</Name>
     <variables>
       <variable>

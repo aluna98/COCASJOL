@@ -221,6 +221,12 @@
                 direccionFincaTxt.setValue(record.data.PRODUCCION_UBICACION_FINCA);
             },
 
+            getInventarioFueraDeCatacion: function(sociosIdTxt, clasificacionCafeTxt) {
+                var socioId = sociosIdTxt.getValue();
+                var clasificacionId = clasificacionCafeTxt.getValue();
+                Ext.net.DirectMethods.GetCantidadDeInventarioDeCafe(socioId == null ? "" : socioId, clasificacionId == null || clasificacionId == '' ? 0 : clasificacionId);
+            },
+
             clearFilter: function () {
                 f_LIQUIDACIONES_ID.reset();
                 f_SOCIOS_ID.reset();
@@ -691,9 +697,9 @@
 						                                                        <tpl if="[xindex] == 1">
 							                                                        <table class="cbStates-list">
 								                                                        <tr>
-								                	                                        <th>SOCIOS_ID</th>
-								                	                                        <th>SOCIOS_PRIMER_NOMBRE</th>
-                                                                                            <th>SOCIOS_PRIMER_APELLIDO</th>
+								                	                                        <th>ID</th>
+								                	                                        <th>PRIMER NOMBRE</th>
+                                                                                            <th>PRIMER APELLIDO</th>
 								                                                        </tr>
 						                                                        </tpl>
 						                                                        <tr class="list-item">
@@ -713,14 +719,14 @@
                                                                     <Listeners>
                                                                         <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
                                                                         <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide(); Ext.getCmp('EditNombreTxt').reset(); Ext.getCmp('EditDireccionFincaTxt').reset(); }" />
-                                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddDireccionFincaTxt'));" />
+                                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddDireccionFincaTxt')); PageX.getInventarioFueraDeCatacion(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddClasificacionCafeCmb'));" />
                                                                     </Listeners>
                                                                 </ext:ComboBox>
                                                             </Items>
                                                         </ext:Panel>
                                                         <ext:Panel ID="Panel23" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
-                                                                <ext:ComboBox runat="server"    ID="EditClasificacionCafeCmb" DataIndex="CLASIFICACIONES_CAFE_ID" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Tipo de Café" AllowBlank="false" MsgTarget="Side"
+                                                                <ext:ComboBox runat="server"    ID="AddClasificacionCafeCmb" DataIndex="CLASIFICACIONES_CAFE_ID" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Tipo de Café" AllowBlank="false" MsgTarget="Side"
                                                                     StoreID="ClasificacionesCafeSt"
                                                                     EmptyText="Seleccione un Tipo"
                                                                     ValueField="CLASIFICACIONES_CAFE_ID" 
@@ -734,9 +740,10 @@
                                                                     <Listeners>
                                                                         <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
                                                                         <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
-                                                                        <Select Handler="this.triggers[0].show();" />
+                                                                        <Select Handler="this.triggers[0].show(); PageX.getInventarioFueraDeCatacion(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddClasificacionCafeCmb'));" />
                                                                     </Listeners>
                                                                 </ext:ComboBox>
+                                                                <ext:NumberField runat="server" ID="AddInventarioCafeTxt" LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="false" MsgTarget="Side" FieldLabel="Inventario de Café Disponible (Lbs)" ReadOnly="true" Text="0" AllowNegative="false" ></ext:NumberField>
                                                             </Items>
                                                         </ext:Panel>
                                                     </Items>
@@ -905,9 +912,9 @@
 						                                                        <tpl if="[xindex] == 1">
 							                                                        <table class="cbStates-list">
 								                                                        <tr>
-								                	                                        <th>SOCIOS_ID</th>
-								                	                                        <th>SOCIOS_PRIMER_NOMBRE</th>
-                                                                                            <th>SOCIOS_PRIMER_APELLIDO</th>
+								                	                                        <th>ID</th>
+								                	                                        <th>PRIMER NOMBRE</th>
+                                                                                            <th>PRIMER APELLIDO</th>
 								                                                        </tr>
 						                                                        </tpl>
 						                                                        <tr class="list-item">
@@ -927,14 +934,14 @@
                                                                     <Listeners>
                                                                         <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
                                                                         <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide(); Ext.getCmp('EditNombreTxt').reset(); Ext.getCmp('EditDireccionFincaTxt').reset(); }" />
-                                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditDireccionFincaTxt'));" />
+                                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditDireccionFincaTxt')); PageX.getInventarioFueraDeCatacion(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddClasificacionCafeCmb'));" />
                                                                     </Listeners>
                                                                 </ext:ComboBox>
                                                             </Items>
                                                         </ext:Panel>
                                                         <ext:Panel ID="Panel15" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
-                                                                <ext:ComboBox runat="server"    ID="ComboBox1" DataIndex="CLASIFICACIONES_CAFE_ID" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Tipo de Café" AllowBlank="false" MsgTarget="Side"
+                                                                <ext:ComboBox runat="server"    ID="EditClasificacionCafeCmb" DataIndex="CLASIFICACIONES_CAFE_ID" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Tipo de Café" AllowBlank="false" MsgTarget="Side"
                                                                     StoreID="ClasificacionesCafeSt"
                                                                     EmptyText="Seleccione un Tipo"
                                                                     ValueField="CLASIFICACIONES_CAFE_ID" 
@@ -948,9 +955,10 @@
                                                                     <Listeners>
                                                                         <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
                                                                         <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
-                                                                        <Select Handler="this.triggers[0].show();" />
+                                                                        <Select Handler="this.triggers[0].show(); PageX.getInventarioFueraDeCatacion(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddClasificacionCafeCmb'));" />
                                                                     </Listeners>
                                                                 </ext:ComboBox>
+                                                                <ext:NumberField runat="server" ID="EditInventarioCafeTxt" LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="false" MsgTarget="Side" FieldLabel="Inventario de Café Disponible (Lbs)" ReadOnly="true" Text="0" AllowNegative="false" ></ext:NumberField>
                                                             </Items>
                                                         </ext:Panel>
                                                     </Items>

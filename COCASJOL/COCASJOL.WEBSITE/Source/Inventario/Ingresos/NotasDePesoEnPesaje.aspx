@@ -1093,9 +1093,9 @@
 						                                                        <tpl if="[xindex] == 1">
 							                                                        <table class="cbStates-list">
 								                                                        <tr>
-								                	                                        <th>SOCIOS_ID</th>
-								                	                                        <th>SOCIOS_PRIMER_NOMBRE</th>
-                                                                                            <th>SOCIOS_PRIMER_APELLIDO</th>
+								                	                                        <th>ID</th>
+								                	                                        <th>PRIMER NOMBRE</th>
+                                                                                            <th>PRIMER APELLIDO</th>
 								                                                        </tr>
 						                                                        </tpl>
 						                                                        <tr class="list-item">
@@ -1537,9 +1537,9 @@
 						                                                        <tpl if="[xindex] == 1">
 							                                                        <table class="cbStates-list">
 								                                                        <tr>
-								                	                                        <th>SOCIOS_ID</th>
-								                	                                        <th>SOCIOS_PRIMER_NOMBRE</th>
-                                                                                            <th>SOCIOS_PRIMER_APELLIDO</th>
+								                	                                        <th>ID</th>
+								                	                                        <th>PRIMER NOMBRE</th>
+                                                                                            <th>PRIMER APELLIDO</th>
 								                                                        </tr>
 						                                                        </tpl>
 						                                                        <tr class="list-item">
