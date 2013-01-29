@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <privilegios>
   <privilege>
-    <key>SYS_USER</key>
-    <page>Usuario</page>
+    <key>SYS_USERS</key>
+    <page>Usuarios</page>
     <module>UsuariosModule</module>
     <shortcut>scUsuarios</shortcut>
     <menuitem>UsuariosMenuItem</menuitem>
   </privilege>
   <privilege>
     <key>SYS_ROLES</key>
-    <page>Rol</page>
+    <page>Roles</page>
     <module>RolesModule</module>
     <shortcut>scRoles</shortcut>
     <menuitem>RolesMenuItem</menuitem>
@@ -114,7 +114,7 @@
   </privilege>
   <privilege>
     <key>MANT_SOLICITUDESPRESTAMO</key>
-    <page>SolicitudPrestamo</page>
+    <page>SolicitudesDePrestamos</page>
     <module>SolicitudesDePrestamoModule</module>
     <shortcut>scSolicitudesDePrestamo</shortcut>
     <menuitem>SolicitudesDePrestamoMenuItem</menuitem>

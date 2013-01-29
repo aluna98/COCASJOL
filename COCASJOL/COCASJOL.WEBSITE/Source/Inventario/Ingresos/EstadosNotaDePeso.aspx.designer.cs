@@ -40,6 +40,24 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.ResourceManager ResourceManager1;
         
         /// <summary>
+        /// KeyNav1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.KeyNav KeyNav1;
+        
+        /// <summary>
+        /// AudWin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::COCASJOL.WEBSITE.Source.Auditoria.Auditoria AudWin;
+        
+        /// <summary>
         /// EstadosNotaDS control.
         /// </summary>
         /// <remarks>
@@ -146,6 +164,24 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button EditarBtn;
+        
+        /// <summary>
+        /// ToolbarFill1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolbarFill ToolbarFill1;
+        
+        /// <summary>
+        /// AuditoriaBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button AuditoriaBtn;
         
         /// <summary>
         /// GridView1 control.

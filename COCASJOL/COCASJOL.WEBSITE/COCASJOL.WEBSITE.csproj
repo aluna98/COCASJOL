@@ -100,8 +100,24 @@
     <Content Include="resources\images\user_edit.png" />
     <Content Include="resources\images\vista_start_button.gif" />
     <Content Include="resources\images\window48x48.png" />
+    <Content Include="resources\js\aportaciones\aportacionesPorSocio.js" />
     <Content Include="resources\js\desktop.js" />
+    <Content Include="resources\js\entorno\variablesDeEntorno.js" />
+    <Content Include="resources\js\inventario\clasificacionesDeCafe.js" />
+    <Content Include="resources\js\inventario\ingresos\estadosNotaDePeso.js" />
+    <Content Include="resources\js\inventario\ingresos\notasDePesoEnAdministracion.js" />
+    <Content Include="resources\js\inventario\ingresos\notasDePesoEnCatacion.js" />
+    <Content Include="resources\js\inventario\ingresos\notasDePesoEnPesaje.js" />
+    <Content Include="resources\js\inventario\inventarioDeCafePorSocio.js" />
+    <Content Include="resources\js\inventario\salidas\hojasDeLiquidacion.js" />
     <Content Include="resources\js\md5.js" />
+    <Content Include="resources\js\prestamos\solicitudesDePrestamos.js" />
+    <Content Include="resources\js\productos\productos.js" />
+    <Content Include="resources\js\productos\tiposDeProductos.js" />
+    <Content Include="resources\js\seguridad\roles.js" />
+    <Content Include="resources\js\seguridad\usuarios.js" />
+    <Content Include="resources\js\socios\socios.js" />
+    <Content Include="resources\js\utiles\plantillasDeNotificaciones.js" />
     <Content Include="resources\xml\VariablesDeEntorno.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -118,12 +134,12 @@
     <Content Include="Source\Inventario\InventarioDeCafePorSocio.aspx" />
     <Content Include="Source\Inventario\Salidas\HojasDeLiquidacion.aspx" />
     <Content Include="Source\Prestamos\Prestamos.aspx" />
-    <Content Include="Source\Prestamos\SolicitudPrestamo.aspx" />
+    <Content Include="Source\Prestamos\SolicitudesDePrestamos.aspx" />
     <Content Include="Source\Productos\Productos.aspx" />
     <Content Include="Source\Productos\TiposDeProductos.aspx" />
     <Content Include="Source\Seguridad\CambiarClave.ascx" />
-    <Content Include="Source\Seguridad\Rol.aspx" />
-    <Content Include="Source\Seguridad\Usuario.aspx" />
+    <Content Include="Source\Seguridad\Roles.aspx" />
+    <Content Include="Source\Seguridad\Usuarios.aspx" />
     <Content Include="Source\Seguridad\UsuarioActual.ascx" />
     <Content Include="Source\Socios\Socios.aspx" />
     <Content Include="Source\Utiles\PlantillasDeNotificaciones.aspx" />
@@ -229,12 +245,12 @@
     <Compile Include="Source\Prestamos\Prestamos.aspx.designer.cs">
       <DependentUpon>Prestamos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Source\Prestamos\SolicitudPrestamo.aspx.cs">
-      <DependentUpon>SolicitudPrestamo.aspx</DependentUpon>
+    <Compile Include="Source\Prestamos\SolicitudesDePrestamos.aspx.cs">
+      <DependentUpon>SolicitudesDePrestamos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Source\Prestamos\SolicitudPrestamo.aspx.designer.cs">
-      <DependentUpon>SolicitudPrestamo.aspx</DependentUpon>
+    <Compile Include="Source\Prestamos\SolicitudesDePrestamos.aspx.designer.cs">
+      <DependentUpon>SolicitudesDePrestamos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Productos\Productos.aspx.cs">
       <DependentUpon>Productos.aspx</DependentUpon>
@@ -257,19 +273,19 @@
     <Compile Include="Source\Seguridad\CambiarClave.ascx.designer.cs">
       <DependentUpon>CambiarClave.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Source\Seguridad\Rol.aspx.cs">
-      <DependentUpon>Rol.aspx</DependentUpon>
+    <Compile Include="Source\Seguridad\Roles.aspx.cs">
+      <DependentUpon>Roles.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Source\Seguridad\Rol.aspx.designer.cs">
-      <DependentUpon>Rol.aspx</DependentUpon>
+    <Compile Include="Source\Seguridad\Roles.aspx.designer.cs">
+      <DependentUpon>Roles.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Source\Seguridad\Usuario.aspx.cs">
-      <DependentUpon>Usuario.aspx</DependentUpon>
+    <Compile Include="Source\Seguridad\Usuarios.aspx.cs">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Source\Seguridad\Usuario.aspx.designer.cs">
-      <DependentUpon>Usuario.aspx</DependentUpon>
+    <Compile Include="Source\Seguridad\Usuarios.aspx.designer.cs">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Seguridad\UsuarioActual.ascx.cs">
       <DependentUpon>UsuarioActual.ascx</DependentUpon>

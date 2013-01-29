@@ -16,7 +16,7 @@ using COCASJOL.LOGIC.Socios;
 
 namespace COCASJOL.WEBSITE.Source.Prestamos
 {
-    public partial class SolicitudPrestamo : COCASJOLBASE
+    public partial class SolicitudesDePrestamos : COCASJOLBASE
     {
         string Socioid;
 

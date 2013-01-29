@@ -1,121 +1,14 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EstadosNotaDePeso.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Inventario.Ingresos.EstadosNotaDePeso" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
+<%@ Register Src="~/Source/Auditoria/Auditoria.ascx" TagPrefix="aud" TagName="Auditoria" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title></title>
-    <script type="text/javascript">
-        var Grid = null;
-        var GridStore = null;
-        var EditWindow = null; 
-        var EditForm = null;
-
-        var AlertSelMsgTitle = "Atención";
-        var AlertSelMsg = "Debe seleccionar 1 elemento";
-
-        var ConfirmMsgTitle = "Estado de Nota de Peso";
-        var ConfirmUpdate = "Seguro desea modificar el estado para las notas de peso?";
-        var ConfirmDelete = "Seguro desea eliminar el estado para las notas de peso?";
-
-        var PageX = {
-            _index: 0,
-
-            setReferences: function () {
-                Grid = EstadosNotaGridP;
-                GridStore = EstadosNotaSt;
-                
-                EditWindow = EditarEstadosNotaWin;
-                EditForm = EditarEstadosNotaFormP;
-            },
-
-            getIndex: function () {
-                return this._index;
-            },
-
-            setIndex: function (index) {
-                if (index > -1 && index < Grid.getStore().getCount()) {
-                    this._index = index;
-                }
-            },
-
-            getRecord: function () {
-                var rec = Grid.getStore().getAt(this.getIndex());  // Get the Record
-
-                if (rec != null) {
-                    return rec;
-                }
-            },
-
-            edit: function () {
-                if (Grid.getSelectionModel().hasSelection()) {
-                    var record = Grid.getSelectionModel().getSelected();
-                    var index = Grid.store.indexOf(record);
-                    this.setIndex(index);
-                    this.open();
-                } else {
-                    var msg = Ext.Msg;
-                    Ext.Msg.alert(AlertSelMsgTitle, AlertSelMsg);
-                }
-            },
-
-            edit2: function (index) {
-                this.setIndex(index);
-                this.open();
-            },
-
-            next: function () {
-                this.edit2(this.getIndex() + 1);
-            },
-
-            previous: function () {
-                this.edit2(this.getIndex() - 1);
-            },
-
-            open: function () {
-                rec = this.getRecord();
-
-                if (rec != null) {
-                    EditWindow.show();
-                    EditForm.getForm().loadRecord(rec);
-                    EditForm.record = rec;
-                }
-            },
-
-            update: function () {
-                if (EditForm.record == null) {
-                    return;
-                }
-
-                Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
-                    if (btn == 'yes') {
-                        EditForm.getForm().updateRecord(EditForm.record);
-                    }
-                });
-            },
-
-            keyUpEvent: function (sender, e) {
-                if (e.getKey() == 13)
-                    GridStore.reload();
-            },
-
-            reloadGridStore: function () {
-                GridStore.reload();
-            },
-
-            clearFilter: function () {
-                f_ESTADOS_NOTA_ID.reset();
-                f_ESTADOS_NOTA_PADRE.reset();
-                f_ESTADOS_NOTA_LLAVE.reset();
-                f_ESTADOS_NOTA_NOMBRE.reset();
-                f_ESTADOS_NOTA_DESCRIPCION.reset();
-
-                EstadosNotaSt.reload();
-            }
-        };
-    </script>
+    <title>Estados de Notas De Peso</title>
+    <script type="text/javascript" src="../../../resources/js/inventario/ingresos/estadosNotaDePeso.js" ></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -125,6 +18,15 @@
                 <DocumentReady Handler="PageX.setReferences();" />
             </Listeners>
         </ext:ResourceManager>
+
+        <ext:KeyNav ID="KeyNav1" runat="server" Target="={document.body}" >
+            <Home Handler="PageX.navHome();" />
+            <PageUp Handler="PageX.navPrev();" />
+            <PageDown Handler="PageX.navNext();" />
+            <End Handler="PageX.navEnd();" />
+        </ext:KeyNav>
+
+        <aud:Auditoria runat="server" ID="AudWin" />
 
         <asp:ObjectDataSource ID="EstadosNotaDS" runat="server"
                 TypeName="COCASJOL.LOGIC.Inventario.Ingresos.EstadoNotaDePesoLogic"
@@ -231,6 +133,12 @@
                                         <ext:Button ID="EditarBtn" runat="server" Text="Editar" Icon="PageEdit">
                                             <Listeners>
                                                 <Click Handler="PageX.edit();" />
+                                            </Listeners>
+                                        </ext:Button>
+                                        <ext:ToolbarFill ID="ToolbarFill1" runat="server" />
+                                        <ext:Button ID="AuditoriaBtn" runat="server" Text="Auditoria" Icon="Cog">
+                                            <Listeners>
+                                                <Click Handler="PageX.showAudit();" />
                                             </Listeners>
                                         </ext:Button>
                                     </Items>

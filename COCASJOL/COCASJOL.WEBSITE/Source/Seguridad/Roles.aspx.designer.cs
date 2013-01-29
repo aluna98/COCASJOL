@@ -10,7 +10,7 @@
 namespace COCASJOL.WEBSITE.Source.Seguridad {
     
     
-    public partial class Rol {
+    public partial class Roles {
         
         /// <summary>
         /// form1 control.

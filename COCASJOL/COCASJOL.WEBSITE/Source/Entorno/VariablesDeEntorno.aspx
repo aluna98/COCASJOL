@@ -7,59 +7,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title></title> 
-    <script type="text/javascript">
-        var Grid = null;
-        var GridStore = null;
-        var AddWindow = null;
-        var AddForm = null;
-        var EditWindow = null;
-        var EditForm = null;
-
-        var AlertSelMsgTitle = "Atención";
-        var AlertSelMsg = "Debe seleccionar 1 elemento";
-
-        var ConfirmMsgTitle = "Variables de Entorno";
-        var ConfirmUpdate = "Seguro desea modificar las variables de entorno?";
-        var ConfirmDelete = "Seguro desea eliminar la variable de entorno?";
-
-        var PageX = {
-            setReferences: function () {
-                Grid = VariablesEntornoGridP;
-                GridStore = VariablesEntornoSt;
-            },
-
-            update: function () {
-                Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
-                    if (btn == 'yes') {
-                        Ext.net.DirectMethods.GuardarVariablesBtn_Click(this.variablesToJson());
-                    }
-                });
-            }
-        };
-
-        var variablesToJson = function () {
-            var items = Grid.getStore().data;
-            var ret = [];
-            for (var i = 0; i < items.length; i++) {
-                ret.push({ VARIABLES_LLAVE: items.items[i].data.VARIABLES_LLAVE, VARIABLES_VALOR: items.items[i].data.VARIABLES_VALOR });
-            }
-
-            return Ext.encode(ret);
-        }
-
-        var HideButtons = function () {
-            EditPreviousBtn.hide();
-            EditNextBtn.hide();
-            EditGuardarBtn.hide();
-        }
-
-        var ShowButtons = function () {
-            EditPreviousBtn.show();
-            EditNextBtn.show();
-            EditGuardarBtn.show();
-        }
-    </script>
+    <title>Variables de Entorno</title>
+    <script type="text/javascript" src="../../resources/js/entorno/variablesDeEntorno.js" ></script>
 </head>
 <body>
     <form id="form1" runat="server">

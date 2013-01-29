@@ -8,7 +8,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Colinas</title>
+    <title>COCASJOL</title>
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
     <link rel="icon" href="../favicon.ico" type="image/x-icon"/>
 

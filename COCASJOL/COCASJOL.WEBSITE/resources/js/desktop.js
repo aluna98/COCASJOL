@@ -7,6 +7,8 @@ var DesktopX = {
     },
 
     createDynamicWindow: function (app, ico, title, url, width, height) {
+        var hostName = window.location.protocol + "//" + window.location.host;
+
         width = width == null ? 640 : width;
         height = height == null ? 480 : height;
 
@@ -32,7 +34,14 @@ var DesktopX = {
                     url: url,
                     mode: "iframe",
                     showMask: true
-                }
+                },
+                tools: [{
+                    id: 'search',
+                    qtip: 'Abrir en Ventana Propia',
+                    handler: function (event, toolEl, panel) {
+                        window.open(hostName + "/COCASJOL/Source/" + url, "_blank");
+                    }
+                }]
             });
             w.center();
         }
@@ -175,11 +184,11 @@ var DesktopX = {
 
 var WindowX = {
     usuarios: function (app) {
-        DesktopX.createDynamicWindow(app, 'user', 'Usuarios', 'Seguridad/Usuario.aspx');
+        DesktopX.createDynamicWindow(app, 'user', 'Usuarios', 'Seguridad/Usuarios.aspx');
     },
 
     roles: function (app) {
-        DesktopX.createDynamicWindow(app, 'cog', 'Roles', 'Seguridad/Rol.aspx');
+        DesktopX.createDynamicWindow(app, 'cog', 'Roles', 'Seguridad/Roles.aspx');
     },
 
     plantillasNotificaciones: function (app) {
@@ -191,7 +200,7 @@ var WindowX = {
     },
 
     tiposDeProductos: function (app) {
-        DesktopX.createDynamicWindow(app, 'basket', 'Tipos de producto', 'Productos/TiposDeProductos.aspx');
+        DesktopX.createDynamicWindow(app, 'basket', 'Tipos de Productos', 'Productos/TiposDeProductos.aspx');
     },
 
     productos: function (app) {
@@ -215,7 +224,7 @@ var WindowX = {
     },
 
     inventarioDeCafePorSocio: function (app) {
-        DesktopX.createDynamicWindow(app, 'bricks', 'Inventario de Café por socio', 'Inventario/InventarioDeCafePorSocio.aspx');
+        DesktopX.createDynamicWindow(app, 'bricks', 'Inventario de Café por Socio', 'Inventario/InventarioDeCafePorSocio.aspx');
     },
 
     hojasDeLiquidacion: function (app) {
@@ -227,7 +236,7 @@ var WindowX = {
     },
 
     solicitudesDePrestamo: function (app) {
-        DesktopX.createDynamicWindow(app, 'pagewhitetext', 'Solicitudes de Prestamo', 'Prestamos/SolicitudPrestamo.aspx');
+        DesktopX.createDynamicWindow(app, 'pagewhitetext', 'Solicitudes de Prestamo', 'Prestamos/SolicitudesDePrestamos.aspx');
     },
 
     prestamos: function (app) {

@@ -14,7 +14,7 @@ using COCASJOL.LOGIC.Utiles;
 
 namespace COCASJOL.WEBSITE.Source.Seguridad
 {
-    public partial class Usuario : COCASJOL.LOGIC.Web.COCASJOLBASE
+    public partial class Usuarios : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
         protected void Page_Load(object sender, EventArgs e)
         {
