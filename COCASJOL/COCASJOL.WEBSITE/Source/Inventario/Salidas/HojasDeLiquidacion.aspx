@@ -102,6 +102,10 @@
 
                 AddTotalProductoTxt.setValue(TotalLibras * PrecioLibra);
                 AddTotalCalculosFSTxt.setValue(AddTotalProductoTxt.getValue());
+
+                /* Calcular Retención por Capitalización */
+                var porcentajeCapitalizacionRet = AddCapitalizacionXRetencionTxt.getValue() / 100;
+                AddCapitalizacionXRetencionCantidadTxt.setValue(AddTotalCalculosFSTxt.getValue() * porcentajeCapitalizacionRet);
             },
 
             insert: function () {
@@ -221,10 +225,12 @@
                 direccionFincaTxt.setValue(record.data.PRODUCCION_UBICACION_FINCA);
             },
 
-            getInventarioFueraDeCatacion: function(sociosIdTxt, clasificacionCafeTxt) {
-                var socioId = sociosIdTxt.getValue();
-                var clasificacionId = clasificacionCafeTxt.getValue();
-                Ext.net.DirectMethods.GetCantidadDeInventarioDeCafe(socioId == null ? "" : socioId, clasificacionId == null || clasificacionId == '' ? 0 : clasificacionId);
+            getInventarioFueraDeCatacion: function () {
+                Ext.net.DirectMethods.GetCantidadDeInventarioDeCafe();
+            },
+
+            loadCapitalizacionXRetencion: function () {
+                Ext.net.DirectMethods.LoadCapitalizacionXRetencion();
             },
 
             clearFilter: function () {
@@ -300,76 +306,78 @@
                 SelectMethod="GetHojasDeLiquidacion"
                 InsertMethod="InsertarHojaDeLiquidacion" onselecting="HojasDS_Selecting" >
                 <SelectParameters>
-                    <asp:ControlParameter Name="LIQUIDACIONES_ID"                             Type="Int32"    ControlID="f_LIQUIDACIONES_ID"        PropertyName="Text" />
-                    <asp:ControlParameter Name="SOCIOS_ID"                                    Type="String"   ControlID="f_SOCIOS_ID"               PropertyName="Text" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_FECHA"                          Type="DateTime" ControlID="f_LIQUIDACIONES_FECHA"     PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_DESDE"                                  Type="DateTime" ControlID="f_DATE_FROM"               PropertyName="Text" />
-                    <asp:ControlParameter Name="FECHA_HASTA"                                  Type="DateTime" ControlID="f_DATE_TO"                 PropertyName="Text" />
-                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_ID"                      Type="Int32"    ControlID="f_CLASIFICACIONES_CAFE_ID" PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_NOMBRE"                  Type="String"   ControlID="nullHdn"                   PropertyName="Text" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_TOTAL_LIBRAS"                   Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_PRECIO_LIBRAS"                  Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_VALOR_TOTAL"                    Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_D_CUOTA_INGRESO"                Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_D_GASTOS_ADMIN"                 Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_D_APORTACION_ORDINARIO"         Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA"    Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_D_CUOTA_ADMIN"                  Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION"     Type="Int32"    ControlID="nullHdn"                   PropertyName="Text" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_D_SERVICIO_SECADO_CAFE"         Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_D_INTERESES_S_APORTACIONES"     Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE" Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_D_EXCEDENTE_PERIODO"            Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO"         Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO"          Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_D_PRESTAMO_PRENDARIO"           Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_D_CUENTAS_X_COBRAR"             Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_D_INTERESES_X_COBRAR"           Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_D_RETENCION_X_TORREFACCION"     Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_D_OTRAS_DEDUCCIONES"            Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_D_TOTAL_DEDUCCIONES"            Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_D_AF_SOCIO"                     Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_D_TOTAL"                        Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="CREADO_POR"                                   Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_CREACION"                               Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="MODIFICADO_POR"                               Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_MODIFICACION"                           Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_ID"                                   Type="Int32"    ControlID="f_LIQUIDACIONES_ID"        PropertyName="Text" />
+                    <asp:ControlParameter Name="SOCIOS_ID"                                          Type="String"   ControlID="f_SOCIOS_ID"               PropertyName="Text" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_FECHA"                                Type="DateTime" ControlID="f_LIQUIDACIONES_FECHA"     PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_DESDE"                                        Type="DateTime" ControlID="f_DATE_FROM"               PropertyName="Text" />
+                    <asp:ControlParameter Name="FECHA_HASTA"                                        Type="DateTime" ControlID="f_DATE_TO"                 PropertyName="Text" />
+                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_ID"                            Type="Int32"    ControlID="f_CLASIFICACIONES_CAFE_ID" PropertyName="Text" />
+                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_NOMBRE"                        Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_TOTAL_LIBRAS"                         Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_PRECIO_LIBRAS"                        Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_VALOR_TOTAL"                          Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_D_CUOTA_INGRESO"                      Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_D_GASTOS_ADMIN"                       Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_D_APORTACION_ORDINARIO"               Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA"          Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_D_CUOTA_ADMIN"                        Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION"           Type="Int32"    ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD"  Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_D_SERVICIO_SECADO_CAFE"               Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_D_INTERESES_S_APORTACIONES"           Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE"       Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_D_EXCEDENTE_PERIODO"                  Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO"               Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO"                Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_D_PRESTAMO_PRENDARIO"                 Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_D_CUENTAS_X_COBRAR"                   Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_D_INTERESES_X_COBRAR"                 Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_D_RETENCION_X_TORREFACCION"           Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_D_OTRAS_DEDUCCIONES"                  Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_D_TOTAL_DEDUCCIONES"                  Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_D_AF_SOCIO"                           Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_D_TOTAL"                              Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="CREADO_POR"                                         Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_CREACION"                                     Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="MODIFICADO_POR"                                     Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_MODIFICACION"                                 Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
                 </SelectParameters>
                 <InsertParameters>
-                    <asp:Parameter Name="LIQUIDACIONES_ID"                             Type="Int32"    />
-                    <asp:Parameter Name="SOCIOS_ID"                                    Type="String"   />
-                    <asp:Parameter Name="LIQUIDACIONES_FECHA"                          Type="DateTime" />
-                    <asp:Parameter Name="FECHA_DESDE"                                  Type="DateTime" />
-                    <asp:Parameter Name="FECHA_HASTA"                                  Type="DateTime" />
-                    <asp:Parameter Name="CLASIFICACIONES_CAFE_ID"                      Type="Int32"    />
-                    <asp:Parameter Name="CLASIFICACIONES_CAFE_NOMBRE"                  Type="String"    />
-                    <asp:Parameter Name="LIQUIDACIONES_TOTAL_LIBRAS"                   Type="Decimal"  />
-                    <asp:Parameter Name="LIQUIDACIONES_PRECIO_LIBRAS"                  Type="Decimal"  />
-                    <asp:Parameter Name="LIQUIDACIONES_VALOR_TOTAL"                    Type="Decimal"  />
-                    <asp:Parameter Name="LIQUIDACIONES_D_CUOTA_INGRESO"                Type="Decimal"  />
-                    <asp:Parameter Name="LIQUIDACIONES_D_GASTOS_ADMIN"                 Type="Decimal"  />
-                    <asp:Parameter Name="LIQUIDACIONES_D_APORTACION_ORDINARIO"         Type="Decimal"  />
-                    <asp:Parameter Name="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA"    Type="Decimal"  />
-                    <asp:Parameter Name="LIQUIDACIONES_D_CUOTA_ADMIN"                  Type="Decimal"  />
-                    <asp:Parameter Name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION"     Type="Int32"    />
-                    <asp:Parameter Name="LIQUIDACIONES_D_SERVICIO_SECADO_CAFE"         Type="Decimal"  />
-                    <asp:Parameter Name="LIQUIDACIONES_D_INTERESES_S_APORTACIONES"     Type="Decimal"  />
-                    <asp:Parameter Name="LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE" Type="Decimal"  />
-                    <asp:Parameter Name="LIQUIDACIONES_D_EXCEDENTE_PERIODO"            Type="Decimal"  />
-                    <asp:Parameter Name="LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO"         Type="Decimal"  />
-                    <asp:Parameter Name="LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO"          Type="Decimal"  />
-                    <asp:Parameter Name="LIQUIDACIONES_D_PRESTAMO_PRENDARIO"           Type="Decimal"  />
-                    <asp:Parameter Name="LIQUIDACIONES_D_CUENTAS_X_COBRAR"             Type="Decimal"  />
-                    <asp:Parameter Name="LIQUIDACIONES_D_INTERESES_X_COBRAR"           Type="Decimal"  />
-                    <asp:Parameter Name="LIQUIDACIONES_D_RETENCION_X_TORREFACCION"     Type="Decimal"  />
-                    <asp:Parameter Name="LIQUIDACIONES_D_OTRAS_DEDUCCIONES"            Type="Decimal"  />
-                    <asp:Parameter Name="LIQUIDACIONES_D_TOTAL_DEDUCCIONES"            Type="Decimal"  />
-                    <asp:Parameter Name="LIQUIDACIONES_D_AF_SOCIO"                     Type="Decimal"  />
-                    <asp:Parameter Name="LIQUIDACIONES_D_TOTAL"                        Type="Decimal"  />
-                    <asp:Parameter Name="CREADO_POR"                                   Type="String"   />
-                    <asp:Parameter Name="FECHA_CREACION"                               Type="DateTime" />
-                    <asp:Parameter Name="MODIFICADO_POR"                               Type="String"   />
-                    <asp:Parameter Name="FECHA_MODIFICACION"                           Type="DateTime" />
+                    <asp:Parameter Name="LIQUIDACIONES_ID"                                  Type="Int32"    />
+                    <asp:Parameter Name="SOCIOS_ID"                                         Type="String"   />
+                    <asp:Parameter Name="LIQUIDACIONES_FECHA"                               Type="DateTime" />
+                    <asp:Parameter Name="FECHA_DESDE"                                       Type="DateTime" />
+                    <asp:Parameter Name="FECHA_HASTA"                                       Type="DateTime" />
+                    <asp:Parameter Name="CLASIFICACIONES_CAFE_ID"                           Type="Int32"    />
+                    <asp:Parameter Name="CLASIFICACIONES_CAFE_NOMBRE"                       Type="String"   />
+                    <asp:Parameter Name="LIQUIDACIONES_TOTAL_LIBRAS"                        Type="Decimal"  />
+                    <asp:Parameter Name="LIQUIDACIONES_PRECIO_LIBRAS"                       Type="Decimal"  />
+                    <asp:Parameter Name="LIQUIDACIONES_VALOR_TOTAL"                         Type="Decimal"  />
+                    <asp:Parameter Name="LIQUIDACIONES_D_CUOTA_INGRESO"                     Type="Decimal"  />
+                    <asp:Parameter Name="LIQUIDACIONES_D_GASTOS_ADMIN"                      Type="Decimal"  />
+                    <asp:Parameter Name="LIQUIDACIONES_D_APORTACION_ORDINARIO"              Type="Decimal"  />
+                    <asp:Parameter Name="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA"         Type="Decimal"  />
+                    <asp:Parameter Name="LIQUIDACIONES_D_CUOTA_ADMIN"                       Type="Decimal"  />
+                    <asp:Parameter Name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION"          Type="Int32"    />
+                    <asp:Parameter Name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD" Type="Decimal"  />
+                    <asp:Parameter Name="LIQUIDACIONES_D_SERVICIO_SECADO_CAFE"              Type="Decimal"  />
+                    <asp:Parameter Name="LIQUIDACIONES_D_INTERESES_S_APORTACIONES"          Type="Decimal"  />
+                    <asp:Parameter Name="LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE"      Type="Decimal"  />
+                    <asp:Parameter Name="LIQUIDACIONES_D_EXCEDENTE_PERIODO"                 Type="Decimal"  />
+                    <asp:Parameter Name="LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO"              Type="Decimal"  />
+                    <asp:Parameter Name="LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO"               Type="Decimal"  />
+                    <asp:Parameter Name="LIQUIDACIONES_D_PRESTAMO_PRENDARIO"                Type="Decimal"  />
+                    <asp:Parameter Name="LIQUIDACIONES_D_CUENTAS_X_COBRAR"                  Type="Decimal"  />
+                    <asp:Parameter Name="LIQUIDACIONES_D_INTERESES_X_COBRAR"                Type="Decimal"  />
+                    <asp:Parameter Name="LIQUIDACIONES_D_RETENCION_X_TORREFACCION"          Type="Decimal"  />
+                    <asp:Parameter Name="LIQUIDACIONES_D_OTRAS_DEDUCCIONES"                 Type="Decimal"  />
+                    <asp:Parameter Name="LIQUIDACIONES_D_TOTAL_DEDUCCIONES"                 Type="Decimal"  />
+                    <asp:Parameter Name="LIQUIDACIONES_D_AF_SOCIO"                          Type="Decimal"  />
+                    <asp:Parameter Name="LIQUIDACIONES_D_TOTAL"                             Type="Decimal"  />
+                    <asp:Parameter Name="CREADO_POR"                                        Type="String"   />
+                    <asp:Parameter Name="FECHA_CREACION"                                    Type="DateTime" />
+                    <asp:Parameter Name="MODIFICADO_POR"                                    Type="String"   />
+                    <asp:Parameter Name="FECHA_MODIFICACION"                                Type="DateTime" />
                 </InsertParameters>
         </asp:ObjectDataSource>
 
@@ -437,39 +445,41 @@
                                     <Reader>
                                         <ext:JsonReader IDProperty="LIQUIDACIONES_ID">
                                             <Fields>
-                                                <ext:RecordField Name="LIQUIDACIONES_ID"                             />
-                                                <ext:RecordField Name="SOCIOS_ID"                                    />
-                                                <ext:RecordField Name="LIQUIDACIONES_FECHA"                          Type="Date" />
-                                                <ext:RecordField Name="FECHA_DESDE"                                  Type="Date" DefaultValue="" />
-                                                <ext:RecordField Name="FECHA_HASTA"                                  Type="Date" DefaultValue="" />
-                                                <ext:RecordField Name="CLASIFICACIONES_CAFE_ID"                      ServerMapping="clasificaciones_cafe.CLASIFICACIONES_CAFE_NOMBRE"/>
-                                                <ext:RecordField Name="LIQUIDACIONES_TOTAL_LIBRAS"                   />
-                                                <ext:RecordField Name="LIQUIDACIONES_PRECIO_LIBRAS"                  />
-                                                <ext:RecordField Name="LIQUIDACIONES_VALOR_TOTAL"                    />
-                                                <ext:RecordField Name="LIQUIDACIONES_D_CUOTA_INGRESO"                />
-                                                <ext:RecordField Name="LIQUIDACIONES_D_GASTOS_ADMIN"                 />
-                                                <ext:RecordField Name="LIQUIDACIONES_D_APORTACION_ORDINARIO"         />
-                                                <ext:RecordField Name="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA"    />
-                                                <ext:RecordField Name="LIQUIDACIONES_D_CUOTA_ADMIN"                  />
-                                                <ext:RecordField Name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION"     />
-                                                <ext:RecordField Name="LIQUIDACIONES_D_SERVICIO_SECADO_CAFE"         />
-                                                <ext:RecordField Name="LIQUIDACIONES_D_INTERESES_S_APORTACIONES"     />
-                                                <ext:RecordField Name="LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE" />
-                                                <ext:RecordField Name="LIQUIDACIONES_D_EXCEDENTE_PERIODO"            />
-                                                <ext:RecordField Name="LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO"         />
-                                                <ext:RecordField Name="LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO"          />
-                                                <ext:RecordField Name="LIQUIDACIONES_D_PRESTAMO_PRENDARIO"           />
-                                                <ext:RecordField Name="LIQUIDACIONES_D_CUENTAS_X_COBRAR"             />
-                                                <ext:RecordField Name="LIQUIDACIONES_D_INTERESES_X_COBRAR"           />
-                                                <ext:RecordField Name="LIQUIDACIONES_D_RETENCION_X_TORREFACCION"     />
-                                                <ext:RecordField Name="LIQUIDACIONES_D_OTRAS_DEDUCCIONES"            />
-                                                <ext:RecordField Name="LIQUIDACIONES_D_TOTAL_DEDUCCIONES"            />
-                                                <ext:RecordField Name="LIQUIDACIONES_D_AF_SOCIO"                     />
-                                                <ext:RecordField Name="LIQUIDACIONES_D_TOTAL"                        />
-                                                <ext:RecordField Name="CREADO_POR"                                   />
-                                                <ext:RecordField Name="FECHA_CREACION"                               Type="Date" />
-                                                <ext:RecordField Name="MODIFICADO_POR"                               />
-                                                <ext:RecordField Name="FECHA_MODIFICACION"                           Type="Date" />
+                                                <ext:RecordField Name="LIQUIDACIONES_ID"                                  />
+                                                <ext:RecordField Name="SOCIOS_ID"                                         />
+                                                <ext:RecordField Name="LIQUIDACIONES_FECHA"                               Type="Date" />
+                                                <ext:RecordField Name="FECHA_DESDE"                                       Type="Date" DefaultValue="" />
+                                                <ext:RecordField Name="FECHA_HASTA"                                       Type="Date" DefaultValue="" />
+                                                <ext:RecordField Name="CLASIFICACIONES_CAFE_ID"                           />
+                                                <ext:RecordField Name="CLASIFICACIONES_CAFE_NOMBRE"                       ServerMapping="clasificaciones_cafe.CLASIFICACIONES_CAFE_NOMBRE"/>
+                                                <ext:RecordField Name="LIQUIDACIONES_TOTAL_LIBRAS"                        />
+                                                <ext:RecordField Name="LIQUIDACIONES_PRECIO_LIBRAS"                       />
+                                                <ext:RecordField Name="LIQUIDACIONES_VALOR_TOTAL"                         />
+                                                <ext:RecordField Name="LIQUIDACIONES_D_CUOTA_INGRESO"                     />
+                                                <ext:RecordField Name="LIQUIDACIONES_D_GASTOS_ADMIN"                      />
+                                                <ext:RecordField Name="LIQUIDACIONES_D_APORTACION_ORDINARIO"              />
+                                                <ext:RecordField Name="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA"         />
+                                                <ext:RecordField Name="LIQUIDACIONES_D_CUOTA_ADMIN"                       />
+                                                <ext:RecordField Name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION"          />
+                                                <ext:RecordField Name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD" />
+                                                <ext:RecordField Name="LIQUIDACIONES_D_SERVICIO_SECADO_CAFE"              />
+                                                <ext:RecordField Name="LIQUIDACIONES_D_INTERESES_S_APORTACIONES"          />
+                                                <ext:RecordField Name="LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE"      />
+                                                <ext:RecordField Name="LIQUIDACIONES_D_EXCEDENTE_PERIODO"                 />
+                                                <ext:RecordField Name="LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO"              />
+                                                <ext:RecordField Name="LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO"               />
+                                                <ext:RecordField Name="LIQUIDACIONES_D_PRESTAMO_PRENDARIO"                />
+                                                <ext:RecordField Name="LIQUIDACIONES_D_CUENTAS_X_COBRAR"                  />
+                                                <ext:RecordField Name="LIQUIDACIONES_D_INTERESES_X_COBRAR"                />
+                                                <ext:RecordField Name="LIQUIDACIONES_D_RETENCION_X_TORREFACCION"          />
+                                                <ext:RecordField Name="LIQUIDACIONES_D_OTRAS_DEDUCCIONES"                 />
+                                                <ext:RecordField Name="LIQUIDACIONES_D_TOTAL_DEDUCCIONES"                 />
+                                                <ext:RecordField Name="LIQUIDACIONES_D_AF_SOCIO"                          />
+                                                <ext:RecordField Name="LIQUIDACIONES_D_TOTAL"                             />
+                                                <ext:RecordField Name="CREADO_POR"                                        />
+                                                <ext:RecordField Name="FECHA_CREACION"                                    Type="Date" />
+                                                <ext:RecordField Name="MODIFICADO_POR"                                    />
+                                                <ext:RecordField Name="FECHA_MODIFICACION"                                Type="Date" />
                                             </Fields>
                                         </ext:JsonReader>
                                     </Reader>
@@ -659,7 +669,7 @@
             InitCenter="true"
             ConstrainHeader="true" Layout="FitLayout" >
             <Listeners>
-                <Show Handler="#{AddFechaHojaTxt}.setValue(new Date());" />
+                <Show Handler="#{AddFechaHojaTxt}.setValue(new Date()); PageX.loadCapitalizacionXRetencion();" />
                 <Hide Handler="#{AgregarHojasFormP}.getForm().reset();" />
             </Listeners>
             <Items>
@@ -719,7 +729,7 @@
                                                                     <Listeners>
                                                                         <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
                                                                         <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide(); Ext.getCmp('EditNombreTxt').reset(); Ext.getCmp('EditDireccionFincaTxt').reset(); }" />
-                                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddDireccionFincaTxt')); PageX.getInventarioFueraDeCatacion(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddClasificacionCafeCmb'));" />
+                                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddDireccionFincaTxt')); PageX.getInventarioFueraDeCatacion();" />
                                                                     </Listeners>
                                                                 </ext:ComboBox>
                                                             </Items>
@@ -740,7 +750,7 @@
                                                                     <Listeners>
                                                                         <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
                                                                         <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
-                                                                        <Select Handler="this.triggers[0].show(); PageX.getInventarioFueraDeCatacion(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddClasificacionCafeCmb'));" />
+                                                                        <Select Handler="this.triggers[0].show(); PageX.getInventarioFueraDeCatacion();" />
                                                                     </Listeners>
                                                                 </ext:ComboBox>
                                                                 <ext:NumberField runat="server" ID="AddInventarioCafeTxt" LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="false" MsgTarget="Side" FieldLabel="Inventario de Café Disponible (Lbs)" ReadOnly="true" Text="0" AllowNegative="false" ></ext:NumberField>
@@ -770,7 +780,8 @@
                                                     <Items>
                                                         <ext:FieldSet ID="AddCalculosFS" runat="server" Title="Calculo de Valor del Producto" Padding="5" LabelWidth="200" >
                                                             <Items>
-                                                                <ext:NumberField runat="server" ID="AddTotalLibrasTxt"   DataIndex="LIQUIDACIONES_TOTAL_LIBRAS"  LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="false" MsgTarget="Side" FieldLabel="Total Lbs. Netas" >
+                                                                <ext:NumberField runat="server" ID="AddTotalLibrasTxt"   DataIndex="LIQUIDACIONES_TOTAL_LIBRAS"  LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="false" MsgTarget="Side" FieldLabel="Total Lbs. Netas" IsRemoteValidation="true" >
+                                                                    <RemoteValidation OnValidation="AddTotalLibrasTxt_Blur" ValidationEvent="blur" />
                                                                     <Listeners>
                                                                         <Change Handler="PageX.AddCalculosTotalProducto();" />
                                                                     </Listeners>
@@ -789,25 +800,26 @@
                                                     <Items>
                                                         <ext:FieldSet ID="AddDeduccionesFS" runat="server" Title="Deducciones" Padding="5" LabelWidth="200" >
                                                             <Items>
-                                                                <ext:NumberField runat="server" ID="AddCuotaIngresoTxt"               DataIndex="LIQUIDACIONES_D_CUOTA_INGRESO"                LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Cuota de Ingreso" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="AddGastosAdminTxt"                DataIndex="LIQUIDACIONES_D_GASTOS_ADMIN"                 LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Gastos de Administración" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="AddAportacionOrdinariaTxt"        DataIndex="LIQUIDACIONES_D_APORTACION_ORDINARIO"         LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Aportación Ordinaria" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="AddAportacionExtraOrdinariaTxt"   DataIndex="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA"    LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Aportación Extraordinaria" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="AddCuotaAdminTxt"                 DataIndex="LIQUIDACIONES_D_CUOTA_ADMIN"                  LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Cuota de Administración" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="AddCapitalizacionXRetencionTxt"   DataIndex="LIQUIDACIONES_D_CAPITALIZACION_RETENCION"     LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Capitalización por Retención" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="AddServicioSecadoCafeTxt"         DataIndex="LIQUIDACIONES_D_SERVICIO_SECADO_CAFE"         LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Servicio de Secado de Café" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="AddInteresesSobreAportacionesTxt" DataIndex="LIQUIDACIONES_D_INTERESES_S_APORTACIONES"     LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Intereses sobre Aportaciones" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="AddExcedenteXRendimientoCafeTxt"  DataIndex="LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE" LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Excedente por Rendimiento de Café" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="AddExcedentePeriodoTxt"           DataIndex="LIQUIDACIONES_D_EXCEDENTE_PERIODO"            LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Excedente por Período" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="AddPrestamoHipotecarioTxt"        DataIndex="LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO"         LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Prestamo Hipotecario" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="AddPrestamoFiduciarioTxt"         DataIndex="LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO"          LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Prestamo Fiduciario" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="AddPrestamoPrendarioTxt"          DataIndex="LIQUIDACIONES_D_PRESTAMO_PRENDARIO"           LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Prestamo Prendario" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="AddCuentasXCobrarTxt"             DataIndex="LIQUIDACIONES_D_CUENTAS_X_COBRAR"             LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Cuentas por Cobrar" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="AddInteresesXCobrarTxt"           DataIndex="LIQUIDACIONES_D_INTERESES_X_COBRAR"           LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Intereses por Cobrar" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="AddRetencionXTorrefaccionTxt"     DataIndex="LIQUIDACIONES_D_RETENCION_X_TORREFACCION"     LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Reteción por Torrefacción" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="AddOtrasDeduccionesTxt"           DataIndex="LIQUIDACIONES_D_OTRAS_DEDUCCIONES"            LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Otras Deducciones" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="AddTotalDeduccionesTxt"           DataIndex="LIQUIDACIONES_D_TOTAL_DEDUCCIONES"            LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Total Deducciones" ReadOnly="true" Text="0" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="AddAFSocioTxt"                    DataIndex="LIQUIDACIONES_D_AF_SOCIO"                     LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="A/F del Socio" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddCuotaIngresoTxt"                     DataIndex="LIQUIDACIONES_D_CUOTA_INGRESO"                     LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Cuota de Ingreso" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddGastosAdminTxt"                      DataIndex="LIQUIDACIONES_D_GASTOS_ADMIN"                      LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Gastos de Administración" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddAportacionOrdinariaTxt"              DataIndex="LIQUIDACIONES_D_APORTACION_ORDINARIO"              LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Aportación Ordinaria" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddAportacionExtraOrdinariaTxt"         DataIndex="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA"         LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Aportación Extraordinaria" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddCuotaAdminTxt"                       DataIndex="LIQUIDACIONES_D_CUOTA_ADMIN"                       LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Cuota de Administración" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddCapitalizacionXRetencionTxt"         DataIndex="LIQUIDACIONES_D_CAPITALIZACION_RETENCION"          LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="% Capitalización por Retención" ReadOnly="true" AllowBlank="false" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddCapitalizacionXRetencionCantidadTxt" DataIndex="LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD" LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Capitalización por Retención" ReadOnly="true" AllowBlank="false" Text="0" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddServicioSecadoCafeTxt"               DataIndex="LIQUIDACIONES_D_SERVICIO_SECADO_CAFE"              LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Servicio de Secado de Café" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddInteresesSobreAportacionesTxt"       DataIndex="LIQUIDACIONES_D_INTERESES_S_APORTACIONES"          LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Intereses sobre Aportaciones" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddExcedenteXRendimientoCafeTxt"        DataIndex="LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE"      LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Excedente por Rendimiento de Café" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddExcedentePeriodoTxt"                 DataIndex="LIQUIDACIONES_D_EXCEDENTE_PERIODO"                 LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Excedente por Período" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddPrestamoHipotecarioTxt"              DataIndex="LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO"              LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Prestamo Hipotecario" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddPrestamoFiduciarioTxt"               DataIndex="LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO"               LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Prestamo Fiduciario" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddPrestamoPrendarioTxt"                DataIndex="LIQUIDACIONES_D_PRESTAMO_PRENDARIO"                LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Prestamo Prendario" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddCuentasXCobrarTxt"                   DataIndex="LIQUIDACIONES_D_CUENTAS_X_COBRAR"                  LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Cuentas por Cobrar" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddInteresesXCobrarTxt"                 DataIndex="LIQUIDACIONES_D_INTERESES_X_COBRAR"                LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Intereses por Cobrar" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddRetencionXTorrefaccionTxt"           DataIndex="LIQUIDACIONES_D_RETENCION_X_TORREFACCION"          LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Reteción por Torrefacción" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddOtrasDeduccionesTxt"                 DataIndex="LIQUIDACIONES_D_OTRAS_DEDUCCIONES"                 LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Otras Deducciones" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddTotalDeduccionesTxt"                 DataIndex="LIQUIDACIONES_D_TOTAL_DEDUCCIONES"                 LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Total Deducciones" ReadOnly="true" Text="0" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddAFSocioTxt"                          DataIndex="LIQUIDACIONES_D_AF_SOCIO"                          LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="A/F del Socio" ></ext:NumberField>
                                                             </Items>
                                                         </ext:FieldSet>
                                                     </Items>
@@ -852,7 +864,7 @@
                     <Buttons>
                         <ext:Button ID="AddGuardarBtn" runat="server" Text="Guardar" Icon="Disk" FormBind="true" >
                             <Listeners>
-                                <Click Handler="#{EditCreatedByTxt}.setValue(#{LoggedUserHdn}.getValue()); PageX.insert();" />
+                                <Click Handler="#{AddCreatedByTxt}.setValue(#{LoggedUserHdn}.getValue()); PageX.insert();" />
                             </Listeners>
                         </ext:Button>
                     </Buttons>
@@ -934,7 +946,7 @@
                                                                     <Listeners>
                                                                         <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
                                                                         <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide(); Ext.getCmp('EditNombreTxt').reset(); Ext.getCmp('EditDireccionFincaTxt').reset(); }" />
-                                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditDireccionFincaTxt')); PageX.getInventarioFueraDeCatacion(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddClasificacionCafeCmb'));" />
+                                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditDireccionFincaTxt'));" />
                                                                     </Listeners>
                                                                 </ext:ComboBox>
                                                             </Items>
@@ -955,7 +967,7 @@
                                                                     <Listeners>
                                                                         <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
                                                                         <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
-                                                                        <Select Handler="this.triggers[0].show(); PageX.getInventarioFueraDeCatacion(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddClasificacionCafeCmb'));" />
+                                                                        <Select Handler="this.triggers[0].show();" />
                                                                     </Listeners>
                                                                 </ext:ComboBox>
                                                                 <ext:NumberField runat="server" ID="EditInventarioCafeTxt" LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="false" MsgTarget="Side" FieldLabel="Inventario de Café Disponible (Lbs)" ReadOnly="true" Text="0" AllowNegative="false" ></ext:NumberField>
@@ -996,25 +1008,26 @@
                                                     <Items>
                                                         <ext:FieldSet ID="EditDeduccionesFS" runat="server" Title="Deducciones" Padding="5" LabelWidth="200" >
                                                             <Items>
-                                                                <ext:NumberField runat="server" ID="EditCuotaIngresoTxt"               DataIndex="LIQUIDACIONES_D_CUOTA_INGRESO"                LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Cuota de Ingreso" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditGastosAdminTxt"                DataIndex="LIQUIDACIONES_D_GASTOS_ADMIN"                 LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Gastos de Administración" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditAportacionOrdinariaTxt"        DataIndex="LIQUIDACIONES_D_APORTACION_ORDINARIO"         LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Aportación Ordinaria" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditAportacionExtraOrdinariaTxt"   DataIndex="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA"    LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Aportación Extraordinaria" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditCuotaAdminTxt"                 DataIndex="LIQUIDACIONES_D_CUOTA_ADMIN"                  LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Cuota de Administración" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditCapitalizacionXRetencionTxt"   DataIndex="LIQUIDACIONES_D_CAPITALIZACION_RETENCION"     LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Capitalización por Retención" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditServicioSecadoCafeTxt"         DataIndex="LIQUIDACIONES_D_SERVICIO_SECADO_CAFE"         LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Servicio de Secado de Café" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditInteresesSobreAportacionesTxt" DataIndex="LIQUIDACIONES_D_INTERESES_S_APORTACIONES"     LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Intereses sobre Aportaciones" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditExcedenteXRendimientoCafeTxt"  DataIndex="LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE" LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Excedente por Rendimiento de Café" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditExcedentePeriodoTxt"           DataIndex="LIQUIDACIONES_D_EXCEDENTE_PERIODO"            LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Excedente por Período" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditPrestamoHipotecarioTxt"        DataIndex="LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO"         LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Prestamo Hipotecario" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditPrestamoFiduciarioTxt"         DataIndex="LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO"          LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Prestamo Fiduciario" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditPrestamoPrendarioTxt"          DataIndex="LIQUIDACIONES_D_PRESTAMO_PRENDARIO"           LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Prestamo Prendario" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditCuentasXCobrarTxt"             DataIndex="LIQUIDACIONES_D_CUENTAS_X_COBRAR"             LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Cuentas por Cobrar" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditInteresesXCobrarTxt"           DataIndex="LIQUIDACIONES_D_INTERESES_X_COBRAR"           LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Intereses por Cobrar" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditRetencionXTorrefaccionTxt"     DataIndex="LIQUIDACIONES_D_RETENCION_X_TORREFACCION"     LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Reteción por Torrefacción" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditOtrasDeduccionesTxt"           DataIndex="LIQUIDACIONES_D_OTRAS_DEDUCCIONES"            LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Otras Deducciones" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditTotalDeduccionesTxt"           DataIndex="LIQUIDACIONES_D_TOTAL_DEDUCCIONES"            LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Total Deducciones" ReadOnly="true" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditAFSocioTxt"                    DataIndex="LIQUIDACIONES_D_AF_SOCIO"                     LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="A/F del Socio" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditCuotaIngresoTxt"                     DataIndex="LIQUIDACIONES_D_CUOTA_INGRESO"                     LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Cuota de Ingreso" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditGastosAdminTxt"                      DataIndex="LIQUIDACIONES_D_GASTOS_ADMIN"                      LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Gastos de Administración" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditAportacionOrdinariaTxt"              DataIndex="LIQUIDACIONES_D_APORTACION_ORDINARIO"              LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Aportación Ordinaria" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditAportacionExtraOrdinariaTxt"         DataIndex="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA"         LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Aportación Extraordinaria" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditCuotaAdminTxt"                       DataIndex="LIQUIDACIONES_D_CUOTA_ADMIN"                       LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Cuota de Administración" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditCapitalizacionXRetencionTxt"         DataIndex="LIQUIDACIONES_D_CAPITALIZACION_RETENCION"          LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="% Capitalización por Retención" ReadOnly="true" AllowBlank="false" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditCapitalizacionXRetencionCantidadTxt" DataIndex="LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD" LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Capitalización por Retención" ReadOnly="true" AllowBlank="false" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditServicioSecadoCafeTxt"               DataIndex="LIQUIDACIONES_D_SERVICIO_SECADO_CAFE"              LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Servicio de Secado de Café" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditInteresesSobreAportacionesTxt"       DataIndex="LIQUIDACIONES_D_INTERESES_S_APORTACIONES"          LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Intereses sobre Aportaciones" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditExcedenteXRendimientoCafeTxt"        DataIndex="LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE"      LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Excedente por Rendimiento de Café" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditExcedentePeriodoTxt"                 DataIndex="LIQUIDACIONES_D_EXCEDENTE_PERIODO"                 LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Excedente por Período" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditPrestamoHipotecarioTxt"              DataIndex="LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO"              LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Prestamo Hipotecario" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditPrestamoFiduciarioTxt"               DataIndex="LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO"               LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Prestamo Fiduciario" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditPrestamoPrendarioTxt"                DataIndex="LIQUIDACIONES_D_PRESTAMO_PRENDARIO"                LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Prestamo Prendario" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditCuentasXCobrarTxt"                   DataIndex="LIQUIDACIONES_D_CUENTAS_X_COBRAR"                  LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Cuentas por Cobrar" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditInteresesXCobrarTxt"                 DataIndex="LIQUIDACIONES_D_INTERESES_X_COBRAR"                LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Intereses por Cobrar" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditRetencionXTorrefaccionTxt"           DataIndex="LIQUIDACIONES_D_RETENCION_X_TORREFACCION"          LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Reteción por Torrefacción" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditOtrasDeduccionesTxt"                 DataIndex="LIQUIDACIONES_D_OTRAS_DEDUCCIONES"                 LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Otras Deducciones" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditTotalDeduccionesTxt"                 DataIndex="LIQUIDACIONES_D_TOTAL_DEDUCCIONES"                 LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Total Deducciones" ReadOnly="true" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditAFSocioTxt"                          DataIndex="LIQUIDACIONES_D_AF_SOCIO"                          LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="A/F del Socio" ></ext:NumberField>
                                                             </Items>
                                                         </ext:FieldSet>
                                                     </Items>

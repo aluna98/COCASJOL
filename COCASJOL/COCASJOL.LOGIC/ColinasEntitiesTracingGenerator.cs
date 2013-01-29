@@ -44,10 +44,10 @@ using System.Data;
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "Solicitudfk", "solicitudes_prestamos", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.solicitud_prestamo), "referencia_x_solicitud", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.referencia_x_solicitud), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "Solicitudesxsociofk", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "solicitudes_prestamos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.solicitud_prestamo), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "APORTACIONES_SOCIOS_FK", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "aportaciones_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.aportacion_socio), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "LIQUIDACIONES_SOCIOS_FK", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "liquidaciones", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.liquidacion), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "inventario_clasificacion_cafe_fk", "clasificaciones_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.clasificacion_cafe), "inventario_cafe_de_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.inventario_cafe_de_socio), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "LIQUIDACIONES_CLASIFICACIONES_FK", "clasificaciones_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.clasificacion_cafe), "liquidacion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.liquidacion), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "notas_de_peso_clasificacion_cafe_fk", "clasificaciones_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.clasificacion_cafe), "nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.nota_de_peso), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "LIQUIDACIONES_CLASIFICACIONES_FK", "clasificacion_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.clasificacion_cafe), "liquidaciones", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.liquidacion), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "LIQUIDACIONES_SOCIOS_FK", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "liquidaciones", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.liquidacion), true)]
 
 #endregion
 
@@ -560,22 +560,6 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<liquidacion> liquidaciones
-        {
-            get
-            {
-                if ((_liquidaciones == null))
-                {
-                    _liquidaciones = base.CreateObjectSet<liquidacion>("liquidaciones");
-                }
-                return _liquidaciones;
-            }
-        }
-        private ObjectSet<liquidacion> _liquidaciones;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<clasificacion_cafe> clasificaciones_cafe
         {
             get
@@ -588,6 +572,22 @@ namespace COCASJOL.LOGIC
             }
         }
         private ObjectSet<clasificacion_cafe> _clasificaciones_cafe;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<liquidacion> liquidaciones
+        {
+            get
+            {
+                if ((_liquidaciones == null))
+                {
+                    _liquidaciones = base.CreateObjectSet<liquidacion>("liquidaciones");
+                }
+                return _liquidaciones;
+            }
+        }
+        private ObjectSet<liquidacion> _liquidaciones;
 
         #endregion
         #region AddTo Methods
@@ -777,19 +777,19 @@ namespace COCASJOL.LOGIC
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the liquidaciones EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToliquidaciones(liquidacion liquidacion)
-        {
-            base.AddObject("liquidaciones", liquidacion);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the clasificaciones_cafe EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToclasificaciones_cafe(clasificacion_cafe clasificacion_cafe)
         {
             base.AddObject("clasificaciones_cafe", clasificacion_cafe);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the liquidaciones EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToliquidaciones(liquidacion liquidacion)
+        {
+            base.AddObject("liquidaciones", liquidacion);
         }
 
         #endregion
@@ -1906,28 +1906,6 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "LIQUIDACIONES_CLASIFICACIONES_FK", "liquidacion")]
-        public EntityCollection<liquidacion> liquidaciones
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<liquidacion>("COLINASMODEL.LIQUIDACIONES_CLASIFICACIONES_FK", "liquidacion");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<liquidacion>("COLINASMODEL.LIQUIDACIONES_CLASIFICACIONES_FK", "liquidacion", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "notas_de_peso_clasificacion_cafe_fk", "nota_de_peso")]
         public EntityCollection<nota_de_peso> notas_de_peso
         {
@@ -1940,6 +1918,28 @@ namespace COCASJOL.LOGIC
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<nota_de_peso>("COLINASMODEL.notas_de_peso_clasificacion_cafe_fk", "nota_de_peso", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "LIQUIDACIONES_CLASIFICACIONES_FK", "liquidaciones")]
+        public EntityCollection<liquidacion> liquidaciones
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<liquidacion>("COLINASMODEL.LIQUIDACIONES_CLASIFICACIONES_FK", "liquidaciones");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<liquidacion>("COLINASMODEL.LIQUIDACIONES_CLASIFICACIONES_FK", "liquidaciones", value);
                 }
             }
         }
@@ -2677,9 +2677,11 @@ namespace COCASJOL.LOGIC
         /// <param name="lIQUIDACIONES_TOTAL_LIBRAS">Initial value of the LIQUIDACIONES_TOTAL_LIBRAS property.</param>
         /// <param name="lIQUIDACIONES_PRECIO_LIBRAS">Initial value of the LIQUIDACIONES_PRECIO_LIBRAS property.</param>
         /// <param name="lIQUIDACIONES_VALOR_TOTAL">Initial value of the LIQUIDACIONES_VALOR_TOTAL property.</param>
+        /// <param name="lIQUIDACIONES_D_CAPITALIZACION_RETENCION">Initial value of the LIQUIDACIONES_D_CAPITALIZACION_RETENCION property.</param>
+        /// <param name="lIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD">Initial value of the LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD property.</param>
         /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
         /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
-        public static liquidacion Createliquidacion(global::System.Int32 lIQUIDACIONES_ID, global::System.String sOCIOS_ID, global::System.DateTime lIQUIDACIONES_FECHA, global::System.Int32 cLASIFICACIONES_CAFE_ID, global::System.Decimal lIQUIDACIONES_TOTAL_LIBRAS, global::System.Decimal lIQUIDACIONES_PRECIO_LIBRAS, global::System.Decimal lIQUIDACIONES_VALOR_TOTAL, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
+        public static liquidacion Createliquidacion(global::System.Int32 lIQUIDACIONES_ID, global::System.String sOCIOS_ID, global::System.DateTime lIQUIDACIONES_FECHA, global::System.Int32 cLASIFICACIONES_CAFE_ID, global::System.Decimal lIQUIDACIONES_TOTAL_LIBRAS, global::System.Decimal lIQUIDACIONES_PRECIO_LIBRAS, global::System.Decimal lIQUIDACIONES_VALOR_TOTAL, global::System.Int32 lIQUIDACIONES_D_CAPITALIZACION_RETENCION, global::System.Decimal lIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
         {
             liquidacion liquidacion = new liquidacion();
             liquidacion.LIQUIDACIONES_ID = lIQUIDACIONES_ID;
@@ -2689,6 +2691,8 @@ namespace COCASJOL.LOGIC
             liquidacion.LIQUIDACIONES_TOTAL_LIBRAS = lIQUIDACIONES_TOTAL_LIBRAS;
             liquidacion.LIQUIDACIONES_PRECIO_LIBRAS = lIQUIDACIONES_PRECIO_LIBRAS;
             liquidacion.LIQUIDACIONES_VALOR_TOTAL = lIQUIDACIONES_VALOR_TOTAL;
+            liquidacion.LIQUIDACIONES_D_CAPITALIZACION_RETENCION = lIQUIDACIONES_D_CAPITALIZACION_RETENCION;
+            liquidacion.LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD = lIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD;
             liquidacion.CREADO_POR = cREADO_POR;
             liquidacion.FECHA_CREACION = fECHA_CREACION;
             return liquidacion;
@@ -2994,9 +2998,9 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> LIQUIDACIONES_D_CAPITALIZACION_RETENCION
+        public global::System.Int32 LIQUIDACIONES_D_CAPITALIZACION_RETENCION
         {
             get
             {
@@ -3011,9 +3015,33 @@ namespace COCASJOL.LOGIC
                 OnLIQUIDACIONES_D_CAPITALIZACION_RETENCIONChanged();
             }
         }
-        private Nullable<global::System.Int32> _LIQUIDACIONES_D_CAPITALIZACION_RETENCION;
-        partial void OnLIQUIDACIONES_D_CAPITALIZACION_RETENCIONChanging(Nullable<global::System.Int32> value);
+        private global::System.Int32 _LIQUIDACIONES_D_CAPITALIZACION_RETENCION;
+        partial void OnLIQUIDACIONES_D_CAPITALIZACION_RETENCIONChanging(global::System.Int32 value);
         partial void OnLIQUIDACIONES_D_CAPITALIZACION_RETENCIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD
+        {
+            get
+            {
+                return _LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD;
+            }
+            set
+            {
+                OnLIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDADChanging(value);
+                ReportPropertyChanging("LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD");
+                _LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD");
+                OnLIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDADChanged();
+            }
+        }
+        private global::System.Decimal _LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD;
+        partial void OnLIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDADChanging(global::System.Decimal value);
+        partial void OnLIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDADChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -3457,6 +3485,44 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "LIQUIDACIONES_CLASIFICACIONES_FK", "clasificacion_cafe")]
+        public clasificacion_cafe clasificaciones_cafe
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<clasificacion_cafe>("COLINASMODEL.LIQUIDACIONES_CLASIFICACIONES_FK", "clasificacion_cafe").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<clasificacion_cafe>("COLINASMODEL.LIQUIDACIONES_CLASIFICACIONES_FK", "clasificacion_cafe").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<clasificacion_cafe> clasificaciones_cafeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<clasificacion_cafe>("COLINASMODEL.LIQUIDACIONES_CLASIFICACIONES_FK", "clasificacion_cafe");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<clasificacion_cafe>("COLINASMODEL.LIQUIDACIONES_CLASIFICACIONES_FK", "clasificacion_cafe", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "LIQUIDACIONES_SOCIOS_FK", "socio")]
         public socio socios
         {
@@ -3485,44 +3551,6 @@ namespace COCASJOL.LOGIC
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<socio>("COLINASMODEL.LIQUIDACIONES_SOCIOS_FK", "socio", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "LIQUIDACIONES_CLASIFICACIONES_FK", "clasificaciones_cafe")]
-        public clasificacion_cafe clasificaciones_cafe
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<clasificacion_cafe>("COLINASMODEL.LIQUIDACIONES_CLASIFICACIONES_FK", "clasificaciones_cafe").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<clasificacion_cafe>("COLINASMODEL.LIQUIDACIONES_CLASIFICACIONES_FK", "clasificaciones_cafe").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<clasificacion_cafe> clasificaciones_cafeReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<clasificacion_cafe>("COLINASMODEL.LIQUIDACIONES_CLASIFICACIONES_FK", "clasificaciones_cafe");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<clasificacion_cafe>("COLINASMODEL.LIQUIDACIONES_CLASIFICACIONES_FK", "clasificaciones_cafe", value);
                 }
             }
         }

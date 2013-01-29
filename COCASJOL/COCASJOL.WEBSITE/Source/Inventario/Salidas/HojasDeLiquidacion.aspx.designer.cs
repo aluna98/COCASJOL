@@ -616,6 +616,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         protected global::Ext.Net.NumberField AddCapitalizacionXRetencionTxt;
         
         /// <summary>
+        /// AddCapitalizacionXRetencionCantidadTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField AddCapitalizacionXRetencionCantidadTxt;
+        
+        /// <summary>
         /// AddServicioSecadoCafeTxt control.
         /// </summary>
         /// <remarks>
@@ -1109,6 +1118,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.NumberField EditCapitalizacionXRetencionTxt;
+        
+        /// <summary>
+        /// EditCapitalizacionXRetencionCantidadTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditCapitalizacionXRetencionCantidadTxt;
         
         /// <summary>
         /// EditServicioSecadoCafeTxt control.

@@ -23,6 +23,7 @@ var DesktopX = {
                 maximizable: true,
                 minimizable: true,
                 closeAction: 'close',
+                shadow: false,
                 shim: false,
                 animCollapse: false,
                 constrainHeader: true,
