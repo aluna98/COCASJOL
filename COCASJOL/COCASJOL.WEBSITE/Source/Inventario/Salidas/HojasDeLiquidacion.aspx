@@ -124,7 +124,7 @@
 
         <ext:Store ID="SocioSt" runat="server" DataSourceID="SociosDS">
             <Reader>
-                <ext:JsonReader>
+                <ext:JsonReader IDProperty="SOCIOS_ID">
                     <Fields>
                         <ext:RecordField Name="SOCIOS_ID" />
                         <ext:RecordField Name="SOCIOS_PRIMER_NOMBRE" />
@@ -420,7 +420,7 @@
                                                         <ext:Panel ID="Panel12" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
                                                                 <ext:DateField runat="server" ID="AddFechaHojaTxt" DataIndex="LIQUIDACIONES_FECHA" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Fecha" AllowBlank="false" MsgTarget="Side"></ext:DateField>
-                                                                <ext:ComboBox  runat="server" ID="AddSociosIdTxt"  DataIndex="SOCIOS_ID"           LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Código Socio" AllowBlank="false" MsgTarget="Side"
+                                                                <ext:ComboBox  runat="server" ID="AddSociosIdTxt"  DataIndex="SOCIOS_ID"           LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Código de Socio" AllowBlank="false" MsgTarget="Side"
                                                                     TypeAhead="true"
                                                                     EmptyText="Seleccione un Socio"
                                                                     ForceSelection="true" 
@@ -637,71 +637,21 @@
                                                         <ext:Panel ID="Panel14" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
                                                                 <ext:DateField runat="server" ID="EditFechaHojaTxt" DataIndex="LIQUIDACIONES_FECHA" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Fecha" AllowBlank="false" MsgTarget="Side"></ext:DateField>
-                                                                <ext:ComboBox  runat="server" ID="EditSociosIdTxt"  DataIndex="SOCIOS_ID"           LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Código Socio" AllowBlank="false" MsgTarget="Side"
-                                                                    TypeAhead="true"
-                                                                    EmptyText="Seleccione un Socio"
-                                                                    ForceSelection="true" 
-                                                                    StoreID="SocioSt"
-                                                                    Mode="Local" 
-                                                                    DisplayField="SOCIOS_ID"
-                                                                    ValueField="SOCIOS_ID"
-                                                                    MinChars="2"
-                                                                    ListWidth="450" 
-                                                                    PageSize="10" 
-                                                                    ItemSelector="tr.list-item" >
-                                                                    <Template ID="Template1" runat="server" Width="200">
-                                                                        <Html>
-					                                                        <tpl for=".">
-						                                                        <tpl if="[xindex] == 1">
-							                                                        <table class="cbStates-list">
-								                                                        <tr>
-								                	                                        <th>ID</th>
-								                	                                        <th>PRIMER NOMBRE</th>
-                                                                                            <th>PRIMER APELLIDO</th>
-								                                                        </tr>
-						                                                        </tpl>
-						                                                        <tr class="list-item">
-							                                                        <td style="padding:3px 0px;">{SOCIOS_ID}</td>
-							                                                        <td>{SOCIOS_PRIMER_NOMBRE}</td>
-                                                                                    <td>{SOCIOS_PRIMER_APELLIDO}</td>
-						                                                        </tr>
-						                                                        <tpl if="[xcount-xindex]==0">
-							                                                        </table>
-						                                                        </tpl>
-					                                                        </tpl>
-				                                                        </Html>
-                                                                    </Template>
-                                                                    <Triggers>
-                                                                        <ext:FieldTrigger Icon="Clear" HideTrigger="true" />
-                                                                    </Triggers>
-                                                                    <Listeners>
-                                                                        <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
-                                                                        <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide(); Ext.getCmp('EditNombreTxt').reset(); Ext.getCmp('EditDireccionFincaTxt').reset(); }" />
-                                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditDireccionFincaTxt'));" />
-                                                                    </Listeners>
-                                                                </ext:ComboBox>
+                                                                <ext:TextField runat="server" ID="EditSociosIdTxt"  DataIndex="SOCIOS_ID"           LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Código de Socio" AllowBlank="false" MsgTarget="Side" ReadOnly="true" >
+                                                                    <ToolTips>
+                                                                        <ext:ToolTip ID="ToolTip2" runat="server" Html="El código de socio es de solo lectura." Title="Código de Socio" Width="200" TrackMouse="true" />
+                                                                    </ToolTips>
+                                                                </ext:TextField>
                                                             </Items>
                                                         </ext:Panel>
                                                         <ext:Panel ID="Panel15" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
-                                                                <ext:ComboBox runat="server"    ID="EditClasificacionCafeCmb" DataIndex="CLASIFICACIONES_CAFE_ID" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Tipo de Café" AllowBlank="false" MsgTarget="Side"
-                                                                    StoreID="ClasificacionesCafeSt"
-                                                                    EmptyText="Seleccione un Tipo"
-                                                                    ValueField="CLASIFICACIONES_CAFE_ID" 
-                                                                    DisplayField="CLASIFICACIONES_CAFE_NOMBRE"
-                                                                    ForceSelection="true"
-                                                                    Mode="Local"
-                                                                    TypeAhead="true">
-                                                                    <Triggers>
-                                                                        <ext:FieldTrigger Icon="Clear" HideTrigger="true" />
-                                                                    </Triggers>
-                                                                    <Listeners>
-                                                                        <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
-                                                                        <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
-                                                                        <Select Handler="this.triggers[0].show();" />
-                                                                    </Listeners>
-                                                                </ext:ComboBox>
-                                                                <ext:NumberField runat="server" ID="EditInventarioCafeTxt" LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="false" MsgTarget="Side" FieldLabel="Inventario de Café Disponible (Lbs)" ReadOnly="true" Text="0" AllowNegative="false" ></ext:NumberField>
+                                                                <ext:TextField runat="server"   ID="EditClasificacionCafeCmb" DataIndex="CLASIFICACIONES_CAFE_NOMBRE" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Tipo de Café" AllowBlank="false" MsgTarget="Side" ReadOnly="true" >
+                                                                    <ToolTips>
+                                                                        <ext:ToolTip ID="ToolTip1" runat="server" Html="La clasificación de café es de solo lectura." Title="Clasificación de Café" Width="200" TrackMouse="true" />
+                                                                    </ToolTips>
+                                                                </ext:TextField>
+                                                                <%--<ext:NumberField runat="server" ID="EditInventarioCafeTxt" LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="false" MsgTarget="Side" FieldLabel="Inventario de Café Disponible (Lbs)" ReadOnly="true" Text="0" AllowNegative="false" ></ext:NumberField>--%>
                                                             </Items>
                                                         </ext:Panel>
                                                     </Items>
@@ -775,7 +725,7 @@
                                                     <Items>
                                                         <ext:Panel ID="EditTotalCalculos2Pnl" runat="server" Padding="5" LabelWidth="200" Frame="true" >
                                                             <Items>
-                                                                <ext:NumberField runat="server" ID="EditTotalCalculosFSTxt"    LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Total" AllowBlank="false" MsgTarget="Side" ReadOnly="true"></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditTotalCalculosFSTxt" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Total" AllowBlank="false" MsgTarget="Side" ReadOnly="true"></ext:NumberField>
                                                             </Items>
                                                         </ext:Panel>
                                                     </Items>

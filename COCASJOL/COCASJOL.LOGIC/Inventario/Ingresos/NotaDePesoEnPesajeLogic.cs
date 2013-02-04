@@ -5,6 +5,7 @@ using System.Text;
 
 using System.Data;
 using System.Data.Objects;
+using System.Transactions;
 
 using COCASJOL.LOGIC.Seguridad;
 using COCASJOL.LOGIC.Utiles;
@@ -177,10 +178,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
          *                  -----Flujo-----
          *  verificar si hubo cambio de estado
          *  cambiar estado a nuevo estado
-         *  si hay inventario de café actual modificarlo
-         *  si no hay inventario de café actual crearlo
-         *  
-         *  actualizar ReporteConsolidado en Application
+         *  modificar inventario de cafe actual
          *  notificar a usuarios
          *
          */
@@ -211,87 +209,72 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             {
                 using (var db = new colinasEntities())
                 {
-                    nota_de_peso note = new nota_de_peso();
-
-                    note.ESTADOS_NOTA_ID = ESTADOS_NOTA_ID;
-                    note.SOCIOS_ID = SOCIOS_ID;
-                    note.CLASIFICACIONES_CAFE_ID = CLASIFICACIONES_CAFE_ID;
-                    note.NOTAS_FECHA = NOTAS_FECHA;
-                    note.NOTAS_TRANSPORTE_COOPERATIVA = NOTAS_TRANSPORTE_COOPERATIVA;
-                    note.NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA = NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA;
-                    note.NOTAS_PORCENTAJE_DEFECTO = NOTAS_PORCENTAJE_DEFECTO;
-                    note.NOTAS_PORCENTAJE_HUMEDAD = NOTAS_PORCENTAJE_HUMEDAD;
-                    note.NOTAS_PESO_TRANSPORTE_COOPERATIVA = NOTAS_PESO_TRANSPORTE_COOPERATIVA;
-                    note.NOTAS_PESO_DEFECTO = NOTAS_PESO_DEFECTO;
-                    note.NOTAS_PESO_HUMEDAD = NOTAS_PESO_HUMEDAD;
-                    note.NOTAS_PESO_DESCUENTO = NOTAS_PESO_DESCUENTO;
-                    note.NOTAS_PESO_TARA = NOTAS_PESO_TARA;
-                    note.NOTAS_PESO_SUMA = NOTAS_PESO_SUMA;
-                    note.NOTAS_PESO_TOTAL_RECIBIDO = NOTAS_PESO_TOTAL_RECIBIDO;
-                    note.NOTAS_PESO_TOTAL_RECIBIDO_TEXTO = NOTAS_PESO_TOTAL_RECIBIDO_TEXTO;
-                    note.NOTAS_SACOS_RETENIDOS = NOTAS_SACOS_RETENIDOS;
-                    note.CREADO_POR = CREADO_POR;
-                    note.FECHA_CREACION = FECHA_CREACION;
-                    note.MODIFICADO_POR = CREADO_POR;
-                    note.FECHA_MODIFICACION = FECHA_CREACION;
-
-                    note.notas_detalles.Clear();
-
-                    foreach (Dictionary<string, string> detalle in Detalles)
-                        note.notas_detalles.Add(new nota_detalle() { DETALLES_PESO = Convert.ToDecimal(detalle["DETALLES_PESO"]), DETALLES_CANTIDAD_SACOS = Convert.ToInt32(detalle["DETALLES_CANTIDAD_SACOS"]) });
-
-                    db.notas_de_peso.AddObject(note);
-
-                    // verificar si hubo cambio de estado
-                    if (note.ESTADOS_NOTA_ID != this.ESTADOS_NOTA_ID)
+                    using (var scope1 = new TransactionScope())
                     {
-                        /* --------Modificar Inventario de Café Actual-------- */
+                        nota_de_peso note = new nota_de_peso();
 
-                        IEnumerable<KeyValuePair<string, object>> entityKeyValuesInventario =
-                            new KeyValuePair<string, object>[] {
-                                new KeyValuePair<string, object>("SOCIOS_ID", note.SOCIOS_ID),
-                                new KeyValuePair<string, object>("CLASIFICACIONES_CAFE_ID", note.CLASIFICACIONES_CAFE_ID) 
-                            };
+                        note.ESTADOS_NOTA_ID = ESTADOS_NOTA_ID;
+                        note.SOCIOS_ID = SOCIOS_ID;
+                        note.CLASIFICACIONES_CAFE_ID = CLASIFICACIONES_CAFE_ID;
+                        note.NOTAS_FECHA = NOTAS_FECHA;
+                        note.NOTAS_TRANSPORTE_COOPERATIVA = NOTAS_TRANSPORTE_COOPERATIVA;
+                        note.NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA = NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA;
+                        note.NOTAS_PORCENTAJE_DEFECTO = NOTAS_PORCENTAJE_DEFECTO;
+                        note.NOTAS_PORCENTAJE_HUMEDAD = NOTAS_PORCENTAJE_HUMEDAD;
+                        note.NOTAS_PESO_TRANSPORTE_COOPERATIVA = NOTAS_PESO_TRANSPORTE_COOPERATIVA;
+                        note.NOTAS_PESO_DEFECTO = NOTAS_PESO_DEFECTO;
+                        note.NOTAS_PESO_HUMEDAD = NOTAS_PESO_HUMEDAD;
+                        note.NOTAS_PESO_DESCUENTO = NOTAS_PESO_DESCUENTO;
+                        note.NOTAS_PESO_TARA = NOTAS_PESO_TARA;
+                        note.NOTAS_PESO_SUMA = NOTAS_PESO_SUMA;
+                        note.NOTAS_PESO_TOTAL_RECIBIDO = NOTAS_PESO_TOTAL_RECIBIDO;
+                        note.NOTAS_PESO_TOTAL_RECIBIDO_TEXTO = NOTAS_PESO_TOTAL_RECIBIDO_TEXTO;
+                        note.NOTAS_SACOS_RETENIDOS = NOTAS_SACOS_RETENIDOS;
+                        note.CREADO_POR = CREADO_POR;
+                        note.FECHA_CREACION = FECHA_CREACION;
+                        note.MODIFICADO_POR = CREADO_POR;
+                        note.FECHA_MODIFICACION = FECHA_CREACION;
 
-                        EntityKey kInventario = new EntityKey("colinasEntities.inventario_cafe_de_socio", entityKeyValuesInventario);
+                        note.notas_detalles.Clear();
 
-                        Object invCafSoc = null;
+                        foreach (Dictionary<string, string> detalle in Detalles)
+                            note.notas_detalles.Add(new nota_detalle() { DETALLES_PESO = Convert.ToDecimal(detalle["DETALLES_PESO"]), DETALLES_CANTIDAD_SACOS = Convert.ToInt32(detalle["DETALLES_CANTIDAD_SACOS"]) });
 
-                        // intentar obtener el inventario de café actual
-                        if (db.TryGetObjectByKey(kInventario, out invCafSoc))
+                        db.notas_de_peso.AddObject(note);
+
+                        db.SaveChanges();
+
+                        // verificar si hubo cambio de estado
+                        if (note.ESTADOS_NOTA_ID != this.ESTADOS_NOTA_ID)
                         {
-                            // si hay inventario de café actual modificarlo
-                            inventario_cafe_de_socio asocInventory = (inventario_cafe_de_socio)invCafSoc;
+                            //using (var scope2 = new TransactionScope(
+                            //    TransactionScopeOption.Required, 
+                            //    new TransactionOptions { 
+                            //        IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted }))
+                            //{
 
-                            asocInventory.INVENTARIO_CANTIDAD += note.NOTAS_PESO_TOTAL_RECIBIDO;
-                            asocInventory.MODIFICADO_POR = CREADO_POR;
-                            asocInventory.FECHA_MODIFICACION = DateTime.Today;
+                                /* --------Modificar Inventario de Café Actual-------- */
+                                if (note.ESTADOS_NOTA_ID == (new NotaDePesoEnAdministracionLogic("ADMINISTRACION")).ESTADOS_NOTA_ID)
+                                {
+                                    InventarioDeCafeLogic inventariodecafelogic = new InventarioDeCafeLogic();
+                                    inventariodecafelogic.InsertarTransaccionInventarioDeCafeDeSocio(note, db);
+                                }
+
+                                // notificar a usuarios
+                                int[] notaid = { note.NOTAS_ID };
+
+                                PlantillaLogic plantillalogic = new PlantillaLogic();
+                                plantilla_notificacion pl = plantillalogic.GetPlantilla("NOTASCATACION");
+
+                                NotificacionLogic notificacionlogic = new NotificacionLogic();
+                                notificacionlogic.NotifyUsers("MANT_NOTASPESOENCATACION", EstadosNotificacion.Creado, pl.PLANTILLAS_ASUNTO, pl.PLANTILLAS_MENSAJE, notaid);
+
+                                db.SaveChanges(); 
+                            //}
                         }
-                        else
-                        {
-                            // si no hay inventario de café actual crearlo
-                            inventario_cafe_de_socio asocInventory = new inventario_cafe_de_socio();
-                            asocInventory.SOCIOS_ID = note.SOCIOS_ID;
-                            asocInventory.CLASIFICACIONES_CAFE_ID = note.CLASIFICACIONES_CAFE_ID;
-                            asocInventory.INVENTARIO_CANTIDAD = note.NOTAS_PESO_TOTAL_RECIBIDO;
-                            asocInventory.CREADO_POR = asocInventory.MODIFICADO_POR = CREADO_POR;
-                            asocInventory.FECHA_CREACION = FECHA_CREACION;
-                            asocInventory.FECHA_MODIFICACION = FECHA_CREACION;
 
-                            db.inventario_cafe_de_socio.AddObject(asocInventory);
-                        }
-
-                        // notificar a usuarios
-                        int[] notaid = { note.NOTAS_ID };
-
-                        PlantillaLogic plantillalogic = new PlantillaLogic();
-                        plantilla_notificacion pl = plantillalogic.GetPlantilla("NOTASCATACION");
-
-                        NotificacionLogic notificacionlogic = new NotificacionLogic();
-                        notificacionlogic.NotifyUsers("MANT_NOTASPESOENCATACION", EstadosNotificacion.Creado, pl.PLANTILLAS_ASUNTO, pl.PLANTILLAS_MENSAJE, notaid);
+                        scope1.Complete();
                     }
-
-                    db.SaveChanges();
                 }
             }
             catch (Exception)
@@ -472,91 +455,76 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             {
                 using (var db = new colinasEntities())
                 {
-                    EntityKey k = new EntityKey("colinasEntities.notas_de_peso", "NOTAS_ID", NOTAS_ID);
-
-                    var n = db.GetObjectByKey(k);
-
-                    nota_de_peso note = (nota_de_peso)n;
-
-                    note.SOCIOS_ID = SOCIOS_ID;
-                    note.NOTAS_FECHA = NOTAS_FECHA;
-                    note.NOTAS_TRANSPORTE_COOPERATIVA = NOTAS_TRANSPORTE_COOPERATIVA;
-                    note.NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA = NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA;
-                    note.NOTAS_PORCENTAJE_DEFECTO = NOTAS_PORCENTAJE_DEFECTO;
-                    note.NOTAS_PORCENTAJE_HUMEDAD = NOTAS_PORCENTAJE_HUMEDAD;
-                    note.NOTAS_PESO_TRANSPORTE_COOPERATIVA = NOTAS_PESO_TRANSPORTE_COOPERATIVA;
-                    note.NOTAS_PESO_DEFECTO = NOTAS_PESO_DEFECTO;
-                    note.NOTAS_PESO_HUMEDAD = NOTAS_PESO_HUMEDAD;
-                    note.NOTAS_PESO_DESCUENTO = NOTAS_PESO_DESCUENTO;
-                    note.NOTAS_PESO_TARA = NOTAS_PESO_TARA;
-                    note.NOTAS_PESO_SUMA = NOTAS_PESO_SUMA;
-                    note.NOTAS_PESO_TOTAL_RECIBIDO = NOTAS_PESO_TOTAL_RECIBIDO;
-                    note.NOTAS_PESO_TOTAL_RECIBIDO_TEXTO = NOTAS_PESO_TOTAL_RECIBIDO_TEXTO;
-                    note.NOTAS_SACOS_RETENIDOS = NOTAS_SACOS_RETENIDOS;
-                    note.MODIFICADO_POR = MODIFICADO_POR;
-                    note.FECHA_MODIFICACION = FECHA_MODIFICACION;
-
-                    // cambiar clasificacion de café a la clasificación actual
-                    note.CLASIFICACIONES_CAFE_ID = CLASIFICACIONES_CAFE_ID;
-
-                    note.notas_detalles.Clear();
-
-                    foreach (Dictionary<string, string> detalle in Detalles)
-                        note.notas_detalles.Add(new nota_detalle() { DETALLES_PESO = Convert.ToDecimal(detalle["DETALLES_PESO"]), DETALLES_CANTIDAD_SACOS = Convert.ToInt32(detalle["DETALLES_CANTIDAD_SACOS"]) });
-
-                    // verificar si hubo cambio de estado
-                    if (ESTADOS_NOTA_ID != this.ESTADOS_NOTA_ID)
+                    using (var scope1 = new TransactionScope())
                     {
-                        // cambiar estado a nuevo estado
-                        note.ESTADOS_NOTA_ID = ESTADOS_NOTA_ID;
+                        EntityKey k = new EntityKey("colinasEntities.notas_de_peso", "NOTAS_ID", NOTAS_ID);
 
-                        /* --------Modificar Inventario de Café Actual-------- */
+                        var n = db.GetObjectByKey(k);
 
-                        IEnumerable<KeyValuePair<string, object>> entityKeyValuesInventario =
-                            new KeyValuePair<string, object>[] {
-                                new KeyValuePair<string, object>("SOCIOS_ID", note.SOCIOS_ID),
-                                new KeyValuePair<string, object>("CLASIFICACIONES_CAFE_ID", note.CLASIFICACIONES_CAFE_ID) 
-                            };
+                        nota_de_peso note = (nota_de_peso)n;
 
-                        EntityKey kInventario = new EntityKey("colinasEntities.inventario_cafe_de_socio", entityKeyValuesInventario);
+                        note.SOCIOS_ID = SOCIOS_ID;
+                        note.NOTAS_FECHA = NOTAS_FECHA;
+                        note.NOTAS_TRANSPORTE_COOPERATIVA = NOTAS_TRANSPORTE_COOPERATIVA;
+                        note.NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA = NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA;
+                        note.NOTAS_PORCENTAJE_DEFECTO = NOTAS_PORCENTAJE_DEFECTO;
+                        note.NOTAS_PORCENTAJE_HUMEDAD = NOTAS_PORCENTAJE_HUMEDAD;
+                        note.NOTAS_PESO_TRANSPORTE_COOPERATIVA = NOTAS_PESO_TRANSPORTE_COOPERATIVA;
+                        note.NOTAS_PESO_DEFECTO = NOTAS_PESO_DEFECTO;
+                        note.NOTAS_PESO_HUMEDAD = NOTAS_PESO_HUMEDAD;
+                        note.NOTAS_PESO_DESCUENTO = NOTAS_PESO_DESCUENTO;
+                        note.NOTAS_PESO_TARA = NOTAS_PESO_TARA;
+                        note.NOTAS_PESO_SUMA = NOTAS_PESO_SUMA;
+                        note.NOTAS_PESO_TOTAL_RECIBIDO = NOTAS_PESO_TOTAL_RECIBIDO;
+                        note.NOTAS_PESO_TOTAL_RECIBIDO_TEXTO = NOTAS_PESO_TOTAL_RECIBIDO_TEXTO;
+                        note.NOTAS_SACOS_RETENIDOS = NOTAS_SACOS_RETENIDOS;
+                        note.MODIFICADO_POR = MODIFICADO_POR;
+                        note.FECHA_MODIFICACION = FECHA_MODIFICACION;
 
-                        Object invCafSoc = null;
+                        // cambiar clasificacion de café a la clasificación actual
+                        note.CLASIFICACIONES_CAFE_ID = CLASIFICACIONES_CAFE_ID;
 
-                        // intentar obtener el inventario de café actual
-                        if (db.TryGetObjectByKey(kInventario, out invCafSoc))
+                        note.notas_detalles.Clear();
+
+                        foreach (Dictionary<string, string> detalle in Detalles)
+                            note.notas_detalles.Add(new nota_detalle() { DETALLES_PESO = Convert.ToDecimal(detalle["DETALLES_PESO"]), DETALLES_CANTIDAD_SACOS = Convert.ToInt32(detalle["DETALLES_CANTIDAD_SACOS"]) });
+
+                        // verificar si hubo cambio de estado
+                        if (ESTADOS_NOTA_ID != this.ESTADOS_NOTA_ID)
                         {
-                            // si hay inventario de café actual modificarlo
-                            inventario_cafe_de_socio asocInventory = (inventario_cafe_de_socio)invCafSoc;
+                            // cambiar estado a nuevo estado
+                            note.ESTADOS_NOTA_ID = ESTADOS_NOTA_ID;
 
-                            asocInventory.INVENTARIO_CANTIDAD += note.NOTAS_PESO_TOTAL_RECIBIDO;
-                            asocInventory.MODIFICADO_POR = MODIFICADO_POR;
-                            asocInventory.FECHA_MODIFICACION = DateTime.Today;
+                            /* --------Modificar Inventario de Café Actual-------- */
+                            //using (var scope2 = new TransactionScope(
+                            //        TransactionScopeOption.Required,
+                            //        new TransactionOptions
+                            //        {
+                            //            IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted
+                            //        }))
+                            //{
+                                /* --------Modificar Inventario de Café Actual-------- */
+                                if (ESTADOS_NOTA_ID == (new NotaDePesoEnAdministracionLogic("ADMINISTRACION")).ESTADOS_NOTA_ID)
+                                {
+                                    InventarioDeCafeLogic inventariodecafelogic = new InventarioDeCafeLogic();
+                                    inventariodecafelogic.InsertarTransaccionInventarioDeCafeDeSocio(note, db);
+                                }
+
+                                // notificar a usuarios
+                                int[] notaid = { note.NOTAS_ID };
+
+                                PlantillaLogic plantillalogic = new PlantillaLogic();
+                                plantilla_notificacion pl = plantillalogic.GetPlantilla("NOTASCATACION");
+
+                                NotificacionLogic notificacionlogic = new NotificacionLogic();
+                                notificacionlogic.NotifyUsers("MANT_NOTASPESOENCATACION", EstadosNotificacion.Creado, pl.PLANTILLAS_ASUNTO, pl.PLANTILLAS_MENSAJE, notaid);
+
+                                db.SaveChanges();
+                            //}
                         }
-                        else
-                        {
-                            // si no hay inventario de café actual crearlo
-                            inventario_cafe_de_socio asocInventory = new inventario_cafe_de_socio();
-                            asocInventory.SOCIOS_ID = note.SOCIOS_ID;
-                            asocInventory.CLASIFICACIONES_CAFE_ID = note.CLASIFICACIONES_CAFE_ID;
-                            asocInventory.INVENTARIO_CANTIDAD = note.NOTAS_PESO_TOTAL_RECIBIDO;
-                            asocInventory.CREADO_POR = asocInventory.MODIFICADO_POR = MODIFICADO_POR;
-                            asocInventory.FECHA_CREACION = FECHA_MODIFICACION;
-                            asocInventory.FECHA_MODIFICACION = FECHA_MODIFICACION;
 
-                            db.inventario_cafe_de_socio.AddObject(asocInventory);
-                        }
-
-                        // notificar a usuarios
-                        int[] notaid = { note.NOTAS_ID };
-
-                        PlantillaLogic plantillalogic = new PlantillaLogic();
-                        plantilla_notificacion pl = plantillalogic.GetPlantilla("NOTASCATACION");
-
-                        NotificacionLogic notificacionlogic = new NotificacionLogic();
-                        notificacionlogic.NotifyUsers("MANT_NOTASPESOENCATACION", EstadosNotificacion.Creado, pl.PLANTILLAS_ASUNTO, pl.PLANTILLAS_MENSAJE, notaid);
+                        scope1.Complete();
                     }
-
-                    db.SaveChanges();
                 }
             }
             catch (Exception)

@@ -76,7 +76,7 @@
 
         <ext:Store ID="SocioSt" runat="server" DataSourceID="SociosDS">
             <Reader>
-                <ext:JsonReader>
+                <ext:JsonReader IDProperty="SOCIOS_ID">
                     <Fields>
                         <ext:RecordField Name="SOCIOS_ID" />
                         <ext:RecordField Name="SOCIOS_PRIMER_NOMBRE" />
@@ -824,7 +824,6 @@
             InitCenter="true"
             ConstrainHeader="true" >
             <Listeners>
-                <Show Handler="#{EditEstadosNotaSt}.reload();" />
                 <Hide Handler="#{EditNotaDetalleSt}.removeAll(); #{EditarNotasFormP}.getForm().reset();" />
             </Listeners>
             <Items>

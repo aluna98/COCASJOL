@@ -928,7 +928,16 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox EditSociosIdTxt;
+        protected global::Ext.Net.TextField EditSociosIdTxt;
+        
+        /// <summary>
+        /// ToolTip2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip2;
         
         /// <summary>
         /// Panel15 control.
@@ -946,16 +955,16 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox EditClasificacionCafeCmb;
+        protected global::Ext.Net.TextField EditClasificacionCafeCmb;
         
         /// <summary>
-        /// EditInventarioCafeTxt control.
+        /// ToolTip1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField EditInventarioCafeTxt;
+        protected global::Ext.Net.ToolTip ToolTip1;
         
         /// <summary>
         /// EditNombreTxt control.

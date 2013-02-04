@@ -156,6 +156,15 @@ var PageX = {
             EditWindow.show();
             EditForm.getForm().loadRecord(rec);
             EditForm.record = rec;
+
+            var SociosId = Ext.getCmp('EditSociosIdTxt');
+            var SociosNombre = Ext.getCmp('EditNombreTxt');
+            var SociosDireccionFinca = Ext.getCmp('EditDireccionFincaTxt');
+
+            this.getNombreDeSocioEdit(SociosId, SociosNombre);
+            this.getDireccionDeFincaEdit(SociosId, SociosDireccionFinca);
+
+            EditTotalCalculosFSTxt.setValue(EditTotalProductoTxt.getValue());
         }
     },
 
@@ -206,9 +215,28 @@ var PageX = {
         nombreTxt.setValue(nombreCompleto);
     },
 
+    getNombreDeSocioEdit: function (sociosIdTxt, nombreTxt) {
+        var comboBox = sociosIdTxt, value = comboBox.getValue();
+        record = SocioSt.getById(value);
+
+        var nombreCompleto = record.data.SOCIOS_PRIMER_NOMBRE +
+                                     (record.data.SOCIOS_SEGUNDO_NOMBRE != '' ? (' ' + record.data.SOCIOS_SEGUNDO_NOMBRE) : '') +
+                                     (record.data.SOCIOS_PRIMER_APELLIDO !== '' ? (' ' + record.data.SOCIOS_PRIMER_APELLIDO) : '') +
+                                     (record.data.SOCIOS_SEGUNDO_APELLIDO != '' ? (' ' + record.data.SOCIOS_SEGUNDO_APELLIDO) : '');
+
+        nombreTxt.setValue(nombreCompleto);
+    },
+
     getDireccionDeFinca: function (sociosIdTxt, direccionFincaTxt) {
         var comboBox = sociosIdTxt, value = comboBox.getValue();
         record = comboBox.findRecord(comboBox.valueField, value), index = comboBox.getStore().indexOf(record);
+
+        direccionFincaTxt.setValue(record.data.PRODUCCION_UBICACION_FINCA);
+    },
+
+    getDireccionDeFincaEdit: function (sociosIdTxt, direccionFincaTxt) {
+        var comboBox = sociosIdTxt, value = comboBox.getValue();
+        record = SocioSt.getById(value);
 
         direccionFincaTxt.setValue(record.data.PRODUCCION_UBICACION_FINCA);
     },

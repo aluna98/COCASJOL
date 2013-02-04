@@ -76,6 +76,24 @@ namespace COCASJOL.WEBSITE.Source.Inventario {
         protected global::System.Web.UI.WebControls.ObjectDataSource ClasificacionesCafeDS;
         
         /// <summary>
+        /// SociosDS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource SociosDS;
+        
+        /// <summary>
+        /// SocioSt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store SocioSt;
+        
+        /// <summary>
         /// ClasificacionesCafeSt control.
         /// </summary>
         /// <remarks>
@@ -211,22 +229,40 @@ namespace COCASJOL.WEBSITE.Source.Inventario {
         protected global::Ext.Net.TextField f_SOCIOS_ID;
         
         /// <summary>
-        /// f_CLASIFICACIONES_CAFE_ID control.
+        /// f_SOCIOS_NOMBRE_COMPLETO control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox f_CLASIFICACIONES_CAFE_ID;
+        protected global::Ext.Net.TextField f_SOCIOS_NOMBRE_COMPLETO;
         
         /// <summary>
-        /// f_INVENTARIO_CANTIDAD control.
+        /// f_CLASIFICACIONES_CAFE_NOMBRE control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField f_INVENTARIO_CANTIDAD;
+        protected global::Ext.Net.ComboBox f_CLASIFICACIONES_CAFE_NOMBRE;
+        
+        /// <summary>
+        /// f_INVENTARIO_ENTRADAS_CANTIDAD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField f_INVENTARIO_ENTRADAS_CANTIDAD;
+        
+        /// <summary>
+        /// f_INVENTARIO_SALIDAS_SALDO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField f_INVENTARIO_SALIDAS_SALDO;
         
         /// <summary>
         /// ClearFilterButton control.
@@ -292,13 +328,13 @@ namespace COCASJOL.WEBSITE.Source.Inventario {
         protected global::Ext.Net.Panel Panel13;
         
         /// <summary>
-        /// EditIdTxt control.
+        /// EditSociosIdTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField EditIdTxt;
+        protected global::Ext.Net.TextField EditSociosIdTxt;
         
         /// <summary>
         /// EditNombreTxt control.
@@ -326,6 +362,24 @@ namespace COCASJOL.WEBSITE.Source.Inventario {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.NumberField EditInventarioCantidadTxt;
+        
+        /// <summary>
+        /// EditInventarioSalidasTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditInventarioSalidasTxt;
+        
+        /// <summary>
+        /// ToolTip1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip1;
         
         /// <summary>
         /// EditCreatedByTxt control.

@@ -73,11 +73,6 @@ var PageX = {
             EditWindow.show();
             EditForm.getForm().loadRecord(rec);
             EditForm.record = rec;
-
-            var EditSocioId = Ext.getCmp('EditSociosIdTxt');
-            var EditNombre = Ext.getCmp('EditNombreTxt');
-
-            this.getNombreDeSocio(EditSocioId, EditNombre);
         }
     },
 
@@ -105,18 +100,6 @@ var PageX = {
             var msg = Ext.Msg;
             Ext.Msg.alert(AlertSelMsgTitle, AlertSelMsg);
         }
-    },
-
-    getNombreDeSocio: function (sociosIdTxt, nombreTxt) {
-        var value = sociosIdTxt.getValue();
-        var record = SocioSt.getById(value);
-
-        var nombreCompleto = record.data.SOCIOS_PRIMER_NOMBRE +
-                                     (record.data.SOCIOS_SEGUNDO_NOMBRE != '' ? (' ' + record.data.SOCIOS_SEGUNDO_NOMBRE) : '') +
-                                     (record.data.SOCIOS_PRIMER_APELLIDO !== '' ? (' ' + record.data.SOCIOS_PRIMER_APELLIDO) : '') +
-                                     (record.data.SOCIOS_SEGUNDO_APELLIDO != '' ? (' ' + record.data.SOCIOS_SEGUNDO_APELLIDO) : '');
-
-        nombreTxt.setValue(nombreCompleto);
     },
 
     keyUpEvent: function (sender, e) {

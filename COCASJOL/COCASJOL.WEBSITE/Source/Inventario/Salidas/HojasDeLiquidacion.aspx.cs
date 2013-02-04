@@ -87,7 +87,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
                     return;
 
                 InventarioDeCafeLogic inventarioliquidacionlogic = new InventarioDeCafeLogic();
-                decimal inventarioSocio = inventarioliquidacionlogic.GetInventarioDeCafe(SOCIOS_ID, CLASIFICACIONES_CAFE_ID, false);
+                decimal inventarioSocio = inventarioliquidacionlogic.GetInventarioDeCafe(SOCIOS_ID, CLASIFICACIONES_CAFE_ID);
                 this.AddInventarioCafeTxt.Value = inventarioSocio;
             }
             catch (Exception)

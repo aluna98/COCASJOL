@@ -80,16 +80,22 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                 ClasificacionDeCafeLogic clasificaciondecafelogic = new ClasificacionDeCafeLogic();
                 bool catacionFlag = clasificaciondecafelogic.ClasificacionDeCafePasaPorCatacion(CLASIFICACIONES_CAFE_ID);
+                
+                estadosList = GetEstadosNotaDePeso();
 
-                if (catacionFlag)
+                if (catacionFlag == true)
                 {
-                    estadosList = new List<estado_nota_de_peso>();
+                    //estadosList = new List<estado_nota_de_peso>();
+                    //estadosList.Add(GetEstadoNotaDePeso("CATACION"));
+                    //estadosList.Add(GetEstadoNotaDePeso("PESAJE"));
 
-                    estadosList.Add(GetEstadoNotaDePeso("CATACION"));
-                    estadosList.Add(GetEstadoNotaDePeso("PESAJE"));
+                    estadosList = estadosList.Where(esn => esn.ESTADOS_NOTA_LLAVE == "CATACION" || esn.ESTADOS_NOTA_LLAVE == "PESAJE").ToList<estado_nota_de_peso>();
                 }
                 else
-                    estadosList = GetEstadosNotaDePeso();
+                {
+                    //estadosList = GetEstadosNotaDePeso();
+                    estadosList = estadosList.Where(esn => esn.ESTADOS_NOTA_LLAVE != "CATACION").ToList<estado_nota_de_peso>();
+                }
 
                 return estadosList;
             }

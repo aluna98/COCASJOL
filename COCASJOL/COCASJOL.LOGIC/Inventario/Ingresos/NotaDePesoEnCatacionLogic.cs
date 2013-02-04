@@ -5,6 +5,7 @@ using System.Text;
 
 using System.Data;
 using System.Data.Objects;
+using System.Transactions;
 
 using COCASJOL.LOGIC.Seguridad;
 using COCASJOL.LOGIC.Utiles;
@@ -119,63 +120,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     // verificar si hubo cambio de clasificación
                     if (note.CLASIFICACIONES_CAFE_ID != CLASIFICACIONES_CAFE_ID)
                     {
-                        /* --------Modificar Inventario de Café Anterior-------- */
-                        IEnumerable<KeyValuePair<string, object>> entityKeyValuesInventarioAnterior =
-                            new KeyValuePair<string, object>[] {
-                                    new KeyValuePair<string, object>("SOCIOS_ID", note.SOCIOS_ID),
-                                    new KeyValuePair<string, object>("CLASIFICACIONES_CAFE_ID", note.CLASIFICACIONES_CAFE_ID) 
-                                };
-
-                        EntityKey kInventarioAnterior = new EntityKey("colinasEntities.inventario_cafe_de_socio", entityKeyValuesInventarioAnterior);
-
-                        Object invCafSocAnterior = null;
-
-                        // intentar obtener inventario de café anterior y modificarlo
-                        if (db.TryGetObjectByKey(kInventarioAnterior, out invCafSocAnterior))
-                        {
-                            inventario_cafe_de_socio asocInventoryAnterior = (inventario_cafe_de_socio)invCafSocAnterior;
-                            asocInventoryAnterior.INVENTARIO_CANTIDAD -= note.NOTAS_PESO_TOTAL_RECIBIDO;
-                            asocInventoryAnterior.MODIFICADO_POR = MODIFICADO_POR;
-                            asocInventoryAnterior.FECHA_MODIFICACION = DateTime.Today;
-                        }
-
                         /* --------Modificar Inventario de Café Actual-------- */
                         // cambiar clasificacion de café a la clasificación actual
                         note.CLASIFICACIONES_CAFE_ID = CLASIFICACIONES_CAFE_ID;
-
-                        IEnumerable<KeyValuePair<string, object>> entityKeyValuesInventario = 
-                            new KeyValuePair<string, object>[] {
-                                new KeyValuePair<string, object>("SOCIOS_ID", note.SOCIOS_ID),
-                                new KeyValuePair<string, object>("CLASIFICACIONES_CAFE_ID", note.CLASIFICACIONES_CAFE_ID) 
-                            };
-
-                        EntityKey kInventario = new EntityKey("colinasEntities.inventario_cafe_de_socio", entityKeyValuesInventario);
-
-                        Object invCafSoc = null;
-
-                        // intentar obtener el inventario de café actual
-                        if (db.TryGetObjectByKey(kInventario, out invCafSoc))
-                        {
-                            // si hay inventario de café actual modificarlo
-                            inventario_cafe_de_socio asocInventory = (inventario_cafe_de_socio)invCafSoc;
-
-                            asocInventory.INVENTARIO_CANTIDAD += note.NOTAS_PESO_TOTAL_RECIBIDO;
-                            asocInventory.MODIFICADO_POR = MODIFICADO_POR;
-                            asocInventory.FECHA_MODIFICACION = DateTime.Today;
-                        }
-                        else
-                        {
-                            // si no hay inventario de café actual crearlo
-                            inventario_cafe_de_socio asocInventory = new inventario_cafe_de_socio();
-                            asocInventory.SOCIOS_ID = note.SOCIOS_ID;
-                            asocInventory.CLASIFICACIONES_CAFE_ID = note.CLASIFICACIONES_CAFE_ID;
-                            asocInventory.INVENTARIO_CANTIDAD = note.NOTAS_PESO_TOTAL_RECIBIDO;
-                            asocInventory.CREADO_POR = asocInventory.MODIFICADO_POR = MODIFICADO_POR;
-                            asocInventory.FECHA_CREACION = DateTime.Today;
-                            asocInventory.FECHA_MODIFICACION = asocInventory.FECHA_CREACION;
-
-                            db.inventario_cafe_de_socio.AddObject(asocInventory);
-                        }
                     }
 
                     // verificar si hubo cambio de estado
@@ -184,14 +131,29 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                         // cambiar estado a nuevo estado
                         note.ESTADOS_NOTA_ID = ESTADOS_NOTA_ID;
 
-                        // notificar a usuarios
-                        int[] notaid = { note.NOTAS_ID };
+                        using (var scope2 = new TransactionScope(
+                                    TransactionScopeOption.Required,
+                                    new TransactionOptions
+                                    {
+                                        IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted
+                                    }))
+                        {
+                            /* --------Modificar Inventario de Café Actual-------- */
+                            if (ESTADOS_NOTA_ID == (new NotaDePesoEnAdministracionLogic()).ESTADOS_NOTA_ID)
+                            {
+                                InventarioDeCafeLogic inventariodecafelogic = new InventarioDeCafeLogic();
+                                inventariodecafelogic.InsertarTransaccionInventarioDeCafeDeSocio(note, db);
+                            }
 
-                        PlantillaLogic plantillalogic = new PlantillaLogic();
-                        plantilla_notificacion pl = plantillalogic.GetPlantilla("NOTASADMINISTRACION");
+                            // notificar a usuarios
+                            int[] notaid = { note.NOTAS_ID };
 
-                        NotificacionLogic notificacionlogic = new NotificacionLogic();
-                        notificacionlogic.NotifyUsers("MANT_NOTASPESO", EstadosNotificacion.Creado, pl.PLANTILLAS_ASUNTO, pl.PLANTILLAS_MENSAJE, notaid);
+                            PlantillaLogic plantillalogic = new PlantillaLogic();
+                            plantilla_notificacion pl = plantillalogic.GetPlantilla("NOTASADMINISTRACION");
+
+                            NotificacionLogic notificacionlogic = new NotificacionLogic();
+                            notificacionlogic.NotifyUsers("MANT_NOTASPESO", EstadosNotificacion.Creado, pl.PLANTILLAS_ASUNTO, pl.PLANTILLAS_MENSAJE, notaid);
+                        }
                     }
 
                     note.MODIFICADO_POR = MODIFICADO_POR;

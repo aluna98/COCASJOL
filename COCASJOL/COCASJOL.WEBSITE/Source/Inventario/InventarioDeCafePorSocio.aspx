@@ -35,44 +35,42 @@
                 UpdateMethod="ActualizarProducto"
                 DeleteMethod="EliminarProducto" onselecting="InventarioCafeDS_Selecting" >
                 <SelectParameters>
-                    <asp:ControlParameter Name="SOCIOS_ID"                   Type="String"   ControlID="f_SOCIOS_ID"               PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_ID"     Type="Int32"    ControlID="f_CLASIFICACIONES_CAFE_ID" PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_NOMBRE" Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="INVENTARIO_CANTIDAD"         Type="Decimal"  ControlID="f_INVENTARIO_CANTIDAD"     PropertyName="Text" DefaultValue="-1"/>
-                    <asp:ControlParameter Name="CREADO_POR"                  Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_CREACION"              Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="MODIFICADO_POR"              Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_MODIFICACION"          Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="SOCIOS_ID"                    Type="String"   ControlID="f_SOCIOS_ID"                    PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="SOCIOS_NOMBRE_COMPLETO"       Type="String"   ControlID="f_SOCIOS_NOMBRE_COMPLETO"       PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_NOMBRE"  Type="String"   ControlID="f_CLASIFICACIONES_CAFE_NOMBRE"  PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="INVENTARIO_ENTRADAS_CANTIDAD" Type="Decimal"  ControlID="f_INVENTARIO_ENTRADAS_CANTIDAD" PropertyName="Text" DefaultValue="-1"/>
+                    <asp:ControlParameter Name="INVENTARIO_SALIDAS_SALDO"     Type="Decimal"  ControlID="f_INVENTARIO_SALIDAS_SALDO"     PropertyName="Text" DefaultValue="-1"/>
+                    <asp:ControlParameter Name="CREADO_POR"                   Type="String"   ControlID="nullHdn"                        PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_CREACION"               Type="DateTime" ControlID="nullHdn"                        PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="MODIFICADO_POR"               Type="String"   ControlID="nullHdn"                        PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_MODIFICACION"           Type="DateTime" ControlID="nullHdn"                        PropertyName="Text" DefaultValue="" />
                 </SelectParameters>
-                <InsertParameters>
-                    <asp:Parameter Name="SOCIOS_ID"                   Type="Int32" />
-                    <asp:Parameter Name="CLASIFICACIONES_CAFE_ID"     Type="Int32" />
-                    <asp:Parameter Name="CLASIFICACIONES_CAFE_NOMBRE" Type="String" />
-                    <asp:Parameter Name="INVENTARIO_CANTIDAD"         Type="Decimal" />
-                    <asp:Parameter Name="CREADO_POR"                  Type="String" />
-                    <asp:Parameter Name="FECHA_CREACION"              Type="DateTime" />
-                    <asp:Parameter Name="MODIFICADO_POR"              Type="String" />
-                    <asp:Parameter Name="FECHA_MODIFICACION"          Type="DateTime" />
-                </InsertParameters>
-                <UpdateParameters>
-                    <asp:Parameter Name="SOCIOS_ID"                   Type="Int32" />
-                    <asp:Parameter Name="CLASIFICACIONES_CAFE_ID"     Type="Int32" />
-                    <asp:Parameter Name="CLASIFICACIONES_CAFE_NOMBRE" Type="String" />
-                    <asp:Parameter Name="INVENTARIO_CANTIDAD"         Type="Decimal" />
-                    <asp:Parameter Name="CREADO_POR"                  Type="String" />
-                    <asp:Parameter Name="FECHA_CREACION"              Type="DateTime" />
-                    <asp:Parameter Name="MODIFICADO_POR"              Type="String" />
-                    <asp:Parameter Name="FECHA_MODIFICACION"          Type="DateTime" />
-                </UpdateParameters>
-                <DeleteParameters>
-                    <asp:Parameter Name="SOCIOS_ID" Type="Int32" />
-                </DeleteParameters>
         </asp:ObjectDataSource>
 
         <asp:ObjectDataSource ID="ClasificacionesCafeDS" runat="server"
                 TypeName="COCASJOL.LOGIC.Inventario.ClasificacionDeCafeLogic"
                 SelectMethod="GetClasificacionesDeCafe">
         </asp:ObjectDataSource>
+
+        <asp:ObjectDataSource ID="SociosDS" runat="server"
+                TypeName="COCASJOL.LOGIC.Socios.SociosLogic"
+                SelectMethod="getSociosActivos" >
+        </asp:ObjectDataSource>
+
+        <ext:Store ID="SocioSt" runat="server" DataSourceID="SociosDS">
+            <Reader>
+                <ext:JsonReader IDProperty="SOCIOS_ID">
+                    <Fields>
+                        <ext:RecordField Name="SOCIOS_ID" />
+                        <ext:RecordField Name="SOCIOS_PRIMER_NOMBRE" />
+                        <ext:RecordField Name="SOCIOS_SEGUNDO_NOMBRE" />
+                        <ext:RecordField Name="SOCIOS_PRIMER_APELLIDO" />
+                        <ext:RecordField Name="SOCIOS_SEGUNDO_APELLIDO" />
+                        <ext:RecordField Name="PRODUCCION_UBICACION_FINCA" ServerMapping="socios_produccion.PRODUCCION_UBICACION_FINCA" />
+                    </Fields>
+                </ext:JsonReader>
+            </Reader>
+        </ext:Store>
 
         <ext:Store ID="ClasificacionesCafeSt" runat="server" DataSourceID="ClasificacionesCafeDS" >
             <Reader>
@@ -95,7 +93,7 @@
             <Items>
                 <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Inventario de Café" Icon="Basket" Layout="Fit">
                     <Items>
-                        <ext:GridPanel ID="InventarioCafeGridP" runat="server" AutoExpandColumn="CLASIFICACIONES_CAFE_NOMBRE" Height="300"
+                        <ext:GridPanel ID="InventarioCafeGridP" runat="server" AutoExpandColumn="SOCIOS_NOMBRE_COMPLETO" Height="300"
                             Title="Inventario de Café" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
                             <KeyMap>
                                 <ext:KeyBinding>
@@ -112,15 +110,17 @@
                                     <Reader>
                                         <ext:JsonReader>
                                             <Fields>
-                                                <ext:RecordField Name="SOCIOS_ID"           />
-                                                <ext:RecordField Name="CLASIFICACIONES_CAFE_ID"          />
-                                                <ext:RecordField Name="CLASIFICACIONES_CAFE_NOMBRE"      ServerMapping="clasificaciones_cafe.CLASIFICACIONES_CAFE_NOMBRE" />
-                                                <ext:RecordField Name="INVENTARIO_CANTIDAD" />
-                                                <ext:RecordField Name="PRODUCTOS_EXISTENCIA"   />
-                                                <ext:RecordField Name="CREADO_POR"             />
-                                                <ext:RecordField Name="FECHA_CREACION"         Type="Date" />
-                                                <ext:RecordField Name="MODIFICADO_POR"         />
-                                                <ext:RecordField Name="FECHA_MODIFICACION"     Type="Date" />
+                                                <ext:RecordField Name="SOCIOS_ID"                    />
+                                                <ext:RecordField Name="SOCIOS_NOMBRE_COMPLETO"       />
+                                                <ext:RecordField Name="CLASIFICACIONES_CAFE_ID"      />
+                                                <ext:RecordField Name="CLASIFICACIONES_CAFE_NOMBRE"  />
+                                                <ext:RecordField Name="INVENTARIO_ENTRADAS_CANTIDAD" />
+                                                <ext:RecordField Name="INVENTARIO_SALIDAS_SALDO"     />
+                                                <ext:RecordField Name="PRODUCTOS_EXISTENCIA"         />
+                                                <ext:RecordField Name="CREADO_POR"                   />
+                                                <ext:RecordField Name="FECHA_CREACION"               Type="Date" />
+                                                <ext:RecordField Name="MODIFICADO_POR"               />
+                                                <ext:RecordField Name="FECHA_MODIFICACION"           Type="Date" />
                                             </Fields>
                                         </ext:JsonReader>
                                     </Reader>
@@ -131,10 +131,11 @@
                             </Store>
                             <ColumnModel>
                                 <Columns>
-                                    <ext:Column DataIndex="SOCIOS_ID"           Header="Id de Socio" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="CLASIFICACIONES_CAFE_NOMBRE"      Header="Clasificación de Café" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="INVENTARIO_CANTIDAD" Header="Cantidad" Sortable="true"></ext:Column>
-
+                                    <ext:Column DataIndex="SOCIOS_ID"                    Header="Id de Socio" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="SOCIOS_NOMBRE_COMPLETO"       Header="Nombre Completo de Socio" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="CLASIFICACIONES_CAFE_NOMBRE"  Header="Clasificación de Café" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="INVENTARIO_ENTRADAS_CANTIDAD" Header="Cantidad" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="INVENTARIO_SALIDAS_SALDO"     Header="Saldo de Salidas" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="SOCIOS_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
                                         <Renderer Handler="return '';" />
                                     </ext:Column>
@@ -181,14 +182,23 @@
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
+                                                        <ext:TextField ID="f_SOCIOS_NOMBRE_COMPLETO" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="5">
+                                                            <Listeners>
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                            </Listeners>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
                                                         <ext:ComboBox
-                                                            ID="f_CLASIFICACIONES_CAFE_ID" 
+                                                            ID="f_CLASIFICACIONES_CAFE_NOMBRE" 
                                                             runat="server"
                                                             Icon="Find"
                                                             AllowBlank="true"
                                                             ForceSelection="true"
                                                             StoreID="ClasificacionesCafeSt"
-                                                            ValueField="CLASIFICACIONES_CAFE_ID" 
+                                                            ValueField="CLASIFICACIONES_CAFE_NOMBRE" 
                                                             DisplayField="CLASIFICACIONES_CAFE_NOMBRE"
                                                             Mode="Local"
                                                             TypeAhead="true">
@@ -205,7 +215,16 @@
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:NumberField ID="f_INVENTARIO_CANTIDAD" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                        <ext:NumberField ID="f_INVENTARIO_ENTRADAS_CANTIDAD" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <Listeners>
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                            </Listeners>
+                                                        </ext:NumberField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:NumberField ID="f_INVENTARIO_SALIDAS_SALDO" runat="server" EnableKeyEvents="true" Icon="Find">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
@@ -264,30 +283,35 @@
                             <Items>
                                 <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false" AnchorHorizontal="100%">
                                     <Items>
-                                        <ext:TextField runat="server" ID="EditIdTxt"             DataIndex="SOCIOS_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Socio" AllowBlank="false" ReadOnly="true">
+                                        <ext:TextField   runat="server" ID="EditSociosIdTxt"           DataIndex="SOCIOS_ID"                   LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Socio" AllowBlank="false" ReadOnly="true">
                                             <ToolTips>
                                                 <ext:ToolTip runat="server" Title="Id de Socio" Html="El Id de Socio es de solo lectura." Width="200" TrackMouse="true" />
                                             </ToolTips>
                                         </ext:TextField>
-                                        <ext:TextField   runat="server" ID="EditNombreTxt" LabelAlign="Right" AnchorHorizontal="95%" FieldLabel="Nombre del Socio" ReadOnly="true" >
+                                        <ext:TextField   runat="server" ID="EditNombreTxt"             DataIndex="SOCIOS_NOMBRE_COMPLETO"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre del Socio" ReadOnly="true" >
                                             <ToolTips>
                                                 <ext:ToolTip runat="server" Html="El nombre de socio es de solo lectura." Title="Nombre del Socio" Width="200" TrackMouse="true" />
                                             </ToolTips>
                                         </ext:TextField>
-                                        <ext:TextField runat="server" ID="EditTipoDeCafeIdtxt"   DataIndex="CLASIFICACIONES_CAFE_NOMBRE"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Café" AllowBlank="false" ReadOnly="true" MsgTarget="Side">
+                                        <ext:TextField   runat="server" ID="EditTipoDeCafeIdtxt"       DataIndex="CLASIFICACIONES_CAFE_NOMBRE" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Café" AllowBlank="false" ReadOnly="true" MsgTarget="Side">
                                             <ToolTips>
                                                 <ext:ToolTip runat="server" Title="Tipo de Café" Html="El tipo de café es de solo lectura." Width="200" TrackMouse="true" />
                                             </ToolTips>
                                         </ext:TextField>
-                                        <ext:NumberField runat="server" ID="EditInventarioCantidadTxt"  DataIndex="INVENTARIO_CANTIDAD" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cantidad" AllowBlank="false" ReadOnly="true" MsgTarget="Side">
+                                        <ext:NumberField runat="server" ID="EditInventarioCantidadTxt" DataIndex="INVENTARIO_ENTRADAS_CANTIDAD" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cantidad" AllowBlank="false" ReadOnly="true" MsgTarget="Side">
                                             <ToolTips>
                                                 <ext:ToolTip runat="server" Title="Cantidad" Html="La cantidad de inventario es de solo lectura." Width="200" TrackMouse="true" />
                                             </ToolTips>
                                         </ext:NumberField>
-                                        <ext:TextField runat="server"   ID="EditCreatedByTxt"     DataIndex="CREADO_POR"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
-                                        <ext:TextField runat="server"   ID="EditCreationDateTxt"  DataIndex="FECHA_CREACION"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
-                                        <ext:TextField runat="server"   ID="EditModifiedByTxt"    DataIndex="MODIFICADO_POR"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
-                                        <ext:TextField runat="server"   ID="EditModificationDate" DataIndex="FECHA_MODIFICACION"  LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Modificacion" Hidden="true" ></ext:TextField>
+                                        <ext:NumberField runat="server" ID="EditInventarioSalidasTxt"  DataIndex="INVENTARIO_SALIDAS_SALDO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Saldo de Salidas" AllowBlank="false" ReadOnly="true" MsgTarget="Side">
+                                            <ToolTips>
+                                                <ext:ToolTip ID="ToolTip1" runat="server" Title="Salidas" Html="El saldo de salidas de inventario es de solo lectura." Width="200" TrackMouse="true" />
+                                            </ToolTips>
+                                        </ext:NumberField>
+                                        <ext:TextField runat="server"   ID="EditCreatedByTxt"          DataIndex="CREADO_POR"                  LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
+                                        <ext:TextField runat="server"   ID="EditCreationDateTxt"       DataIndex="FECHA_CREACION"              LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
+                                        <ext:TextField runat="server"   ID="EditModifiedByTxt"         DataIndex="MODIFICADO_POR"              LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
+                                        <ext:TextField runat="server"   ID="EditModificationDate"      DataIndex="FECHA_MODIFICACION"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Modificacion" Hidden="true" ></ext:TextField>
                                     </Items>
                                 </ext:Panel>
                             </Items>
@@ -304,7 +328,7 @@
                                 <Click Handler="PageX.next();" />
                             </Listeners>
                         </ext:Button>
-                        <ext:Button ID="EditGuardarBtn" runat="server" Text="Guardar" Icon="Disk" FormBind="true">
+                        <ext:Button ID="EditGuardarBtn" runat="server" Text="Guardar" Icon="Disk" FormBind="true" Hidden="true">
                             <Listeners>
                                 <Click Handler="#{EditModifiedByTxt}.setValue(#{LoggedUserHdn}.getValue()); PageX.update();" />
                             </Listeners>
