@@ -592,18 +592,34 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<total_inventario_de_cafe_por_socio> total_inventario_de_cafe_por_socio
+        public ObjectSet<reporte_total_inventario_de_cafe_por_socio> reporte_total_inventario_de_cafe_por_socio
         {
             get
             {
-                if ((_total_inventario_de_cafe_por_socio == null))
+                if ((_reporte_total_inventario_de_cafe_por_socio == null))
                 {
-                    _total_inventario_de_cafe_por_socio = base.CreateObjectSet<total_inventario_de_cafe_por_socio>("total_inventario_de_cafe_por_socio");
+                    _reporte_total_inventario_de_cafe_por_socio = base.CreateObjectSet<reporte_total_inventario_de_cafe_por_socio>("reporte_total_inventario_de_cafe_por_socio");
                 }
-                return _total_inventario_de_cafe_por_socio;
+                return _reporte_total_inventario_de_cafe_por_socio;
             }
         }
-        private ObjectSet<total_inventario_de_cafe_por_socio> _total_inventario_de_cafe_por_socio;
+        private ObjectSet<reporte_total_inventario_de_cafe_por_socio> _reporte_total_inventario_de_cafe_por_socio;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<reporte_movimientos_de_inventario_de_cafe> reporte_movimientos_de_inventario_de_cafe
+        {
+            get
+            {
+                if ((_reporte_movimientos_de_inventario_de_cafe == null))
+                {
+                    _reporte_movimientos_de_inventario_de_cafe = base.CreateObjectSet<reporte_movimientos_de_inventario_de_cafe>("reporte_movimientos_de_inventario_de_cafe");
+                }
+                return _reporte_movimientos_de_inventario_de_cafe;
+            }
+        }
+        private ObjectSet<reporte_movimientos_de_inventario_de_cafe> _reporte_movimientos_de_inventario_de_cafe;
 
         #endregion
         #region AddTo Methods
@@ -809,11 +825,19 @@ namespace COCASJOL.LOGIC
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the total_inventario_de_cafe_por_socio EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the reporte_total_inventario_de_cafe_por_socio EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddTototal_inventario_de_cafe_por_socio(total_inventario_de_cafe_por_socio total_inventario_de_cafe_por_socio)
+        public void AddToreporte_total_inventario_de_cafe_por_socio(reporte_total_inventario_de_cafe_por_socio reporte_total_inventario_de_cafe_por_socio)
         {
-            base.AddObject("total_inventario_de_cafe_por_socio", total_inventario_de_cafe_por_socio);
+            base.AddObject("reporte_total_inventario_de_cafe_por_socio", reporte_total_inventario_de_cafe_por_socio);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the reporte_movimientos_de_inventario_de_cafe EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToreporte_movimientos_de_inventario_de_cafe(reporte_movimientos_de_inventario_de_cafe reporte_movimientos_de_inventario_de_cafe)
+        {
+            base.AddObject("reporte_movimientos_de_inventario_de_cafe", reporte_movimientos_de_inventario_de_cafe);
         }
 
         #endregion
@@ -6518,6 +6542,572 @@ namespace COCASJOL.LOGIC
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="COLINASMODEL", Name="reporte_movimientos_de_inventario_de_cafe")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class reporte_movimientos_de_inventario_de_cafe : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new reporte_movimientos_de_inventario_de_cafe object.
+        /// </summary>
+        /// <param name="tRANSACCION_NUMERO">Initial value of the TRANSACCION_NUMERO property.</param>
+        /// <param name="fECHA">Initial value of the FECHA property.</param>
+        /// <param name="sOCIOS_ID">Initial value of the SOCIOS_ID property.</param>
+        /// <param name="cLASIFICACIONES_CAFE_NOMBRE">Initial value of the CLASIFICACIONES_CAFE_NOMBRE property.</param>
+        /// <param name="iNVENTARIO_ENTRADAS_CANTIDAD">Initial value of the INVENTARIO_ENTRADAS_CANTIDAD property.</param>
+        /// <param name="iNVENTARIO_SALIDAS_SALDO">Initial value of the INVENTARIO_SALIDAS_SALDO property.</param>
+        public static reporte_movimientos_de_inventario_de_cafe Createreporte_movimientos_de_inventario_de_cafe(global::System.Int32 tRANSACCION_NUMERO, global::System.DateTime fECHA, global::System.String sOCIOS_ID, global::System.String cLASIFICACIONES_CAFE_NOMBRE, global::System.Decimal iNVENTARIO_ENTRADAS_CANTIDAD, global::System.Decimal iNVENTARIO_SALIDAS_SALDO)
+        {
+            reporte_movimientos_de_inventario_de_cafe reporte_movimientos_de_inventario_de_cafe = new reporte_movimientos_de_inventario_de_cafe();
+            reporte_movimientos_de_inventario_de_cafe.TRANSACCION_NUMERO = tRANSACCION_NUMERO;
+            reporte_movimientos_de_inventario_de_cafe.FECHA = fECHA;
+            reporte_movimientos_de_inventario_de_cafe.SOCIOS_ID = sOCIOS_ID;
+            reporte_movimientos_de_inventario_de_cafe.CLASIFICACIONES_CAFE_NOMBRE = cLASIFICACIONES_CAFE_NOMBRE;
+            reporte_movimientos_de_inventario_de_cafe.INVENTARIO_ENTRADAS_CANTIDAD = iNVENTARIO_ENTRADAS_CANTIDAD;
+            reporte_movimientos_de_inventario_de_cafe.INVENTARIO_SALIDAS_SALDO = iNVENTARIO_SALIDAS_SALDO;
+            return reporte_movimientos_de_inventario_de_cafe;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 TRANSACCION_NUMERO
+        {
+            get
+            {
+                return _TRANSACCION_NUMERO;
+            }
+            set
+            {
+                if (_TRANSACCION_NUMERO != value)
+                {
+                    OnTRANSACCION_NUMEROChanging(value);
+                    ReportPropertyChanging("TRANSACCION_NUMERO");
+                    _TRANSACCION_NUMERO = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("TRANSACCION_NUMERO");
+                    OnTRANSACCION_NUMEROChanged();
+                }
+            }
+        }
+        private global::System.Int32 _TRANSACCION_NUMERO;
+        partial void OnTRANSACCION_NUMEROChanging(global::System.Int32 value);
+        partial void OnTRANSACCION_NUMEROChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime FECHA
+        {
+            get
+            {
+                return _FECHA;
+            }
+            set
+            {
+                OnFECHAChanging(value);
+                ReportPropertyChanging("FECHA");
+                _FECHA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA");
+                OnFECHAChanged();
+            }
+        }
+        private global::System.DateTime _FECHA;
+        partial void OnFECHAChanging(global::System.DateTime value);
+        partial void OnFECHAChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String SOCIOS_ID
+        {
+            get
+            {
+                return _SOCIOS_ID;
+            }
+            set
+            {
+                OnSOCIOS_IDChanging(value);
+                ReportPropertyChanging("SOCIOS_ID");
+                _SOCIOS_ID = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("SOCIOS_ID");
+                OnSOCIOS_IDChanged();
+            }
+        }
+        private global::System.String _SOCIOS_ID;
+        partial void OnSOCIOS_IDChanging(global::System.String value);
+        partial void OnSOCIOS_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CLASIFICACIONES_CAFE_NOMBRE
+        {
+            get
+            {
+                return _CLASIFICACIONES_CAFE_NOMBRE;
+            }
+            set
+            {
+                OnCLASIFICACIONES_CAFE_NOMBREChanging(value);
+                ReportPropertyChanging("CLASIFICACIONES_CAFE_NOMBRE");
+                _CLASIFICACIONES_CAFE_NOMBRE = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CLASIFICACIONES_CAFE_NOMBRE");
+                OnCLASIFICACIONES_CAFE_NOMBREChanged();
+            }
+        }
+        private global::System.String _CLASIFICACIONES_CAFE_NOMBRE;
+        partial void OnCLASIFICACIONES_CAFE_NOMBREChanging(global::System.String value);
+        partial void OnCLASIFICACIONES_CAFE_NOMBREChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String DESCRIPCION
+        {
+            get
+            {
+                return _DESCRIPCION;
+            }
+            set
+            {
+                OnDESCRIPCIONChanging(value);
+                ReportPropertyChanging("DESCRIPCION");
+                _DESCRIPCION = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("DESCRIPCION");
+                OnDESCRIPCIONChanged();
+            }
+        }
+        private global::System.String _DESCRIPCION;
+        partial void OnDESCRIPCIONChanging(global::System.String value);
+        partial void OnDESCRIPCIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> ENTRADAS_CANTIDAD
+        {
+            get
+            {
+                return _ENTRADAS_CANTIDAD;
+            }
+            set
+            {
+                OnENTRADAS_CANTIDADChanging(value);
+                ReportPropertyChanging("ENTRADAS_CANTIDAD");
+                _ENTRADAS_CANTIDAD = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ENTRADAS_CANTIDAD");
+                OnENTRADAS_CANTIDADChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _ENTRADAS_CANTIDAD;
+        partial void OnENTRADAS_CANTIDADChanging(Nullable<global::System.Decimal> value);
+        partial void OnENTRADAS_CANTIDADChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> SALIDAS_CANTIDAD
+        {
+            get
+            {
+                return _SALIDAS_CANTIDAD;
+            }
+            set
+            {
+                OnSALIDAS_CANTIDADChanging(value);
+                ReportPropertyChanging("SALIDAS_CANTIDAD");
+                _SALIDAS_CANTIDAD = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SALIDAS_CANTIDAD");
+                OnSALIDAS_CANTIDADChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _SALIDAS_CANTIDAD;
+        partial void OnSALIDAS_CANTIDADChanging(Nullable<global::System.Decimal> value);
+        partial void OnSALIDAS_CANTIDADChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> SALIDAS_COSTO
+        {
+            get
+            {
+                return _SALIDAS_COSTO;
+            }
+            set
+            {
+                OnSALIDAS_COSTOChanging(value);
+                ReportPropertyChanging("SALIDAS_COSTO");
+                _SALIDAS_COSTO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SALIDAS_COSTO");
+                OnSALIDAS_COSTOChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _SALIDAS_COSTO;
+        partial void OnSALIDAS_COSTOChanging(Nullable<global::System.Decimal> value);
+        partial void OnSALIDAS_COSTOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> SALIDAS_MONTO
+        {
+            get
+            {
+                return _SALIDAS_MONTO;
+            }
+            set
+            {
+                OnSALIDAS_MONTOChanging(value);
+                ReportPropertyChanging("SALIDAS_MONTO");
+                _SALIDAS_MONTO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SALIDAS_MONTO");
+                OnSALIDAS_MONTOChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _SALIDAS_MONTO;
+        partial void OnSALIDAS_MONTOChanging(Nullable<global::System.Decimal> value);
+        partial void OnSALIDAS_MONTOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal INVENTARIO_ENTRADAS_CANTIDAD
+        {
+            get
+            {
+                return _INVENTARIO_ENTRADAS_CANTIDAD;
+            }
+            set
+            {
+                OnINVENTARIO_ENTRADAS_CANTIDADChanging(value);
+                ReportPropertyChanging("INVENTARIO_ENTRADAS_CANTIDAD");
+                _INVENTARIO_ENTRADAS_CANTIDAD = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("INVENTARIO_ENTRADAS_CANTIDAD");
+                OnINVENTARIO_ENTRADAS_CANTIDADChanged();
+            }
+        }
+        private global::System.Decimal _INVENTARIO_ENTRADAS_CANTIDAD;
+        partial void OnINVENTARIO_ENTRADAS_CANTIDADChanging(global::System.Decimal value);
+        partial void OnINVENTARIO_ENTRADAS_CANTIDADChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal INVENTARIO_SALIDAS_SALDO
+        {
+            get
+            {
+                return _INVENTARIO_SALIDAS_SALDO;
+            }
+            set
+            {
+                OnINVENTARIO_SALIDAS_SALDOChanging(value);
+                ReportPropertyChanging("INVENTARIO_SALIDAS_SALDO");
+                _INVENTARIO_SALIDAS_SALDO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("INVENTARIO_SALIDAS_SALDO");
+                OnINVENTARIO_SALIDAS_SALDOChanged();
+            }
+        }
+        private global::System.Decimal _INVENTARIO_SALIDAS_SALDO;
+        partial void OnINVENTARIO_SALIDAS_SALDOChanging(global::System.Decimal value);
+        partial void OnINVENTARIO_SALIDAS_SALDOChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="COLINASMODEL", Name="reporte_total_inventario_de_cafe_por_socio")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class reporte_total_inventario_de_cafe_por_socio : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new reporte_total_inventario_de_cafe_por_socio object.
+        /// </summary>
+        /// <param name="tRANSACCION_NUMERO">Initial value of the TRANSACCION_NUMERO property.</param>
+        /// <param name="sOCIOS_ID">Initial value of the SOCIOS_ID property.</param>
+        /// <param name="cLASIFICACIONES_CAFE_ID">Initial value of the CLASIFICACIONES_CAFE_ID property.</param>
+        /// <param name="cLASIFICACIONES_CAFE_NOMBRE">Initial value of the CLASIFICACIONES_CAFE_NOMBRE property.</param>
+        /// <param name="iNVENTARIO_ENTRADAS_CANTIDAD">Initial value of the INVENTARIO_ENTRADAS_CANTIDAD property.</param>
+        /// <param name="iNVENTARIO_SALIDAS_SALDO">Initial value of the INVENTARIO_SALIDAS_SALDO property.</param>
+        /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
+        /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
+        public static reporte_total_inventario_de_cafe_por_socio Createreporte_total_inventario_de_cafe_por_socio(global::System.Int32 tRANSACCION_NUMERO, global::System.String sOCIOS_ID, global::System.Int32 cLASIFICACIONES_CAFE_ID, global::System.String cLASIFICACIONES_CAFE_NOMBRE, global::System.Decimal iNVENTARIO_ENTRADAS_CANTIDAD, global::System.Decimal iNVENTARIO_SALIDAS_SALDO, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
+        {
+            reporte_total_inventario_de_cafe_por_socio reporte_total_inventario_de_cafe_por_socio = new reporte_total_inventario_de_cafe_por_socio();
+            reporte_total_inventario_de_cafe_por_socio.TRANSACCION_NUMERO = tRANSACCION_NUMERO;
+            reporte_total_inventario_de_cafe_por_socio.SOCIOS_ID = sOCIOS_ID;
+            reporte_total_inventario_de_cafe_por_socio.CLASIFICACIONES_CAFE_ID = cLASIFICACIONES_CAFE_ID;
+            reporte_total_inventario_de_cafe_por_socio.CLASIFICACIONES_CAFE_NOMBRE = cLASIFICACIONES_CAFE_NOMBRE;
+            reporte_total_inventario_de_cafe_por_socio.INVENTARIO_ENTRADAS_CANTIDAD = iNVENTARIO_ENTRADAS_CANTIDAD;
+            reporte_total_inventario_de_cafe_por_socio.INVENTARIO_SALIDAS_SALDO = iNVENTARIO_SALIDAS_SALDO;
+            reporte_total_inventario_de_cafe_por_socio.CREADO_POR = cREADO_POR;
+            reporte_total_inventario_de_cafe_por_socio.FECHA_CREACION = fECHA_CREACION;
+            return reporte_total_inventario_de_cafe_por_socio;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 TRANSACCION_NUMERO
+        {
+            get
+            {
+                return _TRANSACCION_NUMERO;
+            }
+            set
+            {
+                if (_TRANSACCION_NUMERO != value)
+                {
+                    OnTRANSACCION_NUMEROChanging(value);
+                    ReportPropertyChanging("TRANSACCION_NUMERO");
+                    _TRANSACCION_NUMERO = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("TRANSACCION_NUMERO");
+                    OnTRANSACCION_NUMEROChanged();
+                }
+            }
+        }
+        private global::System.Int32 _TRANSACCION_NUMERO;
+        partial void OnTRANSACCION_NUMEROChanging(global::System.Int32 value);
+        partial void OnTRANSACCION_NUMEROChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String SOCIOS_ID
+        {
+            get
+            {
+                return _SOCIOS_ID;
+            }
+            set
+            {
+                OnSOCIOS_IDChanging(value);
+                ReportPropertyChanging("SOCIOS_ID");
+                _SOCIOS_ID = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("SOCIOS_ID");
+                OnSOCIOS_IDChanged();
+            }
+        }
+        private global::System.String _SOCIOS_ID;
+        partial void OnSOCIOS_IDChanging(global::System.String value);
+        partial void OnSOCIOS_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SOCIOS_NOMBRE_COMPLETO
+        {
+            get
+            {
+                return _SOCIOS_NOMBRE_COMPLETO;
+            }
+            set
+            {
+                OnSOCIOS_NOMBRE_COMPLETOChanging(value);
+                ReportPropertyChanging("SOCIOS_NOMBRE_COMPLETO");
+                _SOCIOS_NOMBRE_COMPLETO = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SOCIOS_NOMBRE_COMPLETO");
+                OnSOCIOS_NOMBRE_COMPLETOChanged();
+            }
+        }
+        private global::System.String _SOCIOS_NOMBRE_COMPLETO;
+        partial void OnSOCIOS_NOMBRE_COMPLETOChanging(global::System.String value);
+        partial void OnSOCIOS_NOMBRE_COMPLETOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 CLASIFICACIONES_CAFE_ID
+        {
+            get
+            {
+                return _CLASIFICACIONES_CAFE_ID;
+            }
+            set
+            {
+                OnCLASIFICACIONES_CAFE_IDChanging(value);
+                ReportPropertyChanging("CLASIFICACIONES_CAFE_ID");
+                _CLASIFICACIONES_CAFE_ID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CLASIFICACIONES_CAFE_ID");
+                OnCLASIFICACIONES_CAFE_IDChanged();
+            }
+        }
+        private global::System.Int32 _CLASIFICACIONES_CAFE_ID;
+        partial void OnCLASIFICACIONES_CAFE_IDChanging(global::System.Int32 value);
+        partial void OnCLASIFICACIONES_CAFE_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CLASIFICACIONES_CAFE_NOMBRE
+        {
+            get
+            {
+                return _CLASIFICACIONES_CAFE_NOMBRE;
+            }
+            set
+            {
+                OnCLASIFICACIONES_CAFE_NOMBREChanging(value);
+                ReportPropertyChanging("CLASIFICACIONES_CAFE_NOMBRE");
+                _CLASIFICACIONES_CAFE_NOMBRE = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CLASIFICACIONES_CAFE_NOMBRE");
+                OnCLASIFICACIONES_CAFE_NOMBREChanged();
+            }
+        }
+        private global::System.String _CLASIFICACIONES_CAFE_NOMBRE;
+        partial void OnCLASIFICACIONES_CAFE_NOMBREChanging(global::System.String value);
+        partial void OnCLASIFICACIONES_CAFE_NOMBREChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal INVENTARIO_ENTRADAS_CANTIDAD
+        {
+            get
+            {
+                return _INVENTARIO_ENTRADAS_CANTIDAD;
+            }
+            set
+            {
+                OnINVENTARIO_ENTRADAS_CANTIDADChanging(value);
+                ReportPropertyChanging("INVENTARIO_ENTRADAS_CANTIDAD");
+                _INVENTARIO_ENTRADAS_CANTIDAD = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("INVENTARIO_ENTRADAS_CANTIDAD");
+                OnINVENTARIO_ENTRADAS_CANTIDADChanged();
+            }
+        }
+        private global::System.Decimal _INVENTARIO_ENTRADAS_CANTIDAD;
+        partial void OnINVENTARIO_ENTRADAS_CANTIDADChanging(global::System.Decimal value);
+        partial void OnINVENTARIO_ENTRADAS_CANTIDADChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal INVENTARIO_SALIDAS_SALDO
+        {
+            get
+            {
+                return _INVENTARIO_SALIDAS_SALDO;
+            }
+            set
+            {
+                OnINVENTARIO_SALIDAS_SALDOChanging(value);
+                ReportPropertyChanging("INVENTARIO_SALIDAS_SALDO");
+                _INVENTARIO_SALIDAS_SALDO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("INVENTARIO_SALIDAS_SALDO");
+                OnINVENTARIO_SALIDAS_SALDOChanged();
+            }
+        }
+        private global::System.Decimal _INVENTARIO_SALIDAS_SALDO;
+        partial void OnINVENTARIO_SALIDAS_SALDOChanging(global::System.Decimal value);
+        partial void OnINVENTARIO_SALIDAS_SALDOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CREADO_POR
+        {
+            get
+            {
+                return _CREADO_POR;
+            }
+            set
+            {
+                OnCREADO_PORChanging(value);
+                ReportPropertyChanging("CREADO_POR");
+                _CREADO_POR = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CREADO_POR");
+                OnCREADO_PORChanged();
+            }
+        }
+        private global::System.String _CREADO_POR;
+        partial void OnCREADO_PORChanging(global::System.String value);
+        partial void OnCREADO_PORChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime FECHA_CREACION
+        {
+            get
+            {
+                return _FECHA_CREACION;
+            }
+            set
+            {
+                OnFECHA_CREACIONChanging(value);
+                ReportPropertyChanging("FECHA_CREACION");
+                _FECHA_CREACION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_CREACION");
+                OnFECHA_CREACIONChanged();
+            }
+        }
+        private global::System.DateTime _FECHA_CREACION;
+        partial void OnFECHA_CREACIONChanging(global::System.DateTime value);
+        partial void OnFECHA_CREACIONChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="COLINASMODEL", Name="rol")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -9301,267 +9891,6 @@ namespace COCASJOL.LOGIC
         }
 
         #endregion
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="COLINASMODEL", Name="total_inventario_de_cafe_por_socio")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class total_inventario_de_cafe_por_socio : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new total_inventario_de_cafe_por_socio object.
-        /// </summary>
-        /// <param name="tRANSACCION_NUMERO">Initial value of the TRANSACCION_NUMERO property.</param>
-        /// <param name="sOCIOS_ID">Initial value of the SOCIOS_ID property.</param>
-        /// <param name="cLASIFICACIONES_CAFE_ID">Initial value of the CLASIFICACIONES_CAFE_ID property.</param>
-        /// <param name="cLASIFICACIONES_CAFE_NOMBRE">Initial value of the CLASIFICACIONES_CAFE_NOMBRE property.</param>
-        /// <param name="iNVENTARIO_ENTRADAS_CANTIDAD">Initial value of the INVENTARIO_ENTRADAS_CANTIDAD property.</param>
-        /// <param name="iNVENTARIO_SALIDAS_SALDO">Initial value of the INVENTARIO_SALIDAS_SALDO property.</param>
-        /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
-        /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
-        public static total_inventario_de_cafe_por_socio Createtotal_inventario_de_cafe_por_socio(global::System.Int32 tRANSACCION_NUMERO, global::System.String sOCIOS_ID, global::System.Int32 cLASIFICACIONES_CAFE_ID, global::System.String cLASIFICACIONES_CAFE_NOMBRE, global::System.Decimal iNVENTARIO_ENTRADAS_CANTIDAD, global::System.Decimal iNVENTARIO_SALIDAS_SALDO, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
-        {
-            total_inventario_de_cafe_por_socio total_inventario_de_cafe_por_socio = new total_inventario_de_cafe_por_socio();
-            total_inventario_de_cafe_por_socio.TRANSACCION_NUMERO = tRANSACCION_NUMERO;
-            total_inventario_de_cafe_por_socio.SOCIOS_ID = sOCIOS_ID;
-            total_inventario_de_cafe_por_socio.CLASIFICACIONES_CAFE_ID = cLASIFICACIONES_CAFE_ID;
-            total_inventario_de_cafe_por_socio.CLASIFICACIONES_CAFE_NOMBRE = cLASIFICACIONES_CAFE_NOMBRE;
-            total_inventario_de_cafe_por_socio.INVENTARIO_ENTRADAS_CANTIDAD = iNVENTARIO_ENTRADAS_CANTIDAD;
-            total_inventario_de_cafe_por_socio.INVENTARIO_SALIDAS_SALDO = iNVENTARIO_SALIDAS_SALDO;
-            total_inventario_de_cafe_por_socio.CREADO_POR = cREADO_POR;
-            total_inventario_de_cafe_por_socio.FECHA_CREACION = fECHA_CREACION;
-            return total_inventario_de_cafe_por_socio;
-        }
-
-        #endregion
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 TRANSACCION_NUMERO
-        {
-            get
-            {
-                return _TRANSACCION_NUMERO;
-            }
-            set
-            {
-                if (_TRANSACCION_NUMERO != value)
-                {
-                    OnTRANSACCION_NUMEROChanging(value);
-                    ReportPropertyChanging("TRANSACCION_NUMERO");
-                    _TRANSACCION_NUMERO = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("TRANSACCION_NUMERO");
-                    OnTRANSACCION_NUMEROChanged();
-                }
-            }
-        }
-        private global::System.Int32 _TRANSACCION_NUMERO;
-        partial void OnTRANSACCION_NUMEROChanging(global::System.Int32 value);
-        partial void OnTRANSACCION_NUMEROChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String SOCIOS_ID
-        {
-            get
-            {
-                return _SOCIOS_ID;
-            }
-            set
-            {
-                OnSOCIOS_IDChanging(value);
-                ReportPropertyChanging("SOCIOS_ID");
-                _SOCIOS_ID = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("SOCIOS_ID");
-                OnSOCIOS_IDChanged();
-            }
-        }
-        private global::System.String _SOCIOS_ID;
-        partial void OnSOCIOS_IDChanging(global::System.String value);
-        partial void OnSOCIOS_IDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String SOCIOS_NOMBRE_COMPLETO
-        {
-            get
-            {
-                return _SOCIOS_NOMBRE_COMPLETO;
-            }
-            set
-            {
-                OnSOCIOS_NOMBRE_COMPLETOChanging(value);
-                ReportPropertyChanging("SOCIOS_NOMBRE_COMPLETO");
-                _SOCIOS_NOMBRE_COMPLETO = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("SOCIOS_NOMBRE_COMPLETO");
-                OnSOCIOS_NOMBRE_COMPLETOChanged();
-            }
-        }
-        private global::System.String _SOCIOS_NOMBRE_COMPLETO;
-        partial void OnSOCIOS_NOMBRE_COMPLETOChanging(global::System.String value);
-        partial void OnSOCIOS_NOMBRE_COMPLETOChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 CLASIFICACIONES_CAFE_ID
-        {
-            get
-            {
-                return _CLASIFICACIONES_CAFE_ID;
-            }
-            set
-            {
-                OnCLASIFICACIONES_CAFE_IDChanging(value);
-                ReportPropertyChanging("CLASIFICACIONES_CAFE_ID");
-                _CLASIFICACIONES_CAFE_ID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CLASIFICACIONES_CAFE_ID");
-                OnCLASIFICACIONES_CAFE_IDChanged();
-            }
-        }
-        private global::System.Int32 _CLASIFICACIONES_CAFE_ID;
-        partial void OnCLASIFICACIONES_CAFE_IDChanging(global::System.Int32 value);
-        partial void OnCLASIFICACIONES_CAFE_IDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String CLASIFICACIONES_CAFE_NOMBRE
-        {
-            get
-            {
-                return _CLASIFICACIONES_CAFE_NOMBRE;
-            }
-            set
-            {
-                OnCLASIFICACIONES_CAFE_NOMBREChanging(value);
-                ReportPropertyChanging("CLASIFICACIONES_CAFE_NOMBRE");
-                _CLASIFICACIONES_CAFE_NOMBRE = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("CLASIFICACIONES_CAFE_NOMBRE");
-                OnCLASIFICACIONES_CAFE_NOMBREChanged();
-            }
-        }
-        private global::System.String _CLASIFICACIONES_CAFE_NOMBRE;
-        partial void OnCLASIFICACIONES_CAFE_NOMBREChanging(global::System.String value);
-        partial void OnCLASIFICACIONES_CAFE_NOMBREChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Decimal INVENTARIO_ENTRADAS_CANTIDAD
-        {
-            get
-            {
-                return _INVENTARIO_ENTRADAS_CANTIDAD;
-            }
-            set
-            {
-                OnINVENTARIO_ENTRADAS_CANTIDADChanging(value);
-                ReportPropertyChanging("INVENTARIO_ENTRADAS_CANTIDAD");
-                _INVENTARIO_ENTRADAS_CANTIDAD = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("INVENTARIO_ENTRADAS_CANTIDAD");
-                OnINVENTARIO_ENTRADAS_CANTIDADChanged();
-            }
-        }
-        private global::System.Decimal _INVENTARIO_ENTRADAS_CANTIDAD;
-        partial void OnINVENTARIO_ENTRADAS_CANTIDADChanging(global::System.Decimal value);
-        partial void OnINVENTARIO_ENTRADAS_CANTIDADChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Decimal INVENTARIO_SALIDAS_SALDO
-        {
-            get
-            {
-                return _INVENTARIO_SALIDAS_SALDO;
-            }
-            set
-            {
-                OnINVENTARIO_SALIDAS_SALDOChanging(value);
-                ReportPropertyChanging("INVENTARIO_SALIDAS_SALDO");
-                _INVENTARIO_SALIDAS_SALDO = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("INVENTARIO_SALIDAS_SALDO");
-                OnINVENTARIO_SALIDAS_SALDOChanged();
-            }
-        }
-        private global::System.Decimal _INVENTARIO_SALIDAS_SALDO;
-        partial void OnINVENTARIO_SALIDAS_SALDOChanging(global::System.Decimal value);
-        partial void OnINVENTARIO_SALIDAS_SALDOChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String CREADO_POR
-        {
-            get
-            {
-                return _CREADO_POR;
-            }
-            set
-            {
-                OnCREADO_PORChanging(value);
-                ReportPropertyChanging("CREADO_POR");
-                _CREADO_POR = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("CREADO_POR");
-                OnCREADO_PORChanged();
-            }
-        }
-        private global::System.String _CREADO_POR;
-        partial void OnCREADO_PORChanging(global::System.String value);
-        partial void OnCREADO_PORChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.DateTime FECHA_CREACION
-        {
-            get
-            {
-                return _FECHA_CREACION;
-            }
-            set
-            {
-                OnFECHA_CREACIONChanging(value);
-                ReportPropertyChanging("FECHA_CREACION");
-                _FECHA_CREACION = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("FECHA_CREACION");
-                OnFECHA_CREACIONChanged();
-            }
-        }
-        private global::System.DateTime _FECHA_CREACION;
-        partial void OnFECHA_CREACIONChanging(global::System.DateTime value);
-        partial void OnFECHA_CREACIONChanged();
-
-        #endregion
-    
     }
     
     /// <summary>

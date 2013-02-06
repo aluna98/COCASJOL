@@ -114,6 +114,7 @@
     <Content Include="resources\js\prestamos\solicitudesDePrestamos.js" />
     <Content Include="resources\js\productos\productos.js" />
     <Content Include="resources\js\productos\tiposDeProductos.js" />
+    <Content Include="resources\js\reportes\movimientosDeInventarioDeCafe.js" />
     <Content Include="resources\js\seguridad\roles.js" />
     <Content Include="resources\js\seguridad\usuarios.js" />
     <Content Include="resources\js\socios\socios.js" />
@@ -137,6 +138,7 @@
     <Content Include="Source\Prestamos\SolicitudesDePrestamos.aspx" />
     <Content Include="Source\Productos\Productos.aspx" />
     <Content Include="Source\Productos\TiposDeProductos.aspx" />
+    <Content Include="Source\Reportes\MovimientosDeInventarioDeCafe.aspx" />
     <Content Include="Source\Seguridad\CambiarClave.ascx" />
     <Content Include="Source\Seguridad\Roles.aspx" />
     <Content Include="Source\Seguridad\Usuarios.aspx" />
@@ -265,6 +267,13 @@
     </Compile>
     <Compile Include="Source\Productos\TiposDeProductos.aspx.designer.cs">
       <DependentUpon>TiposDeProductos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Reportes\MovimientosDeInventarioDeCafe.aspx.cs">
+      <DependentUpon>MovimientosDeInventarioDeCafe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Reportes\MovimientosDeInventarioDeCafe.aspx.designer.cs">
+      <DependentUpon>MovimientosDeInventarioDeCafe.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Seguridad\CambiarClave.ascx.cs">
       <DependentUpon>CambiarClave.ascx</DependentUpon>

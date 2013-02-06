@@ -234,6 +234,7 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
 
                         db.liquidaciones.AddObject(hojaliquidacion);
 
+                        db.SaveChanges();
                         
                         /* --------Modificar Inventario de Café Actual-------- */
                         InventarioDeCafeLogic inventariodecafelogic = new InventarioDeCafeLogic();

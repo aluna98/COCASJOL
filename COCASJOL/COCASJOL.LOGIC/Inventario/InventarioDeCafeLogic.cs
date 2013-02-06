@@ -14,13 +14,13 @@ namespace COCASJOL.LOGIC.Inventario
          
         #region Select
 
-        public List<total_inventario_de_cafe_por_socio> GetInventarioDeCafe()
+        public List<reporte_total_inventario_de_cafe_por_socio> GetInventarioDeCafe()
         {
             try
             {
                 using (var db = new colinasEntities())
                 {
-                    return db.total_inventario_de_cafe_por_socio.ToList<total_inventario_de_cafe_por_socio>();
+                    return db.reporte_total_inventario_de_cafe_por_socio.ToList<reporte_total_inventario_de_cafe_por_socio>();
                 }
             }
             catch (Exception)
@@ -30,22 +30,20 @@ namespace COCASJOL.LOGIC.Inventario
             }
         }
 
-        public List<total_inventario_de_cafe_por_socio> GetInventarioDeCafe
+        public List<reporte_total_inventario_de_cafe_por_socio> GetInventarioDeCafe
             (string SOCIOS_ID,
             string SOCIOS_NOMBRE_COMPLETO,
             string CLASIFICACIONES_CAFE_NOMBRE,
             decimal INVENTARIO_ENTRADAS_CANTIDAD,
             decimal INVENTARIO_SALIDAS_SALDO,
             string CREADO_POR,
-            DateTime FECHA_CREACION,
-            string MODIFICADO_POR,
-            DateTime FECHA_MODIFICACION)
+            DateTime FECHA_CREACION)
         {
             try
             {
                 using (var db = new colinasEntities())
                 {
-                    var query = from invCafeSocio in db.total_inventario_de_cafe_por_socio
+                    var query = from invCafeSocio in db.reporte_total_inventario_de_cafe_por_socio
                                 where
                                 (string.IsNullOrEmpty(SOCIOS_ID) ? true : invCafeSocio.SOCIOS_ID.Contains(SOCIOS_ID)) &&
                                 (string.IsNullOrEmpty(SOCIOS_NOMBRE_COMPLETO) ? true : invCafeSocio.SOCIOS_NOMBRE_COMPLETO.Contains(SOCIOS_NOMBRE_COMPLETO)) &&
@@ -56,7 +54,7 @@ namespace COCASJOL.LOGIC.Inventario
                                 (default(DateTime) == FECHA_CREACION ? true : invCafeSocio.FECHA_CREACION == FECHA_CREACION)
                                 select invCafeSocio;
 
-                    return query.OrderByDescending(ic => ic.FECHA_CREACION).ToList<total_inventario_de_cafe_por_socio>();
+                    return query.OrderByDescending(ic => ic.FECHA_CREACION).ToList<reporte_total_inventario_de_cafe_por_socio>();
                 }
             }
             catch (Exception)
@@ -71,11 +69,11 @@ namespace COCASJOL.LOGIC.Inventario
             {
                 using (var db = new colinasEntities())
                 {
-                    var query = from inv in db.total_inventario_de_cafe_por_socio
+                    var query = from inv in db.reporte_total_inventario_de_cafe_por_socio
                                 where inv.SOCIOS_ID == SOCIOS_ID && inv.CLASIFICACIONES_CAFE_ID == CLASIFICACIONES_CAFE_ID
                                 select inv;
 
-                    total_inventario_de_cafe_por_socio asocInventory = query.FirstOrDefault<total_inventario_de_cafe_por_socio>();
+                    reporte_total_inventario_de_cafe_por_socio asocInventory = query.FirstOrDefault<reporte_total_inventario_de_cafe_por_socio>();
 
                     if (asocInventory != null)
                         return asocInventory.INVENTARIO_ENTRADAS_CANTIDAD;
@@ -99,7 +97,7 @@ namespace COCASJOL.LOGIC.Inventario
         {
             try
             {
-                var query = (from inv in db.total_inventario_de_cafe_por_socio
+                var query = (from inv in db.reporte_total_inventario_de_cafe_por_socio
                              where 
                              (inv.SOCIOS_ID == NotaDePeso.SOCIOS_ID) && 
                              (inv.CLASIFICACIONES_CAFE_ID == NotaDePeso.CLASIFICACIONES_CAFE_ID)

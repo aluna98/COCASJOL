@@ -84,6 +84,7 @@
     <Compile Include="Productos\ProductoLogic.cs" />
     <Compile Include="Productos\TipoDeProductoLogic.cs" />
     <Compile Include="Reportes\ConsolidadoDeInventarioDeCafeLogic.cs" />
+    <Compile Include="Reportes\MovimientosDeInventarioDeCafeLogic.cs" />
     <Compile Include="Seguridad\PrivilegioLogic.cs" />
     <Compile Include="Seguridad\RolLogic.cs" />
     <Compile Include="Socios\SociosLogic.cs">
