@@ -140,7 +140,7 @@
                             <Store>
                                 <ext:Store ID="MovimientoInventarioCafeSt" runat="server" DataSourceID="MovimientoDeInventarioCafeDS" AutoSave="true" SkipIdForNewRecords="false" GroupField="SOCIOS_ID">
                                     <Reader>
-                                        <ext:JsonReader IDProperty="TRANSACCION_NUMERO">
+                                        <ext:JsonReader>
                                             <Fields>
                                                 <ext:RecordField Name="SOCIOS_ID"                    />
                                                 <ext:RecordField Name="CLASIFICACIONES_CAFE_NOMBRE"  />
@@ -170,21 +170,70 @@
                                     <ext:Column DataIndex="SOCIOS_ID"                    Header="Id de Socio" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="CLASIFICACIONES_CAFE_NOMBRE"  Header="Clasificación de Café" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="DESCRIPCION"                  Header="Descripción" Sortable="true"></ext:Column>
-                                    <ext:DateColumn DataIndex="FECHA"                    Header="Fecha" Sortable="true"></ext:DateColumn>
-                                    <ext:Column DataIndex="TRANSACCION_NUMERO"           Header="Numero de Transacción" Sortable="true" Groupable="false"></ext:Column>
 
-                                    <ext:Column DataIndex="ENTRADAS_CANTIDAD"     Header="Cantidad Entrada" Sortable="true" Groupable="false">
-                                        <Renderer Format="Number" FormatArgs="'0.0000'" />
-                                    </ext:Column>
-                                    <ext:Column DataIndex="SALIDAS_CANTIDAD"     Header="Cantidad de Salida" Sortable="true" Groupable="false">
-                                        <Renderer Format="Number" FormatArgs="'0.0000'" />
-                                    </ext:Column>
-                                    <ext:Column DataIndex="SALIDAS_COSTO"     Header="Costo" Sortable="true" Groupable="false">
-                                        <Renderer Format="Number" FormatArgs="'0,000.0000'" />
-                                    </ext:Column>
-                                    <ext:Column DataIndex="SALIDAS_MONTO"     Header="Monto" Sortable="true" Groupable="false">
-                                        <Renderer Format="Number" FormatArgs="'0,000.0000'" />
-                                    </ext:Column>
+                                    <ext:GroupingSummaryColumn
+                                        ColumnID="Fecha"
+                                        Header="Fecha"
+                                        Sortable="true"
+                                        DataIndex="FECHA"
+                                        SummaryType="Max">
+                                        <Renderer Format="Date" FormatArgs="'m/d/Y'" />
+                                    </ext:GroupingSummaryColumn>
+
+                                    <ext:GroupingSummaryColumn
+                                        ColumnID="Transaccion"
+                                        Header="Transacción #"
+                                        Sortable="true"
+                                        Groupable="false"
+                                        DataIndex="TRANSACCION_NUMERO"
+                                        Hideable="false"
+                                        SummaryType="Count">
+                                        <SummaryRenderer Handler="return ((value === 0 || value > 1) ? '(' + value +' Transacciones)' : '(0 Transacción)');" />    
+                                    </ext:GroupingSummaryColumn>
+
+                                    <ext:GroupingSummaryColumn
+                                        ColumnID="CantidadEntrada"
+                                        Header="Cantidad de Entrada"
+                                        Sortable="false"
+                                        Groupable="false"
+                                        DataIndex="ENTRADAS_CANTIDAD"
+                                        SummaryType="Sum">
+                                        <Renderer Handler="return Ext.util.Format.number(record.data.ENTRADAS_CANTIDAD, '0.0000');" />
+                                        <SummaryRenderer Format="Number" FormatArgs="'0.0000'" />
+                                    </ext:GroupingSummaryColumn>
+
+                                    <ext:GroupingSummaryColumn
+                                        ColumnID="CantidadSalida"
+                                        Header="Cantidad de Salida"
+                                        Sortable="false"
+                                        Groupable="false"
+                                        DataIndex="SALIDAS_CANTIDAD"
+                                        SummaryType="Sum">
+                                        <Renderer Handler="return Ext.util.Format.number(record.data.SALIDAS_CANTIDAD, '0,000.0000');" />
+                                        <SummaryRenderer Format="Number" FormatArgs="'0,000.0000'" />
+                                    </ext:GroupingSummaryColumn>
+
+                                    <ext:GroupingSummaryColumn
+                                        ColumnID="CostoSalida"
+                                        Header="Costo de Salida"
+                                        Sortable="false"
+                                        Groupable="false"
+                                        DataIndex="SALIDAS_COSTO"
+                                        SummaryType="Average">
+                                        <Renderer Handler="return Ext.util.Format.number(record.data.SALIDAS_COSTO, '0,000.0000');" />
+                                        <SummaryRenderer Format="Number" FormatArgs="'0,000.0000'" />
+                                    </ext:GroupingSummaryColumn>
+
+                                    <ext:GroupingSummaryColumn
+                                        ColumnID="MontoSalida"
+                                        Header="Monto de Salida"
+                                        Sortable="false"
+                                        Groupable="false"
+                                        DataIndex="SALIDAS_MONTO"
+                                        SummaryType="Sum">
+                                        <Renderer Handler="return Ext.util.Format.number(record.data.SALIDAS_MONTO, '0,000.0000');" />
+                                        <SummaryRenderer Format="Number" FormatArgs="'0,000.0000'" />
+                                    </ext:GroupingSummaryColumn>
 
                                     <ext:Column DataIndex="INVENTARIO_ENTRADAS_CANTIDAD" Header="Cantidad en Inventario" Sortable="true" Groupable="false">
                                         <Renderer Format="Number" FormatArgs="'0.0000'" />
@@ -200,13 +249,17 @@
                             <SelectionModel>
                                 <ext:RowSelectionModel ID="RowSelectionModel1" runat="server" />
                             </SelectionModel>
+                            <Plugins>
+                                <ext:GroupingSummary ID="GroupingSummary1" runat="server">
+                                </ext:GroupingSummary>
+                            </Plugins>
                             <View>
                                 <ext:GroupingView ID="GridView1" runat="server"
                                     HideGroupedColumn="true"
                                     ForceFit="true"
-                                    StartCollapsed="true"
-                                    
-                                    EnableRowBody="true">
+                                    MarkDirty="false"
+                                    ShowGroupName="false"
+                                    EnableNoGroups="true">
                                     <Listeners>
                                         <Refresh Fn="setGroupStyle" />
                                     </Listeners>
@@ -440,6 +493,11 @@
                             <TopBar>
                                 <ext:Toolbar runat="server">
                                     <Items>
+                                        <ext:Button ID="Button3" runat="server" Text="Toggle" ToolTip="Toggle the visibility of summary row">
+                                            <Listeners>
+                                                <Click Handler="#{MovimientoInventarioCafeGridP}.getGroupingSummary().toggleSummaries();" />
+                                            </Listeners>
+                                        </ext:Button>
                                         <ext:Button 
                                             ID="btnToggleGroups" 
                                             runat="server" 
