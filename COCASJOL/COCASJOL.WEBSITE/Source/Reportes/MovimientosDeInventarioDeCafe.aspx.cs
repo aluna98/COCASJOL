@@ -36,8 +36,8 @@ namespace COCASJOL.WEBSITE.Source.Reportes
 
         protected void MovimientoDeInventarioCafeDS_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
         {
-            if (!this.IsPostBack)
-                e.Cancel = true;
+            //if (!this.IsPostBack)
+            //    e.Cancel = true;
         }
     }
 }

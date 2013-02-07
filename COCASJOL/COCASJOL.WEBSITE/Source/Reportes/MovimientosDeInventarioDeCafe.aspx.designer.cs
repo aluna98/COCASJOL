@@ -130,31 +130,22 @@ namespace COCASJOL.WEBSITE.Source.Reportes {
         protected global::Ext.Net.Panel Panel1;
         
         /// <summary>
-        /// InventarioCafeGridP control.
+        /// MovimientoInventarioCafeGridP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.GridPanel InventarioCafeGridP;
+        protected global::Ext.Net.GridPanel MovimientoInventarioCafeGridP;
         
         /// <summary>
-        /// InventarioCafeSt control.
+        /// MovimientoInventarioCafeSt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store InventarioCafeSt;
-        
-        /// <summary>
-        /// RowSelectionModel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.RowSelectionModel RowSelectionModel1;
+        protected global::Ext.Net.Store MovimientoInventarioCafeSt;
         
         /// <summary>
         /// Toolbar1 control.
@@ -166,13 +157,31 @@ namespace COCASJOL.WEBSITE.Source.Reportes {
         protected global::Ext.Net.Toolbar Toolbar1;
         
         /// <summary>
+        /// Button3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Button3;
+        
+        /// <summary>
+        /// GroupingSummary1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.GroupingSummary GroupingSummary1;
+        
+        /// <summary>
         /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.GridView GridView1;
+        protected global::Ext.Net.GroupingView GridView1;
         
         /// <summary>
         /// f_SOCIOS_ID control.
@@ -256,15 +265,6 @@ namespace COCASJOL.WEBSITE.Source.Reportes {
         protected global::Ext.Net.Button Button2;
         
         /// <summary>
-        /// f_CLASIFICACIONES_CAFE_NOMBRE control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox f_CLASIFICACIONES_CAFE_NOMBRE;
-        
-        /// <summary>
         /// f_DESCRIPCION control.
         /// </summary>
         /// <remarks>
@@ -310,12 +310,57 @@ namespace COCASJOL.WEBSITE.Source.Reportes {
         protected global::Ext.Net.ToolTip ToolTip4;
         
         /// <summary>
-        /// PagingToolbar1 control.
+        /// Toolbar2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.PagingToolbar PagingToolbar1;
+        protected global::Ext.Net.Toolbar Toolbar2;
+        
+        /// <summary>
+        /// ColumnField1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DisplayField ColumnField1;
+        
+        /// <summary>
+        /// ColumnField2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DisplayField ColumnField2;
+        
+        /// <summary>
+        /// ColumnField3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DisplayField ColumnField3;
+        
+        /// <summary>
+        /// ColumnField4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DisplayField ColumnField4;
+        
+        /// <summary>
+        /// ColumnField5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DisplayField ColumnField5;
     }
 }

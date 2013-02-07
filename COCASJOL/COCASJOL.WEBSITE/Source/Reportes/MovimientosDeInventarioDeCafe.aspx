@@ -6,8 +6,84 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>Inventario de Café por Socio</title>
+    <title>Movimientos de Inventario de Café</title>
     <script type="text/javascript" src="../../resources/js/reportes/movimientosDeInventarioDeCafe.js" ></script>
+
+    <style type="text/css">
+        .x-grid3-cell-inner {
+            font-family : "segoe ui",tahoma, arial, sans-serif;
+        }
+         
+        .x-grid-group-hd div {
+            font-family : "segoe ui",tahoma, arial, sans-serif;
+        }
+         
+        .x-grid3-hd-inner {
+            font-family : "segoe ui",tahoma, arial, sans-serif;
+            font-size   : 12px;
+        }
+         
+        .x-grid3-body .x-grid3-td-Cost {
+            background-color : #f1f2f4;
+        }
+         
+        .x-grid3-summary-row .x-grid3-td-Cost {
+            background-color : #e1e2e4;
+        }    
+         
+        .total-field{
+            background-color : #fff;
+            font-weight      : bold !important;                       
+            color            : #000;
+            border           : solid 1px silver;
+            padding          : 2px;
+            margin-right     : 5px;
+        } 
+    </style>
+
+    <script type="text/javascript">
+        var updateTotal = function (grid) {
+            var fbar = grid.getBottomToolbar(),
+                column,
+                field,
+                width,
+                data = {},
+                c,
+                cs = grid.view.getColumnData();
+
+            for (var j = 0, jlen = grid.store.getCount(); j < jlen; j++) {
+                var r = grid.store.getAt(j);
+
+                for (var i = 0, len = cs.length; i < len; i++) {
+                    c = cs[i];
+                    column = grid.getColumnModel().columns[i];
+
+                    if (column.summaryType) {
+                        data[c.name] = Ext.grid.GroupSummary.Calculations[column.summaryType](data[c.name] || 0, r, c.name, data);
+                    }
+                }
+            }
+
+            for (var i = 0; i < grid.getColumnModel().columns.length; i++) {
+                column = grid.getColumnModel().columns[i];
+
+                if (column.dataIndex != grid.store.groupField) {
+                    field = fbar.findBy(function (item) {
+                        return item.dataIndex === column.dataIndex;
+                    })[0];
+
+                    c = cs[i];
+                    fbar.remove(field, false);
+                    fbar.insert(i, field);
+                    width = grid.getColumnModel().getColumnWidth(i);
+                    field.setWidth(width - 5);
+                    field.setValue((column.summaryRenderer || c.renderer)(data[c.name], {}, {}, 0, i, grid.store));
+                }
+            }
+
+            fbar.doLayout();
+        }
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -20,21 +96,22 @@
 
         <ext:KeyNav ID="KeyNav1" runat="server" Target="={document.body}" >
             <Home Handler="PageX.navHome();" />
-            <PageUp Handler="PageX.navPrev();" />
+            <%--<PageUp Handler="PageX.navPrev();" />
             <PageDown Handler="PageX.navNext();" />
-            <End Handler="PageX.navEnd();" />
+            <End Handler="PageX.navEnd();" />--%>
         </ext:KeyNav>
 
         <asp:ObjectDataSource ID="MovimientoDeInventarioCafeDS" runat="server"
                 TypeName="COCASJOL.LOGIC.Reportes.MovimientosDeInventarioDeCafeLogic"
                 SelectMethod="GetMovimientosDeInventarioDeCafeLogic" onselecting="MovimientoDeInventarioCafeDS_Selecting" >
                 <SelectParameters>
+                    <asp:ControlParameter Name="SOCIOS_ID"                    Type="String"   ControlID="f_SOCIOS_ID"                    PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="TRANSACCION_NUMERO"           Type="Int32"    ControlID="nullHdn"                        PropertyName="Text" />
+                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_NOMBRE"  Type="String"   ControlID="nullHdn"  PropertyName="Text" DefaultValue="" />
+                    <%--<asp:ControlParameter Name="CLASIFICACIONES_CAFE_NOMBRE"  Type="String"   ControlID="f_CLASIFICACIONES_CAFE_NOMBRE"  PropertyName="Text" DefaultValue="" />--%>
                     <asp:ControlParameter Name="FECHA"                        Type="DateTime" ControlID="nullHdn"                        PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="FECHA_DESDE"                  Type="DateTime" ControlID="f_DATE_FROM"                    PropertyName="Text" />
                     <asp:ControlParameter Name="FECHA_HASTA"                  Type="DateTime" ControlID="f_DATE_TO"                      PropertyName="Text" />
-                    <asp:ControlParameter Name="SOCIOS_ID"                    Type="String"   ControlID="f_SOCIOS_ID"                    PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_NOMBRE"  Type="String"   ControlID="f_CLASIFICACIONES_CAFE_NOMBRE"  PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="DESCRIPCION"                  Type="String"   ControlID="f_DESCRIPCION"                  PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="INVENTARIO_ENTRADAS_CANTIDAD" Type="Decimal"  ControlID="f_INVENTARIO_ENTRADAS_CANTIDAD" PropertyName="Text" DefaultValue="-1"/>
                     <asp:ControlParameter Name="INVENTARIO_SALIDAS_SALDO"     Type="Decimal"  ControlID="f_INVENTARIO_SALIDAS_SALDO"     PropertyName="Text" DefaultValue="-1"/>
@@ -87,20 +164,20 @@
             <Items>
                 <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Inventario de Café" Icon="Basket" Layout="Fit">
                     <Items>
-                        <ext:GridPanel ID="InventarioCafeGridP" runat="server" AutoExpandColumn="FECHA" Height="300"
+                        <ext:GridPanel ID="MovimientoInventarioCafeGridP" runat="server" AutoExpandColumn="FECHA" Height="300"
                             Title="Inventario de Café" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
                             <Store>
-                                <ext:Store ID="InventarioCafeSt" runat="server" DataSourceID="MovimientoDeInventarioCafeDS" AutoSave="true" SkipIdForNewRecords="false" >
+                                <ext:Store ID="MovimientoInventarioCafeSt" runat="server" DataSourceID="MovimientoDeInventarioCafeDS" AutoSave="true" SkipIdForNewRecords="false" GroupField="SOCIOS_ID">
                                     <Reader>
                                         <ext:JsonReader>
                                             <Fields>
+                                                <ext:RecordField Name="SOCIOS_ID"                    />
                                                 <ext:RecordField Name="TRANSACCION_NUMERO"           />
+                                                <ext:RecordField Name="CLASIFICACIONES_CAFE_NOMBRE"  />
                                                 <ext:RecordField Name="FECHA"                        Type="Date" />
                                                 <ext:RecordField Name="FECHA_DESDE"                  Type="Date" />
                                                 <ext:RecordField Name="FECHA_HASTA"                  Type="Date" />
                                                 <ext:RecordField Name="DESCRIPCION"                  />
-                                                <ext:RecordField Name="SOCIOS_ID"                    />
-                                                <ext:RecordField Name="CLASIFICACIONES_CAFE_NOMBRE"  />
                                                 <ext:RecordField Name="INVENTARIO_ENTRADAS_CANTIDAD" />
                                                 <ext:RecordField Name="INVENTARIO_SALIDAS_SALDO"     />
                                             </Fields>
@@ -114,37 +191,107 @@
                             <ColumnModel>
                                 <Columns>
                                     <ext:Column DataIndex="SOCIOS_ID"                    Header="Id de Socio" Sortable="true"></ext:Column>
-                                    <ext:DateColumn DataIndex="FECHA"                        Header="Fecha" Sortable="true"></ext:DateColumn>
-                                    <ext:Column DataIndex="CLASIFICACIONES_CAFE_NOMBRE"  Header="Clasificación de Café" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="DESCRIPCION"                  Header="Descripción" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="INVENTARIO_ENTRADAS_CANTIDAD" Header="Cantidad" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="INVENTARIO_SALIDAS_SALDO"     Header="Saldo de Salidas" Sortable="true"></ext:Column>
+                                    <%--<ext:Column DataIndex="CLASIFICACIONES_CAFE_NOMBRE"  Header="Clasificación de Café" Sortable="true"></ext:Column>--%>
+                                    
+                                    <ext:GroupingSummaryColumn
+                                        ColumnID="Transaccion"
+                                        Header="Transacción #"
+                                        Sortable="true"
+                                        DataIndex="TRANSACCION_NUMERO"
+                                        Hideable="false"
+                                        SummaryType="Count">
+                                        <SummaryRenderer Handler="return ((value === 0 || value > 1) ? '(' + value +' Transacciones)' : '(1 Transacción)');" />    
+                                    </ext:GroupingSummaryColumn>
+                                    <%--<ext:Column DataIndex="TRANSACCION_NUMERO"           Header="Numero de Transacción" Sortable="true"></ext:Column>--%>
+
+                                    <ext:GroupingSummaryColumn
+                                        ColumnID="Fecha"
+                                        Width="25"
+                                        Header="Fecha"
+                                        Sortable="true"
+                                        DataIndex="FECHA"
+                                        SummaryType="Max">
+                                        <Renderer Format="Date" FormatArgs="'m/d/Y'" />
+                                    </ext:GroupingSummaryColumn>
+                                    <%--<ext:DateColumn DataIndex="FECHA"                    Header="Fecha" Sortable="true"></ext:DateColumn>--%>
+
+                                    <ext:GroupingSummaryColumn
+                                        ColumnID="Descripcion"
+                                        Width="25"
+                                        Header="Descripción"
+                                        Sortable="true"
+                                        DataIndex="DESCRIPCION"
+                                        Hideable="false"
+                                        SummaryType="Count">
+                                        <SummaryRenderer Handler="return ((value === 0 || value > 1) ? '(' + value +' Movimientos)' : '(1 Movimiento)');" />    
+                                    </ext:GroupingSummaryColumn>
+                                    <%--<ext:Column DataIndex="DESCRIPCION"                  Header="Descripción" Sortable="true"></ext:Column>--%>
+                                    
+                                    
+                                    <ext:GroupingSummaryColumn
+                                        Width="20"
+                                        ColumnID="Cantidad"
+                                        Header="Cantidad"
+                                        Sortable="false"
+                                        Groupable="false"
+                                        DataIndex="INVENTARIO_ENTRADAS_CANTIDAD"
+                                        CustomSummaryType="totalCantidad">
+                                        <Renderer Handler="return Ext.util.Format.number(record.data.INVENTARIO_ENTRADAS_CANTIDAD, '0,000.0000');" />
+                                        <SummaryRenderer Format="Number" FormatArgs="'0,000.0000'" />
+                                    </ext:GroupingSummaryColumn>
+                                    <%--<ext:Column DataIndex="INVENTARIO_ENTRADAS_CANTIDAD" Header="Cantidad" Sortable="true"></ext:Column>--%>
+
+                                    <ext:GroupingSummaryColumn
+                                        Width="20"
+                                        ColumnID="Saldo"
+                                        Header="Saldo"
+                                        Sortable="false"
+                                        Groupable="false"
+                                        DataIndex="INVENTARIO_SALIDAS_SALDO"
+                                        CustomSummaryType="totalSaldo">
+                                        <Renderer Handler="return Ext.util.Format.number(record.data.INVENTARIO_SALIDAS_SALDO, '0,000.0000');" />
+                                        <SummaryRenderer Format="Number" FormatArgs="'0,000.0000'" />
+                                    </ext:GroupingSummaryColumn>
+                                    <%--<ext:Column DataIndex="INVENTARIO_SALIDAS_SALDO"     Header="Saldo de Salidas" Sortable="true"></ext:Column>--%>
                                     <ext:Column DataIndex="SOCIOS_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
                                         <Renderer Handler="return '';" />
                                     </ext:Column>
                                 </Columns>
+                                <Listeners>
+                                    <WidthChange Handler="updateTotal(#{MovimientoInventarioCafeGridP});" />
+                                </Listeners>
                             </ColumnModel>
-                            <SelectionModel>
-                                <ext:RowSelectionModel ID="RowSelectionModel1" runat="server" SingleSelect="true" />
-                            </SelectionModel>
                             <TopBar>
                                 <ext:Toolbar ID="Toolbar1" runat="server">
                                     <Items>
+                                        <ext:Button ID="Button3" runat="server" Text="Toggle" ToolTip="Toggle the visibility of summary row">
+                                            <Listeners>
+                                                <Click Handler="#{MovimientoInventarioCafeGridP}.getGroupingSummary().toggleSummaries();" />
+                                            </Listeners>
+                                        </ext:Button>
                                     </Items>
                                 </ext:Toolbar>
                             </TopBar>
+                            <Plugins>
+                                <ext:GroupingSummary ID="GroupingSummary1" runat="server">
+                                    <Calculations>
+                                        <ext:JFunction Name="totalSaldo" Handler="return v + (record.data.INVENTARIO_SALIDAS_SALDO);" />
+                                        <ext:JFunction Name="totalCantidad" Handler="return v + (record.data.INVENTARIO_ENTRADAS_CANTIDAD);" />
+                                    </Calculations>
+                                </ext:GroupingSummary>
+                            </Plugins>
                             <View>
-                                <ext:GridView ID="GridView1" runat="server">
+                                <ext:GroupingView ID="GridView1" runat="server"
+                                    ForceFit="true"
+                                    MarkDirty="false"
+                                    ShowGroupName="false"
+                                    EnableNoGroups="true"
+                                    HideGroupedColumn="true" >
                                     <HeaderRows>
                                         <ext:HeaderRow>
                                             <Columns>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <%--<ext:TextField ID="f_SOCIOS_ID" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="5">
-                                                            <Listeners>
-                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
-                                                            </Listeners>
-                                                        </ext:TextField>--%>
                                                         <ext:ComboBox  runat="server" ID="f_SOCIOS_ID" 
                                                             AllowBlank="true"
                                                             TypeAhead="true"
@@ -191,7 +338,31 @@
                                                         </ext:ComboBox>
                                                     </Component>
                                                 </ext:HeaderColumn>
-                                                
+                                                <ext:HeaderColumn />
+                                                <%--<ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:ComboBox
+                                                            ID="f_CLASIFICACIONES_CAFE_NOMBRE" 
+                                                            runat="server"
+                                                            Icon="Find"
+                                                            AllowBlank="true"
+                                                            ForceSelection="true"
+                                                            StoreID="ClasificacionesCafeSt"
+                                                            ValueField="CLASIFICACIONES_CAFE_NOMBRE" 
+                                                            DisplayField="CLASIFICACIONES_CAFE_NOMBRE"
+                                                            Mode="Local"
+                                                            TypeAhead="true">
+                                                            <Triggers>
+                                                                <ext:FieldTrigger Icon="Clear"/>
+                                                            </Triggers>
+                                                            <Listeners>
+                                                                <Select Handler="PageX.reloadGridStore();" />
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                                <TriggerClick Handler="this.clearValue();" />
+                                                            </Listeners>
+                                                        </ext:ComboBox>
+                                                    </Component>
+                                                </ext:HeaderColumn>--%>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
                                                         <ext:DropDownField ID="f_FECHA" AllowBlur="true" runat="server" Editable="false"
@@ -241,30 +412,6 @@
                                                                 </ext:FormPanel>
                                                                 </Component>
                                                         </ext:DropDownField>
-                                                    </Component>
-                                                </ext:HeaderColumn>
-                                                <ext:HeaderColumn Cls="x-small-editor">
-                                                    <Component>
-                                                        <ext:ComboBox
-                                                            ID="f_CLASIFICACIONES_CAFE_NOMBRE" 
-                                                            runat="server"
-                                                            Icon="Find"
-                                                            AllowBlank="true"
-                                                            ForceSelection="true"
-                                                            StoreID="ClasificacionesCafeSt"
-                                                            ValueField="CLASIFICACIONES_CAFE_NOMBRE" 
-                                                            DisplayField="CLASIFICACIONES_CAFE_NOMBRE"
-                                                            Mode="Local"
-                                                            TypeAhead="true">
-                                                            <Triggers>
-                                                                <ext:FieldTrigger Icon="Clear"/>
-                                                            </Triggers>
-                                                            <Listeners>
-                                                                <Select Handler="PageX.reloadGridStore();" />
-                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
-                                                                <TriggerClick Handler="this.clearValue();" />
-                                                            </Listeners>
-                                                        </ext:ComboBox>
                                                     </Component>
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
@@ -319,15 +466,26 @@
                                             </Columns>
                                         </ext:HeaderRow>
                                     </HeaderRows>
-                                </ext:GridView>
+                                </ext:GroupingView>
                             </View>
                             <BottomBar>
-                                <ext:PagingToolbar ID="PagingToolbar1" runat="server" PageSize="20" StoreID="InventarioCafeSt" />
+                                <ext:Toolbar ID="Toolbar2" runat="server">
+                                    <Items>
+                                        <ext:DisplayField ID="ColumnField1" runat="server" DataIndex="TRANSACCION_NUMERO" Cls="total-field" Text="-" />
+                                        <ext:DisplayField ID="ColumnField2" runat="server" DataIndex="FECHA" Cls="total-field" Text="-"  />
+                                        <ext:DisplayField ID="ColumnField3" runat="server" DataIndex="DESCRIPCION" Cls="total-field" Text="-"  />
+                                        <ext:DisplayField ID="ColumnField4" runat="server" DataIndex="INVENTARIO_ENTRADAS_CANTIDAD" Cls="total-field" Text="-"  />
+                                        <ext:DisplayField ID="ColumnField5" runat="server" DataIndex="INVENTARIO_SALIDAS_SALDO" Cls="total-field" Text="-"  />
+                                    </Items>
+                                </ext:Toolbar>
+                                <%--<ext:PagingToolbar ID="PagingToolbar1" runat="server" PageSize="20" StoreID="MovimientoInventarioCafeSt" />--%>
                             </BottomBar>
                             <LoadMask ShowMask="true" />
                             <SaveMask ShowMask="true" />
                             <Listeners>
-                                <RowDblClick Handler="PageX.edit();" />
+                                <%--<RowDblClick Handler="PageX.edit();" />--%>
+                                <ColumnResize Handler="updateTotal(#{MovimientoInventarioCafeGridP});" />
+                                <AfterRender Handler="updateTotal(#{MovimientoInventarioCafeGridP});" Delay="100" />
                             </Listeners>
                         </ext:GridPanel>
                     </Items>
