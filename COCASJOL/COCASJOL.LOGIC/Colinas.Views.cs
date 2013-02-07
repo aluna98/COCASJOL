@@ -14,7 +14,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySetsD9573EBA67B30807144695F43A0039AAF7D2B8BF3C410C0C137BB47F6E30D341))]
+[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets65764B274BB04A5D2018BDDEF15D1493E54FE7869EB80977A2499AA812B1B11F))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
@@ -23,18 +23,18 @@ namespace Edm_EntityMappingGeneratedViews
     /// <Summary>
     /// The type contains views for EntitySets and AssociationSets that were generated at design time.
     /// </Summary>
-    public sealed class ViewsForBaseEntitySetsD9573EBA67B30807144695F43A0039AAF7D2B8BF3C410C0C137BB47F6E30D341 : System.Data.Mapping.EntityViewContainer
+    public sealed class ViewsForBaseEntitySets65764B274BB04A5D2018BDDEF15D1493E54FE7869EB80977A2499AA812B1B11F : System.Data.Mapping.EntityViewContainer
     {
         
         /// <Summary>
         /// The constructor stores the views for the extents and also the hash values generated based on the metadata and mapping closure and views.
         /// </Summary>
-        public ViewsForBaseEntitySetsD9573EBA67B30807144695F43A0039AAF7D2B8BF3C410C0C137BB47F6E30D341()
+        public ViewsForBaseEntitySets65764B274BB04A5D2018BDDEF15D1493E54FE7869EB80977A2499AA812B1B11F()
         {
             this.EdmEntityContainerName = "colinasEntities";
             this.StoreEntityContainerName = "COLINASMODELStoreContainer";
-            this.HashOverMappingClosure = "df4e0774392ac2b4e28a887a1b9c2d3c5a7d6183f7a06f27316ef06b6aa4aa93";
-            this.HashOverAllExtentViews = "750878859f85c3d48bcf3607d57783c012e1757b2636c50da8907a8d5e91a5e3";
+            this.HashOverMappingClosure = "46f72505280c8c1ce1c5a2374a503fe46d0696f52f5829c40990cc87980bfcc7";
+            this.HashOverAllExtentViews = "1aa3eeb432db9921851f8626a16acd160d6618094c2046e4885fd81b2729d68d";
             this.ViewCount = 58;
         }
         
@@ -1811,34 +1811,36 @@ namespace Edm_EntityMappingGeneratedViews
         /// </Summary>
         private System.Collections.Generic.KeyValuePair<string, string> GetView56()
         {
-            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2103);
+            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2260);
             viewString.Append("\r\n    SELECT VALUE -- Constructing reporte_movimientos_de_inventario_de_cafe\r\n  ");
             viewString.Append("      [COLINASMODEL.Store.reporte_movimientos_de_inventario_de_cafe](T1.[reporte");
             viewString.Append("_movimientos_de_inventario_de_cafe.TRANSACCION_NUMERO], T1.[reporte_movimientos_");
             viewString.Append("de_inventario_de_cafe.FECHA], T1.[reporte_movimientos_de_inventario_de_cafe.SOCI");
             viewString.Append("OS_ID], T1.[reporte_movimientos_de_inventario_de_cafe.CLASIFICACIONES_CAFE_NOMBR");
-            viewString.Append("E], T1.[reporte_movimientos_de_inventario_de_cafe.DESCRIPCION], T1.[reporte_movi");
-            viewString.Append("mientos_de_inventario_de_cafe.ENTRADAS_CANTIDAD], T1.[reporte_movimientos_de_inv");
-            viewString.Append("entario_de_cafe.SALIDAS_CANTIDAD], T1.[reporte_movimientos_de_inventario_de_cafe");
-            viewString.Append(".SALIDAS_COSTO], T1.[reporte_movimientos_de_inventario_de_cafe.SALIDAS_MONTO], T");
-            viewString.Append("1.[reporte_movimientos_de_inventario_de_cafe.INVENTARIO_ENTRADAS_CANTIDAD], T1.[");
-            viewString.Append("reporte_movimientos_de_inventario_de_cafe.INVENTARIO_SALIDAS_SALDO])\r\n    FROM (");
-            viewString.Append("\r\n        SELECT \r\n            T.TRANSACCION_NUMERO AS [reporte_movimientos_de_i");
-            viewString.Append("nventario_de_cafe.TRANSACCION_NUMERO], \r\n            T.FECHA AS [reporte_movimie");
-            viewString.Append("ntos_de_inventario_de_cafe.FECHA], \r\n            T.SOCIOS_ID AS [reporte_movimie");
-            viewString.Append("ntos_de_inventario_de_cafe.SOCIOS_ID], \r\n            T.CLASIFICACIONES_CAFE_NOMB");
-            viewString.Append("RE AS [reporte_movimientos_de_inventario_de_cafe.CLASIFICACIONES_CAFE_NOMBRE], \r");
-            viewString.Append("\n            T.DESCRIPCION AS [reporte_movimientos_de_inventario_de_cafe.DESCRIP");
-            viewString.Append("CION], \r\n            T.ENTRADAS_CANTIDAD AS [reporte_movimientos_de_inventario_d");
-            viewString.Append("e_cafe.ENTRADAS_CANTIDAD], \r\n            T.SALIDAS_CANTIDAD AS [reporte_movimien");
-            viewString.Append("tos_de_inventario_de_cafe.SALIDAS_CANTIDAD], \r\n            T.SALIDAS_COSTO AS [r");
-            viewString.Append("eporte_movimientos_de_inventario_de_cafe.SALIDAS_COSTO], \r\n            T.SALIDAS");
-            viewString.Append("_MONTO AS [reporte_movimientos_de_inventario_de_cafe.SALIDAS_MONTO], \r\n         ");
-            viewString.Append("   T.INVENTARIO_ENTRADAS_CANTIDAD AS [reporte_movimientos_de_inventario_de_cafe.");
-            viewString.Append("INVENTARIO_ENTRADAS_CANTIDAD], \r\n            T.INVENTARIO_SALIDAS_SALDO AS [repo");
-            viewString.Append("rte_movimientos_de_inventario_de_cafe.INVENTARIO_SALIDAS_SALDO], \r\n            T");
-            viewString.Append("rue AS _from0\r\n        FROM colinasEntities.reporte_movimientos_de_inventario_de");
-            viewString.Append("_cafe AS T\r\n    ) AS T1");
+            viewString.Append("E], T1.[reporte_movimientos_de_inventario_de_cafe.DOCUMENTO_TIPO], T1.[reporte_m");
+            viewString.Append("ovimientos_de_inventario_de_cafe.DESCRIPCION], T1.[reporte_movimientos_de_invent");
+            viewString.Append("ario_de_cafe.ENTRADAS_CANTIDAD], T1.[reporte_movimientos_de_inventario_de_cafe.S");
+            viewString.Append("ALIDAS_CANTIDAD], T1.[reporte_movimientos_de_inventario_de_cafe.SALIDAS_COSTO], ");
+            viewString.Append("T1.[reporte_movimientos_de_inventario_de_cafe.SALIDAS_MONTO], T1.[reporte_movimi");
+            viewString.Append("entos_de_inventario_de_cafe.INVENTARIO_ENTRADAS_CANTIDAD], T1.[reporte_movimient");
+            viewString.Append("os_de_inventario_de_cafe.INVENTARIO_SALIDAS_SALDO])\r\n    FROM (\r\n        SELECT ");
+            viewString.Append("\r\n            T.TRANSACCION_NUMERO AS [reporte_movimientos_de_inventario_de_cafe");
+            viewString.Append(".TRANSACCION_NUMERO], \r\n            T.FECHA AS [reporte_movimientos_de_inventari");
+            viewString.Append("o_de_cafe.FECHA], \r\n            T.SOCIOS_ID AS [reporte_movimientos_de_inventari");
+            viewString.Append("o_de_cafe.SOCIOS_ID], \r\n            T.CLASIFICACIONES_CAFE_NOMBRE AS [reporte_mo");
+            viewString.Append("vimientos_de_inventario_de_cafe.CLASIFICACIONES_CAFE_NOMBRE], \r\n            T.DO");
+            viewString.Append("CUMENTO_TIPO AS [reporte_movimientos_de_inventario_de_cafe.DOCUMENTO_TIPO], \r\n  ");
+            viewString.Append("          T.DESCRIPCION AS [reporte_movimientos_de_inventario_de_cafe.DESCRIPCIO");
+            viewString.Append("N], \r\n            T.ENTRADAS_CANTIDAD AS [reporte_movimientos_de_inventario_de_c");
+            viewString.Append("afe.ENTRADAS_CANTIDAD], \r\n            T.SALIDAS_CANTIDAD AS [reporte_movimientos");
+            viewString.Append("_de_inventario_de_cafe.SALIDAS_CANTIDAD], \r\n            T.SALIDAS_COSTO AS [repo");
+            viewString.Append("rte_movimientos_de_inventario_de_cafe.SALIDAS_COSTO], \r\n            T.SALIDAS_MO");
+            viewString.Append("NTO AS [reporte_movimientos_de_inventario_de_cafe.SALIDAS_MONTO], \r\n            ");
+            viewString.Append("T.INVENTARIO_ENTRADAS_CANTIDAD AS [reporte_movimientos_de_inventario_de_cafe.INV");
+            viewString.Append("ENTARIO_ENTRADAS_CANTIDAD], \r\n            T.INVENTARIO_SALIDAS_SALDO AS [reporte");
+            viewString.Append("_movimientos_de_inventario_de_cafe.INVENTARIO_SALIDAS_SALDO], \r\n            True");
+            viewString.Append(" AS _from0\r\n        FROM colinasEntities.reporte_movimientos_de_inventario_de_ca");
+            viewString.Append("fe AS T\r\n    ) AS T1");
             return new System.Collections.Generic.KeyValuePair<string, string>("COLINASMODELStoreContainer.reporte_movimientos_de_inventario_de_cafe", viewString.ToString());
         }
         
@@ -1847,34 +1849,36 @@ namespace Edm_EntityMappingGeneratedViews
         /// </Summary>
         private System.Collections.Generic.KeyValuePair<string, string> GetView57()
         {
-            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2108);
+            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2265);
             viewString.Append("\r\n    SELECT VALUE -- Constructing reporte_movimientos_de_inventario_de_cafe\r\n  ");
             viewString.Append("      [COLINASMODEL.reporte_movimientos_de_inventario_de_cafe](T1.[reporte_movim");
             viewString.Append("ientos_de_inventario_de_cafe.TRANSACCION_NUMERO], T1.[reporte_movimientos_de_inv");
             viewString.Append("entario_de_cafe.FECHA], T1.[reporte_movimientos_de_inventario_de_cafe.SOCIOS_ID]");
             viewString.Append(", T1.[reporte_movimientos_de_inventario_de_cafe.CLASIFICACIONES_CAFE_NOMBRE], T1");
-            viewString.Append(".[reporte_movimientos_de_inventario_de_cafe.DESCRIPCION], T1.[reporte_movimiento");
-            viewString.Append("s_de_inventario_de_cafe.ENTRADAS_CANTIDAD], T1.[reporte_movimientos_de_inventari");
-            viewString.Append("o_de_cafe.SALIDAS_CANTIDAD], T1.[reporte_movimientos_de_inventario_de_cafe.SALID");
-            viewString.Append("AS_COSTO], T1.[reporte_movimientos_de_inventario_de_cafe.SALIDAS_MONTO], T1.[rep");
-            viewString.Append("orte_movimientos_de_inventario_de_cafe.INVENTARIO_ENTRADAS_CANTIDAD], T1.[report");
-            viewString.Append("e_movimientos_de_inventario_de_cafe.INVENTARIO_SALIDAS_SALDO])\r\n    FROM (\r\n    ");
-            viewString.Append("    SELECT \r\n            T.TRANSACCION_NUMERO AS [reporte_movimientos_de_inventa");
-            viewString.Append("rio_de_cafe.TRANSACCION_NUMERO], \r\n            T.FECHA AS [reporte_movimientos_d");
-            viewString.Append("e_inventario_de_cafe.FECHA], \r\n            T.SOCIOS_ID AS [reporte_movimientos_d");
-            viewString.Append("e_inventario_de_cafe.SOCIOS_ID], \r\n            T.CLASIFICACIONES_CAFE_NOMBRE AS ");
-            viewString.Append("[reporte_movimientos_de_inventario_de_cafe.CLASIFICACIONES_CAFE_NOMBRE], \r\n     ");
-            viewString.Append("       T.DESCRIPCION AS [reporte_movimientos_de_inventario_de_cafe.DESCRIPCION],");
-            viewString.Append(" \r\n            T.ENTRADAS_CANTIDAD AS [reporte_movimientos_de_inventario_de_cafe");
-            viewString.Append(".ENTRADAS_CANTIDAD], \r\n            T.SALIDAS_CANTIDAD AS [reporte_movimientos_de");
-            viewString.Append("_inventario_de_cafe.SALIDAS_CANTIDAD], \r\n            T.SALIDAS_COSTO AS [reporte");
-            viewString.Append("_movimientos_de_inventario_de_cafe.SALIDAS_COSTO], \r\n            T.SALIDAS_MONTO");
-            viewString.Append(" AS [reporte_movimientos_de_inventario_de_cafe.SALIDAS_MONTO], \r\n            T.I");
-            viewString.Append("NVENTARIO_ENTRADAS_CANTIDAD AS [reporte_movimientos_de_inventario_de_cafe.INVENT");
-            viewString.Append("ARIO_ENTRADAS_CANTIDAD], \r\n            T.INVENTARIO_SALIDAS_SALDO AS [reporte_mo");
-            viewString.Append("vimientos_de_inventario_de_cafe.INVENTARIO_SALIDAS_SALDO], \r\n            True AS");
-            viewString.Append(" _from0\r\n        FROM COLINASMODELStoreContainer.reporte_movimientos_de_inventar");
-            viewString.Append("io_de_cafe AS T\r\n    ) AS T1");
+            viewString.Append(".[reporte_movimientos_de_inventario_de_cafe.DOCUMENTO_TIPO], T1.[reporte_movimie");
+            viewString.Append("ntos_de_inventario_de_cafe.DESCRIPCION], T1.[reporte_movimientos_de_inventario_d");
+            viewString.Append("e_cafe.ENTRADAS_CANTIDAD], T1.[reporte_movimientos_de_inventario_de_cafe.SALIDAS");
+            viewString.Append("_CANTIDAD], T1.[reporte_movimientos_de_inventario_de_cafe.SALIDAS_COSTO], T1.[re");
+            viewString.Append("porte_movimientos_de_inventario_de_cafe.SALIDAS_MONTO], T1.[reporte_movimientos_");
+            viewString.Append("de_inventario_de_cafe.INVENTARIO_ENTRADAS_CANTIDAD], T1.[reporte_movimientos_de_");
+            viewString.Append("inventario_de_cafe.INVENTARIO_SALIDAS_SALDO])\r\n    FROM (\r\n        SELECT \r\n    ");
+            viewString.Append("        T.TRANSACCION_NUMERO AS [reporte_movimientos_de_inventario_de_cafe.TRANS");
+            viewString.Append("ACCION_NUMERO], \r\n            T.FECHA AS [reporte_movimientos_de_inventario_de_c");
+            viewString.Append("afe.FECHA], \r\n            T.SOCIOS_ID AS [reporte_movimientos_de_inventario_de_c");
+            viewString.Append("afe.SOCIOS_ID], \r\n            T.CLASIFICACIONES_CAFE_NOMBRE AS [reporte_movimien");
+            viewString.Append("tos_de_inventario_de_cafe.CLASIFICACIONES_CAFE_NOMBRE], \r\n            T.DOCUMENT");
+            viewString.Append("O_TIPO AS [reporte_movimientos_de_inventario_de_cafe.DOCUMENTO_TIPO], \r\n        ");
+            viewString.Append("    T.DESCRIPCION AS [reporte_movimientos_de_inventario_de_cafe.DESCRIPCION], \r\n");
+            viewString.Append("            T.ENTRADAS_CANTIDAD AS [reporte_movimientos_de_inventario_de_cafe.EN");
+            viewString.Append("TRADAS_CANTIDAD], \r\n            T.SALIDAS_CANTIDAD AS [reporte_movimientos_de_in");
+            viewString.Append("ventario_de_cafe.SALIDAS_CANTIDAD], \r\n            T.SALIDAS_COSTO AS [reporte_mo");
+            viewString.Append("vimientos_de_inventario_de_cafe.SALIDAS_COSTO], \r\n            T.SALIDAS_MONTO AS");
+            viewString.Append(" [reporte_movimientos_de_inventario_de_cafe.SALIDAS_MONTO], \r\n            T.INVE");
+            viewString.Append("NTARIO_ENTRADAS_CANTIDAD AS [reporte_movimientos_de_inventario_de_cafe.INVENTARI");
+            viewString.Append("O_ENTRADAS_CANTIDAD], \r\n            T.INVENTARIO_SALIDAS_SALDO AS [reporte_movim");
+            viewString.Append("ientos_de_inventario_de_cafe.INVENTARIO_SALIDAS_SALDO], \r\n            True AS _f");
+            viewString.Append("rom0\r\n        FROM COLINASMODELStoreContainer.reporte_movimientos_de_inventario_");
+            viewString.Append("de_cafe AS T\r\n    ) AS T1");
             return new System.Collections.Generic.KeyValuePair<string, string>("colinasEntities.reporte_movimientos_de_inventario_de_cafe", viewString.ToString());
         }
     }

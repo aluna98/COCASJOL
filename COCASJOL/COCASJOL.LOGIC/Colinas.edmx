@@ -39,6 +39,7 @@
       `reporte_movimientos_de_inventario_de_cafe`.`FECHA`, 
       `reporte_movimientos_de_inventario_de_cafe`.`SOCIOS_ID`, 
       `reporte_movimientos_de_inventario_de_cafe`.`CLASIFICACIONES_CAFE_NOMBRE`, 
+      `reporte_movimientos_de_inventario_de_cafe`.`DOCUMENTO_TIPO`, 
       `reporte_movimientos_de_inventario_de_cafe`.`DESCRIPCION`, 
       `reporte_movimientos_de_inventario_de_cafe`.`ENTRADAS_CANTIDAD`, 
       `reporte_movimientos_de_inventario_de_cafe`.`SALIDAS_CANTIDAD`, 
@@ -592,6 +593,7 @@
           <Property Name="FECHA" Type="date" Nullable="false" />
           <Property Name="SOCIOS_ID" Type="varchar" Nullable="false" MaxLength="5" />
           <Property Name="CLASIFICACIONES_CAFE_NOMBRE" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="DOCUMENTO_TIPO" Type="varchar" Nullable="false" MaxLength="10" />
           <Property Name="DESCRIPCION" Type="varchar" MaxLength="19" />
           <Property Name="ENTRADAS_CANTIDAD" Type="decimal" Precision="12" Scale="4" />
           <Property Name="SALIDAS_CANTIDAD" Type="decimal" Precision="12" Scale="4" />
@@ -1856,6 +1858,7 @@
           <Property Type="DateTime" Name="FECHA" Nullable="false" />
           <Property Type="String" Name="SOCIOS_ID" Nullable="false" />
           <Property Type="String" Name="CLASIFICACIONES_CAFE_NOMBRE" Nullable="false" />
+          <Property Type="String" Name="DOCUMENTO_TIPO" Nullable="false" />
           <Property Type="String" Name="DESCRIPCION" />
           <Property Type="Decimal" Name="ENTRADAS_CANTIDAD" />
           <Property Type="Decimal" Name="SALIDAS_CANTIDAD" />
@@ -2332,6 +2335,7 @@
                 <ScalarProperty Name="SALIDAS_CANTIDAD" ColumnName="SALIDAS_CANTIDAD" />
                 <ScalarProperty Name="ENTRADAS_CANTIDAD" ColumnName="ENTRADAS_CANTIDAD" />
                 <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="DOCUMENTO_TIPO" ColumnName="DOCUMENTO_TIPO" />
                 <ScalarProperty Name="CLASIFICACIONES_CAFE_NOMBRE" ColumnName="CLASIFICACIONES_CAFE_NOMBRE" />
                 <ScalarProperty Name="SOCIOS_ID" ColumnName="SOCIOS_ID" />
                 <ScalarProperty Name="FECHA" ColumnName="FECHA" />
@@ -2523,7 +2527,7 @@
           <ConnectorPoint PointX="3.8203428930246828" PointY="15.5" />
         </AssociationConnector>
         <EntityTypeShape EntityType="COLINASMODEL.reporte_total_inventario_de_cafe_por_socio" Width="1.5" PointX="17.25" PointY="0.625" Height="2.7494921875000102" />
-        <EntityTypeShape EntityType="COLINASMODEL.reporte_movimientos_de_inventario_de_cafe" Width="1.5" PointX="19.375" PointY="0.625" Height="3.1340950520833246" />
+        <EntityTypeShape EntityType="COLINASMODEL.reporte_movimientos_de_inventario_de_cafe" Width="1.5" PointX="19.5" PointY="0.625" Height="3.3263964843750102" />
         </Diagram>
     </Diagrams>
   </Designer>

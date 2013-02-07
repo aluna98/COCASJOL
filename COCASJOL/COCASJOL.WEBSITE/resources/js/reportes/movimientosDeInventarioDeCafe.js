@@ -66,14 +66,11 @@ var PageX = {
 
     reloadGridStore: function () {
         GridStore.reload();
-        setTimeout(function () { updateTotal(MovimientoInventarioCafeGridP); }, 3000);
     },
 
     keyUpEvent: function (sender, e) {
-        if (e.getKey() == 13) {
+        if (e.getKey() == 13)
             GridStore.reload();
-            updateTotal(MovimientoInventarioCafeGridP);
-        }
     },
 
     clearFilter: function () {
@@ -85,26 +82,7 @@ var PageX = {
     },
 
     navHome: function () {
-        if (Grid.getStore().getTotalCount() == 0) {
+        if (Grid.getStore().getTotalCount() == 0)
             Grid.getStore().reload();
-            setTimeout(function () { updateTotal(MovimientoInventarioCafeGridP); }, 3000);
-        }
     }
-
-    //    navPrev: function () {
-    //        if (Grid.getStore().getTotalCount() > 0)
-    //            PagingToolbar1.movePrevious();
-    //    },
-
-    //    navNext: function () {
-    //        if (Grid.getStore().getTotalCount() > 0)
-    //            if (Grid.getStore().getTotalCount() > (PagingToolbar1.cursor + PagingToolbar1.pageSize))
-    //                PagingToolbar1.moveNext();
-    //    },
-
-    //    navEnd: function () {
-    //        if (Grid.getStore().getTotalCount() == 0)
-    //            Grid.getStore().reload();
-    //        PagingToolbar1.moveLast();
-    //    }
 };

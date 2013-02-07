@@ -6556,15 +6556,17 @@ namespace COCASJOL.LOGIC
         /// <param name="fECHA">Initial value of the FECHA property.</param>
         /// <param name="sOCIOS_ID">Initial value of the SOCIOS_ID property.</param>
         /// <param name="cLASIFICACIONES_CAFE_NOMBRE">Initial value of the CLASIFICACIONES_CAFE_NOMBRE property.</param>
+        /// <param name="dOCUMENTO_TIPO">Initial value of the DOCUMENTO_TIPO property.</param>
         /// <param name="iNVENTARIO_ENTRADAS_CANTIDAD">Initial value of the INVENTARIO_ENTRADAS_CANTIDAD property.</param>
         /// <param name="iNVENTARIO_SALIDAS_SALDO">Initial value of the INVENTARIO_SALIDAS_SALDO property.</param>
-        public static reporte_movimientos_de_inventario_de_cafe Createreporte_movimientos_de_inventario_de_cafe(global::System.Int32 tRANSACCION_NUMERO, global::System.DateTime fECHA, global::System.String sOCIOS_ID, global::System.String cLASIFICACIONES_CAFE_NOMBRE, global::System.Decimal iNVENTARIO_ENTRADAS_CANTIDAD, global::System.Decimal iNVENTARIO_SALIDAS_SALDO)
+        public static reporte_movimientos_de_inventario_de_cafe Createreporte_movimientos_de_inventario_de_cafe(global::System.Int32 tRANSACCION_NUMERO, global::System.DateTime fECHA, global::System.String sOCIOS_ID, global::System.String cLASIFICACIONES_CAFE_NOMBRE, global::System.String dOCUMENTO_TIPO, global::System.Decimal iNVENTARIO_ENTRADAS_CANTIDAD, global::System.Decimal iNVENTARIO_SALIDAS_SALDO)
         {
             reporte_movimientos_de_inventario_de_cafe reporte_movimientos_de_inventario_de_cafe = new reporte_movimientos_de_inventario_de_cafe();
             reporte_movimientos_de_inventario_de_cafe.TRANSACCION_NUMERO = tRANSACCION_NUMERO;
             reporte_movimientos_de_inventario_de_cafe.FECHA = fECHA;
             reporte_movimientos_de_inventario_de_cafe.SOCIOS_ID = sOCIOS_ID;
             reporte_movimientos_de_inventario_de_cafe.CLASIFICACIONES_CAFE_NOMBRE = cLASIFICACIONES_CAFE_NOMBRE;
+            reporte_movimientos_de_inventario_de_cafe.DOCUMENTO_TIPO = dOCUMENTO_TIPO;
             reporte_movimientos_de_inventario_de_cafe.INVENTARIO_ENTRADAS_CANTIDAD = iNVENTARIO_ENTRADAS_CANTIDAD;
             reporte_movimientos_de_inventario_de_cafe.INVENTARIO_SALIDAS_SALDO = iNVENTARIO_SALIDAS_SALDO;
             return reporte_movimientos_de_inventario_de_cafe;
@@ -6671,6 +6673,30 @@ namespace COCASJOL.LOGIC
         private global::System.String _CLASIFICACIONES_CAFE_NOMBRE;
         partial void OnCLASIFICACIONES_CAFE_NOMBREChanging(global::System.String value);
         partial void OnCLASIFICACIONES_CAFE_NOMBREChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String DOCUMENTO_TIPO
+        {
+            get
+            {
+                return _DOCUMENTO_TIPO;
+            }
+            set
+            {
+                OnDOCUMENTO_TIPOChanging(value);
+                ReportPropertyChanging("DOCUMENTO_TIPO");
+                _DOCUMENTO_TIPO = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("DOCUMENTO_TIPO");
+                OnDOCUMENTO_TIPOChanged();
+            }
+        }
+        private global::System.String _DOCUMENTO_TIPO;
+        partial void OnDOCUMENTO_TIPOChanging(global::System.String value);
+        partial void OnDOCUMENTO_TIPOChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
