@@ -138,7 +138,7 @@
                         <ext:GridPanel ID="MovimientoInventarioCafeGridP" runat="server" AutoExpandColumn="FECHA" Height="300"
                             Title="Inventario de Café" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
                             <Store>
-                                <ext:Store ID="MovimientoInventarioCafeSt" runat="server" DataSourceID="MovimientoDeInventarioCafeDS" AutoSave="true" SkipIdForNewRecords="false" GroupField="SOCIOS_ID">
+                                <ext:Store ID="MovimientoInventarioCafeSt" runat="server" DataSourceID="MovimientoDeInventarioCafeDS" AutoSave="true" SkipIdForNewRecords="false" >
                                     <Reader>
                                         <ext:JsonReader>
                                             <Fields>
@@ -167,9 +167,35 @@
                             </Store>
                             <ColumnModel>
                                 <Columns>
-                                    <ext:Column DataIndex="SOCIOS_ID"                    Header="Id de Socio" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="CLASIFICACIONES_CAFE_NOMBRE"  Header="Clasificación de Café" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="DESCRIPCION"                  Header="Descripción" Sortable="true"></ext:Column>
+                                    <ext:GroupingSummaryColumn
+                                        ColumnID="SociosId"
+                                        Header="Id de Socio"
+                                        Sortable="true"
+                                        DataIndex="SOCIOS_ID"
+                                        Hideable="false"
+                                        SummaryType="None">
+                                        <SummaryRenderer Handler="return '-';" />    
+                                    </ext:GroupingSummaryColumn>
+
+                                    <ext:GroupingSummaryColumn
+                                        ColumnID="ClasificacionCafe"
+                                        Header="Clasificación de Café"
+                                        Sortable="true"
+                                        DataIndex="CLASIFICACIONES_CAFE_NOMBRE"
+                                        Hideable="false"
+                                        SummaryType="None">
+                                        <SummaryRenderer Handler="return '-';" />    
+                                    </ext:GroupingSummaryColumn>
+
+                                    <ext:GroupingSummaryColumn
+                                        ColumnID="Descripcion"
+                                        Header="Descripción"
+                                        Sortable="true"
+                                        DataIndex="DESCRIPCION"
+                                        Hideable="false"
+                                        SummaryType="None">
+                                        <SummaryRenderer Handler="return '-';" />    
+                                    </ext:GroupingSummaryColumn>
 
                                     <ext:GroupingSummaryColumn
                                         ColumnID="Fecha"
@@ -235,12 +261,28 @@
                                         <SummaryRenderer Format="Number" FormatArgs="'0,000.0000'" />
                                     </ext:GroupingSummaryColumn>
 
-                                    <ext:Column DataIndex="INVENTARIO_ENTRADAS_CANTIDAD" Header="Cantidad en Inventario" Sortable="true" Groupable="false">
-                                        <Renderer Format="Number" FormatArgs="'0.0000'" />
-                                    </ext:Column>
-                                    <ext:Column DataIndex="INVENTARIO_SALIDAS_SALDO"     Header="Saldo de Salidas" Sortable="true" Groupable="false">
-                                        <Renderer Format="Number" FormatArgs="'0,000.0000'" />
-                                    </ext:Column>
+                                    <ext:GroupingSummaryColumn
+                                        ColumnID="CantidadTotalInventario"
+                                        Header="Cantidad en Inventario"
+                                        Sortable="false"
+                                        Groupable="false"
+                                        DataIndex="INVENTARIO_ENTRADAS_CANTIDAD"
+                                        SummaryType="Average">
+                                        <Renderer Handler="return Ext.util.Format.number(record.data.INVENTARIO_ENTRADAS_CANTIDAD, '0.0000');" />
+                                        <SummaryRenderer Format="Number" FormatArgs="'0.0000'" />
+                                    </ext:GroupingSummaryColumn>
+
+                                    <ext:GroupingSummaryColumn
+                                        ColumnID="SaldoTotalInventario"
+                                        Header="Saldo de Salidas"
+                                        Sortable="false"
+                                        Groupable="false"
+                                        DataIndex="INVENTARIO_SALIDAS_SALDO"
+                                        SummaryType="Average">
+                                        <Renderer Handler="return Ext.util.Format.number(record.data.INVENTARIO_SALIDAS_SALDO, '0,000.0000');" />
+                                        <SummaryRenderer Format="Number" FormatArgs="'0,000.0000'" />
+                                    </ext:GroupingSummaryColumn>
+
                                     <ext:Column DataIndex="SOCIOS_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
                                         <Renderer Handler="return '';" />
                                     </ext:Column>
@@ -289,13 +331,17 @@
 								                                                <tr>
 								                	                                <th>ID</th>
 								                	                                <th>PRIMER NOMBRE</th>
+                                                                                    <th>SEGUNDO NOMBRE</th>
                                                                                     <th>PRIMER APELLIDO</th>
+                                                                                    <th>SEGUNDO APELLIDO</th>
 								                                                </tr>
 						                                                </tpl>
 						                                                <tr class="list-item">
 							                                                <td style="padding:3px 0px;">{SOCIOS_ID}</td>
 							                                                <td>{SOCIOS_PRIMER_NOMBRE}</td>
+                                                                            <td>{SOCIOS_SEGUNDO_NOMBRE}</td>
                                                                             <td>{SOCIOS_PRIMER_APELLIDO}</td>
+                                                                            <td>{SOCIOS_SEGUNDO_APELLIDO}</td>
 						                                                </tr>
 						                                                <tpl if="[xcount-xindex]==0">
 							                                                </table>
@@ -493,7 +539,7 @@
                             <TopBar>
                                 <ext:Toolbar runat="server">
                                     <Items>
-                                        <ext:Button ID="Button3" runat="server" Text="Toggle" ToolTip="Toggle the visibility of summary row">
+                                        <ext:Button ID="Button3" runat="server" Text="Mostrar Totales" ToolTip="Mostrar Totales en los grupos.">
                                             <Listeners>
                                                 <Click Handler="#{MovimientoInventarioCafeGridP}.getGroupingSummary().toggleSummaries();" />
                                             </Listeners>
@@ -501,7 +547,7 @@
                                         <ext:Button 
                                             ID="btnToggleGroups" 
                                             runat="server" 
-                                            Text="Expand/Collapse Groups"
+                                            Text="Expandir/Cerrar Grupos"
                                             Icon="TableSort"
                                             Style="margin-left: 6px;"
                                             AutoPostBack="false">

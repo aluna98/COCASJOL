@@ -178,7 +178,6 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
          *                  -----Flujo-----
          *  verificar si hubo cambio de estado
          *  cambiar estado a nuevo estado
-         *  modificar inventario de cafe actual
          *  notificar a usuarios
          *
          */
@@ -247,30 +246,8 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                         // verificar si hubo cambio de estado
                         if (note.ESTADOS_NOTA_ID != this.ESTADOS_NOTA_ID)
                         {
-                            //using (var scope2 = new TransactionScope(
-                            //    TransactionScopeOption.Required, 
-                            //    new TransactionOptions { 
-                            //        IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted }))
-                            //{
-
-                                /* --------Modificar Inventario de Café Actual-------- */
-                                if (note.ESTADOS_NOTA_ID == (new NotaDePesoEnAdministracionLogic("ADMINISTRACION")).ESTADOS_NOTA_ID)
-                                {
-                                    InventarioDeCafeLogic inventariodecafelogic = new InventarioDeCafeLogic();
-                                    inventariodecafelogic.InsertarTransaccionInventarioDeCafeDeSocio(note, db);
-                                }
-
-                                // notificar a usuarios
-                                int[] notaid = { note.NOTAS_ID };
-
-                                PlantillaLogic plantillalogic = new PlantillaLogic();
-                                plantilla_notificacion pl = plantillalogic.GetPlantilla("NOTASCATACION");
-
-                                NotificacionLogic notificacionlogic = new NotificacionLogic();
-                                notificacionlogic.NotifyUsers("MANT_NOTASPESOENCATACION", EstadosNotificacion.Creado, pl.PLANTILLAS_ASUNTO, pl.PLANTILLAS_MENSAJE, notaid);
-
-                                db.SaveChanges(); 
-                            //}
+                            // notificar a usuarios
+                            this.NotificarUsuarios("NOTASCATACION", "MANT_NOTASPESOENCATACION", note, db);
                         }
 
                         scope1.Complete();
@@ -419,12 +396,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
          *  cambiar clasificacion de café a la clasificación actual
          *  verificar si hubo cambio de estado
          *  cambiar estado a nuevo estado
-         *      --------Modificar Inventario de Café Actual--------
-         *      intentar obtener el inventario de café actual
-         *          si hay inventario de café actual modificarlo
-         *          si no hay inventario de café actual crearlo
-         *          
-         *          notificar a usuarios
+         *  notificar a usuarios
          *
          */
 
@@ -489,38 +461,16 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                         foreach (Dictionary<string, string> detalle in Detalles)
                             note.notas_detalles.Add(new nota_detalle() { DETALLES_PESO = Convert.ToDecimal(detalle["DETALLES_PESO"]), DETALLES_CANTIDAD_SACOS = Convert.ToInt32(detalle["DETALLES_CANTIDAD_SACOS"]) });
 
+                        db.SaveChanges();
+
                         // verificar si hubo cambio de estado
                         if (ESTADOS_NOTA_ID != this.ESTADOS_NOTA_ID)
                         {
                             // cambiar estado a nuevo estado
                             note.ESTADOS_NOTA_ID = ESTADOS_NOTA_ID;
 
-                            /* --------Modificar Inventario de Café Actual-------- */
-                            //using (var scope2 = new TransactionScope(
-                            //        TransactionScopeOption.Required,
-                            //        new TransactionOptions
-                            //        {
-                            //            IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted
-                            //        }))
-                            //{
-                                /* --------Modificar Inventario de Café Actual-------- */
-                                if (ESTADOS_NOTA_ID == (new NotaDePesoEnAdministracionLogic("ADMINISTRACION")).ESTADOS_NOTA_ID)
-                                {
-                                    InventarioDeCafeLogic inventariodecafelogic = new InventarioDeCafeLogic();
-                                    inventariodecafelogic.InsertarTransaccionInventarioDeCafeDeSocio(note, db);
-                                }
-
-                                // notificar a usuarios
-                                int[] notaid = { note.NOTAS_ID };
-
-                                PlantillaLogic plantillalogic = new PlantillaLogic();
-                                plantilla_notificacion pl = plantillalogic.GetPlantilla("NOTASCATACION");
-
-                                NotificacionLogic notificacionlogic = new NotificacionLogic();
-                                notificacionlogic.NotifyUsers("MANT_NOTASPESOENCATACION", EstadosNotificacion.Creado, pl.PLANTILLAS_ASUNTO, pl.PLANTILLAS_MENSAJE, notaid);
-
-                                db.SaveChanges();
-                            //}
+                            // notificar a usuarios
+                            this.NotificarUsuarios("NOTASCATACION", "MANT_NOTASPESOENCATACION", note, db);
                         }
 
                         scope1.Complete();

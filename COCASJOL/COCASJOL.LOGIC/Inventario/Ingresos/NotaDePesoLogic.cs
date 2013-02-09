@@ -6,6 +6,8 @@ using System.Text;
 using System.Data;
 using System.Data.Objects;
 
+using COCASJOL.LOGIC.Utiles;
+
 namespace COCASJOL.LOGIC.Inventario.Ingresos
 {
     public class NotaDePesoLogic
@@ -241,6 +243,31 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             catch (Exception)
             {
 
+                throw;
+            }
+        }
+
+        #endregion
+
+        #region Methods
+
+        protected void NotificarUsuarios(string PLANTILLAS_LLAVE, string PRIVS_LLAVE, nota_de_peso note, colinasEntities db)
+        {
+            try
+            {
+                int[] notaid = { note.NOTAS_ID };
+
+                PlantillaLogic plantillalogic = new PlantillaLogic();
+                plantilla_notificacion pl = plantillalogic.GetPlantilla(PLANTILLAS_LLAVE);
+
+                NotificacionLogic notificacionlogic = new NotificacionLogic();
+                notificacionlogic.NotifyUsers(PRIVS_LLAVE, EstadosNotificacion.Creado, pl.PLANTILLAS_ASUNTO, pl.PLANTILLAS_MENSAJE, notaid);
+
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                
                 throw;
             }
         }

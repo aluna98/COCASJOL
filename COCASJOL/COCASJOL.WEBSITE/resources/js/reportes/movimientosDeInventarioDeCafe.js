@@ -75,8 +75,17 @@ var PageX = {
 
     clearFilter: function () {
         f_SOCIOS_ID.reset();
-        f_CLASIFICACIONES_CAFE_ID.reset();
-        f_INVENTARIO_CANTIDAD.reset();
+        f_CLASIFICACIONES_CAFE_NOMBRE.reset();
+        f_CLASIFICACIONES_CAFE_NOMBRE.reset();
+        f_DESCRIPCION.reset();
+        calendar.clearFecha();
+        f_TRANSACCION_NUMERO.reset();
+        f_ENTRADAS_CANTIDAD.reset();
+        f_SALIDAS_CANTIDAD.reset();
+        f_SALIDAS_COSTO.reset();
+        f_SALIDAS_MONTO.reset();
+        f_INVENTARIO_ENTRADAS_CANTIDAD.reset();
+        f_INVENTARIO_SALIDAS_SALDO.reset();
 
         MovimientoInventarioCafeSt.reload();
     },

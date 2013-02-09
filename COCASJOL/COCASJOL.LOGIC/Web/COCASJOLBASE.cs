@@ -92,6 +92,7 @@ namespace COCASJOL.LOGIC.Web
         protected void COCASJOL_Error(object sender, EventArgs e)
         {
             Exception ex = base.Server.GetLastError();
+            int x = 0;
             //log error
         }
 

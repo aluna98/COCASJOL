@@ -79,11 +79,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
          *      --------Modificar Inventario de Café Anterior--------
          *      intentar obtener inventario de café anterior y modificarlo
          *      
-         *      --------Modificar Inventario de Café Actual--------
          *      cambiar clasificacion de café a la clasificación actual
-         *      intentar obtener el inventario de café actual
-         *          si hay inventario de café actual modificarlo
-         *          si no hay inventario de café actual crearlo
          *      verificar si hubo cambio de estado
          *          cambiar estado a nuevo estado
          *          notificar a usuarios
@@ -110,56 +106,40 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             {
                 using (var db = new colinasEntities())
                 {
-                    EntityKey k = new EntityKey("colinasEntities.notas_de_peso", "NOTAS_ID", NOTAS_ID);
-
-                    var n = db.GetObjectByKey(k);
-
-                    nota_de_peso note = (nota_de_peso)n;
-
-                    /* --------Modificar Inventario de Café-------- */
-                    // verificar si hubo cambio de clasificación
-                    if (note.CLASIFICACIONES_CAFE_ID != CLASIFICACIONES_CAFE_ID)
+                    using (var scope1 = new TransactionScope())
                     {
-                        /* --------Modificar Inventario de Café Actual-------- */
-                        // cambiar clasificacion de café a la clasificación actual
-                        note.CLASIFICACIONES_CAFE_ID = CLASIFICACIONES_CAFE_ID;
-                    }
+                        EntityKey k = new EntityKey("colinasEntities.notas_de_peso", "NOTAS_ID", NOTAS_ID);
 
-                    // verificar si hubo cambio de estado
-                    if (ESTADOS_NOTA_ID != this.ESTADOS_NOTA_ID)
-                    {
-                        // cambiar estado a nuevo estado
-                        note.ESTADOS_NOTA_ID = ESTADOS_NOTA_ID;
+                        var n = db.GetObjectByKey(k);
 
-                        using (var scope2 = new TransactionScope(
-                                    TransactionScopeOption.Required,
-                                    new TransactionOptions
-                                    {
-                                        IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted
-                                    }))
+                        nota_de_peso note = (nota_de_peso)n;
+
+                        /* --------Modificar Inventario de Café-------- */
+                        // verificar si hubo cambio de clasificación
+                        if (note.CLASIFICACIONES_CAFE_ID != CLASIFICACIONES_CAFE_ID)
                         {
                             /* --------Modificar Inventario de Café Actual-------- */
-                            if (ESTADOS_NOTA_ID == (new NotaDePesoEnAdministracionLogic()).ESTADOS_NOTA_ID)
-                            {
-                                InventarioDeCafeLogic inventariodecafelogic = new InventarioDeCafeLogic();
-                                inventariodecafelogic.InsertarTransaccionInventarioDeCafeDeSocio(note, db);
-                            }
+                            // cambiar clasificacion de café a la clasificación actual
+                            note.CLASIFICACIONES_CAFE_ID = CLASIFICACIONES_CAFE_ID;
+                        }
+
+                        // verificar si hubo cambio de estado
+                        if (ESTADOS_NOTA_ID != this.ESTADOS_NOTA_ID)
+                        {
+                            // cambiar estado a nuevo estado
+                            note.ESTADOS_NOTA_ID = ESTADOS_NOTA_ID;
 
                             // notificar a usuarios
-                            int[] notaid = { note.NOTAS_ID };
-
-                            PlantillaLogic plantillalogic = new PlantillaLogic();
-                            plantilla_notificacion pl = plantillalogic.GetPlantilla("NOTASADMINISTRACION");
-
-                            NotificacionLogic notificacionlogic = new NotificacionLogic();
-                            notificacionlogic.NotifyUsers("MANT_NOTASPESO", EstadosNotificacion.Creado, pl.PLANTILLAS_ASUNTO, pl.PLANTILLAS_MENSAJE, notaid);
+                            this.NotificarUsuarios("NOTASADMINISTRACION", "MANT_NOTASPESO", note, db);
                         }
+
+                        note.MODIFICADO_POR = MODIFICADO_POR;
+                        note.FECHA_MODIFICACION = DateTime.Today;
+
+                        db.SaveChanges();
+
+                        scope1.Complete();
                     }
-
-                    note.MODIFICADO_POR = MODIFICADO_POR;
-                    note.FECHA_MODIFICACION = DateTime.Today;
-
-                    db.SaveChanges();
                 }
             }
             catch (Exception)

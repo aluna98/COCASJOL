@@ -46,35 +46,36 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
         {
             try
             {
-                Dictionary<string, string> variables = this.GetVariables();
-                if (!this.ValidarVariables(variables))
-                    return;
-
                 string loggedUser = this.LoggedUserHdn.Text;
 
-                var detalles = JSON.Deserialize<Dictionary<string, string>[]>(Detalles);
-
-                NotaDePesoEnCatacionLogic notadepesologic = new NotaDePesoEnCatacionLogic();
-
-
-                string pDefecto = this.EditPorcentajeDefectoTxt.Text.Replace("%", "");
-                string pHumedad = this.EditPorcentajeHumedadTxt.Text.Replace("%", "");
+                NotaDePesoEnAdministracionLogic notadepesologic = new NotaDePesoEnAdministracionLogic();
 
                 notadepesologic.ActualizarNotaDePeso
                     (Convert.ToInt32(this.EditNotaIdTxt.Text),
                     Convert.ToInt32(this.EditEstadoNotaCmb.Text),
-                    this.EditSociosIdTxt.Text,
-                    Convert.ToInt32(this.EditClasificacionCafeCmb.Text),
-                    this.EditFechaNotaTxt.SelectedDate,
-                    this.EditCooperativaRadio.Value == null ? false : Convert.ToBoolean(this.EditCooperativaRadio.Value),
-                    Convert.ToDecimal(pDefecto),
-                    Convert.ToDecimal(pHumedad),
-                    Convert.ToDecimal(this.EditSumaPesoBrutoTxt.Text),
-                    Convert.ToDecimal(this.EditTaraTxt.Text),
-                    Convert.ToInt32(this.EditSacosRetenidosTxt.Text),
-                    loggedUser,
-                    detalles,
-                    variables);
+                    loggedUser);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [DirectMethod(RethrowException = true, ShowMask = true, Target = MaskTarget.CustomTarget, CustomTarget = "EditarNotasFormP")]
+        public void RegisterNotaDePeso_Click(string Detalles)
+        {
+            try
+            {
+                string loggedUser = this.LoggedUserHdn.Text;
+
+                NotaDePesoEnAdministracionLogic notadepesologic = new NotaDePesoEnAdministracionLogic();
+
+                notadepesologic.RegistrarNotaDePeso
+                    (Convert.ToInt32(this.EditNotaIdTxt.Text),
+                    Convert.ToInt32(this.EditEstadoNotaCmb.Text),
+                    loggedUser);
+
+                this.EditRegistrarBtn.Hidden = true;
             }
             catch (Exception)
             {

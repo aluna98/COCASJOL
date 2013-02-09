@@ -478,7 +478,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField EditEstadoNotaCmb;
+        protected global::Ext.Net.ComboBox EditEstadoNotaCmb;
         
         /// <summary>
         /// EditClasificacionCafeCmb control.
@@ -902,5 +902,14 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button EditGuardarBtn;
+        
+        /// <summary>
+        /// EditRegistrarBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button EditRegistrarBtn;
     }
 }

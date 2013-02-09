@@ -18,7 +18,7 @@
     <div>
         <ext:ResourceManager ID="ResourceManager1" runat="server"  DisableViewState="true" >
             <Listeners>
-                <DocumentReady Handler="PageX.setReferences(); EditDetailX.setReferences();" />
+                <DocumentReady Handler="PageX.setReferences();" />
             </Listeners>
         </ext:ResourceManager>
 
@@ -429,11 +429,28 @@
                                                         </ext:Panel>
                                                         <ext:Panel ID="Panel13" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
-                                                                <ext:TextField runat="server" ID="EditEstadoNotaCmb" DataIndex="ESTADOS_NOTA_NOMBRE" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Estado de Nota" AllowBlank="false" MsgTarget="Side" ReadOnly="true" >
+                                                                <%--<ext:TextField runat="server" ID="EditEstadoNotaCmb" DataIndex="ESTADOS_NOTA_NOMBRE" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Estado de Nota" AllowBlank="false" MsgTarget="Side" ReadOnly="true" >
                                                                     <ToolTips>
                                                                         <ext:ToolTip runat="server" Html="El estado de la nota de peso es de solo lectura." Title="Estado de Nota de Peso" Width="200" TrackMouse="true" />
                                                                     </ToolTips>
-                                                                </ext:TextField>
+                                                                </ext:TextField>--%>
+                                                                <ext:ComboBox runat="server" ID="EditEstadoNotaCmb" DataIndex="ESTADOS_NOTA_ID" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Estado de Nota" AllowBlank="false" MsgTarget="Side"
+                                                                    StoreID="EstadosNotaSt"
+                                                                    EmptyText="Seleccione un Estado"
+                                                                    ValueField="ESTADOS_NOTA_ID" 
+                                                                    DisplayField="ESTADOS_NOTA_NOMBRE"
+                                                                    ForceSelection="true"
+                                                                    Mode="Local"
+                                                                    TypeAhead="true">
+                                                                    <Triggers>
+                                                                        <ext:FieldTrigger Icon="Clear" HideTrigger="true" />
+                                                                    </Triggers>
+                                                                    <Listeners>
+                                                                        <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
+                                                                        <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
+                                                                        <Select Handler="this.triggers[0].show();" />
+                                                                    </Listeners>
+                                                                </ext:ComboBox>
                                                                 <ext:TextField runat="server" ID="EditClasificacionCafeCmb" DataIndex="CLASIFICACIONES_CAFE_NOMBRE" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Tipo de Café" AllowBlank="false" MsgTarget="Side" ReadOnly="true" >
                                                                     <ToolTips>
                                                                         <ext:ToolTip runat="server" Html="El tipo de café es de solo lectura." Title="Tipo de Café" Width="200" TrackMouse="true" />
@@ -608,6 +625,11 @@
                         <ext:Button ID="EditGuardarBtn" runat="server" Text="Guardar" Icon="Disk" FormBind="true" Hidden="true" >
                             <Listeners>
                                 <Click Handler="#{EditCreatedByTxt}.setValue(#{LoggedUserHdn}.getValue()); PageX.update();" />
+                            </Listeners>
+                        </ext:Button>
+                        <ext:Button ID="EditRegistrarBtn" runat="server" Text="Registrar" Icon="DiskBlack" FormBind="true" Hidden="true" >
+                            <Listeners>
+                                <Click Handler="#{EditCreatedByTxt}.setValue(#{LoggedUserHdn}.getValue()); PageX.register();" />
                             </Listeners>
                         </ext:Button>
                     </Buttons>

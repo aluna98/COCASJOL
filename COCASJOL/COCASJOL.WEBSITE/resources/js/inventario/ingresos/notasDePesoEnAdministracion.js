@@ -67,6 +67,9 @@ var ConfirmMsgTitle = "Nota de Peso";
 var ConfirmUpdate = "Seguro desea modificar la notas de peso?";
 var ConfirmDelete = "Seguro desea eliminar la notas de peso?";
 
+var ConfirmRegMsgTitle = "Nota de Peso";
+var ConfirmRegUpdate = "Seguro desea registrar la notas de peso? Nota: Una vez registrada no se podra modificar.";
+
 var PageX = {
     _index: 0,
 
@@ -156,18 +159,41 @@ var PageX = {
             if (btn == 'yes') {
                 var fields = EditForm.getForm().getFieldValues(false, "dataIndex");
 
-                var pesoJson = EditDetailX.pesoToJson();
-
                 Ext.net.DirectMethods.EditNotaDePeso_Click(pesoJson,
                             { success: function () {
                                 GridStore.reload();
                                 Ext.Msg.alert('Editar Nota de Peso', 'Nota de peso actualizada exitosamente.');
+                                EditWindow.hide();
                             }
                             },
                             { failure: function () {
                                 Ext.Msg.alert('Editar Nota de Peso', 'Error al actualizar la nota de peso.');
                             }
                             });
+            }
+        });
+    },
+
+    register: function () {
+        if (EditForm.record == null) {
+            return;
+        }
+
+        Ext.Msg.confirm(ConfirmRegMsgTitle, ConfirmRegUpdate, function (btn, text) {
+            if (btn == 'yes') {
+                var fields = EditForm.getForm().getFieldValues(false, "dataIndex");
+
+                Ext.net.DirectMethods.RegisterNotaDePeso_Click(pesoJson,
+                    { success: function () {
+                        GridStore.reload();
+                        Ext.Msg.alert('Editar Nota de Peso', 'Nota de peso actualizada exitosamente.');
+                        EditWindow.hide();
+                    }
+                    },
+                    { failure: function () {
+                        Ext.Msg.alert('Editar Nota de Peso', 'Error al actualizar la nota de peso.');
+                    }
+                    });
             }
         });
     },
@@ -244,44 +270,5 @@ var PageX = {
         if (Grid.getStore().getTotalCount() == 0)
             Grid.getStore().reload();
         PagingToolbar1.moveLast();
-    }
-};
-
-var EditDetailGrid = null;
-var EditDetailGridStore = null;
-
-var EditDetailX = {
-    setReferences: function () {
-        EditDetailGridStore = EditNotaDetalleSt;
-        EditDetailGrid = EditNotaDetalleGridP;
-    },
-
-    updateSumTotals: function () {
-        var bagSum = this.getSum(EditDetailGrid, 0);
-        var weigthSum = this.getSum(EditDetailGrid, 1);
-
-        EditSumaSacosTxt.setValue(bagSum);
-        EditSumaPesoBrutoTxt.setValue(weigthSum);
-    },
-
-    getSum: function (grid, index) {
-        var dataIndex = grid.getColumnModel().getDataIndex(index),
-                    sum = 0;
-
-        grid.getStore().each(function (record) {
-            sum += record.get(dataIndex);
-        });
-
-        return sum;
-    },
-
-    pesoToJson: function () {
-        var items = EditDetailGridStore.data;
-        var ret = [];
-        for (var i = 0; i < items.length; i++) {
-            ret.push({ DETALLES_CANTIDAD_SACOS: items.items[i].data.DETALLES_CANTIDAD_SACOS, DETALLES_PESO: items.items[i].data.DETALLES_PESO });
-        }
-
-        return Ext.encode(ret);
     }
 };
