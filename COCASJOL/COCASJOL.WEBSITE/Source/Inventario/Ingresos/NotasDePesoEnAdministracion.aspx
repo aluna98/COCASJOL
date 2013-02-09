@@ -18,7 +18,7 @@
     <div>
         <ext:ResourceManager ID="ResourceManager1" runat="server"  DisableViewState="true" >
             <Listeners>
-                <DocumentReady Handler="PageX.setReferences();" />
+                <DocumentReady Handler="PageX.setReferences();  EditDetailX.setReferences();" />
             </Listeners>
         </ext:ResourceManager>
 
@@ -57,6 +57,7 @@
                     <asp:ControlParameter Name="NOTAS_PESO_TOTAL_RECIBIDO"                  Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
                     <asp:ControlParameter Name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO"            Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="NOTAS_SACOS_RETENIDOS"                      Type="Int32"    ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="TRANSACCION_NUMERO"                         Type="Int32"    ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="CREADO_POR"                                 Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="FECHA_CREACION"                             Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="MODIFICADO_POR"                             Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
@@ -122,6 +123,9 @@
         <ext:Hidden ID="LoggedUserHdn" runat="server" >
         </ext:Hidden>
 
+        <ext:Hidden ID="EstadoIdHdn" runat="server" >
+        </ext:Hidden>
+
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
             <Items>
                 <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Notas de Peso" Icon="PageWhiteCup" Layout="Fit">
@@ -165,6 +169,7 @@
                                                 <ext:RecordField Name="NOTAS_PESO_TOTAL_RECIBIDO"               />
                                                 <ext:RecordField Name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO"         />
                                                 <ext:RecordField Name="NOTAS_SACOS_RETENIDOS"                   />
+                                                <ext:RecordField Name="TRANSACCION_NUMERO"                      />
                                                 <ext:RecordField Name="CREADO_POR"                              />
                                                 <ext:RecordField Name="FECHA_CREACION"                          Type="Date" />
                                                 <ext:RecordField Name="MODIFICADO_POR"                          />
@@ -429,11 +434,11 @@
                                                         </ext:Panel>
                                                         <ext:Panel ID="Panel13" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
-                                                                <%--<ext:TextField runat="server" ID="EditEstadoNotaCmb" DataIndex="ESTADOS_NOTA_NOMBRE" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Estado de Nota" AllowBlank="false" MsgTarget="Side" ReadOnly="true" >
+                                                                <ext:TextField runat="server" ID="EditTransaccionNumTxt" DataIndex="TRANSACCION_NUMERO" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Número de Transacción" AllowBlank="true" MsgTarget="Side" ReadOnly="true" >
                                                                     <ToolTips>
-                                                                        <ext:ToolTip runat="server" Html="El estado de la nota de peso es de solo lectura." Title="Estado de Nota de Peso" Width="200" TrackMouse="true" />
+                                                                        <ext:ToolTip runat="server" Html="El número de transacción es de solo lectura." Title="Número de Transacción" Width="200" TrackMouse="true" />
                                                                     </ToolTips>
-                                                                </ext:TextField>--%>
+                                                                </ext:TextField>
                                                                 <ext:ComboBox runat="server" ID="EditEstadoNotaCmb" DataIndex="ESTADOS_NOTA_ID" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Estado de Nota" AllowBlank="false" MsgTarget="Side"
                                                                     StoreID="EstadosNotaSt"
                                                                     EmptyText="Seleccione un Estado"
@@ -448,7 +453,7 @@
                                                                     <Listeners>
                                                                         <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
                                                                         <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
-                                                                        <Select Handler="this.triggers[0].show();" />
+                                                                        <Select Handler="this.triggers[0].show(); PageX.checkIfRegistered();" />
                                                                     </Listeners>
                                                                 </ext:ComboBox>
                                                                 <ext:TextField runat="server" ID="EditClasificacionCafeCmb" DataIndex="CLASIFICACIONES_CAFE_NOMBRE" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Tipo de Café" AllowBlank="false" MsgTarget="Side" ReadOnly="true" >
@@ -622,7 +627,7 @@
                                 <Click Handler="PageX.next();" />
                             </Listeners>
                         </ext:Button>
-                        <ext:Button ID="EditGuardarBtn" runat="server" Text="Guardar" Icon="Disk" FormBind="true" Hidden="true" >
+                        <ext:Button ID="EditGuardarBtn" runat="server" Text="Guardar" Icon="Disk" FormBind="true" >
                             <Listeners>
                                 <Click Handler="#{EditCreatedByTxt}.setValue(#{LoggedUserHdn}.getValue()); PageX.update();" />
                             </Listeners>

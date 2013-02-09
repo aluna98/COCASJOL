@@ -57,6 +57,7 @@
                     <asp:ControlParameter Name="NOTAS_PESO_TOTAL_RECIBIDO"                  Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
                     <asp:ControlParameter Name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO"            Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="NOTAS_SACOS_RETENIDOS"                      Type="Int32"    ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="TRANSACCION_NUMERO"                         Type="Int32"    ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="CREADO_POR"                                 Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="FECHA_CREACION"                             Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="MODIFICADO_POR"                             Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
@@ -172,6 +173,7 @@
                                                 <ext:RecordField Name="NOTAS_PESO_TOTAL_RECIBIDO"               />
                                                 <ext:RecordField Name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO"         />
                                                 <ext:RecordField Name="NOTAS_SACOS_RETENIDOS"                   />
+                                                <ext:RecordField Name="TRANSACCION_NUMERO"                      />
                                                 <ext:RecordField Name="CREADO_POR"                              />
                                                 <ext:RecordField Name="FECHA_CREACION"                          Type="Date" />
                                                 <ext:RecordField Name="MODIFICADO_POR"                          />

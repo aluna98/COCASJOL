@@ -139,6 +139,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.Hidden LoggedUserHdn;
         
         /// <summary>
+        /// EstadoIdHdn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden EstadoIdHdn;
+        
+        /// <summary>
         /// Viewport1 control.
         /// </summary>
         /// <remarks>
@@ -470,6 +479,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Panel Panel13;
+        
+        /// <summary>
+        /// EditTransaccionNumTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField EditTransaccionNumTxt;
         
         /// <summary>
         /// EditEstadoNotaCmb control.

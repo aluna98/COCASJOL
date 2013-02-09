@@ -84,18 +84,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 estadosList = GetEstadosNotaDePeso();
 
                 if (catacionFlag == true)
-                {
-                    //estadosList = new List<estado_nota_de_peso>();
-                    //estadosList.Add(GetEstadoNotaDePeso("CATACION"));
-                    //estadosList.Add(GetEstadoNotaDePeso("PESAJE"));
-
                     estadosList = estadosList.Where(esn => esn.ESTADOS_NOTA_LLAVE == "CATACION" || esn.ESTADOS_NOTA_LLAVE == "PESAJE").ToList<estado_nota_de_peso>();
-                }
                 else
-                {
-                    //estadosList = GetEstadosNotaDePeso();
                     estadosList = estadosList.Where(esn => esn.ESTADOS_NOTA_LLAVE != "CATACION").ToList<estado_nota_de_peso>();
-                }
 
                 return estadosList;
             }

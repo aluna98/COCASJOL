@@ -43,11 +43,11 @@ namespace COCASJOL.WEBSITE
                     this.TotalCompradoTxt.Text = reporteConsolidadoDeCafe.TotalComprado.ToString();
                     this.TotalDepositoTxt.Text = reporteConsolidadoDeCafe.TotalDeposito.ToString();
 
-                    if (Application["NotificacionesList"] == null)
-                    {
-                        NotificacionLogic notificacionlogic = new NotificacionLogic();
-                        Application["NotificacionesList"] = notificacionlogic.GetNotificaciones();
-                    }
+                    //if (Application["NotificacionesList"] == null)
+                    //{
+                    //    NotificacionLogic notificacionlogic = new NotificacionLogic();
+                    //    Application["NotificacionesList"] = notificacionlogic.GetNotificaciones();
+                    //}
 
                     this.WebAssemblyTitle.Text = this.WAssemblyTitle;
                     this.WebAssemblyVersion.Text = this.WAssemblyVersion;
@@ -188,8 +188,9 @@ namespace COCASJOL.WEBSITE
         {
             try
             {
+                NotificacionLogic notificacionlogic = new NotificacionLogic();
                 string loggedUser = Session["username"] as string;
-                List<notificacion> NotificacionesList = Application["NotificacionesList"] as List<notificacion>;
+                List<notificacion> NotificacionesList = notificacionlogic.GetNotificaciones();//Application["NotificacionesList"] as List<notificacion>;
 
                 if (NotificacionesList == null)
                     return;
@@ -200,7 +201,7 @@ namespace COCASJOL.WEBSITE
 
                 if (query.Count() > 0)
                 {
-                    NotificacionLogic notificacionlogic = new NotificacionLogic();
+                    //NotificacionLogic notificacionlogic = new NotificacionLogic();
 
                     foreach (notificacion notif in query.ToList<notificacion>())
                         this.ShowPinnedNotification(notif.NOTIFICACION_TITLE, notif.NOTIFICACION_MENSAJE, notif.NOTIFICACION_ID);
@@ -227,8 +228,10 @@ namespace COCASJOL.WEBSITE
                 this.TotalDepositoTxt.Text = reporteConsolidadoDeCafe.TotalDeposito.ToString();
 
                 //check for notification
+                NotificacionLogic notificacionlogic = new NotificacionLogic();
+
                 string loggedUser = Session["username"] as string;
-                List<notificacion> NotificacionesList = Application["NotificacionesList"] as List<notificacion>;
+                List<notificacion> NotificacionesList = notificacionlogic.GetNotificaciones();//Application["NotificacionesList"] as List<notificacion>;
 
                 if (NotificacionesList == null)
                     return;
@@ -239,18 +242,19 @@ namespace COCASJOL.WEBSITE
 
                 if (query.Count() > 0)
                 {
-                    lock (lockObj)
-                    {
-                        NotificacionLogic notificacionlogic = new NotificacionLogic();
+                    //lock (lockObj)
+                    //{
+                        //NotificacionLogic notificacionlogic = new NotificacionLogic();
 
                         foreach (notificacion notif in query.ToList<notificacion>())
                         {
-                            this.ShowPinnedNotification(notif.NOTIFICACION_TITLE, notif.NOTIFICACION_MENSAJE);
+                            //this.ShowPinnedNotification(notif.NOTIFICACION_TITLE, notif.NOTIFICACION_MENSAJE);
+                            this.ShowPinnedNotification(notif.NOTIFICACION_TITLE, notif.NOTIFICACION_MENSAJE, notif.NOTIFICACION_ID);
                             notificacionlogic.ActualizarNotificacion(notif.NOTIFICACION_ID, EstadosNotificacion.Notificado);
                         }
 
-                        Application["NotificacionesList"] = notificacionlogic.GetNotificaciones();
-                    }
+                        //Application["NotificacionesList"] = notificacionlogic.GetNotificaciones();
+                    //}
                 }
             }
             catch (Exception)

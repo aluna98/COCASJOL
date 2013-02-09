@@ -32,9 +32,9 @@ namespace COCASJOL.LOGIC.Reportes
 
         public ReporteConsolidadoDeCafe(decimal Total_Ingresado, decimal Total_Comprado, decimal Total_Deposito)
         {
-            this._TotalIngresado = Total_Ingresado;
-            this._TotalComprado = Total_Comprado;
-            this._TotalDeposito = Total_Deposito;
+            this._TotalIngresado = Math.Round(Total_Ingresado / 100);// QQ
+            this._TotalComprado = Math.Round(Total_Comprado / 100);// QQ
+            this._TotalDeposito = Math.Round(Total_Deposito / 100);// QQ
         }
     }
 
@@ -51,13 +51,14 @@ namespace COCASJOL.LOGIC.Reportes
                 using (var db = new colinasEntities())
                 {
                     var queryIngresado = (from n in db.notas_de_peso
+                                          where n.TRANSACCION_NUMERO != null
                                           select n).ToList();
 
                     var queryComprado = (from l in db.liquidaciones
                                         select l).ToList();
 
                     decimal TotalIngresado = queryIngresado.Sum(n => n.NOTAS_PESO_TOTAL_RECIBIDO);
-                    decimal TotalComprado = Convert.ToDecimal(queryComprado.Sum(l => l.LIQUIDACIONES_D_TOTAL_DEDUCCIONES));
+                    decimal TotalComprado = Convert.ToDecimal(queryComprado.Sum(l => l.LIQUIDACIONES_TOTAL_LIBRAS));
                     decimal TotalDeposito = TotalIngresado - TotalComprado;
 
                     return new ReporteConsolidadoDeCafe(TotalIngresado, TotalComprado, TotalDeposito);

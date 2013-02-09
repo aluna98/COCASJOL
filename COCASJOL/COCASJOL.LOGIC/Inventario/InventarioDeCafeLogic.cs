@@ -93,7 +93,7 @@ namespace COCASJOL.LOGIC.Inventario
         #region Insert
 
         //Notas de Peso
-        public void InsertarTransaccionInventarioDeCafeDeSocio(nota_de_peso NotaDePeso, colinasEntities db)
+        public int InsertarTransaccionInventarioDeCafeDeSocio(nota_de_peso NotaDePeso, colinasEntities db)
         {
             try
             {
@@ -121,6 +121,10 @@ namespace COCASJOL.LOGIC.Inventario
                 inventarioDeCafe.FECHA_CREACION = Convert.ToDateTime(NotaDePeso.FECHA_MODIFICACION);
 
                 db.inventario_cafe_de_socio.AddObject(inventarioDeCafe);
+
+                db.SaveChanges();
+
+                return inventarioDeCafe.TRANSACCION_NUMERO;
             }
             catch (Exception)
             {
@@ -156,6 +160,8 @@ namespace COCASJOL.LOGIC.Inventario
                 inventarioDeCafe.FECHA_CREACION = HojaDeLiquidacion.FECHA_CREACION;
 
                 db.inventario_cafe_de_socio.AddObject(inventarioDeCafe);
+
+                db.SaveChanges();
             }
             catch (Exception)
             {

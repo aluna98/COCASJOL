@@ -98,6 +98,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
              decimal NOTAS_PESO_TOTAL_RECIBIDO,
               string NOTAS_PESO_TOTAL_RECIBIDO_TEXTO,
                  int NOTAS_SACOS_RETENIDOS,
+                 int TRANSACCION_NUMERO,
               string CREADO_POR,
             DateTime FECHA_CREACION,
               string MODIFICADO_POR,
@@ -255,7 +256,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
         {
             try
             {
-                int[] notaid = { note.NOTAS_ID };
+                string[] notaid = { note.NOTAS_ID.ToString() };
 
                 PlantillaLogic plantillalogic = new PlantillaLogic();
                 plantilla_notificacion pl = plantillalogic.GetPlantilla(PLANTILLAS_LLAVE);

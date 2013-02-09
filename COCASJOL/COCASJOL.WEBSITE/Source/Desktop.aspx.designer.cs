@@ -148,6 +148,33 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.MenuItem PlantillasNotificacionesMenuItem;
         
         /// <summary>
+        /// EnvironmentMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem EnvironmentMenu;
+        
+        /// <summary>
+        /// Menu2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Menu Menu2;
+        
+        /// <summary>
+        /// VariablesDeEntornoMenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem VariablesDeEntornoMenuItem;
+        
+        /// <summary>
         /// AsociatesMenu control.
         /// </summary>
         /// <remarks>
@@ -337,22 +364,22 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.MenuItem PrestamosMenuItem;
         
         /// <summary>
-        /// EnvironmentMenu control.
+        /// ReportesMenu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.MenuItem EnvironmentMenu;
+        protected global::Ext.Net.MenuItem ReportesMenu;
         
         /// <summary>
-        /// VariablesDeEntornoMenuItem control.
+        /// MovimientosDeInventarioDeCafeMenuItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.MenuItem VariablesDeEntornoMenuItem;
+        protected global::Ext.Net.MenuItem MovimientosDeInventarioDeCafeMenuItem;
         
         /// <summary>
         /// SettingsWin control.
@@ -794,6 +821,15 @@ namespace COCASJOL.WEBSITE {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ToolTip scPrestamosTooltip;
+        
+        /// <summary>
+        /// scMovimientosDeInventarioDeCafeTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scMovimientosDeInventarioDeCafeTooltip;
         
         /// <summary>
         /// UsuarioActualCtl control.

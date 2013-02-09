@@ -17,8 +17,8 @@ namespace COCASJOL.WEBSITE
             try
             {
                 // Code that runs on application startup
-                NotificacionLogic notificacionLogic = new NotificacionLogic();
-                Application["NotificacionesList"] = notificacionLogic.GetNotificaciones();
+                //NotificacionLogic notificacionLogic = new NotificacionLogic();
+                //Application["NotificacionesList"] = notificacionLogic.GetNotificaciones();
 
                 COCASJOL.LOGIC.Reportes.ConsolidadoDeInventarioDeCafeLogic consolidadoinventariologic = new LOGIC.Reportes.ConsolidadoDeInventarioDeCafeLogic();
                 Application["ReporteConsolidadoDeCafe"] = consolidadoinventariologic.GetReporte();

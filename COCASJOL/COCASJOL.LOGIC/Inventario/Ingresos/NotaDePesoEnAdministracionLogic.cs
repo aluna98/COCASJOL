@@ -56,7 +56,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
-        public void RegistrarNotaDePeso(int NOTAS_ID, int ESTADOS_NOTAS_ID, string MODIFICADO_POR)
+        public void RegistrarNotaDePeso(int NOTAS_ID, int ESTADO_ID, string MODIFICADO_POR)
         {
             try
             {
@@ -68,17 +68,18 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                         var n = db.GetObjectByKey(k);
                         nota_de_peso note = (nota_de_peso)n;
 
-                        note.ESTADOS_NOTA_ID = ESTADOS_NOTA_ID;
+                        note.ESTADOS_NOTA_ID = ESTADO_ID;
                         note.MODIFICADO_POR = MODIFICADO_POR;
                         note.FECHA_MODIFICACION = DateTime.Today;
+
+                        db.SaveChanges();
 
                         if (note.estados_nota_de_peso.ESTADOS_NOTA_LLAVE == "ADMINISTRACION")
                         {
                             InventarioDeCafeLogic inventariodecafelogic = new InventarioDeCafeLogic();
-                            inventariodecafelogic.InsertarTransaccionInventarioDeCafeDeSocio(note, db);
+                            note.TRANSACCION_NUMERO = inventariodecafelogic.InsertarTransaccionInventarioDeCafeDeSocio(note, db);
+                            db.SaveChanges();
                         }
-
-                        db.SaveChanges();
 
                         scope1.Complete();
                     }

@@ -247,7 +247,10 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                         if (note.ESTADOS_NOTA_ID != this.ESTADOS_NOTA_ID)
                         {
                             // notificar a usuarios
-                            this.NotificarUsuarios("NOTASCATACION", "MANT_NOTASPESOENCATACION", note, db);
+                            //this.NotificarUsuarios("NOTASCATACION", "MANT_NOTASPESOENCATACION", note, db);
+
+                            string ESTADO_NOTA_LLAVE = note.estados_nota_de_peso.ESTADOS_NOTA_LLAVE;
+                            this.NotificarUsuarios("NOTAS" + ESTADO_NOTA_LLAVE, "MANT_NOTASPESOEN" + ESTADO_NOTA_LLAVE, note, db);
                         }
 
                         scope1.Complete();

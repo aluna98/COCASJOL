@@ -94,6 +94,12 @@
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/script.png", sizingMethod="center");
 }
 
+.icon-movimientosDeInventarioDeCafe
+{
+    background-image: url(../images/report_bricks.png) !important;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/report_bricks.png", sizingMethod="center");
+}
+
 .icon-aportacionesPorSocio16
 {
     background-image: url("../images/coins_in_hand16.png") !important;

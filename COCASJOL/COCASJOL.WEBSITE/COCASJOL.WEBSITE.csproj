@@ -95,6 +95,7 @@
     <Content Include="resources\images\page_white_office.png" />
     <Content Include="resources\images\page_white_put.png" />
     <Content Include="resources\images\page_white_text.png" />
+    <Content Include="resources\images\report_bricks.png" />
     <Content Include="resources\images\script.png" />
     <Content Include="resources\images\user.png" />
     <Content Include="resources\images\user_edit.png" />

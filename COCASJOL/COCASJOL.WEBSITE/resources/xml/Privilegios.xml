@@ -64,7 +64,7 @@
     <menuitem>NotasDePesoEnCatacionMenuItem</menuitem>
   </privilege>
   <privilege>
-    <key>MANT_NOTASPESO</key>
+    <key>MANT_NOTASPESOENADMINISTRACION</key>
     <page>NotasDePesoEnAdministracion</page>
     <module>NotasDePesoModule</module>
     <shortcut>scNotasDePeso</shortcut>
@@ -90,6 +90,13 @@
     <module>HojasDeLiquidacionModule</module>
     <shortcut>scHojasDeLiquidacion</shortcut>
     <menuitem>LiquidacionesMenuItem</menuitem>
+  </privilege>
+  <privilege>
+    <key>REPRT_MOVIMIENTOSINVENTARIO</key>
+    <page>MovimientosDeInventarioDeCafe</page>
+    <module>MovimientosDeInventarioDeCafeModule</module>
+    <shortcut>scMovimientosDeInventarioDeCafe</shortcut>
+    <menuitem>MovimientosDeInventarioDeCafeMenuItem</menuitem>
   </privilege>
   <privilege>
     <key>MANT_APORTACIONESPORSOCIO</key>

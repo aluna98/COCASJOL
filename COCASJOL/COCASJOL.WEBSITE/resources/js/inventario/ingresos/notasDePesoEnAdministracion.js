@@ -147,6 +147,8 @@ var PageX = {
             EditPorcentajeDefectoTxt.setValue(Ext.util.Format.number(EditPorcentajeDefectoTxt.getValue().replace(/[\%]/g, ''), '0.00%'));
             EditPorcentajeHumedadTxt.setValue(Ext.util.Format.number(EditPorcentajeHumedadTxt.getValue().replace(/[\%]/g, ''), '0.00%'));
             EditPorcentajeTransporteTxt.setValue(Ext.util.Format.number(EditPorcentajeTransporteTxt.getValue().replace(/[\%]/g, ''), '0.00%'));
+
+            this.checkIfRegistered();
         }
     },
 
@@ -157,13 +159,13 @@ var PageX = {
 
         Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
             if (btn == 'yes') {
-                var fields = EditForm.getForm().getFieldValues(false, "dataIndex");
-
-                Ext.net.DirectMethods.EditNotaDePeso_Click(pesoJson,
+                Ext.net.DirectMethods.EditNotaDePeso_Click(
                             { success: function () {
-                                GridStore.reload();
-                                Ext.Msg.alert('Editar Nota de Peso', 'Nota de peso actualizada exitosamente.');
-                                EditWindow.hide();
+                                Ext.Msg.alert('Editar Nota de Peso', 'Nota de peso actualizada exitosamente.', function () {
+                                    EditWindow.hide();
+                                    GridStore.reload();
+                                });
+
                             }
                             },
                             { failure: function () {
@@ -181,9 +183,7 @@ var PageX = {
 
         Ext.Msg.confirm(ConfirmRegMsgTitle, ConfirmRegUpdate, function (btn, text) {
             if (btn == 'yes') {
-                var fields = EditForm.getForm().getFieldValues(false, "dataIndex");
-
-                Ext.net.DirectMethods.RegisterNotaDePeso_Click(pesoJson,
+                Ext.net.DirectMethods.RegisterNotaDePeso_Click(
                     { success: function () {
                         GridStore.reload();
                         Ext.Msg.alert('Editar Nota de Peso', 'Nota de peso actualizada exitosamente.');
@@ -246,7 +246,30 @@ var PageX = {
             default:
                 break;
         }
+    },
 
+    checkIfRegistered: function () {
+        var estadoId = EstadoIdHdn.getValue();
+
+        if (estadoId == EditEstadoNotaCmb.getValue()) {
+            rec = this.getRecord();
+
+            if (rec != null) {
+                if (rec.data.TRANSACCION_NUMERO == null) {
+                    EditRegistrarBtn.setVisible(true);
+                    EditGuardarBtn.setVisible(true);
+                    EditEstadoNotaCmb.readOnly = false;
+                } else {
+                    EditRegistrarBtn.setVisible(false);
+                    EditGuardarBtn.setVisible(false);
+                    EditEstadoNotaCmb.readOnly = true;
+                }
+            }
+        } else {
+            EditRegistrarBtn.setVisible(false);
+            EditGuardarBtn.setVisible(false);
+            EditEstadoNotaCmb.readOnly = false;
+        }
     },
 
     navHome: function () {
@@ -270,5 +293,44 @@ var PageX = {
         if (Grid.getStore().getTotalCount() == 0)
             Grid.getStore().reload();
         PagingToolbar1.moveLast();
+    }
+};
+
+var EditDetailGrid = null;
+var EditDetailGridStore = null;
+
+var EditDetailX = {
+    setReferences: function () {
+        EditDetailGridStore = EditNotaDetalleSt;
+        EditDetailGrid = EditNotaDetalleGridP;
+    },
+
+    updateSumTotals: function () {
+        var bagSum = this.getSum(EditDetailGrid, 0);
+        var weigthSum = this.getSum(EditDetailGrid, 1);
+
+        EditSumaSacosTxt.setValue(bagSum);
+        EditSumaPesoBrutoTxt.setValue(weigthSum);
+    },
+
+    getSum: function (grid, index) {
+        var dataIndex = grid.getColumnModel().getDataIndex(index),
+                    sum = 0;
+
+        grid.getStore().each(function (record) {
+            sum += record.get(dataIndex);
+        });
+
+        return sum;
+    },
+
+    pesoToJson: function () {
+        var items = EditDetailGridStore.data;
+        var ret = [];
+        for (var i = 0; i < items.length; i++) {
+            ret.push({ DETALLES_CANTIDAD_SACOS: items.items[i].data.DETALLES_CANTIDAD_SACOS, DETALLES_PESO: items.items[i].data.DETALLES_PESO });
+        }
+
+        return Ext.encode(ret);
     }
 };

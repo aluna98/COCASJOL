@@ -22,7 +22,8 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
             {
                 if (!X.IsAjaxRequest)
                 {
-
+                    EstadoNotaDePesoLogic estadologic = new EstadoNotaDePesoLogic();
+                    this.EstadoIdHdn.Text = estadologic.GetEstadoNotaDePeso("ADMINISTRACION").ESTADOS_NOTA_ID.ToString();
                 }
 
                 string loggedUsr = Session["username"] as string;
@@ -61,8 +62,8 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
             }
         }
 
-        [DirectMethod(RethrowException = true, ShowMask = true, Target = MaskTarget.CustomTarget, CustomTarget = "EditarNotasFormP")]
-        public void RegisterNotaDePeso_Click(string Detalles)
+        [DirectMethod(RethrowException = true, Target = MaskTarget.CustomTarget, CustomTarget = "EditarNotasFormP")]
+        public void RegisterNotaDePeso_Click()
         {
             try
             {
@@ -76,6 +77,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                     loggedUser);
 
                 this.EditRegistrarBtn.Hidden = true;
+                this.EditGuardarBtn.Hidden = true;
             }
             catch (Exception)
             {
