@@ -32,9 +32,9 @@ namespace COCASJOL.LOGIC.Reportes
 
         public ReporteConsolidadoDeCafe(decimal Total_Ingresado, decimal Total_Comprado, decimal Total_Deposito)
         {
-            this._TotalIngresado = Math.Round(Total_Ingresado / 100);// QQ
-            this._TotalComprado = Math.Round(Total_Comprado / 100);// QQ
-            this._TotalDeposito = Math.Round(Total_Deposito / 100);// QQ
+            this._TotalIngresado = Total_Ingresado / 100;// QQ
+            this._TotalComprado = Total_Comprado / 100;// QQ
+            this._TotalDeposito = Total_Deposito / 100;// QQ
         }
     }
 
