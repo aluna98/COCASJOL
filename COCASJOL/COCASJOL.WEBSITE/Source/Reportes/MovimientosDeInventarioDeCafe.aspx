@@ -224,8 +224,8 @@
                                         Groupable="false"
                                         DataIndex="ENTRADAS_CANTIDAD"
                                         SummaryType="Sum">
-                                        <Renderer Handler="return Ext.util.Format.number(record.data.ENTRADAS_CANTIDAD, '0.0000');" />
-                                        <SummaryRenderer Format="Number" FormatArgs="'0.0000'" />
+                                        <SummaryRenderer Handler="return '(' + Ext.util.Format.number(value,'0.0000') + ' Total' + ')';" />
+                                        <Renderer Format="Number" FormatArgs="'0.0000'" />
                                     </ext:GroupingSummaryColumn>
 
                                     <ext:GroupingSummaryColumn
@@ -235,8 +235,8 @@
                                         Groupable="false"
                                         DataIndex="SALIDAS_CANTIDAD"
                                         SummaryType="Sum">
-                                        <Renderer Handler="return Ext.util.Format.number(record.data.SALIDAS_CANTIDAD, '0,000.0000');" />
-                                        <SummaryRenderer Format="Number" FormatArgs="'0,000.0000'" />
+                                        <SummaryRenderer Handler="return '(' + Ext.util.Format.number(value,'0.0000') + ' Total' + ')';" />
+                                        <Renderer Format="Number" FormatArgs="'0.0000'" />
                                     </ext:GroupingSummaryColumn>
 
                                     <ext:GroupingSummaryColumn
@@ -246,8 +246,8 @@
                                         Groupable="false"
                                         DataIndex="SALIDAS_COSTO"
                                         SummaryType="Average">
-                                        <Renderer Handler="return Ext.util.Format.number(record.data.SALIDAS_COSTO, '0,000.0000');" />
-                                        <SummaryRenderer Format="Number" FormatArgs="'0,000.0000'" />
+                                        <SummaryRenderer Handler="return '(' + Ext.util.Format.number(value,'0,000.0000') + ' Promedio' + ')';" />
+                                        <Renderer Format="Number" FormatArgs="'0,000.0000'" />
                                     </ext:GroupingSummaryColumn>
 
                                     <ext:GroupingSummaryColumn
@@ -257,8 +257,8 @@
                                         Groupable="false"
                                         DataIndex="SALIDAS_MONTO"
                                         SummaryType="Sum">
-                                        <Renderer Handler="return Ext.util.Format.number(record.data.SALIDAS_MONTO, '0,000.0000');" />
-                                        <SummaryRenderer Format="Number" FormatArgs="'0,000.0000'" />
+                                        <SummaryRenderer Handler="return '(' + Ext.util.Format.number(value,'0,000.0000') + ' Total' + ')';" />
+                                        <Renderer Format="Number" FormatArgs="'0,000.0000'" />
                                     </ext:GroupingSummaryColumn>
 
                                     <ext:GroupingSummaryColumn
@@ -268,8 +268,8 @@
                                         Groupable="false"
                                         DataIndex="INVENTARIO_ENTRADAS_CANTIDAD"
                                         SummaryType="Average">
-                                        <Renderer Handler="return Ext.util.Format.number(record.data.INVENTARIO_ENTRADAS_CANTIDAD, '0.0000');" />
-                                        <SummaryRenderer Format="Number" FormatArgs="'0.0000'" />
+                                        <SummaryRenderer Handler="return '(' + Ext.util.Format.number(value,'0.0000') + ' Promedio' + ')';" />
+                                        <Renderer Format="Number" FormatArgs="'0.0000'" />
                                     </ext:GroupingSummaryColumn>
 
                                     <ext:GroupingSummaryColumn
@@ -279,8 +279,8 @@
                                         Groupable="false"
                                         DataIndex="INVENTARIO_SALIDAS_SALDO"
                                         SummaryType="Average">
-                                        <Renderer Handler="return Ext.util.Format.number(record.data.INVENTARIO_SALIDAS_SALDO, '0,000.0000');" />
-                                        <SummaryRenderer Format="Number" FormatArgs="'0,000.0000'" />
+                                        <SummaryRenderer Handler="return '(' + Ext.util.Format.number(value,'0,000.0000') + ' Promedio' + ')';" />
+                                        <Renderer Format="Number" FormatArgs="'0,000.0000'" />
                                     </ext:GroupingSummaryColumn>
 
                                     <ext:Column DataIndex="SOCIOS_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
