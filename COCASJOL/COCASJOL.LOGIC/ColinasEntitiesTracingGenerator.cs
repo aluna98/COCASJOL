@@ -6579,7 +6579,7 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.DateTime FECHA
         {
@@ -6589,14 +6589,11 @@ namespace COCASJOL.LOGIC
             }
             set
             {
-                if (_FECHA != value)
-                {
-                    OnFECHAChanging(value);
-                    ReportPropertyChanging("FECHA");
-                    _FECHA = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("FECHA");
-                    OnFECHAChanged();
-                }
+                OnFECHAChanging(value);
+                ReportPropertyChanging("FECHA");
+                _FECHA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA");
+                OnFECHAChanged();
             }
         }
         private global::System.DateTime _FECHA;
@@ -6630,7 +6627,7 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String CLASIFICACIONES_CAFE_NOMBRE
         {
@@ -6640,14 +6637,11 @@ namespace COCASJOL.LOGIC
             }
             set
             {
-                if (_CLASIFICACIONES_CAFE_NOMBRE != value)
-                {
-                    OnCLASIFICACIONES_CAFE_NOMBREChanging(value);
-                    ReportPropertyChanging("CLASIFICACIONES_CAFE_NOMBRE");
-                    _CLASIFICACIONES_CAFE_NOMBRE = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("CLASIFICACIONES_CAFE_NOMBRE");
-                    OnCLASIFICACIONES_CAFE_NOMBREChanged();
-                }
+                OnCLASIFICACIONES_CAFE_NOMBREChanging(value);
+                ReportPropertyChanging("CLASIFICACIONES_CAFE_NOMBRE");
+                _CLASIFICACIONES_CAFE_NOMBRE = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CLASIFICACIONES_CAFE_NOMBRE");
+                OnCLASIFICACIONES_CAFE_NOMBREChanged();
             }
         }
         private global::System.String _CLASIFICACIONES_CAFE_NOMBRE;
@@ -6657,7 +6651,7 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String DOCUMENTO_TIPO
         {
@@ -6667,14 +6661,11 @@ namespace COCASJOL.LOGIC
             }
             set
             {
-                if (_DOCUMENTO_TIPO != value)
-                {
-                    OnDOCUMENTO_TIPOChanging(value);
-                    ReportPropertyChanging("DOCUMENTO_TIPO");
-                    _DOCUMENTO_TIPO = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("DOCUMENTO_TIPO");
-                    OnDOCUMENTO_TIPOChanged();
-                }
+                OnDOCUMENTO_TIPOChanging(value);
+                ReportPropertyChanging("DOCUMENTO_TIPO");
+                _DOCUMENTO_TIPO = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("DOCUMENTO_TIPO");
+                OnDOCUMENTO_TIPOChanged();
             }
         }
         private global::System.String _DOCUMENTO_TIPO;
@@ -6804,7 +6795,7 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Decimal INVENTARIO_ENTRADAS_CANTIDAD
         {
@@ -6814,14 +6805,11 @@ namespace COCASJOL.LOGIC
             }
             set
             {
-                if (_INVENTARIO_ENTRADAS_CANTIDAD != value)
-                {
-                    OnINVENTARIO_ENTRADAS_CANTIDADChanging(value);
-                    ReportPropertyChanging("INVENTARIO_ENTRADAS_CANTIDAD");
-                    _INVENTARIO_ENTRADAS_CANTIDAD = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("INVENTARIO_ENTRADAS_CANTIDAD");
-                    OnINVENTARIO_ENTRADAS_CANTIDADChanged();
-                }
+                OnINVENTARIO_ENTRADAS_CANTIDADChanging(value);
+                ReportPropertyChanging("INVENTARIO_ENTRADAS_CANTIDAD");
+                _INVENTARIO_ENTRADAS_CANTIDAD = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("INVENTARIO_ENTRADAS_CANTIDAD");
+                OnINVENTARIO_ENTRADAS_CANTIDADChanged();
             }
         }
         private global::System.Decimal _INVENTARIO_ENTRADAS_CANTIDAD;
@@ -6831,7 +6819,7 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Decimal INVENTARIO_SALIDAS_SALDO
         {
@@ -6841,14 +6829,11 @@ namespace COCASJOL.LOGIC
             }
             set
             {
-                if (_INVENTARIO_SALIDAS_SALDO != value)
-                {
-                    OnINVENTARIO_SALIDAS_SALDOChanging(value);
-                    ReportPropertyChanging("INVENTARIO_SALIDAS_SALDO");
-                    _INVENTARIO_SALIDAS_SALDO = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("INVENTARIO_SALIDAS_SALDO");
-                    OnINVENTARIO_SALIDAS_SALDOChanged();
-                }
+                OnINVENTARIO_SALIDAS_SALDOChanging(value);
+                ReportPropertyChanging("INVENTARIO_SALIDAS_SALDO");
+                _INVENTARIO_SALIDAS_SALDO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("INVENTARIO_SALIDAS_SALDO");
+                OnINVENTARIO_SALIDAS_SALDOChanged();
             }
         }
         private global::System.Decimal _INVENTARIO_SALIDAS_SALDO;

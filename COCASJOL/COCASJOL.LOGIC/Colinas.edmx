@@ -587,11 +587,6 @@
         <EntityType Name="reporte_movimientos_de_inventario_de_cafe">
           <Key>
             <PropertyRef Name="TRANSACCION_NUMERO" />
-            <PropertyRef Name="FECHA" />
-            <PropertyRef Name="CLASIFICACIONES_CAFE_NOMBRE" />
-            <PropertyRef Name="DOCUMENTO_TIPO" />
-            <PropertyRef Name="INVENTARIO_ENTRADAS_CANTIDAD" />
-            <PropertyRef Name="INVENTARIO_SALIDAS_SALDO" />
           </Key>
           <Property Name="TRANSACCION_NUMERO" Type="int" Nullable="false" />
           <Property Name="FECHA" Type="date" Nullable="false" />
@@ -1776,11 +1771,6 @@
         <EntityType Name="reporte_movimientos_de_inventario_de_cafe">
           <Key>
             <PropertyRef Name="TRANSACCION_NUMERO" />
-            <PropertyRef Name="FECHA" />
-            <PropertyRef Name="CLASIFICACIONES_CAFE_NOMBRE" />
-            <PropertyRef Name="DOCUMENTO_TIPO" />
-            <PropertyRef Name="INVENTARIO_ENTRADAS_CANTIDAD" />
-            <PropertyRef Name="INVENTARIO_SALIDAS_SALDO" />
           </Key>
           <Property Type="Int32" Name="TRANSACCION_NUMERO" Nullable="false" />
           <Property Type="DateTime" Name="FECHA" Nullable="false" />
