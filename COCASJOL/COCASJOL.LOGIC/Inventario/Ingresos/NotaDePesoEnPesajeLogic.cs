@@ -80,7 +80,8 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             int NOTAS_SACOS_RETENIDOS,
             string CREADO_POR,
             Dictionary<string, string>[] Detalles,
-            Dictionary<string, string> Variables)
+            decimal NOTA_PORCENTAJEHUMEDADMIN,
+            decimal NOTA_TRANSPORTECOOP)
         {
             try
             {
@@ -98,9 +99,6 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 decimal DESCUENTO_POR_DEFECTO = System.Math.Round((NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_DEFECTO);
 
                 // Descuento por Humedad = ((Peso Bruto) - Tara) * (% Humedad)
-                string strNOTA_PORCENTAJEHUMEDADMIN = Variables["NOTA_PORCENTAJEHUMEDADMIN"];
-                decimal NOTA_PORCENTAJEHUMEDADMIN = Convert.ToDecimal(strNOTA_PORCENTAJEHUMEDADMIN);
-
                 if (NOTAS_PORCENTAJE_HUMEDAD < NOTA_PORCENTAJEHUMEDADMIN)
                     NOTAS_PORCENTAJE_HUMEDAD = 0;
 
@@ -109,9 +107,6 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 decimal DESCUENTO_POR_HUMEDAD = System.Math.Round((NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_HUMEDAD);
 
                 // Descuento por Transporte = ((Peso Bruto) - Tara) * (% Transporte Cooperativa)
-                string strNOTA_TRANSPORTECOOP = Variables["NOTA_TRANSPORTECOOP"];
-                decimal NOTA_TRANSPORTECOOP = Convert.ToDecimal(strNOTA_TRANSPORTECOOP);
-
                 decimal NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA = 0;
                 decimal NOTAS_PORCENTAJE_TRANSPORTE = 0;
                 if (NOTAS_TRANSPORTE_COOPERATIVA == true)
@@ -302,7 +297,8 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             int NOTAS_SACOS_RETENIDOS,
             string MODIFICADO_POR,
             Dictionary<string, string>[] Detalles,
-            Dictionary<string, string> Variables)
+            decimal NOTA_PORCENTAJEHUMEDADMIN,
+            decimal NOTA_TRANSPORTECOOP)
         {
             try
             {
@@ -320,9 +316,6 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 decimal DESCUENTO_POR_DEFECTO = System.Math.Round((NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_DEFECTO);
 
                 // Descuento por Humedad = ((Peso Bruto) - Tara) * (% Humedad)
-                string strNOTA_PORCENTAJEHUMEDADMIN = Variables["NOTA_PORCENTAJEHUMEDADMIN"];
-                decimal NOTA_PORCENTAJEHUMEDADMIN = Convert.ToDecimal(strNOTA_PORCENTAJEHUMEDADMIN);
-
                 if (NOTAS_PORCENTAJE_HUMEDAD < NOTA_PORCENTAJEHUMEDADMIN)
                     NOTAS_PORCENTAJE_HUMEDAD = 0;
 
@@ -331,9 +324,6 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 decimal DESCUENTO_POR_HUMEDAD = System.Math.Round((NOTAS_PESO_SUMA - NOTAS_PESO_TARA) * NOTAS_PORCENTAJE_HUMEDAD);
 
                 // Descuento por Transporte = ((Peso Bruto) - Tara) * (% Transporte Cooperativa)
-                string strNOTA_TRANSPORTECOOP = Variables["NOTA_TRANSPORTECOOP"];
-                decimal NOTA_TRANSPORTECOOP = Convert.ToDecimal(strNOTA_TRANSPORTECOOP);
-
                 decimal NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA = 0;
                 decimal NOTAS_PORCENTAJE_TRANSPORTE = 0;
                 if (NOTAS_TRANSPORTE_COOPERATIVA == true)

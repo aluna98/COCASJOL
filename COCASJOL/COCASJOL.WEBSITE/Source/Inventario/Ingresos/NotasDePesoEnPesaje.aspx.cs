@@ -98,6 +98,9 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 if (!this.ValidarVariables(variables))
                     return;
 
+                decimal NOTA_PORCENTAJEHUMEDADMIN = Convert.ToDecimal(variables["NOTA_PORCENTAJEHUMEDADMIN"]);
+                decimal NOTA_TRANSPORTECOOP = Convert.ToDecimal(variables["NOTA_TRANSPORTECOOP"]);
+
                 string loggedUser = this.LoggedUserHdn.Text;
 
                 var detalles = JSON.Deserialize<Dictionary<string, string>[]>(Detalles);
@@ -121,8 +124,8 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                     Convert.ToInt32(this.AddSacosRetenidosTxt.Text),
                     loggedUser,
                     detalles,
-                    variables);
-
+                    NOTA_PORCENTAJEHUMEDADMIN,
+                    NOTA_TRANSPORTECOOP);
 
                 lock (lockObj)
                 {
@@ -145,12 +148,14 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 if (!this.ValidarVariables(variables))
                     return;
 
+                decimal NOTA_PORCENTAJEHUMEDADMIN = Convert.ToDecimal(variables["NOTA_PORCENTAJEHUMEDADMIN"]);
+                decimal NOTA_TRANSPORTECOOP = Convert.ToDecimal(variables["NOTA_TRANSPORTECOOP"]);
+
                 string loggedUser = this.LoggedUserHdn.Text;
 
                 var detalles = JSON.Deserialize<Dictionary<string, string>[]>(Detalles);
 
                 NotaDePesoEnPesajeLogic notadepesologic = new NotaDePesoEnPesajeLogic();
-
 
                 string pDefecto = this.EditPorcentajeDefectoTxt.Text.Replace("%", "");
                 string pHumedad = this.EditPorcentajeHumedadTxt.Text.Replace("%", "");
@@ -169,7 +174,8 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                     Convert.ToInt32(this.EditSacosRetenidosTxt.Text),
                     loggedUser,
                     detalles,
-                    variables);
+                    NOTA_PORCENTAJEHUMEDADMIN,
+                    NOTA_TRANSPORTECOOP);
             }
             catch (Exception)
             {

@@ -74,7 +74,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                     Convert.ToInt32(this.EditSacosRetenidosTxt.Text),
                     loggedUser,
                     detalles,
-                    variables);
+                    -1, -1);
             }
             catch (Exception)
             {

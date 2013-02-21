@@ -100,7 +100,8 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             int NOTAS_SACOS_RETENIDOS,
             string MODIFICADO_POR,
             Dictionary<string, string>[] Detalles,
-            Dictionary<string, string> Variables)
+            decimal NOTA_PORCENTAJEHUMEDADMIN,
+            decimal NOTA_TRANSPORTECOOP)
         {
             try
             {
