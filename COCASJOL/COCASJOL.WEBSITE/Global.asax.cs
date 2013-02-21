@@ -14,20 +14,7 @@ namespace COCASJOL.WEBSITE
     {
         void Application_Start(object sender, EventArgs e)
         {
-            try
-            {
-                // Code that runs on application startup
-                //NotificacionLogic notificacionLogic = new NotificacionLogic();
-                //Application["NotificacionesList"] = notificacionLogic.GetNotificaciones();
-
-                COCASJOL.LOGIC.Reportes.ConsolidadoDeInventarioDeCafeLogic consolidadoinventariologic = new LOGIC.Reportes.ConsolidadoDeInventarioDeCafeLogic();
-                Application["ReporteConsolidadoDeCafe"] = consolidadoinventariologic.GetReporte();
-            }
-            catch (Exception)
-            {
-                
-                throw;
-            }
+            // Code that runs on application startup
         }
 
         void Application_End(object sender, EventArgs e)

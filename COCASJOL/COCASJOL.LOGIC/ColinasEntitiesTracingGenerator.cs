@@ -592,22 +592,6 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<reporte_movimientos_de_inventario_de_cafe> reporte_movimientos_de_inventario_de_cafe
-        {
-            get
-            {
-                if ((_reporte_movimientos_de_inventario_de_cafe == null))
-                {
-                    _reporte_movimientos_de_inventario_de_cafe = base.CreateObjectSet<reporte_movimientos_de_inventario_de_cafe>("reporte_movimientos_de_inventario_de_cafe");
-                }
-                return _reporte_movimientos_de_inventario_de_cafe;
-            }
-        }
-        private ObjectSet<reporte_movimientos_de_inventario_de_cafe> _reporte_movimientos_de_inventario_de_cafe;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<nota_de_peso> notas_de_peso
         {
             get
@@ -620,6 +604,22 @@ namespace COCASJOL.LOGIC
             }
         }
         private ObjectSet<nota_de_peso> _notas_de_peso;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<reporte_movimientos_de_inventario_de_cafe> reporte_movimientos_de_inventario_de_cafe
+        {
+            get
+            {
+                if ((_reporte_movimientos_de_inventario_de_cafe == null))
+                {
+                    _reporte_movimientos_de_inventario_de_cafe = base.CreateObjectSet<reporte_movimientos_de_inventario_de_cafe>("reporte_movimientos_de_inventario_de_cafe");
+                }
+                return _reporte_movimientos_de_inventario_de_cafe;
+            }
+        }
+        private ObjectSet<reporte_movimientos_de_inventario_de_cafe> _reporte_movimientos_de_inventario_de_cafe;
 
         #endregion
         #region AddTo Methods
@@ -825,19 +825,19 @@ namespace COCASJOL.LOGIC
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the reporte_movimientos_de_inventario_de_cafe EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToreporte_movimientos_de_inventario_de_cafe(reporte_movimientos_de_inventario_de_cafe reporte_movimientos_de_inventario_de_cafe)
-        {
-            base.AddObject("reporte_movimientos_de_inventario_de_cafe", reporte_movimientos_de_inventario_de_cafe);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the notas_de_peso EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddTonotas_de_peso(nota_de_peso nota_de_peso)
         {
             base.AddObject("notas_de_peso", nota_de_peso);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the reporte_movimientos_de_inventario_de_cafe EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToreporte_movimientos_de_inventario_de_cafe(reporte_movimientos_de_inventario_de_cafe reporte_movimientos_de_inventario_de_cafe)
+        {
+            base.AddObject("reporte_movimientos_de_inventario_de_cafe", reporte_movimientos_de_inventario_de_cafe);
         }
 
         #endregion
@@ -1202,11 +1202,19 @@ namespace COCASJOL.LOGIC
         /// </summary>
         /// <param name="sOCIOS_ID">Initial value of the SOCIOS_ID property.</param>
         /// <param name="sOLICITUDES_ID">Initial value of the SOLICITUDES_ID property.</param>
-        public static aval_x_solicitud Createaval_x_solicitud(global::System.String sOCIOS_ID, global::System.Int32 sOLICITUDES_ID)
+        /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
+        /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
+        /// <param name="mODIFICADO_POR">Initial value of the MODIFICADO_POR property.</param>
+        /// <param name="fECHA_MODIFICACION">Initial value of the FECHA_MODIFICACION property.</param>
+        public static aval_x_solicitud Createaval_x_solicitud(global::System.String sOCIOS_ID, global::System.Int32 sOLICITUDES_ID, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION, global::System.String mODIFICADO_POR, global::System.DateTime fECHA_MODIFICACION)
         {
             aval_x_solicitud aval_x_solicitud = new aval_x_solicitud();
             aval_x_solicitud.SOCIOS_ID = sOCIOS_ID;
             aval_x_solicitud.SOLICITUDES_ID = sOLICITUDES_ID;
+            aval_x_solicitud.CREADO_POR = cREADO_POR;
+            aval_x_solicitud.FECHA_CREACION = fECHA_CREACION;
+            aval_x_solicitud.MODIFICADO_POR = mODIFICADO_POR;
+            aval_x_solicitud.FECHA_MODIFICACION = fECHA_MODIFICACION;
             return aval_x_solicitud;
         }
 
@@ -1314,6 +1322,102 @@ namespace COCASJOL.LOGIC
         private global::System.String _AVALES_CALIFICACION;
         partial void OnAVALES_CALIFICACIONChanging(global::System.String value);
         partial void OnAVALES_CALIFICACIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CREADO_POR
+        {
+            get
+            {
+                return _CREADO_POR;
+            }
+            set
+            {
+                OnCREADO_PORChanging(value);
+                ReportPropertyChanging("CREADO_POR");
+                _CREADO_POR = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CREADO_POR");
+                OnCREADO_PORChanged();
+            }
+        }
+        private global::System.String _CREADO_POR;
+        partial void OnCREADO_PORChanging(global::System.String value);
+        partial void OnCREADO_PORChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime FECHA_CREACION
+        {
+            get
+            {
+                return _FECHA_CREACION;
+            }
+            set
+            {
+                OnFECHA_CREACIONChanging(value);
+                ReportPropertyChanging("FECHA_CREACION");
+                _FECHA_CREACION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_CREACION");
+                OnFECHA_CREACIONChanged();
+            }
+        }
+        private global::System.DateTime _FECHA_CREACION;
+        partial void OnFECHA_CREACIONChanging(global::System.DateTime value);
+        partial void OnFECHA_CREACIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String MODIFICADO_POR
+        {
+            get
+            {
+                return _MODIFICADO_POR;
+            }
+            set
+            {
+                OnMODIFICADO_PORChanging(value);
+                ReportPropertyChanging("MODIFICADO_POR");
+                _MODIFICADO_POR = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("MODIFICADO_POR");
+                OnMODIFICADO_PORChanged();
+            }
+        }
+        private global::System.String _MODIFICADO_POR;
+        partial void OnMODIFICADO_PORChanging(global::System.String value);
+        partial void OnMODIFICADO_PORChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime FECHA_MODIFICACION
+        {
+            get
+            {
+                return _FECHA_MODIFICACION;
+            }
+            set
+            {
+                OnFECHA_MODIFICACIONChanging(value);
+                ReportPropertyChanging("FECHA_MODIFICACION");
+                _FECHA_MODIFICACION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_MODIFICACION");
+                OnFECHA_MODIFICACIONChanged();
+            }
+        }
+        private global::System.DateTime _FECHA_MODIFICACION;
+        partial void OnFECHA_MODIFICACIONChanging(global::System.DateTime value);
+        partial void OnFECHA_MODIFICACIONChanged();
 
         #endregion
     
@@ -6532,16 +6636,14 @@ namespace COCASJOL.LOGIC
         /// <param name="fECHA">Initial value of the FECHA property.</param>
         /// <param name="cLASIFICACIONES_CAFE_NOMBRE">Initial value of the CLASIFICACIONES_CAFE_NOMBRE property.</param>
         /// <param name="dOCUMENTO_TIPO">Initial value of the DOCUMENTO_TIPO property.</param>
-        /// <param name="iNVENTARIO_ENTRADAS_CANTIDAD">Initial value of the INVENTARIO_ENTRADAS_CANTIDAD property.</param>
         /// <param name="iNVENTARIO_SALIDAS_SALDO">Initial value of the INVENTARIO_SALIDAS_SALDO property.</param>
-        public static reporte_movimientos_de_inventario_de_cafe Createreporte_movimientos_de_inventario_de_cafe(global::System.Int32 tRANSACCION_NUMERO, global::System.DateTime fECHA, global::System.String cLASIFICACIONES_CAFE_NOMBRE, global::System.String dOCUMENTO_TIPO, global::System.Decimal iNVENTARIO_ENTRADAS_CANTIDAD, global::System.Decimal iNVENTARIO_SALIDAS_SALDO)
+        public static reporte_movimientos_de_inventario_de_cafe Createreporte_movimientos_de_inventario_de_cafe(global::System.Int32 tRANSACCION_NUMERO, global::System.DateTime fECHA, global::System.String cLASIFICACIONES_CAFE_NOMBRE, global::System.String dOCUMENTO_TIPO, global::System.Decimal iNVENTARIO_SALIDAS_SALDO)
         {
             reporte_movimientos_de_inventario_de_cafe reporte_movimientos_de_inventario_de_cafe = new reporte_movimientos_de_inventario_de_cafe();
             reporte_movimientos_de_inventario_de_cafe.TRANSACCION_NUMERO = tRANSACCION_NUMERO;
             reporte_movimientos_de_inventario_de_cafe.FECHA = fECHA;
             reporte_movimientos_de_inventario_de_cafe.CLASIFICACIONES_CAFE_NOMBRE = cLASIFICACIONES_CAFE_NOMBRE;
             reporte_movimientos_de_inventario_de_cafe.DOCUMENTO_TIPO = dOCUMENTO_TIPO;
-            reporte_movimientos_de_inventario_de_cafe.INVENTARIO_ENTRADAS_CANTIDAD = iNVENTARIO_ENTRADAS_CANTIDAD;
             reporte_movimientos_de_inventario_de_cafe.INVENTARIO_SALIDAS_SALDO = iNVENTARIO_SALIDAS_SALDO;
             return reporte_movimientos_de_inventario_de_cafe;
         }
@@ -6795,9 +6897,9 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Decimal INVENTARIO_ENTRADAS_CANTIDAD
+        public Nullable<global::System.Decimal> INVENTARIO_ENTRADAS_CANTIDAD
         {
             get
             {
@@ -6812,8 +6914,8 @@ namespace COCASJOL.LOGIC
                 OnINVENTARIO_ENTRADAS_CANTIDADChanged();
             }
         }
-        private global::System.Decimal _INVENTARIO_ENTRADAS_CANTIDAD;
-        partial void OnINVENTARIO_ENTRADAS_CANTIDADChanging(global::System.Decimal value);
+        private Nullable<global::System.Decimal> _INVENTARIO_ENTRADAS_CANTIDAD;
+        partial void OnINVENTARIO_ENTRADAS_CANTIDADChanging(Nullable<global::System.Decimal> value);
         partial void OnINVENTARIO_ENTRADAS_CANTIDADChanged();
     
         /// <summary>

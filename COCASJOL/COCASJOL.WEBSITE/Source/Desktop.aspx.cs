@@ -36,18 +36,10 @@ namespace COCASJOL.WEBSITE
                 if (!X.IsAjaxRequest)
                 {
                     ConsolidadoDeInventarioDeCafeLogic consolidadoinventariologic = new ConsolidadoDeInventarioDeCafeLogic();
-                    //Application["ReporteConsolidadoDeCafe"] = consolidadoinventariologic.GetReporte();
-
-                    ReporteConsolidadoDeCafe reporteConsolidadoDeCafe = Application["ReporteConsolidadoDeCafe"] as ReporteConsolidadoDeCafe;
+                    ReporteConsolidadoDeCafe reporteConsolidadoDeCafe = consolidadoinventariologic.GetReporte();
                     this.TotalIngresadoTxt.Text = reporteConsolidadoDeCafe.TotalIngresado.ToString();
                     this.TotalCompradoTxt.Text = reporteConsolidadoDeCafe.TotalComprado.ToString();
                     this.TotalDepositoTxt.Text = reporteConsolidadoDeCafe.TotalDeposito.ToString();
-
-                    //if (Application["NotificacionesList"] == null)
-                    //{
-                    //    NotificacionLogic notificacionlogic = new NotificacionLogic();
-                    //    Application["NotificacionesList"] = notificacionlogic.GetNotificaciones();
-                    //}
 
                     this.WebAssemblyTitle.Text = this.WAssemblyTitle;
                     this.WebAssemblyVersion.Text = this.WAssemblyVersion;
@@ -78,7 +70,6 @@ namespace COCASJOL.WEBSITE
 
                 UsuarioLogic usuariologic = new UsuarioLogic();
 
-                //List<privilegio> privs = usuariologic.GetPrivilegiosNoDeUsuario(loggedUser);
                 List<privilegio> privs = usuariologic.GetPrivilegiosDeUsuario(loggedUser);
 
                 XmlDocument doc = new XmlDocument();
@@ -190,7 +181,7 @@ namespace COCASJOL.WEBSITE
             {
                 NotificacionLogic notificacionlogic = new NotificacionLogic();
                 string loggedUser = Session["username"] as string;
-                List<notificacion> NotificacionesList = notificacionlogic.GetNotificaciones();//Application["NotificacionesList"] as List<notificacion>;
+                List<notificacion> NotificacionesList = notificacionlogic.GetNotificaciones();
 
                 if (NotificacionesList == null)
                     return;
@@ -201,8 +192,6 @@ namespace COCASJOL.WEBSITE
 
                 if (query.Count() > 0)
                 {
-                    //NotificacionLogic notificacionlogic = new NotificacionLogic();
-
                     foreach (notificacion notif in query.ToList<notificacion>())
                         this.ShowPinnedNotification(notif.NOTIFICACION_TITLE, notif.NOTIFICACION_MENSAJE, notif.NOTIFICACION_ID);
                 }
@@ -222,7 +211,8 @@ namespace COCASJOL.WEBSITE
             try
             {
                 //actualizar reporte consolidado de inventario de cafe
-                ReporteConsolidadoDeCafe reporteConsolidadoDeCafe = Application["ReporteConsolidadoDeCafe"] as ReporteConsolidadoDeCafe;
+                ConsolidadoDeInventarioDeCafeLogic consolidadoinventariologic = new ConsolidadoDeInventarioDeCafeLogic();
+                ReporteConsolidadoDeCafe reporteConsolidadoDeCafe = consolidadoinventariologic.GetReporte();//Application["ReporteConsolidadoDeCafe"] as ReporteConsolidadoDeCafe;
                 this.TotalIngresadoTxt.Text = reporteConsolidadoDeCafe.TotalIngresado.ToString();
                 this.TotalCompradoTxt.Text = reporteConsolidadoDeCafe.TotalComprado.ToString();
                 this.TotalDepositoTxt.Text = reporteConsolidadoDeCafe.TotalDeposito.ToString();
@@ -242,19 +232,11 @@ namespace COCASJOL.WEBSITE
 
                 if (query.Count() > 0)
                 {
-                    //lock (lockObj)
-                    //{
-                        //NotificacionLogic notificacionlogic = new NotificacionLogic();
-
                         foreach (notificacion notif in query.ToList<notificacion>())
                         {
-                            //this.ShowPinnedNotification(notif.NOTIFICACION_TITLE, notif.NOTIFICACION_MENSAJE);
                             this.ShowPinnedNotification(notif.NOTIFICACION_TITLE, notif.NOTIFICACION_MENSAJE, notif.NOTIFICACION_ID);
                             notificacionlogic.ActualizarNotificacion(notif.NOTIFICACION_ID, EstadosNotificacion.Notificado);
                         }
-
-                        //Application["NotificacionesList"] = notificacionlogic.GetNotificaciones();
-                    //}
                 }
             }
             catch (Exception)

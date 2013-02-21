@@ -14,7 +14,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySetsBEE5786B6D3BCDEAF03165F028F231745BD7C16CD1ACFF800AD09A20664BEBD5))]
+[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets26C79EE13611D441F53262F3BE1336FDA9461F476C91EC6D25036A8D6FE92411))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
@@ -23,18 +23,18 @@ namespace Edm_EntityMappingGeneratedViews
     /// <Summary>
     /// The type contains views for EntitySets and AssociationSets that were generated at design time.
     /// </Summary>
-    public sealed class ViewsForBaseEntitySetsBEE5786B6D3BCDEAF03165F028F231745BD7C16CD1ACFF800AD09A20664BEBD5 : System.Data.Mapping.EntityViewContainer
+    public sealed class ViewsForBaseEntitySets26C79EE13611D441F53262F3BE1336FDA9461F476C91EC6D25036A8D6FE92411 : System.Data.Mapping.EntityViewContainer
     {
         
         /// <Summary>
         /// The constructor stores the views for the extents and also the hash values generated based on the metadata and mapping closure and views.
         /// </Summary>
-        public ViewsForBaseEntitySetsBEE5786B6D3BCDEAF03165F028F231745BD7C16CD1ACFF800AD09A20664BEBD5()
+        public ViewsForBaseEntitySets26C79EE13611D441F53262F3BE1336FDA9461F476C91EC6D25036A8D6FE92411()
         {
             this.EdmEntityContainerName = "colinasEntities";
             this.StoreEntityContainerName = "COLINASMODELStoreContainer";
-            this.HashOverMappingClosure = "0dd69604436c9b54f557ad95f615aca58c89204bdf45b71260dab0ba651761a9";
-            this.HashOverAllExtentViews = "3aae9c57c67dd07cdd68dad662cb585499cec60d1b64ace4a0b506b928f72f53";
+            this.HashOverMappingClosure = "b3381809183485d1963f755ccc78693052b7e687851e54509ab31e773f8ab4d9";
+            this.HashOverAllExtentViews = "f6d3e2e884e5c5ab9394fa4399b154f6b9e4b6d6840771cf9f2cf01d03b1f5f8";
             this.ViewCount = 58;
         }
         
@@ -741,13 +741,17 @@ namespace Edm_EntityMappingGeneratedViews
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("COLINASMODELStoreContainer.avales_x_solicitud", @"
     SELECT VALUE -- Constructing avales_x_solicitud
-        [COLINASMODEL.Store.avales_x_solicitud](T1.[avales_x_solicitud.SOCIOS_ID], T1.[avales_x_solicitud.SOLICITUDES_ID], T1.[avales_x_solicitud.AVALES_ANTIGUEDAD], T1.[avales_x_solicitud.AVALES_CALIFICACION])
+        [COLINASMODEL.Store.avales_x_solicitud](T1.[avales_x_solicitud.SOCIOS_ID], T1.[avales_x_solicitud.SOLICITUDES_ID], T1.[avales_x_solicitud.AVALES_ANTIGUEDAD], T1.[avales_x_solicitud.AVALES_CALIFICACION], T1.[avales_x_solicitud.CREADO_POR], T1.[avales_x_solicitud.FECHA_CREACION], T1.[avales_x_solicitud.MODIFICADO_POR], T1.[avales_x_solicitud.FECHA_MODIFICACION])
     FROM (
         SELECT 
             T.SOCIOS_ID AS [avales_x_solicitud.SOCIOS_ID], 
             T.SOLICITUDES_ID AS [avales_x_solicitud.SOLICITUDES_ID], 
             T.AVALES_ANTIGUEDAD AS [avales_x_solicitud.AVALES_ANTIGUEDAD], 
             T.AVALES_CALIFICACION AS [avales_x_solicitud.AVALES_CALIFICACION], 
+            T.CREADO_POR AS [avales_x_solicitud.CREADO_POR], 
+            T.FECHA_CREACION AS [avales_x_solicitud.FECHA_CREACION], 
+            T.MODIFICADO_POR AS [avales_x_solicitud.MODIFICADO_POR], 
+            T.FECHA_MODIFICACION AS [avales_x_solicitud.FECHA_MODIFICACION], 
             True AS _from0
         FROM colinasEntities.avales_x_solicitud AS T
     ) AS T1");
@@ -1223,13 +1227,17 @@ namespace Edm_EntityMappingGeneratedViews
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("colinasEntities.avales_x_solicitud", @"
     SELECT VALUE -- Constructing avales_x_solicitud
-        [COLINASMODEL.aval_x_solicitud](T1.[aval_x_solicitud.SOCIOS_ID], T1.[aval_x_solicitud.SOLICITUDES_ID], T1.[aval_x_solicitud.AVALES_ANTIGUEDAD], T1.[aval_x_solicitud.AVALES_CALIFICACION])
+        [COLINASMODEL.aval_x_solicitud](T1.[aval_x_solicitud.SOCIOS_ID], T1.[aval_x_solicitud.SOLICITUDES_ID], T1.[aval_x_solicitud.AVALES_ANTIGUEDAD], T1.[aval_x_solicitud.AVALES_CALIFICACION], T1.[aval_x_solicitud.CREADO_POR], T1.[aval_x_solicitud.FECHA_CREACION], T1.[aval_x_solicitud.MODIFICADO_POR], T1.[aval_x_solicitud.FECHA_MODIFICACION])
     FROM (
         SELECT 
             T.SOCIOS_ID AS [aval_x_solicitud.SOCIOS_ID], 
             T.SOLICITUDES_ID AS [aval_x_solicitud.SOLICITUDES_ID], 
             T.AVALES_ANTIGUEDAD AS [aval_x_solicitud.AVALES_ANTIGUEDAD], 
             T.AVALES_CALIFICACION AS [aval_x_solicitud.AVALES_CALIFICACION], 
+            T.CREADO_POR AS [aval_x_solicitud.CREADO_POR], 
+            T.FECHA_CREACION AS [aval_x_solicitud.FECHA_CREACION], 
+            T.MODIFICADO_POR AS [aval_x_solicitud.MODIFICADO_POR], 
+            T.FECHA_MODIFICACION AS [aval_x_solicitud.FECHA_MODIFICACION], 
             True AS _from0
         FROM COLINASMODELStoreContainer.avales_x_solicitud AS T
     ) AS T1");
