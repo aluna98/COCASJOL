@@ -34,39 +34,56 @@
                 UpdateMethod="ActualizarEstadoNotaDePeso"
                 DeleteMethod="EliminarEstadoNotaDePeso" onselecting="EstadosNotaDS_Selecting" >
                 <SelectParameters>
-                    <asp:ControlParameter Name="ESTADOS_NOTA_ID"           Type="Int32"    ControlID="f_ESTADOS_NOTA_ID"          PropertyName="Text" />
-                    <asp:ControlParameter Name="ESTADOS_NOTA_PADRE"        Type="Int32"    ControlID="f_ESTADOS_NOTA_PADRE"       PropertyName="Text" />
-                    <asp:ControlParameter Name="ESTADOS_NOTA_PADRE_NOMBRE" Type="String"   ControlID="nullHdn"                    PropertyName="Text" />
-                    <asp:ControlParameter Name="ESTADOS_NOTA_LLAVE"        Type="String"   ControlID="f_ESTADOS_NOTA_LLAVE"       PropertyName="Text" />
-                    <asp:ControlParameter Name="ESTADOS_NOTA_NOMBRE"       Type="String"   ControlID="f_ESTADOS_NOTA_NOMBRE"      PropertyName="Text" />
-                    <asp:ControlParameter Name="ESTADOS_NOTA_DESCRIPCION"  Type="String"   ControlID="f_ESTADOS_NOTA_DESCRIPCION" PropertyName="Text" />
-                    <asp:ControlParameter Name="CREADO_POR"                Type="String"   ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_CREACION"            Type="DateTime" ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="MODIFICADO_POR"            Type="String"   ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_MODIFICACION"        Type="DateTime" ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="ESTADOS_NOTA_ID"               Type="Int32"    ControlID="f_ESTADOS_NOTA_ID"          PropertyName="Text" />
+                    <asp:ControlParameter Name="ESTADOS_NOTA_SIGUIENTE"        Type="Int32"    ControlID="f_ESTADOS_NOTA_SIGUIENTE"   PropertyName="Text" />
+                    <asp:ControlParameter Name="ESTADOS_NOTA_SIGUIENTE_NOMBRE" Type="String"   ControlID="nullHdn"                    PropertyName="Text" />
+                    <asp:ControlParameter Name="ESTADOS_NOTA_LLAVE"            Type="String"   ControlID="f_ESTADOS_NOTA_LLAVE"       PropertyName="Text" />
+                    <asp:ControlParameter Name="ESTADOS_NOTA_NOMBRE"           Type="String"   ControlID="f_ESTADOS_NOTA_NOMBRE"      PropertyName="Text" />
+                    <asp:ControlParameter Name="ESTADOS_NOTA_DESCRIPCION"      Type="String"   ControlID="f_ESTADOS_NOTA_DESCRIPCION" PropertyName="Text" />
+                    <asp:ControlParameter Name="CREADO_POR"                    Type="String"   ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_CREACION"                Type="DateTime" ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="MODIFICADO_POR"                Type="String"   ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_MODIFICACION"            Type="DateTime" ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
                 </SelectParameters>
                 <UpdateParameters>
-                    <asp:Parameter Name="ESTADOS_NOTA_ID"           Type="Int32" />
-                    <asp:Parameter Name="ESTADOS_NOTA_PADRE"        Type="Int32" />
-                    <asp:Parameter Name="ESTADOS_NOTA_PADRE_NOMBRE" Type="String" />
-                    <asp:Parameter Name="ESTADOS_NOTA_LLAVE"        Type="String" />
-                    <asp:Parameter Name="ESTADOS_NOTA_NOMBRE"       Type="String" />
-                    <asp:Parameter Name="ESTADOS_NOTA_DESCRIPCION"  Type="String" />
-                    <asp:Parameter Name="CREADO_POR"                Type="String" />
-                    <asp:Parameter Name="FECHA_CREACION"            Type="DateTime" />
-                    <asp:Parameter Name="MODIFICADO_POR"            Type="String" />
-                    <asp:Parameter Name="FECHA_MODIFICACION"        Type="DateTime" />
+                    <asp:Parameter Name="ESTADOS_NOTA_ID"               Type="Int32" />
+                    <asp:Parameter Name="ESTADOS_NOTA_SIGUIENTE"        Type="Int32" />
+                    <asp:Parameter Name="ESTADOS_NOTA_SIGUIENTE_NOMBRE" Type="String" />
+                    <asp:Parameter Name="ESTADOS_NOTA_LLAVE"            Type="String" />
+                    <asp:Parameter Name="ESTADOS_NOTA_NOMBRE"           Type="String" />
+                    <asp:Parameter Name="ESTADOS_NOTA_DESCRIPCION"      Type="String" />
+                    <asp:Parameter Name="CREADO_POR"                    Type="String" />
+                    <asp:Parameter Name="FECHA_CREACION"                Type="DateTime" />
+                    <asp:Parameter Name="MODIFICADO_POR"                Type="String" />
+                    <asp:Parameter Name="FECHA_MODIFICACION"            Type="DateTime" />
                 </UpdateParameters>
         </asp:ObjectDataSource>
 
-        <asp:ObjectDataSource ID="EstadosNotaPadreDS" runat="server"
+        <asp:ObjectDataSource ID="EstadosNotaFiltrosDS" runat="server"
                 TypeName="COCASJOL.LOGIC.Inventario.Ingresos.EstadoNotaDePesoLogic"
                 SelectMethod="GetEstadosNotaDePeso" >
         </asp:ObjectDataSource>
 
-        <ext:Store ID="EstadosNotaPadreSt" runat="server" DataSourceID="EstadosNotaPadreDS">
+        <ext:Store ID="EstadosNotaFiltrosSt" runat="server" DataSourceID="EstadosNotaFiltrosDS">
             <Reader>
-                <ext:JsonReader>
+                <ext:JsonReader IDProperty="ESTADOS_NOTA_ID">
+                    <Fields>
+                        <ext:RecordField Name="ESTADOS_NOTA_ID" />
+                        <ext:RecordField Name="ESTADOS_NOTA_NOMBRE" />
+                        <ext:RecordField Name="ESTADOS_NOTA_LLAVE" />
+                    </Fields>
+                </ext:JsonReader>
+            </Reader>
+        </ext:Store>
+
+        <%--<asp:ObjectDataSource ID="EstadosNotaPadreDS" runat="server"
+                TypeName="COCASJOL.LOGIC.Inventario.Ingresos.EstadoNotaDePesoLogic"
+                SelectMethod="GetEstadosNotaDePesoSinAsignar" >
+        </asp:ObjectDataSource>--%>
+
+        <ext:Store ID="EstadosNotaPadreSt" runat="server" OnRefreshData="EstadosNotaPadreSt_Refresh">
+            <Reader>
+                <ext:JsonReader IDProperty="ESTADOS_NOTA_ID">
                     <Fields>
                         <ext:RecordField Name="ESTADOS_NOTA_ID" />
                         <ext:RecordField Name="ESTADOS_NOTA_NOMBRE" />
@@ -94,8 +111,8 @@
                                         <ext:JsonReader IDProperty="ESTADOS_NOTA_ID">
                                             <Fields>
                                                 <ext:RecordField Name="ESTADOS_NOTA_ID"           />
-                                                <ext:RecordField Name="ESTADOS_NOTA_PADRE"        />
-                                                <ext:RecordField Name="ESTADOS_NOTA_PADRE_NOMBRE" ServerMapping="estados_nota_de_peso_padre.ESTADOS_NOTA_LLAVE" />
+                                                <ext:RecordField Name="ESTADOS_NOTA_SIGUIENTE"        />
+                                                <ext:RecordField Name="ESTADOS_NOTA_SIGUIENTE_NOMBRE" ServerMapping="estados_nota_de_peso_siguiente.ESTADOS_NOTA_LLAVE" />
                                                 <ext:RecordField Name="ESTADOS_NOTA_LLAVE"        />
                                                 <ext:RecordField Name="ESTADOS_NOTA_NOMBRE"       />
                                                 <ext:RecordField Name="ESTADOS_NOTA_DESCRIPCION"  />
@@ -114,11 +131,10 @@
                             <ColumnModel>
                                 <Columns>
                                     <ext:Column DataIndex="ESTADOS_NOTA_ID"           Header="Id" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="ESTADOS_NOTA_PADRE_NOMBRE" Header="Estado Padre" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="ESTADOS_NOTA_LLAVE"        Header="Llave" Sortable="true" Width="150"></ext:Column>
                                     <ext:Column DataIndex="ESTADOS_NOTA_NOMBRE"       Header="Nombre" Sortable="true" Width="150"></ext:Column>
                                     <ext:Column DataIndex="ESTADOS_NOTA_DESCRIPCION"  Header="Descripción" Sortable="true"></ext:Column>
-
+                                    <ext:Column DataIndex="ESTADOS_NOTA_SIGUIENTE_NOMBRE" Header="Estado Siguiente" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="ESTADOS_NOTA_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
                                         <Renderer Handler="return '';" />
                                     </ext:Column>
@@ -160,30 +176,6 @@
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:ComboBox
-                                                            ID="f_ESTADOS_NOTA_PADRE" 
-                                                            runat="server"
-                                                            Icon="Find"
-                                                            AllowBlank="true"
-                                                            ForceSelection="true"
-                                                            StoreID="EstadosNotaPadreSt"
-                                                            ValueField="ESTADOS_NOTA_ID" 
-                                                            DisplayField="ESTADOS_NOTA_LLAVE" 
-                                                            Mode="Local"
-                                                            TypeAhead="true">
-                                                            <Triggers>
-                                                                <ext:FieldTrigger Icon="Clear"/>
-                                                            </Triggers>
-                                                            <Listeners>
-                                                                <Select Handler="PageX.reloadGridStore();" />
-                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
-                                                                <TriggerClick Handler="this.clearValue();" />
-                                                            </Listeners>
-                                                        </ext:ComboBox>
-                                                    </Component>
-                                                </ext:HeaderColumn>
-                                                <ext:HeaderColumn Cls="x-small-editor">
-                                                    <Component>
                                                         <ext:TextField ID="f_ESTADOS_NOTA_LLAVE" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="25">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
@@ -207,6 +199,30 @@
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
                                                         </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:ComboBox
+                                                            ID="f_ESTADOS_NOTA_SIGUIENTE" 
+                                                            runat="server"
+                                                            Icon="Find"
+                                                            AllowBlank="true"
+                                                            ForceSelection="true"
+                                                            StoreID="EstadosNotaFiltrosSt"
+                                                            ValueField="ESTADOS_NOTA_ID" 
+                                                            DisplayField="ESTADOS_NOTA_LLAVE" 
+                                                            Mode="Local"
+                                                            TypeAhead="true">
+                                                            <Triggers>
+                                                                <ext:FieldTrigger Icon="Clear"/>
+                                                            </Triggers>
+                                                            <Listeners>
+                                                                <Select Handler="PageX.reloadGridStore();" />
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                                <TriggerClick Handler="this.clearValue();" />
+                                                            </Listeners>
+                                                        </ext:ComboBox>
                                                     </Component>
                                                 </ext:HeaderColumn>
                                                                
@@ -268,7 +284,16 @@
                                 <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                     <Items>
                                         <ext:NumberField runat="server" ID="EditIdTxt"            DataIndex="ESTADOS_NOTA_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Estado" AllowBlank="false" ReadOnly="true" Hidden="true"></ext:NumberField>
-                                        <ext:ComboBox runat="server"    ID="EditPadreIdCmb"       DataIndex="ESTADOS_NOTA_PADRE"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Estado Padre" MsgTarget="Side"
+                                        <ext:TextField runat="server"   ID="EditLlaveTxt"         DataIndex="ESTADOS_NOTA_LLAVE"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Llave" ReadOnly="true">
+                                            <ToolTips>
+                                                <ext:ToolTip ID="ToolTip1" runat="server" Html="La llave de estado es de solo lectura." Title="Llave de Estado" Width="200" TrackMouse="true" />
+                                            </ToolTips>
+                                        </ext:TextField>
+                                        <ext:TextField runat="server"   ID="EditNombreTxt"        DataIndex="ESTADOS_NOTA_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" IsRemoteValidation="true">
+                                            <RemoteValidation OnValidation="EditNombreTxt_Validate" ValidationEvent="blur" />
+                                        </ext:TextField>
+                                        <ext:TextField runat="server"   ID="EditDescripcionTxt"   DataIndex="ESTADOS_NOTA_DESCRIPCION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100"></ext:TextField>
+                                        <ext:ComboBox runat="server"    ID="EditPadreIdCmb"       DataIndex="ESTADOS_NOTA_SIGUIENTE"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Estado Siguiente" MsgTarget="Side"
                                             StoreID="EstadosNotaPadreSt"
                                             ValueField="ESTADOS_NOTA_ID" 
                                             DisplayField="ESTADOS_NOTA_LLAVE"
@@ -284,15 +309,6 @@
                                                 <Select Handler="this.triggers[0].show();" />
                                             </Listeners>
                                         </ext:ComboBox>
-                                        <ext:TextField runat="server"   ID="EditLlaveTxt"         DataIndex="ESTADOS_NOTA_LLAVE"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Llave" ReadOnly="true">
-                                            <ToolTips>
-                                                <ext:ToolTip ID="ToolTip1" runat="server" Html="La llave de estado es de solo lectura." Title="Llave de Estado" Width="200" TrackMouse="true" />
-                                            </ToolTips>
-                                        </ext:TextField>
-                                        <ext:TextField runat="server"   ID="EditNombreTxt"        DataIndex="ESTADOS_NOTA_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" IsRemoteValidation="true">
-                                            <RemoteValidation OnValidation="EditNombreTxt_Validate" ValidationEvent="blur" />
-                                        </ext:TextField>
-                                        <ext:TextField runat="server"   ID="EditDescripcionTxt"   DataIndex="ESTADOS_NOTA_DESCRIPCION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100"></ext:TextField>
                                         <ext:TextField runat="server"   ID="EditCreatedByTxt"     DataIndex="CREADO_POR"               LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
                                         <ext:TextField runat="server"   ID="EditCreationDateTxt"  DataIndex="FECHA_CREACION"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
                                         <ext:TextField runat="server"   ID="EditModifiedByTxt"    DataIndex="MODIFICADO_POR"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>

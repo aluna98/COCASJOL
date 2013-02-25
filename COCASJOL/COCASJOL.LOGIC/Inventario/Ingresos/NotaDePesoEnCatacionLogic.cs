@@ -49,7 +49,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 {
                     EstadoNotaDePesoLogic estadoslogic = new EstadoNotaDePesoLogic();
 
-                    var queryPadre = from enp in db.estados_nota_de_peso.Include("estados_nota_de_peso_hijos")
+                    var queryPadre = from enp in db.estados_nota_de_peso
                                      where enp.ESTADOS_NOTA_ID == this.ESTADOS_NOTA_ID
                                      select enp;
 

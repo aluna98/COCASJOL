@@ -158,19 +158,17 @@ var PageX = {
 
         Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
             if (btn == 'yes') {
-                Ext.net.DirectMethods.EditNotaDePeso_Click(
-                            { success: function () {
-                                Ext.Msg.alert('Editar Nota de Peso', 'Nota de peso actualizada exitosamente.', function () {
-                                    EditWindow.hide();
-                                    GridStore.reload();
-                                });
-
-                            }
-                            },
-                            { failure: function () {
-                                Ext.Msg.alert('Editar Nota de Peso', 'Error al actualizar la nota de peso.');
-                            }
-                            });
+                Ext.net.DirectMethods.EditNotaDePeso_Click('',
+                { success: function () {
+                    GridStore.reload();
+                    Ext.Msg.alert('Editar Nota de Peso', 'Nota de peso actualizada exitosamente.');
+                    EditWindow.hide();
+                }
+                },
+                { failure: function () {
+                    Ext.Msg.alert('Editar Nota de Peso', 'Error al actualizar la nota de peso.');
+                }
+                });
             }
         });
     },
@@ -192,7 +190,7 @@ var PageX = {
                     { failure: function () {
                         Ext.Msg.alert('Editar Nota de Peso', 'Error al actualizar la nota de peso.');
                     }
-                });
+                    });
             }
         });
     },
@@ -262,6 +260,7 @@ var PageX = {
                     EditRegistrarBtn.setVisible(false);
                     EditGuardarBtn.setVisible(false);
                     EditEstadoNotaCmb.readOnly = true;
+                    EditEstadoNotaCmb.triggers[0].hide();
                 }
             }
         } else {

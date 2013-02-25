@@ -617,6 +617,11 @@
                         </ext:Panel>
                     </Items>
                     <Buttons>
+                        <ext:Button ID="EditRegistrarBtn" runat="server" Text="Registrar" Icon="DiskBlack" FormBind="true" Hidden="true" >
+                            <Listeners>
+                                <Click Handler="#{EditCreatedByTxt}.setValue(#{LoggedUserHdn}.getValue()); PageX.register();" />
+                            </Listeners>
+                        </ext:Button>
                         <ext:Button ID="EditPreviousBtn" runat="server" Text="Anterior" Icon="PreviousGreen">
                             <Listeners>
                                 <Click Handler="PageX.previous();" />
@@ -630,11 +635,6 @@
                         <ext:Button ID="EditGuardarBtn" runat="server" Text="Guardar" Icon="Disk" FormBind="true" >
                             <Listeners>
                                 <Click Handler="#{EditCreatedByTxt}.setValue(#{LoggedUserHdn}.getValue()); PageX.update();" />
-                            </Listeners>
-                        </ext:Button>
-                        <ext:Button ID="EditRegistrarBtn" runat="server" Text="Registrar" Icon="DiskBlack" FormBind="true" Hidden="true" >
-                            <Listeners>
-                                <Click Handler="#{EditCreatedByTxt}.setValue(#{LoggedUserHdn}.getValue()); PageX.register();" />
                             </Listeners>
                         </ext:Button>
                     </Buttons>

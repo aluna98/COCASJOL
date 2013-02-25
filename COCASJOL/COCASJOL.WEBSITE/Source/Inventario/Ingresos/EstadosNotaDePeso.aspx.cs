@@ -39,6 +39,24 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 e.Cancel = true;
         }
 
+        protected void EstadosNotaPadreSt_Refresh(object sender, StoreRefreshDataEventArgs e)
+        {
+            try
+            {
+                EstadoNotaDePesoLogic estadologic = new EstadoNotaDePesoLogic();
+
+                int siguiente = this.EditPadreIdCmb.Text == "" ? 0 : Convert.ToInt32(this.EditPadreIdCmb.Text);
+
+                this.EstadosNotaPadreSt.DataSource = estadologic.GetEstadosNotaDePesoSinAsignar(siguiente);
+                this.EstadosNotaPadreSt.DataBind();
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
         protected void EditNombreTxt_Validate(object sender, RemoteValidationEventArgs e)
         {
             try

@@ -14,7 +14,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets26C79EE13611D441F53262F3BE1336FDA9461F476C91EC6D25036A8D6FE92411))]
+[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySetsA419C4AC7E0B008027F90CA52BC6353F52F7BC689DAF2F39552C30B6E83FF57A))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
@@ -23,18 +23,18 @@ namespace Edm_EntityMappingGeneratedViews
     /// <Summary>
     /// The type contains views for EntitySets and AssociationSets that were generated at design time.
     /// </Summary>
-    public sealed class ViewsForBaseEntitySets26C79EE13611D441F53262F3BE1336FDA9461F476C91EC6D25036A8D6FE92411 : System.Data.Mapping.EntityViewContainer
+    public sealed class ViewsForBaseEntitySetsA419C4AC7E0B008027F90CA52BC6353F52F7BC689DAF2F39552C30B6E83FF57A : System.Data.Mapping.EntityViewContainer
     {
         
         /// <Summary>
         /// The constructor stores the views for the extents and also the hash values generated based on the metadata and mapping closure and views.
         /// </Summary>
-        public ViewsForBaseEntitySets26C79EE13611D441F53262F3BE1336FDA9461F476C91EC6D25036A8D6FE92411()
+        public ViewsForBaseEntitySetsA419C4AC7E0B008027F90CA52BC6353F52F7BC689DAF2F39552C30B6E83FF57A()
         {
             this.EdmEntityContainerName = "colinasEntities";
             this.StoreEntityContainerName = "COLINASMODELStoreContainer";
-            this.HashOverMappingClosure = "b3381809183485d1963f755ccc78693052b7e687851e54509ab31e773f8ab4d9";
-            this.HashOverAllExtentViews = "f6d3e2e884e5c5ab9394fa4399b154f6b9e4b6d6840771cf9f2cf01d03b1f5f8";
+            this.HashOverMappingClosure = "ae008bbf8b2e0c5a35322b55e08b5cfdf498eedcf3c54595aef82412aed20851";
+            this.HashOverAllExtentViews = "adf9b454a4760d99358766f407a611fb47bf49478e8ac851dfabb2471c6ef15d";
             this.ViewCount = 58;
         }
         
@@ -518,33 +518,9 @@ namespace Edm_EntityMappingGeneratedViews
         }
         
         /// <Summary>
-        /// return view for COLINASMODELStoreContainer.estados_nota_de_peso
-        /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView10()
-        {
-            return new System.Collections.Generic.KeyValuePair<string, string>("COLINASMODELStoreContainer.estados_nota_de_peso", @"
-    SELECT VALUE -- Constructing estados_nota_de_peso
-        [COLINASMODEL.Store.estados_nota_de_peso](T1.[estados_nota_de_peso.ESTADOS_NOTA_ID], T1.[estados_nota_de_peso.ESTADOS_NOTA_PADRE], T1.[estados_nota_de_peso.ESTADOS_NOTA_LLAVE], T1.[estados_nota_de_peso.ESTADOS_NOTA_NOMBRE], T1.[estados_nota_de_peso.ESTADOS_NOTA_DESCRIPCION], T1.[estados_nota_de_peso.CREADO_POR], T1.[estados_nota_de_peso.FECHA_CREACION], T1.[estados_nota_de_peso.MODIFICADO_POR], T1.[estados_nota_de_peso.FECHA_MODIFICACION])
-    FROM (
-        SELECT 
-            T.ESTADOS_NOTA_ID AS [estados_nota_de_peso.ESTADOS_NOTA_ID], 
-            T.ESTADOS_NOTA_PADRE AS [estados_nota_de_peso.ESTADOS_NOTA_PADRE], 
-            T.ESTADOS_NOTA_LLAVE AS [estados_nota_de_peso.ESTADOS_NOTA_LLAVE], 
-            T.ESTADOS_NOTA_NOMBRE AS [estados_nota_de_peso.ESTADOS_NOTA_NOMBRE], 
-            T.ESTADOS_NOTA_DESCRIPCION AS [estados_nota_de_peso.ESTADOS_NOTA_DESCRIPCION], 
-            T.CREADO_POR AS [estados_nota_de_peso.CREADO_POR], 
-            T.FECHA_CREACION AS [estados_nota_de_peso.FECHA_CREACION], 
-            T.MODIFICADO_POR AS [estados_nota_de_peso.MODIFICADO_POR], 
-            T.FECHA_MODIFICACION AS [estados_nota_de_peso.FECHA_MODIFICACION], 
-            True AS _from0
-        FROM colinasEntities.estados_nota_de_peso AS T
-    ) AS T1");
-        }
-        
-        /// <Summary>
         /// return view for COLINASMODELStoreContainer.solicitudes_prestamos
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView11()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView10()
         {
             System.Text.StringBuilder viewString = new System.Text.StringBuilder(3631);
             viewString.Append("\r\n    SELECT VALUE -- Constructing solicitudes_prestamos\r\n        [COLINASMODEL.");
@@ -599,7 +575,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for COLINASMODELStoreContainer.aportaciones_socio
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView12()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView11()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("COLINASMODELStoreContainer.aportaciones_socio", @"
     SELECT VALUE -- Constructing aportaciones_socio
@@ -620,7 +596,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for COLINASMODELStoreContainer.clasificaciones_cafe
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView13()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView12()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("COLINASMODELStoreContainer.clasificaciones_cafe", @"
     SELECT VALUE -- Constructing clasificaciones_cafe
@@ -643,7 +619,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for COLINASMODELStoreContainer.liquidaciones
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView14()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView13()
         {
             System.Text.StringBuilder viewString = new System.Text.StringBuilder(4877);
             viewString.Append("\r\n    SELECT VALUE -- Constructing liquidaciones\r\n        [COLINASMODEL.Store.li");
@@ -713,7 +689,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for COLINASMODELStoreContainer.inventario_cafe_de_socio
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView15()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView14()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("COLINASMODELStoreContainer.inventario_cafe_de_socio", @"
     SELECT VALUE -- Constructing inventario_cafe_de_socio
@@ -737,7 +713,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for COLINASMODELStoreContainer.avales_x_solicitud
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView16()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView15()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("COLINASMODELStoreContainer.avales_x_solicitud", @"
     SELECT VALUE -- Constructing avales_x_solicitud
@@ -760,7 +736,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for COLINASMODELStoreContainer.notas_de_peso
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView17()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView16()
         {
             System.Text.StringBuilder viewString = new System.Text.StringBuilder(2921);
             viewString.Append("\r\n    SELECT VALUE -- Constructing notas_de_peso\r\n        [COLINASMODEL.Store.no");
@@ -801,6 +777,30 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("s_de_peso.FECHA_MODIFICACION], \r\n            True AS _from0\r\n        FROM colina");
             viewString.Append("sEntities.notas_de_peso AS T\r\n    ) AS T1");
             return new System.Collections.Generic.KeyValuePair<string, string>("COLINASMODELStoreContainer.notas_de_peso", viewString.ToString());
+        }
+        
+        /// <Summary>
+        /// return view for COLINASMODELStoreContainer.estados_nota_de_peso
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView17()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("COLINASMODELStoreContainer.estados_nota_de_peso", @"
+    SELECT VALUE -- Constructing estados_nota_de_peso
+        [COLINASMODEL.Store.estados_nota_de_peso](T1.[estados_nota_de_peso.ESTADOS_NOTA_ID], T1.[estados_nota_de_peso.ESTADOS_NOTA_SIGUIENTE], T1.[estados_nota_de_peso.ESTADOS_NOTA_LLAVE], T1.[estados_nota_de_peso.ESTADOS_NOTA_NOMBRE], T1.[estados_nota_de_peso.ESTADOS_NOTA_DESCRIPCION], T1.[estados_nota_de_peso.CREADO_POR], T1.[estados_nota_de_peso.FECHA_CREACION], T1.[estados_nota_de_peso.MODIFICADO_POR], T1.[estados_nota_de_peso.FECHA_MODIFICACION])
+    FROM (
+        SELECT 
+            T.ESTADOS_NOTA_ID AS [estados_nota_de_peso.ESTADOS_NOTA_ID], 
+            T.ESTADOS_NOTA_SIGUIENTE AS [estados_nota_de_peso.ESTADOS_NOTA_SIGUIENTE], 
+            T.ESTADOS_NOTA_LLAVE AS [estados_nota_de_peso.ESTADOS_NOTA_LLAVE], 
+            T.ESTADOS_NOTA_NOMBRE AS [estados_nota_de_peso.ESTADOS_NOTA_NOMBRE], 
+            T.ESTADOS_NOTA_DESCRIPCION AS [estados_nota_de_peso.ESTADOS_NOTA_DESCRIPCION], 
+            T.CREADO_POR AS [estados_nota_de_peso.CREADO_POR], 
+            T.FECHA_CREACION AS [estados_nota_de_peso.FECHA_CREACION], 
+            T.MODIFICADO_POR AS [estados_nota_de_peso.MODIFICADO_POR], 
+            T.FECHA_MODIFICACION AS [estados_nota_de_peso.FECHA_MODIFICACION], 
+            True AS _from0
+        FROM colinasEntities.estados_nota_de_peso AS T
+    ) AS T1");
         }
         
         /// <Summary>
@@ -1007,33 +1007,9 @@ namespace Edm_EntityMappingGeneratedViews
         }
         
         /// <Summary>
-        /// return view for colinasEntities.estados_nota_de_peso
-        /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView26()
-        {
-            return new System.Collections.Generic.KeyValuePair<string, string>("colinasEntities.estados_nota_de_peso", @"
-    SELECT VALUE -- Constructing estados_nota_de_peso
-        [COLINASMODEL.estado_nota_de_peso](T1.[estado_nota_de_peso.ESTADOS_NOTA_ID], T1.[estado_nota_de_peso.ESTADOS_NOTA_PADRE], T1.[estado_nota_de_peso.ESTADOS_NOTA_LLAVE], T1.[estado_nota_de_peso.ESTADOS_NOTA_NOMBRE], T1.[estado_nota_de_peso.ESTADOS_NOTA_DESCRIPCION], T1.[estado_nota_de_peso.CREADO_POR], T1.[estado_nota_de_peso.FECHA_CREACION], T1.[estado_nota_de_peso.MODIFICADO_POR], T1.[estado_nota_de_peso.FECHA_MODIFICACION])
-    FROM (
-        SELECT 
-            T.ESTADOS_NOTA_ID AS [estado_nota_de_peso.ESTADOS_NOTA_ID], 
-            T.ESTADOS_NOTA_PADRE AS [estado_nota_de_peso.ESTADOS_NOTA_PADRE], 
-            T.ESTADOS_NOTA_LLAVE AS [estado_nota_de_peso.ESTADOS_NOTA_LLAVE], 
-            T.ESTADOS_NOTA_NOMBRE AS [estado_nota_de_peso.ESTADOS_NOTA_NOMBRE], 
-            T.ESTADOS_NOTA_DESCRIPCION AS [estado_nota_de_peso.ESTADOS_NOTA_DESCRIPCION], 
-            T.CREADO_POR AS [estado_nota_de_peso.CREADO_POR], 
-            T.FECHA_CREACION AS [estado_nota_de_peso.FECHA_CREACION], 
-            T.MODIFICADO_POR AS [estado_nota_de_peso.MODIFICADO_POR], 
-            T.FECHA_MODIFICACION AS [estado_nota_de_peso.FECHA_MODIFICACION], 
-            True AS _from0
-        FROM COLINASMODELStoreContainer.estados_nota_de_peso AS T
-    ) AS T1");
-        }
-        
-        /// <Summary>
         /// return view for colinasEntities.solicitudes_prestamos
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView27()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView26()
         {
             System.Text.StringBuilder viewString = new System.Text.StringBuilder(3471);
             viewString.Append("\r\n    SELECT VALUE -- Constructing solicitudes_prestamos\r\n        [COLINASMODEL.");
@@ -1086,7 +1062,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for colinasEntities.aportaciones_socio
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView28()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView27()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("colinasEntities.aportaciones_socio", @"
     SELECT VALUE -- Constructing aportaciones_socio
@@ -1107,7 +1083,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for colinasEntities.clasificaciones_cafe
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView29()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView28()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("colinasEntities.clasificaciones_cafe", @"
     SELECT VALUE -- Constructing clasificaciones_cafe
@@ -1130,7 +1106,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for colinasEntities.liquidaciones
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView30()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView29()
         {
             System.Text.StringBuilder viewString = new System.Text.StringBuilder(4752);
             viewString.Append("\r\n    SELECT VALUE -- Constructing liquidaciones\r\n        [COLINASMODEL.liquidac");
@@ -1199,7 +1175,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for colinasEntities.inventario_cafe_de_socio
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView31()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView30()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("colinasEntities.inventario_cafe_de_socio", @"
     SELECT VALUE -- Constructing inventario_cafe_de_socio
@@ -1223,7 +1199,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for colinasEntities.avales_x_solicitud
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView32()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView31()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("colinasEntities.avales_x_solicitud", @"
     SELECT VALUE -- Constructing avales_x_solicitud
@@ -1246,7 +1222,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for colinasEntities.notas_de_peso
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView33()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView32()
         {
             System.Text.StringBuilder viewString = new System.Text.StringBuilder(2879);
             viewString.Append("\r\n    SELECT VALUE -- Constructing notas_de_peso\r\n        [COLINASMODEL.nota_de_");
@@ -1286,6 +1262,30 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append(".FECHA_MODIFICACION AS [nota_de_peso.FECHA_MODIFICACION], \r\n            True AS ");
             viewString.Append("_from0\r\n        FROM COLINASMODELStoreContainer.notas_de_peso AS T\r\n    ) AS T1");
             return new System.Collections.Generic.KeyValuePair<string, string>("colinasEntities.notas_de_peso", viewString.ToString());
+        }
+        
+        /// <Summary>
+        /// return view for colinasEntities.estados_nota_de_peso
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView33()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("colinasEntities.estados_nota_de_peso", @"
+    SELECT VALUE -- Constructing estados_nota_de_peso
+        [COLINASMODEL.estado_nota_de_peso](T1.[estado_nota_de_peso.ESTADOS_NOTA_ID], T1.[estado_nota_de_peso.ESTADOS_NOTA_SIGUIENTE], T1.[estado_nota_de_peso.ESTADOS_NOTA_LLAVE], T1.[estado_nota_de_peso.ESTADOS_NOTA_NOMBRE], T1.[estado_nota_de_peso.ESTADOS_NOTA_DESCRIPCION], T1.[estado_nota_de_peso.CREADO_POR], T1.[estado_nota_de_peso.FECHA_CREACION], T1.[estado_nota_de_peso.MODIFICADO_POR], T1.[estado_nota_de_peso.FECHA_MODIFICACION])
+    FROM (
+        SELECT 
+            T.ESTADOS_NOTA_ID AS [estado_nota_de_peso.ESTADOS_NOTA_ID], 
+            T.ESTADOS_NOTA_SIGUIENTE AS [estado_nota_de_peso.ESTADOS_NOTA_SIGUIENTE], 
+            T.ESTADOS_NOTA_LLAVE AS [estado_nota_de_peso.ESTADOS_NOTA_LLAVE], 
+            T.ESTADOS_NOTA_NOMBRE AS [estado_nota_de_peso.ESTADOS_NOTA_NOMBRE], 
+            T.ESTADOS_NOTA_DESCRIPCION AS [estado_nota_de_peso.ESTADOS_NOTA_DESCRIPCION], 
+            T.CREADO_POR AS [estado_nota_de_peso.CREADO_POR], 
+            T.FECHA_CREACION AS [estado_nota_de_peso.FECHA_CREACION], 
+            T.MODIFICADO_POR AS [estado_nota_de_peso.MODIFICADO_POR], 
+            T.FECHA_MODIFICACION AS [estado_nota_de_peso.FECHA_MODIFICACION], 
+            True AS _from0
+        FROM COLINASMODELStoreContainer.estados_nota_de_peso AS T
+    ) AS T1");
         }
         
         /// <Summary>

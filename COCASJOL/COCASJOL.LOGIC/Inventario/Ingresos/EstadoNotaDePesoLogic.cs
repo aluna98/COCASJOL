@@ -32,10 +32,30 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
+        public List<estado_nota_de_peso> GetEstadosNotaDePesoSinAsignar(int ESTADOS_NOTA_ID)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    db.estados_nota_de_peso.MergeOption = MergeOption.NoTracking;
+
+                    var lista = db.GetEstadosDeNotaDePesoSinAsignar(ESTADOS_NOTA_ID).ToList<estado_nota_de_peso>();
+
+                    return lista;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public List<estado_nota_de_peso> GetEstadosNotaDePeso
             (int ESTADOS_NOTA_ID,
-            int? ESTADOS_NOTA_PADRE,
-            string ESTADOS_NOTA_PADRE_NOMBRE,
+            Int32? ESTADOS_NOTA_SIGUIENTE,
+            string ESTADOS_NOTA_SIGUIENTE_NOMBRE,
             string ESTADOS_NOTA_LLAVE,
             string ESTADOS_NOTA_NOMBRE,
             string ESTADOS_NOTA_DESCRIPCION,
@@ -50,10 +70,10 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 {
                     db.estados_nota_de_peso.MergeOption = MergeOption.NoTracking;
 
-                    var query = from estadosn in db.estados_nota_de_peso.Include("estados_nota_de_peso_padre")
+                    var query = from estadosn in db.estados_nota_de_peso.Include("estados_nota_de_peso_siguiente")
                                 where
                                 (ESTADOS_NOTA_ID.Equals(0) ? true : estadosn.ESTADOS_NOTA_ID.Equals(ESTADOS_NOTA_ID)) &&
-                                (ESTADOS_NOTA_PADRE == null ? true : estadosn.ESTADOS_NOTA_PADRE.Equals(ESTADOS_NOTA_PADRE)) &&
+                                (ESTADOS_NOTA_SIGUIENTE == null ? true : estadosn.ESTADOS_NOTA_SIGUIENTE == ESTADOS_NOTA_SIGUIENTE) &&
                                 (string.IsNullOrEmpty(ESTADOS_NOTA_NOMBRE) ? true : estadosn.ESTADOS_NOTA_NOMBRE.Contains(ESTADOS_NOTA_NOMBRE)) &&
                                 (string.IsNullOrEmpty(ESTADOS_NOTA_LLAVE) ? true : estadosn.ESTADOS_NOTA_LLAVE.Contains(ESTADOS_NOTA_LLAVE)) &&
                                 (string.IsNullOrEmpty(ESTADOS_NOTA_DESCRIPCION) ? true : estadosn.ESTADOS_NOTA_DESCRIPCION.Contains(ESTADOS_NOTA_DESCRIPCION)) &&
@@ -104,7 +124,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 {
                     db.estados_nota_de_peso.MergeOption = MergeOption.NoTracking;
 
-                    var query = from esn in db.estados_nota_de_peso.Include("estados_nota_de_peso_padre").Include("estados_nota_de_peso_hijos")
+                    var query = from esn in db.estados_nota_de_peso
                                 where esn.ESTADOS_NOTA_ID == ESTADOS_NOTA_ID
                                 select esn;
 
@@ -183,8 +203,8 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
         public void ActualizarEstadoNotaDePeso
             (int ESTADOS_NOTA_ID,
-            int? ESTADOS_NOTA_PADRE,
-            string ESTADOS_NOTA_PADRE_NOMBRE,
+            int? ESTADOS_NOTA_SIGUIENTE,
+            string ESTADOS_NOTA_SIGUIENTE_NOMBRE,
             string ESTADOS_NOTA_LLAVE,
             string ESTADOS_NOTA_NOMBRE,
             string ESTADOS_NOTA_DESCRIPCION,
@@ -203,7 +223,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                     estado_nota_de_peso noteStatus = (estado_nota_de_peso)esn;
 
-                    noteStatus.ESTADOS_NOTA_PADRE = ESTADOS_NOTA_PADRE == noteStatus.ESTADOS_NOTA_PADRE ? null : ESTADOS_NOTA_PADRE;
+                    noteStatus.ESTADOS_NOTA_SIGUIENTE = ESTADOS_NOTA_SIGUIENTE == noteStatus.ESTADOS_NOTA_SIGUIENTE ? null : ESTADOS_NOTA_SIGUIENTE;
                     noteStatus.ESTADOS_NOTA_NOMBRE = ESTADOS_NOTA_NOMBRE;
                     noteStatus.ESTADOS_NOTA_DESCRIPCION = ESTADOS_NOTA_DESCRIPCION;
                     noteStatus.MODIFICADO_POR = MODIFICADO_POR;

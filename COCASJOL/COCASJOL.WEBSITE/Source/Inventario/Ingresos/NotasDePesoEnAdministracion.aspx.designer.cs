@@ -895,6 +895,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.TextField EditModificationDateTxt;
         
         /// <summary>
+        /// EditRegistrarBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button EditRegistrarBtn;
+        
+        /// <summary>
         /// EditPreviousBtn control.
         /// </summary>
         /// <remarks>
@@ -920,14 +929,5 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button EditGuardarBtn;
-        
-        /// <summary>
-        /// EditRegistrarBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Button EditRegistrarBtn;
     }
 }

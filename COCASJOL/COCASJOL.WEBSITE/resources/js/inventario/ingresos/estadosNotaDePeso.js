@@ -74,6 +74,11 @@ var PageX = {
             EditWindow.show();
             EditForm.getForm().loadRecord(rec);
             EditForm.record = rec;
+            EstadosNotaPadreSt.reload({
+                callback: function (r, options, success) {
+                    EditPadreIdCmb.setValue(EditPadreIdCmb.getValue());
+                }
+            });
         }
     },
 

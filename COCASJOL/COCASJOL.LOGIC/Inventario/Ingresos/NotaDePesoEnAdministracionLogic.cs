@@ -17,6 +17,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
         public NotaDePesoEnAdministracionLogic() : base("") { }
         public NotaDePesoEnAdministracionLogic(string ESTADOS_LLAVE) : base(ESTADOS_LLAVE) { }
 
+        #region Update
 
         public void ActualizarNotaDePeso(int NOTAS_ID, int ESTADOS_NOTA_ID, string MODIFICADO_POR)
         {
@@ -56,6 +57,10 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
+        #endregion
+
+        #region Registrar
+
         public void RegistrarNotaDePeso(int NOTAS_ID, int ESTADO_ID, string MODIFICADO_POR)
         {
             try
@@ -91,5 +96,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 throw;
             }
         }
+
+        #endregion
     }
 }

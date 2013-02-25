@@ -171,12 +171,16 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             {
                 using (var db = new colinasEntities())
                 {
-                    List<estado_nota_de_peso> hijos = new List<estado_nota_de_peso>();
+                    db.estados_nota_de_peso.MergeOption = MergeOption.NoTracking;
+
+                    var query = from esn in db.estados_nota_de_peso
+                                where padre.ESTADOS_NOTA_SIGUIENTE <= esn.ESTADOS_NOTA_ID &&
+                                      padre.ESTADOS_NOTA_ID != esn.ESTADOS_NOTA_ID
+                                select esn;
+
+                    var hijos = query.ToList<estado_nota_de_peso>();
                     hijos.Add(padre);
-                    foreach (estado_nota_de_peso hijo in padre.estados_nota_de_peso_hijos)
-                    {
-                        hijos.AddRange(GetHijos(hijo));
-                    }
+
                     return hijos;
                 }
             }

@@ -67,13 +67,22 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::System.Web.UI.WebControls.ObjectDataSource EstadosNotaDS;
         
         /// <summary>
-        /// EstadosNotaPadreDS control.
+        /// EstadosNotaFiltrosDS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource EstadosNotaPadreDS;
+        protected global::System.Web.UI.WebControls.ObjectDataSource EstadosNotaFiltrosDS;
+        
+        /// <summary>
+        /// EstadosNotaFiltrosSt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store EstadosNotaFiltrosSt;
         
         /// <summary>
         /// EstadosNotaPadreSt control.
@@ -202,15 +211,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.NumberField f_ESTADOS_NOTA_ID;
         
         /// <summary>
-        /// f_ESTADOS_NOTA_PADRE control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox f_ESTADOS_NOTA_PADRE;
-        
-        /// <summary>
         /// f_ESTADOS_NOTA_LLAVE control.
         /// </summary>
         /// <remarks>
@@ -236,6 +236,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField f_ESTADOS_NOTA_DESCRIPCION;
+        
+        /// <summary>
+        /// f_ESTADOS_NOTA_SIGUIENTE control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox f_ESTADOS_NOTA_SIGUIENTE;
         
         /// <summary>
         /// ClearFilterButton control.
@@ -310,15 +319,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.NumberField EditIdTxt;
         
         /// <summary>
-        /// EditPadreIdCmb control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox EditPadreIdCmb;
-        
-        /// <summary>
         /// EditLlaveTxt control.
         /// </summary>
         /// <remarks>
@@ -353,6 +353,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField EditDescripcionTxt;
+        
+        /// <summary>
+        /// EditPadreIdCmb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox EditPadreIdCmb;
         
         /// <summary>
         /// EditCreatedByTxt control.
