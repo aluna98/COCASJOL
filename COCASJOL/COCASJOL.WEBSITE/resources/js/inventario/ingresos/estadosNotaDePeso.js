@@ -105,7 +105,7 @@ var PageX = {
 
     clearFilter: function () {
         f_ESTADOS_NOTA_ID.reset();
-        f_ESTADOS_NOTA_PADRE.reset();
+        f_ESTADOS_NOTA_SIGUIENTE.reset();
         f_ESTADOS_NOTA_LLAVE.reset();
         f_ESTADOS_NOTA_NOMBRE.reset();
         f_ESTADOS_NOTA_DESCRIPCION.reset();
