@@ -243,9 +243,7 @@
                                 <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                     <Items>
                                         <ext:NumberField runat="server" ID="AddIdTxt"               DataIndex="CLASIFICACIONES_CAFE_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Clasificación" AllowBlank="false" Text="0" Hidden="true" ReadOnly="true"></ext:NumberField>
-                                        <ext:TextField   runat="server" ID="AddNombreTxt"           DataIndex="CLASIFICACIONES_CAFE_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" IsRemoteValidation="true">
-                                            <RemoteValidation OnValidation="AddNombreTxt_Validate" />
-                                        </ext:TextField>
+                                        <ext:TextField   runat="server" ID="AddNombreTxt"           DataIndex="CLASIFICACIONES_CAFE_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" ></ext:TextField>
                                         <ext:TextField   runat="server" ID="AddDescripcionTxt"      DataIndex="CLASIFICACIONES_CAFE_DESCRIPCION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100"></ext:TextField>
                                         <ext:Checkbox    runat="server" ID="AddCatacionChk"         DataIndex="CLASIFICACIONES_CAFE_CATACION"    LabelAlign="Right"                        FieldLabel="Debe Ser Catado" ></ext:Checkbox>
                                         <ext:TextField   runat="server" ID="AddCreatedByTxt"        DataIndex="CREADO_POR"                       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado por" Hidden="true" ></ext:TextField>
@@ -292,9 +290,7 @@
                                 <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                     <Items>
                                         <ext:NumberField runat="server" ID="EditIdTxt"            DataIndex="CLASIFICACIONES_CAFE_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Clasificación" AllowBlank="false" ReadOnly="true" Hidden="true"></ext:NumberField>
-                                        <ext:TextField runat="server"   ID="EditNombreTxt"        DataIndex="CLASIFICACIONES_CAFE_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" IsRemoteValidation="true">
-                                            <RemoteValidation OnValidation="EditNombreTxt_Validate" ValidationEvent="blur" />
-                                        </ext:TextField>
+                                        <ext:TextField runat="server"   ID="EditNombreTxt"        DataIndex="CLASIFICACIONES_CAFE_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" ></ext:TextField>
                                         <ext:TextField runat="server"   ID="EditDescripcionTxt"   DataIndex="CLASIFICACIONES_CAFE_DESCRIPCION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100"></ext:TextField>
                                         <ext:Checkbox  runat="server"   ID="EditCatacionChk"      DataIndex="CLASIFICACIONES_CAFE_CATACION"    LabelAlign="Right"                        FieldLabel="Debe Ser Catado" ></ext:Checkbox>
                                         <ext:TextField runat="server"   ID="EditCreatedByTxt"     DataIndex="CREADO_POR"                       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>

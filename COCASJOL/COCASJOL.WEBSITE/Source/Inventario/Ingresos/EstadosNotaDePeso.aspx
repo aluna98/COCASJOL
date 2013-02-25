@@ -289,9 +289,7 @@
                                                 <ext:ToolTip ID="ToolTip1" runat="server" Html="La llave de estado es de solo lectura." Title="Llave de Estado" Width="200" TrackMouse="true" />
                                             </ToolTips>
                                         </ext:TextField>
-                                        <ext:TextField runat="server"   ID="EditNombreTxt"        DataIndex="ESTADOS_NOTA_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" IsRemoteValidation="true">
-                                            <RemoteValidation OnValidation="EditNombreTxt_Validate" ValidationEvent="blur" />
-                                        </ext:TextField>
+                                        <ext:TextField runat="server"   ID="EditNombreTxt"        DataIndex="ESTADOS_NOTA_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" ></ext:TextField>
                                         <ext:TextField runat="server"   ID="EditDescripcionTxt"   DataIndex="ESTADOS_NOTA_DESCRIPCION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100"></ext:TextField>
                                         <ext:ComboBox runat="server"    ID="EditPadreIdCmb"       DataIndex="ESTADOS_NOTA_SIGUIENTE"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Estado Siguiente" MsgTarget="Side"
                                             StoreID="EstadosNotaPadreSt"

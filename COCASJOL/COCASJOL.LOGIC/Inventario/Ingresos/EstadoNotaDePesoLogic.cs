@@ -223,7 +223,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                     estado_nota_de_peso noteStatus = (estado_nota_de_peso)esn;
 
-                    noteStatus.ESTADOS_NOTA_SIGUIENTE = ESTADOS_NOTA_SIGUIENTE == noteStatus.ESTADOS_NOTA_SIGUIENTE ? null : ESTADOS_NOTA_SIGUIENTE;
+                    noteStatus.ESTADOS_NOTA_SIGUIENTE = ESTADOS_NOTA_SIGUIENTE;
                     noteStatus.ESTADOS_NOTA_NOMBRE = ESTADOS_NOTA_NOMBRE;
                     noteStatus.ESTADOS_NOTA_DESCRIPCION = ESTADOS_NOTA_DESCRIPCION;
                     noteStatus.MODIFICADO_POR = MODIFICADO_POR;
@@ -269,33 +269,5 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
         #endregion
 
-        #region Methods
-
-        public bool NombreDeEstadoNotaDePesoExiste(int ESTADOS_NOTA_ID_ANTERIOR, string ESTADOS_NOTA_NOMBRE)
-        {
-            try
-            {
-                using (var db = new colinasEntities())
-                {
-                    db.estados_nota_de_peso.MergeOption = MergeOption.NoTracking;
-
-                    var query = from esn in db.estados_nota_de_peso
-                                where esn.ESTADOS_NOTA_NOMBRE == ESTADOS_NOTA_NOMBRE && esn.ESTADOS_NOTA_ID != ESTADOS_NOTA_ID_ANTERIOR
-                                select esn;
-
-                    if (query.Count() > 0)
-                        return true;
-                    else
-                        return false;
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        #endregion
     }
 }
