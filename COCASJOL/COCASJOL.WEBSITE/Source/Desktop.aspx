@@ -330,7 +330,7 @@
                 <ext:DesktopShortcut ShortcutID="scAportacionesPorSocio"          Text="Aportaciones por Socio"                       IconCls="shortcut-icon icon-aportacionesPorSocio" />
                 <ext:DesktopShortcut ShortcutID="scSolicitudesDePrestamo"         Text="Solicitudes de Prestamo"                      IconCls="shortcut-icon icon-solicitudesDePrestamo" />
                 <ext:DesktopShortcut ShortcutID="scPrestamos"                     Text="Prestamos"                                    IconCls="shortcut-icon icon-prestamos" />
-                <ext:DesktopShortcut ShortcutID="scMovimientosDeInventarioDeCafe" Text="Reporte de Movimientos de Inventario de Café" IconCls="icon-movimientosDeInventarioDeCafe" />
+                <ext:DesktopShortcut ShortcutID="scMovimientosDeInventarioDeCafe" Text="Reporte de Movimientos de Inventario de Café" IconCls="shortcut-icon icon-movimientosDeInventarioDeCafe" />
             </Shortcuts>
 
             <StartMenu Height="550" Width="360" ToolsWidth="127" Title="Start Menu" Icon="UserSuit">

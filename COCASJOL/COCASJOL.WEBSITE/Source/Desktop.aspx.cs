@@ -203,8 +203,6 @@ namespace COCASJOL.WEBSITE
             }
         }
 
-        private static object lockObj = new object();
-
         [DirectMethod(RethrowException=true)]
         public void CheckForNotifications()
         {
@@ -212,7 +210,7 @@ namespace COCASJOL.WEBSITE
             {
                 //actualizar reporte consolidado de inventario de cafe
                 ConsolidadoDeInventarioDeCafeLogic consolidadoinventariologic = new ConsolidadoDeInventarioDeCafeLogic();
-                ReporteConsolidadoDeCafe reporteConsolidadoDeCafe = consolidadoinventariologic.GetReporte();//Application["ReporteConsolidadoDeCafe"] as ReporteConsolidadoDeCafe;
+                ReporteConsolidadoDeCafe reporteConsolidadoDeCafe = consolidadoinventariologic.GetReporte();
                 this.TotalIngresadoTxt.Text = reporteConsolidadoDeCafe.TotalIngresado.ToString();
                 this.TotalCompradoTxt.Text = reporteConsolidadoDeCafe.TotalComprado.ToString();
                 this.TotalDepositoTxt.Text = reporteConsolidadoDeCafe.TotalDeposito.ToString();
@@ -221,7 +219,7 @@ namespace COCASJOL.WEBSITE
                 NotificacionLogic notificacionlogic = new NotificacionLogic();
 
                 string loggedUser = Session["username"] as string;
-                List<notificacion> NotificacionesList = notificacionlogic.GetNotificaciones();//Application["NotificacionesList"] as List<notificacion>;
+                List<notificacion> NotificacionesList = notificacionlogic.GetNotificaciones();
 
                 if (NotificacionesList == null)
                     return;

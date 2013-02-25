@@ -65,7 +65,6 @@ var AlertSelMsg = "Debe seleccionar 1 elemento";
 
 var ConfirmMsgTitle = "Nota de Peso";
 var ConfirmUpdate = "Seguro desea modificar la notas de peso?";
-var ConfirmDelete = "Seguro desea eliminar la notas de peso?";
 
 var ConfirmRegMsgTitle = "Nota de Peso";
 var ConfirmRegUpdate = "Seguro desea registrar la notas de peso? Nota: Una vez registrada no se podra modificar.";
@@ -193,7 +192,7 @@ var PageX = {
                     { failure: function () {
                         Ext.Msg.alert('Editar Nota de Peso', 'Error al actualizar la nota de peso.');
                     }
-                    });
+                });
             }
         });
     },
@@ -267,7 +266,7 @@ var PageX = {
             }
         } else {
             EditRegistrarBtn.setVisible(false);
-            EditGuardarBtn.setVisible(false);
+            EditGuardarBtn.setVisible(true);
             EditEstadoNotaCmb.readOnly = false;
         }
     },
