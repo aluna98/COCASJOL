@@ -36,7 +36,7 @@ namespace COCASJOL.WEBSITE
                 if (!X.IsAjaxRequest)
                 {
                     ConsolidadoDeInventarioDeCafeLogic consolidadoinventariologic = new ConsolidadoDeInventarioDeCafeLogic();
-                    ReporteConsolidadoDeCafe reporteConsolidadoDeCafe = consolidadoinventariologic.GetReporte();
+                    ReporteConsolidadoDeCafe reporteConsolidadoDeCafe = consolidadoinventariologic.GetReporte(1, 12, 1, 31);
                     this.TotalIngresadoTxt.Text = reporteConsolidadoDeCafe.TotalIngresado.ToString();
                     this.TotalCompradoTxt.Text = reporteConsolidadoDeCafe.TotalComprado.ToString();
                     this.TotalDepositoTxt.Text = reporteConsolidadoDeCafe.TotalDeposito.ToString();

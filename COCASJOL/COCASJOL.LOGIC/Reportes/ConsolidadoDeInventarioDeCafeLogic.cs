@@ -71,6 +71,47 @@ namespace COCASJOL.LOGIC.Reportes
             }
         }
 
+        public ReporteConsolidadoDeCafe GetReporte(int MesInicial, int MesFinal, int DiaInicial, int DiaFinal)
+        {
+            try
+            {
+                int ActualYear = DateTime.Now.Year;
+
+                DateTime? FechaDesde = MesInicial <= 0 ? (DateTime?)null : new DateTime(ActualYear, MesInicial, DiaInicial <= 0 ? 1 : DiaInicial);
+                DateTime? FechaHasta = MesFinal <= 0 ? (DateTime?)null : new DateTime(ActualYear, MesFinal, DiaFinal <= 0 ? DateTime.DaysInMonth(ActualYear, MesFinal) : DiaFinal);
+
+                return GetReporte(FechaDesde, FechaHasta);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public ReporteConsolidadoDeCafe GetReporte(DateTime? dFECHA_DESDE, DateTime? dFECHA_HASTA)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    decimal? Ingresado = db.GetSumatoriaNotasDePeso(dFECHA_DESDE, dFECHA_HASTA).FirstOrDefault();
+                    decimal? Comprado = db.GetSumatoriaHojasDeLiquidacion(dFECHA_DESDE, dFECHA_HASTA).FirstOrDefault();
+
+                    decimal TotalIngresado = Ingresado == null ? 0 : Convert.ToDecimal(Ingresado);
+                    decimal TotalComprado = Comprado == null ? 0 : Convert.ToDecimal(Comprado);
+                    decimal TotalDeposito = TotalIngresado - TotalComprado;
+
+                    return new ReporteConsolidadoDeCafe(TotalIngresado, TotalComprado, TotalDeposito);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         #endregion
     }
 }

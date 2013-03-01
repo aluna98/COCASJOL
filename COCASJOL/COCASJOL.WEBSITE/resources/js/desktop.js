@@ -16,8 +16,9 @@ var DesktopX = {
 
         var w = desk.getWindow(title + '-win');
         if (!w) {
+            var windowId = title + '-win';
             w = desk.createWindow({
-                id: title + '-win',
+                id: windowId,
                 iconCls: 'icon-' + ico,
                 title: title,
                 width: width,
@@ -39,7 +40,7 @@ var DesktopX = {
                     id: 'search',
                     qtip: 'Abrir en Ventana Propia',
                     handler: function (event, toolEl, panel) {
-                        window.open(hostName + "/COCASJOL/Source/" + url, "_blank");
+                        window.open(url, "_blank");
                     }
                 }]
             });

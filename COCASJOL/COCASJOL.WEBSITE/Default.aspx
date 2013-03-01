@@ -99,7 +99,7 @@
                 {
                     this.txtUsername.Clear();
                     this.txtPassword.Clear();
-                    X.Msg.Alert("Inicio de Sesi�n", "El nombre de usuario o contrase�a son incorrectos.", "#{txtUsername}.focus();").Show();
+                    X.Msg.Alert("Inicio de Sesión", "El nombre de usuario o contraseña son incorrectos.", "#{txtUsername}.focus();").Show();
                 }
             }
             catch (Exception)

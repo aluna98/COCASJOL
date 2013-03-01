@@ -985,6 +985,14 @@
         <Function Name="GetRolesNoDeUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="colinas">
           <Parameter Name="strUSR_USERNAME" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="GetSumatoriaHojasDeLiquidacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="colinas">
+          <Parameter Name="dFechaDesde" Type="date" Mode="In" />
+          <Parameter Name="dFechaHasta" Type="date" Mode="In" />
+        </Function>
+        <Function Name="GetSumatoriaNotasDePeso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="colinas">
+          <Parameter Name="dFechaDesde" Type="date" Mode="In" />
+          <Parameter Name="dFechaHasta" Type="date" Mode="In" />
+        </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -1123,7 +1131,15 @@
             <End Role="nota_de_peso" EntitySet="notas_de_peso" />
           </AssociationSet>
           <FunctionImport Name="GetEstadosDeNotaDePesoSinAsignar" EntitySet="estados_nota_de_peso" ReturnType="Collection(COLINASMODEL.estado_nota_de_peso)">
-            <Parameter Name="nESTADOS_NOTA_ID" Mode="In" Type="Int32" />
+          <Parameter Name="nESTADOS_NOTA_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetSumatoriaNotasDePeso" ReturnType="Collection(Decimal)">
+            <Parameter Name="dFechaDesde" Mode="In" Type="DateTime" />
+            <Parameter Name="dFechaHasta" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="GetSumatoriaHojasDeLiquidacion" ReturnType="Collection(Decimal)">
+            <Parameter Name="dFechaDesde" Mode="In" Type="DateTime" />
+            <Parameter Name="dFechaHasta" Mode="In" Type="DateTime" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="codigo">
@@ -2359,6 +2375,8 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="GetEstadosDeNotaDePesoSinAsignar" FunctionName="COLINASMODEL.Store.GetEstadosDeNotaDePesoSinAsignar" />
+          <FunctionImportMapping FunctionImportName="GetSumatoriaNotasDePeso" FunctionName="COLINASMODEL.Store.GetSumatoriaNotasDePeso" />
+          <FunctionImportMapping FunctionImportName="GetSumatoriaHojasDeLiquidacion" FunctionName="COLINASMODEL.Store.GetSumatoriaHojasDeLiquidacion" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
