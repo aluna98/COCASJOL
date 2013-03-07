@@ -14,7 +14,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySetsA419C4AC7E0B008027F90CA52BC6353F52F7BC689DAF2F39552C30B6E83FF57A))]
+[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets84A2EEB0A68D027E88D738FC798E0B270D07C01D4CB3644DD03C67A7E1786EDE))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
@@ -23,19 +23,19 @@ namespace Edm_EntityMappingGeneratedViews
     /// <Summary>
     /// The type contains views for EntitySets and AssociationSets that were generated at design time.
     /// </Summary>
-    public sealed class ViewsForBaseEntitySetsA419C4AC7E0B008027F90CA52BC6353F52F7BC689DAF2F39552C30B6E83FF57A : System.Data.Mapping.EntityViewContainer
+    public sealed class ViewsForBaseEntitySets84A2EEB0A68D027E88D738FC798E0B270D07C01D4CB3644DD03C67A7E1786EDE : System.Data.Mapping.EntityViewContainer
     {
         
         /// <Summary>
         /// The constructor stores the views for the extents and also the hash values generated based on the metadata and mapping closure and views.
         /// </Summary>
-        public ViewsForBaseEntitySetsA419C4AC7E0B008027F90CA52BC6353F52F7BC689DAF2F39552C30B6E83FF57A()
+        public ViewsForBaseEntitySets84A2EEB0A68D027E88D738FC798E0B270D07C01D4CB3644DD03C67A7E1786EDE()
         {
             this.EdmEntityContainerName = "colinasEntities";
             this.StoreEntityContainerName = "COLINASMODELStoreContainer";
-            this.HashOverMappingClosure = "ae008bbf8b2e0c5a35322b55e08b5cfdf498eedcf3c54595aef82412aed20851";
-            this.HashOverAllExtentViews = "adf9b454a4760d99358766f407a611fb47bf49478e8ac851dfabb2471c6ef15d";
-            this.ViewCount = 58;
+            this.HashOverMappingClosure = "e32884136ba797827401c2b81a3ddbd19c24bb425528fb99fbc831de5339057b";
+            this.HashOverAllExtentViews = "9487b41461a75610703c3e2baf5fc757444c8e025dedfb869b5f157cefeb4618";
+            this.ViewCount = 54;
         }
         
         /// <Summary>
@@ -258,22 +258,6 @@ namespace Edm_EntityMappingGeneratedViews
             if ((index == 53))
             {
                 return GetView53();
-            }
-            if ((index == 54))
-            {
-                return GetView54();
-            }
-            if ((index == 55))
-            {
-                return GetView55();
-            }
-            if ((index == 56))
-            {
-                return GetView56();
-            }
-            if ((index == 57))
-            {
-                return GetView57();
             }
             throw new System.IndexOutOfRangeException();
         }
@@ -1565,103 +1549,9 @@ namespace Edm_EntityMappingGeneratedViews
         }
         
         /// <Summary>
-        /// return view for COLINASMODELStoreContainer.productos
-        /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView46()
-        {
-            return new System.Collections.Generic.KeyValuePair<string, string>("COLINASMODELStoreContainer.productos", @"
-    SELECT VALUE -- Constructing productos
-        [COLINASMODEL.Store.productos](T1.[productos.PRODUCTOS_ID], T1.[productos.TIPOS_PROD_ID], T1.[productos.PRODUCTOS_NOMBRE], T1.[productos.PRODUCTOS_DESCRIPCION], T1.[productos.PRODUCTOS_CANTIDAD_MIN], T1.[productos.PRODUCTOS_EXISTENCIA], T1.[productos.CREADO_POR], T1.[productos.FECHA_CREACION], T1.[productos.MODIFICADO_POR], T1.[productos.FECHA_MODIFICACION])
-    FROM (
-        SELECT 
-            T.PRODUCTOS_ID AS [productos.PRODUCTOS_ID], 
-            T.TIPOS_PROD_ID AS [productos.TIPOS_PROD_ID], 
-            T.PRODUCTOS_NOMBRE AS [productos.PRODUCTOS_NOMBRE], 
-            T.PRODUCTOS_DESCRIPCION AS [productos.PRODUCTOS_DESCRIPCION], 
-            T.PRODUCTOS_CANTIDAD_MIN AS [productos.PRODUCTOS_CANTIDAD_MIN], 
-            T.PRODUCTOS_EXISTENCIA AS [productos.PRODUCTOS_EXISTENCIA], 
-            T.CREADO_POR AS [productos.CREADO_POR], 
-            T.FECHA_CREACION AS [productos.FECHA_CREACION], 
-            T.MODIFICADO_POR AS [productos.MODIFICADO_POR], 
-            T.FECHA_MODIFICACION AS [productos.FECHA_MODIFICACION], 
-            True AS _from0
-        FROM colinasEntities.productos AS T
-    ) AS T1");
-        }
-        
-        /// <Summary>
-        /// return view for COLINASMODELStoreContainer.tipos_productos
-        /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView47()
-        {
-            return new System.Collections.Generic.KeyValuePair<string, string>("COLINASMODELStoreContainer.tipos_productos", @"
-    SELECT VALUE -- Constructing tipos_productos
-        [COLINASMODEL.Store.tipos_productos](T1.[tipos_productos.TIPOS_PROD_ID], T1.[tipos_productos.TIPOS_PROD_NOMBRE], T1.[tipos_productos.TIPOS_PROD_DESCRIPCION], T1.[tipos_productos.CREADO_POR], T1.[tipos_productos.FECHA_CREACION], T1.[tipos_productos.MODIFICADO_POR], T1.[tipos_productos.FECHA_MODIFICACION])
-    FROM (
-        SELECT 
-            T.TIPOS_PROD_ID AS [tipos_productos.TIPOS_PROD_ID], 
-            T.TIPOS_PROD_NOMBRE AS [tipos_productos.TIPOS_PROD_NOMBRE], 
-            T.TIPOS_PROD_DESCRIPCION AS [tipos_productos.TIPOS_PROD_DESCRIPCION], 
-            T.CREADO_POR AS [tipos_productos.CREADO_POR], 
-            T.FECHA_CREACION AS [tipos_productos.FECHA_CREACION], 
-            T.MODIFICADO_POR AS [tipos_productos.MODIFICADO_POR], 
-            T.FECHA_MODIFICACION AS [tipos_productos.FECHA_MODIFICACION], 
-            True AS _from0
-        FROM colinasEntities.tipos_productos AS T
-    ) AS T1");
-        }
-        
-        /// <Summary>
-        /// return view for colinasEntities.productos
-        /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView48()
-        {
-            return new System.Collections.Generic.KeyValuePair<string, string>("colinasEntities.productos", @"
-    SELECT VALUE -- Constructing productos
-        [COLINASMODEL.producto](T1.[producto.PRODUCTOS_ID], T1.[producto.TIPOS_PROD_ID], T1.[producto.PRODUCTOS_NOMBRE], T1.[producto.PRODUCTOS_DESCRIPCION], T1.[producto.PRODUCTOS_CANTIDAD_MIN], T1.[producto.PRODUCTOS_EXISTENCIA], T1.[producto.CREADO_POR], T1.[producto.FECHA_CREACION], T1.[producto.MODIFICADO_POR], T1.[producto.FECHA_MODIFICACION])
-    FROM (
-        SELECT 
-            T.PRODUCTOS_ID AS [producto.PRODUCTOS_ID], 
-            T.TIPOS_PROD_ID AS [producto.TIPOS_PROD_ID], 
-            T.PRODUCTOS_NOMBRE AS [producto.PRODUCTOS_NOMBRE], 
-            T.PRODUCTOS_DESCRIPCION AS [producto.PRODUCTOS_DESCRIPCION], 
-            T.PRODUCTOS_CANTIDAD_MIN AS [producto.PRODUCTOS_CANTIDAD_MIN], 
-            T.PRODUCTOS_EXISTENCIA AS [producto.PRODUCTOS_EXISTENCIA], 
-            T.CREADO_POR AS [producto.CREADO_POR], 
-            T.FECHA_CREACION AS [producto.FECHA_CREACION], 
-            T.MODIFICADO_POR AS [producto.MODIFICADO_POR], 
-            T.FECHA_MODIFICACION AS [producto.FECHA_MODIFICACION], 
-            True AS _from0
-        FROM COLINASMODELStoreContainer.productos AS T
-    ) AS T1");
-        }
-        
-        /// <Summary>
-        /// return view for colinasEntities.tipos_productos
-        /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView49()
-        {
-            return new System.Collections.Generic.KeyValuePair<string, string>("colinasEntities.tipos_productos", @"
-    SELECT VALUE -- Constructing tipos_productos
-        [COLINASMODEL.tipo_producto](T1.[tipo_producto.TIPOS_PROD_ID], T1.[tipo_producto.TIPOS_PROD_NOMBRE], T1.[tipo_producto.TIPOS_PROD_DESCRIPCION], T1.[tipo_producto.CREADO_POR], T1.[tipo_producto.FECHA_CREACION], T1.[tipo_producto.MODIFICADO_POR], T1.[tipo_producto.FECHA_MODIFICACION])
-    FROM (
-        SELECT 
-            T.TIPOS_PROD_ID AS [tipo_producto.TIPOS_PROD_ID], 
-            T.TIPOS_PROD_NOMBRE AS [tipo_producto.TIPOS_PROD_NOMBRE], 
-            T.TIPOS_PROD_DESCRIPCION AS [tipo_producto.TIPOS_PROD_DESCRIPCION], 
-            T.CREADO_POR AS [tipo_producto.CREADO_POR], 
-            T.FECHA_CREACION AS [tipo_producto.FECHA_CREACION], 
-            T.MODIFICADO_POR AS [tipo_producto.MODIFICADO_POR], 
-            T.FECHA_MODIFICACION AS [tipo_producto.FECHA_MODIFICACION], 
-            True AS _from0
-        FROM COLINASMODELStoreContainer.tipos_productos AS T
-    ) AS T1");
-        }
-        
-        /// <Summary>
         /// return view for COLINASMODELStoreContainer.variables_de_entorno
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView50()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView46()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("COLINASMODELStoreContainer.variables_de_entorno", @"
     SELECT VALUE -- Constructing variables_de_entorno
@@ -1684,7 +1574,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for colinasEntities.variables_de_entorno
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView51()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView47()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("colinasEntities.variables_de_entorno", @"
     SELECT VALUE -- Constructing variables_de_entorno
@@ -1707,7 +1597,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for COLINASMODELStoreContainer.plantillas_notificaciones
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView52()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView48()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("COLINASMODELStoreContainer.plantillas_notificaciones", @"
     SELECT VALUE -- Constructing plantillas_notificaciones
@@ -1730,7 +1620,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for colinasEntities.plantillas_notificaciones
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView53()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView49()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("colinasEntities.plantillas_notificaciones", @"
     SELECT VALUE -- Constructing plantillas_notificaciones
@@ -1753,7 +1643,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for COLINASMODELStoreContainer.reporte_total_inventario_de_cafe_por_socio
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView54()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView50()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("COLINASMODELStoreContainer.reporte_total_inventario_de_cafe_por_socio", "\r\n    SELECT VALUE -- Constructing reporte_total_inventario_de_cafe_por_socio\r\n  " +
                     "      [COLINASMODEL.Store.reporte_total_inventario_de_cafe_por_socio](T1.[report" +
@@ -1784,7 +1674,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for colinasEntities.reporte_total_inventario_de_cafe_por_socio
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView55()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView51()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("colinasEntities.reporte_total_inventario_de_cafe_por_socio", "\r\n    SELECT VALUE -- Constructing reporte_total_inventario_de_cafe_por_socio\r\n  " +
                     "      [COLINASMODEL.reporte_total_inventario_de_cafe_por_socio](T1.[reporte_tota" +
@@ -1815,7 +1705,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for COLINASMODELStoreContainer.reporte_movimientos_de_inventario_de_cafe
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView56()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView52()
         {
             System.Text.StringBuilder viewString = new System.Text.StringBuilder(2260);
             viewString.Append("\r\n    SELECT VALUE -- Constructing reporte_movimientos_de_inventario_de_cafe\r\n  ");
@@ -1853,7 +1743,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for colinasEntities.reporte_movimientos_de_inventario_de_cafe
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView57()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView53()
         {
             System.Text.StringBuilder viewString = new System.Text.StringBuilder(2265);
             viewString.Append("\r\n    SELECT VALUE -- Constructing reporte_movimientos_de_inventario_de_cafe\r\n  ");

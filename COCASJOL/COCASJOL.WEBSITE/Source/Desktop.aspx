@@ -177,23 +177,6 @@
                 </ext:DesktopModule>
                 <%--Socios--%>
 
-                <%--Productos--%>
-                <ext:DesktopModule ModuleID="TiposDeProductoModule">
-                    <Launcher ID="TiposDeProductoLauncher" runat="server" Text="Tipos de Producto" Icon="Basket" >
-                        <Listeners>
-                            <Click Handler="WindowX.tiposDeProductos(#{MyDesktop});" />
-                        </Listeners>
-                    </Launcher>
-                </ext:DesktopModule>
-                <ext:DesktopModule ModuleID="ProductosModule">
-                    <Launcher ID="ProductosLauncher" runat="server" Text="Productos" Icon="Cart" >
-                        <Listeners>
-                            <Click Handler="WindowX.productos(#{MyDesktop});" />
-                        </Listeners>
-                    </Launcher>
-                </ext:DesktopModule>
-                <%--Productos--%>
-
                 <%--Notas De Peso--%>
                 <ext:DesktopModule ModuleID="EstadosNotasDePesoModule">
                     <Launcher ID="EstadosNotasDePesoLauncher" runat="server" Text="Estados de Notas De Peso" Icon="PageGo" >
@@ -318,8 +301,6 @@
                 <ext:DesktopShortcut ShortcutID="scPlantillasNotificaciones"      Text="Plantillas de Notificaciones"                 IconCls="shortcut-icon icon-plantillasNotificaciones" />
                 <ext:DesktopShortcut ShortcutID="scVariablesDeEntorno"            Text="Variables de Entorno"                         IconCls="shortcut-icon icon-variablesEntorno" />
                 <ext:DesktopShortcut ShortcutID="scSocios"                        Text="Socios"                                       IconCls="shortcut-icon icon-socios" />
-                <ext:DesktopShortcut ShortcutID="scTiposDeProductos"              Text="Tipos de Productos"                           IconCls="shortcut-icon icon-tiposDeProducto" />
-                <ext:DesktopShortcut ShortcutID="scProductos"                     Text="Productos"                                    IconCls="shortcut-icon icon-productos" />
                 <ext:DesktopShortcut ShortcutID="scEstadosNotasDePeso"            Text="Estados de Notas de Peso"                     IconCls="shortcut-icon icon-estadosNotasDePeso" />
                 <ext:DesktopShortcut ShortcutID="scNotasDePesoEnPesaje"           Text="Notas De Peso en Area de Pesaje"              IconCls="shortcut-icon icon-notasDePesoEnPesaje" />
                 <ext:DesktopShortcut ShortcutID="scNotasDePesoEnCatacion"         Text="Notas De Peso en Area de Catación"            IconCls="shortcut-icon icon-notasDePesoEnCatacion" />
@@ -407,24 +388,6 @@
                                     <ext:MenuItem ID="SociosMenuItem" Text="Socios" Icon="Group" >
                                         <Listeners>
                                             <click Handler="WindowX.socios(#{MyDesktop});" />
-                                        </Listeners>
-                                    </ext:MenuItem>
-                                </Items>
-                            </ext:Menu>
-                        </Menu>
-                    </ext:MenuItem>
-                    <ext:MenuItem ID="ProductsMenu" runat="server" Text="Productos" Icon="Folder" HideOnClick="false">
-                        <Menu>
-                            <ext:Menu runat="server">
-                                <Items>
-                                    <ext:MenuItem ID="TiposDeProductosMenuItem" Text="Tipos de Productos" Icon="Basket" >
-                                        <Listeners>
-                                            <click Handler="WindowX.tiposDeProductos(#{MyDesktop});" />
-                                        </Listeners>
-                                    </ext:MenuItem>
-                                    <ext:MenuItem ID="ProductosMenuItem" Text="Productos" Icon="Cart" >
-                                        <Listeners>
-                                            <click Handler="WindowX.productos(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
                                 </Items>
@@ -794,8 +757,6 @@
         <ext:ToolTip runat="server" ID="scPlantillasNotificacionesTooltip"      Html="Plantillas de Notificaciones"                 Target="scPlantillasNotificaciones-shortcut"      ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scVariablesDeEntornoTooltip"            Html="Variables de Entorno"                         Target="scVariablesDeEntorno-shortcut"            ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scSociosTooltip"                        Html="Socios"                                       Target="scSocios-shortcut"                        ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scTiposDeProductosTooltip"              Html="Tipos de Productos"                           Target="scTiposDeProductos-shortcut"              ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scProductosTooltip"                     Html="Productos"                                    Target="scProductos-shortcut"                     ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scEstadosNotasDePesoTooltip"            Html="Estados de Notas de Peso"                     Target="scEstadosNotasDePeso-shortcut"            ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scNotasDePesoEnPesajeTooltip"           Html="Notas De Peso en Area de Pesaje"              Target="scNotasDePesoEnPesaje-shortcut"           ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scNotasDePesoEnCatacionTooltip"         Html="Notas De Peso en Area de Catación"            Target="scNotasDePesoEnCatacion-shortcut"         ></ext:ToolTip>

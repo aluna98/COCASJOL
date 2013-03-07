@@ -22,7 +22,6 @@
           <EntitySet Name="prestamos x socio" EntityType="COLINASMODEL.Store.prestamos x socio" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="privilegios" EntityType="COLINASMODEL.Store.privilegios" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="privilegios_x_roles" EntityType="COLINASMODEL.Store.privilegios_x_roles" store:Type="Tables" Schema="colinas" />
-          <EntitySet Name="productos" EntityType="COLINASMODEL.Store.productos" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="referencias_x_solicitudes" EntityType="COLINASMODEL.Store.referencias_x_solicitudes" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="roles" EntityType="COLINASMODEL.Store.roles" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="roles_x_usuarios" EntityType="COLINASMODEL.Store.roles_x_usuarios" store:Type="Tables" Schema="colinas" />
@@ -30,7 +29,6 @@
           <EntitySet Name="socios_generales" EntityType="COLINASMODEL.Store.socios_generales" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="socios_produccion" EntityType="COLINASMODEL.Store.socios_produccion" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="solicitudes_prestamos" EntityType="COLINASMODEL.Store.solicitudes_prestamos" store:Type="Tables" Schema="colinas" />
-          <EntitySet Name="tipos_productos" EntityType="COLINASMODEL.Store.tipos_productos" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="usuarios" EntityType="COLINASMODEL.Store.usuarios" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="variables_de_entorno" EntityType="COLINASMODEL.Store.variables_de_entorno" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="reporte_movimientos_de_inventario_de_cafe" EntityType="COLINASMODEL.Store.reporte_movimientos_de_inventario_de_cafe" store:Type="Views" store:Schema="colinas" store:Name="reporte_movimientos_de_inventario_de_cafe">
@@ -129,10 +127,6 @@
           <AssociationSet Name="PRIV_ID_ROL_fk" Association="COLINASMODEL.Store.PRIV_ID_ROL_fk">
             <End Role="privilegios" EntitySet="privilegios" />
             <End Role="privilegios_x_roles" EntitySet="privilegios_x_roles" />
-          </AssociationSet>
-          <AssociationSet Name="PROD_TIPO" Association="COLINASMODEL.Store.PROD_TIPO">
-            <End Role="tipos_productos" EntitySet="tipos_productos" />
-            <End Role="productos" EntitySet="productos" />
           </AssociationSet>
           <AssociationSet Name="ROL_ID_PRIV_fk" Association="COLINASMODEL.Store.ROL_ID_PRIV_fk">
             <End Role="roles" EntitySet="roles" />
@@ -403,21 +397,6 @@
           <Property Name="PRIV_ID" Type="int" Nullable="false" />
           <Property Name="ROL_ID" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="productos">
-          <Key>
-            <PropertyRef Name="PRODUCTOS_ID" />
-          </Key>
-          <Property Name="PRODUCTOS_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="TIPOS_PROD_ID" Type="int" Nullable="false" />
-          <Property Name="PRODUCTOS_NOMBRE" Type="varchar" Nullable="false" MaxLength="45" />
-          <Property Name="PRODUCTOS_DESCRIPCION" Type="varchar" MaxLength="100" />
-          <Property Name="PRODUCTOS_CANTIDAD_MIN" Type="int" Nullable="false" />
-          <Property Name="PRODUCTOS_EXISTENCIA" Type="decimal" Nullable="false" Scale="4" />
-          <Property Name="CREADO_POR" Type="varchar" Nullable="false" MaxLength="45" />
-          <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
-          <Property Name="MODIFICADO_POR" Type="varchar" MaxLength="45" />
-          <Property Name="FECHA_MODIFICACION" Type="date" />
-        </EntityType>
         <EntityType Name="referencias_x_solicitudes">
           <Key>
             <PropertyRef Name="REFERENCIAS_ID" />
@@ -541,18 +520,6 @@
           <Property Name="MODIFICADO_POR" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="FECHA_MODIFICACION" Type="date" />
           <Property Name="SOLICITUD_ESTADO" Type="tinyint" />
-        </EntityType>
-        <EntityType Name="tipos_productos">
-          <Key>
-            <PropertyRef Name="TIPOS_PROD_ID" />
-          </Key>
-          <Property Name="TIPOS_PROD_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="TIPOS_PROD_NOMBRE" Type="varchar" Nullable="false" MaxLength="45" />
-          <Property Name="TIPOS_PROD_DESCRIPCION" Type="varchar" MaxLength="100" />
-          <Property Name="CREADO_POR" Type="varchar" Nullable="false" MaxLength="45" />
-          <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
-          <Property Name="MODIFICADO_POR" Type="varchar" MaxLength="45" />
-          <Property Name="FECHA_MODIFICACION" Type="date" />
         </EntityType>
         <EntityType Name="usuarios">
           <Key>
@@ -853,18 +820,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="PROD_TIPO">
-          <End Role="tipos_productos" Type="COLINASMODEL.Store.tipos_productos" Multiplicity="1" />
-          <End Role="productos" Type="COLINASMODEL.Store.productos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tipos_productos">
-              <PropertyRef Name="TIPOS_PROD_ID" />
-            </Principal>
-            <Dependent Role="productos">
-              <PropertyRef Name="TIPOS_PROD_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="ROL_ID_PRIV_fk">
           <End Role="roles" Type="COLINASMODEL.Store.roles" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -1040,13 +995,7 @@
             <End Role="rol" EntitySet="roles" />
             <End Role="usuarios" EntitySet="usuarios" />
           </AssociationSet>
-          <EntitySet Name="productos" EntityType="COLINASMODEL.producto" />
           <EntitySet Name="notas_detalles" EntityType="COLINASMODEL.nota_detalle" />
-          <EntitySet Name="tipos_productos" EntityType="COLINASMODEL.tipo_producto" />
-          <AssociationSet Name="PROD_TIPO" Association="COLINASMODEL.PROD_TIPO">
-            <End Role="tipos_productos" EntitySet="tipos_productos" />
-            <End Role="producto" EntitySet="productos" />
-          </AssociationSet>
           <EntitySet Name="privilegios" EntityType="COLINASMODEL.privilegio" />
           <AssociationSet Name="privilegios_x_roles" Association="COLINASMODEL.privilegios_x_roles">
             <End Role="privilegios" EntitySet="privilegios" />
@@ -1363,22 +1312,6 @@
           <End Type="COLINASMODEL.rol" Role="rol" Multiplicity="*" />
           <End Type="COLINASMODEL.usuario" Role="usuarios" Multiplicity="*" />
         </Association>
-        <EntityType Name="producto">
-          <Key>
-            <PropertyRef Name="PRODUCTOS_ID" />
-          </Key>
-          <Property Type="Int32" Name="PRODUCTOS_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="TIPOS_PROD_ID" Nullable="false" />
-          <Property Type="String" Name="PRODUCTOS_NOMBRE" Nullable="false" />
-          <Property Type="String" Name="PRODUCTOS_DESCRIPCION" />
-          <Property Type="Int32" Name="PRODUCTOS_CANTIDAD_MIN" Nullable="false" />
-          <Property Type="Decimal" Name="PRODUCTOS_EXISTENCIA" Nullable="false" />
-          <Property Type="String" Name="CREADO_POR" Nullable="false" />
-          <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
-          <Property Type="String" Name="MODIFICADO_POR" />
-          <Property Type="DateTime" Name="FECHA_MODIFICACION" />
-          <NavigationProperty Name="tipos_productos" Relationship="COLINASMODEL.PROD_TIPO" FromRole="producto" ToRole="tipos_productos" />
-        </EntityType>
         <EntityType Name="nota_detalle">
           <Key>
             <PropertyRef Name="DETALLES_ID" />
@@ -1390,31 +1323,6 @@
           <Property Type="Decimal" Name="DETALLES_PESO" Nullable="false" />
           <NavigationProperty Name="notas_de_peso" Relationship="COLINASMODEL.FK_NOTA_DETALLE_NOTA_PESO" FromRole="nota_detalle" ToRole="notas_de_peso" />
         </EntityType>
-        <EntityType Name="tipo_producto">
-          <Key>
-            <PropertyRef Name="TIPOS_PROD_ID" />
-          </Key>
-          <Property Type="Int32" Name="TIPOS_PROD_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="TIPOS_PROD_NOMBRE" Nullable="false" />
-          <Property Type="String" Name="TIPOS_PROD_DESCRIPCION" />
-          <Property Type="String" Name="CREADO_POR" Nullable="false" />
-          <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
-          <Property Type="String" Name="MODIFICADO_POR" />
-          <Property Type="DateTime" Name="FECHA_MODIFICACION" />
-          <NavigationProperty Name="productos" Relationship="COLINASMODEL.PROD_TIPO" FromRole="tipos_productos" ToRole="producto" />
-        </EntityType>
-        <Association Name="PROD_TIPO">
-          <End Type="COLINASMODEL.tipo_producto" Role="tipos_productos" Multiplicity="1" />
-          <End Type="COLINASMODEL.producto" Role="producto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tipos_productos">
-              <PropertyRef Name="TIPOS_PROD_ID" />
-            </Principal>
-            <Dependent Role="producto">
-              <PropertyRef Name="TIPOS_PROD_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="privilegio">
           <Key>
             <PropertyRef Name="PRIV_ID" />
@@ -2055,22 +1963,6 @@
               <ScalarProperty Name="ROL_ID" ColumnName="ROL_ID" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="productos">
-            <EntityTypeMapping TypeName="COLINASMODEL.producto">
-              <MappingFragment StoreEntitySet="productos">
-                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
-                <ScalarProperty Name="MODIFICADO_POR" ColumnName="MODIFICADO_POR" />
-                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
-                <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
-                <ScalarProperty Name="PRODUCTOS_EXISTENCIA" ColumnName="PRODUCTOS_EXISTENCIA" />
-                <ScalarProperty Name="PRODUCTOS_CANTIDAD_MIN" ColumnName="PRODUCTOS_CANTIDAD_MIN" />
-                <ScalarProperty Name="PRODUCTOS_DESCRIPCION" ColumnName="PRODUCTOS_DESCRIPCION" />
-                <ScalarProperty Name="PRODUCTOS_NOMBRE" ColumnName="PRODUCTOS_NOMBRE" />
-                <ScalarProperty Name="TIPOS_PROD_ID" ColumnName="TIPOS_PROD_ID" />
-                <ScalarProperty Name="PRODUCTOS_ID" ColumnName="PRODUCTOS_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="notas_detalles">
             <EntityTypeMapping TypeName="COLINASMODEL.nota_detalle">
               <MappingFragment StoreEntitySet="notas_detalles">
@@ -2078,19 +1970,6 @@
                 <ScalarProperty Name="DETALLES_CANTIDAD_SACOS" ColumnName="DETALLES_CANTIDAD_SACOS" />
                 <ScalarProperty Name="NOTAS_ID" ColumnName="NOTAS_ID" />
                 <ScalarProperty Name="DETALLES_ID" ColumnName="DETALLES_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tipos_productos">
-            <EntityTypeMapping TypeName="COLINASMODEL.tipo_producto">
-              <MappingFragment StoreEntitySet="tipos_productos">
-                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
-                <ScalarProperty Name="MODIFICADO_POR" ColumnName="MODIFICADO_POR" />
-                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
-                <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
-                <ScalarProperty Name="TIPOS_PROD_DESCRIPCION" ColumnName="TIPOS_PROD_DESCRIPCION" />
-                <ScalarProperty Name="TIPOS_PROD_NOMBRE" ColumnName="TIPOS_PROD_NOMBRE" />
-                <ScalarProperty Name="TIPOS_PROD_ID" ColumnName="TIPOS_PROD_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2441,13 +2320,7 @@
           <ConnectorPoint PointX="2.75" PointY="1.8747460937500018" />
           <ConnectorPoint PointX="2" PointY="1.8747460937500018" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="COLINASMODEL.producto" Width="1.75" PointX="13.875" PointY="16.25" Height="3.1340950520833317" />
         <EntityTypeShape EntityType="COLINASMODEL.nota_detalle" Width="1.5" PointX="8.125" PointY="16.375" Height="1.9802864583333353" />
-        <EntityTypeShape EntityType="COLINASMODEL.tipo_producto" Width="1.5" PointX="11.625" PointY="16.25" Height="2.5571907552083246" />
-        <AssociationConnector Association="COLINASMODEL.PROD_TIPO" >
-          <ConnectorPoint PointX="13.125" PointY="17.528595377604162" />
-          <ConnectorPoint PointX="13.875" PointY="17.528595377604162" />
-        </AssociationConnector>
         <EntityTypeShape EntityType="COLINASMODEL.privilegio" Width="1.5" PointX="4.875" PointY="0.5" Height="2.749492187499996" />
         <AssociationConnector Association="COLINASMODEL.privilegios_x_roles" >
           <ConnectorPoint PointX="4.875" PointY="1.8747460937499982" />
@@ -2491,8 +2364,8 @@
           <ConnectorPoint PointX="4.854166666666667" PointY="15.25" />
           <ConnectorPoint PointX="5.020833333333333" PointY="15.25" />
           <ConnectorPoint PointX="7.875" PointY="15.25" />
-          <ConnectorPoint PointX="7.875" PointY="16" />
-          <ConnectorPoint PointX="15.25" PointY="16" />
+          <ConnectorPoint PointX="7.875" PointY="16.125" />
+          <ConnectorPoint PointX="15.25" PointY="16.125" />
           <ConnectorPoint PointX="15.25" PointY="11.557027994791667" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.LIQUIDACIONES_SOCIOS_FK" >
@@ -2503,8 +2376,6 @@
         <EntityTypeShape EntityType="COLINASMODEL.inventario_cafe_de_socio" Width="1.5" PointX="2.75" PointY="15.5" Height="3.1340950520833388" />
         <AssociationConnector Association="COLINASMODEL.inventario_clasificacion_cafe_fk" >
           <ConnectorPoint PointX="2" PointY="17.608798196880223" />
-          <ConnectorPoint PointX="2.2496499358974362" PointY="17.608798196880223" />
-          <ConnectorPoint PointX="2.4163166025641032" PointY="17.608798196880223" />
           <ConnectorPoint PointX="2.75" PointY="17.608798196880223" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.FK_INVENTARIO_socios" >

@@ -40,18 +40,6 @@
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/group.png", sizingMethod="center");
 }
 
-.icon-tiposDeProducto
-{
-    background-image: url(../images/basket.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/basket.png", sizingMethod="center");
-}
-
-.icon-productos
-{
-    background-image: url(../images/cart.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/cart.png", sizingMethod="center");
-}
-
 .icon-estadosNotasDePeso
 {
     background-image: url(../images/page_go.png) !important;

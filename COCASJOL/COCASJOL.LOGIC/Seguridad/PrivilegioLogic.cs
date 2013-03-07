@@ -20,7 +20,7 @@ namespace COCASJOL.LOGIC.Seguridad
             {
                 using (var db = new colinasEntities())
                 {
-                    db.productos.MergeOption = MergeOption.NoTracking;
+                    db.privilegios.MergeOption = MergeOption.NoTracking;
 
                     return db.privilegios.OrderBy(p => p.PRIV_LLAVE).ToList<privilegio>();
                 }

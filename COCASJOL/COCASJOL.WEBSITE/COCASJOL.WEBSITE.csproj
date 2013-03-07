@@ -68,9 +68,7 @@
     <Content Include="resources\css\Desktop.css" />
     <Content Include="resources\css\DesktopShortcuts.css" />
     <Content Include="resources\images\background1.jpg" />
-    <Content Include="resources\images\basket.png" />
     <Content Include="resources\images\bricks.png" />
-    <Content Include="resources\images\cart.png" />
     <Content Include="resources\images\cheque.png" />
     <Content Include="resources\images\cheque16x16.png" />
     <Content Include="resources\images\cocasjol_start_button.gif" />
@@ -113,8 +111,6 @@
     <Content Include="resources\js\inventario\salidas\hojasDeLiquidacion.js" />
     <Content Include="resources\js\md5.js" />
     <Content Include="resources\js\prestamos\solicitudesDePrestamos.js" />
-    <Content Include="resources\js\productos\productos.js" />
-    <Content Include="resources\js\productos\tiposDeProductos.js" />
     <Content Include="resources\js\reportes\movimientosDeInventarioDeCafe.js" />
     <Content Include="resources\js\seguridad\roles.js" />
     <Content Include="resources\js\seguridad\usuarios.js" />
@@ -137,8 +133,6 @@
     <Content Include="Source\Inventario\Salidas\HojasDeLiquidacion.aspx" />
     <Content Include="Source\Prestamos\Prestamos.aspx" />
     <Content Include="Source\Prestamos\SolicitudesDePrestamos.aspx" />
-    <Content Include="Source\Productos\Productos.aspx" />
-    <Content Include="Source\Productos\TiposDeProductos.aspx" />
     <Content Include="Source\Reportes\MovimientosDeInventarioDeCafe.aspx" />
     <Content Include="Source\Seguridad\CambiarClave.ascx" />
     <Content Include="Source\Seguridad\Roles.aspx" />
@@ -254,20 +248,6 @@
     </Compile>
     <Compile Include="Source\Prestamos\SolicitudesDePrestamos.aspx.designer.cs">
       <DependentUpon>SolicitudesDePrestamos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Source\Productos\Productos.aspx.cs">
-      <DependentUpon>Productos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Source\Productos\Productos.aspx.designer.cs">
-      <DependentUpon>Productos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Source\Productos\TiposDeProductos.aspx.cs">
-      <DependentUpon>TiposDeProductos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Source\Productos\TiposDeProductos.aspx.designer.cs">
-      <DependentUpon>TiposDeProductos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Reportes\MovimientosDeInventarioDeCafe.aspx.cs">
       <DependentUpon>MovimientosDeInventarioDeCafe.aspx</DependentUpon>

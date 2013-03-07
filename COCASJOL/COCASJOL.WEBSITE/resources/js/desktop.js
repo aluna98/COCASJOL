@@ -200,14 +200,6 @@ var WindowX = {
         DesktopX.createDynamicWindow(app, 'group', 'Socios', 'Socios/Socios.aspx', 800, 600);
     },
 
-    tiposDeProductos: function (app) {
-        DesktopX.createDynamicWindow(app, 'basket', 'Tipos de Productos', 'Productos/TiposDeProductos.aspx');
-    },
-
-    productos: function (app) {
-        DesktopX.createDynamicWindow(app, 'cart', 'Productos', 'Productos/Productos.aspx');
-    },
-
     estadosNotasDePeso: function (app) {
         DesktopX.createDynamicWindow(app, 'pagego', 'Estados de Notas De Peso', 'Inventario/Ingresos/EstadosNotaDePeso.aspx');
     },
@@ -276,10 +268,6 @@ var ShorcutClickHandler = function (app, id) {
         WindowX.plantillasNotificaciones(app);
     } else if (id == 'scSocios') {
         WindowX.socios(app);
-    } else if (id == 'scTiposDeProductos') {
-        WindowX.tiposDeProductos(app);
-    } else if (id == 'scProductos') {
-        WindowX.productos(app);
     } else if (id == 'scEstadosNotasDePeso') {
         WindowX.estadosNotasDePeso(app);
     } else if (id == 'scNotasDePesoEnPesaje') {

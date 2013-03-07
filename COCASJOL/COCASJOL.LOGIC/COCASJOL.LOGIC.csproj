@@ -83,8 +83,6 @@
     </Compile>
     <Compile Include="Prestamos\PrestamosLogic.cs" />
     <Compile Include="Prestamos\SolicitudesLogic.cs" />
-    <Compile Include="Productos\ProductoLogic.cs" />
-    <Compile Include="Productos\TipoDeProductoLogic.cs" />
     <Compile Include="Reportes\ConsolidadoDeInventarioDeCafeLogic.cs" />
     <Compile Include="Reportes\MovimientosDeInventarioDeCafeLogic.cs" />
     <Compile Include="Seguridad\PrivilegioLogic.cs" />
@@ -136,14 +134,12 @@
     <None Include="Properties\DataSources\prestamo.datasource" />
     <None Include="Properties\DataSources\prestamo_x_socio.datasource" />
     <None Include="Properties\DataSources\privilegio.datasource" />
-    <None Include="Properties\DataSources\producto.datasource" />
     <None Include="Properties\DataSources\referencia_x_solicitud.datasource" />
     <None Include="Properties\DataSources\reporte_movimientos_de_inventario_de_cafe.datasource" />
     <None Include="Properties\DataSources\reporte_total_inventario_de_cafe_por_socio.datasource" />
     <None Include="Properties\DataSources\rol.datasource" />
     <None Include="Properties\DataSources\socio_general.datasource" />
     <None Include="Properties\DataSources\solicitud_prestamo.datasource" />
-    <None Include="Properties\DataSources\tipo_producto.datasource" />
     <None Include="Properties\DataSources\usuario.datasource" />
     <None Include="Properties\DataSources\variable_de_entorno.datasource" />
   </ItemGroup>

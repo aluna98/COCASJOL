@@ -29,20 +29,6 @@
     <menuitem>SociosMenuItem</menuitem>
   </privilege>
   <privilege>
-    <key>MANT_TIPOPRODS</key>
-    <page>TiposDeProductos</page>
-    <module>TiposDeProductoModule</module>
-    <shortcut>scTiposDeProductos</shortcut>
-    <menuitem>TiposDeProductosMenuItem</menuitem>
-  </privilege>
-  <privilege>
-    <key>MANT_PRODUCTOS</key>
-    <page>Productos</page>
-    <module>ProductosModule</module>
-    <shortcut>scProductos</shortcut>
-    <menuitem>ProductosMenuItem</menuitem>
-  </privilege>
-  <privilege>
     <key>MANT_ESTADOSNOTAPESO</key>
     <page>EstadosNotaDePeso</page>
     <module>EstadosNotasDePesoModule</module>
