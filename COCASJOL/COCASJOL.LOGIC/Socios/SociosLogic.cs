@@ -6,6 +6,8 @@ using System.Text;
 using System.Data;
 using System.Data.Objects;
 
+using System.Data.Odbc;
+
 namespace COCASJOL.LOGIC.Socios
 {
     public class SociosLogic
@@ -572,5 +574,48 @@ namespace COCASJOL.LOGIC.Socios
             }
         }
         #endregion
+
+        public static void getSociosDBISAM()
+        {
+            try
+            {
+                string queryString = "select * from sclientes";
+                OdbcCommand command = new OdbcCommand(queryString);
+
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["A2DBISAM"].ConnectionString;
+
+                using (OdbcConnection connection = new OdbcConnection(connectionString))
+                {
+                    command.Connection = connection;
+                    connection.Open();
+
+                    OdbcDataReader reader = command.ExecuteReader();
+
+                    int fCount = reader.FieldCount;
+
+                    string rec = "";
+
+                    while (reader.Read())
+                    {
+                        for (int i = 0; i < fCount; i++)
+                        {
+                            rec += " " + (reader.GetValue(i).ToString());
+                        }
+
+                        rec += "\n";
+                    }
+
+                    OdbcDataAdapter adapter = new OdbcDataAdapter(queryString, connection);
+                    DataTable dt = new DataTable();
+
+                    adapter.Fill(dt);
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
     }
 }
