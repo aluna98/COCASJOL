@@ -14,6 +14,8 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
     {
         public int ESTADOS_NOTA_ID;
 
+        public NotaDePesoLogic() { }
+
         public NotaDePesoLogic(string ESTADOS_NOTA_LLAVE)
         {
             try

@@ -38,6 +38,10 @@
       <HintPath>..\Dependencies\Ext.NET.Community.1.6.0\lib\Ext.Net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -69,6 +73,7 @@
     <Content Include="resources\css\DesktopShortcuts.css" />
     <Content Include="resources\images\background1.jpg" />
     <Content Include="resources\images\bricks.png" />
+    <Content Include="resources\images\Cafe_Colinas_Logo.jpg" />
     <Content Include="resources\images\cheque.png" />
     <Content Include="resources\images\cheque16x16.png" />
     <Content Include="resources\images\cocasjol_start_button.gif" />
@@ -134,6 +139,7 @@
     <Content Include="Source\Prestamos\Prestamos.aspx" />
     <Content Include="Source\Prestamos\SolicitudesDePrestamos.aspx" />
     <Content Include="Source\Reportes\MovimientosDeInventarioDeCafe.aspx" />
+    <Content Include="Source\Reportes\ReportViewer.aspx" />
     <Content Include="Source\Seguridad\CambiarClave.ascx" />
     <Content Include="Source\Seguridad\Roles.aspx" />
     <Content Include="Source\Seguridad\Usuarios.aspx" />
@@ -256,6 +262,13 @@
     <Compile Include="Source\Reportes\MovimientosDeInventarioDeCafe.aspx.designer.cs">
       <DependentUpon>MovimientosDeInventarioDeCafe.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Source\Reportes\ReportViewer.aspx.cs">
+      <DependentUpon>ReportViewer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Reportes\ReportViewer.aspx.designer.cs">
+      <DependentUpon>ReportViewer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Source\Seguridad\CambiarClave.ascx.cs">
       <DependentUpon>CambiarClave.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -307,6 +320,10 @@
       <Project>{4E2A8EDC-D2EC-4897-BFFA-D87CFCD3FE01}</Project>
       <Name>COCASJOL.LOGIC</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="resources\rdlcs\NotaDetalles.rdlc" />
+    <EmbeddedResource Include="resources\rdlcs\NotasDePeso.rdlc" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -193,8 +193,9 @@ namespace <#=namespaceName#>
         //    }
         //}
 
-		}
         #endregion
+
+    }
 		
 	<#
 

@@ -139,8 +139,9 @@ namespace COCASJOL.LOGIC
             //    }
             //}
     
-    		}
             #endregion
+    
+        }
     		
     	#region Contexts
     

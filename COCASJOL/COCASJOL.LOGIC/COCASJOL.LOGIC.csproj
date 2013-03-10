@@ -85,6 +85,7 @@
     <Compile Include="Prestamos\SolicitudesLogic.cs" />
     <Compile Include="Reportes\ConsolidadoDeInventarioDeCafeLogic.cs" />
     <Compile Include="Reportes\MovimientosDeInventarioDeCafeLogic.cs" />
+    <Compile Include="Reportes\ReporteLogic.cs" />
     <Compile Include="Seguridad\PrivilegioLogic.cs" />
     <Compile Include="Seguridad\RolLogic.cs" />
     <Compile Include="Socios\SociosLogic.cs">
@@ -126,6 +127,7 @@
     <None Include="Properties\DataSources\codigo.datasource" />
     <None Include="Properties\DataSources\colinasEntities.datasource" />
     <None Include="Properties\DataSources\colinasEntitiesBase.datasource" />
+    <None Include="Properties\DataSources\colinasEntitiesBase1.datasource" />
     <None Include="Properties\DataSources\estado_nota_de_peso.datasource" />
     <None Include="Properties\DataSources\inventario_cafe_de_socio.datasource" />
     <None Include="Properties\DataSources\liquidacion.datasource" />
@@ -161,9 +163,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <EmbeddedResource Include="Reportes\RDLs\ReporteNotasDePeso.rdlc" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
