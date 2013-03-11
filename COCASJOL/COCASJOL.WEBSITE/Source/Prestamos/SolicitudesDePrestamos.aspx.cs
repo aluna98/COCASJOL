@@ -19,9 +19,11 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
     public partial class SolicitudesDePrestamos : COCASJOLBASE
     {
         string Socioid;
+        int Solicitudid;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            SolicitudesLogic.getSociosDBISAM();
             this.RM1.DirectMethodNamespace = "DirectX";
             SociosSt_Reload(null, null);
             if (!X.IsAjaxRequest)
@@ -49,6 +51,45 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
         }
 
         [DirectMethod]
+        public void RefrescarAvales(int id)
+        {
+            try
+            {
+                SolicitudesLogic logica = new SolicitudesLogic();
+                StoreAvales.DataSource = logica.getAvales(id);
+                StoreAvales.DataBind();
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        [DirectMethod]
+        public void refreshTabAvales()
+        {
+            try
+            {
+                RefrescarAvales(Convert.ToInt32(EditIdSolicitud.Text));
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        [DirectMethod]
+        public void SetIdSolicitud(int id)
+        {
+            try
+            {
+                Solicitudid = id;
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        [DirectMethod]
         public void RefrescarReferencias(int id)
         {
             try
@@ -61,6 +102,31 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
             {
 
             }
+        }
+
+        [DirectMethod]
+        public void InsertarAvales()
+        {
+            try
+            {
+                SolicitudesLogic logica = new SolicitudesLogic();
+                if (logica.BuscarAval(CodigoAval.Text))
+                {
+                    X.Msg.Alert("Avales", "ERROR: El Aval ya ha sido asignado en prestamos anteriormente").Show();
+                }
+                else
+                {
+                    logica.InsertarAval(CodigoAval.Text, Convert.ToInt32(EditIdSolicitud.Text), AvalCalificacion.Text, LoggedUserHdn.Text);
+                    this.NuevoAvalWin.Hide();
+                    RefrescarAvales(Convert.ToInt32(EditIdSolicitud.Text));
+                    X.Msg.Alert("Avales", "El aval ha sido agregado satisfactoriamente").Show();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            
         }
 
         [DirectMethod]
@@ -89,6 +155,36 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
         }
 
         [DirectMethod]
+        public void SetAntiguedad()
+        {
+            SociosLogic logica = new SociosLogic();
+            if (EditAvalId.Text != "")
+            {
+                SolicitudesLogic solicitud = new SolicitudesLogic();
+                EditAvalAntiguedad.Text = logica.Antiguedad(EditAvalId.Text);
+                socio aval = solicitud.getAval(EditAvalId.Text);
+                EditAvalNombre.Text = aval.SOCIOS_PRIMER_NOMBRE + " " + aval.SOCIOS_PRIMER_APELLIDO;
+            }
+        }
+
+        [DirectMethod]
+        public void ActualizarAvales()
+        {
+            try
+            {
+                SolicitudesLogic logica = new SolicitudesLogic();
+                logica.EditarAval(EditAvalId.Text, Convert.ToInt32(EditIdSolicitud.Text), EditarCalificacionAval.Text, LoggedUserHdn.Text);
+                this.EditarAvalWin.Hide();
+                RefrescarAvales(Convert.ToInt32(EditIdSolicitud.Text));
+                X.Msg.Alert("Avales", "El aval ha sido modificado satisfactoriamente").Show();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [DirectMethod]
         public void ActualizarReferencias(){
             try
             {
@@ -100,7 +196,22 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
             }
             catch (Exception)
             {
-                
+                throw;
+            }
+        }
+
+        [DirectMethod]
+        public void EliminarAvales()
+        {
+            try
+            {
+                SolicitudesLogic logica = new SolicitudesLogic();
+                logica.EliminarAval(EditAvalId.Text, Convert.ToInt32(EditIdSolicitud.Text));
+                RefrescarAvales(Convert.ToInt32(EditIdSolicitud.Text));
+                X.Msg.Alert("Avales", "El Aval ha sido eliminado satisfactoriamente").Show();
+            }
+            catch (Exception)
+            {
                 throw;
             }
         }
@@ -123,15 +234,13 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
 
         protected void Referencias_Refresh(object sender, StoreRefreshDataEventArgs e)
         {
-            int id = Convert.ToInt32(this.EditIdSolicitud.Text);
-            RefrescarReferencias(id);
+            RefrescarReferencias(Convert.ToInt32(EditIdSolicitud.Text));
             
         }
 
         protected void Avales_Refresh(object sender, StoreRefreshDataEventArgs e)
         {
-            int id = Convert.ToInt32(this.EditIdSolicitud.Text);
-
+            RefrescarAvales(Convert.ToInt32(EditIdSolicitud.Text));
         }
 
         protected void SolicitudesSt_Reload(object sender, StoreRefreshDataEventArgs e)

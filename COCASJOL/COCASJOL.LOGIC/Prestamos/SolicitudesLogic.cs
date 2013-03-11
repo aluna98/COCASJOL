@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Data.Odbc;
 using System.Data;
 using System.Data.Objects;
 
@@ -103,10 +103,51 @@ namespace COCASJOL.LOGIC.Prestamos
                 }
 
             }
+
+            public List<aval_x_solicitud> getAvales(int id)
+            {
+                try
+                {
+                    using (var db = new colinasEntities())
+                    {
+                        List<aval_x_solicitud> lista = new List<aval_x_solicitud>();
+                        var query = from aval in db.avales_x_solicitud.Include("socios").Include("solicitudes_prestamos")
+                                    where aval.SOLICITUDES_ID == id
+                                    select aval;
+                        lista = query.ToList<aval_x_solicitud>();
+                        return lista;
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw;
+                }
+            }
+
+            public socio getAval(string id)
+            {
+                try
+                {
+                    using (var db = new colinasEntities())
+                    {
+                        socio lista = new socio();
+                        var query = from soc in db.socios
+                                    where soc.SOCIOS_ID == id
+                                    select soc;
+                        lista = query.First();
+                        return lista;
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw;
+                }
+            }
         #endregion
 
         #region insert
-        public void InsertarSolicitud(string idsocio, decimal monto,
+
+            public void InsertarSolicitud(string idsocio, decimal monto,
             int interes, string plazo, string pago, string destino, int idprestamo, string cargo, decimal promedio3,
             decimal produccion, string norte, string sur, string oeste, string este, int vehiculo, int agua,
             int enee, int casa, int beneficio, string cultivos, string calificacion, string creadopor)
@@ -138,6 +179,7 @@ namespace COCASJOL.LOGIC.Prestamos
                 solicitud.SOLICITUDES_BENEFICIO = (sbyte)beneficio;
                 solicitud.SOLICITUD_OTROSCULTIVOS = cultivos;
                 solicitud.SOLICITUD_CALIFICACION = calificacion;
+                solicitud.SOLICITUD_ESTADO = -1;
                 solicitud.CREADO_POR = creadopor;
                 solicitud.FECHA_CREACION = DateTime.Today;
                 solicitud.MODIFICADO_POR = creadopor;
@@ -153,7 +195,7 @@ namespace COCASJOL.LOGIC.Prestamos
             }
         }
 
-        public void InsertarReferencia(string id, int solicitudid, string nombre, string telefono, string tipo, string creadopor)
+            public void InsertarReferencia(string id, int solicitudid, string nombre, string telefono, string tipo, string creadopor)
         {
             
             try
@@ -170,6 +212,31 @@ namespace COCASJOL.LOGIC.Prestamos
                     referencia.FECHA_CREACION = DateTime.Today;
                     referencia.FECHA_MODIFICACION = DateTime.Today;
                     db.referencias_x_solicitudes.AddObject(referencia);
+                    db.SaveChanges();
+                    db.Dispose();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+            public void InsertarAval(string id, int solicitudid, string calificacion, string creadopor)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    aval_x_solicitud aval = new aval_x_solicitud();
+                    aval.AVALES_CALIFICACION = calificacion;
+                    aval.SOCIOS_ID = id;
+                    aval.SOLICITUDES_ID = solicitudid;
+                    aval.CREADO_POR = creadopor;
+                    aval.FECHA_CREACION = DateTime.Today;
+                    aval.MODIFICADO_POR = creadopor;
+                    aval.FECHA_MODIFICACION = DateTime.Today;
+                    db.avales_x_solicitud.AddObject(aval);
                     db.SaveChanges();
                     db.Dispose();
                 }
@@ -239,7 +306,7 @@ namespace COCASJOL.LOGIC.Prestamos
                     using (var db = new colinasEntities())
                     {
                         var query = from referencia in db.referencias_x_solicitudes
-                                    where referencia.SOLICITUDES_ID == solicitudid
+                                    where referencia.SOLICITUDES_ID == solicitudid && referencia.REFERENCIAS_ID == id
                                     select referencia;
 
                         referencia_x_solicitud nueva =  query.First();
@@ -257,9 +324,35 @@ namespace COCASJOL.LOGIC.Prestamos
                     throw;
                 }
             }
+
+            public void EditarAval(string id, int solicitudid, string calificacion, string modificadopor)
+            {
+                try
+                {
+                    using (var db = new colinasEntities())
+                    {
+                        var query = from aval2 in db.avales_x_solicitud
+                                    where aval2.SOLICITUDES_ID == solicitudid && aval2.SOCIOS_ID == id
+                                    select aval2;
+
+                        aval_x_solicitud aval = query.First();
+                        aval.AVALES_CALIFICACION = calificacion;
+                        aval.MODIFICADO_POR = modificadopor;
+                        aval.FECHA_MODIFICACION = DateTime.Today;
+                        db.SaveChanges();
+                        db.Dispose();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            
         #endregion
 
         #region Delete
+
             public void EliminarReferencia(string ReferenciaId, int SolicitudId)
             {
                 try
@@ -272,6 +365,29 @@ namespace COCASJOL.LOGIC.Prestamos
                         referencia_x_solicitud nueva = query.First();
                         db.referencias_x_solicitudes.DeleteObject(nueva);
                         db.SaveChanges();
+                        db.Dispose();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+
+            public void EliminarAval(string id, int solicitudid)
+            {
+                try
+                {
+                    using (var db = new colinasEntities())
+                    {
+                        var query = from aval in db.avales_x_solicitud
+                                    where aval.SOLICITUDES_ID == solicitudid && aval.SOCIOS_ID == id
+                                    select aval;
+
+                        aval_x_solicitud eliminar = query.First();
+                        db.avales_x_solicitud.DeleteObject(eliminar);
+                        db.SaveChanges();
+                        db.Dispose();
                     }
                 }
                 catch (Exception)
@@ -342,6 +458,70 @@ namespace COCASJOL.LOGIC.Prestamos
                     {
                         db.Dispose();
                     }
+                    throw;
+                }
+            }
+
+            public bool BuscarAval(string SOCIOS_ID)
+            {
+                try
+                {
+                    using (var db = new colinasEntities())
+                    {
+                        var query = from aval in db.avales_x_solicitud.Include("solicitudes_prestamos")
+                                    where aval.SOCIOS_ID == SOCIOS_ID
+                                    select aval;
+                        List<aval_x_solicitud> lista = query.ToList<aval_x_solicitud>();
+                        if (lista.Count() > 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw;
+                }
+            }
+
+            public static void getSociosDBISAM()
+            {
+                try
+                {
+                    string queryString = "select * from scategoria";
+                    OdbcCommand command = new OdbcCommand(queryString);
+
+                    string connectionString = "PROVIDER=MSDASQL;DSN=MYDBISAM";
+
+                    using (OdbcConnection connection = new OdbcConnection(connectionString))
+                    {
+                        command.Connection = connection;
+                        connection.Open();
+
+                        OdbcDataReader reader = command.ExecuteReader();
+
+                        int fCount = reader.FieldCount;
+
+                        string rec = "";
+
+                        while (reader.Read())
+                        {
+                            for (int i = 0; i < fCount; i++)
+                            {
+                                rec += " " + (reader.GetValue(i).ToString());
+                            }
+
+                            rec += "\n";
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+
                     throw;
                 }
             }

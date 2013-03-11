@@ -15,11 +15,14 @@ var AddForm = null;
 var AddRefForm = null;
 var AddWindowAval = null;
 var AddAvalForm = null;
+var ConfirmMsgTitleAval = "Aval";
 var ConfirmMsgTitleRef = "Referencia";
 var ConfirmUpdateRef = "Seguro que desea editar la Referencia?";
 var ConfirmMsgTitle = "Socio";
 var ConfirmUpdate = "Seguro que desea editar la Solicitud?";
+var ConfirmAvalUpdate = "Seguro desea editar el aval?";
 var ConfirmDelete = "Seguro desea rechazar la Solicitud?";
+var ConfirmDeleteAval = "Seguro desea eliminar el aval de la solicitud?";
 var ConfirmAprobbe = "Seguro desea aprobar la Solicitud?";
 var Confirmacion = "Se ha finalizado correctamente";
 
@@ -32,13 +35,16 @@ var SolicitudX = {
         GridAval = AvalesGridP;
         EditRefWindow = EditarReferenciaWin;
         EditRefForm = EditarReferenciaForm;
+        EditAvalWindow = EditarAvalWin;
+        EditAvalForm = EditarAvalForm;
+        AddWindowAval = NuevoAvalWin;
+        AddAvalForm = NuevoAvalForm;
         EditWindow = EditarSolicitudWin;
         EditForm = EditarSolicitudFormP;
         AddWindow = NuevaSolicitudWin;
         AddForm = NuevaSolicitudFormP;
         AddRefWin = NuevaReferenciaWin;
         AddRefForm = NuevaReferenciaForm;
-
     },
 
     getRecordRef: function () {
@@ -55,12 +61,23 @@ var SolicitudX = {
         }
     },
 
+    getRecordAval: function () {
+        var registro = GridAval.getStore().getAt(this.getIndexAval()); ;
+        if (registro != null) {
+            return registro;
+        }
+    },
+
     addRef: function () {
         AddRefWin.show();
     },
 
     add: function () {
         AddWindow.show();
+    },
+
+    addAval: function () {
+        AddWindowAval.show();
     },
 
     removeRef: function () {
@@ -84,6 +101,31 @@ var SolicitudX = {
         }
     },
 
+    removeAval: function () {
+        if (EditAvalForm.record == null) {
+            return;
+        }
+        if (GridAval.getSelectionModel().hasSelection()) {
+            Ext.Msg.confirm(ConfirmMsgTitleAval, ConfirmDeleteAval, function (btn, text) {
+                if (btn == 'yes') {
+                    var record = GridAval.getSelectionModel().getSelected();
+                    if (rec != null) {
+                        EditAvalForm.getForm().loadRecord(record);
+                        EditAvalForm.record = record;
+                        DirectX.EliminarAvales();
+                    }
+                }
+            });
+        } else {
+            var msg = Ext.Msg;
+            Ext.Msg.alert('Atencion', 'Seleccione al menos 1 elemento');
+        }
+    },
+
+    insertAval: function () {
+        DirectX.InsertarAvales();
+    },
+
     insertRef: function () {
         DirectX.InsertarReferencias();
     },
@@ -93,6 +135,18 @@ var SolicitudX = {
         Grid.insertRecord(0, fields, false);
     },
 
+    editAval: function () {
+        if (GridAval.getSelectionModel().hasSelection()) {
+            var record = GridAval.getSelectionModel().getSelected();
+            var index = GridAval.store.indexOf(record);
+            this.setIndexAval(index);
+            this.openAval();
+        } else {
+            var msg = Ext.Msg;
+            Ext.Msg.alert('Atencion', 'Seleccione al menos 1 elemento');
+        }
+    },
+
     editRef: function () {
         if (GridRef.getSelectionModel().hasSelection()) {
             var record = GridRef.getSelectionModel().getSelected();
@@ -100,7 +154,8 @@ var SolicitudX = {
             this.setIndexRef(index);
             this.openRef();
         } else {
-            var msg = Ext
+            var msg = Ext.Msg;
+            Ext.Msg.alert('Atencion', 'Seleccione al menos 1 elemento');
         }
     },
 
@@ -116,6 +171,11 @@ var SolicitudX = {
         }
     },
 
+    edit2Aval: function (index) {
+        this.SetIndexAval(index);
+        this.openAval();
+    },
+
     edit2Ref: function (index) {
         this.setIndexRef(index);
         this.openRef();
@@ -126,6 +186,10 @@ var SolicitudX = {
         this.open();
     },
 
+    nextAval: function () {
+        this.edit2Aval(this.getIndexAval() + 1);
+    },
+
     nextRef: function () {
         this.edit2Ref(this.getIndexRef() + 1);
     },
@@ -134,12 +198,26 @@ var SolicitudX = {
         this.edit2(this.getIndex() + 1);
     },
 
+    PreviosAval: function () {
+        this.edit2Aval(this.getIndexAval() - 1);
+    },
+
     PreviousRef: function () {
         this.edit2Ref(this.getIndexRef() - 1);
     },
 
     previous: function () {
         this.edit2(this.getIndex() - 1);
+    },
+
+    openAval: function () {
+        rec = this.getRecordAval();
+        if (rec != null) {
+            EditAvalWindow.show();
+            EditAvalForm.getForm().loadRecord(rec);
+            EditAvalForm.record = rec;
+            DirectX.SetAntiguedad();
+        }
     },
 
     openRef: function () {
@@ -158,8 +236,19 @@ var SolicitudX = {
             EditForm.getForm().loadRecord(rec);
             EditForm.record = rec;
             DirectX.RefrescarSocio(rec.data.SOCIOS_ID);
-            DirectX.RefrescarReferencias(rec.data.SOLICITUDES_ID);
+            DirectX.SetIdSolicitud(rec.data.SOLICITUDES_ID);
         }
+    },
+
+    updateAval: function () {
+        if (EditAvalForm.record == null) {
+            return;
+        }
+        Ext.Msg.confirm(ConfirmMsgTitleAval, ConfirmAvalUpdate, function (btn, text) {
+            if (btn == 'yes') {
+                EditAvalForm.getForm().updateRecord(EditAvalForm.record);
+            }
+        });
     },
 
     updateRef: function () {
@@ -186,12 +275,22 @@ var SolicitudX = {
         });
     },
 
+    getIndexAval: function () {
+        return this._indexAval;
+    },
+
     getIndex: function () {
         return this._index;
     },
 
     getIndexRef: function () {
         return this._indexRef;
+    },
+
+    setIndexAval: function (index) {
+        if (index > -1 && index < GridAval.getStore().getCount()) {
+            this._indexAval = index;
+        }
     },
 
     setIndex: function (index) {

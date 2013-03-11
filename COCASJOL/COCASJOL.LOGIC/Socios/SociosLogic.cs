@@ -6,8 +6,6 @@ using System.Text;
 using System.Data;
 using System.Data.Objects;
 
-using System.Data.Odbc;
-
 namespace COCASJOL.LOGIC.Socios
 {
     public class SociosLogic
@@ -573,49 +571,73 @@ namespace COCASJOL.LOGIC.Socios
                 throw;
             }
         }
-        #endregion
 
-        public static void getSociosDBISAM()
+        public string Antiguedad(string SOCIOS_ID)
         {
+            colinasEntities db = null;
             try
             {
-                string queryString = "select * from sclientes";
-                OdbcCommand command = new OdbcCommand(queryString);
+                db = new colinasEntities();
+                var query = from nuevo in db.socios_generales
+                            where nuevo.SOCIOS_ID == SOCIOS_ID
+                            select nuevo;
+                socio_general socgrl = query.First();
 
-                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["A2DBISAM"].ConnectionString;
-
-                using (OdbcConnection connection = new OdbcConnection(connectionString))
+                DateTime aceptacion = (DateTime)socgrl.GENERAL_FECHA_ACEPTACION;
+                string tiempo = "";
+                //Años
+                int Anhos = DateTime.Now.Year - aceptacion.Year;
+                if (DateTime.Now.Month < aceptacion.Month)
                 {
-                    command.Connection = connection;
-                    connection.Open();
-
-                    OdbcDataReader reader = command.ExecuteReader();
-
-                    int fCount = reader.FieldCount;
-
-                    string rec = "";
-
-                    while (reader.Read())
-                    {
-                        for (int i = 0; i < fCount; i++)
-                        {
-                            rec += " " + (reader.GetValue(i).ToString());
-                        }
-
-                        rec += "\n";
-                    }
-
-                    OdbcDataAdapter adapter = new OdbcDataAdapter(queryString, connection);
-                    DataTable dt = new DataTable();
-
-                    adapter.Fill(dt);
+                    Anhos--;
                 }
+                else
+                {
+                    if (DateTime.Now.Month == aceptacion.Month)
+                    {
+                        if (DateTime.Now.Day < aceptacion.Day)
+                        {
+                            Anhos--;
+                        }
+                    }
+                }
+                if (Anhos > 0)
+                {
+                    if (Anhos >1)
+                        tiempo = Convert.ToString(Anhos) + " años ";
+                    else
+                        tiempo = Convert.ToString(Anhos) + " año ";
+                }
+                //Meses
+                int mes = DateTime.Now.Month - aceptacion.Month;
+                if (mes > 0)
+                {
+                    if (mes == 1)
+                        tiempo += Convert.ToString(mes) + " mes ";
+                    else
+                        tiempo += Convert.ToString(mes) + " meses ";
+                }
+                else
+                {
+                    int dias = DateTime.Now.Day - aceptacion.Day;
+                    if (dias == 1)
+                    {
+                        tiempo = "Un dia";
+                    }
+                    else
+                    {
+                        tiempo = Convert.ToString(dias) + "dias";
+                    }
+                }
+                return tiempo;
+
             }
             catch (Exception)
             {
-                
                 throw;
             }
         }
+
+        #endregion
     }
 }
