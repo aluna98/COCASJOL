@@ -12,3 +12,6 @@ C:\Users\REB\Desktop\C#\EFProviderWrapperDemo\bin\Debug\EFTracingProvider.pdb
 C:\Users\REB\Desktop\C#\EFProviderWrapperDemo\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\REB\Desktop\C#\EFProviderWrapperDemo\obj\Debug\EFProviderWrapperDemo.exe
 C:\Users\REB\Desktop\C#\EFProviderWrapperDemo\obj\Debug\EFProviderWrapperDemo.pdb
+C:\Git\COCASJOL\COCASJOL\Dependencies\EFTracing\EFProviderWrapperDemo\bin\Debug\EFProviderWrapperDemo.exe.config
+C:\Git\COCASJOL\COCASJOL\Dependencies\EFTracing\EFProviderWrapperDemo\obj\Debug\EFProviderWrapperDemo.exe
+C:\Git\COCASJOL\COCASJOL\Dependencies\EFTracing\EFProviderWrapperDemo\obj\Debug\EFProviderWrapperDemo.pdb
