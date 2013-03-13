@@ -295,5 +295,10 @@ var PageX = {
         if (Grid.getStore().getTotalCount() == 0)
             Grid.getStore().reload();
         PagingToolbar1.moveLast();
+    },
+
+    print: function () {
+        var liquidaciones_id = EditHojasIdTxt.getValue();
+        window.open('../../Reportes/ReporteHojasDeLiquidacion.aspx?LIQUIDACIONES_ID=' + liquidaciones_id, "_blank", "resizable=yes, scrollbars=yes, top=10, left=10");
     }
 };

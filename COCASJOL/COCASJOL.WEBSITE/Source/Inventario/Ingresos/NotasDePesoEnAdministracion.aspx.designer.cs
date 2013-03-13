@@ -391,6 +391,24 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.Window EditarNotasWin;
         
         /// <summary>
+        /// Toolbar2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Toolbar Toolbar2;
+        
+        /// <summary>
+        /// ImprimirBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button ImprimirBtn;
+        
+        /// <summary>
         /// EditarNotasFormP control.
         /// </summary>
         /// <remarks>

@@ -386,7 +386,7 @@
             Icon="PageWhiteEdit"
             Title="Editar Nota de Peso"
             Width="640"
-            Height="640"            
+            Height="480"
             Resizable="false"
             Shadow="None"
             Modal="true"
@@ -396,6 +396,17 @@
             <Listeners>
                 <Hide Handler="#{EditNotaDetalleSt}.removeAll(); #{EditarNotasFormP}.getForm().reset();" />
             </Listeners>
+            <TopBar>
+                <ext:Toolbar ID="Toolbar2" runat="server">
+                    <Items>
+                        <ext:Button ID="ImprimirBtn" runat="server" Text="Versión para Imprimir" Icon="Printer">
+                            <Listeners>
+                                <Click Handler="PageX.print();" />
+                            </Listeners>
+                        </ext:Button>
+                    </Items>
+                </ext:Toolbar>
+            </TopBar>
             <Items>
                 <ext:FormPanel ID="EditarNotasFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelAlign="Right" LabelWidth="130" Layout="ContainerLayout" AutoScroll="true" >
                     <Listeners>

@@ -859,6 +859,24 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         protected global::Ext.Net.Window EditarHojasWin;
         
         /// <summary>
+        /// Toolbar2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Toolbar Toolbar2;
+        
+        /// <summary>
+        /// ImprimirBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button ImprimirBtn;
+        
+        /// <summary>
         /// EditarHojasFormP control.
         /// </summary>
         /// <remarks>
@@ -911,6 +929,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Panel Panel14;
+        
+        /// <summary>
+        /// EditHojasIdTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField EditHojasIdTxt;
         
         /// <summary>
         /// EditFechaHojaTxt control.

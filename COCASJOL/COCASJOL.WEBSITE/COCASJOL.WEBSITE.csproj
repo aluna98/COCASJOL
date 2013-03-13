@@ -139,7 +139,8 @@
     <Content Include="Source\Prestamos\Prestamos.aspx" />
     <Content Include="Source\Prestamos\SolicitudesDePrestamos.aspx" />
     <Content Include="Source\Reportes\MovimientosDeInventarioDeCafe.aspx" />
-    <Content Include="Source\Reportes\ReportViewer.aspx" />
+    <Content Include="Source\Reportes\ReporteHojasDeLiquidacion.aspx" />
+    <Content Include="Source\Reportes\ReporteNotasDePeso.aspx" />
     <Content Include="Source\Seguridad\CambiarClave.ascx" />
     <Content Include="Source\Seguridad\Roles.aspx" />
     <Content Include="Source\Seguridad\Usuarios.aspx" />
@@ -262,12 +263,19 @@
     <Compile Include="Source\Reportes\MovimientosDeInventarioDeCafe.aspx.designer.cs">
       <DependentUpon>MovimientosDeInventarioDeCafe.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Source\Reportes\ReportViewer.aspx.cs">
-      <DependentUpon>ReportViewer.aspx</DependentUpon>
+    <Compile Include="Source\Reportes\ReporteHojasDeLiquidacion.aspx.cs">
+      <DependentUpon>ReporteHojasDeLiquidacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Source\Reportes\ReportViewer.aspx.designer.cs">
-      <DependentUpon>ReportViewer.aspx</DependentUpon>
+    <Compile Include="Source\Reportes\ReporteHojasDeLiquidacion.aspx.designer.cs">
+      <DependentUpon>ReporteHojasDeLiquidacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Reportes\ReporteNotasDePeso.aspx.cs">
+      <DependentUpon>ReporteNotasDePeso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Reportes\ReporteNotasDePeso.aspx.designer.cs">
+      <DependentUpon>ReporteNotasDePeso.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Seguridad\CambiarClave.ascx.cs">
       <DependentUpon>CambiarClave.ascx</DependentUpon>
@@ -322,6 +330,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="resources\rdlcs\HojasDeLiquidacion.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="resources\rdlcs\NotaDetalles.rdlc" />
     <EmbeddedResource Include="resources\rdlcs\NotasDePeso.rdlc" />
   </ItemGroup>

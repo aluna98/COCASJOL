@@ -296,18 +296,9 @@
                 </Style>
               </TextRun>
             </TextRuns>
-            <Style />
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
           </Paragraph>
           <Paragraph>
             <TextRuns>
@@ -475,7 +466,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value xml:space="preserve">  </Value>
+                <Value xml:space="preserve"> </Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                   <TextDecoration>None</TextDecoration>
@@ -485,7 +476,7 @@
                 <Value>=Fields!NOTAS_PESO_HUMEDAD.Value</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
-                  <TextDecoration>Underline</TextDecoration>
+                  <TextDecoration>None</TextDecoration>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -499,7 +490,7 @@
                 <Value />
                 <Style>
                   <FontWeight>Bold</FontWeight>
-                  <TextDecoration>Underline</TextDecoration>
+                  <TextDecoration>None</TextDecoration>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -562,7 +553,7 @@
         <ReportName>NotaDetalles</ReportName>
         <Top>0.72931in</Top>
         <Left>3.29514in</Left>
-        <Height>2.55208in</Height>
+        <Height>3.22916in</Height>
         <Width>3.19097in</Width>
         <ZIndex>4</ZIndex>
         <Style>
@@ -571,14 +562,119 @@
           </Border>
         </Style>
       </Subreport>
+      <Textbox Name="Textbox33">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Suma: </Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!NOTAS_PESO_SUMA.Value</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Tara: </Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!NOTAS_PESO_TARA.Value</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Descuento: </Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!NOTAS_PESO_DESCUENTO.Value</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Total: </Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!NOTAS_PESO_TOTAL_RECIBIDO.Value</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox32</rd:DefaultName>
+        <Top>4.01055in</Top>
+        <Left>3.29514in</Left>
+        <Height>0.76042in</Height>
+        <Width>3.20486in</Width>
+        <ZIndex>5</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>10.46903cm</Height>
+    <Height>4.80917in</Height>
     <Style />
   </Body>
-  <Width>16.51cm</Width>
+  <Width>6.5in</Width>
   <Page>
     <PageHeader>
-      <Height>3.09562cm</Height>
+      <Height>1.21875in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -655,6 +751,39 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
+        <Textbox Name="Textbox4">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>R.T.N.  16069995505584</Value>
+                  <Style>
+                    <FontStyle>Italic</FontStyle>
+                    <FontSize>9pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox4</rd:DefaultName>
+          <Top>0.91319in</Top>
+          <Height>0.25in</Height>
+          <Width>1.54167in</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
         <Textbox Name="Textbox3">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
@@ -678,39 +807,6 @@
           <rd:DefaultName>Textbox3</rd:DefaultName>
           <Height>0.25in</Height>
           <Width>6.5in</Width>
-          <ZIndex>1</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Textbox4">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>R.T.N.  16069995505584</Value>
-                  <Style>
-                    <FontStyle>Italic</FontStyle>
-                    <FontSize>9pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox4</rd:DefaultName>
-          <Top>0.91319in</Top>
-          <Height>0.25in</Height>
-          <Width>1.54167in</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -816,7 +912,7 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>4.49792cm</Height>
+      <Height>1.39583in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -841,7 +937,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox40</rd:DefaultName>
-          <Top>0.99652in</Top>
+          <Top>0.44444in</Top>
           <Height>0.21875in</Height>
           <Width>3.20486in</Width>
           <Style>
@@ -878,7 +974,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox40</rd:DefaultName>
-          <Top>0.99652in</Top>
+          <Top>0.44444in</Top>
           <Left>3.29514in</Left>
           <Height>0.21875in</Height>
           <Width>3.20486in</Width>
@@ -916,116 +1012,11 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox54</rd:DefaultName>
-          <Top>1.34375in</Top>
-          <Left>0.66233in</Left>
+          <Top>0.85417in</Top>
+          <Left>0.66232in</Left>
           <Height>0.25in</Height>
           <Width>5.17535in</Width>
           <ZIndex>2</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Textbox33">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>Suma: </Value>
-                  <Style>
-                    <FontWeight>Bold</FontWeight>
-                    <TextDecoration>None</TextDecoration>
-                  </Style>
-                </TextRun>
-                <TextRun>
-                  <Value>=Fields!NOTAS_PESO_SUMA.Value</Value>
-                  <Style>
-                    <FontWeight>Bold</FontWeight>
-                    <TextDecoration>None</TextDecoration>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Left</TextAlign>
-              </Style>
-            </Paragraph>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>Tara: </Value>
-                  <Style>
-                    <FontWeight>Bold</FontWeight>
-                    <TextDecoration>None</TextDecoration>
-                  </Style>
-                </TextRun>
-                <TextRun>
-                  <Value>=Fields!NOTAS_PESO_TARA.Value</Value>
-                  <Style>
-                    <FontWeight>Bold</FontWeight>
-                    <TextDecoration>None</TextDecoration>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Left</TextAlign>
-              </Style>
-            </Paragraph>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>Descuento: </Value>
-                  <Style>
-                    <FontWeight>Bold</FontWeight>
-                    <TextDecoration>None</TextDecoration>
-                  </Style>
-                </TextRun>
-                <TextRun>
-                  <Value>=Fields!NOTAS_PESO_DESCUENTO.Value</Value>
-                  <Style>
-                    <FontWeight>Bold</FontWeight>
-                    <TextDecoration>None</TextDecoration>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Left</TextAlign>
-              </Style>
-            </Paragraph>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>Total: </Value>
-                  <Style>
-                    <FontWeight>Bold</FontWeight>
-                    <TextDecoration>None</TextDecoration>
-                  </Style>
-                </TextRun>
-                <TextRun>
-                  <Value>=Fields!NOTAS_PESO_TOTAL_RECIBIDO.Value</Value>
-                  <Style>
-                    <FontWeight>Bold</FontWeight>
-                    <TextDecoration>None</TextDecoration>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Left</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox32</rd:DefaultName>
-          <Top>0.06944in</Top>
-          <Left>3.29514in</Left>
-          <Height>0.76042in</Height>
-          <Width>3.20486in</Width>
-          <ZIndex>3</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1043,13 +1034,12 @@
         </Border>
       </Style>
     </PageFooter>
-    <PageHeight>27.94cm</PageHeight>
-    <PageWidth>21.59cm</PageWidth>
-    <LeftMargin>2.54cm</LeftMargin>
-    <RightMargin>2.54cm</RightMargin>
-    <TopMargin>2.54cm</TopMargin>
-    <BottomMargin>2.54cm</BottomMargin>
-    <ColumnSpacing>1.27cm</ColumnSpacing>
+    <InteractiveHeight>0in</InteractiveHeight>
+    <InteractiveWidth>0in</InteractiveWidth>
+    <LeftMargin>1in</LeftMargin>
+    <RightMargin>1in</RightMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
     <Style />
   </Page>
   <EmbeddedImages>
@@ -1096,5 +1086,5 @@ Xp0BZEEwkzqJSLZESOSFTFhpSNGp1tqYa/Wr3YkEjyWQB5K9dQxUMSU1H6UPb5/PvlB1gQQ2YtI0t4q+
     </EmbeddedImage>
   </EmbeddedImages>
   <rd:ReportID>35fd3886-2871-4d55-89b0-b1f1f1a32448</rd:ReportID>
-  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
 </Report>

@@ -57,6 +57,13 @@
     <menuitem>NotasDePesoMenuItem</menuitem>
   </privilege>
   <privilege>
+    <key>MANT_NOTASPESOENADMINISTRACION</key>
+    <page>ReporteNotasDePeso</page>
+    <module></module>
+    <shortcut></shortcut>
+    <menuitem></menuitem>
+  </privilege>
+  <privilege>
     <key>MANT_CLASIFICACIONESCAFE</key>
     <page>ClasificacionesDeCafe</page>
     <module>ClasificacionesDeCafeModule</module>
@@ -76,6 +83,13 @@
     <module>HojasDeLiquidacionModule</module>
     <shortcut>scHojasDeLiquidacion</shortcut>
     <menuitem>LiquidacionesMenuItem</menuitem>
+  </privilege>
+  <privilege>
+    <key>MANT_HOJASLIQUIDACION</key>
+    <page>ReporteHojasDeLiquidacion</page>
+    <module></module>
+    <shortcut></shortcut>
+    <menuitem></menuitem>
   </privilege>
   <privilege>
     <key>REPRT_MOVIMIENTOSINVENTARIO</key>

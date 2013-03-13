@@ -11,7 +11,7 @@ using Microsoft.Reporting.WebForms;
 
 namespace COCASJOL.WEBSITE.Source.Reportes
 {
-    public partial class ReportViewer : System.Web.UI.Page
+    public partial class ReporteNotasDePeso : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
         int NOTAS_ID = 0;
 

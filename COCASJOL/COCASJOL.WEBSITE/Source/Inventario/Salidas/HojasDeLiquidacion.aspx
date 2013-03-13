@@ -620,6 +620,17 @@
                 <Show Handler="#{EditFechaHojaTxt}.setValue(new Date());" />
                 <Hide Handler="#{EditarHojasFormP}.getForm().reset();" />
             </Listeners>
+            <TopBar>
+                <ext:Toolbar ID="Toolbar2" runat="server">
+                    <Items>
+                        <ext:Button ID="ImprimirBtn" runat="server" Text="Versión para Imprimir" Icon="Printer">
+                            <Listeners>
+                                <Click Handler="PageX.print();" />
+                            </Listeners>
+                        </ext:Button>
+                    </Items>
+                </ext:Toolbar>
+            </TopBar>
             <Items>
                 <ext:FormPanel ID="EditarHojasFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelAlign="Right" LabelWidth="130" Layout="ContainerLayout" AutoScroll="true" >
                     <Items>
@@ -636,6 +647,7 @@
                                                     <Items>
                                                         <ext:Panel ID="Panel14" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
+                                                                <ext:TextField runat="server" ID="EditHojasIdTxt"      DataIndex="LIQUIDACIONES_ID"    LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Numero Hoja de Liquidación" AllowBlank="false" MsgTarget="Side" ReadOnly="true" Hidden="true" ></ext:TextField>
                                                                 <ext:DateField runat="server" ID="EditFechaHojaTxt" DataIndex="LIQUIDACIONES_FECHA" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Fecha" AllowBlank="false" MsgTarget="Side"></ext:DateField>
                                                                 <ext:TextField runat="server" ID="EditSociosIdTxt"  DataIndex="SOCIOS_ID"           LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Código de Socio" AllowBlank="false" MsgTarget="Side" ReadOnly="true" >
                                                                     <ToolTips>

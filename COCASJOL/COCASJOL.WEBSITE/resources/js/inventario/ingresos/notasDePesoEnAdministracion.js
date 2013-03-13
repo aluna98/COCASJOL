@@ -291,6 +291,11 @@ var PageX = {
         if (Grid.getStore().getTotalCount() == 0)
             Grid.getStore().reload();
         PagingToolbar1.moveLast();
+    },
+
+    print: function () {
+        var notas_id = EditNotaIdTxt.getValue();
+        window.open('../../Reportes/ReporteNotasDePeso.aspx?NOTAS_ID=' + notas_id, "_blank", "resizable=yes, scrollbars=yes, top=10, left=10");
     }
 };
 
