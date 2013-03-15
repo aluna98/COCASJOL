@@ -12,6 +12,7 @@ using Ext.Net;
 using COCASJOL.LOGIC;
 using COCASJOL.LOGIC.Inventario;
 using COCASJOL.LOGIC.Inventario.Salidas;
+using COCASJOL.LOGIC.Socios;
 
 namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
 {
@@ -23,7 +24,8 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
             {
                 if (!X.IsAjaxRequest)
                 {
-
+                    Dictionary<string, string> variables = this.GetVariables();
+                    this.CantidadDeAportacionExtraordParaCoopHdn.Text = variables["HOJAS_APORTACIONEXTRACANT"];
                 }
 
                 string loggedUsr = Session["username"] as string;
@@ -97,7 +99,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
             }
         }
 
-        [DirectMethod]
+        [DirectMethod(RethrowException=true)]
         public void LoadCapitalizacionXRetencion()
         {
             try
@@ -111,6 +113,65 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
             catch (Exception)
             {
                 
+                throw;
+            }
+        }
+
+        [DirectMethod(RethrowException=true)]
+        public void LoadCuotaDeIngresoYGastosAdmn()
+        {
+            try
+            {
+                Dictionary<string, string> variables = this.GetVariables();
+                if (!this.ValidarVariables(variables))
+                    return;
+
+                string socios_id = this.AddSociosIdTxt.Text;
+
+                if (SociosLogic.EsNuevo(socios_id) == true)
+                {
+                    this.AddCuotaIngresoTxt.Text = variables["HOJAS_CUOTAINGRESO"];
+                    this.AddGastosAdminTxt.Text = variables["HOJAS_GASTOADMINISTRACION"];
+                }
+                else
+                {
+                    this.AddCuotaIngresoTxt.Text = (0).ToString();
+                    this.AddGastosAdminTxt.Text = (0).ToString();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [DirectMethod(RethrowException=true)]
+        public void LoadAportacionesOrdinariaYExtraordinaria()
+        {
+            try
+            {
+                Dictionary<string, string> variables = this.GetVariables();
+                if (!this.ValidarVariables(variables))
+                    return;
+
+                string socios_id = this.AddSociosIdTxt.Text;
+
+                if (SociosLogic.DebePagarAportacionOrdinaria(socios_id))
+                    this.AddAportacionOrdinariaTxt.Text = variables["HOJAS_APORTACIONORD"];
+                else
+                    this.AddAportacionOrdinariaTxt.Text = (0).ToString();
+
+
+
+                if (SociosLogic.DebePagarAportacionExtraordinaria(socios_id))
+                    this.AddAportacionExtraOrdinariaTxt.Text = variables["HOJAS_APORTACIONEXTRAORD"];
+                else
+                    this.AddAportacionExtraOrdinariaTxt.Text = (0).ToString();
+            }
+            catch (Exception)
+            {
+
                 throw;
             }
         }

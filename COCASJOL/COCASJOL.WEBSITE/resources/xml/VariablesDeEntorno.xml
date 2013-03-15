@@ -61,6 +61,36 @@
       </variable>
     </variables>
   </pagina>
+  <pagina>
+    <Name>HojasDeLiquidacion</Name>
+    <variables>
+      <variable>
+        <key>HOJAS_APORTACIONORD</key>
+        <descripcion>La cantidad de aportacion ordinaria anual.</descripcion>
+        <type>decimal</type>
+      </variable>
+    </variables>
+  </pagina>
+  <pagina>
+    <Name>HojasDeLiquidacion</Name>
+    <variables>
+      <variable>
+        <key>HOJAS_APORTACIONEXTRACANT</key>
+        <descripcion>La cantidad de Aportaciones Extraordinarias Iniciales para Cooperativa.</descripcion>
+        <type>int</type>
+      </variable>
+    </variables>
+  </pagina>
+  <pagina>
+    <Name>HojasDeLiquidacion</Name>
+    <variables>
+      <variable>
+        <key>HOJAS_APORTACIONEXTRAORD</key>
+        <descripcion>La cantidad de aportacion extraordinaria anual.</descripcion>
+        <type>decimal</type>
+      </variable>
+    </variables>
+  </pagina>
 
   <pagina>
     <Name>Socios</Name>

@@ -90,7 +90,10 @@ var PageX = {
 
         AddTotalProductoTxt.setValue(TotalLibras * PrecioLibra);
         AddTotalCalculosFSTxt.setValue(AddTotalProductoTxt.getValue());
+        this.AddCalcularCapitalizacionXRetencion();
+    },
 
+    AddCalcularCapitalizacionXRetencion: function () {
         /* Calcular Retención por Capitalización */
         var porcentajeCapitalizacionRet = AddCapitalizacionXRetencionTxt.getValue() / 100;
         AddCapitalizacionXRetencionCantidadTxt.setValue(AddTotalCalculosFSTxt.getValue() * porcentajeCapitalizacionRet);
@@ -247,6 +250,14 @@ var PageX = {
 
     loadCapitalizacionXRetencion: function () {
         Ext.net.DirectMethods.LoadCapitalizacionXRetencion();
+    },
+
+    loadCuotaDeIngreso: function () {
+        Ext.net.DirectMethods.LoadCuotaDeIngresoYGastosAdmn();
+    },
+
+    loadAportacionesOrdinariaYExtraordinaria: function () {
+        Ext.net.DirectMethods.LoadAportacionesOrdinariaYExtraordinaria();
     },
 
     clearFilter: function () {

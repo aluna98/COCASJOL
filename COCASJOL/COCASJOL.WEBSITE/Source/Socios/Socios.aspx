@@ -59,7 +59,7 @@
                                                 <ext:RecordField Name="SOCIOS_LUGAR_DE_EMISION" />
                                                 <ext:RecordField Name="SOCIOS_FECHA_DE_EMISION" type="Date" />
                                                 <ext:RecordField Name="SOCIOS_ESTATUS">
-                                                    <Convert Handler="return value === 1;" />
+                                                    <Convert Handler="return value >= 1;" />
                                                 </ext:RecordField>
                                                 <ext:RecordField Name="CREADO_POR" />
                                                 <ext:RecordField Name="FECHA_CREACION" Type="Date" />

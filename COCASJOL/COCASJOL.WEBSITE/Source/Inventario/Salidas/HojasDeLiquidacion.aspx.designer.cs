@@ -112,6 +112,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         protected global::Ext.Net.Hidden nullHdn;
         
         /// <summary>
+        /// CantidadDeAportacionExtraordParaCoopHdn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden CantidadDeAportacionExtraordParaCoopHdn;
+        
+        /// <summary>
         /// LoggedUserHdn control.
         /// </summary>
         /// <remarks>

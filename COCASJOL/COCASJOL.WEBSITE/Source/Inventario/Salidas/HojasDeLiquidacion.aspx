@@ -72,6 +72,7 @@
                     <asp:ControlParameter Name="FECHA_CREACION"                                     Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="MODIFICADO_POR"                                     Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="FECHA_MODIFICACION"                                 Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="SOCIOS_APORTACION_EXTRAORD_COOP_COUNT"              Type="Int32"    ControlID="nullHdn"                   PropertyName="Text" DefaultValue="0" />
                 </SelectParameters>
                 <InsertParameters>
                     <asp:Parameter Name="LIQUIDACIONES_ID"                                  Type="Int32"    />
@@ -109,6 +110,7 @@
                     <asp:Parameter Name="FECHA_CREACION"                                    Type="DateTime" />
                     <asp:Parameter Name="MODIFICADO_POR"                                    Type="String"   />
                     <asp:Parameter Name="FECHA_MODIFICACION"                                Type="DateTime" />
+                    <asp:ControlParameter Name="SOCIOS_APORTACION_EXTRAORD_COOP_COUNT"              Type="Decimal"  ControlID="CantidadDeAportacionExtraordParaCoopHdn" PropertyName="Text" DefaultValue="0" />
                 </InsertParameters>
         </asp:ObjectDataSource>
 
@@ -149,6 +151,9 @@
         </ext:Store>
 
         <ext:Hidden ID="nullHdn" runat="server" >
+        </ext:Hidden>
+
+        <ext:Hidden ID="CantidadDeAportacionExtraordParaCoopHdn" runat="server" >
         </ext:Hidden>
 
         <ext:Hidden ID="LoggedUserHdn" runat="server" >
@@ -207,6 +212,7 @@
                                                 <ext:RecordField Name="LIQUIDACIONES_D_TOTAL_DEDUCCIONES"                 />
                                                 <ext:RecordField Name="LIQUIDACIONES_D_AF_SOCIO"                          />
                                                 <ext:RecordField Name="LIQUIDACIONES_D_TOTAL"                             />
+                                                <ext:RecordField Name="SOCIOS_APORTACION_EXTRAORD_COOP_COUNT"             />
                                                 <ext:RecordField Name="CREADO_POR"                                        />
                                                 <ext:RecordField Name="FECHA_CREACION"                                    Type="Date" />
                                                 <ext:RecordField Name="MODIFICADO_POR"                                    />
@@ -460,7 +466,7 @@
                                                                     <Listeners>
                                                                         <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
                                                                         <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide(); Ext.getCmp('EditNombreTxt').reset(); Ext.getCmp('EditDireccionFincaTxt').reset(); }" />
-                                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddDireccionFincaTxt')); PageX.getInventarioFueraDeCatacion();" />
+                                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddDireccionFincaTxt')); PageX.loadCuotaDeIngreso(); PageX.loadAportacionesOrdinariaYExtraordinaria(); PageX.getInventarioFueraDeCatacion();" />
                                                                     </Listeners>
                                                                 </ext:ComboBox>
                                                             </Items>
@@ -536,7 +542,11 @@
                                                                 <ext:NumberField runat="server" ID="AddAportacionOrdinariaTxt"              DataIndex="LIQUIDACIONES_D_APORTACION_ORDINARIO"              LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Aportación Ordinaria" ></ext:NumberField>
                                                                 <ext:NumberField runat="server" ID="AddAportacionExtraOrdinariaTxt"         DataIndex="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA"         LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Aportación Extraordinaria" ></ext:NumberField>
                                                                 <ext:NumberField runat="server" ID="AddCuotaAdminTxt"                       DataIndex="LIQUIDACIONES_D_CUOTA_ADMIN"                       LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Cuota de Administración" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="AddCapitalizacionXRetencionTxt"         DataIndex="LIQUIDACIONES_D_CAPITALIZACION_RETENCION"          LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="% Capitalización por Retención" ReadOnly="true" AllowBlank="false" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddCapitalizacionXRetencionTxt"         DataIndex="LIQUIDACIONES_D_CAPITALIZACION_RETENCION"          LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="% Capitalización por Retención" AllowBlank="false" >
+                                                                    <Listeners>
+                                                                        <Change Handler="PageX.AddCalcularCapitalizacionXRetencion();" />
+                                                                    </Listeners>
+                                                                </ext:NumberField>
                                                                 <ext:NumberField runat="server" ID="AddCapitalizacionXRetencionCantidadTxt" DataIndex="LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD" LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Capitalización por Retención" ReadOnly="true" AllowBlank="false" Text="0" ></ext:NumberField>
                                                                 <ext:NumberField runat="server" ID="AddServicioSecadoCafeTxt"               DataIndex="LIQUIDACIONES_D_SERVICIO_SECADO_CAFE"              LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Servicio de Secado de Café" ></ext:NumberField>
                                                                 <ext:NumberField runat="server" ID="AddInteresesSobreAportacionesTxt"       DataIndex="LIQUIDACIONES_D_INTERESES_S_APORTACIONES"          LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Intereses sobre Aportaciones" ></ext:NumberField>

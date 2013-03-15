@@ -72,8 +72,8 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
               string CREADO_POR,
             DateTime FECHA_CREACION,
               string MODIFICADO_POR,
-            DateTime FECHA_MODIFICACION
-            )
+            DateTime FECHA_MODIFICACION,
+                 int SOCIOS_APORTACION_EXTRAORD_COOP_COUNT)
         {
             try
             {
@@ -145,13 +145,13 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
          * --------Guardar Hoja de Liquidación--------
          * guardar datos de hoja de liquidación
          * --------Modificar Inventario de Café--------
-         * modificar inventario de socio como salida
-         *      obtener el inventario de café actual
-         *      modificar inventario de café actual
+         * --------Cambiar Estado Actual de Socio--------
+         * --------Cambiar Estado Aportación ordinaria anual de Socio--------
+         * --------Cambiar Estado Aportación extraordinaria anual de Socio--------
          * --------Modificar Aportaciones de Socio--------
-         * 
-         * 
-         * 
+         * ?
+         * ?
+         * ?
          */
         public void InsertarHojaDeLiquidacion
             (    int LIQUIDACIONES_ID,
@@ -188,7 +188,8 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
               string CREADO_POR,
             DateTime FECHA_CREACION,
               string MODIFICADO_POR,
-            DateTime FECHA_MODIFICACION)
+            DateTime FECHA_MODIFICACION,
+                 int SOCIOS_APORTACION_EXTRAORD_COOP_COUNT)
         {
             try
             {
@@ -241,6 +242,24 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                         inventariodecafelogic.InsertarTransaccionInventarioDeCafeDeSocio(hojaliquidacion, db);
 
                         db.SaveChanges();
+
+                        /* --------Cambiar Estado Actual de Socio-------- */
+                        if (LIQUIDACIONES_D_CUOTA_INGRESO != 0)
+                            Socios.SociosLogic.GastoDeIngresoPagado(SOCIOS_ID);
+
+                        /* --------Cambiar Estado Aportación ordinaria anual de Socio-------- */
+                        if (LIQUIDACIONES_D_APORTACION_ORDINARIO != 0)
+                        {
+                            Socios.SociosLogic.AportacionOrdinariaPagada(SOCIOS_ID);
+                            //TODO: Aumentar aportaciones de socio
+                        }
+
+                        /* --------Cambiar Estado Aportación extraordinaria anual de Socio-------- */
+                        if (LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA != 0)
+                        {
+                            bool aumentar_aportaciones = Socios.SociosLogic.AportacionExtraordinariaPagada(SOCIOS_ID, SOCIOS_APORTACION_EXTRAORD_COOP_COUNT);
+                            //TODO: Aumentar aportaciones de socio
+                        }
 
                         scope1.Complete();
                     }
