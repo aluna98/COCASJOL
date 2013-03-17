@@ -34,7 +34,7 @@ namespace COCASJOL.WEBSITE.Source.Aportaciones
             }
         }
 
-        protected void AportacionesDs_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        protected void AportacionesDS_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
         {
             if (!this.IsPostBack)
                 e.Cancel = true;

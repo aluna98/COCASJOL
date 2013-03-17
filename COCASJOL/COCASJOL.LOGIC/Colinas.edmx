@@ -47,6 +47,16 @@
       `reporte_movimientos_de_inventario_de_cafe`.`INVENTARIO_SALIDAS_SALDO`
       FROM `reporte_movimientos_de_inventario_de_cafe` AS `reporte_movimientos_de_inventario_de_cafe`</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="reporte_total_aportaciones_por_socio" EntityType="COLINASMODEL.Store.reporte_total_aportaciones_por_socio" store:Type="Views" store:Schema="colinas" store:Name="reporte_total_aportaciones_por_socio">
+            <DefiningQuery>SELECT
+      `reporte_total_aportaciones_por_socio`.`TRANSACCION_NUMERO`, 
+      `reporte_total_aportaciones_por_socio`.`SOCIOS_ID`, 
+      `reporte_total_aportaciones_por_socio`.`SOCIOS_NOMBRE_COMPLETO`, 
+      `reporte_total_aportaciones_por_socio`.`APORTACIONES_SALDO`, 
+      `reporte_total_aportaciones_por_socio`.`CREADO_POR`, 
+      `reporte_total_aportaciones_por_socio`.`FECHA_CREACION`
+      FROM `reporte_total_aportaciones_por_socio` AS `reporte_total_aportaciones_por_socio`</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="reporte_total_inventario_de_cafe_por_socio" EntityType="COLINASMODEL.Store.reporte_total_inventario_de_cafe_por_socio" store:Type="Views" store:Schema="colinas" store:Name="reporte_total_inventario_de_cafe_por_socio">
             <DefiningQuery>SELECT
       `reporte_total_inventario_de_cafe_por_socio`.`TRANSACCION_NUMERO`, 
@@ -163,14 +173,15 @@
         </EntityContainer>
         <EntityType Name="aportaciones_socio">
           <Key>
-            <PropertyRef Name="SOCIOS_ID" />
+            <PropertyRef Name="TRANSACCION_NUMERO" />
           </Key>
+          <Property Name="TRANSACCION_NUMERO" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="SOCIOS_ID" Type="varchar" Nullable="false" MaxLength="5" />
-          <Property Name="APORTACIONES_SALDO" Type="decimal" Nullable="false" Precision="11" Scale="2" />
+          <Property Name="DOCUMENTO_ID" Type="int" Nullable="false" />
+          <Property Name="DOCUMENTO_TIPO" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="APORTACIONES_SALDO" Type="decimal" Nullable="false" Precision="11" Scale="4" />
           <Property Name="CREADO_POR" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
-          <Property Name="MODIFICADO_POR" Type="varchar" MaxLength="45" />
-          <Property Name="FECHA_MODIFICACION" Type="date" />
         </EntityType>
         <EntityType Name="avales_x_solicitud">
           <Key>
@@ -577,13 +588,27 @@
           <Property Name="INVENTARIO_SALIDAS_SALDO" Type="decimal" Nullable="false" Precision="11" Scale="4" />
         </EntityType>
         <!--Errors Found During Generation:
+      warning 6002: The table/view 'def.colinas.reporte_total_aportaciones_por_socio' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="reporte_total_aportaciones_por_socio">
+          <Key>
+            <PropertyRef Name="SOCIOS_ID" />
+          </Key>
+          <Property Name="TRANSACCION_NUMERO" Type="int" Nullable="false" />
+          <Property Name="SOCIOS_ID" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="SOCIOS_NOMBRE_COMPLETO" Type="varchar" MaxLength="183" />
+          <Property Name="APORTACIONES_SALDO" Type="decimal" Nullable="false" Precision="11" Scale="4" />
+          <Property Name="CREADO_POR" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
       warning 6002: The table/view 'def.colinas.reporte_total_inventario_de_cafe_por_socio' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="reporte_total_inventario_de_cafe_por_socio">
           <Key>
-            <PropertyRef Name="TRANSACCION_NUMERO" />
             
-            
+            <PropertyRef Name="SOCIOS_ID" />
+            <PropertyRef Name="CLASIFICACIONES_CAFE_ID" />
             
             
             
@@ -602,7 +627,7 @@
         </EntityType>
         <Association Name="APORTACIONES_SOCIOS_FK">
           <End Role="socios" Type="COLINASMODEL.Store.socios" Multiplicity="1" />
-          <End Role="aportaciones_socio" Type="COLINASMODEL.Store.aportaciones_socio" Multiplicity="0..1" />
+          <End Role="aportaciones_socio" Type="COLINASMODEL.Store.aportaciones_socio" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="socios">
               <PropertyRef Name="SOCIOS_ID" />
@@ -991,7 +1016,6 @@
             <End Role="notificaciones" EntitySet="notificaciones" />
           </AssociationSet>
           <EntitySet Name="plantillas_notificaciones" EntityType="COLINASMODEL.plantilla_notificacion" />
-          <EntitySet Name="aportaciones_socio" EntityType="COLINASMODEL.aportacion_socio" />
           <EntitySet Name="clasificaciones_cafe" EntityType="COLINASMODEL.clasificacion_cafe" />
           <EntitySet Name="inventario_cafe_de_socio" EntityType="COLINASMODEL.inventario_cafe_de_socio" />
           <AssociationSet Name="inventario_clasificacion_cafe_fk" Association="COLINASMODEL.inventario_clasificacion_cafe_fk">
@@ -1032,10 +1056,6 @@
           <EntitySet Name="avales_x_solicitud" EntityType="COLINASMODEL.aval_x_solicitud" />
           <EntitySet Name="socios_produccion" EntityType="COLINASMODEL.socio_produccion" />
           <EntitySet Name="socios" EntityType="COLINASMODEL.socio" />
-          <AssociationSet Name="APORTACIONES_SOCIOS_FK" Association="COLINASMODEL.APORTACIONES_SOCIOS_FK">
-            <End Role="socios" EntitySet="socios" />
-            <End Role="aportacion_socio" EntitySet="aportaciones_socio" />
-          </AssociationSet>
           <AssociationSet Name="Avales_socio_fk" Association="COLINASMODEL.Avales_socio_fk">
             <End Role="socios" EntitySet="socios" />
             <End Role="aval_x_solicitud" EntitySet="avales_x_solicitud" />
@@ -1090,6 +1110,12 @@
             <End Role="socio" EntitySet="socios" />
             <End Role="liquidaciones" EntitySet="liquidaciones" />
           </AssociationSet>
+          <EntitySet Name="aportaciones_socio" EntityType="COLINASMODEL.aportacion_socio" />
+          <AssociationSet Name="APORTACIONES_SOCIOS_FK" Association="COLINASMODEL.APORTACIONES_SOCIOS_FK">
+            <End Role="socio" EntitySet="socios" />
+            <End Role="aportaciones_socio" EntitySet="aportaciones_socio" />
+          </AssociationSet>
+          <EntitySet Name="reporte_total_aportaciones_por_socio" EntityType="COLINASMODEL.reporte_total_aportaciones_por_socio" />
           </EntityContainer>
         <EntityType Name="codigo">
           <Key>
@@ -1306,18 +1332,6 @@
           <Property Type="String" Name="MODIFICADO_POR" />
           <Property Type="DateTime" Name="FECHA_MODIFICACION" />
         </EntityType>
-        <EntityType Name="aportacion_socio">
-          <Key>
-            <PropertyRef Name="SOCIOS_ID" />
-          </Key>
-          <Property Type="String" Name="SOCIOS_ID" Nullable="false" />
-          <Property Type="Decimal" Name="APORTACIONES_SALDO" Nullable="false" />
-          <Property Type="String" Name="CREADO_POR" Nullable="false" />
-          <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
-          <Property Type="String" Name="MODIFICADO_POR" />
-          <Property Type="DateTime" Name="FECHA_MODIFICACION" />
-          <NavigationProperty Name="socios" Relationship="COLINASMODEL.APORTACIONES_SOCIOS_FK" FromRole="aportacion_socio" ToRole="socios" />
-        </EntityType>
         <EntityType Name="clasificacion_cafe">
           <Key>
             <PropertyRef Name="CLASIFICACIONES_CAFE_ID" />
@@ -1364,7 +1378,8 @@
         </Association>
         <EntityType Name="reporte_total_inventario_de_cafe_por_socio">
           <Key>
-            <PropertyRef Name="TRANSACCION_NUMERO" />
+            <PropertyRef Name="CLASIFICACIONES_CAFE_ID" />
+            <PropertyRef Name="SOCIOS_ID" />
           </Key>
           <Property Type="Int32" Name="TRANSACCION_NUMERO" Nullable="false" />
           <Property Type="String" Name="SOCIOS_ID" Nullable="false" />
@@ -1551,7 +1566,6 @@
           <Property Type="Boolean" Name="SOCIOS_APORTACION_EXTRAORD" />
           <Property Type="Boolean" Name="SOCIOS_APORTACION_EXTRAORD_COOP" />
           <Property Type="Int32" Name="SOCIOS_APORTACION_EXTRAORD_COUNT" />
-          <NavigationProperty Name="aportaciones_socio" Relationship="COLINASMODEL.APORTACIONES_SOCIOS_FK" FromRole="socios" ToRole="aportacion_socio" />
           <NavigationProperty Name="avales_x_solicitud" Relationship="COLINASMODEL.Avales_socio_fk" FromRole="socios" ToRole="aval_x_solicitud" />
           <NavigationProperty Name="beneficiario_x_socio" Relationship="COLINASMODEL.FK_BENEFICIARIO_X_SOCIO_socios" FromRole="socios" ToRole="beneficiario_x_socio" />
           <NavigationProperty Name="inventario_cafe_de_socio" Relationship="COLINASMODEL.FK_INVENTARIO_socios" FromRole="socios" ToRole="inventario_cafe_de_socio" />
@@ -1561,19 +1575,8 @@
           <NavigationProperty Name="socios_produccion" Relationship="COLINASMODEL.SOCIOS_ID_FK2" FromRole="socios" ToRole="socio_produccion" />
           <NavigationProperty Name="solicitudes_prestamos" Relationship="COLINASMODEL.Solicitudesxsociofk" FromRole="socio" ToRole="solicitudes_prestamos" />
           <NavigationProperty Name="liquidaciones" Relationship="COLINASMODEL.LIQUIDACIONES_SOCIOS_FK" FromRole="socio" ToRole="liquidaciones" />
+          <NavigationProperty Name="aportaciones_socio" Relationship="COLINASMODEL.APORTACIONES_SOCIOS_FK" FromRole="socio" ToRole="aportaciones_socio" />
         </EntityType>
-        <Association Name="APORTACIONES_SOCIOS_FK">
-          <End Type="COLINASMODEL.socio" Role="socios" Multiplicity="1" />
-          <End Type="COLINASMODEL.aportacion_socio" Role="aportacion_socio" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="socios">
-              <PropertyRef Name="SOCIOS_ID" />
-            </Principal>
-            <Dependent Role="aportacion_socio">
-              <PropertyRef Name="SOCIOS_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="Avales_socio_fk">
           <End Type="COLINASMODEL.socio" Role="socios" Multiplicity="1" />
           <End Type="COLINASMODEL.aval_x_solicitud" Role="aval_x_solicitud" Multiplicity="*" />
@@ -1803,6 +1806,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="aportacion_socio">
+          <Key>
+            <PropertyRef Name="TRANSACCION_NUMERO" />
+          </Key>
+          <Property Type="Int32" Name="TRANSACCION_NUMERO" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="SOCIOS_ID" Nullable="false" />
+          <Property Type="Int32" Name="DOCUMENTO_ID" Nullable="false" />
+          <Property Type="String" Name="DOCUMENTO_TIPO" Nullable="false" />
+          <Property Type="Decimal" Name="APORTACIONES_SALDO" Nullable="false" />
+          <Property Type="String" Name="CREADO_POR" Nullable="false" />
+          <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
+          <NavigationProperty Name="socios" Relationship="COLINASMODEL.APORTACIONES_SOCIOS_FK" FromRole="aportaciones_socio" ToRole="socio" />
+        </EntityType>
+        <Association Name="APORTACIONES_SOCIOS_FK">
+          <End Type="COLINASMODEL.socio" Role="socio" Multiplicity="1" />
+          <End Type="COLINASMODEL.aportacion_socio" Role="aportaciones_socio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="socio">
+              <PropertyRef Name="SOCIOS_ID" />
+            </Principal>
+            <Dependent Role="aportaciones_socio">
+              <PropertyRef Name="SOCIOS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="reporte_total_aportaciones_por_socio">
+          <Key>
+            <PropertyRef Name="SOCIOS_ID" />
+          </Key>
+          <Property Type="Int32" Name="TRANSACCION_NUMERO" Nullable="false" />
+          <Property Type="String" Name="SOCIOS_ID" Nullable="false" />
+          <Property Type="String" Name="SOCIOS_NOMBRE_COMPLETO" />
+          <Property Type="Decimal" Name="APORTACIONES_SALDO" Nullable="false" />
+          <Property Type="String" Name="CREADO_POR" Nullable="false" />
+          <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2003,18 +2042,6 @@
                 <ScalarProperty Name="PLANTILLAS_ASUNTO" ColumnName="PLANTILLAS_ASUNTO" />
                 <ScalarProperty Name="PLANTILLAS_NOMBRE" ColumnName="PLANTILLAS_NOMBRE" />
                 <ScalarProperty Name="PLANTILLAS_LLAVE" ColumnName="PLANTILLAS_LLAVE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="aportaciones_socio">
-            <EntityTypeMapping TypeName="COLINASMODEL.aportacion_socio">
-              <MappingFragment StoreEntitySet="aportaciones_socio">
-                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
-                <ScalarProperty Name="MODIFICADO_POR" ColumnName="MODIFICADO_POR" />
-                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
-                <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
-                <ScalarProperty Name="APORTACIONES_SALDO" ColumnName="APORTACIONES_SALDO" />
-                <ScalarProperty Name="SOCIOS_ID" ColumnName="SOCIOS_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2256,6 +2283,31 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="aportaciones_socio">
+            <EntityTypeMapping TypeName="COLINASMODEL.aportacion_socio">
+              <MappingFragment StoreEntitySet="aportaciones_socio">
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
+                <ScalarProperty Name="APORTACIONES_SALDO" ColumnName="APORTACIONES_SALDO" />
+                <ScalarProperty Name="DOCUMENTO_TIPO" ColumnName="DOCUMENTO_TIPO" />
+                <ScalarProperty Name="DOCUMENTO_ID" ColumnName="DOCUMENTO_ID" />
+                <ScalarProperty Name="SOCIOS_ID" ColumnName="SOCIOS_ID" />
+                <ScalarProperty Name="TRANSACCION_NUMERO" ColumnName="TRANSACCION_NUMERO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reporte_total_aportaciones_por_socio">
+            <EntityTypeMapping TypeName="COLINASMODEL.reporte_total_aportaciones_por_socio">
+              <MappingFragment StoreEntitySet="reporte_total_aportaciones_por_socio">
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
+                <ScalarProperty Name="APORTACIONES_SALDO" ColumnName="APORTACIONES_SALDO" />
+                <ScalarProperty Name="SOCIOS_NOMBRE_COMPLETO" ColumnName="SOCIOS_NOMBRE_COMPLETO" />
+                <ScalarProperty Name="SOCIOS_ID" ColumnName="SOCIOS_ID" />
+                <ScalarProperty Name="TRANSACCION_NUMERO" ColumnName="TRANSACCION_NUMERO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -2307,7 +2359,6 @@
           <ConnectorPoint PointX="7.625" PointY="3.8576464843750014" />
         </AssociationConnector>
         <EntityTypeShape EntityType="COLINASMODEL.plantilla_notificacion" Width="1.5" PointX="12.25" PointY="0.5" Height="2.5571907552083246" />
-        <EntityTypeShape EntityType="COLINASMODEL.aportacion_socio" Width="1.5" PointX="5.875" PointY="9.375" Height="2.3648893229166674" />
         <EntityTypeShape EntityType="COLINASMODEL.clasificacion_cafe" Width="1.5" PointX="0.5" PointY="15.5" Height="3.1340950520833353" />
         <EntityTypeShape EntityType="COLINASMODEL.inventario_cafe_de_socio" Width="1.5" PointX="2.75" PointY="15.5" Height="3.1340950520833388" />
         <AssociationConnector Association="COLINASMODEL.inventario_clasificacion_cafe_fk" >
@@ -2319,8 +2370,8 @@
         <AssociationConnector Association="COLINASMODEL.notas_de_peso_clasificacion_cafe_fk" >
           <ConnectorPoint PointX="1.25" PointY="18.634095052083335" />
           <ConnectorPoint PointX="1.25" PointY="19.680033148437509" />
-          <ConnectorPoint PointX="4.250040690104167" PointY="19.680033148437509" />
-          <ConnectorPoint PointX="4.437520345052083" PointY="19.680033148437509" />
+          <ConnectorPoint PointX="4.260416666666667" PointY="19.680033148437509" />
+          <ConnectorPoint PointX="4.442708333333333" PointY="19.680033148437509" />
           <ConnectorPoint PointX="4.75" PointY="19.680033148437509" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.FK_NOTA_DETALLE_NOTA_PESO" >
@@ -2342,13 +2393,9 @@
         <EntityTypeShape EntityType="COLINASMODEL.aval_x_solicitud" Width="1.5" PointX="10.875" PointY="9.25" Height="2.7494921875000102" />
         <EntityTypeShape EntityType="COLINASMODEL.socio_produccion" Width="3.125" PointX="5.875" PointY="23.5" Height="3.326396484374996" />
         <EntityTypeShape EntityType="COLINASMODEL.socio" Width="1.5" PointX="2.875" PointY="4.875" Height="7.7493294270833246" />
-        <AssociationConnector Association="COLINASMODEL.APORTACIONES_SOCIOS_FK" >
-          <ConnectorPoint PointX="4.375" PointY="10.557444661458334" />
-          <ConnectorPoint PointX="5.875" PointY="10.557444661458334" />
-        </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.Avales_socio_fk" >
-          <ConnectorPoint PointX="4.375" PointY="11.900940755208339" />
-          <ConnectorPoint PointX="10.875" PointY="11.900940755208339" />
+          <ConnectorPoint PointX="4.375" PointY="9.65625" />
+          <ConnectorPoint PointX="10.875" PointY="9.65625" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.FK_BENEFICIARIO_X_SOCIO_socios" >
           <ConnectorPoint PointX="2.875" PointY="12.437164713541666" />
@@ -2359,8 +2406,8 @@
           <ConnectorPoint PointX="3.5625" PointY="15.5" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.FK_NOTA_DE_PESO_socios" >
-          <ConnectorPoint PointX="4.3333740234375" PointY="12.624329427083332" />
-          <ConnectorPoint PointX="4.3333740234375" PointY="20.726728058593746" />
+          <ConnectorPoint PointX="4.34375" PointY="12.624329427083332" />
+          <ConnectorPoint PointX="4.34375" PointY="20.726728058593746" />
           <ConnectorPoint PointX="4.75" PointY="20.726728058593746" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.PrestamosSocio_fk" >
@@ -2372,8 +2419,8 @@
           <ConnectorPoint PointX="2" PointY="10.317047526041668" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.SOCIOS_ID_FK2" >
-          <ConnectorPoint PointX="4.35418701171875" PointY="12.624329427083332" />
-          <ConnectorPoint PointX="4.35418701171875" PointY="25.163198242187498" />
+          <ConnectorPoint PointX="4.359375" PointY="12.624329427083332" />
+          <ConnectorPoint PointX="4.359375" PointY="25.163198242187498" />
           <ConnectorPoint PointX="5.875" PointY="25.163198242187498" />
         </AssociationConnector>
         <EntityTypeShape EntityType="COLINASMODEL.solicitud_prestamo" Width="1.5" PointX="16.875" PointY="5.25" Height="6.9801236979166674" />
@@ -2397,8 +2444,8 @@
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.Solicitudesxsociofk" >
           <ConnectorPoint PointX="4.375" PointY="4.90625" />
-          <ConnectorPoint PointX="17.6562525" PointY="4.90625" />
-          <ConnectorPoint PointX="17.6562525" PointY="5.25" />
+          <ConnectorPoint PointX="17.625" PointY="4.90625" />
+          <ConnectorPoint PointX="17.625" PointY="5.25" />
         </AssociationConnector>
         <EntityTypeShape EntityType="COLINASMODEL.liquidacion" Width="1.5" PointX="14.25" PointY="6.625" Height="6.9801236979166674" />
         <AssociationConnector Association="COLINASMODEL.LIQUIDACIONES_CLASIFICACIONES_FK" >
@@ -2407,8 +2454,8 @@
           <ConnectorPoint PointX="2.5" PointY="15.25" />
           <ConnectorPoint PointX="3.4791666666666665" PointY="15.25" />
           <ConnectorPoint PointX="3.6458333333333335" PointY="15.25" />
-          <ConnectorPoint PointX="4.250040690104167" PointY="15.25" />
-          <ConnectorPoint PointX="4.437520345052083" PointY="15.25" />
+          <ConnectorPoint PointX="4.260416666666667" PointY="15.25" />
+          <ConnectorPoint PointX="4.442708333333333" PointY="15.25" />
           <ConnectorPoint PointX="7.875" PointY="15.25" />
           <ConnectorPoint PointX="7.875" PointY="16.125" />
           <ConnectorPoint PointX="15" PointY="16.125" />
@@ -2420,6 +2467,12 @@
           <ConnectorPoint PointX="11.833333833333333" PointY="8.6920475260416659" />
           <ConnectorPoint PointX="14.25" PointY="8.6920475260416659" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="COLINASMODEL.aportacion_socio" Width="1.5" PointX="5.375" PointY="10.625" Height="2.5571907552083246" />
+        <AssociationConnector Association="COLINASMODEL.APORTACIONES_SOCIOS_FK" >
+          <ConnectorPoint PointX="4.375" PointY="11.624664713541666" />
+          <ConnectorPoint PointX="5.375" PointY="11.624664713541666" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="COLINASMODEL.reporte_total_aportaciones_por_socio" Width="1.5" PointX="21.75" PointY="0.625" Height="2.1725878906250102" />
         </Diagram>
     </Diagrams>
   </Designer>

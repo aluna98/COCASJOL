@@ -6,6 +6,8 @@ using System.Text;
 using System.Data;
 using System.Data.Objects;
 
+using COCASJOL.LOGIC.Inventario;
+
 namespace COCASJOL.LOGIC.Aportaciones
 {
     public class AportacionLogic
@@ -34,29 +36,27 @@ namespace COCASJOL.LOGIC.Aportaciones
             }
         }
 
-        public List<aportacion_socio> GetAportaciones
+        public List<reporte_total_aportaciones_por_socio> GetAportaciones
             ( string SOCIOS_ID,
-             decimal APORTACIONES_SOLICITUD,
+             decimal APORTACIONES_SALDO,
               string CREADO_POR,
-            DateTime FECHA_CREACION,
-              string MODIFICADO_POR,
-            DateTime FECHA_MODIFICACION)
+            DateTime FECHA_CREACION)
         {
             try
             {
                 using (var db = new colinasEntities())
                 {
-                    var query = from ap in db.aportaciones_socio
-                                where ap.socios.SOCIOS_ESTATUS == 1 &&
+                    var query = from ap in db.reporte_total_aportaciones_por_socio
+                                from s in db.socios
+                                where s.SOCIOS_ID == ap.SOCIOS_ID &&
+                                (s.SOCIOS_ESTATUS == 1) &&
                                 (string.IsNullOrEmpty(SOCIOS_ID) ? true : ap.SOCIOS_ID.Contains(SOCIOS_ID)) &&
-                                (ap.APORTACIONES_SALDO == APORTACIONES_SOLICITUD) &&
+                                (ap.APORTACIONES_SALDO == 0 ? true : ap.APORTACIONES_SALDO.Equals(APORTACIONES_SALDO)) &&
                                 (string.IsNullOrEmpty(CREADO_POR) ? true : ap.CREADO_POR.Contains(CREADO_POR)) &&
-                                (default(DateTime) == FECHA_CREACION ? true : ap.FECHA_CREACION == FECHA_CREACION) &&
-                                (string.IsNullOrEmpty(MODIFICADO_POR) ? true : ap.MODIFICADO_POR.Contains(MODIFICADO_POR)) &&
-                                (default(DateTime) == FECHA_MODIFICACION ? true : ap.FECHA_MODIFICACION == FECHA_MODIFICACION)
+                                (default(DateTime) == FECHA_CREACION ? true : ap.FECHA_CREACION == FECHA_CREACION)
                                 select ap;
 
-                    return query.OrderBy(a => a.SOCIOS_ID).OrderByDescending(a => a.FECHA_MODIFICACION).ToList<aportacion_socio>();
+                    return query.OrderBy(a => a.SOCIOS_ID).OrderByDescending(a => a.FECHA_CREACION).ToList<reporte_total_aportaciones_por_socio>();
                 }
             }
             catch (Exception)
@@ -66,13 +66,13 @@ namespace COCASJOL.LOGIC.Aportaciones
             }
         }
 
-        public aportacion_socio GetAportacionesXSocio(string SOCIOS_ID)
+        public reporte_total_aportaciones_por_socio GetAportacionesXSocio(string SOCIOS_ID)
         {
             try
             {
                 using (var db = new colinasEntities())
                 {
-                    var query = from ap in db.aportaciones_socio
+                    var query = from ap in db.reporte_total_aportaciones_por_socio
                                 where ap.SOCIOS_ID == SOCIOS_ID
                                 select ap;
 
@@ -87,5 +87,40 @@ namespace COCASJOL.LOGIC.Aportaciones
         }
 
         #endregion
+    
+        #region insert
+
+        public void InsertarTransaccionAportacionesDeSocio(liquidacion HojaDeLiquidacion, bool aumentar_aportacion_extraord,colinasEntities db)
+        {
+            try
+            {
+                reporte_total_aportaciones_por_socio asocInventory = this.GetAportacionesXSocio(HojaDeLiquidacion.SOCIOS_ID);
+
+                decimal saldo_aportaciones = asocInventory == null ? 0 : asocInventory.APORTACIONES_SALDO;
+
+                aportacion_socio aportacionDeSocio = new aportacion_socio();
+                
+                aportacionDeSocio.SOCIOS_ID = HojaDeLiquidacion.SOCIOS_ID;
+                aportacionDeSocio.DOCUMENTO_ID = HojaDeLiquidacion.LIQUIDACIONES_ID;
+                aportacionDeSocio.DOCUMENTO_TIPO = "ENTRADA";//Las hojas de liquidaciones son tomadas como entradas para las aportaciones
+
+                aportacionDeSocio.APORTACIONES_SALDO = saldo_aportaciones + Convert.ToDecimal(HojaDeLiquidacion.LIQUIDACIONES_D_TOTAL_DEDUCCIONES);
+
+                aportacionDeSocio.CREADO_POR = HojaDeLiquidacion.CREADO_POR;
+                aportacionDeSocio.FECHA_CREACION = HojaDeLiquidacion.FECHA_CREACION;
+
+                db.aportaciones_socio.AddObject(aportacionDeSocio);
+
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        #endregion
+
     }
 }

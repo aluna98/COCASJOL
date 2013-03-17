@@ -7,6 +7,8 @@ using System.Data;
 using System.Data.Objects;
 using System.Transactions;
 
+using COCASJOL.LOGIC.Aportaciones;
+
 namespace COCASJOL.LOGIC.Inventario.Salidas
 {
     public class HojaDeLiquidacionLogic
@@ -268,6 +270,10 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                         db.liquidaciones.AddObject(hojaliquidacion);
 
                         db.SaveChanges();
+
+                        /* --------Modificar Aportaciones de Socio-------- */
+                        AportacionLogic aportacionesDeSocioLogic = new AportacionLogic();
+                        aportacionesDeSocioLogic.InsertarTransaccionAportacionesDeSocio(hojaliquidacion, aumentar_aportaciones, db);
 
 
                         /* --------Modificar Inventario de Café Actual-------- */
