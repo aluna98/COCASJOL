@@ -738,25 +738,22 @@ namespace COCASJOL.LOGIC.Socios
             }
         }
 
-        public static void GastoDeIngresoPagado(string SOCIOS_ID)
+        public static void GastoDeIngresoPagado(string SOCIOS_ID, colinasEntities db)
         {
             try
             {
-                using (var db = new colinasEntities())
-                {
-                    EntityKey k = new EntityKey("colinasEntities.socios", "SOCIOS_ID", SOCIOS_ID);
+                EntityKey k = new EntityKey("colinasEntities.socios", "SOCIOS_ID", SOCIOS_ID);
 
-                    var s = db.GetObjectByKey(k);
+                var s = db.GetObjectByKey(k);
 
-                    socio soc = (socio)s;
+                socio soc = (socio)s;
 
-                    soc.SOCIOS_ESTATUS = 2;//Ya pago cuota de ingreso anual
-                    //SOCIOS_ESTATUS == 0 -> Desactivado
-                    //SOCIOS_ESTATUS == 1 -> Nuevo
-                    //SOCIOS_ESTATUS == 2 -> Gastos de ingreso pagados
+                soc.SOCIOS_ESTATUS = 2;//Ya pago cuota de ingreso anual
+                //SOCIOS_ESTATUS == 0 -> Desactivado
+                //SOCIOS_ESTATUS == 1 -> Nuevo
+                //SOCIOS_ESTATUS == 2 -> Gastos de ingreso pagados
 
-                    db.SaveChanges();
-                }
+                db.SaveChanges();
             }
             catch (Exception)
             {
@@ -765,22 +762,19 @@ namespace COCASJOL.LOGIC.Socios
             }
         }
 
-        public static void AportacionOrdinariaPagada(string SOCIOS_ID)
+        public static void AportacionOrdinariaPagada(string SOCIOS_ID, colinasEntities db)
         {
             try
             {
-                using (var db = new colinasEntities())
-                {
-                    EntityKey k = new EntityKey("colinasEntities.socios", "SOCIOS_ID", SOCIOS_ID);
+                EntityKey k = new EntityKey("colinasEntities.socios", "SOCIOS_ID", SOCIOS_ID);
 
-                    var s = db.GetObjectByKey(k);
+                var s = db.GetObjectByKey(k);
 
-                    socio soc = (socio)s;
+                socio soc = (socio)s;
 
-                    soc.SOCIOS_APORTACION_ORD = true;//Ya se pago la aportacion extraordinaria anual
+                soc.SOCIOS_APORTACION_ORD = true;//Ya se pago la aportacion extraordinaria anual
 
-                    db.SaveChanges();
-                }
+                db.SaveChanges();
             }
             catch (Exception)
             {
@@ -789,30 +783,29 @@ namespace COCASJOL.LOGIC.Socios
             }
         }
 
-        public static bool AportacionExtraordinariaPagada(string SOCIOS_ID, int SOCIOS_APORTACION_EXTRAORD_COOP_COUNT)
+        public static bool AportacionExtraordinariaPagada(string SOCIOS_ID, int SOCIOS_APORTACION_EXTRAORD_COOP_COUNT, colinasEntities db)
         {
             try
             {
                 bool result = false;
-                using (var db = new colinasEntities())
-                {
-                    EntityKey k = new EntityKey("colinasEntities.socios", "SOCIOS_ID", SOCIOS_ID);
 
-                    var s = db.GetObjectByKey(k);
 
-                    socio soc = (socio)s;
+                EntityKey k = new EntityKey("colinasEntities.socios", "SOCIOS_ID", SOCIOS_ID);
 
-                    if (soc.SOCIOS_APORTACION_EXTRAORD_COUNT >= SOCIOS_APORTACION_EXTRAORD_COOP_COUNT)
-                        soc.SOCIOS_APORTACION_EXTRAORD_COOP = true;//Ya se pagaron las aportaciones extraordinaras para cooperativa
+                var s = db.GetObjectByKey(k);
 
-                    if (soc.SOCIOS_APORTACION_EXTRAORD_COOP == true)
-                        result = true;
+                socio soc = (socio)s;
 
-                    soc.SOCIOS_APORTACION_EXTRAORD = true;//Ya se pago la aportacion extraordinaria anual
-                    soc.SOCIOS_APORTACION_EXTRAORD_COUNT++;
+                if (soc.SOCIOS_APORTACION_EXTRAORD_COUNT >= SOCIOS_APORTACION_EXTRAORD_COOP_COUNT)
+                    soc.SOCIOS_APORTACION_EXTRAORD_COOP = true;//Ya se pagaron las aportaciones extraordinaras para cooperativa
 
-                    db.SaveChanges();
-                }
+                if (soc.SOCIOS_APORTACION_EXTRAORD_COOP == true)
+                    result = true;
+
+                soc.SOCIOS_APORTACION_EXTRAORD = true;//Ya se pago la aportacion extraordinaria anual
+                soc.SOCIOS_APORTACION_EXTRAORD_COUNT++;
+
+                db.SaveChanges();
 
                 return result;
             }
