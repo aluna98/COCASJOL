@@ -179,7 +179,7 @@ namespace COCASJOL.LOGIC.Prestamos
                 solicitud.SOLICITUDES_BENEFICIO = (sbyte)beneficio;
                 solicitud.SOLICITUD_OTROSCULTIVOS = cultivos;
                 solicitud.SOLICITUD_CALIFICACION = calificacion;
-                solicitud.SOLICITUD_ESTADO = -1;
+                solicitud.SOLICITUD_ESTADO = "PENDIENTE";
                 solicitud.CREADO_POR = creadopor;
                 solicitud.FECHA_CREACION = DateTime.Today;
                 solicitud.MODIFICADO_POR = creadopor;
@@ -256,7 +256,7 @@ namespace COCASJOL.LOGIC.Prestamos
                 decimal prodact, string norte, string sur, 
                 string este, string oeste, int carro, int agua, 
                 int luz, int casa, int beneficio, string otros, 
-                string calificacion, string modificadopor)
+                string calificacion, string estado, string modificadopor)
             {
                 colinasEntities db = null;
                 try
@@ -278,6 +278,7 @@ namespace COCASJOL.LOGIC.Prestamos
                     sol.SOLICITUDES_SUR = sur;
                     sol.SOLICITUDES_ESTE = este;
                     sol.SOLICITUDES_OESTE = oeste;
+                    sol.SOLICITUD_ESTADO = estado;
                     sol.SOLICITUDES_VEHICULO = (sbyte)carro;
                     sol.SOLICITUDES_AGUA = (sbyte)agua;
                     sol.SOLICITUDES_ENEE = (sbyte)luz;

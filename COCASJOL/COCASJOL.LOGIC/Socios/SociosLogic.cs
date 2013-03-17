@@ -5,6 +5,7 @@ using System.Text;
 
 using System.Data;
 using System.Data.Objects;
+using System.Data.Odbc;
 
 namespace COCASJOL.LOGIC.Socios
 {
@@ -361,6 +362,31 @@ namespace COCASJOL.LOGIC.Socios
                 throw;
             }
         }
+
+
+        public static void InsertSociosDBISAM()
+        {
+            try
+            {
+                string queryString = "INSERT INTO Sclientes (";
+                OdbcCommand command = new OdbcCommand(queryString);
+
+                string connectionString = "PROVIDER=MSDASQL;DSN=MYDBISAM";
+
+                using (OdbcConnection connection = new OdbcConnection(connectionString))
+                {
+                    command.Connection = connection;
+                    connection.Open();
+
+                    OdbcDataReader reader = command.ExecuteReader();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         #endregion insert
 
         #region Delete
@@ -534,7 +560,6 @@ namespace COCASJOL.LOGIC.Socios
                 }
                 throw;
             }
-            return true;
         }
 
         public bool Igual100(string SOCIOS_ID)
@@ -658,7 +683,7 @@ namespace COCASJOL.LOGIC.Socios
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
         }
@@ -735,7 +760,7 @@ namespace COCASJOL.LOGIC.Socios
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
         }

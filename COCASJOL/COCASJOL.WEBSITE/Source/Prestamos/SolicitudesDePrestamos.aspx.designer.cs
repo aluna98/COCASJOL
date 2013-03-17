@@ -418,6 +418,15 @@ namespace COCASJOL.WEBSITE.Source.Prestamos {
         protected global::Ext.Net.TextField EditUbicacion;
         
         /// <summary>
+        /// EditCmbEstado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox EditCmbEstado;
+        
+        /// <summary>
         /// PanelSolicitud control.
         /// </summary>
         /// <remarks>

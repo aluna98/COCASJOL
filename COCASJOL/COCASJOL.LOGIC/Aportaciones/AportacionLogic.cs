@@ -66,6 +66,26 @@ namespace COCASJOL.LOGIC.Aportaciones
             }
         }
 
+        public aportacion_socio GetAportacionesXSocio(string SOCIOS_ID)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    var query = from ap in db.aportaciones_socio
+                                where ap.SOCIOS_ID == SOCIOS_ID
+                                select ap;
+
+                    return query.First();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         #endregion
     }
 }

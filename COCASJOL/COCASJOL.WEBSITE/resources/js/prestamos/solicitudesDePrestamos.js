@@ -216,7 +216,7 @@ var SolicitudX = {
             EditAvalWindow.show();
             EditAvalForm.getForm().loadRecord(rec);
             EditAvalForm.record = rec;
-            DirectX.SetAntiguedad();
+            DirectX.SetDatosAval();
         }
     },
 

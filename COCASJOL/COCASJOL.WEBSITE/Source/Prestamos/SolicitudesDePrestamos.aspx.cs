@@ -13,6 +13,7 @@ using COCASJOL.LOGIC.Web;
 using COCASJOL.LOGIC.Seguridad;
 using COCASJOL.LOGIC.Prestamos;
 using COCASJOL.LOGIC.Socios;
+using COCASJOL.LOGIC.Aportaciones;
 
 namespace COCASJOL.WEBSITE.Source.Prestamos
 {
@@ -116,10 +117,17 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
                 }
                 else
                 {
-                    logica.InsertarAval(CodigoAval.Text, Convert.ToInt32(EditIdSolicitud.Text), AvalCalificacion.Text, LoggedUserHdn.Text);
-                    this.NuevoAvalWin.Hide();
-                    RefrescarAvales(Convert.ToInt32(EditIdSolicitud.Text));
-                    X.Msg.Alert("Avales", "El aval ha sido agregado satisfactoriamente").Show();
+                    if (CodigoAval.Text == EditSocioid.Text)
+                    {
+                        X.Msg.Alert("Avales", "ERROR: El solicitante del prestamo y el aval no pueden ser iguales").Show();
+                    }
+                    else
+                    {
+                        logica.InsertarAval(CodigoAval.Text, Convert.ToInt32(EditIdSolicitud.Text), AvalCalificacion.Text, LoggedUserHdn.Text);
+                        this.NuevoAvalWin.Hide();
+                        RefrescarAvales(Convert.ToInt32(EditIdSolicitud.Text));
+                        X.Msg.Alert("Avales", "El aval ha sido agregado satisfactoriamente").Show();
+                    }
                 }
             }
             catch (Exception)
@@ -155,15 +163,17 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
         }
 
         [DirectMethod]
-        public void SetAntiguedad()
+        public void SetDatosAval()
         {
             SociosLogic logica = new SociosLogic();
+            AportacionLogic aportacion = new AportacionLogic();
             if (EditAvalId.Text != "")
             {
                 SolicitudesLogic solicitud = new SolicitudesLogic();
                 EditAvalAntiguedad.Text = logica.Antiguedad(EditAvalId.Text);
                 socio aval = solicitud.getAval(EditAvalId.Text);
                 EditAvalNombre.Text = aval.SOCIOS_PRIMER_NOMBRE + " " + aval.SOCIOS_PRIMER_APELLIDO;
+                EditAvalAportaciones.Text = aportacion.GetAportacionesXSocio(EditAvalId.Text).APORTACIONES_SALDO.ToString();
             }
         }
 
@@ -264,7 +274,7 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
                 
                 logica.EditarSolicitud(id, monto, interes, EditPlazo.Text, EditPagoTxt.Text, EditDestinoTxt.Text, EditCargoTxt.Text, promedio3, promact, EditNorteTxt.Text, EditSurTxt.Text,
                     EditEsteTxt.Text, EditOesteTxt.Text, EditCarro.Checked ? 1 : 0, EditAgua.Checked ? 1 : 0, EditLuz.Checked ? 1 : 0, EditCasa.Checked ? 1 : 0, EditBeneficio.Checked ? 1 : 0, EditOtrosTxt.Text,
-                    EditCalifCmb.Text, LoggedUserHdn.Text);
+                    EditCalifCmb.Text, EditCmbEstado.Text, LoggedUserHdn.Text);
                 EditarSolicitudWin.Hide();
                 X.Msg.Alert("Solicitudes de Prestamos", "La solicitud se ha modificado satisfactoriamente.").Show();
                 

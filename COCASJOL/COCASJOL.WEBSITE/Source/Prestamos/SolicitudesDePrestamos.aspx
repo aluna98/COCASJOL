@@ -81,6 +81,7 @@
                                                 <ext:RecordField Name="SOLICITUDES_BENEFICIO" />
                                                 <ext:RecordField Name="SOLICITUD_OTROSCULTIVOS" />
                                                 <ext:RecordField Name="SOLICITUD_CALIFICACION" />
+                                                <ext:RecordField Name="SOLICITUD_ESTADO" />
                                             </Fields>
                                         </ext:JsonReader>
                                     </Reader>
@@ -194,6 +195,7 @@
                                     <ext:Column ColumnID="SociosNombre" Header="Nombre Socio" DataIndex="SOCIOS_PRIMER_NOMBRE" />
                                     <ext:Column ColumnID="SolicitudMonto" Header="Monto" DataIndex="SOLICITUDES_MONTO" />
                                     <ext:DateColumn ColumnID="SolicitudPlazo" Header="Plazo" DataIndex="SOLICITUDES_PLAZO" />
+                                    <ext:Column ColumnID="SolicitudEstado" Header="Estado" DataIndex="SOLICITUD_ESTADO" />
                                     <ext:Column Width="28" DataIndex="SOCIOS_ID" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
                                         <Renderer Handler="return '';" />
                                     </ext:Column>
@@ -254,6 +256,16 @@
                                                     <ext:TextField ID="EditResidencia"      ReadOnly="true" runat="server" FieldLabel="Residencia" AnchorHorizontal="90%" />
                                                     <ext:TextField ID="EditManzanas"        ReadOnly="true" runat="server" FieldLabel="Manzanas Cultivadas" AnchorHorizontal="90%" />
                                                     <ext:TextField ID="EditUbicacion"       ReadOnly="true" runat="server" FieldLabel="Ubicacion de la finca" AnchorHorizontal="90%" />
+                                                    <ext:ComboBox ID="EditCmbEstado"
+                                                        runat="server" DataIndex="SOLICITUD_ESTADO"
+                                                        Editable="false" FieldLabel="Estado de Solicitud"         
+                                                        EmptyText="Seleccione Estado..." AnchorHorizontal="90%">
+                                                        <Items>
+                                                            <ext:ListItem Text="PENDIENTE" Value="PENDIENTE" />
+                                                            <ext:ListItem Text="APROBADA" Value="APROBADA" />
+                                                            <ext:ListItem Text="RECHAZADA" Value="RECHAZADA" />
+                                                        </Items>
+                                                    </ext:ComboBox>
                                                 </Items>
                                             </ext:Panel>
                                         </Items>
@@ -399,8 +411,6 @@
                                                                             <ext:RecordField Name="SOCIOS_PRIMER_NOMBRE" ServerMapping="socios.SOCIOS_PRIMER_NOMBRE" />
                                                                             <ext:RecordField Name="SOCIOS_PRIMER_APELLIDO" ServerMapping="socios.SOCIOS_PRIMER_APELLIDO" />
                                                                             <ext:RecordField Name="SOLICITUDES_ID" />
-                                                                            <ext:RecordField Name="AVALES_ANTIGUEDAD" />
-                                                                            <ext:RecordField Name="AVALES_APORTACIONES" />
                                                                             <ext:RecordField Name="AVALES_CALIFICACION" />
                                                                         </Fields>
                                                                     </ext:JsonReader>
@@ -812,7 +822,7 @@
             <Items>
                 <ext:FormPanel runat="server" ID="EditarAvalForm" Title="Form" Header="false" ButtonAlign="Right" MonitorValid="true">
                     <Items>
-                        <ext:Panel ID="Panel11" runat="server" Title="Datos Referencia" Layout="AnchorLayout" AutoHeight="true" Icon="UserAdd" LabelWidth="150">
+                        <ext:Panel ID="Panel11" runat="server" Title="Datos Aval" Layout="AnchorLayout" AutoHeight="true" Icon="UserAdd" LabelWidth="150">
                             <Items>
                                 <ext:Panel ID="Panel12" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                     <Items>
