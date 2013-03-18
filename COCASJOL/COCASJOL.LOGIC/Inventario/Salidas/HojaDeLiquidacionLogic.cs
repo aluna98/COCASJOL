@@ -7,6 +7,8 @@ using System.Data;
 using System.Data.Objects;
 using System.Transactions;
 
+using COCASJOL.LOGIC.Aportaciones;
+
 namespace COCASJOL.LOGIC.Inventario.Salidas
 {
     public class HojaDeLiquidacionLogic
@@ -55,16 +57,13 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
              decimal LIQUIDACIONES_D_CUOTA_ADMIN,
                  int LIQUIDACIONES_D_CAPITALIZACION_RETENCION,
              decimal LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD,
-             decimal LIQUIDACIONES_D_SERVICIO_SECADO_CAFE,
              decimal LIQUIDACIONES_D_INTERESES_S_APORTACIONES,
-             decimal LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE,
              decimal LIQUIDACIONES_D_EXCEDENTE_PERIODO,
              decimal LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO,
              decimal LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO,
              decimal LIQUIDACIONES_D_PRESTAMO_PRENDARIO,
              decimal LIQUIDACIONES_D_CUENTAS_X_COBRAR,
              decimal LIQUIDACIONES_D_INTERESES_X_COBRAR,
-             decimal LIQUIDACIONES_D_RETENCION_X_TORREFACCION,
              decimal LIQUIDACIONES_D_OTRAS_DEDUCCIONES,
              decimal LIQUIDACIONES_D_TOTAL_DEDUCCIONES,
              decimal LIQUIDACIONES_D_AF_SOCIO,
@@ -105,9 +104,7 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                                 (LIQUIDACIONES_D_CAPITALIZACION_RETENCION == -1          ? true : hojaliq.LIQUIDACIONES_D_CAPITALIZACION_RETENCION == LIQUIDACIONES_D_CAPITALIZACION_RETENCION) &&
                                 (LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD == -1 ? true : hojaliq.LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD == LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD) &&
 
-                                (LIQUIDACIONES_D_SERVICIO_SECADO_CAFE == -1              ? true : hojaliq.LIQUIDACIONES_D_SERVICIO_SECADO_CAFE == LIQUIDACIONES_D_SERVICIO_SECADO_CAFE) &&
                                 (LIQUIDACIONES_D_INTERESES_S_APORTACIONES == -1          ? true : hojaliq.LIQUIDACIONES_D_INTERESES_S_APORTACIONES == LIQUIDACIONES_D_INTERESES_S_APORTACIONES) &&
-                                (LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE == -1      ? true : hojaliq.LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE == LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE) &&
                                 (LIQUIDACIONES_D_EXCEDENTE_PERIODO == -1                 ? true : hojaliq.LIQUIDACIONES_D_EXCEDENTE_PERIODO == LIQUIDACIONES_D_EXCEDENTE_PERIODO) &&
                                 (LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO == -1              ? true : hojaliq.LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO == LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO) &&
                                                                                          
@@ -115,7 +112,6 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                                 (LIQUIDACIONES_D_PRESTAMO_PRENDARIO == -1                ? true : hojaliq.LIQUIDACIONES_D_PRESTAMO_PRENDARIO == LIQUIDACIONES_D_PRESTAMO_PRENDARIO) &&
                                 (LIQUIDACIONES_D_CUENTAS_X_COBRAR == -1                  ? true : hojaliq.LIQUIDACIONES_D_CUENTAS_X_COBRAR == LIQUIDACIONES_D_CUENTAS_X_COBRAR) &&
                                 (LIQUIDACIONES_D_INTERESES_X_COBRAR == -1                ? true : hojaliq.LIQUIDACIONES_D_INTERESES_X_COBRAR == LIQUIDACIONES_D_INTERESES_X_COBRAR) &&
-                                (LIQUIDACIONES_D_RETENCION_X_TORREFACCION == -1          ? true : hojaliq.LIQUIDACIONES_D_RETENCION_X_TORREFACCION == LIQUIDACIONES_D_RETENCION_X_TORREFACCION) &&
                                 (LIQUIDACIONES_D_OTRAS_DEDUCCIONES == -1                 ? true : hojaliq.LIQUIDACIONES_D_OTRAS_DEDUCCIONES == LIQUIDACIONES_D_OTRAS_DEDUCCIONES) &&
                                 (LIQUIDACIONES_D_TOTAL_DEDUCCIONES == -1                 ? true : hojaliq.LIQUIDACIONES_D_TOTAL_DEDUCCIONES == LIQUIDACIONES_D_TOTAL_DEDUCCIONES) &&
                                 (LIQUIDACIONES_D_AF_SOCIO == -1                          ? true : hojaliq.LIQUIDACIONES_D_AF_SOCIO == LIQUIDACIONES_D_AF_SOCIO) &&
@@ -143,15 +139,14 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
         /*
          *                  -----Flujo-----
          * --------Guardar Hoja de Liquidación--------
-         * guardar datos de hoja de liquidación
-         * --------Modificar Inventario de Café--------
+         *      guardar datos de hoja de liquidación
+         * 
          * --------Cambiar Estado Actual de Socio--------
          * --------Cambiar Estado Aportación ordinaria anual de Socio--------
          * --------Cambiar Estado Aportación extraordinaria anual de Socio--------
+         * --------Calcular de deducciones--------
          * --------Modificar Aportaciones de Socio--------
-         * ?
-         * ?
-         * ?
+         * --------Modificar Inventario de Café--------
          */
         public void InsertarHojaDeLiquidacion
             (    int LIQUIDACIONES_ID,
@@ -171,16 +166,13 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
              decimal LIQUIDACIONES_D_CUOTA_ADMIN,
                  int LIQUIDACIONES_D_CAPITALIZACION_RETENCION,
              decimal LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD,
-             decimal LIQUIDACIONES_D_SERVICIO_SECADO_CAFE,
              decimal LIQUIDACIONES_D_INTERESES_S_APORTACIONES,
-             decimal LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE,
              decimal LIQUIDACIONES_D_EXCEDENTE_PERIODO,
              decimal LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO,
              decimal LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO,
              decimal LIQUIDACIONES_D_PRESTAMO_PRENDARIO,
              decimal LIQUIDACIONES_D_CUENTAS_X_COBRAR,
              decimal LIQUIDACIONES_D_INTERESES_X_COBRAR,
-             decimal LIQUIDACIONES_D_RETENCION_X_TORREFACCION,
              decimal LIQUIDACIONES_D_OTRAS_DEDUCCIONES,
              decimal LIQUIDACIONES_D_TOTAL_DEDUCCIONES,
              decimal LIQUIDACIONES_D_AF_SOCIO,
@@ -214,52 +206,81 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                         hojaliquidacion.LIQUIDACIONES_D_CUOTA_ADMIN = LIQUIDACIONES_D_CUOTA_ADMIN;
                         hojaliquidacion.LIQUIDACIONES_D_CAPITALIZACION_RETENCION = LIQUIDACIONES_D_CAPITALIZACION_RETENCION;
                         hojaliquidacion.LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD = LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD;
-                        hojaliquidacion.LIQUIDACIONES_D_SERVICIO_SECADO_CAFE = LIQUIDACIONES_D_SERVICIO_SECADO_CAFE;
                         hojaliquidacion.LIQUIDACIONES_D_INTERESES_S_APORTACIONES = LIQUIDACIONES_D_INTERESES_S_APORTACIONES;
-                        hojaliquidacion.LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE = LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE;
                         hojaliquidacion.LIQUIDACIONES_D_EXCEDENTE_PERIODO = LIQUIDACIONES_D_EXCEDENTE_PERIODO;
                         hojaliquidacion.LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO = LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO;
                         hojaliquidacion.LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO = LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO;
                         hojaliquidacion.LIQUIDACIONES_D_PRESTAMO_PRENDARIO = LIQUIDACIONES_D_PRESTAMO_PRENDARIO;
                         hojaliquidacion.LIQUIDACIONES_D_CUENTAS_X_COBRAR = LIQUIDACIONES_D_CUENTAS_X_COBRAR;
                         hojaliquidacion.LIQUIDACIONES_D_INTERESES_X_COBRAR = LIQUIDACIONES_D_INTERESES_X_COBRAR;
-                        hojaliquidacion.LIQUIDACIONES_D_RETENCION_X_TORREFACCION = LIQUIDACIONES_D_RETENCION_X_TORREFACCION;
                         hojaliquidacion.LIQUIDACIONES_D_OTRAS_DEDUCCIONES = LIQUIDACIONES_D_OTRAS_DEDUCCIONES;
-                        hojaliquidacion.LIQUIDACIONES_D_TOTAL_DEDUCCIONES = LIQUIDACIONES_D_TOTAL_DEDUCCIONES;
-                        hojaliquidacion.LIQUIDACIONES_D_AF_SOCIO = LIQUIDACIONES_D_AF_SOCIO;
-                        hojaliquidacion.LIQUIDACIONES_D_TOTAL = LIQUIDACIONES_D_TOTAL;
                         hojaliquidacion.CREADO_POR = CREADO_POR;
                         hojaliquidacion.FECHA_CREACION = DateTime.Today;
                         hojaliquidacion.MODIFICADO_POR = CREADO_POR;
                         hojaliquidacion.FECHA_MODIFICACION = hojaliquidacion.FECHA_CREACION;
+                        
+
+                        /* --------Cambiar Estado Actual de Socio-------- */
+                        if (LIQUIDACIONES_D_CUOTA_INGRESO != 0)
+                            Socios.SociosLogic.GastoDeIngresoPagado(SOCIOS_ID, db);
+
+                        /* --------Cambiar Estado Aportación ordinaria anual de Socio-------- */
+                        if (LIQUIDACIONES_D_APORTACION_ORDINARIO != 0)
+                        {
+                            Socios.SociosLogic.AportacionOrdinariaPagada(SOCIOS_ID, db);
+                        }
+
+                        /* --------Cambiar Estado Aportación extraordinaria anual de Socio-------- */
+                        bool aumentar_aportaciones = false;
+                        if (LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA != 0)
+                        {
+                            aumentar_aportaciones = Socios.SociosLogic.AportacionExtraordinariaPagada(SOCIOS_ID, SOCIOS_APORTACION_EXTRAORD_COOP_COUNT, db);
+                        }
+
+
+                        // Total Deducciones: Sum(toda deduccion)
+                        // A/F Socio (Afavor): (Total Valor Producto) - (Total Deducciones)
+                        // ---> Total Deducciones >= 0 < Total Valor Producto
+                        // Total Valor Deducciones = (A/F Socio) + (Total Deducciones)
+
+                        hojaliquidacion.LIQUIDACIONES_D_TOTAL_DEDUCCIONES =
+                            LIQUIDACIONES_D_CUOTA_INGRESO +
+                            LIQUIDACIONES_D_GASTOS_ADMIN +
+                            LIQUIDACIONES_D_APORTACION_ORDINARIO +
+                            (aumentar_aportaciones == true ? LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA : 0) +
+                            LIQUIDACIONES_D_CUOTA_ADMIN +
+                            LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD +
+                            LIQUIDACIONES_D_INTERESES_S_APORTACIONES +
+                            LIQUIDACIONES_D_EXCEDENTE_PERIODO +
+                            LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO +
+                            LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO +
+                            LIQUIDACIONES_D_PRESTAMO_PRENDARIO +
+                            LIQUIDACIONES_D_CUENTAS_X_COBRAR +
+                            LIQUIDACIONES_D_INTERESES_X_COBRAR +
+                            LIQUIDACIONES_D_OTRAS_DEDUCCIONES;
+
+                        hojaliquidacion.LIQUIDACIONES_D_TOTAL_DEDUCCIONES = hojaliquidacion.LIQUIDACIONES_D_TOTAL_DEDUCCIONES > LIQUIDACIONES_VALOR_TOTAL ? LIQUIDACIONES_VALOR_TOTAL : hojaliquidacion.LIQUIDACIONES_D_TOTAL_DEDUCCIONES;
+                        hojaliquidacion.LIQUIDACIONES_D_TOTAL_DEDUCCIONES = hojaliquidacion.LIQUIDACIONES_D_TOTAL_DEDUCCIONES < 0 ? 0 : hojaliquidacion.LIQUIDACIONES_D_TOTAL_DEDUCCIONES;
+
+                        hojaliquidacion.LIQUIDACIONES_D_AF_SOCIO = LIQUIDACIONES_VALOR_TOTAL - hojaliquidacion.LIQUIDACIONES_D_TOTAL_DEDUCCIONES;
+
+                        hojaliquidacion.LIQUIDACIONES_D_TOTAL = hojaliquidacion.LIQUIDACIONES_D_AF_SOCIO + hojaliquidacion.LIQUIDACIONES_D_TOTAL_DEDUCCIONES;
+
 
                         db.liquidaciones.AddObject(hojaliquidacion);
 
                         db.SaveChanges();
-                        
+
+                        /* --------Modificar Aportaciones de Socio-------- */
+                        AportacionLogic aportacionesDeSocioLogic = new AportacionLogic();
+                        aportacionesDeSocioLogic.InsertarTransaccionAportacionesDeSocio(hojaliquidacion, aumentar_aportaciones, db);
+
+
                         /* --------Modificar Inventario de Café Actual-------- */
                         InventarioDeCafeLogic inventariodecafelogic = new InventarioDeCafeLogic();
                         inventariodecafelogic.InsertarTransaccionInventarioDeCafeDeSocio(hojaliquidacion, db);
 
                         db.SaveChanges();
-
-                        /* --------Cambiar Estado Actual de Socio-------- */
-                        if (LIQUIDACIONES_D_CUOTA_INGRESO != 0)
-                            Socios.SociosLogic.GastoDeIngresoPagado(SOCIOS_ID);
-
-                        /* --------Cambiar Estado Aportación ordinaria anual de Socio-------- */
-                        if (LIQUIDACIONES_D_APORTACION_ORDINARIO != 0)
-                        {
-                            Socios.SociosLogic.AportacionOrdinariaPagada(SOCIOS_ID);
-                            //TODO: Aumentar aportaciones de socio
-                        }
-
-                        /* --------Cambiar Estado Aportación extraordinaria anual de Socio-------- */
-                        if (LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA != 0)
-                        {
-                            bool aumentar_aportaciones = Socios.SociosLogic.AportacionExtraordinariaPagada(SOCIOS_ID, SOCIOS_APORTACION_EXTRAORD_COOP_COUNT);
-                            //TODO: Aumentar aportaciones de socio
-                        }
 
                         scope1.Complete();
                     }

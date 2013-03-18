@@ -328,24 +328,6 @@ namespace COCASJOL.WEBSITE.Source.Aportaciones {
         protected global::Ext.Net.TextField EditCreationDateTxt;
         
         /// <summary>
-        /// EditModifiedByTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField EditModifiedByTxt;
-        
-        /// <summary>
-        /// EditModificationDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField EditModificationDate;
-        
-        /// <summary>
         /// EditPreviousBtn control.
         /// </summary>
         /// <remarks>

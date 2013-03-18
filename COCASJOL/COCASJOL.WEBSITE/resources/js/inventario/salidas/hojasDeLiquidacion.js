@@ -97,6 +97,39 @@ var PageX = {
         /* Calcular Retención por Capitalización */
         var porcentajeCapitalizacionRet = AddCapitalizacionXRetencionTxt.getValue() / 100;
         AddCapitalizacionXRetencionCantidadTxt.setValue(AddTotalCalculosFSTxt.getValue() * porcentajeCapitalizacionRet);
+        this.AddCalcularTotalDeducciones();
+    },
+
+    AddCalcularTotalDeducciones: function () {
+        var totalDeducciones =
+            AddCuotaIngresoTxt.getValue() +
+            AddGastosAdminTxt.getValue() +
+            AddAportacionOrdinariaTxt.getValue() +
+            AddAportacionExtraOrdinariaTxt.getValue() +
+            AddCuotaAdminTxt.getValue() +
+            AddCapitalizacionXRetencionCantidadTxt.getValue() +
+            AddInteresesSobreAportacionesTxt.getValue() +
+            AddExcedentePeriodoTxt.getValue() +
+            AddPrestamoHipotecarioTxt.getValue() +
+            AddPrestamoFiduciarioTxt.getValue() +
+            AddPrestamoPrendarioTxt.getValue() +
+            AddCuentasXCobrarTxt.getValue() +
+            AddInteresesXCobrarTxt.getValue() +
+            AddOtrasDeduccionesTxt.getValue();
+
+        var totalValorProducto = AddTotalCalculosFSTxt.getValue();
+
+        totalDeducciones = totalDeducciones > totalValorProducto ? totalValorProducto : totalDeducciones;
+        totalDeducciones = totalDeducciones < 0 ? 0 : totalDeducciones;
+
+        var afavorSocio = totalValorProducto - totalDeducciones;
+
+        AddTotalDeduccionesTxt.setValue(totalDeducciones);
+        AddAFSocioTxt.setValue(afavorSocio);
+
+        var totalDeduccionesValorProducto = afavorSocio + totalDeducciones;
+
+        AddTotalDeduccionesFSTxt.setValue(totalDeduccionesValorProducto);
     },
 
     insert: function () {
@@ -253,11 +286,11 @@ var PageX = {
     },
 
     loadCuotaDeIngreso: function () {
-        Ext.net.DirectMethods.LoadCuotaDeIngresoYGastosAdmn();
+        Ext.net.DirectMethods.LoadCuotaDeIngresoYGastosAdmn({ success: function () { PageX.AddCalcularTotalDeducciones(); } });
     },
 
     loadAportacionesOrdinariaYExtraordinaria: function () {
-        Ext.net.DirectMethods.LoadAportacionesOrdinariaYExtraordinaria();
+        Ext.net.DirectMethods.LoadAportacionesOrdinariaYExtraordinaria({ success: function() { PageX.AddCalcularTotalDeducciones(); } });
     },
 
     clearFilter: function () {

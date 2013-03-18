@@ -30,14 +30,12 @@
 
         <asp:ObjectDataSource ID="AportacionesDs" runat="server"
                 TypeName="COCASJOL.LOGIC.Aportaciones.AportacionLogic"
-                SelectMethod="GetAportaciones" onselecting="AportacionesDs_Selecting" >
+                SelectMethod="GetAportaciones" onselecting="AportacionesDS_Selecting" >
                 <SelectParameters>
                     <asp:ControlParameter Name="SOCIOS_ID"                   Type="String"   ControlID="f_SOCIOS_ID"               PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="APORTACIONES_SALDO"          Type="Decimal"  ControlID="f_APORTACIONES_SALDO"      PropertyName="Text" DefaultValue="-1" />
                     <asp:ControlParameter Name="CREADO_POR"                  Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="FECHA_CREACION"              Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="MODIFICADO_POR"              Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_MODIFICACION"          Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
                 </SelectParameters>
         </asp:ObjectDataSource>
         
@@ -72,8 +70,6 @@
                                                 <ext:RecordField Name="APORTACIONES_SALDO" />
                                                 <ext:RecordField Name="CREADO_POR"         />
                                                 <ext:RecordField Name="FECHA_CREACION"     Type="Date" />
-                                                <ext:RecordField Name="MODIFICADO_POR"     />
-                                                <ext:RecordField Name="FECHA_MODIFICACION" Type="Date" />
                                             </Fields>
                                         </ext:JsonReader>
                                     </Reader>
@@ -204,8 +200,6 @@
                                         </ext:NumberField>
                                         <ext:TextField runat="server"   ID="EditCreatedByTxt"     DataIndex="CREADO_POR"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
                                         <ext:TextField runat="server"   ID="EditCreationDateTxt"  DataIndex="FECHA_CREACION"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
-                                        <ext:TextField runat="server"   ID="EditModifiedByTxt"    DataIndex="MODIFICADO_POR"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
-                                        <ext:TextField runat="server"   ID="EditModificationDate" DataIndex="FECHA_MODIFICACION"  LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Modificacion" Hidden="true" ></ext:TextField>
                                     </Items>
                                 </ext:Panel>
                             </Items>
@@ -224,7 +218,7 @@
                         </ext:Button>
                         <ext:Button ID="EditGuardarBtn" runat="server" Text="Guardar" Icon="Disk" FormBind="true" Hidden="true">
                             <Listeners>
-                                <Click Handler="#{EditModifiedByTxt}.setValue(#{LoggedUserHdn}.getValue()); PageX.update();" />
+                                <Click Handler="#{EditCreationDateTxt}.setValue(#{LoggedUserHdn}.getValue()); PageX.update();" />
                             </Listeners>
                         </ext:Button>
                     </Buttons>
