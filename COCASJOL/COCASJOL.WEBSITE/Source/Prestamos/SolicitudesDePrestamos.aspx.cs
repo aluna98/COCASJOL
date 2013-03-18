@@ -269,9 +269,12 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
                 int id = Convert.ToInt32(EditIdSolicitud.Value.ToString());
                 decimal monto = Decimal.Parse(EditMontoTxt.Value.ToString());
                 int interes = Convert.ToInt32(EditInteres.Value.ToString());
-                decimal promedio3 = Decimal.Parse(EditPromedio.Value.ToString());
-                decimal promact = Decimal.Parse(EditProd.Value.ToString());
-                
+                decimal promedio3 = 0;
+                if(EditPromedio != null)
+                    promedio3 = Decimal.Parse(EditPromedio.Text);
+                decimal promact = 0;
+                if(EditProd != null)
+                    promact = Decimal.Parse(EditProd.Text);
                 logica.EditarSolicitud(id, monto, interes, EditPlazo.Text, EditPagoTxt.Text, EditDestinoTxt.Text, EditCargoTxt.Text, promedio3, promact, EditNorteTxt.Text, EditSurTxt.Text,
                     EditEsteTxt.Text, EditOesteTxt.Text, EditCarro.Checked ? 1 : 0, EditAgua.Checked ? 1 : 0, EditLuz.Checked ? 1 : 0, EditCasa.Checked ? 1 : 0, EditBeneficio.Checked ? 1 : 0, EditOtrosTxt.Text,
                     EditCalifCmb.Text, EditCmbEstado.Text, LoggedUserHdn.Text);
@@ -329,10 +332,7 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
             socio socio = solicitud.getSocio(Socioid);
             socio_produccion produccion = solicitud.getProduccion(Socioid);
             EditSocioid.Text = socio.SOCIOS_ID;
-            EditPrimerNombre.Text = socio.SOCIOS_PRIMER_NOMBRE;
-            Edit2doNombre.Text = socio.SOCIOS_SEGUNDO_NOMBRE;
-            Edit1erApellido.Text = socio.SOCIOS_PRIMER_APELLIDO;
-            Edit2doApellido.Text = socio.SOCIOS_SEGUNDO_APELLIDO;
+            EditNombre.Text = socio.SOCIOS_PRIMER_NOMBRE + " " + socio.SOCIOS_SEGUNDO_NOMBRE + " " + socio.SOCIOS_PRIMER_APELLIDO + " " + socio.SOCIOS_SEGUNDO_APELLIDO;
             EditIdentidad.Text = socio.SOCIOS_IDENTIDAD;
             EditLugarNcax.Text = socio.SOCIOS_LUGAR_DE_NACIMIENTO;
             EditCarnetIHCAFE.Text = solicitud.getIHCAFE(Socioid);
