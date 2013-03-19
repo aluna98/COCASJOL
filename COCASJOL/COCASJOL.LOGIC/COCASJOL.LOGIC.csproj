@@ -115,6 +115,7 @@
     <None Include="Colinas.Views.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Colinas.Views.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <None Include="ColinasEntitiesTracingGenerator.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

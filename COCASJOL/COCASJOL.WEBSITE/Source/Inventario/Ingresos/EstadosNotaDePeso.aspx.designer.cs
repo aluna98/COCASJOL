@@ -229,15 +229,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.TextField f_ESTADOS_NOTA_NOMBRE;
         
         /// <summary>
-        /// f_ESTADOS_NOTA_DESCRIPCION control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField f_ESTADOS_NOTA_DESCRIPCION;
-        
-        /// <summary>
         /// f_ESTADOS_NOTA_SIGUIENTE control.
         /// </summary>
         /// <remarks>

@@ -67,6 +67,24 @@ namespace COCASJOL.WEBSITE.Source.Aportaciones {
         protected global::System.Web.UI.WebControls.ObjectDataSource AportacionesDs;
         
         /// <summary>
+        /// SociosDS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource SociosDS;
+        
+        /// <summary>
+        /// SocioSt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store SocioSt;
+        
+        /// <summary>
         /// nullHdn control.
         /// </summary>
         /// <remarks>
@@ -256,13 +274,13 @@ namespace COCASJOL.WEBSITE.Source.Aportaciones {
         protected global::Ext.Net.Panel Panel13;
         
         /// <summary>
-        /// EditIdTxt control.
+        /// EditSociosIdTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField EditIdTxt;
+        protected global::Ext.Net.TextField EditSociosIdTxt;
         
         /// <summary>
         /// ToolTip1 control.

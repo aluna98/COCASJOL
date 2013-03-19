@@ -378,13 +378,13 @@
             Icon="PageWhiteAdd"
             Title="Agregar Nota de Peso"
             Width="640"
-            AutoHeight="true"
+            Height="480"
             Resizable="false"
             Shadow="None"
             Modal="true"
             Maximizable="false"
             InitCenter="true"
-            ConstrainHeader="true" >
+            ConstrainHeader="true" Layout="FitLayout" >
             <Listeners>
                 <Show Handler="#{AddEstadosNotaSt}.reload(); #{AddFechaNotaTxt}.setValue(new Date()); #{AddFechaNotaTxt}.focus(false,200);" />
                 <Hide Handler="#{AddNotaDetalleSt}.removeAll(); #{AgregarNotasFormP}.getForm().reset();" />
@@ -818,13 +818,13 @@
             Icon="PageWhiteEdit"
             Title="Editar Nota de Peso"
             Width="640"
-            AutoHeight="true"
+            Height="480"
             Resizable="false"
             Shadow="None"
             Modal="true"
             Maximizable="false"
             InitCenter="true"
-            ConstrainHeader="true" >
+            ConstrainHeader="true" Layout="FitLayout" >
             <Listeners>
                 <Hide Handler="#{EditNotaDetalleSt}.removeAll(); #{EditarNotasFormP}.getForm().reset();" />
             </Listeners>

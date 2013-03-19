@@ -39,7 +39,7 @@
                     <asp:ControlParameter Name="ESTADOS_NOTA_SIGUIENTE_NOMBRE" Type="String"   ControlID="nullHdn"                    PropertyName="Text" />
                     <asp:ControlParameter Name="ESTADOS_NOTA_LLAVE"            Type="String"   ControlID="f_ESTADOS_NOTA_LLAVE"       PropertyName="Text" />
                     <asp:ControlParameter Name="ESTADOS_NOTA_NOMBRE"           Type="String"   ControlID="f_ESTADOS_NOTA_NOMBRE"      PropertyName="Text" />
-                    <asp:ControlParameter Name="ESTADOS_NOTA_DESCRIPCION"      Type="String"   ControlID="f_ESTADOS_NOTA_DESCRIPCION" PropertyName="Text" />
+                    <asp:ControlParameter Name="ESTADOS_NOTA_DESCRIPCION"      Type="String"   ControlID="nullHdn"                    PropertyName="Text" />
                     <asp:ControlParameter Name="CREADO_POR"                    Type="String"   ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="FECHA_CREACION"                Type="DateTime" ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="MODIFICADO_POR"                Type="String"   ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
@@ -76,11 +76,6 @@
             </Reader>
         </ext:Store>
 
-        <%--<asp:ObjectDataSource ID="EstadosNotaPadreDS" runat="server"
-                TypeName="COCASJOL.LOGIC.Inventario.Ingresos.EstadoNotaDePesoLogic"
-                SelectMethod="GetEstadosNotaDePesoSinAsignar" >
-        </asp:ObjectDataSource>--%>
-
         <ext:Store ID="EstadosNotaPadreSt" runat="server" OnRefreshData="EstadosNotaPadreSt_Refresh">
             <Reader>
                 <ext:JsonReader IDProperty="ESTADOS_NOTA_ID">
@@ -103,7 +98,7 @@
             <Items>
                 <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Estados de Nota de Peso" Icon="TableGo" Layout="Fit">
                     <Items>
-                        <ext:GridPanel ID="EstadosNotaGridP" runat="server" AutoExpandColumn="ESTADOS_NOTA_DESCRIPCION" Height="300"
+                        <ext:GridPanel ID="EstadosNotaGridP" runat="server" AutoExpandColumn="ESTADOS_NOTA_NOMBRE" Height="300"
                             Title="Usuarios" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
                             <Store>
                                 <ext:Store ID="EstadosNotaSt" runat="server" DataSourceID="EstadosNotaDS" AutoSave="true" SkipIdForNewRecords="false" >
@@ -133,7 +128,6 @@
                                     <ext:Column DataIndex="ESTADOS_NOTA_ID"           Header="Id" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="ESTADOS_NOTA_LLAVE"        Header="Llave" Sortable="true" Width="150"></ext:Column>
                                     <ext:Column DataIndex="ESTADOS_NOTA_NOMBRE"       Header="Nombre" Sortable="true" Width="150"></ext:Column>
-                                    <ext:Column DataIndex="ESTADOS_NOTA_DESCRIPCION"  Header="Descripción" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="ESTADOS_NOTA_SIGUIENTE_NOMBRE" Header="Estado Siguiente" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="ESTADOS_NOTA_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
                                         <Renderer Handler="return '';" />
@@ -186,15 +180,6 @@
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
                                                         <ext:TextField ID="f_ESTADOS_NOTA_NOMBRE" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="45">
-                                                            <Listeners>
-                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
-                                                            </Listeners>
-                                                        </ext:TextField>
-                                                    </Component>
-                                                </ext:HeaderColumn>
-                                                <ext:HeaderColumn Cls="x-small-editor">
-                                                    <Component>
-                                                        <ext:TextField ID="f_ESTADOS_NOTA_DESCRIPCION" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="100">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>

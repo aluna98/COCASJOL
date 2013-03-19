@@ -38,7 +38,7 @@ namespace COCASJOL.LOGIC.Prestamos
                 using (var db = new colinasEntities())
                 {
                     var query = from socios in db.socios.Include("socios_generales").Include("socios_produccion")
-                                where socios.SOCIOS_ESTATUS == 1
+                                where socios.SOCIOS_ESTATUS >= 1
                                 select socios;
                     return query.ToList<socio>();
                 }

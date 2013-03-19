@@ -193,7 +193,7 @@ var WindowX = {
     },
 
     plantillasNotificaciones: function (app) {
-        DesktopX.createDynamicWindow(app, 'plantillasNotificaciones16', 'Plantillas de Notificaciones', 'Utiles/PlantillasDeNotificaciones.aspx', 1000, 640);
+        DesktopX.createDynamicWindow(app, 'plantillasNotificaciones16', 'Plantillas de Notificaciones', 'Utiles/PlantillasDeNotificaciones.aspx', 1000, 600);
     },
 
     socios: function (app) {
@@ -205,15 +205,15 @@ var WindowX = {
     },
 
     notasDePesoEnPesaje: function (app) {
-        DesktopX.createDynamicWindow(app, 'pagewhiteput', 'Notas De Peso en Area de Pesaje', 'Inventario/Ingresos/NotasDePesoEnPesaje.aspx', 1000, 640);
+        DesktopX.createDynamicWindow(app, 'pagewhiteput', 'Notas De Peso en Area de Pesaje', 'Inventario/Ingresos/NotasDePesoEnPesaje.aspx', 1000, 600);
     },
 
     notasDePesoEnCatacion: function (app) {
-        DesktopX.createDynamicWindow(app, 'pagewhitecup', 'Notas De Peso en Area de Catación', 'Inventario/Ingresos/NotasDePesoEnCatacion.aspx', 1000, 640);
+        DesktopX.createDynamicWindow(app, 'pagewhitecup', 'Notas De Peso en Area de Catación', 'Inventario/Ingresos/NotasDePesoEnCatacion.aspx', 1000, 600);
     },
 
     notasDePeso: function (app) {
-        DesktopX.createDynamicWindow(app, 'pagewhiteoffice', 'Notas De Peso', 'Inventario/Ingresos/NotasDePesoEnAdministracion.aspx', 1000, 640);
+        DesktopX.createDynamicWindow(app, 'pagewhiteoffice', 'Notas De Peso', 'Inventario/Ingresos/NotasDePesoEnAdministracion.aspx', 1000, 600);
     },
 
     inventarioDeCafePorSocio: function (app) {
@@ -221,11 +221,11 @@ var WindowX = {
     },
 
     hojasDeLiquidacion: function (app) {
-        DesktopX.createDynamicWindow(app, 'script', 'Hojas De Liquidación', 'Inventario/Salidas/HojasDeLiquidacion.aspx', 1000, 640);
+        DesktopX.createDynamicWindow(app, 'script', 'Hojas De Liquidación', 'Inventario/Salidas/HojasDeLiquidacion.aspx', 1000, 600);
     },
 
     movimientosDeInventarioDeCafe: function (app) {
-        DesktopX.createDynamicWindow(app, 'report', 'Reporte de Movimientos de Inventario de Café', 'Reportes/MovimientosDeInventarioDeCafe.aspx', 1000, 640);
+        DesktopX.createDynamicWindow(app, 'report', 'Reporte de Movimientos de Inventario de Café', 'Reportes/MovimientosDeInventarioDeCafe.aspx', 1000, 600);
     },
 
     aportacionesPorSocio: function (app) {
@@ -245,7 +245,7 @@ var WindowX = {
     },
 
     variablesDeEntorno: function (app) {
-        DesktopX.createDynamicWindow(app, 'database', 'Variables de Entorno', 'Entorno/VariablesDeEntorno.aspx', 640, 480);
+        DesktopX.createDynamicWindow(app, 'database', 'Variables de Entorno', 'Entorno/VariablesDeEntorno.aspx');
     },
 
     settings: function () {

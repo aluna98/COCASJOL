@@ -42,7 +42,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     db.notas_de_peso.MergeOption = MergeOption.NoTracking;
 
                     var query = from n in db.notas_de_peso.Include("notas_de_peso").Include("socios").Include("clasificaciones_cafe")
-                                where n.socios.SOCIOS_ESTATUS == 1
+                                where n.socios.SOCIOS_ESTATUS >= 1
                                 select n;
 
                     return query.OrderBy(n => n.SOCIOS_ID).ToList<nota_de_peso>();
@@ -113,7 +113,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     db.notas_de_peso.MergeOption = MergeOption.NoTracking;
 
                     var queryEnPesaje = from notasPesoPesaje in db.notas_de_peso.Include("socios").Include("clasificaciones_cafe").Include("estados_nota_de_peso")
-                                        where notasPesoPesaje.socios.SOCIOS_ESTATUS == 1 &&
+                                        where notasPesoPesaje.socios.SOCIOS_ESTATUS >= 1 &&
                                         (this.ESTADOS_NOTA_ID.Equals(0) ? true : notasPesoPesaje.ESTADOS_NOTA_ID == this.ESTADOS_NOTA_ID)
                                         select notasPesoPesaje;
 

@@ -118,7 +118,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden CantidadDeAportacionExtraordParaCoopHdn;
+        protected global::Ext.Net.NumberField CantidadDeAportacionExtraordParaCoopHdn;
         
         /// <summary>
         /// LoggedUserHdn control.
@@ -416,6 +416,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Panel Panel12;
+        
+        /// <summary>
+        /// AddSociosAportacionesExtraCoopTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField AddSociosAportacionesExtraCoopTxt;
         
         /// <summary>
         /// AddFechaHojaTxt control.

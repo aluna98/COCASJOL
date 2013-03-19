@@ -358,13 +358,13 @@
             Icon="PageWhiteEdit"
             Title="Editar Nota de Peso"
             Width="640"
-            AutoHeight="true"
+            Height="480"
             Resizable="false"
             Shadow="None"
             Modal="true"
             Maximizable="false"
             InitCenter="true"
-            ConstrainHeader="true" >
+            ConstrainHeader="true" Layout="FitLayout" >
             <Listeners>
                 <Hide Handler="#{EditNotaDetalleSt}.removeAll(); #{EditarNotasFormP}.getForm().reset();" />
             </Listeners>

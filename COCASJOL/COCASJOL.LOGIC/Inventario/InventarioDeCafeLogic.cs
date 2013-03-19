@@ -69,12 +69,6 @@ namespace COCASJOL.LOGIC.Inventario
             {
                 using (var db = new colinasEntities())
                 {
-                    //var query = from invCafeSocio in db.reporte_total_inventario_de_cafe_por_socio
-                    //            where
-                    //            (string.IsNullOrEmpty(SOCIOS_ID) ? true : invCafeSocio.SOCIOS_ID.Contains(SOCIOS_ID)) &&
-                    //            (CLASIFICACIONES_CAFE_ID == 0 ? true : invCafeSocio.CLASIFICACIONES_CAFE_ID.Equals(CLASIFICACIONES_CAFE_ID))
-                    //            select invCafeSocio;
-
                     IEnumerable<KeyValuePair<string, object>> entityKeyValues =
                         new KeyValuePair<string, object>[] {
                             new KeyValuePair<string, object>("SOCIOS_ID", SOCIOS_ID),
@@ -82,9 +76,14 @@ namespace COCASJOL.LOGIC.Inventario
 
                     EntityKey k = new EntityKey("colinasEntities.reporte_total_inventario_de_cafe_por_socio", entityKeyValues);
 
-                    var invCafSoc = db.GetObjectByKey(k);
+                    Object invCafSoc = null;
 
-                    reporte_total_inventario_de_cafe_por_socio asocInventory = (reporte_total_inventario_de_cafe_por_socio)invCafSoc;
+                    reporte_total_inventario_de_cafe_por_socio asocInventory = null;
+
+                    if (db.TryGetObjectByKey(k, out invCafSoc))
+                        asocInventory = (reporte_total_inventario_de_cafe_por_socio)invCafSoc;
+                    else
+                        asocInventory = new reporte_total_inventario_de_cafe_por_socio();
 
                     return asocInventory;
                 }
@@ -101,12 +100,6 @@ namespace COCASJOL.LOGIC.Inventario
             {
                 using (var db = new colinasEntities())
                 {
-                    //var query = from inv in db.reporte_total_inventario_de_cafe_por_socio
-                    //            where inv.SOCIOS_ID == SOCIOS_ID && inv.CLASIFICACIONES_CAFE_ID == CLASIFICACIONES_CAFE_ID
-                    //            select inv;
-
-                    //reporte_total_inventario_de_cafe_por_socio asocInventory = query.FirstOrDefault<reporte_total_inventario_de_cafe_por_socio>();
-
                     IEnumerable<KeyValuePair<string, object>> entityKeyValues =
                         new KeyValuePair<string, object>[] {
                             new KeyValuePair<string, object>("SOCIOS_ID", SOCIOS_ID),
@@ -114,12 +107,13 @@ namespace COCASJOL.LOGIC.Inventario
 
                     EntityKey k = new EntityKey("colinasEntities.reporte_total_inventario_de_cafe_por_socio", entityKeyValues);
 
-                    var invCafSoc = db.GetObjectByKey(k);
+                    Object invCafSoc = null;
 
-                    reporte_total_inventario_de_cafe_por_socio asocInventory = (reporte_total_inventario_de_cafe_por_socio)invCafSoc;
-
-                    if (asocInventory != null)
+                    if (db.TryGetObjectByKey(k, out invCafSoc))
+                    {
+                        reporte_total_inventario_de_cafe_por_socio asocInventory = (reporte_total_inventario_de_cafe_por_socio)invCafSoc;
                         return asocInventory.INVENTARIO_ENTRADAS_CANTIDAD;
+                    }
                     else
                         return 0;
                 }
@@ -140,12 +134,6 @@ namespace COCASJOL.LOGIC.Inventario
         {
             try
             {
-                //var query = (from inv in db.reporte_total_inventario_de_cafe_por_socio
-                //             where 
-                //             (inv.SOCIOS_ID == NotaDePeso.SOCIOS_ID) && 
-                //             (inv.CLASIFICACIONES_CAFE_ID == NotaDePeso.CLASIFICACIONES_CAFE_ID)
-                //             select inv).FirstOrDefault();
-
                 reporte_total_inventario_de_cafe_por_socio asocInventory = this.GetReporteTotalInventarioDeCafe(NotaDePeso.SOCIOS_ID, NotaDePeso.CLASIFICACIONES_CAFE_ID);
 
                 decimal cantidad_en_inventario = asocInventory == null ? 0 : asocInventory.INVENTARIO_ENTRADAS_CANTIDAD;
@@ -182,10 +170,6 @@ namespace COCASJOL.LOGIC.Inventario
         {
             try
             {
-                //var query = (from inv in db.inventario_cafe_de_socio
-                //             where inv.SOCIOS_ID == HojaDeLiquidacion.SOCIOS_ID && inv.CLASIFICACIONES_CAFE_ID == HojaDeLiquidacion.CLASIFICACIONES_CAFE_ID
-                //             select inv).OrderByDescending(i => i.TRANSACCION_NUMERO).FirstOrDefault();
-
                 reporte_total_inventario_de_cafe_por_socio asocInventory = this.GetReporteTotalInventarioDeCafe(HojaDeLiquidacion.SOCIOS_ID, HojaDeLiquidacion.CLASIFICACIONES_CAFE_ID);
 
                 decimal cantidad_en_inventario = asocInventory == null ? 0 : asocInventory.INVENTARIO_ENTRADAS_CANTIDAD;

@@ -59,7 +59,7 @@ namespace COCASJOL.LOGIC.Socios
                     using (var db = new colinasEntities())
                     {
                         var query = from s in db.socios.Include("socios_generales").Include("socios_produccion").Include("beneficiario_x_socio")
-                                    where s.SOCIOS_ESTATUS == 1
+                                    where s.SOCIOS_ESTATUS >= 1
                                     select s;
                         return query.ToList<socio>();
                     }

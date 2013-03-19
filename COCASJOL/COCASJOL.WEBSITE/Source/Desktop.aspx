@@ -264,7 +264,7 @@
 
                 <%--Reportes--%>
                 <ext:DesktopModule ModuleID="MovimientosDeInventarioDeCafeModule">
-                    <Launcher ID="MovimientosDeInventarioDeCafeLauncher" runat="server" Text="Reporte de Movimientos de Inventario de Café" IconCls="icon-movimientosDeInventarioDeCafe" >
+                    <Launcher ID="MovimientosDeInventarioDeCafeLauncher" runat="server" Text="Reporte de Movimientos de Inventario de Café" IconCls="icon-movimientosDeInventarioDeCafe16" >
                         <Listeners>
                             <Click Handler="WindowX.movimientosDeInventarioDeCafe(#{MyDesktop});" />
                         </Listeners>
@@ -314,7 +314,7 @@
                 <ext:DesktopShortcut ShortcutID="scMovimientosDeInventarioDeCafe" Text="Reporte de Movimientos de Inventario de Café" IconCls="shortcut-icon icon-movimientosDeInventarioDeCafe" />
             </Shortcuts>
 
-            <StartMenu Height="550" Width="360" ToolsWidth="127" Title="Start Menu" Icon="UserSuit">
+            <StartMenu Height="550" Width="420" ToolsWidth="127" Title="Start Menu" Icon="UserSuit">
                 <ToolItems>
                     <ext:MenuItem Text="Configuración" Icon="Wrench">
                         <Listeners>

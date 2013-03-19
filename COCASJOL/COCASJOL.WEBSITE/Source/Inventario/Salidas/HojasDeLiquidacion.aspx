@@ -104,7 +104,7 @@
                     <asp:Parameter Name="FECHA_CREACION"                                    Type="DateTime" />
                     <asp:Parameter Name="MODIFICADO_POR"                                    Type="String"   />
                     <asp:Parameter Name="FECHA_MODIFICACION"                                Type="DateTime" />
-                    <asp:ControlParameter Name="SOCIOS_APORTACION_EXTRAORD_COOP_COUNT"              Type="Decimal"  ControlID="CantidadDeAportacionExtraordParaCoopHdn" PropertyName="Text" DefaultValue="0" />
+                    <asp:Parameter Name="SOCIOS_APORTACION_EXTRAORD_COOP_COUNT"             Type="Int32"    />
                 </InsertParameters>
         </asp:ObjectDataSource>
 
@@ -147,8 +147,8 @@
         <ext:Hidden ID="nullHdn" runat="server" >
         </ext:Hidden>
 
-        <ext:Hidden ID="CantidadDeAportacionExtraordParaCoopHdn" runat="server" >
-        </ext:Hidden>
+        <ext:NumberField ID="CantidadDeAportacionExtraordParaCoopHdn" runat="server" >
+        </ext:NumberField>
 
         <ext:Hidden ID="LoggedUserHdn" runat="server" >
         </ext:Hidden>
@@ -416,6 +416,11 @@
                                                     <Items>
                                                         <ext:Panel ID="Panel12" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
+                                                                <ext:NumberField runat="server" ID="AddSociosAportacionesExtraCoopTxt" DataIndex="SOCIOS_APORTACION_EXTRAORD_COOP_COUNT" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="" Hidden="true" ReadOnly="true">
+                                                                    <Listeners>
+                                                                        <Render Handler="AddSociosAportacionesExtraCoopTxt.setValue(CantidadDeAportacionExtraordParaCoopHdn.getValue());" />
+                                                                    </Listeners>
+                                                                </ext:NumberField>
                                                                 <ext:DateField runat="server" ID="AddFechaHojaTxt" DataIndex="LIQUIDACIONES_FECHA" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Fecha" AllowBlank="false" MsgTarget="Side"></ext:DateField>
                                                                 <ext:ComboBox  runat="server" ID="AddSociosIdTxt"  DataIndex="SOCIOS_ID"           LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Código de Socio" AllowBlank="false" MsgTarget="Side"
                                                                     TypeAhead="true"

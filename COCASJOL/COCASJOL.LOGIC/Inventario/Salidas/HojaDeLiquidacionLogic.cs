@@ -26,7 +26,7 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                     db.liquidaciones.MergeOption = MergeOption.NoTracking;
 
                     var query = from l in db.liquidaciones.Include("socios").Include("clasificaciones_cafe")
-                                where l.socios.SOCIOS_ESTATUS == 1
+                                where l.socios.SOCIOS_ESTATUS >= 1
                                 select l;
 
                     return query.OrderBy(h => h.SOCIOS_ID).ToList<liquidacion>();
@@ -81,7 +81,7 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                     db.liquidaciones.MergeOption = MergeOption.NoTracking;
 
                     var prequery = from l in db.liquidaciones.Include("socios").Include("clasificaciones_cafe")
-                                   where l.socios.SOCIOS_ESTATUS == 1
+                                   where l.socios.SOCIOS_ESTATUS >= 1
                                    select l;
 
                     var query = from hojaliq in prequery
@@ -145,8 +145,8 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
          * --------Cambiar Estado Aportación ordinaria anual de Socio--------
          * --------Cambiar Estado Aportación extraordinaria anual de Socio--------
          * --------Calcular de deducciones--------
-         * --------Modificar Aportaciones de Socio--------
          * --------Modificar Inventario de Café--------
+         * --------Modificar Aportaciones de Socio--------
          */
         public void InsertarHojaDeLiquidacion
             (    int LIQUIDACIONES_ID,
@@ -247,7 +247,7 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                             LIQUIDACIONES_D_CUOTA_INGRESO +
                             LIQUIDACIONES_D_GASTOS_ADMIN +
                             LIQUIDACIONES_D_APORTACION_ORDINARIO +
-                            (aumentar_aportaciones == true ? LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA : 0) +
+                            LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA +
                             LIQUIDACIONES_D_CUOTA_ADMIN +
                             LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD +
                             LIQUIDACIONES_D_INTERESES_S_APORTACIONES +
@@ -271,14 +271,13 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
 
                         db.SaveChanges();
 
-                        /* --------Modificar Aportaciones de Socio-------- */
-                        AportacionLogic aportacionesDeSocioLogic = new AportacionLogic();
-                        aportacionesDeSocioLogic.InsertarTransaccionAportacionesDeSocio(hojaliquidacion, aumentar_aportaciones, db);
-
-
                         /* --------Modificar Inventario de Café Actual-------- */
                         InventarioDeCafeLogic inventariodecafelogic = new InventarioDeCafeLogic();
                         inventariodecafelogic.InsertarTransaccionInventarioDeCafeDeSocio(hojaliquidacion, db);
+
+                        /* --------Modificar Aportaciones de Socio-------- */
+                        AportacionLogic aportacionesDeSocioLogic = new AportacionLogic();
+                        aportacionesDeSocioLogic.InsertarTransaccionAportacionesDeSocio(hojaliquidacion, aumentar_aportaciones, db);
 
                         db.SaveChanges();
 

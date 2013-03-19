@@ -33,11 +33,31 @@
                 SelectMethod="GetAportaciones" onselecting="AportacionesDS_Selecting" >
                 <SelectParameters>
                     <asp:ControlParameter Name="SOCIOS_ID"                   Type="String"   ControlID="f_SOCIOS_ID"               PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="APORTACIONES_SALDO"          Type="Decimal"  ControlID="f_APORTACIONES_SALDO"      PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="APORTACIONES_SALDO"          Type="Decimal"  ControlID="f_APORTACIONES_SALDO"      PropertyName="Text" DefaultValue="0" />
                     <asp:ControlParameter Name="CREADO_POR"                  Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="FECHA_CREACION"              Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
                 </SelectParameters>
         </asp:ObjectDataSource>
+
+        <asp:ObjectDataSource ID="SociosDS" runat="server"
+                TypeName="COCASJOL.LOGIC.Socios.SociosLogic"
+                SelectMethod="getSociosActivos" >
+        </asp:ObjectDataSource>
+
+        <ext:Store ID="SocioSt" runat="server" DataSourceID="SociosDS">
+            <Reader>
+                <ext:JsonReader IDProperty="SOCIOS_ID">
+                    <Fields>
+                        <ext:RecordField Name="SOCIOS_ID" />
+                        <ext:RecordField Name="SOCIOS_PRIMER_NOMBRE" />
+                        <ext:RecordField Name="SOCIOS_SEGUNDO_NOMBRE" />
+                        <ext:RecordField Name="SOCIOS_PRIMER_APELLIDO" />
+                        <ext:RecordField Name="SOCIOS_SEGUNDO_APELLIDO" />
+                        <ext:RecordField Name="PRODUCCION_UBICACION_FINCA" ServerMapping="socios_produccion.PRODUCCION_UBICACION_FINCA" />
+                    </Fields>
+                </ext:JsonReader>
+            </Reader>
+        </ext:Store>
         
         <ext:Hidden ID="nullHdn" runat="server" >
         </ext:Hidden>
@@ -183,7 +203,7 @@
                             <Items>
                                 <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false" AnchorHorizontal="100%">
                                     <Items>
-                                        <ext:TextField runat="server" ID="EditIdTxt"             DataIndex="SOCIOS_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Socio" AllowBlank="false" ReadOnly="true">
+                                        <ext:TextField runat="server" ID="EditSociosIdTxt"             DataIndex="SOCIOS_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Socio" AllowBlank="false" ReadOnly="true">
                                             <ToolTips>
                                                 <ext:ToolTip ID="ToolTip1" runat="server" Title="Id de Socio" Html="El Id de Socio es de solo lectura." Width="200" TrackMouse="true" />
                                             </ToolTips>
