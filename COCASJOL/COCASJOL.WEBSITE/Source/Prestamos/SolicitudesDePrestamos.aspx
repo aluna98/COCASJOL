@@ -166,7 +166,17 @@
                                                         </Component>
                                                     </ext:HeaderColumn>
 
-                                                    <ext:HeaderColumn Cls="x-small-editor">
+                                                 <ext:HeaderColumn Cls="x-small-editor">
+                                                        <Component>
+                                                            <ext:TextField ID="FilterSolicitudEstado" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                                <Listeners>
+                                                                    <KeyUp Handler="applyFilter(this);" Buffer="250" />                                                
+                                                                </Listeners>
+                                                            </ext:TextField>
+                                                        </Component>
+                                                </ext:HeaderColumn>
+
+                                                <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
                                                     </Component>
                                                 </ext:HeaderColumn>
@@ -194,8 +204,8 @@
                                     <ext:Column ColumnID="SolicitudId" Header="Solicitud ID" DataIndex="SOLICITUDES_ID" />
                                     <ext:Column ColumnID="SociosNombre" Header="Nombre Socio" DataIndex="SOCIOS_PRIMER_NOMBRE" />
                                     <ext:Column ColumnID="SolicitudMonto" Header="Monto" DataIndex="SOLICITUDES_MONTO" />
-                                    <ext:DateColumn ColumnID="SolicitudPlazo" Header="Plazo" DataIndex="SOLICITUDES_PLAZO" />
                                     <ext:Column ColumnID="SolicitudEstado" Header="Estado" DataIndex="SOLICITUD_ESTADO" />
+                                    <ext:DateColumn ColumnID="SolicitudPlazo" Header="Plazo" DataIndex="SOLICITUDES_PLAZO" />
                                     <ext:Column Width="28" DataIndex="SOCIOS_ID" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
                                         <Renderer Handler="return '';" />
                                     </ext:Column>
@@ -242,38 +252,7 @@
                                                 <Items>
                                                     <ext:TextField ID="EditIdSolicitud"     ReadOnly="true" runat="server" FieldLabel="Solicitud Id" DataIndex="SOLICITUDES_ID" AnchorHorizontal="90%"  AllowBlank="false" />                                                    
                                                     <ext:TextField ID="EditSocioid"         ReadOnly="true" runat="server" FieldLabel="ID Socio" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="EditPrimerNombre"    ReadOnly="true" runat="server" FieldLabel="Primer Nombre" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="Edit2doNombre"       ReadOnly="true" runat="server" FieldLabel="Segundo Nombre" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="Edit1erApellido"     ReadOnly="true" runat="server" FieldLabel="Primer Apellido" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="Edit2doApellido"     ReadOnly="true" runat="server" FieldLabel="Segundo Apellido" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="EditIdentidad"       ReadOnly="true" runat="server" FieldLabel="Identidad" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="EditLugarNcax"       ReadOnly="true" runat="server" FieldLabel="Lugar de Nacimiento" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="EditCarnetIHCAFE"    ReadOnly="true" runat="server" FieldLabel="Carnet IHCAFE" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="EditRTN"             ReadOnly="true" runat="server" FieldLabel="RTN" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="EditEstadoCivil"     ReadOnly="true" runat="server" FieldLabel="Estado Civil" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="EditProfesion"       ReadOnly="true" runat="server" FieldLabel="Profesion" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="EditTelefono"        ReadOnly="true" runat="server" FieldLabel="Telefono" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="EditResidencia"      ReadOnly="true" runat="server" FieldLabel="Residencia" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="EditManzanas"        ReadOnly="true" runat="server" FieldLabel="Manzanas Cultivadas" AnchorHorizontal="90%" />
-                                                    <ext:TextField ID="EditUbicacion"       ReadOnly="true" runat="server" FieldLabel="Ubicacion de la finca" AnchorHorizontal="90%" />
-                                                    <ext:ComboBox ID="EditCmbEstado"
-                                                        runat="server" DataIndex="SOLICITUD_ESTADO"
-                                                        Editable="false" FieldLabel="Estado de Solicitud"         
-                                                        EmptyText="Seleccione Estado..." AnchorHorizontal="90%">
-                                                        <Items>
-                                                            <ext:ListItem Text="PENDIENTE" Value="PENDIENTE" />
-                                                            <ext:ListItem Text="APROBADA" Value="APROBADA" />
-                                                            <ext:ListItem Text="RECHAZADA" Value="RECHAZADA" />
-                                                        </Items>
-                                                    </ext:ComboBox>
-                                                </Items>
-                                            </ext:Panel>
-                                        </Items>
-                                    </ext:Panel>
-                                    <ext:Panel ID="PanelSolicitud" runat="server" Title="Datos de Solicitud" Layout="AnchorLayout" AutoHeight="true" Icon="User" LabelWidth="150" >
-                                        <Items>
-                                            <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
-                                                <Items>
+                                                    <ext:TextField ID="EditNombre"    ReadOnly="true" runat="server" FieldLabel="Nombre" AnchorHorizontal="90%" />
                                                     <ext:NumberField    runat="server" ID="EditMontoTxt"     DataIndex="SOLICITUDES_MONTO"           AnchorHorizontal="90%"      FieldLabel="Monto                     " AllowBlank="false" MaxLength="11" AllowDecimals="true" DecimalPrecision="3" DecimalSeparator="." />
                                                     <ext:DateField      runat="server" ID="EditPlazo"     DataIndex="SOLICITUDES_PLAZO"           AnchorHorizontal="90%"      FieldLabel="Fecha de Plazo            " AllowBlank="false" />
                                                     <ext:TextField      runat="server" ID="EditPagoTxt"      DataIndex="SOLICITUDES_PAGO"            AnchorHorizontal="90%"      FieldLabel="Tipo de Pago              " AllowBlank="false" MaxLength="45" />
@@ -300,6 +279,24 @@
                                                     <ext:TextField      runat="server" ID="EditSurTxt"       DataIndex="SOLICITUDES_SUR"             AnchorHorizontal="90%"      FieldLabel="Colindancias Sur" MaxLength="45" />
                                                     <ext:TextField      runat="server" ID="EditEsteTxt"      DataIndex="SOLICITUDES_ESTE"            AnchorHorizontal="90%"      FieldLabel="Colindancias Este" MaxLength="45" />
                                                     <ext:TextField      runat="server" ID="EditOesteTxt"     DataIndex="SOLICITUDES_OESTE"           AnchorHorizontal="90%"      FieldLabel="Colindancias Oeste" MaxLength="45" />
+                                                </Items>
+                                            </ext:Panel>
+                                        </Items>
+                                    </ext:Panel>
+                                    <ext:Panel ID="PanelSolicitud" runat="server" Title="Datos de Solicitud" Layout="AnchorLayout" AutoHeight="true" Icon="User" LabelWidth="150" >
+                                        <Items>
+                                            <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
+                                                <Items>
+                                                    <ext:TextField ID="EditIdentidad"       ReadOnly="true" runat="server" FieldLabel="Identidad" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditLugarNcax"       ReadOnly="true" runat="server" FieldLabel="Lugar de Nacimiento" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditCarnetIHCAFE"    ReadOnly="true" runat="server" FieldLabel="Carnet IHCAFE" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditRTN"             ReadOnly="true" runat="server" FieldLabel="RTN" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditEstadoCivil"     ReadOnly="true" runat="server" FieldLabel="Estado Civil" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditProfesion"       ReadOnly="true" runat="server" FieldLabel="Profesion" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditTelefono"        ReadOnly="true" runat="server" FieldLabel="Telefono" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditResidencia"      ReadOnly="true" runat="server" FieldLabel="Residencia" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditManzanas"        ReadOnly="true" runat="server" FieldLabel="Manzanas Cultivadas" AnchorHorizontal="90%" />
+                                                    <ext:TextField ID="EditUbicacion"       ReadOnly="true" runat="server" FieldLabel="Ubicacion de la finca" AnchorHorizontal="90%" />
                                                     <ext:Checkbox runat="server" ID="EditCarro"     DataIndex="SOLICITUDES_VEHICULO" FieldLabel="Acceso en Vehiculo?" LabelWidth="100" />
                                                     <ext:Checkbox runat="server" ID="EditAgua"         DataIndex="SOLICITUDES_AGUA" FieldLabel="Posee Agua?" />
                                                     <ext:Checkbox runat="server" ID="EditLuz"         DataIndex="SOLICITUDES_ENEE" FieldLabel="Posee Energia Electrica?" LabelWidth="100" /> 

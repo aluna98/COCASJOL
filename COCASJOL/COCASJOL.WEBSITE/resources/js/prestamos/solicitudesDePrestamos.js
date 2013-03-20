@@ -256,7 +256,7 @@ var SolicitudX = {
             return;
         }
 
-        Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
+        Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdateRef, function (btn, text) {
             if (btn == 'yes') {
                 EditRefForm.getForm().updateRecord(EditRefForm.record);
             }
@@ -268,7 +268,7 @@ var SolicitudX = {
             return;
         }
 
-        Ext.Msg.confirm(ConfirmMsgTitleRef, ConfirmUpdateRef, function (btn, text) {
+        Ext.Msg.confirm(ConfirmMsgTitleRef, ConfirmUpdate, function (btn, text) {
             if (btn == 'yes') {
                 EditForm.getForm().updateRecord(EditForm.record);
             }
@@ -307,20 +307,21 @@ var SolicitudX = {
 };
 
 /*---------------------*/
-var applyFilter = function (field) {                
+var applyFilter = function (field) {
     var store = SolicitudesGriP.getStore();
     store.suspendEvents();
-    store.filterBy(getRecordFilter());                                
+    var filter = getRecordFilter();
+    store.filterBy(filter);
     store.resumeEvents();
     SolicitudesGriP.getView().refresh(false);
 };
- 
+
 var clearFilter = function () {
     FilterSolicitudSocioId.reset();
     FilterSolicitudId.reset();
     FilterSolicitudNombre.reset();
     FilterSolicitudMonto.reset();
-
+    FilterSolicitudEstado.reset();
     SolicitudesSt.clearFilter();
 }
 
@@ -353,7 +354,7 @@ var filterNumber = function (value, dataIndex, record) {
     return true;
 };
 
-var getRecordFilter = function () {
+var getRecordFilter = function () 
     var f = [];
 
     f.push({
@@ -377,6 +378,12 @@ var getRecordFilter = function () {
     f.push({
         filter: function (record) {                      
             return filterNumber(FilterSolicitudMonto.getValue(), "SOLICITUDES_MONTO", record);
+        }
+    });
+
+    f.push({
+        filter: function (record) {
+            return filterString(FilterSolicitudEstado.getValue(), "SOLICITUD_ESTADO", record);
         }
     });
 

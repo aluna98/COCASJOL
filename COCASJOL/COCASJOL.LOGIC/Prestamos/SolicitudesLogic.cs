@@ -31,6 +31,44 @@ namespace COCASJOL.LOGIC.Prestamos
             }
         }
 
+            public List<solicitud_prestamo> getViewSolicitud()
+            {
+                try
+                {
+                    using (var db = new colinasEntities())
+                    {
+                        var query = from solicitud in db.solicitudes_prestamos.Include("socios")
+                                    where solicitud.SOLICITUD_ESTADO == "PENDIENTE" || solicitud.SOLICITUD_ESTADO == "RECHAZADA"
+                                    select solicitud;
+
+                        return query.ToList<solicitud_prestamo>();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+
+            public List<solicitud_prestamo> getViewPrestamo()
+            {
+                try
+                {
+                    using (var db = new colinasEntities())
+                    {
+                        var query = from solicitud in db.solicitudes_prestamos.Include("socios")
+                                    where solicitud.SOLICITUD_ESTADO == "APROBADAS" || solicitud.SOLICITUD_ESTADO == "FINALIZADAS"
+                                    select solicitud;
+
+                        return query.ToList<solicitud_prestamo>();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+
             public List<socio> getSocios()
         {
             try
