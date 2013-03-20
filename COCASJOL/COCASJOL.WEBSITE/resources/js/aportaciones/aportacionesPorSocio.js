@@ -10,7 +10,7 @@ var AlertSelMsgTitle = "Atención";
 var AlertSelMsg = "Debe seleccionar 1 elemento";
 
 var ConfirmMsgTitle = "Aportaciones";
-var ConfirmUpdate = "Seguro desea modificar las aportaciones?";
+var ConfirmUpdate = "Seguro desea modificar las aportaciones? Nota: Una vez que se realice la acción no se podran deshacer los cambios.";
 var ConfirmDelete = "Seguro desea eliminar las aportaciones?";
 
 var PageX = {
@@ -78,6 +78,7 @@ var PageX = {
             var EditNombre = Ext.getCmp('EditNombreTxt');
 
             this.getNombreDeSocio(EditSocioId, EditNombre);
+            this.loadTotalRetiro();
         }
     },
 
@@ -88,7 +89,7 @@ var PageX = {
 
         Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
             if (btn == 'yes') {
-                EditForm.getForm().updateRecord(EditForm.record);
+                Ext.net.DirectMethods.RetirarBtn_Click();
             }
         });
     },
@@ -116,7 +117,7 @@ var PageX = {
 
     clearFilter: function () {
         f_SOCIOS_ID.reset();
-        f_APORTACIONES_SALDO.reset();
+        f_APORTACIONES_SALDO_TOTAL.reset();
         AportacionesSt.reload();
     },
 
@@ -154,5 +155,28 @@ var PageX = {
         if (Grid.getStore().getTotalCount() == 0)
             Grid.getStore().reload();
         PagingToolbar1.moveLast();
+    },
+
+    validarCantidadRetiro: function (aportacionTxt, retiroTxt) {
+        var retiro = retiroTxt.getValue();
+        var aportacion = aportacionTxt.getValue();
+
+        retiro = retiro == null ? 0 : retiro;
+        retiro = retiro < 0 ? 0 : retiro;
+
+        retiro = retiro > aportacion ? aportacion : retiro;
+
+        retiroTxt.setValue(retiro);
+    },
+
+    loadTotalRetiro: function () {
+        var retiro = EditRetiroAportacionOrdinariaSaldoTxt.getValue() +
+            EditRetiroAportacionExtraordinariaSaldoTxt.getValue() +
+            EditRetiroAportacionCapRetencionSaldoTxt.getValue() +
+            EditRetiroAportacionInteresesSAportacionesSaldoTxt.getValue() +
+            EditRetiroAportacionExcedentePeriodoSaldoTxt.getValue();
+
+        var retiroTotalSaldo = EditAportacionTotalSaldoTxt.getValue() - retiro;
+        EditRetiroAportacionTotalSaldoTxt.setValue(retiroTotalSaldo);
     }
 };

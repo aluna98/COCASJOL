@@ -139,14 +139,9 @@
                             <TopBar>
                                 <ext:Toolbar ID="Toolbar1" runat="server">
                                     <Items>
-                                        <ext:Button ID="EditarBtn" runat="server" Text="Editar" Icon="BrickEdit">
+                                        <ext:Button ID="EditarBtn" runat="server" Text="Ver" Icon="BrickEdit">
                                             <Listeners>
                                                 <Click Handler="PageX.edit();" />
-                                            </Listeners>
-                                        </ext:Button>
-                                        <ext:Button ID="EliminarBtn" runat="server" Text="Eliminar" Icon="BrickDelete" Hidden="true">
-                                            <Listeners>
-                                                <Click Handler="PageX.remove();" />
                                             </Listeners>
                                         </ext:Button>
                                         <ext:ToolbarFill ID="ToolbarFill1" runat="server" />

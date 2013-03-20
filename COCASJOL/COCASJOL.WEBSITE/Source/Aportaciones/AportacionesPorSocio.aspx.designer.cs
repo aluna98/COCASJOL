@@ -58,13 +58,13 @@ namespace COCASJOL.WEBSITE.Source.Aportaciones {
         protected global::COCASJOL.WEBSITE.Source.Auditoria.Auditoria AudWin;
         
         /// <summary>
-        /// AportacionesDs control.
+        /// AportacionesDS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource AportacionesDs;
+        protected global::System.Web.UI.WebControls.ObjectDataSource AportacionesDS;
         
         /// <summary>
         /// SociosDS control.
@@ -202,13 +202,22 @@ namespace COCASJOL.WEBSITE.Source.Aportaciones {
         protected global::Ext.Net.TextField f_SOCIOS_ID;
         
         /// <summary>
-        /// f_APORTACIONES_SALDO control.
+        /// f_SOCIOS_NOMBRE_COMPLETO control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField f_APORTACIONES_SALDO;
+        protected global::Ext.Net.TextField f_SOCIOS_NOMBRE_COMPLETO;
+        
+        /// <summary>
+        /// f_APORTACIONES_SALDO_TOTAL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField f_APORTACIONES_SALDO_TOTAL;
         
         /// <summary>
         /// ClearFilterButton control.
@@ -310,13 +319,121 @@ namespace COCASJOL.WEBSITE.Source.Aportaciones {
         protected global::Ext.Net.ToolTip ToolTip2;
         
         /// <summary>
-        /// EditAportacionSaldoTxt control.
+        /// EditAportacionesRetirosPnl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField EditAportacionSaldoTxt;
+        protected global::Ext.Net.Panel EditAportacionesRetirosPnl;
+        
+        /// <summary>
+        /// EditAportacionesFS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FieldSet EditAportacionesFS;
+        
+        /// <summary>
+        /// EditAportacionOrdinariaSaldoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditAportacionOrdinariaSaldoTxt;
+        
+        /// <summary>
+        /// ToolTip5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip5;
+        
+        /// <summary>
+        /// EditAportacionExtraordinariaSaldoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditAportacionExtraordinariaSaldoTxt;
+        
+        /// <summary>
+        /// ToolTip6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip6;
+        
+        /// <summary>
+        /// EditAportacionCapRetencionSaldoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditAportacionCapRetencionSaldoTxt;
+        
+        /// <summary>
+        /// ToolTip7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip7;
+        
+        /// <summary>
+        /// EditAportacionInteresesSAportacionesSaldoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditAportacionInteresesSAportacionesSaldoTxt;
+        
+        /// <summary>
+        /// ToolTip8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip8;
+        
+        /// <summary>
+        /// EditAportacionExcedentePeriodoSaldoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditAportacionExcedentePeriodoSaldoTxt;
+        
+        /// <summary>
+        /// ToolTip9 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip9;
+        
+        /// <summary>
+        /// EditAportacionTotalSaldoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditAportacionTotalSaldoTxt;
         
         /// <summary>
         /// ToolTip3 control.
@@ -326,6 +443,78 @@ namespace COCASJOL.WEBSITE.Source.Aportaciones {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ToolTip ToolTip3;
+        
+        /// <summary>
+        /// EditRetirosFS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FieldSet EditRetirosFS;
+        
+        /// <summary>
+        /// EditRetiroAportacionOrdinariaSaldoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditRetiroAportacionOrdinariaSaldoTxt;
+        
+        /// <summary>
+        /// EditRetiroAportacionExtraordinariaSaldoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditRetiroAportacionExtraordinariaSaldoTxt;
+        
+        /// <summary>
+        /// EditRetiroAportacionCapRetencionSaldoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditRetiroAportacionCapRetencionSaldoTxt;
+        
+        /// <summary>
+        /// EditRetiroAportacionInteresesSAportacionesSaldoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditRetiroAportacionInteresesSAportacionesSaldoTxt;
+        
+        /// <summary>
+        /// EditRetiroAportacionExcedentePeriodoSaldoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditRetiroAportacionExcedentePeriodoSaldoTxt;
+        
+        /// <summary>
+        /// EditRetiroAportacionTotalSaldoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditRetiroAportacionTotalSaldoTxt;
+        
+        /// <summary>
+        /// ToolTip15 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip15;
         
         /// <summary>
         /// EditCreatedByTxt control.
@@ -364,12 +553,12 @@ namespace COCASJOL.WEBSITE.Source.Aportaciones {
         protected global::Ext.Net.Button EditNextBtn;
         
         /// <summary>
-        /// EditGuardarBtn control.
+        /// RetirarBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button EditGuardarBtn;
+        protected global::Ext.Net.Button RetirarBtn;
     }
 }

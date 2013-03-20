@@ -616,15 +616,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         protected global::Ext.Net.NumberField AddAportacionExtraOrdinariaTxt;
         
         /// <summary>
-        /// AddCuotaAdminTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.NumberField AddCuotaAdminTxt;
-        
-        /// <summary>
         /// AddCapitalizacionXRetencionTxt control.
         /// </summary>
         /// <remarks>
@@ -1127,15 +1118,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.NumberField EditAportacionExtraOrdinariaTxt;
-        
-        /// <summary>
-        /// EditCuotaAdminTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.NumberField EditCuotaAdminTxt;
         
         /// <summary>
         /// EditCapitalizacionXRetencionTxt control.

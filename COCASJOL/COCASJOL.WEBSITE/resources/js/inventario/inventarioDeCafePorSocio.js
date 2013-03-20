@@ -88,20 +88,6 @@ var PageX = {
         });
     },
 
-    remove: function () {
-        if (Grid.getSelectionModel().hasSelection()) {
-            Ext.Msg.confirm(ConfirmMsgTitle, ConfirmDelete, function (btn, text) {
-                if (btn == 'yes') {
-                    var record = Grid.getSelectionModel().getSelected();
-                    Grid.deleteRecord(record);
-                }
-            });
-        } else {
-            var msg = Ext.Msg;
-            Ext.Msg.alert(AlertSelMsgTitle, AlertSelMsg);
-        }
-    },
-
     keyUpEvent: function (sender, e) {
         if (e.getKey() == 13)
             GridStore.reload();

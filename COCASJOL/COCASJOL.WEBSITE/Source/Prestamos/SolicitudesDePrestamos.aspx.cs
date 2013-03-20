@@ -173,7 +173,7 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
                 EditAvalAntiguedad.Text = logica.Antiguedad(EditAvalId.Text);
                 socio aval = solicitud.getAval(EditAvalId.Text);
                 EditAvalNombre.Text = aval.SOCIOS_PRIMER_NOMBRE + " " + aval.SOCIOS_PRIMER_APELLIDO;
-                EditAvalAportaciones.Text = aportacion.GetAportacionesXSocio(EditAvalId.Text).APORTACIONES_SALDO.ToString();
+                EditAvalAportaciones.Text = aportacion.GetAportacionesXSocio(EditAvalId.Text).APORTACIONES_SALDO_TOTAL.ToString();
             }
         }
 

@@ -91,6 +91,16 @@
       </variable>
     </variables>
   </pagina>
+  <pagina>
+    <Name>HojasDeLiquidacion</Name>
+    <variables>
+      <variable>
+        <key>HOJAS_INTERESESAPORTACION</key>
+        <descripcion>El porcentaje de intereses sobre aportaciones anual.</descripcion>
+        <type>int</type>
+      </variable>
+    </variables>
+  </pagina>
 
   <pagina>
     <Name>Socios</Name>

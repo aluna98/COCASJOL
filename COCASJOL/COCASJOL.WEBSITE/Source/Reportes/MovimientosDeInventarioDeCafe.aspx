@@ -77,15 +77,18 @@
                     <asp:ControlParameter Name="FECHA_DESDE"                  Type="DateTime" ControlID="f_DATE_FROM"                    PropertyName="Text" />
                     <asp:ControlParameter Name="FECHA_HASTA"                  Type="DateTime" ControlID="f_DATE_TO"                      PropertyName="Text" />
                     <asp:ControlParameter Name="DESCRIPCION"                  Type="String"   ControlID="f_DESCRIPCION"                  PropertyName="Text" DefaultValue="" />
-                    
-                    <asp:ControlParameter Name="ENTRADAS_CANTIDAD" Type="Decimal"  ControlID="f_ENTRADAS_CANTIDAD" PropertyName="Text" DefaultValue="-1"/>
-                    <asp:ControlParameter Name="SALIDAS_CANTIDAD" Type="Decimal"  ControlID="f_SALIDAS_CANTIDAD" PropertyName="Text" DefaultValue="-1"/>
-                    <asp:ControlParameter Name="SALIDAS_COSTO" Type="Decimal"  ControlID="f_SALIDAS_COSTO" PropertyName="Text" DefaultValue="-1"/>
-                    <asp:ControlParameter Name="SALIDAS_MONTO" Type="Decimal"  ControlID="f_SALIDAS_MONTO" PropertyName="Text" DefaultValue="-1"/>
+                                                                                                                                         
+                    <asp:ControlParameter Name="ENTRADAS_CANTIDAD"            Type="Decimal"  ControlID="f_ENTRADAS_CANTIDAD"            PropertyName="Text" DefaultValue="-1"/>
+                    <asp:ControlParameter Name="SALIDAS_CANTIDAD"             Type="Decimal"  ControlID="f_SALIDAS_CANTIDAD"             PropertyName="Text" DefaultValue="-1"/>
+                    <asp:ControlParameter Name="SALIDAS_COSTO"                Type="Decimal"  ControlID="f_SALIDAS_COSTO"                PropertyName="Text" DefaultValue="-1"/>
+                    <asp:ControlParameter Name="SALIDAS_MONTO"                Type="Decimal"  ControlID="f_SALIDAS_MONTO"                PropertyName="Text" DefaultValue="-1"/>
 
 
                     <asp:ControlParameter Name="INVENTARIO_ENTRADAS_CANTIDAD" Type="Decimal"  ControlID="f_INVENTARIO_ENTRADAS_CANTIDAD" PropertyName="Text" DefaultValue="-1"/>
                     <asp:ControlParameter Name="INVENTARIO_SALIDAS_SALDO"     Type="Decimal"  ControlID="f_INVENTARIO_SALIDAS_SALDO"     PropertyName="Text" DefaultValue="-1"/>
+
+                    <asp:ControlParameter Name="CREADO_POR"                   Type="String"   ControlID="f_CREADO_POR"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_CREACION"               Type="DateTime" ControlID="f_FECHA_CREACION"               PropertyName="Text" DefaultValue="" />
                 </SelectParameters>
         </asp:ObjectDataSource>
 
@@ -149,14 +152,14 @@
                                                 <ext:RecordField Name="FECHA_DESDE"                  Type="Date" />
                                                 <ext:RecordField Name="FECHA_HASTA"                  Type="Date" />
                                                 <ext:RecordField Name="TRANSACCION_NUMERO"           />
-                                                
                                                 <ext:RecordField Name="ENTRADAS_CANTIDAD"            />
-                                                <ext:RecordField Name="SALIDAS_CANTIDAD" />
-                                                <ext:RecordField Name="SALIDAS_COSTO" />
-                                                <ext:RecordField Name="SALIDAS_MONTO" />
-                                                
+                                                <ext:RecordField Name="SALIDAS_CANTIDAD"             />
+                                                <ext:RecordField Name="SALIDAS_COSTO"                />
+                                                <ext:RecordField Name="SALIDAS_MONTO"                />
                                                 <ext:RecordField Name="INVENTARIO_ENTRADAS_CANTIDAD" />
                                                 <ext:RecordField Name="INVENTARIO_SALIDAS_SALDO"     />
+                                                <ext:RecordField Name="CREADO_POR"                   />
+                                                <ext:RecordField Name="FECHA_CREACION"               Type="Date" />
                                             </Fields>
                                         </ext:JsonReader>
                                     </Reader>
@@ -282,6 +285,10 @@
                                         <SummaryRenderer Handler="return '(' + Ext.util.Format.number(value,'0,000.0000') + ' Promedio' + ')';" />
                                         <Renderer Format="Number" FormatArgs="'0,000.0000'" />
                                     </ext:GroupingSummaryColumn>
+
+                                    <ext:Column DataIndex="CREADO_POR" Header="Creado Por" Sortable="true" ></ext:Column>
+
+                                    <ext:DateColumn DataIndex="FECHA_CREACION" Header="Fecha de Creación" Sortable="true" ></ext:DateColumn>
 
                                     <ext:Column DataIndex="SOCIOS_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
                                         <Renderer Handler="return '';" />
@@ -516,6 +523,26 @@
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
                                                         </ext:NumberField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="f_CREADO_POR" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <Listeners>
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                            </Listeners>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:DateField ID="f_FECHA_CREACION" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <Listeners>
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                            </Listeners>
+                                                        </ext:DateField>
                                                     </Component>
                                                 </ext:HeaderColumn>
                                                                

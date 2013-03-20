@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aportaciones\AportacionLogic.cs" />
+    <Compile Include="Aportaciones\RetiroAportacionLogic.cs" />
     <Compile Include="Colinas.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

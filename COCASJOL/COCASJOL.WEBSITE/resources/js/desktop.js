@@ -229,7 +229,7 @@ var WindowX = {
     },
 
     aportacionesPorSocio: function (app) {
-        DesktopX.createDynamicWindow(app, 'aportacionesPorSocio16', 'Aportaciones por Socio', 'Aportaciones/AportacionesPorSocio.aspx');
+        DesktopX.createDynamicWindow(app, 'aportacionesPorSocio16', 'Aportaciones por Socio', 'Aportaciones/AportacionesPorSocio.aspx', 1000, 600);
     },
 
     solicitudesDePrestamo: function (app) {

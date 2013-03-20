@@ -54,7 +54,6 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
              decimal LIQUIDACIONES_D_GASTOS_ADMIN,
              decimal LIQUIDACIONES_D_APORTACION_ORDINARIO,
              decimal LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA,
-             decimal LIQUIDACIONES_D_CUOTA_ADMIN,
                  int LIQUIDACIONES_D_CAPITALIZACION_RETENCION,
              decimal LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD,
              decimal LIQUIDACIONES_D_INTERESES_S_APORTACIONES,
@@ -99,7 +98,6 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                                 (LIQUIDACIONES_D_GASTOS_ADMIN == -1                      ? true : hojaliq.LIQUIDACIONES_D_GASTOS_ADMIN == LIQUIDACIONES_D_GASTOS_ADMIN) &&
                                 (LIQUIDACIONES_D_APORTACION_ORDINARIO == -1              ? true : hojaliq.LIQUIDACIONES_D_APORTACION_ORDINARIO == LIQUIDACIONES_D_APORTACION_ORDINARIO) &&
                                 (LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA == -1         ? true : hojaliq.LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA == LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA) &&
-                                (LIQUIDACIONES_D_CUOTA_ADMIN == -1                       ? true : hojaliq.LIQUIDACIONES_D_CUOTA_ADMIN == LIQUIDACIONES_D_CUOTA_ADMIN) &&
 
                                 (LIQUIDACIONES_D_CAPITALIZACION_RETENCION == -1          ? true : hojaliq.LIQUIDACIONES_D_CAPITALIZACION_RETENCION == LIQUIDACIONES_D_CAPITALIZACION_RETENCION) &&
                                 (LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD == -1 ? true : hojaliq.LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD == LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD) &&
@@ -163,7 +161,6 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
              decimal LIQUIDACIONES_D_GASTOS_ADMIN,
              decimal LIQUIDACIONES_D_APORTACION_ORDINARIO,
              decimal LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA,
-             decimal LIQUIDACIONES_D_CUOTA_ADMIN,
                  int LIQUIDACIONES_D_CAPITALIZACION_RETENCION,
              decimal LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD,
              decimal LIQUIDACIONES_D_INTERESES_S_APORTACIONES,
@@ -203,7 +200,6 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                         hojaliquidacion.LIQUIDACIONES_D_GASTOS_ADMIN = LIQUIDACIONES_D_GASTOS_ADMIN;
                         hojaliquidacion.LIQUIDACIONES_D_APORTACION_ORDINARIO = LIQUIDACIONES_D_APORTACION_ORDINARIO;
                         hojaliquidacion.LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA = LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA;
-                        hojaliquidacion.LIQUIDACIONES_D_CUOTA_ADMIN = LIQUIDACIONES_D_CUOTA_ADMIN;
                         hojaliquidacion.LIQUIDACIONES_D_CAPITALIZACION_RETENCION = LIQUIDACIONES_D_CAPITALIZACION_RETENCION;
                         hojaliquidacion.LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD = LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD;
                         hojaliquidacion.LIQUIDACIONES_D_INTERESES_S_APORTACIONES = LIQUIDACIONES_D_INTERESES_S_APORTACIONES;
@@ -222,20 +218,22 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
 
                         /* --------Cambiar Estado Actual de Socio-------- */
                         if (LIQUIDACIONES_D_CUOTA_INGRESO != 0)
-                            Socios.SociosLogic.GastoDeIngresoPagado(SOCIOS_ID, db);
+                            Socios.SociosLogic.PagarGastoDeIngreso(SOCIOS_ID, db);
 
                         /* --------Cambiar Estado Aportación ordinaria anual de Socio-------- */
                         if (LIQUIDACIONES_D_APORTACION_ORDINARIO != 0)
-                        {
-                            Socios.SociosLogic.AportacionOrdinariaPagada(SOCIOS_ID, db);
-                        }
+                            Socios.SociosLogic.PagarAportacionOrdinaria(SOCIOS_ID, db);
 
                         /* --------Cambiar Estado Aportación extraordinaria anual de Socio-------- */
                         bool aumentar_aportaciones = false;
                         if (LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA != 0)
-                        {
-                            aumentar_aportaciones = Socios.SociosLogic.AportacionExtraordinariaPagada(SOCIOS_ID, SOCIOS_APORTACION_EXTRAORD_COOP_COUNT, db);
-                        }
+                            aumentar_aportaciones = Socios.SociosLogic.PagarAportacionExtraordinaria(SOCIOS_ID, SOCIOS_APORTACION_EXTRAORD_COOP_COUNT, db);
+
+                        hojaliquidacion.LIQUIDACIONES_D_APORTACION_EXTRAORD_COOP = aumentar_aportaciones;
+
+                        /* --------Cambiar Estado Aportación intereses sobre aportaciones anual de Socio-------- */
+                        if (LIQUIDACIONES_D_INTERESES_S_APORTACIONES != 0)
+                            Socios.SociosLogic.PagarAportacionInteresesSobreAportaciones(SOCIOS_ID, db);
 
 
                         // Total Deducciones: Sum(toda deduccion)
@@ -248,7 +246,6 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                             LIQUIDACIONES_D_GASTOS_ADMIN +
                             LIQUIDACIONES_D_APORTACION_ORDINARIO +
                             LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA +
-                            LIQUIDACIONES_D_CUOTA_ADMIN +
                             LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD +
                             LIQUIDACIONES_D_INTERESES_S_APORTACIONES +
                             LIQUIDACIONES_D_EXCEDENTE_PERIODO +
@@ -277,7 +274,7 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
 
                         /* --------Modificar Aportaciones de Socio-------- */
                         AportacionLogic aportacionesDeSocioLogic = new AportacionLogic();
-                        aportacionesDeSocioLogic.InsertarTransaccionAportacionesDeSocio(hojaliquidacion, aumentar_aportaciones, db);
+                        aportacionesDeSocioLogic.InsertarTransaccionAportacionesDeSocio(hojaliquidacion, db);
 
                         db.SaveChanges();
 

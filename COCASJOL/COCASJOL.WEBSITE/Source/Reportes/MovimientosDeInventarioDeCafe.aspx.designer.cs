@@ -337,6 +337,24 @@ namespace COCASJOL.WEBSITE.Source.Reportes {
         protected global::Ext.Net.NumberField f_INVENTARIO_SALIDAS_SALDO;
         
         /// <summary>
+        /// f_CREADO_POR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField f_CREADO_POR;
+        
+        /// <summary>
+        /// f_FECHA_CREACION control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DateField f_FECHA_CREACION;
+        
+        /// <summary>
         /// ClearFilterButton control.
         /// </summary>
         /// <remarks>

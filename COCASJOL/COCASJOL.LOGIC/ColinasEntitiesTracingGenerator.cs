@@ -33,20 +33,21 @@ using System.Data;
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "FK_NOTA_DETALLE_NOTA_PESO", "notas_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.nota_de_peso), "nota_detalle", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.nota_detalle), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "ESTADOS_NOTA_PADRE_FK", "estados_nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.estado_nota_de_peso), "estados_nota_de_peso1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.estado_nota_de_peso), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "notas_de_peso_estado_fk", "estados_nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.estado_nota_de_peso), "nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.nota_de_peso), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "Avales_socio_fk", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "aval_x_solicitud", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.aval_x_solicitud), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "FK_BENEFICIARIO_X_SOCIO_socios", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "beneficiario_x_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.beneficiario_x_socio), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "FK_INVENTARIO_socios", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "inventario_cafe_de_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.inventario_cafe_de_socio), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "FK_NOTA_DE_PESO_socios", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.nota_de_peso), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "PrestamosSocio_fk", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "prestamo_x_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.prestamo_x_socio), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "SOCIO_ID_FK", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "socio_general", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.socio_general), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "SOCIOS_ID_FK2", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "socio_produccion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.socio_produccion), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "Avales_solicitud_fk", "solicitudes_prestamos", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.solicitud_prestamo), "aval_x_solicitud", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.aval_x_solicitud), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "SolicitudesPrestamofk", "prestamo", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.prestamo), "solicitudes_prestamos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.solicitud_prestamo), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "Solicitudfk", "solicitudes_prestamos", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.solicitud_prestamo), "referencia_x_solicitud", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.referencia_x_solicitud), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "Solicitudesxsociofk", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "solicitudes_prestamos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.solicitud_prestamo), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "LIQUIDACIONES_CLASIFICACIONES_FK", "clasificacion_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.clasificacion_cafe), "liquidaciones", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.liquidacion), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "LIQUIDACIONES_SOCIOS_FK", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "liquidaciones", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.liquidacion), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "APORTACIONES_SOCIOS_FK", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "aportaciones_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.aportacion_socio), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "APORTACIONES_SOCIOS_FK", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "aportacion_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.aportacion_socio), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "Avales_socio_fk", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "aval_x_solicitud", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.aval_x_solicitud), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "FK_BENEFICIARIO_X_SOCIO_socios", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "beneficiario_x_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.beneficiario_x_socio), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "FK_INVENTARIO_socios", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "inventario_cafe_de_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.inventario_cafe_de_socio), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "LIQUIDACIONES_SOCIOS_FK", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "liquidacion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.liquidacion), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "FK_NOTA_DE_PESO_socios", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.nota_de_peso), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "PrestamosSocio_fk", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "prestamo_x_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.prestamo_x_socio), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "RETIROS_SOCIOS_FK", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "retiro_aportaciones", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.retiro_aportaciones), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "SOCIO_ID_FK", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "socio_general", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.socio_general), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "SOCIOS_ID_FK2", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "socio_produccion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.socio_produccion), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "Solicitudesxsociofk", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "solicitud_prestamo", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.solicitud_prestamo), true)]
 
 #endregion
 
@@ -464,22 +465,6 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<reporte_movimientos_de_inventario_de_cafe> reporte_movimientos_de_inventario_de_cafe
-        {
-            get
-            {
-                if ((_reporte_movimientos_de_inventario_de_cafe == null))
-                {
-                    _reporte_movimientos_de_inventario_de_cafe = base.CreateObjectSet<reporte_movimientos_de_inventario_de_cafe>("reporte_movimientos_de_inventario_de_cafe");
-                }
-                return _reporte_movimientos_de_inventario_de_cafe;
-            }
-        }
-        private ObjectSet<reporte_movimientos_de_inventario_de_cafe> _reporte_movimientos_de_inventario_de_cafe;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<estado_nota_de_peso> estados_nota_de_peso
         {
             get
@@ -528,22 +513,6 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<socio> socios
-        {
-            get
-            {
-                if ((_socios == null))
-                {
-                    _socios = base.CreateObjectSet<socio>("socios");
-                }
-                return _socios;
-            }
-        }
-        private ObjectSet<socio> _socios;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<solicitud_prestamo> solicitudes_prestamos
         {
             get
@@ -560,18 +529,18 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<liquidacion> liquidaciones
+        public ObjectSet<reporte_movimientos_de_inventario_de_cafe> reporte_movimientos_de_inventario_de_cafe
         {
             get
             {
-                if ((_liquidaciones == null))
+                if ((_reporte_movimientos_de_inventario_de_cafe == null))
                 {
-                    _liquidaciones = base.CreateObjectSet<liquidacion>("liquidaciones");
+                    _reporte_movimientos_de_inventario_de_cafe = base.CreateObjectSet<reporte_movimientos_de_inventario_de_cafe>("reporte_movimientos_de_inventario_de_cafe");
                 }
-                return _liquidaciones;
+                return _reporte_movimientos_de_inventario_de_cafe;
             }
         }
-        private ObjectSet<liquidacion> _liquidaciones;
+        private ObjectSet<reporte_movimientos_de_inventario_de_cafe> _reporte_movimientos_de_inventario_de_cafe;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -592,6 +561,22 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<liquidacion> liquidaciones
+        {
+            get
+            {
+                if ((_liquidaciones == null))
+                {
+                    _liquidaciones = base.CreateObjectSet<liquidacion>("liquidaciones");
+                }
+                return _liquidaciones;
+            }
+        }
+        private ObjectSet<liquidacion> _liquidaciones;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<reporte_total_aportaciones_por_socio> reporte_total_aportaciones_por_socio
         {
             get
@@ -604,6 +589,38 @@ namespace COCASJOL.LOGIC
             }
         }
         private ObjectSet<reporte_total_aportaciones_por_socio> _reporte_total_aportaciones_por_socio;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<retiro_aportaciones> retiros_aportaciones
+        {
+            get
+            {
+                if ((_retiros_aportaciones == null))
+                {
+                    _retiros_aportaciones = base.CreateObjectSet<retiro_aportaciones>("retiros_aportaciones");
+                }
+                return _retiros_aportaciones;
+            }
+        }
+        private ObjectSet<retiro_aportaciones> _retiros_aportaciones;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<socio> socios
+        {
+            get
+            {
+                if ((_socios == null))
+                {
+                    _socios = base.CreateObjectSet<socio>("socios");
+                }
+                return _socios;
+            }
+        }
+        private ObjectSet<socio> _socios;
 
         #endregion
         #region AddTo Methods
@@ -745,14 +762,6 @@ namespace COCASJOL.LOGIC
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the reporte_movimientos_de_inventario_de_cafe EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToreporte_movimientos_de_inventario_de_cafe(reporte_movimientos_de_inventario_de_cafe reporte_movimientos_de_inventario_de_cafe)
-        {
-            base.AddObject("reporte_movimientos_de_inventario_de_cafe", reporte_movimientos_de_inventario_de_cafe);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the estados_nota_de_peso EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToestados_nota_de_peso(estado_nota_de_peso estado_nota_de_peso)
@@ -777,14 +786,6 @@ namespace COCASJOL.LOGIC
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the socios EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTosocios(socio socio)
-        {
-            base.AddObject("socios", socio);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the solicitudes_prestamos EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddTosolicitudes_prestamos(solicitud_prestamo solicitud_prestamo)
@@ -793,11 +794,11 @@ namespace COCASJOL.LOGIC
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the liquidaciones EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the reporte_movimientos_de_inventario_de_cafe EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToliquidaciones(liquidacion liquidacion)
+        public void AddToreporte_movimientos_de_inventario_de_cafe(reporte_movimientos_de_inventario_de_cafe reporte_movimientos_de_inventario_de_cafe)
         {
-            base.AddObject("liquidaciones", liquidacion);
+            base.AddObject("reporte_movimientos_de_inventario_de_cafe", reporte_movimientos_de_inventario_de_cafe);
         }
     
         /// <summary>
@@ -809,11 +810,35 @@ namespace COCASJOL.LOGIC
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the liquidaciones EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToliquidaciones(liquidacion liquidacion)
+        {
+            base.AddObject("liquidaciones", liquidacion);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the reporte_total_aportaciones_por_socio EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToreporte_total_aportaciones_por_socio(reporte_total_aportaciones_por_socio reporte_total_aportaciones_por_socio)
         {
             base.AddObject("reporte_total_aportaciones_por_socio", reporte_total_aportaciones_por_socio);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the retiros_aportaciones EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToretiros_aportaciones(retiro_aportaciones retiro_aportaciones)
+        {
+            base.AddObject("retiros_aportaciones", retiro_aportaciones);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the socios EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTosocios(socio socio)
+        {
+            base.AddObject("socios", socio);
         }
 
         #endregion
@@ -1056,17 +1081,29 @@ namespace COCASJOL.LOGIC
         /// <param name="sOCIOS_ID">Initial value of the SOCIOS_ID property.</param>
         /// <param name="dOCUMENTO_ID">Initial value of the DOCUMENTO_ID property.</param>
         /// <param name="dOCUMENTO_TIPO">Initial value of the DOCUMENTO_TIPO property.</param>
-        /// <param name="aPORTACIONES_SALDO">Initial value of the APORTACIONES_SALDO property.</param>
+        /// <param name="aPORTACIONES_CANTIDAD">Initial value of the APORTACIONES_CANTIDAD property.</param>
+        /// <param name="aPORTACIONES_ORDINARIA_SALDO">Initial value of the APORTACIONES_ORDINARIA_SALDO property.</param>
+        /// <param name="aPORTACIONES_EXTRAORDINARIA_SALDO">Initial value of the APORTACIONES_EXTRAORDINARIA_SALDO property.</param>
+        /// <param name="aPORTACIONES_CAPITALIZACION_RETENCION_SALDO">Initial value of the APORTACIONES_CAPITALIZACION_RETENCION_SALDO property.</param>
+        /// <param name="aPORTACIONES_INTERESES_S_APORTACION_SALDO">Initial value of the APORTACIONES_INTERESES_S_APORTACION_SALDO property.</param>
+        /// <param name="aPORTACIONES_EXCEDENTE_PERIODO_SALDO">Initial value of the APORTACIONES_EXCEDENTE_PERIODO_SALDO property.</param>
+        /// <param name="aPORTACIONES_SALDO_TOTAL">Initial value of the APORTACIONES_SALDO_TOTAL property.</param>
         /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
         /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
-        public static aportacion_socio Createaportacion_socio(global::System.Int32 tRANSACCION_NUMERO, global::System.String sOCIOS_ID, global::System.Int32 dOCUMENTO_ID, global::System.String dOCUMENTO_TIPO, global::System.Decimal aPORTACIONES_SALDO, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
+        public static aportacion_socio Createaportacion_socio(global::System.Int32 tRANSACCION_NUMERO, global::System.String sOCIOS_ID, global::System.Int32 dOCUMENTO_ID, global::System.String dOCUMENTO_TIPO, global::System.Decimal aPORTACIONES_CANTIDAD, global::System.Decimal aPORTACIONES_ORDINARIA_SALDO, global::System.Decimal aPORTACIONES_EXTRAORDINARIA_SALDO, global::System.Decimal aPORTACIONES_CAPITALIZACION_RETENCION_SALDO, global::System.Decimal aPORTACIONES_INTERESES_S_APORTACION_SALDO, global::System.Decimal aPORTACIONES_EXCEDENTE_PERIODO_SALDO, global::System.Decimal aPORTACIONES_SALDO_TOTAL, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
         {
             aportacion_socio aportacion_socio = new aportacion_socio();
             aportacion_socio.TRANSACCION_NUMERO = tRANSACCION_NUMERO;
             aportacion_socio.SOCIOS_ID = sOCIOS_ID;
             aportacion_socio.DOCUMENTO_ID = dOCUMENTO_ID;
             aportacion_socio.DOCUMENTO_TIPO = dOCUMENTO_TIPO;
-            aportacion_socio.APORTACIONES_SALDO = aPORTACIONES_SALDO;
+            aportacion_socio.APORTACIONES_CANTIDAD = aPORTACIONES_CANTIDAD;
+            aportacion_socio.APORTACIONES_ORDINARIA_SALDO = aPORTACIONES_ORDINARIA_SALDO;
+            aportacion_socio.APORTACIONES_EXTRAORDINARIA_SALDO = aPORTACIONES_EXTRAORDINARIA_SALDO;
+            aportacion_socio.APORTACIONES_CAPITALIZACION_RETENCION_SALDO = aPORTACIONES_CAPITALIZACION_RETENCION_SALDO;
+            aportacion_socio.APORTACIONES_INTERESES_S_APORTACION_SALDO = aPORTACIONES_INTERESES_S_APORTACION_SALDO;
+            aportacion_socio.APORTACIONES_EXCEDENTE_PERIODO_SALDO = aPORTACIONES_EXCEDENTE_PERIODO_SALDO;
+            aportacion_socio.APORTACIONES_SALDO_TOTAL = aPORTACIONES_SALDO_TOTAL;
             aportacion_socio.CREADO_POR = cREADO_POR;
             aportacion_socio.FECHA_CREACION = fECHA_CREACION;
             return aportacion_socio;
@@ -1179,24 +1216,168 @@ namespace COCASJOL.LOGIC
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Decimal APORTACIONES_SALDO
+        public global::System.Decimal APORTACIONES_CANTIDAD
         {
             get
             {
-                return _APORTACIONES_SALDO;
+                return _APORTACIONES_CANTIDAD;
             }
             set
             {
-                OnAPORTACIONES_SALDOChanging(value);
-                ReportPropertyChanging("APORTACIONES_SALDO");
-                _APORTACIONES_SALDO = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("APORTACIONES_SALDO");
-                OnAPORTACIONES_SALDOChanged();
+                OnAPORTACIONES_CANTIDADChanging(value);
+                ReportPropertyChanging("APORTACIONES_CANTIDAD");
+                _APORTACIONES_CANTIDAD = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("APORTACIONES_CANTIDAD");
+                OnAPORTACIONES_CANTIDADChanged();
             }
         }
-        private global::System.Decimal _APORTACIONES_SALDO;
-        partial void OnAPORTACIONES_SALDOChanging(global::System.Decimal value);
-        partial void OnAPORTACIONES_SALDOChanged();
+        private global::System.Decimal _APORTACIONES_CANTIDAD;
+        partial void OnAPORTACIONES_CANTIDADChanging(global::System.Decimal value);
+        partial void OnAPORTACIONES_CANTIDADChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal APORTACIONES_ORDINARIA_SALDO
+        {
+            get
+            {
+                return _APORTACIONES_ORDINARIA_SALDO;
+            }
+            set
+            {
+                OnAPORTACIONES_ORDINARIA_SALDOChanging(value);
+                ReportPropertyChanging("APORTACIONES_ORDINARIA_SALDO");
+                _APORTACIONES_ORDINARIA_SALDO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("APORTACIONES_ORDINARIA_SALDO");
+                OnAPORTACIONES_ORDINARIA_SALDOChanged();
+            }
+        }
+        private global::System.Decimal _APORTACIONES_ORDINARIA_SALDO;
+        partial void OnAPORTACIONES_ORDINARIA_SALDOChanging(global::System.Decimal value);
+        partial void OnAPORTACIONES_ORDINARIA_SALDOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal APORTACIONES_EXTRAORDINARIA_SALDO
+        {
+            get
+            {
+                return _APORTACIONES_EXTRAORDINARIA_SALDO;
+            }
+            set
+            {
+                OnAPORTACIONES_EXTRAORDINARIA_SALDOChanging(value);
+                ReportPropertyChanging("APORTACIONES_EXTRAORDINARIA_SALDO");
+                _APORTACIONES_EXTRAORDINARIA_SALDO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("APORTACIONES_EXTRAORDINARIA_SALDO");
+                OnAPORTACIONES_EXTRAORDINARIA_SALDOChanged();
+            }
+        }
+        private global::System.Decimal _APORTACIONES_EXTRAORDINARIA_SALDO;
+        partial void OnAPORTACIONES_EXTRAORDINARIA_SALDOChanging(global::System.Decimal value);
+        partial void OnAPORTACIONES_EXTRAORDINARIA_SALDOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal APORTACIONES_CAPITALIZACION_RETENCION_SALDO
+        {
+            get
+            {
+                return _APORTACIONES_CAPITALIZACION_RETENCION_SALDO;
+            }
+            set
+            {
+                OnAPORTACIONES_CAPITALIZACION_RETENCION_SALDOChanging(value);
+                ReportPropertyChanging("APORTACIONES_CAPITALIZACION_RETENCION_SALDO");
+                _APORTACIONES_CAPITALIZACION_RETENCION_SALDO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("APORTACIONES_CAPITALIZACION_RETENCION_SALDO");
+                OnAPORTACIONES_CAPITALIZACION_RETENCION_SALDOChanged();
+            }
+        }
+        private global::System.Decimal _APORTACIONES_CAPITALIZACION_RETENCION_SALDO;
+        partial void OnAPORTACIONES_CAPITALIZACION_RETENCION_SALDOChanging(global::System.Decimal value);
+        partial void OnAPORTACIONES_CAPITALIZACION_RETENCION_SALDOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal APORTACIONES_INTERESES_S_APORTACION_SALDO
+        {
+            get
+            {
+                return _APORTACIONES_INTERESES_S_APORTACION_SALDO;
+            }
+            set
+            {
+                OnAPORTACIONES_INTERESES_S_APORTACION_SALDOChanging(value);
+                ReportPropertyChanging("APORTACIONES_INTERESES_S_APORTACION_SALDO");
+                _APORTACIONES_INTERESES_S_APORTACION_SALDO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("APORTACIONES_INTERESES_S_APORTACION_SALDO");
+                OnAPORTACIONES_INTERESES_S_APORTACION_SALDOChanged();
+            }
+        }
+        private global::System.Decimal _APORTACIONES_INTERESES_S_APORTACION_SALDO;
+        partial void OnAPORTACIONES_INTERESES_S_APORTACION_SALDOChanging(global::System.Decimal value);
+        partial void OnAPORTACIONES_INTERESES_S_APORTACION_SALDOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal APORTACIONES_EXCEDENTE_PERIODO_SALDO
+        {
+            get
+            {
+                return _APORTACIONES_EXCEDENTE_PERIODO_SALDO;
+            }
+            set
+            {
+                OnAPORTACIONES_EXCEDENTE_PERIODO_SALDOChanging(value);
+                ReportPropertyChanging("APORTACIONES_EXCEDENTE_PERIODO_SALDO");
+                _APORTACIONES_EXCEDENTE_PERIODO_SALDO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("APORTACIONES_EXCEDENTE_PERIODO_SALDO");
+                OnAPORTACIONES_EXCEDENTE_PERIODO_SALDOChanged();
+            }
+        }
+        private global::System.Decimal _APORTACIONES_EXCEDENTE_PERIODO_SALDO;
+        partial void OnAPORTACIONES_EXCEDENTE_PERIODO_SALDOChanging(global::System.Decimal value);
+        partial void OnAPORTACIONES_EXCEDENTE_PERIODO_SALDOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal APORTACIONES_SALDO_TOTAL
+        {
+            get
+            {
+                return _APORTACIONES_SALDO_TOTAL;
+            }
+            set
+            {
+                OnAPORTACIONES_SALDO_TOTALChanging(value);
+                ReportPropertyChanging("APORTACIONES_SALDO_TOTAL");
+                _APORTACIONES_SALDO_TOTAL = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("APORTACIONES_SALDO_TOTAL");
+                OnAPORTACIONES_SALDO_TOTALChanged();
+            }
+        }
+        private global::System.Decimal _APORTACIONES_SALDO_TOTAL;
+        partial void OnAPORTACIONES_SALDO_TOTALChanging(global::System.Decimal value);
+        partial void OnAPORTACIONES_SALDO_TOTALChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1256,16 +1437,16 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "APORTACIONES_SOCIOS_FK", "socio")]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "APORTACIONES_SOCIOS_FK", "socios")]
         public socio socios
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.APORTACIONES_SOCIOS_FK", "socio").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.APORTACIONES_SOCIOS_FK", "socios").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.APORTACIONES_SOCIOS_FK", "socio").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.APORTACIONES_SOCIOS_FK", "socios").Value = value;
             }
         }
         /// <summary>
@@ -1277,13 +1458,13 @@ namespace COCASJOL.LOGIC
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.APORTACIONES_SOCIOS_FK", "socio");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.APORTACIONES_SOCIOS_FK", "socios");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<socio>("COLINASMODEL.APORTACIONES_SOCIOS_FK", "socio", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<socio>("COLINASMODEL.APORTACIONES_SOCIOS_FK", "socios", value);
                 }
             }
         }
@@ -1509,44 +1690,6 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "Avales_socio_fk", "socios")]
-        public socio socios
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.Avales_socio_fk", "socios").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.Avales_socio_fk", "socios").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<socio> sociosReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.Avales_socio_fk", "socios");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<socio>("COLINASMODEL.Avales_socio_fk", "socios", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "Avales_solicitud_fk", "solicitudes_prestamos")]
         public solicitud_prestamo solicitudes_prestamos
         {
@@ -1575,6 +1718,44 @@ namespace COCASJOL.LOGIC
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<solicitud_prestamo>("COLINASMODEL.Avales_solicitud_fk", "solicitudes_prestamos", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "Avales_socio_fk", "socios")]
+        public socio socios
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.Avales_socio_fk", "socios").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.Avales_socio_fk", "socios").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<socio> sociosReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.Avales_socio_fk", "socios");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<socio>("COLINASMODEL.Avales_socio_fk", "socios", value);
                 }
             }
         }
@@ -2914,11 +3095,16 @@ namespace COCASJOL.LOGIC
         /// <param name="lIQUIDACIONES_TOTAL_LIBRAS">Initial value of the LIQUIDACIONES_TOTAL_LIBRAS property.</param>
         /// <param name="lIQUIDACIONES_PRECIO_LIBRAS">Initial value of the LIQUIDACIONES_PRECIO_LIBRAS property.</param>
         /// <param name="lIQUIDACIONES_VALOR_TOTAL">Initial value of the LIQUIDACIONES_VALOR_TOTAL property.</param>
+        /// <param name="lIQUIDACIONES_D_APORTACION_ORDINARIO">Initial value of the LIQUIDACIONES_D_APORTACION_ORDINARIO property.</param>
+        /// <param name="lIQUIDACIONES_D_APORTACION_EXTRAORDINARIA">Initial value of the LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA property.</param>
+        /// <param name="lIQUIDACIONES_D_APORTACION_EXTRAORD_COOP">Initial value of the LIQUIDACIONES_D_APORTACION_EXTRAORD_COOP property.</param>
         /// <param name="lIQUIDACIONES_D_CAPITALIZACION_RETENCION">Initial value of the LIQUIDACIONES_D_CAPITALIZACION_RETENCION property.</param>
         /// <param name="lIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD">Initial value of the LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD property.</param>
+        /// <param name="lIQUIDACIONES_D_INTERESES_S_APORTACIONES">Initial value of the LIQUIDACIONES_D_INTERESES_S_APORTACIONES property.</param>
+        /// <param name="lIQUIDACIONES_D_EXCEDENTE_PERIODO">Initial value of the LIQUIDACIONES_D_EXCEDENTE_PERIODO property.</param>
         /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
         /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
-        public static liquidacion Createliquidacion(global::System.Int32 lIQUIDACIONES_ID, global::System.String sOCIOS_ID, global::System.DateTime lIQUIDACIONES_FECHA, global::System.Int32 cLASIFICACIONES_CAFE_ID, global::System.Decimal lIQUIDACIONES_TOTAL_LIBRAS, global::System.Decimal lIQUIDACIONES_PRECIO_LIBRAS, global::System.Decimal lIQUIDACIONES_VALOR_TOTAL, global::System.Int32 lIQUIDACIONES_D_CAPITALIZACION_RETENCION, global::System.Decimal lIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
+        public static liquidacion Createliquidacion(global::System.Int32 lIQUIDACIONES_ID, global::System.String sOCIOS_ID, global::System.DateTime lIQUIDACIONES_FECHA, global::System.Int32 cLASIFICACIONES_CAFE_ID, global::System.Decimal lIQUIDACIONES_TOTAL_LIBRAS, global::System.Decimal lIQUIDACIONES_PRECIO_LIBRAS, global::System.Decimal lIQUIDACIONES_VALOR_TOTAL, global::System.Decimal lIQUIDACIONES_D_APORTACION_ORDINARIO, global::System.Decimal lIQUIDACIONES_D_APORTACION_EXTRAORDINARIA, global::System.Boolean lIQUIDACIONES_D_APORTACION_EXTRAORD_COOP, global::System.Int32 lIQUIDACIONES_D_CAPITALIZACION_RETENCION, global::System.Decimal lIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD, global::System.Decimal lIQUIDACIONES_D_INTERESES_S_APORTACIONES, global::System.Decimal lIQUIDACIONES_D_EXCEDENTE_PERIODO, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
         {
             liquidacion liquidacion = new liquidacion();
             liquidacion.LIQUIDACIONES_ID = lIQUIDACIONES_ID;
@@ -2928,8 +3114,13 @@ namespace COCASJOL.LOGIC
             liquidacion.LIQUIDACIONES_TOTAL_LIBRAS = lIQUIDACIONES_TOTAL_LIBRAS;
             liquidacion.LIQUIDACIONES_PRECIO_LIBRAS = lIQUIDACIONES_PRECIO_LIBRAS;
             liquidacion.LIQUIDACIONES_VALOR_TOTAL = lIQUIDACIONES_VALOR_TOTAL;
+            liquidacion.LIQUIDACIONES_D_APORTACION_ORDINARIO = lIQUIDACIONES_D_APORTACION_ORDINARIO;
+            liquidacion.LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA = lIQUIDACIONES_D_APORTACION_EXTRAORDINARIA;
+            liquidacion.LIQUIDACIONES_D_APORTACION_EXTRAORD_COOP = lIQUIDACIONES_D_APORTACION_EXTRAORD_COOP;
             liquidacion.LIQUIDACIONES_D_CAPITALIZACION_RETENCION = lIQUIDACIONES_D_CAPITALIZACION_RETENCION;
             liquidacion.LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD = lIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD;
+            liquidacion.LIQUIDACIONES_D_INTERESES_S_APORTACIONES = lIQUIDACIONES_D_INTERESES_S_APORTACIONES;
+            liquidacion.LIQUIDACIONES_D_EXCEDENTE_PERIODO = lIQUIDACIONES_D_EXCEDENTE_PERIODO;
             liquidacion.CREADO_POR = cREADO_POR;
             liquidacion.FECHA_CREACION = fECHA_CREACION;
             return liquidacion;
@@ -3163,9 +3354,9 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> LIQUIDACIONES_D_APORTACION_ORDINARIO
+        public global::System.Decimal LIQUIDACIONES_D_APORTACION_ORDINARIO
         {
             get
             {
@@ -3180,16 +3371,16 @@ namespace COCASJOL.LOGIC
                 OnLIQUIDACIONES_D_APORTACION_ORDINARIOChanged();
             }
         }
-        private Nullable<global::System.Decimal> _LIQUIDACIONES_D_APORTACION_ORDINARIO;
-        partial void OnLIQUIDACIONES_D_APORTACION_ORDINARIOChanging(Nullable<global::System.Decimal> value);
+        private global::System.Decimal _LIQUIDACIONES_D_APORTACION_ORDINARIO;
+        partial void OnLIQUIDACIONES_D_APORTACION_ORDINARIOChanging(global::System.Decimal value);
         partial void OnLIQUIDACIONES_D_APORTACION_ORDINARIOChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA
+        public global::System.Decimal LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA
         {
             get
             {
@@ -3204,33 +3395,33 @@ namespace COCASJOL.LOGIC
                 OnLIQUIDACIONES_D_APORTACION_EXTRAORDINARIAChanged();
             }
         }
-        private Nullable<global::System.Decimal> _LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA;
-        partial void OnLIQUIDACIONES_D_APORTACION_EXTRAORDINARIAChanging(Nullable<global::System.Decimal> value);
+        private global::System.Decimal _LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA;
+        partial void OnLIQUIDACIONES_D_APORTACION_EXTRAORDINARIAChanging(global::System.Decimal value);
         partial void OnLIQUIDACIONES_D_APORTACION_EXTRAORDINARIAChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> LIQUIDACIONES_D_CUOTA_ADMIN
+        public global::System.Boolean LIQUIDACIONES_D_APORTACION_EXTRAORD_COOP
         {
             get
             {
-                return _LIQUIDACIONES_D_CUOTA_ADMIN;
+                return _LIQUIDACIONES_D_APORTACION_EXTRAORD_COOP;
             }
             set
             {
-                OnLIQUIDACIONES_D_CUOTA_ADMINChanging(value);
-                ReportPropertyChanging("LIQUIDACIONES_D_CUOTA_ADMIN");
-                _LIQUIDACIONES_D_CUOTA_ADMIN = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("LIQUIDACIONES_D_CUOTA_ADMIN");
-                OnLIQUIDACIONES_D_CUOTA_ADMINChanged();
+                OnLIQUIDACIONES_D_APORTACION_EXTRAORD_COOPChanging(value);
+                ReportPropertyChanging("LIQUIDACIONES_D_APORTACION_EXTRAORD_COOP");
+                _LIQUIDACIONES_D_APORTACION_EXTRAORD_COOP = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LIQUIDACIONES_D_APORTACION_EXTRAORD_COOP");
+                OnLIQUIDACIONES_D_APORTACION_EXTRAORD_COOPChanged();
             }
         }
-        private Nullable<global::System.Decimal> _LIQUIDACIONES_D_CUOTA_ADMIN;
-        partial void OnLIQUIDACIONES_D_CUOTA_ADMINChanging(Nullable<global::System.Decimal> value);
-        partial void OnLIQUIDACIONES_D_CUOTA_ADMINChanged();
+        private global::System.Boolean _LIQUIDACIONES_D_APORTACION_EXTRAORD_COOP;
+        partial void OnLIQUIDACIONES_D_APORTACION_EXTRAORD_COOPChanging(global::System.Boolean value);
+        partial void OnLIQUIDACIONES_D_APORTACION_EXTRAORD_COOPChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -3283,9 +3474,9 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> LIQUIDACIONES_D_INTERESES_S_APORTACIONES
+        public global::System.Decimal LIQUIDACIONES_D_INTERESES_S_APORTACIONES
         {
             get
             {
@@ -3300,16 +3491,16 @@ namespace COCASJOL.LOGIC
                 OnLIQUIDACIONES_D_INTERESES_S_APORTACIONESChanged();
             }
         }
-        private Nullable<global::System.Decimal> _LIQUIDACIONES_D_INTERESES_S_APORTACIONES;
-        partial void OnLIQUIDACIONES_D_INTERESES_S_APORTACIONESChanging(Nullable<global::System.Decimal> value);
+        private global::System.Decimal _LIQUIDACIONES_D_INTERESES_S_APORTACIONES;
+        partial void OnLIQUIDACIONES_D_INTERESES_S_APORTACIONESChanging(global::System.Decimal value);
         partial void OnLIQUIDACIONES_D_INTERESES_S_APORTACIONESChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> LIQUIDACIONES_D_EXCEDENTE_PERIODO
+        public global::System.Decimal LIQUIDACIONES_D_EXCEDENTE_PERIODO
         {
             get
             {
@@ -3324,8 +3515,8 @@ namespace COCASJOL.LOGIC
                 OnLIQUIDACIONES_D_EXCEDENTE_PERIODOChanged();
             }
         }
-        private Nullable<global::System.Decimal> _LIQUIDACIONES_D_EXCEDENTE_PERIODO;
-        partial void OnLIQUIDACIONES_D_EXCEDENTE_PERIODOChanging(Nullable<global::System.Decimal> value);
+        private global::System.Decimal _LIQUIDACIONES_D_EXCEDENTE_PERIODO;
+        partial void OnLIQUIDACIONES_D_EXCEDENTE_PERIODOChanging(global::System.Decimal value);
         partial void OnLIQUIDACIONES_D_EXCEDENTE_PERIODOChanged();
     
         /// <summary>
@@ -3688,16 +3879,16 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "LIQUIDACIONES_SOCIOS_FK", "socio")]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "LIQUIDACIONES_SOCIOS_FK", "socios")]
         public socio socios
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.LIQUIDACIONES_SOCIOS_FK", "socio").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.LIQUIDACIONES_SOCIOS_FK", "socios").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.LIQUIDACIONES_SOCIOS_FK", "socio").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.LIQUIDACIONES_SOCIOS_FK", "socios").Value = value;
             }
         }
         /// <summary>
@@ -3709,13 +3900,13 @@ namespace COCASJOL.LOGIC
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.LIQUIDACIONES_SOCIOS_FK", "socio");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.LIQUIDACIONES_SOCIOS_FK", "socios");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<socio>("COLINASMODEL.LIQUIDACIONES_SOCIOS_FK", "socio", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<socio>("COLINASMODEL.LIQUIDACIONES_SOCIOS_FK", "socios", value);
                 }
             }
         }
@@ -6321,7 +6512,9 @@ namespace COCASJOL.LOGIC
         /// <param name="cLASIFICACIONES_CAFE_NOMBRE">Initial value of the CLASIFICACIONES_CAFE_NOMBRE property.</param>
         /// <param name="dOCUMENTO_TIPO">Initial value of the DOCUMENTO_TIPO property.</param>
         /// <param name="iNVENTARIO_SALIDAS_SALDO">Initial value of the INVENTARIO_SALIDAS_SALDO property.</param>
-        public static reporte_movimientos_de_inventario_de_cafe Createreporte_movimientos_de_inventario_de_cafe(global::System.Int32 tRANSACCION_NUMERO, global::System.DateTime fECHA, global::System.String cLASIFICACIONES_CAFE_NOMBRE, global::System.String dOCUMENTO_TIPO, global::System.Decimal iNVENTARIO_SALIDAS_SALDO)
+        /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
+        /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
+        public static reporte_movimientos_de_inventario_de_cafe Createreporte_movimientos_de_inventario_de_cafe(global::System.Int32 tRANSACCION_NUMERO, global::System.DateTime fECHA, global::System.String cLASIFICACIONES_CAFE_NOMBRE, global::System.String dOCUMENTO_TIPO, global::System.Decimal iNVENTARIO_SALIDAS_SALDO, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
         {
             reporte_movimientos_de_inventario_de_cafe reporte_movimientos_de_inventario_de_cafe = new reporte_movimientos_de_inventario_de_cafe();
             reporte_movimientos_de_inventario_de_cafe.TRANSACCION_NUMERO = tRANSACCION_NUMERO;
@@ -6329,6 +6522,8 @@ namespace COCASJOL.LOGIC
             reporte_movimientos_de_inventario_de_cafe.CLASIFICACIONES_CAFE_NOMBRE = cLASIFICACIONES_CAFE_NOMBRE;
             reporte_movimientos_de_inventario_de_cafe.DOCUMENTO_TIPO = dOCUMENTO_TIPO;
             reporte_movimientos_de_inventario_de_cafe.INVENTARIO_SALIDAS_SALDO = iNVENTARIO_SALIDAS_SALDO;
+            reporte_movimientos_de_inventario_de_cafe.CREADO_POR = cREADO_POR;
+            reporte_movimientos_de_inventario_de_cafe.FECHA_CREACION = fECHA_CREACION;
             return reporte_movimientos_de_inventario_de_cafe;
         }
 
@@ -6625,6 +6820,54 @@ namespace COCASJOL.LOGIC
         private global::System.Decimal _INVENTARIO_SALIDAS_SALDO;
         partial void OnINVENTARIO_SALIDAS_SALDOChanging(global::System.Decimal value);
         partial void OnINVENTARIO_SALIDAS_SALDOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CREADO_POR
+        {
+            get
+            {
+                return _CREADO_POR;
+            }
+            set
+            {
+                OnCREADO_PORChanging(value);
+                ReportPropertyChanging("CREADO_POR");
+                _CREADO_POR = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CREADO_POR");
+                OnCREADO_PORChanged();
+            }
+        }
+        private global::System.String _CREADO_POR;
+        partial void OnCREADO_PORChanging(global::System.String value);
+        partial void OnCREADO_PORChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime FECHA_CREACION
+        {
+            get
+            {
+                return _FECHA_CREACION;
+            }
+            set
+            {
+                OnFECHA_CREACIONChanging(value);
+                ReportPropertyChanging("FECHA_CREACION");
+                _FECHA_CREACION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_CREACION");
+                OnFECHA_CREACIONChanged();
+            }
+        }
+        private global::System.DateTime _FECHA_CREACION;
+        partial void OnFECHA_CREACIONChanging(global::System.DateTime value);
+        partial void OnFECHA_CREACIONChanged();
 
         #endregion
     
@@ -6645,15 +6888,25 @@ namespace COCASJOL.LOGIC
         /// </summary>
         /// <param name="tRANSACCION_NUMERO">Initial value of the TRANSACCION_NUMERO property.</param>
         /// <param name="sOCIOS_ID">Initial value of the SOCIOS_ID property.</param>
-        /// <param name="aPORTACIONES_SALDO">Initial value of the APORTACIONES_SALDO property.</param>
+        /// <param name="aPORTACIONES_ORDINARIA_SALDO">Initial value of the APORTACIONES_ORDINARIA_SALDO property.</param>
+        /// <param name="aPORTACIONES_EXTRAORDINARIA_SALDO">Initial value of the APORTACIONES_EXTRAORDINARIA_SALDO property.</param>
+        /// <param name="aPORTACIONES_CAPITALIZACION_RETENCION_SALDO">Initial value of the APORTACIONES_CAPITALIZACION_RETENCION_SALDO property.</param>
+        /// <param name="aPORTACIONES_INTERESES_S_APORTACION_SALDO">Initial value of the APORTACIONES_INTERESES_S_APORTACION_SALDO property.</param>
+        /// <param name="aPORTACIONES_EXCEDENTE_PERIODO_SALDO">Initial value of the APORTACIONES_EXCEDENTE_PERIODO_SALDO property.</param>
+        /// <param name="aPORTACIONES_SALDO_TOTAL">Initial value of the APORTACIONES_SALDO_TOTAL property.</param>
         /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
         /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
-        public static reporte_total_aportaciones_por_socio Createreporte_total_aportaciones_por_socio(global::System.Int32 tRANSACCION_NUMERO, global::System.String sOCIOS_ID, global::System.Decimal aPORTACIONES_SALDO, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
+        public static reporte_total_aportaciones_por_socio Createreporte_total_aportaciones_por_socio(global::System.Int32 tRANSACCION_NUMERO, global::System.String sOCIOS_ID, global::System.Decimal aPORTACIONES_ORDINARIA_SALDO, global::System.Decimal aPORTACIONES_EXTRAORDINARIA_SALDO, global::System.Decimal aPORTACIONES_CAPITALIZACION_RETENCION_SALDO, global::System.Decimal aPORTACIONES_INTERESES_S_APORTACION_SALDO, global::System.Decimal aPORTACIONES_EXCEDENTE_PERIODO_SALDO, global::System.Decimal aPORTACIONES_SALDO_TOTAL, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
         {
             reporte_total_aportaciones_por_socio reporte_total_aportaciones_por_socio = new reporte_total_aportaciones_por_socio();
             reporte_total_aportaciones_por_socio.TRANSACCION_NUMERO = tRANSACCION_NUMERO;
             reporte_total_aportaciones_por_socio.SOCIOS_ID = sOCIOS_ID;
-            reporte_total_aportaciones_por_socio.APORTACIONES_SALDO = aPORTACIONES_SALDO;
+            reporte_total_aportaciones_por_socio.APORTACIONES_ORDINARIA_SALDO = aPORTACIONES_ORDINARIA_SALDO;
+            reporte_total_aportaciones_por_socio.APORTACIONES_EXTRAORDINARIA_SALDO = aPORTACIONES_EXTRAORDINARIA_SALDO;
+            reporte_total_aportaciones_por_socio.APORTACIONES_CAPITALIZACION_RETENCION_SALDO = aPORTACIONES_CAPITALIZACION_RETENCION_SALDO;
+            reporte_total_aportaciones_por_socio.APORTACIONES_INTERESES_S_APORTACION_SALDO = aPORTACIONES_INTERESES_S_APORTACION_SALDO;
+            reporte_total_aportaciones_por_socio.APORTACIONES_EXCEDENTE_PERIODO_SALDO = aPORTACIONES_EXCEDENTE_PERIODO_SALDO;
+            reporte_total_aportaciones_por_socio.APORTACIONES_SALDO_TOTAL = aPORTACIONES_SALDO_TOTAL;
             reporte_total_aportaciones_por_socio.CREADO_POR = cREADO_POR;
             reporte_total_aportaciones_por_socio.FECHA_CREACION = fECHA_CREACION;
             return reporte_total_aportaciones_por_socio;
@@ -6665,7 +6918,7 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 TRANSACCION_NUMERO
         {
@@ -6675,11 +6928,14 @@ namespace COCASJOL.LOGIC
             }
             set
             {
-                OnTRANSACCION_NUMEROChanging(value);
-                ReportPropertyChanging("TRANSACCION_NUMERO");
-                _TRANSACCION_NUMERO = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("TRANSACCION_NUMERO");
-                OnTRANSACCION_NUMEROChanged();
+                if (_TRANSACCION_NUMERO != value)
+                {
+                    OnTRANSACCION_NUMEROChanging(value);
+                    ReportPropertyChanging("TRANSACCION_NUMERO");
+                    _TRANSACCION_NUMERO = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("TRANSACCION_NUMERO");
+                    OnTRANSACCION_NUMEROChanged();
+                }
             }
         }
         private global::System.Int32 _TRANSACCION_NUMERO;
@@ -6689,7 +6945,7 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String SOCIOS_ID
         {
@@ -6699,14 +6955,11 @@ namespace COCASJOL.LOGIC
             }
             set
             {
-                if (_SOCIOS_ID != value)
-                {
-                    OnSOCIOS_IDChanging(value);
-                    ReportPropertyChanging("SOCIOS_ID");
-                    _SOCIOS_ID = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("SOCIOS_ID");
-                    OnSOCIOS_IDChanged();
-                }
+                OnSOCIOS_IDChanging(value);
+                ReportPropertyChanging("SOCIOS_ID");
+                _SOCIOS_ID = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("SOCIOS_ID");
+                OnSOCIOS_IDChanged();
             }
         }
         private global::System.String _SOCIOS_ID;
@@ -6742,24 +6995,144 @@ namespace COCASJOL.LOGIC
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Decimal APORTACIONES_SALDO
+        public global::System.Decimal APORTACIONES_ORDINARIA_SALDO
         {
             get
             {
-                return _APORTACIONES_SALDO;
+                return _APORTACIONES_ORDINARIA_SALDO;
             }
             set
             {
-                OnAPORTACIONES_SALDOChanging(value);
-                ReportPropertyChanging("APORTACIONES_SALDO");
-                _APORTACIONES_SALDO = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("APORTACIONES_SALDO");
-                OnAPORTACIONES_SALDOChanged();
+                OnAPORTACIONES_ORDINARIA_SALDOChanging(value);
+                ReportPropertyChanging("APORTACIONES_ORDINARIA_SALDO");
+                _APORTACIONES_ORDINARIA_SALDO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("APORTACIONES_ORDINARIA_SALDO");
+                OnAPORTACIONES_ORDINARIA_SALDOChanged();
             }
         }
-        private global::System.Decimal _APORTACIONES_SALDO;
-        partial void OnAPORTACIONES_SALDOChanging(global::System.Decimal value);
-        partial void OnAPORTACIONES_SALDOChanged();
+        private global::System.Decimal _APORTACIONES_ORDINARIA_SALDO;
+        partial void OnAPORTACIONES_ORDINARIA_SALDOChanging(global::System.Decimal value);
+        partial void OnAPORTACIONES_ORDINARIA_SALDOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal APORTACIONES_EXTRAORDINARIA_SALDO
+        {
+            get
+            {
+                return _APORTACIONES_EXTRAORDINARIA_SALDO;
+            }
+            set
+            {
+                OnAPORTACIONES_EXTRAORDINARIA_SALDOChanging(value);
+                ReportPropertyChanging("APORTACIONES_EXTRAORDINARIA_SALDO");
+                _APORTACIONES_EXTRAORDINARIA_SALDO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("APORTACIONES_EXTRAORDINARIA_SALDO");
+                OnAPORTACIONES_EXTRAORDINARIA_SALDOChanged();
+            }
+        }
+        private global::System.Decimal _APORTACIONES_EXTRAORDINARIA_SALDO;
+        partial void OnAPORTACIONES_EXTRAORDINARIA_SALDOChanging(global::System.Decimal value);
+        partial void OnAPORTACIONES_EXTRAORDINARIA_SALDOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal APORTACIONES_CAPITALIZACION_RETENCION_SALDO
+        {
+            get
+            {
+                return _APORTACIONES_CAPITALIZACION_RETENCION_SALDO;
+            }
+            set
+            {
+                OnAPORTACIONES_CAPITALIZACION_RETENCION_SALDOChanging(value);
+                ReportPropertyChanging("APORTACIONES_CAPITALIZACION_RETENCION_SALDO");
+                _APORTACIONES_CAPITALIZACION_RETENCION_SALDO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("APORTACIONES_CAPITALIZACION_RETENCION_SALDO");
+                OnAPORTACIONES_CAPITALIZACION_RETENCION_SALDOChanged();
+            }
+        }
+        private global::System.Decimal _APORTACIONES_CAPITALIZACION_RETENCION_SALDO;
+        partial void OnAPORTACIONES_CAPITALIZACION_RETENCION_SALDOChanging(global::System.Decimal value);
+        partial void OnAPORTACIONES_CAPITALIZACION_RETENCION_SALDOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal APORTACIONES_INTERESES_S_APORTACION_SALDO
+        {
+            get
+            {
+                return _APORTACIONES_INTERESES_S_APORTACION_SALDO;
+            }
+            set
+            {
+                OnAPORTACIONES_INTERESES_S_APORTACION_SALDOChanging(value);
+                ReportPropertyChanging("APORTACIONES_INTERESES_S_APORTACION_SALDO");
+                _APORTACIONES_INTERESES_S_APORTACION_SALDO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("APORTACIONES_INTERESES_S_APORTACION_SALDO");
+                OnAPORTACIONES_INTERESES_S_APORTACION_SALDOChanged();
+            }
+        }
+        private global::System.Decimal _APORTACIONES_INTERESES_S_APORTACION_SALDO;
+        partial void OnAPORTACIONES_INTERESES_S_APORTACION_SALDOChanging(global::System.Decimal value);
+        partial void OnAPORTACIONES_INTERESES_S_APORTACION_SALDOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal APORTACIONES_EXCEDENTE_PERIODO_SALDO
+        {
+            get
+            {
+                return _APORTACIONES_EXCEDENTE_PERIODO_SALDO;
+            }
+            set
+            {
+                OnAPORTACIONES_EXCEDENTE_PERIODO_SALDOChanging(value);
+                ReportPropertyChanging("APORTACIONES_EXCEDENTE_PERIODO_SALDO");
+                _APORTACIONES_EXCEDENTE_PERIODO_SALDO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("APORTACIONES_EXCEDENTE_PERIODO_SALDO");
+                OnAPORTACIONES_EXCEDENTE_PERIODO_SALDOChanged();
+            }
+        }
+        private global::System.Decimal _APORTACIONES_EXCEDENTE_PERIODO_SALDO;
+        partial void OnAPORTACIONES_EXCEDENTE_PERIODO_SALDOChanging(global::System.Decimal value);
+        partial void OnAPORTACIONES_EXCEDENTE_PERIODO_SALDOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal APORTACIONES_SALDO_TOTAL
+        {
+            get
+            {
+                return _APORTACIONES_SALDO_TOTAL;
+            }
+            set
+            {
+                OnAPORTACIONES_SALDO_TOTALChanging(value);
+                ReportPropertyChanging("APORTACIONES_SALDO_TOTAL");
+                _APORTACIONES_SALDO_TOTAL = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("APORTACIONES_SALDO_TOTAL");
+                OnAPORTACIONES_SALDO_TOTALChanged();
+            }
+        }
+        private global::System.Decimal _APORTACIONES_SALDO_TOTAL;
+        partial void OnAPORTACIONES_SALDO_TOTALChanging(global::System.Decimal value);
+        partial void OnAPORTACIONES_SALDO_TOTALChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -7075,6 +7448,410 @@ namespace COCASJOL.LOGIC
 
         #endregion
     
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="COLINASMODEL", Name="retiro_aportaciones")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class retiro_aportaciones : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new retiro_aportaciones object.
+        /// </summary>
+        /// <param name="rETIROS_AP_ID">Initial value of the RETIROS_AP_ID property.</param>
+        /// <param name="sOCIOS_ID">Initial value of the SOCIOS_ID property.</param>
+        /// <param name="rETIROS_AP_FECHA">Initial value of the RETIROS_AP_FECHA property.</param>
+        /// <param name="rETIROS_AP_ORDINARIA">Initial value of the RETIROS_AP_ORDINARIA property.</param>
+        /// <param name="rETIROS_AP_EXTRAORDINARIA">Initial value of the RETIROS_AP_EXTRAORDINARIA property.</param>
+        /// <param name="rETIROS_AP_CAPITALIZACION_RETENCION">Initial value of the RETIROS_AP_CAPITALIZACION_RETENCION property.</param>
+        /// <param name="rETIROS_AP_INTERESES_S_APORTACION">Initial value of the RETIROS_AP_INTERESES_S_APORTACION property.</param>
+        /// <param name="rETIROS_AP_EXCEDENTE_PERIODO">Initial value of the RETIROS_AP_EXCEDENTE_PERIODO property.</param>
+        /// <param name="rETIROS_AP_TOTAL_RETIRADO">Initial value of the RETIROS_AP_TOTAL_RETIRADO property.</param>
+        /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
+        /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
+        public static retiro_aportaciones Createretiro_aportaciones(global::System.Int32 rETIROS_AP_ID, global::System.String sOCIOS_ID, global::System.DateTime rETIROS_AP_FECHA, global::System.Decimal rETIROS_AP_ORDINARIA, global::System.Decimal rETIROS_AP_EXTRAORDINARIA, global::System.Decimal rETIROS_AP_CAPITALIZACION_RETENCION, global::System.Decimal rETIROS_AP_INTERESES_S_APORTACION, global::System.Decimal rETIROS_AP_EXCEDENTE_PERIODO, global::System.Decimal rETIROS_AP_TOTAL_RETIRADO, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
+        {
+            retiro_aportaciones retiro_aportaciones = new retiro_aportaciones();
+            retiro_aportaciones.RETIROS_AP_ID = rETIROS_AP_ID;
+            retiro_aportaciones.SOCIOS_ID = sOCIOS_ID;
+            retiro_aportaciones.RETIROS_AP_FECHA = rETIROS_AP_FECHA;
+            retiro_aportaciones.RETIROS_AP_ORDINARIA = rETIROS_AP_ORDINARIA;
+            retiro_aportaciones.RETIROS_AP_EXTRAORDINARIA = rETIROS_AP_EXTRAORDINARIA;
+            retiro_aportaciones.RETIROS_AP_CAPITALIZACION_RETENCION = rETIROS_AP_CAPITALIZACION_RETENCION;
+            retiro_aportaciones.RETIROS_AP_INTERESES_S_APORTACION = rETIROS_AP_INTERESES_S_APORTACION;
+            retiro_aportaciones.RETIROS_AP_EXCEDENTE_PERIODO = rETIROS_AP_EXCEDENTE_PERIODO;
+            retiro_aportaciones.RETIROS_AP_TOTAL_RETIRADO = rETIROS_AP_TOTAL_RETIRADO;
+            retiro_aportaciones.CREADO_POR = cREADO_POR;
+            retiro_aportaciones.FECHA_CREACION = fECHA_CREACION;
+            return retiro_aportaciones;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 RETIROS_AP_ID
+        {
+            get
+            {
+                return _RETIROS_AP_ID;
+            }
+            set
+            {
+                if (_RETIROS_AP_ID != value)
+                {
+                    OnRETIROS_AP_IDChanging(value);
+                    ReportPropertyChanging("RETIROS_AP_ID");
+                    _RETIROS_AP_ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("RETIROS_AP_ID");
+                    OnRETIROS_AP_IDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _RETIROS_AP_ID;
+        partial void OnRETIROS_AP_IDChanging(global::System.Int32 value);
+        partial void OnRETIROS_AP_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String SOCIOS_ID
+        {
+            get
+            {
+                return _SOCIOS_ID;
+            }
+            set
+            {
+                OnSOCIOS_IDChanging(value);
+                ReportPropertyChanging("SOCIOS_ID");
+                _SOCIOS_ID = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("SOCIOS_ID");
+                OnSOCIOS_IDChanged();
+            }
+        }
+        private global::System.String _SOCIOS_ID;
+        partial void OnSOCIOS_IDChanging(global::System.String value);
+        partial void OnSOCIOS_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime RETIROS_AP_FECHA
+        {
+            get
+            {
+                return _RETIROS_AP_FECHA;
+            }
+            set
+            {
+                OnRETIROS_AP_FECHAChanging(value);
+                ReportPropertyChanging("RETIROS_AP_FECHA");
+                _RETIROS_AP_FECHA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RETIROS_AP_FECHA");
+                OnRETIROS_AP_FECHAChanged();
+            }
+        }
+        private global::System.DateTime _RETIROS_AP_FECHA;
+        partial void OnRETIROS_AP_FECHAChanging(global::System.DateTime value);
+        partial void OnRETIROS_AP_FECHAChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal RETIROS_AP_ORDINARIA
+        {
+            get
+            {
+                return _RETIROS_AP_ORDINARIA;
+            }
+            set
+            {
+                OnRETIROS_AP_ORDINARIAChanging(value);
+                ReportPropertyChanging("RETIROS_AP_ORDINARIA");
+                _RETIROS_AP_ORDINARIA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RETIROS_AP_ORDINARIA");
+                OnRETIROS_AP_ORDINARIAChanged();
+            }
+        }
+        private global::System.Decimal _RETIROS_AP_ORDINARIA;
+        partial void OnRETIROS_AP_ORDINARIAChanging(global::System.Decimal value);
+        partial void OnRETIROS_AP_ORDINARIAChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal RETIROS_AP_EXTRAORDINARIA
+        {
+            get
+            {
+                return _RETIROS_AP_EXTRAORDINARIA;
+            }
+            set
+            {
+                OnRETIROS_AP_EXTRAORDINARIAChanging(value);
+                ReportPropertyChanging("RETIROS_AP_EXTRAORDINARIA");
+                _RETIROS_AP_EXTRAORDINARIA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RETIROS_AP_EXTRAORDINARIA");
+                OnRETIROS_AP_EXTRAORDINARIAChanged();
+            }
+        }
+        private global::System.Decimal _RETIROS_AP_EXTRAORDINARIA;
+        partial void OnRETIROS_AP_EXTRAORDINARIAChanging(global::System.Decimal value);
+        partial void OnRETIROS_AP_EXTRAORDINARIAChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal RETIROS_AP_CAPITALIZACION_RETENCION
+        {
+            get
+            {
+                return _RETIROS_AP_CAPITALIZACION_RETENCION;
+            }
+            set
+            {
+                OnRETIROS_AP_CAPITALIZACION_RETENCIONChanging(value);
+                ReportPropertyChanging("RETIROS_AP_CAPITALIZACION_RETENCION");
+                _RETIROS_AP_CAPITALIZACION_RETENCION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RETIROS_AP_CAPITALIZACION_RETENCION");
+                OnRETIROS_AP_CAPITALIZACION_RETENCIONChanged();
+            }
+        }
+        private global::System.Decimal _RETIROS_AP_CAPITALIZACION_RETENCION;
+        partial void OnRETIROS_AP_CAPITALIZACION_RETENCIONChanging(global::System.Decimal value);
+        partial void OnRETIROS_AP_CAPITALIZACION_RETENCIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal RETIROS_AP_INTERESES_S_APORTACION
+        {
+            get
+            {
+                return _RETIROS_AP_INTERESES_S_APORTACION;
+            }
+            set
+            {
+                OnRETIROS_AP_INTERESES_S_APORTACIONChanging(value);
+                ReportPropertyChanging("RETIROS_AP_INTERESES_S_APORTACION");
+                _RETIROS_AP_INTERESES_S_APORTACION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RETIROS_AP_INTERESES_S_APORTACION");
+                OnRETIROS_AP_INTERESES_S_APORTACIONChanged();
+            }
+        }
+        private global::System.Decimal _RETIROS_AP_INTERESES_S_APORTACION;
+        partial void OnRETIROS_AP_INTERESES_S_APORTACIONChanging(global::System.Decimal value);
+        partial void OnRETIROS_AP_INTERESES_S_APORTACIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal RETIROS_AP_EXCEDENTE_PERIODO
+        {
+            get
+            {
+                return _RETIROS_AP_EXCEDENTE_PERIODO;
+            }
+            set
+            {
+                OnRETIROS_AP_EXCEDENTE_PERIODOChanging(value);
+                ReportPropertyChanging("RETIROS_AP_EXCEDENTE_PERIODO");
+                _RETIROS_AP_EXCEDENTE_PERIODO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RETIROS_AP_EXCEDENTE_PERIODO");
+                OnRETIROS_AP_EXCEDENTE_PERIODOChanged();
+            }
+        }
+        private global::System.Decimal _RETIROS_AP_EXCEDENTE_PERIODO;
+        partial void OnRETIROS_AP_EXCEDENTE_PERIODOChanging(global::System.Decimal value);
+        partial void OnRETIROS_AP_EXCEDENTE_PERIODOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal RETIROS_AP_TOTAL_RETIRADO
+        {
+            get
+            {
+                return _RETIROS_AP_TOTAL_RETIRADO;
+            }
+            set
+            {
+                OnRETIROS_AP_TOTAL_RETIRADOChanging(value);
+                ReportPropertyChanging("RETIROS_AP_TOTAL_RETIRADO");
+                _RETIROS_AP_TOTAL_RETIRADO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RETIROS_AP_TOTAL_RETIRADO");
+                OnRETIROS_AP_TOTAL_RETIRADOChanged();
+            }
+        }
+        private global::System.Decimal _RETIROS_AP_TOTAL_RETIRADO;
+        partial void OnRETIROS_AP_TOTAL_RETIRADOChanging(global::System.Decimal value);
+        partial void OnRETIROS_AP_TOTAL_RETIRADOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CREADO_POR
+        {
+            get
+            {
+                return _CREADO_POR;
+            }
+            set
+            {
+                OnCREADO_PORChanging(value);
+                ReportPropertyChanging("CREADO_POR");
+                _CREADO_POR = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CREADO_POR");
+                OnCREADO_PORChanged();
+            }
+        }
+        private global::System.String _CREADO_POR;
+        partial void OnCREADO_PORChanging(global::System.String value);
+        partial void OnCREADO_PORChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime FECHA_CREACION
+        {
+            get
+            {
+                return _FECHA_CREACION;
+            }
+            set
+            {
+                OnFECHA_CREACIONChanging(value);
+                ReportPropertyChanging("FECHA_CREACION");
+                _FECHA_CREACION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_CREACION");
+                OnFECHA_CREACIONChanged();
+            }
+        }
+        private global::System.DateTime _FECHA_CREACION;
+        partial void OnFECHA_CREACIONChanging(global::System.DateTime value);
+        partial void OnFECHA_CREACIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MODIFICADO_POR
+        {
+            get
+            {
+                return _MODIFICADO_POR;
+            }
+            set
+            {
+                OnMODIFICADO_PORChanging(value);
+                ReportPropertyChanging("MODIFICADO_POR");
+                _MODIFICADO_POR = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MODIFICADO_POR");
+                OnMODIFICADO_PORChanged();
+            }
+        }
+        private global::System.String _MODIFICADO_POR;
+        partial void OnMODIFICADO_PORChanging(global::System.String value);
+        partial void OnMODIFICADO_PORChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> FECHA_MODIFICACION
+        {
+            get
+            {
+                return _FECHA_MODIFICACION;
+            }
+            set
+            {
+                OnFECHA_MODIFICACIONChanging(value);
+                ReportPropertyChanging("FECHA_MODIFICACION");
+                _FECHA_MODIFICACION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_MODIFICACION");
+                OnFECHA_MODIFICACIONChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _FECHA_MODIFICACION;
+        partial void OnFECHA_MODIFICACIONChanging(Nullable<global::System.DateTime> value);
+        partial void OnFECHA_MODIFICACIONChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "RETIROS_SOCIOS_FK", "socios")]
+        public socio socios
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.RETIROS_SOCIOS_FK", "socios").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.RETIROS_SOCIOS_FK", "socios").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<socio> sociosReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.RETIROS_SOCIOS_FK", "socios");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<socio>("COLINASMODEL.RETIROS_SOCIOS_FK", "socios", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
@@ -7987,10 +8764,56 @@ namespace COCASJOL.LOGIC
         private Nullable<global::System.Int32> _SOCIOS_APORTACION_EXTRAORD_COUNT;
         partial void OnSOCIOS_APORTACION_EXTRAORD_COUNTChanging(Nullable<global::System.Int32> value);
         partial void OnSOCIOS_APORTACION_EXTRAORD_COUNTChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> SOCIOS_APORTACION_INTERES_S_APORTACION
+        {
+            get
+            {
+                return _SOCIOS_APORTACION_INTERES_S_APORTACION;
+            }
+            set
+            {
+                OnSOCIOS_APORTACION_INTERES_S_APORTACIONChanging(value);
+                ReportPropertyChanging("SOCIOS_APORTACION_INTERES_S_APORTACION");
+                _SOCIOS_APORTACION_INTERES_S_APORTACION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SOCIOS_APORTACION_INTERES_S_APORTACION");
+                OnSOCIOS_APORTACION_INTERES_S_APORTACIONChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _SOCIOS_APORTACION_INTERES_S_APORTACION;
+        partial void OnSOCIOS_APORTACION_INTERES_S_APORTACIONChanging(Nullable<global::System.Boolean> value);
+        partial void OnSOCIOS_APORTACION_INTERES_S_APORTACIONChanged();
 
         #endregion
     
         #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "APORTACIONES_SOCIOS_FK", "aportacion_socio")]
+        public EntityCollection<aportacion_socio> aportaciones_socio
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<aportacion_socio>("COLINASMODEL.APORTACIONES_SOCIOS_FK", "aportacion_socio");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<aportacion_socio>("COLINASMODEL.APORTACIONES_SOCIOS_FK", "aportacion_socio", value);
+                }
+            }
+        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -8064,6 +8887,28 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "LIQUIDACIONES_SOCIOS_FK", "liquidacion")]
+        public EntityCollection<liquidacion> liquidaciones
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<liquidacion>("COLINASMODEL.LIQUIDACIONES_SOCIOS_FK", "liquidacion");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<liquidacion>("COLINASMODEL.LIQUIDACIONES_SOCIOS_FK", "liquidacion", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "FK_NOTA_DE_PESO_socios", "nota_de_peso")]
         public EntityCollection<nota_de_peso> notas_de_peso
         {
@@ -8098,6 +8943,28 @@ namespace COCASJOL.LOGIC
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<prestamo_x_socio>("COLINASMODEL.PrestamosSocio_fk", "prestamo_x_socio", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "RETIROS_SOCIOS_FK", "retiro_aportaciones")]
+        public EntityCollection<retiro_aportaciones> retiros_aportaciones
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<retiro_aportaciones>("COLINASMODEL.RETIROS_SOCIOS_FK", "retiro_aportaciones");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<retiro_aportaciones>("COLINASMODEL.RETIROS_SOCIOS_FK", "retiro_aportaciones", value);
                 }
             }
         }
@@ -8184,62 +9051,18 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "Solicitudesxsociofk", "solicitudes_prestamos")]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "Solicitudesxsociofk", "solicitud_prestamo")]
         public EntityCollection<solicitud_prestamo> solicitudes_prestamos
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<solicitud_prestamo>("COLINASMODEL.Solicitudesxsociofk", "solicitudes_prestamos");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<solicitud_prestamo>("COLINASMODEL.Solicitudesxsociofk", "solicitud_prestamo");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<solicitud_prestamo>("COLINASMODEL.Solicitudesxsociofk", "solicitudes_prestamos", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "LIQUIDACIONES_SOCIOS_FK", "liquidaciones")]
-        public EntityCollection<liquidacion> liquidaciones
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<liquidacion>("COLINASMODEL.LIQUIDACIONES_SOCIOS_FK", "liquidaciones");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<liquidacion>("COLINASMODEL.LIQUIDACIONES_SOCIOS_FK", "liquidaciones", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "APORTACIONES_SOCIOS_FK", "aportaciones_socio")]
-        public EntityCollection<aportacion_socio> aportaciones_socio
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<aportacion_socio>("COLINASMODEL.APORTACIONES_SOCIOS_FK", "aportaciones_socio");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<aportacion_socio>("COLINASMODEL.APORTACIONES_SOCIOS_FK", "aportaciones_socio", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<solicitud_prestamo>("COLINASMODEL.Solicitudesxsociofk", "solicitud_prestamo", value);
                 }
             }
         }
@@ -9690,16 +10513,16 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "Solicitudesxsociofk", "socio")]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "Solicitudesxsociofk", "socios")]
         public socio socios
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.Solicitudesxsociofk", "socio").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.Solicitudesxsociofk", "socios").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.Solicitudesxsociofk", "socio").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.Solicitudesxsociofk", "socios").Value = value;
             }
         }
         /// <summary>
@@ -9711,13 +10534,13 @@ namespace COCASJOL.LOGIC
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.Solicitudesxsociofk", "socio");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.Solicitudesxsociofk", "socios");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<socio>("COLINASMODEL.Solicitudesxsociofk", "socio", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<socio>("COLINASMODEL.Solicitudesxsociofk", "socios", value);
                 }
             }
         }

@@ -10,6 +10,7 @@ using System.Data.Objects;
 using Ext.Net;
 
 using COCASJOL.LOGIC.Web;
+using COCASJOL.LOGIC.Aportaciones;
 
 namespace COCASJOL.WEBSITE.Source.Aportaciones
 {
@@ -38,6 +39,30 @@ namespace COCASJOL.WEBSITE.Source.Aportaciones
         {
             if (!this.IsPostBack)
                 e.Cancel = true;
+        }
+
+        [DirectMethod(RethrowException=true)]
+        public void RetirarBtn_Click()
+        {
+            try
+            {
+                string logged_user = Session["username"] as string;
+
+                RetiroAportacionLogic retirologic = new RetiroAportacionLogic();
+                retirologic.InsertarRetiroDeAportaciones(this.EditSociosIdTxt.Text,
+                        Convert.ToDecimal(this.EditRetiroAportacionOrdinariaSaldoTxt.Text),
+                        Convert.ToDecimal(this.EditRetiroAportacionExtraordinariaSaldoTxt.Text),
+                        Convert.ToDecimal(this.EditRetiroAportacionCapRetencionSaldoTxt.Text),
+                        Convert.ToDecimal(this.EditRetiroAportacionInteresesSAportacionesSaldoTxt.Text),
+                        Convert.ToDecimal(this.EditRetiroAportacionExcedentePeriodoSaldoTxt.Text),
+                        logged_user, DateTime.Today, logged_user, DateTime.Today);
+
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
         }
     }
 }

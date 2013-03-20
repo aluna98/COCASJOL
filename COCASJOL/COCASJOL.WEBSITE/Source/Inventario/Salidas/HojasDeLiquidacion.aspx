@@ -51,7 +51,6 @@
                     <asp:ControlParameter Name="LIQUIDACIONES_D_GASTOS_ADMIN"                       Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
                     <asp:ControlParameter Name="LIQUIDACIONES_D_APORTACION_ORDINARIO"               Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
                     <asp:ControlParameter Name="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA"          Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_D_CUOTA_ADMIN"                        Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
                     <asp:ControlParameter Name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION"           Type="Int32"    ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
                     <asp:ControlParameter Name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD"  Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
                     <asp:ControlParameter Name="LIQUIDACIONES_D_INTERESES_S_APORTACIONES"           Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
@@ -86,7 +85,6 @@
                     <asp:Parameter Name="LIQUIDACIONES_D_GASTOS_ADMIN"                      Type="Decimal"  />
                     <asp:Parameter Name="LIQUIDACIONES_D_APORTACION_ORDINARIO"              Type="Decimal"  />
                     <asp:Parameter Name="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA"         Type="Decimal"  />
-                    <asp:Parameter Name="LIQUIDACIONES_D_CUOTA_ADMIN"                       Type="Decimal"  />
                     <asp:Parameter Name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION"          Type="Int32"    />
                     <asp:Parameter Name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD" Type="Decimal"  />
                     <asp:Parameter Name="LIQUIDACIONES_D_INTERESES_S_APORTACIONES"          Type="Decimal"  />
@@ -553,11 +551,6 @@
                                                                         <Change Handler="PageX.AddCalcularTotalDeducciones();" />
                                                                     </Listeners>
                                                                 </ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="AddCuotaAdminTxt"                       DataIndex="LIQUIDACIONES_D_CUOTA_ADMIN"                       LabelAlign="Right" AnchorHorizontal="100%" AllowNegative="false" AllowBlank="false" Text="0" MsgTarget="Side" FieldLabel="Cuota de Administración" >
-                                                                    <Listeners>
-                                                                        <Change Handler="PageX.AddCalcularTotalDeducciones();" />
-                                                                    </Listeners>
-                                                                </ext:NumberField>
                                                                 <ext:NumberField runat="server" ID="AddCapitalizacionXRetencionTxt"         DataIndex="LIQUIDACIONES_D_CAPITALIZACION_RETENCION"          LabelAlign="Right" AnchorHorizontal="100%" AllowNegative="false" AllowBlank="false" Text="0" MsgTarget="Side" FieldLabel="% Capitalización por Retención" >
                                                                     <Listeners>
                                                                         <Change Handler="PageX.AddCalcularCapitalizacionXRetencion(); PageX.AddCalcularTotalDeducciones();" />
@@ -707,7 +700,7 @@
                                                         <ext:Panel ID="Panel14" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
                                                                 <ext:TextField runat="server" ID="EditHojasIdTxt"      DataIndex="LIQUIDACIONES_ID"    LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Numero Hoja de Liquidación" AllowBlank="false" MsgTarget="Side" ReadOnly="true" Hidden="true" ></ext:TextField>
-                                                                <ext:DateField runat="server" ID="EditFechaHojaTxt" DataIndex="LIQUIDACIONES_FECHA" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Fecha" AllowBlank="false" MsgTarget="Side"></ext:DateField>
+                                                                <ext:DateField runat="server" ID="EditFechaHojaTxt" DataIndex="LIQUIDACIONES_FECHA" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Fecha" AllowBlank="false" MsgTarget="Side" ReadOnly="true" ></ext:DateField>
                                                                 <ext:TextField runat="server" ID="EditSociosIdTxt"  DataIndex="SOCIOS_ID"           LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Código de Socio" AllowBlank="false" MsgTarget="Side" ReadOnly="true" >
                                                                     <ToolTips>
                                                                         <ext:ToolTip ID="ToolTip2" runat="server" Html="El código de socio es de solo lectura." Title="Código de Socio" Width="200" TrackMouse="true" />
@@ -764,7 +757,6 @@
                                                                 <ext:NumberField runat="server" ID="EditGastosAdminTxt"                      DataIndex="LIQUIDACIONES_D_GASTOS_ADMIN"                      LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Gastos de Administración" ></ext:NumberField>
                                                                 <ext:NumberField runat="server" ID="EditAportacionOrdinariaTxt"              DataIndex="LIQUIDACIONES_D_APORTACION_ORDINARIO"              LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Aportación Ordinaria" ></ext:NumberField>
                                                                 <ext:NumberField runat="server" ID="EditAportacionExtraOrdinariaTxt"         DataIndex="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA"         LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Aportación Extraordinaria" ></ext:NumberField>
-                                                                <ext:NumberField runat="server" ID="EditCuotaAdminTxt"                       DataIndex="LIQUIDACIONES_D_CUOTA_ADMIN"                       LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Cuota de Administración" ></ext:NumberField>
                                                                 <ext:NumberField runat="server" ID="EditCapitalizacionXRetencionTxt"         DataIndex="LIQUIDACIONES_D_CAPITALIZACION_RETENCION"          LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="% Capitalización por Retención" ReadOnly="true" AllowBlank="false" ></ext:NumberField>
                                                                 <ext:NumberField runat="server" ID="EditCapitalizacionXRetencionCantidadTxt" DataIndex="LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD" LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Capitalización por Retención" ReadOnly="true" AllowBlank="false" ></ext:NumberField>
                                                                 <ext:NumberField runat="server" ID="EditInteresesSobreAportacionesTxt"       DataIndex="LIQUIDACIONES_D_INTERESES_S_APORTACIONES"          LabelAlign="Right" AnchorHorizontal="100%" MsgTarget="Side" FieldLabel="Intereses sobre Aportaciones" ></ext:NumberField>

@@ -43,7 +43,9 @@ namespace COCASJOL.LOGIC.Reportes
             decimal SALIDAS_COSTO,
             decimal SALIDAS_MONTO,
             decimal INVENTARIO_ENTRADAS_CANTIDAD,
-            decimal INVENTARIO_SALIDAS_SALDO)
+            decimal INVENTARIO_SALIDAS_SALDO,
+            string CREADO_POR,
+            DateTime FECHA_CREACION)
         {
             try
             {
@@ -62,7 +64,10 @@ namespace COCASJOL.LOGIC.Reportes
                                 (SALIDAS_COSTO.Equals(-1) ? true : mov.SALIDAS_COSTO == SALIDAS_COSTO) &&
                                 (SALIDAS_MONTO.Equals(-1) ? true : mov.SALIDAS_MONTO == SALIDAS_MONTO) &&
                                 (INVENTARIO_ENTRADAS_CANTIDAD.Equals(-1) ? true : mov.INVENTARIO_ENTRADAS_CANTIDAD == INVENTARIO_ENTRADAS_CANTIDAD) &&
-                                (INVENTARIO_SALIDAS_SALDO.Equals(-1) ? true : mov.INVENTARIO_SALIDAS_SALDO == INVENTARIO_SALIDAS_SALDO)
+                                (INVENTARIO_SALIDAS_SALDO.Equals(-1) ? true : mov.INVENTARIO_SALIDAS_SALDO == INVENTARIO_SALIDAS_SALDO) &&
+
+                                (string.IsNullOrEmpty(CREADO_POR) ? true : mov.CREADO_POR.Contains(CREADO_POR)) &&
+                                (default(DateTime) == FECHA_CREACION ? true : mov.FECHA_CREACION == FECHA_CREACION)
                                 select mov;
 
                     return query.ToList<reporte_movimientos_de_inventario_de_cafe>();

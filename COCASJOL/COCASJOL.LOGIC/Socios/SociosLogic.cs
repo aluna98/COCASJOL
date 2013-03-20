@@ -738,7 +738,7 @@ namespace COCASJOL.LOGIC.Socios
             }
         }
 
-        public static void GastoDeIngresoPagado(string SOCIOS_ID, colinasEntities db)
+        public static void PagarGastoDeIngreso(string SOCIOS_ID, colinasEntities db)
         {
             try
             {
@@ -762,7 +762,7 @@ namespace COCASJOL.LOGIC.Socios
             }
         }
 
-        public static void AportacionOrdinariaPagada(string SOCIOS_ID, colinasEntities db)
+        public static void PagarAportacionOrdinaria(string SOCIOS_ID, colinasEntities db)
         {
             try
             {
@@ -783,7 +783,7 @@ namespace COCASJOL.LOGIC.Socios
             }
         }
 
-        public static bool AportacionExtraordinariaPagada(string SOCIOS_ID, int SOCIOS_APORTACION_EXTRAORD_COOP_COUNT, colinasEntities db)
+        public static bool PagarAportacionExtraordinaria(string SOCIOS_ID, int SOCIOS_APORTACION_EXTRAORD_COOP_COUNT, colinasEntities db)
         {
             try
             {
@@ -808,6 +808,27 @@ namespace COCASJOL.LOGIC.Socios
                 db.SaveChanges();
 
                 return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public static void PagarAportacionInteresesSobreAportaciones(string SOCIOS_ID, colinasEntities db)
+        {
+            try
+            {
+                EntityKey k = new EntityKey("colinasEntities.socios", "SOCIOS_ID", SOCIOS_ID);
+
+                var s = db.GetObjectByKey(k);
+
+                socio soc = (socio)s;
+
+                soc.SOCIOS_APORTACION_INTERES_S_APORTACION = true;//Ya se pago la aportacion intereses sobre aportaciones anual
+
+                db.SaveChanges();
             }
             catch (Exception)
             {
