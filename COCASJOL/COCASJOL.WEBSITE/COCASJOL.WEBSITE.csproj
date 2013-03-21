@@ -74,6 +74,7 @@
     <Content Include="resources\images\background1.jpg" />
     <Content Include="resources\images\bricks.png" />
     <Content Include="resources\images\Cafe_Colinas_Logo.jpg" />
+    <Content Include="resources\images\cart_full.png" />
     <Content Include="resources\images\cheque.png" />
     <Content Include="resources\images\cheque16x16.png" />
     <Content Include="resources\images\cocasjol_start_button.gif" />
@@ -142,6 +143,7 @@
     <Content Include="Source\Inventario\Ingresos\NotasDePesoEnPesaje.aspx" />
     <Content Include="Source\Inventario\InventarioDeCafePorSocio.aspx" />
     <Content Include="Source\Inventario\Salidas\HojasDeLiquidacion.aspx" />
+    <Content Include="Source\Inventario\Salidas\VentasDeInventarioDeCafe.aspx" />
     <Content Include="Source\Prestamos\Prestamos.aspx" />
     <Content Include="Source\Prestamos\SolicitudesDePrestamos.aspx" />
     <Content Include="Source\Reportes\MovimientosDeInventarioDeCafe.aspx" />
@@ -254,6 +256,13 @@
     </Compile>
     <Compile Include="Source\Inventario\Salidas\HojasDeLiquidacion.aspx.designer.cs">
       <DependentUpon>HojasDeLiquidacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Inventario\Salidas\VentasDeInventarioDeCafe.aspx.cs">
+      <DependentUpon>VentasDeInventarioDeCafe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Inventario\Salidas\VentasDeInventarioDeCafe.aspx.designer.cs">
+      <DependentUpon>VentasDeInventarioDeCafe.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Prestamos\Prestamos.aspx.cs">
       <DependentUpon>Prestamos.aspx</DependentUpon>

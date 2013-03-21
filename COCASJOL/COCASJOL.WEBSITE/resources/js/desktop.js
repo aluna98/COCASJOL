@@ -201,19 +201,19 @@ var WindowX = {
     },
 
     estadosNotasDePeso: function (app) {
-        DesktopX.createDynamicWindow(app, 'pagego', 'Estados de Notas De Peso', 'Inventario/Ingresos/EstadosNotaDePeso.aspx');
+        DesktopX.createDynamicWindow(app, 'pagego', 'Estados de Notas de Peso', 'Inventario/Ingresos/EstadosNotaDePeso.aspx');
     },
 
     notasDePesoEnPesaje: function (app) {
-        DesktopX.createDynamicWindow(app, 'pagewhiteput', 'Notas De Peso en Area de Pesaje', 'Inventario/Ingresos/NotasDePesoEnPesaje.aspx', 1000, 600);
+        DesktopX.createDynamicWindow(app, 'pagewhiteput', 'Notas de Peso en Area de Pesaje', 'Inventario/Ingresos/NotasDePesoEnPesaje.aspx', 1000, 600);
     },
 
     notasDePesoEnCatacion: function (app) {
-        DesktopX.createDynamicWindow(app, 'pagewhitecup', 'Notas De Peso en Area de Catación', 'Inventario/Ingresos/NotasDePesoEnCatacion.aspx', 1000, 600);
+        DesktopX.createDynamicWindow(app, 'pagewhitecup', 'Notas de Peso en Area de Catación', 'Inventario/Ingresos/NotasDePesoEnCatacion.aspx', 1000, 600);
     },
 
     notasDePeso: function (app) {
-        DesktopX.createDynamicWindow(app, 'pagewhiteoffice', 'Notas De Peso', 'Inventario/Ingresos/NotasDePesoEnAdministracion.aspx', 1000, 600);
+        DesktopX.createDynamicWindow(app, 'pagewhiteoffice', 'Notas de Peso', 'Inventario/Ingresos/NotasDePesoEnAdministracion.aspx', 1000, 600);
     },
 
     inventarioDeCafePorSocio: function (app) {
@@ -221,7 +221,11 @@ var WindowX = {
     },
 
     hojasDeLiquidacion: function (app) {
-        DesktopX.createDynamicWindow(app, 'script', 'Hojas De Liquidación', 'Inventario/Salidas/HojasDeLiquidacion.aspx', 1000, 600);
+        DesktopX.createDynamicWindow(app, 'script', 'Hojas de Liquidación', 'Inventario/Salidas/HojasDeLiquidacion.aspx', 1000, 600);
+    },
+
+    ventasDeInventarioDeCafe: function (app) {
+        DesktopX.createDynamicWindow(app, 'cart_full', 'Ventas de Liquidación', 'Inventario/Salidas/VentasDeInventarioDeCafe.aspx');
     },
 
     movimientosDeInventarioDeCafe: function (app) {
@@ -284,6 +288,8 @@ var ShorcutClickHandler = function (app, id) {
         WindowX.inventarioDeCafePorSocio(app);
     } else if (id == 'scHojasDeLiquidacion') {
         WindowX.hojasDeLiquidacion(app);
+    } else if (id == 'scVentasDeInventarioDeCafe') {
+        WindowX.ventasDeInventarioDeCafe(app);
     } else if (id == 'scMovimientosDeInventarioDeCafe') {
         WindowX.movimientosDeInventarioDeCafe(app);
     } else if (id == 'scAportacionesPorSocio') {

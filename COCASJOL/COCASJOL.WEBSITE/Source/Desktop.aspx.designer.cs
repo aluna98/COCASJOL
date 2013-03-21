@@ -292,6 +292,24 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.MenuItem LiquidacionesMenuItem;
         
         /// <summary>
+        /// VentasInventarioCafeMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem VentasInventarioCafeMenu;
+        
+        /// <summary>
+        /// VentasDeInventarioDeCafeMenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem VentasDeInventarioDeCafeMenuItem;
+        
+        /// <summary>
         /// AportacionesPorSocioMenu control.
         /// </summary>
         /// <remarks>
@@ -767,6 +785,15 @@ namespace COCASJOL.WEBSITE {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ToolTip scHojasDeLiquidacionTooltip;
+        
+        /// <summary>
+        /// scVentasDeInventarioDeCafeTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scVentasDeInventarioDeCafeTooltip;
         
         /// <summary>
         /// scAportacionesPorSocioTooltip control.

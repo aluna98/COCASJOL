@@ -82,6 +82,12 @@
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/script.png", sizingMethod="center");
 }
 
+.icon-ventasDeInventarioDeCafe
+{
+    background-image: url(../images/cart_full.png) !important;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/cart_full.png", sizingMethod="center");
+}
+
 .icon-movimientosDeInventarioDeCafe
 {
     background-image: url(../images/report_bricks.png) !important;

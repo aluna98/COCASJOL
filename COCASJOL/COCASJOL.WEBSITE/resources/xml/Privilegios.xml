@@ -91,6 +91,15 @@
     <shortcut></shortcut>
     <menuitem></menuitem>
   </privilege>
+  
+  <privilege>
+    <key>MANT_VENTASINVENTARIOCAFE</key>
+    <page>VentasDeInventarioDeCafe</page>
+    <module>VentasDeInventarioDeCafeModule</module>
+    <shortcut>scVentasDeInventarioDeCafe</shortcut>
+    <menuitem>VentasDeInventarioDeCafeMenuItem</menuitem>
+  </privilege>
+  
   <privilege>
     <key>REPRT_MOVIMIENTOSINVENTARIO</key>
     <page>MovimientosDeInventarioDeCafe</page>
