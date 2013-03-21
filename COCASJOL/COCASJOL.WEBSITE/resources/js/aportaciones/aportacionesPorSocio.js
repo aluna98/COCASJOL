@@ -78,20 +78,7 @@ var PageX = {
             var EditNombre = Ext.getCmp('EditNombreTxt');
 
             this.getNombreDeSocio(EditSocioId, EditNombre);
-            this.loadTotalRetiro();
         }
-    },
-
-    update: function () {
-        if (EditForm.record == null) {
-            return;
-        }
-
-        Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
-            if (btn == 'yes') {
-                Ext.net.DirectMethods.RetirarBtn_Click();
-            }
-        });
     },
 
     getNombreDeSocio: function (sociosIdTxt, nombreTxt) {
@@ -155,28 +142,5 @@ var PageX = {
         if (Grid.getStore().getTotalCount() == 0)
             Grid.getStore().reload();
         PagingToolbar1.moveLast();
-    },
-
-    validarCantidadRetiro: function (aportacionTxt, retiroTxt) {
-        var retiro = retiroTxt.getValue();
-        var aportacion = aportacionTxt.getValue();
-
-        retiro = retiro == null ? 0 : retiro;
-        retiro = retiro < 0 ? 0 : retiro;
-
-        retiro = retiro > aportacion ? aportacion : retiro;
-
-        retiroTxt.setValue(retiro);
-    },
-
-    loadTotalRetiro: function () {
-        var retiro = EditRetiroAportacionOrdinariaSaldoTxt.getValue() +
-            EditRetiroAportacionExtraordinariaSaldoTxt.getValue() +
-            EditRetiroAportacionCapRetencionSaldoTxt.getValue() +
-            EditRetiroAportacionInteresesSAportacionesSaldoTxt.getValue() +
-            EditRetiroAportacionExcedentePeriodoSaldoTxt.getValue();
-
-        var retiroTotalSaldo = EditAportacionTotalSaldoTxt.getValue() - retiro;
-        EditRetiroAportacionTotalSaldoTxt.setValue(retiroTotalSaldo);
     }
 };

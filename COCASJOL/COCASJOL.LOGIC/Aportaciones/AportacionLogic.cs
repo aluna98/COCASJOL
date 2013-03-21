@@ -16,17 +16,18 @@ namespace COCASJOL.LOGIC.Aportaciones
 
         #region Select
 
-        public List<aportacion_socio> GetAportaciones()
+        public List<reporte_total_aportaciones_por_socio> GetAportaciones()
         {
             try
             {
                 using (var db = new colinasEntities())
                 {
-                    var query = from a in db.aportaciones_socio
-                                where a.socios.SOCIOS_ESTATUS >= 1
+                    var query = from a in db.reporte_total_aportaciones_por_socio
+                                join s in db.socios on a.SOCIOS_ID equals s.SOCIOS_ID
+                                where s.SOCIOS_ESTATUS >= 1
                                 select a;
 
-                    return query.OrderBy(a => a.SOCIOS_ID).ToList<aportacion_socio>();
+                    return query.OrderBy(a => a.SOCIOS_ID).ToList<reporte_total_aportaciones_por_socio>();
                 }
             }
             catch (Exception)
@@ -59,7 +60,7 @@ namespace COCASJOL.LOGIC.Aportaciones
                                 (s.SOCIOS_ESTATUS >= 1) &&
                                 (string.IsNullOrEmpty(SOCIOS_ID) ? true : ap.SOCIOS_ID.Contains(SOCIOS_ID)) &&
                                 (string.IsNullOrEmpty(SOCIOS_NOMBRE_COMPLETO) ? true : ap.SOCIOS_NOMBRE_COMPLETO.Contains(SOCIOS_NOMBRE_COMPLETO)) &&
-                                (APORTACIONES_SALDO_TOTAL == 0 ? true : ap.APORTACIONES_SALDO_TOTAL.Equals(APORTACIONES_SALDO_TOTAL)) &&
+                                (APORTACIONES_SALDO_TOTAL == -1 ? true : ap.APORTACIONES_SALDO_TOTAL.Equals(APORTACIONES_SALDO_TOTAL)) &&
                                 (string.IsNullOrEmpty(CREADO_POR) ? true : ap.CREADO_POR.Contains(CREADO_POR)) &&
                                 (default(DateTime) == FECHA_CREACION ? true : ap.FECHA_CREACION == FECHA_CREACION)
                                 select ap;

@@ -211,6 +211,51 @@ namespace COCASJOL.WEBSITE.Source.Aportaciones {
         protected global::Ext.Net.TextField f_SOCIOS_NOMBRE_COMPLETO;
         
         /// <summary>
+        /// f_APORTACIONES_ORDINARIA_SALDO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField f_APORTACIONES_ORDINARIA_SALDO;
+        
+        /// <summary>
+        /// f_APORTACIONES_EXTRAORDINARIA_SALDO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField f_APORTACIONES_EXTRAORDINARIA_SALDO;
+        
+        /// <summary>
+        /// f_APORTACIONES_CAPITALIZACION_RETENCION_SALDO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField f_APORTACIONES_CAPITALIZACION_RETENCION_SALDO;
+        
+        /// <summary>
+        /// f_APORTACIONES_INTERESES_S_APORTACION_SALDO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField f_APORTACIONES_INTERESES_S_APORTACION_SALDO;
+        
+        /// <summary>
+        /// f_APORTACIONES_EXCEDENTE_PERIODO_SALDO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField f_APORTACIONES_EXCEDENTE_PERIODO_SALDO;
+        
+        /// <summary>
         /// f_APORTACIONES_SALDO_TOTAL control.
         /// </summary>
         /// <remarks>
@@ -317,15 +362,6 @@ namespace COCASJOL.WEBSITE.Source.Aportaciones {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ToolTip ToolTip2;
-        
-        /// <summary>
-        /// EditAportacionesRetirosPnl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Panel EditAportacionesRetirosPnl;
         
         /// <summary>
         /// EditAportacionesFS control.
@@ -445,78 +481,6 @@ namespace COCASJOL.WEBSITE.Source.Aportaciones {
         protected global::Ext.Net.ToolTip ToolTip3;
         
         /// <summary>
-        /// EditRetirosFS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.FieldSet EditRetirosFS;
-        
-        /// <summary>
-        /// EditRetiroAportacionOrdinariaSaldoTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.NumberField EditRetiroAportacionOrdinariaSaldoTxt;
-        
-        /// <summary>
-        /// EditRetiroAportacionExtraordinariaSaldoTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.NumberField EditRetiroAportacionExtraordinariaSaldoTxt;
-        
-        /// <summary>
-        /// EditRetiroAportacionCapRetencionSaldoTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.NumberField EditRetiroAportacionCapRetencionSaldoTxt;
-        
-        /// <summary>
-        /// EditRetiroAportacionInteresesSAportacionesSaldoTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.NumberField EditRetiroAportacionInteresesSAportacionesSaldoTxt;
-        
-        /// <summary>
-        /// EditRetiroAportacionExcedentePeriodoSaldoTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.NumberField EditRetiroAportacionExcedentePeriodoSaldoTxt;
-        
-        /// <summary>
-        /// EditRetiroAportacionTotalSaldoTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.NumberField EditRetiroAportacionTotalSaldoTxt;
-        
-        /// <summary>
-        /// ToolTip15 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ToolTip ToolTip15;
-        
-        /// <summary>
         /// EditCreatedByTxt control.
         /// </summary>
         /// <remarks>
@@ -551,14 +515,5 @@ namespace COCASJOL.WEBSITE.Source.Aportaciones {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button EditNextBtn;
-        
-        /// <summary>
-        /// RetirarBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Button RetirarBtn;
     }
 }

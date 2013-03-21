@@ -67,7 +67,7 @@
                         <ext:GridPanel ID="PlantillasGridP" runat="server" AutoExpandColumn="PLANTILLAS_NOMBRE" Height="300"
                             Title="Plantillas de Notificaciones" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
                             <KeyMap>
-                                <ext:KeyBinding>
+                                <ext:KeyBinding Ctrl="true" >
                                     <Keys>
                                         <ext:Key Code="ENTER" />
                                     </Keys>

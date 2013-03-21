@@ -79,7 +79,7 @@
                         <ext:GridPanel ID="RolesGridP" runat="server" AutoExpandColumn="ROL_DESCRIPCION" Height="300"
                             Title="Roles" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
                             <KeyMap>
-                                <ext:KeyBinding>
+                                <ext:KeyBinding Ctrl="true" >
                                     <Keys>
                                         <ext:Key Code="INSERT" />
                                         <ext:Key Code="ENTER" />

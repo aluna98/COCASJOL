@@ -34,12 +34,12 @@
                 <SelectParameters>
                     <asp:ControlParameter Name="SOCIOS_ID"                                   Type="String"   ControlID="f_SOCIOS_ID"                PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="SOCIOS_NOMBRE_COMPLETO"                      Type="String"   ControlID="f_SOCIOS_NOMBRE_COMPLETO"   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="APORTACIONES_ORDINARIA_SALDO"                Type="Decimal"  ControlID="nullHdn"                    PropertyName="Text" DefaultValue="0" />
-                    <asp:ControlParameter Name="APORTACIONES_EXTRAORDINARIA_SALDO"           Type="Decimal"  ControlID="nullHdn"                    PropertyName="Text" DefaultValue="0" />
-                    <asp:ControlParameter Name="APORTACIONES_CAPITALIZACION_RETENCION_SALDO" Type="Decimal"  ControlID="nullHdn"                    PropertyName="Text" DefaultValue="0" />
-                    <asp:ControlParameter Name="APORTACIONES_INTERESES_S_APORTACION_SALDO"   Type="Decimal"  ControlID="nullHdn"                    PropertyName="Text" DefaultValue="0" />
-                    <asp:ControlParameter Name="APORTACIONES_EXCEDENTE_PERIODO_SALDO"        Type="Decimal"  ControlID="nullHdn"                    PropertyName="Text" DefaultValue="0" />
-                    <asp:ControlParameter Name="APORTACIONES_SALDO_TOTAL"                    Type="Decimal"  ControlID="f_APORTACIONES_SALDO_TOTAL" PropertyName="Text" DefaultValue="0" />
+                    <asp:ControlParameter Name="APORTACIONES_ORDINARIA_SALDO"                Type="Decimal"  ControlID="nullHdn"                    PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="APORTACIONES_EXTRAORDINARIA_SALDO"           Type="Decimal"  ControlID="nullHdn"                    PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="APORTACIONES_CAPITALIZACION_RETENCION_SALDO" Type="Decimal"  ControlID="nullHdn"                    PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="APORTACIONES_INTERESES_S_APORTACION_SALDO"   Type="Decimal"  ControlID="nullHdn"                    PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="APORTACIONES_EXCEDENTE_PERIODO_SALDO"        Type="Decimal"  ControlID="nullHdn"                    PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="APORTACIONES_SALDO_TOTAL"                    Type="Decimal"  ControlID="f_APORTACIONES_SALDO_TOTAL" PropertyName="Text" DefaultValue="-1" />
                     <asp:ControlParameter Name="CREADO_POR"                                  Type="String"   ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="FECHA_CREACION"                              Type="DateTime" ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
                 </SelectParameters>
@@ -78,7 +78,7 @@
                         <ext:GridPanel ID="AportacionesGridP" runat="server" AutoExpandColumn="SOCIOS_NOMBRE_COMPLETO" Height="300"
                             Title="Aportaciones por Socio" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
                             <KeyMap>
-                                <ext:KeyBinding>
+                                <ext:KeyBinding Ctrl="true" >
                                     <Keys>
                                         <ext:Key Code="ENTER" />
                                     </Keys>
@@ -114,6 +114,11 @@
                                 <Columns>
                                     <ext:Column       DataIndex="SOCIOS_ID"                                   Header="Id de Socio" Sortable="true"></ext:Column>
                                     <ext:Column       DataIndex="SOCIOS_NOMBRE_COMPLETO"                      Header="Nombre Completo de Socio" Sortable="true"></ext:Column>
+                                    <ext:NumberColumn DataIndex="APORTACIONES_ORDINARIA_SALDO"                Header="Saldo Aportación Ordinaria" Sortable="true"></ext:NumberColumn>
+                                    <ext:NumberColumn DataIndex="APORTACIONES_EXTRAORDINARIA_SALDO"           Header="Saldo Aportación Extraordinaria" Sortable="true"></ext:NumberColumn>
+                                    <ext:NumberColumn DataIndex="APORTACIONES_CAPITALIZACION_RETENCION_SALDO" Header="Saldo Capitalización por Retención" Sortable="true"></ext:NumberColumn>
+                                    <ext:NumberColumn DataIndex="APORTACIONES_INTERESES_S_APORTACION_SALDO"   Header="Saldo Intereses sobre Aportaciones" Sortable="true"></ext:NumberColumn>
+                                    <ext:NumberColumn DataIndex="APORTACIONES_EXCEDENTE_PERIODO_SALDO"        Header="Saldo Excedente de Período" Sortable="true"></ext:NumberColumn>
                                     <ext:NumberColumn DataIndex="APORTACIONES_SALDO_TOTAL"                    Header="Saldo Total" Sortable="true"></ext:NumberColumn>
 
                                     <ext:Column DataIndex="SOCIOS_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
@@ -162,6 +167,52 @@
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
                                                         </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:NumberField ID="f_APORTACIONES_ORDINARIA_SALDO" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <Listeners>
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                            </Listeners>
+                                                        </ext:NumberField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:NumberField ID="f_APORTACIONES_EXTRAORDINARIA_SALDO" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <Listeners>
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                            </Listeners>
+                                                        </ext:NumberField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:NumberField ID="f_APORTACIONES_CAPITALIZACION_RETENCION_SALDO" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <Listeners>
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                            </Listeners>
+                                                        </ext:NumberField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:NumberField ID="f_APORTACIONES_INTERESES_S_APORTACION_SALDO" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <Listeners>
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                            </Listeners>
+                                                        </ext:NumberField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:NumberField ID="f_APORTACIONES_EXCEDENTE_PERIODO_SALDO" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <Listeners>
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                            </Listeners>
+                                                        </ext:NumberField>
                                                     </Component>
                                                 </ext:HeaderColumn>
 
@@ -237,86 +288,41 @@
                                             </ToolTips>
                                         </ext:TextField>
 
-
-                                        <ext:Panel ID="EditAportacionesRetirosPnl" runat ="server" Layout="ColumnLayout" Border="false" AnchorHorizontal="100%" >
-                                            <LayoutConfig>
-                                                <ext:ColumnLayoutConfig FitHeight="false" />
-                                            </LayoutConfig>
+                                        <ext:FieldSet runat="server" ID="EditAportacionesFS" Title="Saldos" Padding="5" LabelWidth="200" >
                                             <Items>
-                                            
-                                                <ext:FieldSet runat="server" ID="EditAportacionesFS" Title="Saldos" Padding="5" LabelWidth="200" ColumnWidth=".8" >
-                                                    <Items>
-                                                        <ext:NumberField runat="server" ID="EditAportacionOrdinariaSaldoTxt"  DataIndex="APORTACIONES_ORDINARIA_SALDO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Saldo Aportación Ordinaria" AllowBlank="false" ReadOnly="true" MsgTarget="Side" >
-                                                            <ToolTips>
-                                                                <ext:ToolTip ID="ToolTip5" runat="server" Title="Saldo Aportación Ordinaria" Html="El saldo aportación ordinaria es de solo lectura." Width="200" TrackMouse="true" />
-                                                            </ToolTips>
-                                                        </ext:NumberField>
-                                                        <ext:NumberField runat="server" ID="EditAportacionExtraordinariaSaldoTxt"  DataIndex="APORTACIONES_EXTRAORDINARIA_SALDO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Saldo Aportación Extraordinaria" AllowBlank="false" ReadOnly="true" MsgTarget="Side" >
-                                                            <ToolTips>
-                                                                <ext:ToolTip ID="ToolTip6" runat="server" Title="Saldo Aportación Extraordinaria" Html="El saldo aportación extraordinaria es de solo lectura." Width="200" TrackMouse="true" />
-                                                            </ToolTips>
-                                                        </ext:NumberField>
-                                                        <ext:NumberField runat="server" ID="EditAportacionCapRetencionSaldoTxt"  DataIndex="APORTACIONES_CAPITALIZACION_RETENCION_SALDO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Saldo Capitalización por Retención" AllowBlank="false" ReadOnly="true" MsgTarget="Side" >
-                                                            <ToolTips>
-                                                                <ext:ToolTip ID="ToolTip7" runat="server" Title="Saldo Capitalización por Retención" Html="El saldo capitalización por retención es de solo lectura." Width="200" TrackMouse="true" />
-                                                            </ToolTips>
-                                                        </ext:NumberField>
-                                                        <ext:NumberField runat="server" ID="EditAportacionInteresesSAportacionesSaldoTxt"  DataIndex="APORTACIONES_INTERESES_S_APORTACION_SALDO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Saldo Intereses sobre Aportaciones" AllowBlank="false" ReadOnly="true" MsgTarget="Side" >
-                                                            <ToolTips>
-                                                                <ext:ToolTip ID="ToolTip8" runat="server" Title="Saldo Intereses sobre Aportaciones" Html="El saldo intereses sobre aportaciones es de solo lectura." Width="200" TrackMouse="true" />
-                                                            </ToolTips>
-                                                        </ext:NumberField>
-                                                        <ext:NumberField runat="server" ID="EditAportacionExcedentePeriodoSaldoTxt"  DataIndex="APORTACIONES_EXCEDENTE_PERIODO_SALDO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Saldo Excedente de Período" AllowBlank="false" ReadOnly="true" MsgTarget="Side" >
-                                                            <ToolTips>
-                                                                <ext:ToolTip ID="ToolTip9" runat="server" Title="Saldo Excedente de Período" Html="El saldo excedente de período es de solo lectura." Width="200" TrackMouse="true" />
-                                                            </ToolTips>
-                                                        </ext:NumberField>
+                                                <ext:NumberField runat="server" ID="EditAportacionOrdinariaSaldoTxt"  DataIndex="APORTACIONES_ORDINARIA_SALDO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Saldo Aportación Ordinaria" AllowBlank="false" ReadOnly="true" MsgTarget="Side" >
+                                                    <ToolTips>
+                                                        <ext:ToolTip ID="ToolTip5" runat="server" Title="Saldo Aportación Ordinaria" Html="El saldo aportación ordinaria es de solo lectura." Width="200" TrackMouse="true" />
+                                                    </ToolTips>
+                                                </ext:NumberField>
+                                                <ext:NumberField runat="server" ID="EditAportacionExtraordinariaSaldoTxt"  DataIndex="APORTACIONES_EXTRAORDINARIA_SALDO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Saldo Aportación Extraordinaria" AllowBlank="false" ReadOnly="true" MsgTarget="Side" >
+                                                    <ToolTips>
+                                                        <ext:ToolTip ID="ToolTip6" runat="server" Title="Saldo Aportación Extraordinaria" Html="El saldo aportación extraordinaria es de solo lectura." Width="200" TrackMouse="true" />
+                                                    </ToolTips>
+                                                </ext:NumberField>
+                                                <ext:NumberField runat="server" ID="EditAportacionCapRetencionSaldoTxt"  DataIndex="APORTACIONES_CAPITALIZACION_RETENCION_SALDO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Saldo Capitalización por Retención" AllowBlank="false" ReadOnly="true" MsgTarget="Side" >
+                                                    <ToolTips>
+                                                        <ext:ToolTip ID="ToolTip7" runat="server" Title="Saldo Capitalización por Retención" Html="El saldo capitalización por retención es de solo lectura." Width="200" TrackMouse="true" />
+                                                    </ToolTips>
+                                                </ext:NumberField>
+                                                <ext:NumberField runat="server" ID="EditAportacionInteresesSAportacionesSaldoTxt"  DataIndex="APORTACIONES_INTERESES_S_APORTACION_SALDO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Saldo Intereses sobre Aportaciones" AllowBlank="false" ReadOnly="true" MsgTarget="Side" >
+                                                    <ToolTips>
+                                                        <ext:ToolTip ID="ToolTip8" runat="server" Title="Saldo Intereses sobre Aportaciones" Html="El saldo intereses sobre aportaciones es de solo lectura." Width="200" TrackMouse="true" />
+                                                    </ToolTips>
+                                                </ext:NumberField>
+                                                <ext:NumberField runat="server" ID="EditAportacionExcedentePeriodoSaldoTxt"  DataIndex="APORTACIONES_EXCEDENTE_PERIODO_SALDO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Saldo Excedente de Período" AllowBlank="false" ReadOnly="true" MsgTarget="Side" >
+                                                    <ToolTips>
+                                                        <ext:ToolTip ID="ToolTip9" runat="server" Title="Saldo Excedente de Período" Html="El saldo excedente de período es de solo lectura." Width="200" TrackMouse="true" />
+                                                    </ToolTips>
+                                                </ext:NumberField>
 
-                                                        <ext:NumberField runat="server" ID="EditAportacionTotalSaldoTxt"  DataIndex="APORTACIONES_SALDO_TOTAL" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Saldo Total" AllowBlank="false" ReadOnly="true" MsgTarget="Side" >
-                                                            <ToolTips>
-                                                                <ext:ToolTip ID="ToolTip3" runat="server" Title="Saldo Total" Html="El saldo es de solo lectura." Width="200" TrackMouse="true" />
-                                                            </ToolTips>
-                                                        </ext:NumberField>
-                                                    </Items>
-                                                </ext:FieldSet>
-
-                                                <ext:FieldSet runat="server" ID="EditRetirosFS" Title="Retiros" HideLabels="true" Padding="5" ColumnWidth=".2">
-                                                    <Items>
-                                                        <ext:NumberField runat="server" ID="EditRetiroAportacionOrdinariaSaldoTxt" Text="0" AnchorHorizontal="90%" AllowBlank="false" MsgTarget="Side" >
-                                                            <Listeners>
-                                                                <Change Handler="PageX.validarCantidadRetiro(#{EditAportacionOrdinariaSaldoTxt} ,#{EditRetiroAportacionOrdinariaSaldoTxt}); PageX.loadTotalRetiro();" />
-                                                            </Listeners>
-                                                        </ext:NumberField>
-                                                        <ext:NumberField runat="server" ID="EditRetiroAportacionExtraordinariaSaldoTxt" Text="0" AnchorHorizontal="90%" AllowBlank="false" MsgTarget="Side" >
-                                                            <Listeners>
-                                                                <Change Handler="PageX.validarCantidadRetiro(#{EditAportacionExtraordinariaSaldoTxt}, #{EditRetiroAportacionExtraordinariaSaldoTxt}); PageX.loadTotalRetiro();" />
-                                                            </Listeners>
-                                                        </ext:NumberField>
-                                                        <ext:NumberField runat="server" ID="EditRetiroAportacionCapRetencionSaldoTxt" Text="0" AnchorHorizontal="90%" AllowBlank="false" MsgTarget="Side" >
-                                                            <Listeners>
-                                                                <Change Handler="PageX.validarCantidadRetiro(#{EditAportacionCapRetencionSaldoTxt}, #{EditRetiroAportacionCapRetencionSaldoTxt}); PageX.loadTotalRetiro();" />
-                                                            </Listeners>
-                                                        </ext:NumberField>
-                                                        <ext:NumberField runat="server" ID="EditRetiroAportacionInteresesSAportacionesSaldoTxt" Text="0" AnchorHorizontal="90%" AllowBlank="false" MsgTarget="Side" >
-                                                            <Listeners>
-                                                                <Change Handler="PageX.validarCantidadRetiro(#{EditAportacionInteresesSAportacionesSaldoTxt}, #{EditRetiroAportacionInteresesSAportacionesSaldoTxt}); PageX.loadTotalRetiro();" />
-                                                            </Listeners>
-                                                        </ext:NumberField>
-                                                        <ext:NumberField runat="server" ID="EditRetiroAportacionExcedentePeriodoSaldoTxt" Text="0" AnchorHorizontal="90%" AllowBlank="false" MsgTarget="Side" >
-                                                            <Listeners>
-                                                                <Change Handler="PageX.validarCantidadRetiro(#{EditAportacionExcedentePeriodoSaldoTxt}, #{EditRetiroAportacionExcedentePeriodoSaldoTxt}); PageX.loadTotalRetiro();" />
-                                                            </Listeners>
-                                                        </ext:NumberField>
-
-                                                        <ext:NumberField runat="server" ID="EditRetiroAportacionTotalSaldoTxt" Text="0" AnchorHorizontal="90%" AllowBlank="false" ReadOnly="true" MsgTarget="Side" >
-                                                            <ToolTips>
-                                                                <ext:ToolTip ID="ToolTip15" runat="server" Title="Saldo Total" Html="El saldo es de solo lectura." Width="200" TrackMouse="true" />
-                                                            </ToolTips>
-                                                        </ext:NumberField>
-                                                    </Items>
-                                                </ext:FieldSet>
+                                                <ext:NumberField runat="server" ID="EditAportacionTotalSaldoTxt"  DataIndex="APORTACIONES_SALDO_TOTAL" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Saldo Total" AllowBlank="false" ReadOnly="true" MsgTarget="Side" >
+                                                    <ToolTips>
+                                                        <ext:ToolTip ID="ToolTip3" runat="server" Title="Saldo Total" Html="El saldo es de solo lectura." Width="200" TrackMouse="true" />
+                                                    </ToolTips>
+                                                </ext:NumberField>
                                             </Items>
-                                        </ext:Panel>
+                                        </ext:FieldSet>
                                         <ext:TextField runat="server"   ID="EditCreatedByTxt"     DataIndex="CREADO_POR"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
                                         <ext:TextField runat="server"   ID="EditCreationDateTxt"  DataIndex="FECHA_CREACION"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
                                     </Items>
@@ -333,11 +339,6 @@
                         <ext:Button ID="EditNextBtn" runat="server" Text="Siguiente" Icon="NextGreen">
                             <Listeners>
                                 <Click Handler="PageX.next();" />
-                            </Listeners>
-                        </ext:Button>
-                        <ext:Button ID="RetirarBtn" runat="server" Text="Retirar Todo" Icon="CoinsDelete" FormBind="true">
-                            <Listeners>
-                                <Click Handler="#{EditCreationDateTxt}.setValue(#{LoggedUserHdn}.getValue()); PageX.update();" />
                             </Listeners>
                         </ext:Button>
                     </Buttons>

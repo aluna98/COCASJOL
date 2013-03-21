@@ -337,7 +337,7 @@
                                 </ext:rowselectionmodel>
                             </selectionmodel>
                             <KeyMap>
-                                <ext:KeyBinding>
+                                <ext:KeyBinding Ctrl="true" >
                                     <Keys>
                                         <ext:Key Code="INSERT" />
                                         <ext:Key Code="ENTER" />

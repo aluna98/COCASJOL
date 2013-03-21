@@ -232,6 +232,10 @@ var WindowX = {
         DesktopX.createDynamicWindow(app, 'aportacionesPorSocio16', 'Aportaciones por Socio', 'Aportaciones/AportacionesPorSocio.aspx', 1000, 600);
     },
 
+    retiroDeAportaciones: function (app) {
+        DesktopX.createDynamicWindow(app, 'retiroAportaciones16', 'Retiro de Aportaciones', 'Aportaciones/RetiroDeAportaciones.aspx', 1000, 600);
+    },
+
     solicitudesDePrestamo: function (app) {
         DesktopX.createDynamicWindow(app, 'pagewhitetext', 'Solicitudes de Prestamo', 'Prestamos/SolicitudesDePrestamos.aspx');
     },
@@ -284,6 +288,8 @@ var ShorcutClickHandler = function (app, id) {
         WindowX.movimientosDeInventarioDeCafe(app);
     } else if (id == 'scAportacionesPorSocio') {
         WindowX.aportacionesPorSocio(app);
+    } else if (id == 'scRetiroDeAportaciones') {
+        WindowX.retiroDeAportaciones(app);
     } else if (id == 'scSolicitudesDePrestamo') {
         WindowX.solicitudesDePrestamo(app);
     } else if (id == 'scPrestamos') {

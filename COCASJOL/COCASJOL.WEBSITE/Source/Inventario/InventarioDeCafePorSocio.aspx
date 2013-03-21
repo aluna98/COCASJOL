@@ -91,7 +91,7 @@
                         <ext:GridPanel ID="InventarioCafeGridP" runat="server" AutoExpandColumn="SOCIOS_NOMBRE_COMPLETO" Height="300"
                             Title="Inventario de Café" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
                             <KeyMap>
-                                <ext:KeyBinding>
+                                <ext:KeyBinding Ctrl="true" >
                                     <Keys>
                                         <ext:Key Code="ENTER" />
                                     </Keys>

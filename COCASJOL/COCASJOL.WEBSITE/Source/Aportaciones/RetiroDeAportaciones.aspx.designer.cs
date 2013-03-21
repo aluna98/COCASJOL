@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace COCASJOL.WEBSITE {
+namespace COCASJOL.WEBSITE.Source.Aportaciones {
     
     
-    public partial class Desktop {
+    public partial class RetiroDeAportaciones {
         
         /// <summary>
         /// form1 control.
@@ -31,409 +31,94 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.ResourceManager ResourceManager1;
         
         /// <summary>
-        /// cmenu control.
+        /// KeyNav1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Menu cmenu;
+        protected global::Ext.Net.KeyNav KeyNav1;
         
         /// <summary>
-        /// MyDesktop control.
+        /// AudWin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Desktop MyDesktop;
+        protected global::COCASJOL.WEBSITE.Source.Auditoria.Auditoria AudWin;
         
         /// <summary>
-        /// pnlSample control.
+        /// RetiroAportacionesDs control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel pnlSample;
+        protected global::System.Web.UI.WebControls.ObjectDataSource RetiroAportacionesDs;
         
         /// <summary>
-        /// BorderLayout1 control.
+        /// SociosDS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.BorderLayout BorderLayout1;
+        protected global::System.Web.UI.WebControls.ObjectDataSource SociosDS;
         
         /// <summary>
-        /// IngresosFormP control.
+        /// SocioSt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.FormPanel IngresosFormP;
+        protected global::Ext.Net.Store SocioSt;
         
         /// <summary>
-        /// TotalIngresadoTxt control.
+        /// AportacionesDS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField TotalIngresadoTxt;
+        protected global::System.Web.UI.WebControls.ObjectDataSource AportacionesDS;
         
         /// <summary>
-        /// TotalCompradoTxt control.
+        /// AportacionesSt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField TotalCompradoTxt;
+        protected global::Ext.Net.Store AportacionesSt;
         
         /// <summary>
-        /// TotalDepositoTxt control.
+        /// nullHdn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField TotalDepositoTxt;
+        protected global::Ext.Net.Hidden nullHdn;
         
         /// <summary>
-        /// SecurityMenu control.
+        /// LoggedUserHdn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.MenuItem SecurityMenu;
+        protected global::Ext.Net.Hidden LoggedUserHdn;
         
         /// <summary>
-        /// UsuariosMenuItem control.
+        /// Viewport1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.MenuItem UsuariosMenuItem;
-        
-        /// <summary>
-        /// RolesMenuItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem RolesMenuItem;
-        
-        /// <summary>
-        /// UtilsMenu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem UtilsMenu;
-        
-        /// <summary>
-        /// PlantillasNotificacionesMenuItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem PlantillasNotificacionesMenuItem;
-        
-        /// <summary>
-        /// EnvironmentMenu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem EnvironmentMenu;
-        
-        /// <summary>
-        /// Menu2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Menu Menu2;
-        
-        /// <summary>
-        /// VariablesDeEntornoMenuItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem VariablesDeEntornoMenuItem;
-        
-        /// <summary>
-        /// AsociatesMenu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem AsociatesMenu;
-        
-        /// <summary>
-        /// SociosMenuItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem SociosMenuItem;
-        
-        /// <summary>
-        /// NotasDePesoMenu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem NotasDePesoMenu;
-        
-        /// <summary>
-        /// EstadosNotasDePesoMenuItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem EstadosNotasDePesoMenuItem;
-        
-        /// <summary>
-        /// NotasDePesoEnPesajeMenuItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem NotasDePesoEnPesajeMenuItem;
-        
-        /// <summary>
-        /// NotasDePesoEnCatacionMenuItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem NotasDePesoEnCatacionMenuItem;
-        
-        /// <summary>
-        /// NotasDePesoMenuItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem NotasDePesoMenuItem;
-        
-        /// <summary>
-        /// InventarioDeCafePorSocioMenu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem InventarioDeCafePorSocioMenu;
-        
-        /// <summary>
-        /// Menu1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Menu Menu1;
-        
-        /// <summary>
-        /// ClasificacionesDeCafeMenuItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem ClasificacionesDeCafeMenuItem;
-        
-        /// <summary>
-        /// InventarioDeCafePorSocioMenuItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem InventarioDeCafePorSocioMenuItem;
-        
-        /// <summary>
-        /// LiquidacionesMenu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem LiquidacionesMenu;
-        
-        /// <summary>
-        /// LiquidacionesMenuItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem LiquidacionesMenuItem;
-        
-        /// <summary>
-        /// AportacionesPorSocioMenu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem AportacionesPorSocioMenu;
-        
-        /// <summary>
-        /// AportacionesPorSocioMenuItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem AportacionesPorSocioMenuItem;
-        
-        /// <summary>
-        /// RetiroDeAportacionesMenuItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem RetiroDeAportacionesMenuItem;
-        
-        /// <summary>
-        /// PrestamosMenu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem PrestamosMenu;
-        
-        /// <summary>
-        /// SolicitudesDePrestamoMenuItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem SolicitudesDePrestamoMenuItem;
-        
-        /// <summary>
-        /// PrestamosMenuItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem PrestamosMenuItem;
-        
-        /// <summary>
-        /// ReportesMenu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem ReportesMenu;
-        
-        /// <summary>
-        /// MovimientosDeInventarioDeCafeMenuItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem MovimientosDeInventarioDeCafeMenuItem;
-        
-        /// <summary>
-        /// SettingsWin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.DesktopWindow SettingsWin;
-        
-        /// <summary>
-        /// Panel2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Panel Panel2;
-        
-        /// <summary>
-        /// portal2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Portal portal2;
-        
-        /// <summary>
-        /// portalcolumn1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.PortalColumn portalcolumn1;
-        
-        /// <summary>
-        /// Portlet12 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Portlet Portlet12;
-        
-        /// <summary>
-        /// TableLayout2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TableLayout TableLayout2;
-        
-        /// <summary>
-        /// NotificacioneBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ImageButton NotificacioneBtn;
-        
-        /// <summary>
-        /// Label111 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Label Label111;
+        protected global::Ext.Net.Viewport Viewport1;
         
         /// <summary>
         /// Panel1 control.
@@ -445,103 +130,31 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.Panel Panel1;
         
         /// <summary>
-        /// portal1 control.
+        /// RetiroAportacionesGridP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Portal portal1;
+        protected global::Ext.Net.GridPanel RetiroAportacionesGridP;
         
         /// <summary>
-        /// portalcolumn control.
+        /// RetiroAportacionesSt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.PortalColumn portalcolumn;
+        protected global::Ext.Net.Store RetiroAportacionesSt;
         
         /// <summary>
-        /// UserInfoPortlet control.
+        /// RowSelectionModel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Portlet UserInfoPortlet;
-        
-        /// <summary>
-        /// UsuarioActulBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ImageButton UsuarioActulBtn;
-        
-        /// <summary>
-        /// Label11 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Label Label11;
-        
-        /// <summary>
-        /// PasswordPortlet control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Portlet PasswordPortlet;
-        
-        /// <summary>
-        /// TableLayout1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TableLayout TableLayout1;
-        
-        /// <summary>
-        /// CambiarClaveBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ImageButton CambiarClaveBtn;
-        
-        /// <summary>
-        /// Label12 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Label Label12;
-        
-        /// <summary>
-        /// dsReport control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store dsReport;
-        
-        /// <summary>
-        /// NotificationsWin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.DesktopWindow NotificationsWin;
+        protected global::Ext.Net.RowSelectionModel RowSelectionModel1;
         
         /// <summary>
         /// Toolbar1 control.
@@ -553,13 +166,76 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.Toolbar Toolbar1;
         
         /// <summary>
-        /// DeleteReadNotificationBtn control.
+        /// AgregarBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button DeleteReadNotificationBtn;
+        protected global::Ext.Net.Button AgregarBtn;
+        
+        /// <summary>
+        /// EditarBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button EditarBtn;
+        
+        /// <summary>
+        /// ToolbarFill1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolbarFill ToolbarFill1;
+        
+        /// <summary>
+        /// AuditoriaBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button AuditoriaBtn;
+        
+        /// <summary>
+        /// GridView1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.GridView GridView1;
+        
+        /// <summary>
+        /// f_RETIROS_AP_ID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField f_RETIROS_AP_ID;
+        
+        /// <summary>
+        /// f_SOCIOS_ID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField f_SOCIOS_ID;
+        
+        /// <summary>
+        /// f_RETIROS_AP_FECHA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DropDownField f_RETIROS_AP_FECHA;
         
         /// <summary>
         /// FormPanel1 control.
@@ -571,6 +247,123 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.FormPanel FormPanel1;
         
         /// <summary>
+        /// CompositeField1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.CompositeField CompositeField1;
+        
+        /// <summary>
+        /// f_DATE_FROM control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DateField f_DATE_FROM;
+        
+        /// <summary>
+        /// CompositeField2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.CompositeField CompositeField2;
+        
+        /// <summary>
+        /// f_DATE_TO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DateField f_DATE_TO;
+        
+        /// <summary>
+        /// Button1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Button1;
+        
+        /// <summary>
+        /// Button2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Button2;
+        
+        /// <summary>
+        /// f_RETIROS_AP_TOTAL_RETIRADO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField f_RETIROS_AP_TOTAL_RETIRADO;
+        
+        /// <summary>
+        /// ClearFilterButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button ClearFilterButton;
+        
+        /// <summary>
+        /// ToolTip4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip4;
+        
+        /// <summary>
+        /// PagingToolbar1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.PagingToolbar PagingToolbar1;
+        
+        /// <summary>
+        /// AgregarRetiroAportacionWin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Window AgregarRetiroAportacionWin;
+        
+        /// <summary>
+        /// AgregarRetiroAportacionFormP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FormPanel AgregarRetiroAportacionFormP;
+        
+        /// <summary>
+        /// Panel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Panel2;
+        
+        /// <summary>
         /// Panel3 control.
         /// </summary>
         /// <remarks>
@@ -580,255 +373,498 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.Panel Panel3;
         
         /// <summary>
-        /// NotificacionesGridP control.
+        /// AddFechaRetiroTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.GridPanel NotificacionesGridP;
+        protected global::Ext.Net.DateField AddFechaRetiroTxt;
         
         /// <summary>
-        /// RowExpander1 control.
+        /// AddSociosIdTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.RowExpander RowExpander1;
+        protected global::Ext.Net.ComboBox AddSociosIdTxt;
         
         /// <summary>
-        /// PagingToolbar4 control.
+        /// AddNombreTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.PagingToolbar PagingToolbar4;
+        protected global::Ext.Net.TextField AddNombreTxt;
         
         /// <summary>
-        /// AboutWin control.
+        /// ToolTip11 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Window AboutWin;
+        protected global::Ext.Net.ToolTip ToolTip11;
         
         /// <summary>
-        /// Label1 control.
+        /// AddAportacionesRetirosPnl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Label Label1;
+        protected global::Ext.Net.Panel AddAportacionesRetirosPnl;
         
         /// <summary>
-        /// WebAssemblyTitle control.
+        /// AddAportacionesFS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Label WebAssemblyTitle;
+        protected global::Ext.Net.FieldSet AddAportacionesFS;
         
         /// <summary>
-        /// WebAssemblyVersion control.
+        /// AddAportacionOrdinariaSaldoTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Label WebAssemblyVersion;
+        protected global::Ext.Net.NumberField AddAportacionOrdinariaSaldoTxt;
         
         /// <summary>
-        /// LogicAssemblyTitle control.
+        /// ToolTip12 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Label LogicAssemblyTitle;
+        protected global::Ext.Net.ToolTip ToolTip12;
         
         /// <summary>
-        /// LogicAssemblyVersion control.
+        /// AddAportacionExtraordinariaSaldoTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Label LogicAssemblyVersion;
+        protected global::Ext.Net.NumberField AddAportacionExtraordinariaSaldoTxt;
         
         /// <summary>
-        /// scUsuariosTooltip control.
+        /// ToolTip13 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ToolTip scUsuariosTooltip;
+        protected global::Ext.Net.ToolTip ToolTip13;
         
         /// <summary>
-        /// scRolesTooltip control.
+        /// AddAportacionCapRetencionSaldoTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ToolTip scRolesTooltip;
+        protected global::Ext.Net.NumberField AddAportacionCapRetencionSaldoTxt;
         
         /// <summary>
-        /// scPlantillasNotificacionesTooltip control.
+        /// ToolTip14 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ToolTip scPlantillasNotificacionesTooltip;
+        protected global::Ext.Net.ToolTip ToolTip14;
         
         /// <summary>
-        /// scVariablesDeEntornoTooltip control.
+        /// AddAportacionInteresesSAportacionesSaldoTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ToolTip scVariablesDeEntornoTooltip;
+        protected global::Ext.Net.NumberField AddAportacionInteresesSAportacionesSaldoTxt;
         
         /// <summary>
-        /// scSociosTooltip control.
+        /// ToolTip16 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ToolTip scSociosTooltip;
+        protected global::Ext.Net.ToolTip ToolTip16;
         
         /// <summary>
-        /// scEstadosNotasDePesoTooltip control.
+        /// AddAportacionExcedentePeriodoSaldoTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ToolTip scEstadosNotasDePesoTooltip;
+        protected global::Ext.Net.NumberField AddAportacionExcedentePeriodoSaldoTxt;
         
         /// <summary>
-        /// scNotasDePesoEnPesajeTooltip control.
+        /// ToolTip17 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ToolTip scNotasDePesoEnPesajeTooltip;
+        protected global::Ext.Net.ToolTip ToolTip17;
         
         /// <summary>
-        /// scNotasDePesoEnCatacionTooltip control.
+        /// AddAportacionTotalSaldoTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ToolTip scNotasDePesoEnCatacionTooltip;
+        protected global::Ext.Net.NumberField AddAportacionTotalSaldoTxt;
         
         /// <summary>
-        /// scNotasDePesoTooltip control.
+        /// ToolTip18 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ToolTip scNotasDePesoTooltip;
+        protected global::Ext.Net.ToolTip ToolTip18;
         
         /// <summary>
-        /// scClasificacionesDeCafeTooltip control.
+        /// AddRetirosFS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ToolTip scClasificacionesDeCafeTooltip;
+        protected global::Ext.Net.FieldSet AddRetirosFS;
         
         /// <summary>
-        /// scInventarioDeCafePorSocioTooltip control.
+        /// AddRetiroAportacionOrdinariaSaldoTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ToolTip scInventarioDeCafePorSocioTooltip;
+        protected global::Ext.Net.NumberField AddRetiroAportacionOrdinariaSaldoTxt;
         
         /// <summary>
-        /// scHojasDeLiquidacionTooltip control.
+        /// AddRetiroAportacionExtraordinariaSaldoTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ToolTip scHojasDeLiquidacionTooltip;
+        protected global::Ext.Net.NumberField AddRetiroAportacionExtraordinariaSaldoTxt;
         
         /// <summary>
-        /// scAportacionesPorSocioTooltip control.
+        /// AddRetiroAportacionCapRetencionSaldoTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ToolTip scAportacionesPorSocioTooltip;
+        protected global::Ext.Net.NumberField AddRetiroAportacionCapRetencionSaldoTxt;
         
         /// <summary>
-        /// scRetiroDeAportacionesTooltip control.
+        /// AddRetiroAportacionInteresesSAportacionesSaldoTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ToolTip scRetiroDeAportacionesTooltip;
+        protected global::Ext.Net.NumberField AddRetiroAportacionInteresesSAportacionesSaldoTxt;
         
         /// <summary>
-        /// scSolicitudesDePrestamoTooltip control.
+        /// AddRetiroAportacionExcedentePeriodoSaldoTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ToolTip scSolicitudesDePrestamoTooltip;
+        protected global::Ext.Net.NumberField AddRetiroAportacionExcedentePeriodoSaldoTxt;
         
         /// <summary>
-        /// scPrestamosTooltip control.
+        /// AddRetiroAportacionTotalSaldoTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ToolTip scPrestamosTooltip;
+        protected global::Ext.Net.NumberField AddRetiroAportacionTotalSaldoTxt;
         
         /// <summary>
-        /// scMovimientosDeInventarioDeCafeTooltip control.
+        /// ToolTip19 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ToolTip scMovimientosDeInventarioDeCafeTooltip;
+        protected global::Ext.Net.ToolTip ToolTip19;
         
         /// <summary>
-        /// UsuarioActualCtl control.
+        /// AddCreatedByTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::COCASJOL.WEBSITE.Source.Seguridad.UsuarioActual UsuarioActualCtl;
+        protected global::Ext.Net.TextField AddCreatedByTxt;
         
         /// <summary>
-        /// CambiarClaveCtl control.
+        /// AddCreationDateTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::COCASJOL.WEBSITE.Source.Seguridad.CambiarClave CambiarClaveCtl;
+        protected global::Ext.Net.TextField AddCreationDateTxt;
+        
+        /// <summary>
+        /// Button3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Button3;
+        
+        /// <summary>
+        /// EditarRetiroAportacionWin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Window EditarRetiroAportacionWin;
+        
+        /// <summary>
+        /// EditarRetiroAportacionFormP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FormPanel EditarRetiroAportacionFormP;
+        
+        /// <summary>
+        /// Panel12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Panel12;
+        
+        /// <summary>
+        /// Panel13 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Panel13;
+        
+        /// <summary>
+        /// EditFechaRetiroTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DateField EditFechaRetiroTxt;
+        
+        /// <summary>
+        /// EditSociosIdTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField EditSociosIdTxt;
+        
+        /// <summary>
+        /// ToolTip1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip1;
+        
+        /// <summary>
+        /// EditNombreTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField EditNombreTxt;
+        
+        /// <summary>
+        /// ToolTip2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip2;
+        
+        /// <summary>
+        /// EditAportacionesFS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FieldSet EditAportacionesFS;
+        
+        /// <summary>
+        /// EditRetiroAportacionOrdinariaSaldoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditRetiroAportacionOrdinariaSaldoTxt;
+        
+        /// <summary>
+        /// ToolTip5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip5;
+        
+        /// <summary>
+        /// EditRetiroAportacionExtraordinariaSaldoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditRetiroAportacionExtraordinariaSaldoTxt;
+        
+        /// <summary>
+        /// ToolTip6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip6;
+        
+        /// <summary>
+        /// EditRetiroAportacionCapRetencionSaldoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditRetiroAportacionCapRetencionSaldoTxt;
+        
+        /// <summary>
+        /// ToolTip7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip7;
+        
+        /// <summary>
+        /// EditRetiroAportacionInteresesSAportacionesSaldoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditRetiroAportacionInteresesSAportacionesSaldoTxt;
+        
+        /// <summary>
+        /// ToolTip8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip8;
+        
+        /// <summary>
+        /// EditRetiroAportacionExcedentePeriodoSaldoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditRetiroAportacionExcedentePeriodoSaldoTxt;
+        
+        /// <summary>
+        /// ToolTip9 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip9;
+        
+        /// <summary>
+        /// EditRetiroAportacionTotalSaldoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField EditRetiroAportacionTotalSaldoTxt;
+        
+        /// <summary>
+        /// ToolTip3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip ToolTip3;
+        
+        /// <summary>
+        /// EditCreatedByTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField EditCreatedByTxt;
+        
+        /// <summary>
+        /// EditCreationDateTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField EditCreationDateTxt;
+        
+        /// <summary>
+        /// EditPreviousBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button EditPreviousBtn;
+        
+        /// <summary>
+        /// EditNextBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button EditNextBtn;
     }
 }

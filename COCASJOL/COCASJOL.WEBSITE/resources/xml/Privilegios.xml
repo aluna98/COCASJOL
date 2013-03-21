@@ -105,6 +105,15 @@
     <shortcut>scAportacionesPorSocio</shortcut>
     <menuitem>AportacionesPorSocioMenuItem</menuitem>
   </privilege>
+
+  <privilege>
+    <key>MANT_RETIROAPORTACIONES</key>
+    <page>RetiroDeAportaciones</page>
+    <module>RetiroDeAportacionesModule</module>
+    <shortcut>scRetiroDeAportaciones</shortcut>
+    <menuitem>RetiroDeAportacionesMenuItem</menuitem>
+  </privilege>
+
   <privilege>
     <key>MANT_VARIABLESENTORNO</key>
     <page>VariablesDeEntorno</page>

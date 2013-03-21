@@ -243,6 +243,14 @@
                         </Listeners>
                     </Launcher>
                 </ext:DesktopModule>
+
+                <ext:DesktopModule ModuleID="RetiroDeAportacionesModule">
+                    <Launcher ID="RetiroAportacionesLauncher" runat="server" Text="Retiro de Aportaciones" IconCls="icon-retiroAportaciones16" >
+                        <Listeners>
+                            <Click Handler="WindowX.retiroDeAportaciones(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
                 <%--Aportaciones por Socio--%>
 
                 <%--Prestamos--%>
@@ -309,6 +317,7 @@
                 <ext:DesktopShortcut ShortcutID="scInventarioDeCafePorSocio"      Text="Inventario de Café por Socio"                 IconCls="shortcut-icon icon-inventarioDeCafePorSocio" />
                 <ext:DesktopShortcut ShortcutID="scHojasDeLiquidacion"            Text="Hojas de Liquidación"                         IconCls="shortcut-icon icon-hojaDeLiquidacion" />
                 <ext:DesktopShortcut ShortcutID="scAportacionesPorSocio"          Text="Aportaciones por Socio"                       IconCls="shortcut-icon icon-aportacionesPorSocio" />
+                <ext:DesktopShortcut ShortcutID="scRetiroDeAportaciones"          Text="Retiro de Aportaciones"                       IconCls="shortcut-icon icon-retiroAportaciones" />
                 <ext:DesktopShortcut ShortcutID="scSolicitudesDePrestamo"         Text="Solicitudes de Prestamo"                      IconCls="shortcut-icon icon-solicitudesDePrestamo" />
                 <ext:DesktopShortcut ShortcutID="scPrestamos"                     Text="Prestamos"                                    IconCls="shortcut-icon icon-prestamos" />
                 <ext:DesktopShortcut ShortcutID="scMovimientosDeInventarioDeCafe" Text="Reporte de Movimientos de Inventario de Café" IconCls="shortcut-icon icon-movimientosDeInventarioDeCafe" />
@@ -460,6 +469,12 @@
                                     <ext:MenuItem ID="AportacionesPorSocioMenuItem" Text="Aportaciones por Socio" IconCls="icon-aportacionesPorSocio16" >
                                         <Listeners>
                                             <click Handler="WindowX.aportacionesPorSocio(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+
+                                    <ext:MenuItem ID="RetiroDeAportacionesMenuItem" Text="Retiro de Aportaciones" IconCls="icon-retiroAportaciones16" >
+                                        <Listeners>
+                                            <click Handler="WindowX.retiroDeAportaciones(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
                                 </Items>
@@ -740,14 +755,14 @@
             Icon="Information"
             Height="200"
             Resizable="false"
-            Hidden="true">
-            <Content>
-                Proyecto de Graduación para Ingeniería en Sistemas Computacionales.
-                <ext:Label runat="server" ID="WebAssemblyTitle"></ext:Label> - 
+            Hidden="true" Layout="FormLayout">
+            <Items>
+                <ext:Label runat="server" ID="Label1" Text="Proyecto de Graduación para Ingeniería en Sistemas Computacionales."></ext:Label>
+                <ext:Label runat="server" ID="WebAssemblyTitle"></ext:Label>
                 <ext:Label runat="server" ID="WebAssemblyVersion"></ext:Label>
                 <ext:Label runat="server" ID="LogicAssemblyTitle"></ext:Label>
                 <ext:Label runat="server" ID="LogicAssemblyVersion"></ext:Label>
-            </Content>
+            </Items>
         </ext:Window>
 
         <%--shortcuts' tooltips--%>
@@ -765,6 +780,7 @@
         <ext:ToolTip runat="server" ID="scInventarioDeCafePorSocioTooltip"      Html="Inventario de Café por Socio"                 Target="scInventarioDeCafePorSocio-shortcut"      ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scHojasDeLiquidacionTooltip"            Html="Hojas de Liquidación"                         Target="scHojasDeLiquidacion-shortcut"            ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scAportacionesPorSocioTooltip"          Html="Aportaciones por Socio"                       Target="scAportacionesPorSocio-shortcut"          ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scRetiroDeAportacionesTooltip"          Html="Retiro de Aportaciones"                       Target="scRetiroDeAportaciones-shortcut"          ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scSolicitudesDePrestamoTooltip"         Html="Solicitudes de Prestamo"                      Target="scSolicitudesDePrestamo-shortcut"         ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scPrestamosTooltip"                     Html="Prestamos"                                    Target="scPrestamos-shortcut"                     ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scMovimientosDeInventarioDeCafeTooltip" Html="Reporte de Movimientos de Inventario de Café" Target="scMovimientosDeInventarioDeCafe-shortcut" ></ext:ToolTip>

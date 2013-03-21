@@ -77,8 +77,10 @@
     <Content Include="resources\images\cheque.png" />
     <Content Include="resources\images\cheque16x16.png" />
     <Content Include="resources\images\cocasjol_start_button.gif" />
+    <Content Include="resources\images\coins.png" />
+    <Content Include="resources\images\coins16x16.png" />
     <Content Include="resources\images\coins_in_hand.png" />
-    <Content Include="resources\images\coins_in_hand16.png" />
+    <Content Include="resources\images\coins_in_hand16x16.png" />
     <Content Include="resources\images\cup.png" />
     <Content Include="resources\images\database.png" />
     <Content Include="resources\images\desktop.jpg" />
@@ -107,6 +109,7 @@
     <Content Include="resources\images\vista_start_button.gif" />
     <Content Include="resources\images\window48x48.png" />
     <Content Include="resources\js\aportaciones\aportacionesPorSocio.js" />
+    <Content Include="resources\js\aportaciones\retiroAportaciones.js" />
     <Content Include="resources\js\desktop.js" />
     <Content Include="resources\js\entorno\variablesDeEntorno.js" />
     <Content Include="resources\js\inventario\clasificacionesDeCafe.js" />
@@ -128,6 +131,7 @@
     </Content>
     <Content Include="Default.aspx" />
     <Content Include="Source\Aportaciones\AportacionesPorSocio.aspx" />
+    <Content Include="Source\Aportaciones\RetiroDeAportaciones.aspx" />
     <Content Include="Source\Auditoria\Auditoria.ascx" />
     <Content Include="Source\Desktop.aspx" />
     <Content Include="Source\Entorno\VariablesDeEntorno.aspx" />
@@ -173,6 +177,13 @@
     </Compile>
     <Compile Include="Source\Aportaciones\AportacionesPorSocio.aspx.designer.cs">
       <DependentUpon>AportacionesPorSocio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Aportaciones\RetiroDeAportaciones.aspx.cs">
+      <DependentUpon>RetiroDeAportaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Aportaciones\RetiroDeAportaciones.aspx.designer.cs">
+      <DependentUpon>RetiroDeAportaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Auditoria\Auditoria.ascx.cs">
       <DependentUpon>Auditoria.ascx</DependentUpon>

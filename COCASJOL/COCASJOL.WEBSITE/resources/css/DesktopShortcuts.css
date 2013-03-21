@@ -91,15 +91,25 @@
 .icon-movimientosDeInventarioDeCafe16
 {
     background-image: url(../images/report_bricks16x16.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/report_bricks16x16.png", sizingMethod="center");
 }
 
 .icon-aportacionesPorSocio16
 {
-    background-image: url("../images/coins_in_hand16.png") !important;
+    background-image: url("../images/coins16x16.png") !important;
 }
 
 .icon-aportacionesPorSocio
+{
+    background-image: url(../images/coins.png) !important;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/coins.png", sizingMethod="center");
+}
+
+.icon-retiroAportaciones16
+{
+    background-image: url("../images/coins_in_hand16x16.png") !important;
+}
+
+.icon-retiroAportaciones
 {
     background-image: url(../images/coins_in_hand.png) !important;
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/coins_in_hand.png", sizingMethod="center");
