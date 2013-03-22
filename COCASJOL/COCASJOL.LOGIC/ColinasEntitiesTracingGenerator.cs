@@ -48,8 +48,8 @@ using System.Data;
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "SOCIO_ID_FK", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "socio_general", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.socio_general), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "SOCIOS_ID_FK2", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "socio_produccion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.socio_produccion), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "Solicitudesxsociofk", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "solicitud_prestamo", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.solicitud_prestamo), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "VENTAS_INV_CAFE_CLASIFICACIONES_FK", "clasificacion_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.clasificacion_cafe), "ventas_inventario_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.venta_inventario_cafe), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "VENTAS_INV_CAFE_SOCIOS_FK", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "ventas_inventario_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.venta_inventario_cafe), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "VENTAS_INV_CLASIFICACIONES_FK", "clasificacion_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.clasificacion_cafe), "ventas_inventario_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.venta_inventario_cafe), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "VENTAS_INV_SOCIOS_FK", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "ventas_inventario_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.venta_inventario_cafe), true)]
 
 #endregion
 
@@ -2341,18 +2341,18 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "VENTAS_INV_CAFE_CLASIFICACIONES_FK", "ventas_inventario_cafe")]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "VENTAS_INV_CLASIFICACIONES_FK", "ventas_inventario_cafe")]
         public EntityCollection<venta_inventario_cafe> ventas_inventario_cafe
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<venta_inventario_cafe>("COLINASMODEL.VENTAS_INV_CAFE_CLASIFICACIONES_FK", "ventas_inventario_cafe");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<venta_inventario_cafe>("COLINASMODEL.VENTAS_INV_CLASIFICACIONES_FK", "ventas_inventario_cafe");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<venta_inventario_cafe>("COLINASMODEL.VENTAS_INV_CAFE_CLASIFICACIONES_FK", "ventas_inventario_cafe", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<venta_inventario_cafe>("COLINASMODEL.VENTAS_INV_CLASIFICACIONES_FK", "ventas_inventario_cafe", value);
                 }
             }
         }
@@ -9121,18 +9121,18 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "VENTAS_INV_CAFE_SOCIOS_FK", "ventas_inventario_cafe")]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "VENTAS_INV_SOCIOS_FK", "ventas_inventario_cafe")]
         public EntityCollection<venta_inventario_cafe> ventas_inventario_cafe
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<venta_inventario_cafe>("COLINASMODEL.VENTAS_INV_CAFE_SOCIOS_FK", "ventas_inventario_cafe");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<venta_inventario_cafe>("COLINASMODEL.VENTAS_INV_SOCIOS_FK", "ventas_inventario_cafe");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<venta_inventario_cafe>("COLINASMODEL.VENTAS_INV_CAFE_SOCIOS_FK", "ventas_inventario_cafe", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<venta_inventario_cafe>("COLINASMODEL.VENTAS_INV_SOCIOS_FK", "ventas_inventario_cafe", value);
                 }
             }
         }
@@ -11568,16 +11568,16 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "VENTAS_INV_CAFE_CLASIFICACIONES_FK", "clasificacion_cafe")]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "VENTAS_INV_CLASIFICACIONES_FK", "clasificacion_cafe")]
         public clasificacion_cafe clasificaciones_cafe
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<clasificacion_cafe>("COLINASMODEL.VENTAS_INV_CAFE_CLASIFICACIONES_FK", "clasificacion_cafe").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<clasificacion_cafe>("COLINASMODEL.VENTAS_INV_CLASIFICACIONES_FK", "clasificacion_cafe").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<clasificacion_cafe>("COLINASMODEL.VENTAS_INV_CAFE_CLASIFICACIONES_FK", "clasificacion_cafe").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<clasificacion_cafe>("COLINASMODEL.VENTAS_INV_CLASIFICACIONES_FK", "clasificacion_cafe").Value = value;
             }
         }
         /// <summary>
@@ -11589,13 +11589,13 @@ namespace COCASJOL.LOGIC
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<clasificacion_cafe>("COLINASMODEL.VENTAS_INV_CAFE_CLASIFICACIONES_FK", "clasificacion_cafe");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<clasificacion_cafe>("COLINASMODEL.VENTAS_INV_CLASIFICACIONES_FK", "clasificacion_cafe");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<clasificacion_cafe>("COLINASMODEL.VENTAS_INV_CAFE_CLASIFICACIONES_FK", "clasificacion_cafe", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<clasificacion_cafe>("COLINASMODEL.VENTAS_INV_CLASIFICACIONES_FK", "clasificacion_cafe", value);
                 }
             }
         }
@@ -11606,16 +11606,16 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "VENTAS_INV_CAFE_SOCIOS_FK", "socio")]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "VENTAS_INV_SOCIOS_FK", "socio")]
         public socio socios
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.VENTAS_INV_CAFE_SOCIOS_FK", "socio").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.VENTAS_INV_SOCIOS_FK", "socio").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.VENTAS_INV_CAFE_SOCIOS_FK", "socio").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.VENTAS_INV_SOCIOS_FK", "socio").Value = value;
             }
         }
         /// <summary>
@@ -11627,13 +11627,13 @@ namespace COCASJOL.LOGIC
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.VENTAS_INV_CAFE_SOCIOS_FK", "socio");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.VENTAS_INV_SOCIOS_FK", "socio");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<socio>("COLINASMODEL.VENTAS_INV_CAFE_SOCIOS_FK", "socio", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<socio>("COLINASMODEL.VENTAS_INV_SOCIOS_FK", "socio", value);
                 }
             }
         }
