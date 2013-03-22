@@ -217,7 +217,7 @@ namespace COCASJOL.WEBSITE.Source.Aportaciones {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField f_RETIROS_AP_ID;
+        protected global::Ext.Net.NumberField f_RETIROS_AP_ID;
         
         /// <summary>
         /// f_SOCIOS_ID control.

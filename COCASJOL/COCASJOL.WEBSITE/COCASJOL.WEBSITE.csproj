@@ -120,6 +120,7 @@
     <Content Include="resources\js\inventario\ingresos\notasDePesoEnPesaje.js" />
     <Content Include="resources\js\inventario\inventarioDeCafePorSocio.js" />
     <Content Include="resources\js\inventario\salidas\hojasDeLiquidacion.js" />
+    <Content Include="resources\js\inventario\salidas\ventasDeInventarioDeCafe.js" />
     <Content Include="resources\js\md5.js" />
     <Content Include="resources\js\prestamos\solicitudesDePrestamos.js" />
     <Content Include="resources\js\reportes\movimientosDeInventarioDeCafe.js" />

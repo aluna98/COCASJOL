@@ -106,7 +106,6 @@ var PageX = {
             AddGastosAdminTxt.getValue() +
             AddAportacionOrdinariaTxt.getValue() +
             AddAportacionExtraOrdinariaTxt.getValue() +
-            AddCuotaAdminTxt.getValue() +
             AddCapitalizacionXRetencionCantidadTxt.getValue() +
             AddInteresesSobreAportacionesTxt.getValue() +
             AddExcedentePeriodoTxt.getValue() +

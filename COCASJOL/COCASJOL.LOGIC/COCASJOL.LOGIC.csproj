@@ -82,6 +82,7 @@
     <Compile Include="Inventario\Salidas\HojaDeLiquidacionLogic.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Inventario\Salidas\VentaDeInventarioDeCafeLogic.cs" />
     <Compile Include="Prestamos\PrestamosLogic.cs" />
     <Compile Include="Prestamos\SolicitudesLogic.cs" />
     <Compile Include="Reportes\ConsolidadoDeInventarioDeCafeLogic.cs" />

@@ -105,7 +105,7 @@
                 <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Aportaciones" Icon="Coins" Layout="Fit">
                     <Items>
                         <ext:GridPanel ID="RetiroAportacionesGridP" runat="server" AutoExpandColumn="SOCIOS_ID" Height="300"
-                            Title="Aportaciones por Socio" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
+                            Title="Retiro de Aportaciones" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
                             <KeyMap>
                                 <ext:KeyBinding Ctrl="true" >
                                     <Keys>
@@ -189,11 +189,11 @@
                                             <Columns>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:TextField ID="f_RETIROS_AP_ID" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="5">
+                                                        <ext:NumberField ID="f_RETIROS_AP_ID" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="5">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
-                                                        </ext:TextField>
+                                                        </ext:NumberField>
                                                     </Component>
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
@@ -302,8 +302,8 @@
         <ext:Window ID="AgregarRetiroAportacionWin"
             runat="server"
             Hidden="true"
-            Icon="Coins"
-            Title="Retiro de Aportaciones"
+            Icon="CoinsAdd"
+            Title="Agregar Retiro de Aportaciones"
             Width="500"
             Layout="FormLayout"
             AutoHeight="True"
@@ -461,7 +461,7 @@
                     <Buttons>
                         <ext:Button ID="Button3" runat="server" Text="Guardar" Icon="Disk" FormBind="true">
                             <Listeners>
-                                <Click Handler="#{AddCreationDateTxt}.setValue(#{LoggedUserHdn}.getValue()); PageX.update();" />
+                                <Click Handler="#{AddCreatedByTxt}.setValue(#{LoggedUserHdn}.getValue()); PageX.insert();" />
                             </Listeners>
                         </ext:Button>
                     </Buttons>
@@ -473,7 +473,7 @@
             runat="server"
             Hidden="true"
             Icon="Coins"
-            Title="Aportaciones de Socio"
+            Title="Retiro de Aportaciones"
             Width="500"
             Layout="FormLayout"
             AutoHeight="True"

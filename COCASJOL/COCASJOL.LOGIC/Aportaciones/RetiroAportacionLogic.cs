@@ -123,7 +123,7 @@ namespace COCASJOL.LOGIC.Aportaciones
 
                         retiro_aportacion.CREADO_POR = retiro_aportacion.MODIFICADO_POR = CREADO_POR;
                         retiro_aportacion.FECHA_CREACION = DateTime.Today;
-                        retiro_aportacion.FECHA_MODIFICACION = DateTime.Today;
+                        retiro_aportacion.FECHA_MODIFICACION = retiro_aportacion.FECHA_CREACION;
 
                         db.retiros_aportaciones.AddObject(retiro_aportacion);
 

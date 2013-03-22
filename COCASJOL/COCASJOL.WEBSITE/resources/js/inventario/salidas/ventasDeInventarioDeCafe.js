@@ -18,7 +18,7 @@ var calendar = {
 
         var strDate = dateFrom + (dateFrom == "" || dateTo == "" ? "" : " - ") + dateTo;
 
-        Ext.getCmp('f_RETIROS_AP_FECHA').setValue("", strDate);
+        Ext.getCmp('f_VENTAS_INV_CAFE_FECHA').setValue("", strDate);
         GridStore.reload();
     },
 
@@ -63,20 +63,20 @@ var EditForm = null;
 var AlertSelMsgTitle = "Atención";
 var AlertSelMsg = "Debe seleccionar 1 elemento";
 
-var ConfirmMsgTitle = "Retiro de Aportaciones";
-var ConfirmUpdate = "Seguro desea retirar de las aportaciones? Nota: Una vez que se realice la acción no se podran deshacer los cambios.";
-var ConfirmDelete = "Seguro desea eliminar las aportaciones?";
+var ConfirmMsgTitle = "Ventas de Inventario de Café";
+var ConfirmUpdate = "Seguro desea realizar la venta de inventario de café? Nota: Una vez que se realice la acción no se podran deshacer los cambios.";
+
 
 var PageX = {
     _index: 0,
 
     setReferences: function () {
-        Grid = RetiroAportacionesGridP;
+        Grid = VentaInventarioDeCafeGridP;
         GridStore = Grid.getStore();
-        AddWindow = AgregarRetiroAportacionWin;
-        AddForm = AgregarRetiroAportacionFormP;
-        EditWindow = EditarRetiroAportacionWin;
-        EditForm = EditarRetiroAportacionFormP;
+        AddWindow = AgregarVentaDeInventarioDeCafeWin;
+        AddForm = AgregarVentaDeInventarioDeCafeFormP;
+        EditWindow = EditarVentaDeInventarioDeCafeWin;
+        EditForm = EditarVentaDeInventarioDeCafeFormP;
     },
 
     getIndex: function () {
@@ -145,27 +145,24 @@ var PageX = {
     insert: function () {
         Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
             if (btn == 'yes') {
-                Ext.net.DirectMethods.RetirarBtn_Click
-                    ({ success: function () {
-                        AportacionesSt.reload();
-                        GridStore.reload();
-                        Ext.Msg.alert('Agregar Retiro de Aportaciones', 'Retiro de aportaciones ejecutado exitosamente.');
-                        AddForm.getForm().reset();
-                    }
-                    },
-                    { failure: function () {
-                        Ext.Msg.alert('Agregar Retiro de Aportaciones', 'Error al ejecutar el retiro de aportaciones.');
-                    }});
+                var fields = AddForm.getForm().getFieldValues(false, "dataIndex");
+
+                Grid.insertRecord(0, fields, false);
+                AddForm.getForm().reset();
             }
         });
     },
 
     addGetNombreDeSocio: function (sociosIdTxt, nombreTxt) {
         var value = sociosIdTxt.getValue();
-        var record = AportacionesSt.getById(value);
+        var record = SocioSt.getById(value);
 
-        AddForm.getForm().loadRecord(record);
-        AddForm.record = record;
+        var nombreCompleto = record.data.SOCIOS_PRIMER_NOMBRE +
+                                     (record.data.SOCIOS_SEGUNDO_NOMBRE != '' ? (' ' + record.data.SOCIOS_SEGUNDO_NOMBRE) : '') +
+                                     (record.data.SOCIOS_PRIMER_APELLIDO !== '' ? (' ' + record.data.SOCIOS_PRIMER_APELLIDO) : '') +
+                                     (record.data.SOCIOS_SEGUNDO_APELLIDO != '' ? (' ' + record.data.SOCIOS_SEGUNDO_APELLIDO) : '');
+
+        nombreTxt.setValue(nombreCompleto);
 
         this.loadTotalRetiro();
     },
@@ -194,7 +191,7 @@ var PageX = {
     clearFilter: function () {
         f_SOCIOS_ID.reset();
         f_APORTACIONES_SALDO_TOTAL.reset();
-        RetiroAportacionesSt.reload();
+        VentaInventarioDeCafeSt.reload();
     },
 
     gridKeyUpEvent: function (sender, e) {
@@ -236,26 +233,31 @@ var PageX = {
         PagingToolbar1.moveLast();
     },
 
-    validarCantidadRetiro: function (aportacionTxt, retiroTxt) {
-        var retiro = retiroTxt.getValue();
-        var aportacion = aportacionTxt.getValue();
+    validarCantidadVenta: function (cantidadTxt, precioTxt, cantidadEnInventarioTxt, totalVentaTxt) {
+        var cantidad = cantidadTxt.getValue();
+        var precio = precioTxt.getValue();
+        var cantindadInventario = cantidadEnInventarioTxt.getValue();
 
-        retiro = retiro == null ? 0 : retiro;
-        retiro = retiro < 0 ? 0 : retiro;
+        cantidad = cantidad == null ? 0 : cantidad;
+        cantidad = cantidad < 0 ? 0 : cantidad;
 
-        retiro = retiro > aportacion ? aportacion : retiro;
+        precio = precio == null ? 0 : precio;
+        precio = precio < 0 ? 0 : precio;
 
-        retiroTxt.setValue(retiro);
+        var cantidadXprecio = cantidad * precio;
+
+        cantidadTxt.setValue(cantidad);
+        precioTxt.setValue(precio);
+        totalVentaTxt.setValue(cantidadXprecio);
+    },
+
+    getInventarioFueraDeCatacion: function () {
+        Ext.net.DirectMethods.GetCantidadDeInventarioDeCafe();
     },
 
     loadTotalRetiro: function () {
-        var retiro = AddRetiroAportacionOrdinariaSaldoTxt.getValue() +
-            AddRetiroAportacionExtraordinariaSaldoTxt.getValue() +
-            AddRetiroAportacionCapRetencionSaldoTxt.getValue() +
-            AddRetiroAportacionInteresesSAportacionesSaldoTxt.getValue() +
-            AddRetiroAportacionExcedentePeriodoSaldoTxt.getValue();
+        var venta_saldo = AddCantidadLibrasTxt.getValue() * AddPrecioLibrasTxt.getValue();
 
-        var retiroTotalSaldo = AddAportacionTotalSaldoTxt.getValue() - retiro;
-        AddRetiroAportacionTotalSaldoTxt.setValue(retiroTotalSaldo);
+        AddTotalSaldoTxt.setValue(venta_saldo);
     }
 };
