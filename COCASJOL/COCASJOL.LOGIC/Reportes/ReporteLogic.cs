@@ -39,7 +39,7 @@ namespace COCASJOL.LOGIC.Reportes
                                 where NOTAS_ID == 0 ? true : nd.NOTAS_ID.Equals(NOTAS_ID)
                                 select nd;
 
-                    return query.First().notas_detalles.ToList<nota_detalle>();
+                    return query.First<nota_de_peso>().notas_detalles.ToList<nota_detalle>();
                 }
             }
             catch (Exception)
@@ -65,6 +65,46 @@ namespace COCASJOL.LOGIC.Reportes
             catch (Exception)
             {
                 
+                throw;
+            }
+        }
+
+        public List<socio> GetSocios(string SOCIOS_ID = "")
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    var query = from s in db.socios.Include("socios_generales").Include("socios_produccion")
+                                where string.IsNullOrEmpty(SOCIOS_ID) ? true : s.SOCIOS_ID == SOCIOS_ID
+                                select s;
+
+                    return query.ToList<socio>();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public List<beneficiario_x_socio> GetBeneficiariosDeSocio(string SOCIOS_ID = "")
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    var query = from bs in db.socios.Include("beneficiario_x_socio")
+                                where string.IsNullOrEmpty(SOCIOS_ID) ? true : bs.SOCIOS_ID == SOCIOS_ID
+                                select bs;
+
+                    return query.First<socio>().beneficiario_x_socio.ToList<beneficiario_x_socio>();
+                }
+            }
+            catch (Exception)
+            {
+
                 throw;
             }
         }

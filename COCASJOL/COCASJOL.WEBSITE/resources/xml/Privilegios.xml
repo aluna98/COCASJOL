@@ -29,6 +29,13 @@
     <menuitem>SociosMenuItem</menuitem>
   </privilege>
   <privilege>
+    <key>MANT_SOCIOS</key>
+    <page>ReporteSolicitudesDeIngresoDeSocio</page>
+    <module></module>
+    <shortcut></shortcut>
+    <menuitem></menuitem>
+  </privilege>
+  <privilege>
     <key>MANT_ESTADOSNOTAPESO</key>
     <page>EstadosNotaDePeso</page>
     <module>EstadosNotasDePesoModule</module>

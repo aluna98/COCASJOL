@@ -150,6 +150,7 @@
     <Content Include="Source\Reportes\MovimientosDeInventarioDeCafe.aspx" />
     <Content Include="Source\Reportes\ReporteHojasDeLiquidacion.aspx" />
     <Content Include="Source\Reportes\ReporteNotasDePeso.aspx" />
+    <Content Include="Source\Reportes\ReporteSolicitudesDeIngresoDeSocio.aspx" />
     <Content Include="Source\Seguridad\CambiarClave.ascx" />
     <Content Include="Source\Seguridad\Roles.aspx" />
     <Content Include="Source\Seguridad\Usuarios.aspx" />
@@ -300,6 +301,13 @@
     <Compile Include="Source\Reportes\ReporteNotasDePeso.aspx.designer.cs">
       <DependentUpon>ReporteNotasDePeso.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Source\Reportes\ReporteSolicitudesDeIngresoDeSocio.aspx.cs">
+      <DependentUpon>ReporteSolicitudesDeIngresoDeSocio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Reportes\ReporteSolicitudesDeIngresoDeSocio.aspx.designer.cs">
+      <DependentUpon>ReporteSolicitudesDeIngresoDeSocio.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Source\Seguridad\CambiarClave.ascx.cs">
       <DependentUpon>CambiarClave.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -353,11 +361,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="resources\rdlcs\BeneficiariosPorSocio.rdlc" />
     <EmbeddedResource Include="resources\rdlcs\HojasDeLiquidacion.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\rdlcs\NotaDetalles.rdlc" />
     <EmbeddedResource Include="resources\rdlcs\NotasDePeso.rdlc" />
+    <EmbeddedResource Include="resources\rdlcs\SolicitudDeIngresoDeSocio.rdlc" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

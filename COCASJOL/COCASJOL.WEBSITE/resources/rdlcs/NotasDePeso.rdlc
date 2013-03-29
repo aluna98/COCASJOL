@@ -894,9 +894,9 @@
           <Source>Embedded</Source>
           <Value>Cafe_Colinas_Logo</Value>
           <Sizing>FitProportional</Sizing>
-          <Top>0.26389in</Top>
-          <Height>0.63542in</Height>
-          <Width>0.97396in</Width>
+          <Top>0.26736in</Top>
+          <Height>0.61806in</Height>
+          <Width>0.96007in</Width>
           <ZIndex>5</ZIndex>
           <Style>
             <Border>

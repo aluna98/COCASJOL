@@ -26,11 +26,5 @@ namespace COCASJOL.WEBSITE.Source.Reportes
                 this.LIQUIDACIONES_ID = string.IsNullOrEmpty(strLIQUIDACIONES_ID) ? 0 : Convert.ToInt32(strLIQUIDACIONES_ID);
             }
         }
-
-        protected void ObjectDataSource2_OnSelecting(object sender, ObjectDataSourceSelectingEventArgs e)
-        {
-            if (!this.IsPostBack)
-                e.Cancel = true; DateTime.Now.ToString("dd dddd MMMM", System.Globalization.CultureInfo.CreateSpecificCulture("es-HN"));
-        }
     }
 }

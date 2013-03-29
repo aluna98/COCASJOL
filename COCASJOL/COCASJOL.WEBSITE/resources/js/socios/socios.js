@@ -234,6 +234,11 @@ var PageX = {
         if (Grid.getStore().getTotalCount() == 0)
             Grid.getStore().reload();
         PagingToolbar1.moveLast();
+    },
+
+    print: function () {
+        var socios_id = EditsocioIdTxt.getValue();
+        window.open('../Reportes/ReporteSolicitudesDeIngresoDeSocio.aspx?SOCIOS_ID=' + socios_id, "_blank", "resizable=yes, scrollbars=yes, top=10, left=10");
     }
 };
 

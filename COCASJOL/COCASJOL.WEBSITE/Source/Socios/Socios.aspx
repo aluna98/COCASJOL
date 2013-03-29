@@ -384,6 +384,17 @@
             <Listeners>
                <Hide Handler="EditarSocioFormP.getForm().reset()" />
             </Listeners>
+            <TopBar>
+                <ext:Toolbar ID="Toolbar2" runat="server">
+                    <Items>
+                        <ext:Button ID="ImprimirBtn" runat="server" Text="Versión para Imprimir" Icon="Printer">
+                            <Listeners>
+                                <Click Handler="PageX.print();" />
+                            </Listeners>
+                        </ext:Button>
+                    </Items>
+                </ext:Toolbar>
+            </TopBar>
             <Items>
                 <ext:FormPanel ID="EditarSocioFormP" 
                         runat="server" 
