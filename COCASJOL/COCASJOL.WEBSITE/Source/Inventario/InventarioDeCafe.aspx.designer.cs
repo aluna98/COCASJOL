@@ -10,7 +10,7 @@
 namespace COCASJOL.WEBSITE.Source.Inventario {
     
     
-    public partial class InventarioDeCafePorSocio {
+    public partial class InventarioDeCafe {
         
         /// <summary>
         /// Head1 control.
@@ -211,24 +211,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario {
         protected global::Ext.Net.GridView GridView1;
         
         /// <summary>
-        /// f_SOCIOS_ID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField f_SOCIOS_ID;
-        
-        /// <summary>
-        /// f_SOCIOS_NOMBRE_COMPLETO control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField f_SOCIOS_NOMBRE_COMPLETO;
-        
-        /// <summary>
         /// f_CLASIFICACIONES_CAFE_ID control.
         /// </summary>
         /// <remarks>
@@ -317,24 +299,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Panel Panel13;
-        
-        /// <summary>
-        /// EditSociosIdTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField EditSociosIdTxt;
-        
-        /// <summary>
-        /// EditNombreTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField EditNombreTxt;
         
         /// <summary>
         /// EditTipoDeCafeIdtxt control.

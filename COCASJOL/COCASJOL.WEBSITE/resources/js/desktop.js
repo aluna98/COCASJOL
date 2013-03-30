@@ -217,7 +217,11 @@ var WindowX = {
     },
 
     inventarioDeCafePorSocio: function (app) {
-        DesktopX.createDynamicWindow(app, 'bricks', 'Inventario de Café por Socio', 'Inventario/InventarioDeCafePorSocio.aspx');
+        DesktopX.createDynamicWindow(app, 'brick', 'Inventario de Café por Socio', 'Inventario/InventarioDeCafePorSocio.aspx');
+    },
+
+    inventarioDeCafe: function (app) {
+        DesktopX.createDynamicWindow(app, 'bricks', 'Inventario de Café', 'Inventario/InventarioDeCafe.aspx');
     },
 
     hojasDeLiquidacion: function (app) {
@@ -225,7 +229,11 @@ var WindowX = {
     },
 
     ajustesDeInventarioDeCafeDeSocios: function (app) {
-        DesktopX.createDynamicWindow(app, 'cartfull', 'Ajustes de Inventario de Café de Socios', 'Inventario/Salidas/AjustesInventarioDeCafeDeSocios.aspx');
+        DesktopX.createDynamicWindow(app, 'ajustesDeInventarioDeCafeDeSocios16', 'Ajustes de Inventario de Café de Socios', 'Inventario/Salidas/AjustesInventarioDeCafeDeSocios.aspx');
+    },
+
+    ventasDeInventarioDeCafe: function (app) {
+        DesktopX.createDynamicWindow(app, 'cartfull', 'Ventas de Inventario de Café', 'Inventario/Salidas/VentasInventarioDeCafe.aspx');
     },
 
     movimientosDeInventarioDeCafe: function (app) {
@@ -286,10 +294,14 @@ var ShorcutClickHandler = function (app, id) {
         WindowX.notasDePeso(app);
     } else if (id == 'scInventarioDeCafePorSocio') {
         WindowX.inventarioDeCafePorSocio(app);
+    } else if (id == 'scInventarioDeCafe') {
+        WindowX.inventarioDeCafe(app);
     } else if (id == 'scHojasDeLiquidacion') {
         WindowX.hojasDeLiquidacion(app);
     } else if (id == 'scAjustesDeInventarioDeCafeDeSocios') {
         WindowX.ajustesDeInventarioDeCafeDeSocios(app);
+    } else if (id == 'scVentasDeInventarioDeCafe') {
+        WindowX.ventasDeInventarioDeCafe(app);
     } else if (id == 'scMovimientosDeInventarioDeCafe') {
         WindowX.movimientosDeInventarioDeCafe(app);
     } else if (id == 'scAportacionesPorSocio') {

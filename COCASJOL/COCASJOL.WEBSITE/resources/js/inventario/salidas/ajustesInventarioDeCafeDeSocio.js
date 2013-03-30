@@ -253,7 +253,7 @@ var PageX = {
     },
 
     getInventarioFueraDeCatacion: function () {
-        Ext.net.DirectMethods.GetCantidadDeInventarioDeCafe();
+        Ext.net.DirectMethods.GetCantidadDeInventarioDeCafeDeSocio();
     },
 
     loadTotalRetiro: function () {

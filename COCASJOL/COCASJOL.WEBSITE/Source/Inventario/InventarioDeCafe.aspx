@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InventarioDeCafePorSocio.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Inventario.InventarioDeCafePorSocio" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InventarioDeCafe.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Inventario.InventarioDeCafe" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <%@ Register Src="~/Source/Auditoria/Auditoria.ascx" TagPrefix="aud" TagName="Auditoria" %>
@@ -7,8 +7,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>Inventario de Café por Socio</title>
-    <script type="text/javascript" src="../../resources/js/inventario/inventarioDeCafePorSocio.js" ></script>
+    <title>Inventario de Café</title>
+    <script type="text/javascript" src="../../resources/js/inventario/inventarioDeCafe.js" ></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -30,11 +30,9 @@
 
         <asp:ObjectDataSource ID="InventarioCafeDS" runat="server"
                 TypeName="COCASJOL.LOGIC.Inventario.InventarioDeCafeLogic"
-                SelectMethod="GetInventarioDeCafeDeSocios" onselecting="InventarioCafeDS_Selecting" >
+                SelectMethod="GetInventarioDeCafe" onselecting="InventarioCafeDS_Selecting" >
                 <SelectParameters>
-                    <asp:ControlParameter Name="SOCIOS_ID"                    Type="String"   ControlID="f_SOCIOS_ID"                    PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="SOCIOS_NOMBRE_COMPLETO"       Type="String"   ControlID="f_SOCIOS_NOMBRE_COMPLETO"       PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_ID"      Type="Int32"    ControlID="f_CLASIFICACIONES_CAFE_ID"      PropertyName="Text" DefaultValue="0" />
+                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_ID"      Type="Int32"   ControlID="f_CLASIFICACIONES_CAFE_ID"       PropertyName="Text" DefaultValue="0" />
                     <asp:ControlParameter Name="INVENTARIO_ENTRADAS_CANTIDAD" Type="Decimal"  ControlID="f_INVENTARIO_ENTRADAS_CANTIDAD" PropertyName="Text" DefaultValue="-1"/>
                     <asp:ControlParameter Name="INVENTARIO_SALIDAS_SALDO"     Type="Decimal"  ControlID="f_INVENTARIO_SALIDAS_SALDO"     PropertyName="Text" DefaultValue="-1"/>
                     <asp:ControlParameter Name="CREADO_POR"                   Type="String"   ControlID="nullHdn"                        PropertyName="Text" DefaultValue="" />
@@ -86,9 +84,9 @@
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
             <Items>
-                <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Inventario de Café por Socio" Icon="Basket" Layout="Fit">
+                <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Inventario de Café" Icon="Basket" Layout="Fit">
                     <Items>
-                        <ext:GridPanel ID="InventarioCafeGridP" runat="server" AutoExpandColumn="SOCIOS_NOMBRE_COMPLETO" Height="300"
+                        <ext:GridPanel ID="InventarioCafeGridP" runat="server" AutoExpandColumn="CLASIFICACIONES_CAFE_NOMBRE" Height="300"
                             Title="Inventario de Café" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
                             <KeyMap>
                                 <ext:KeyBinding Ctrl="true" >
@@ -105,8 +103,6 @@
                                     <Reader>
                                         <ext:JsonReader>
                                             <Fields>
-                                                <ext:RecordField Name="SOCIOS_ID"                    />
-                                                <ext:RecordField Name="SOCIOS_NOMBRE_COMPLETO"       />
                                                 <ext:RecordField Name="CLASIFICACIONES_CAFE_ID"      />
                                                 <ext:RecordField Name="CLASIFICACIONES_CAFE_NOMBRE"  />
                                                 <ext:RecordField Name="INVENTARIO_ENTRADAS_CANTIDAD" />
@@ -123,12 +119,10 @@
                             </Store>
                             <ColumnModel>
                                 <Columns>
-                                    <ext:Column DataIndex="SOCIOS_ID"                    Header="Id de Socio" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="SOCIOS_NOMBRE_COMPLETO"       Header="Nombre Completo de Socio" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="CLASIFICACIONES_CAFE_NOMBRE"  Header="Clasificación de Café" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="INVENTARIO_ENTRADAS_CANTIDAD" Header="Cantidad" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="INVENTARIO_SALIDAS_SALDO"     Header="Saldo de Salidas" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="SOCIOS_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
+                                    <ext:Column DataIndex="INVENTARIO_SALIDAS_SALDO" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
                                         <Renderer Handler="return '';" />
                                     </ext:Column>
                                 </Columns>
@@ -158,24 +152,6 @@
                                     <HeaderRows>
                                         <ext:HeaderRow>
                                             <Columns>
-                                                <ext:HeaderColumn Cls="x-small-editor">
-                                                    <Component>
-                                                        <ext:TextField ID="f_SOCIOS_ID" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="5">
-                                                            <Listeners>
-                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
-                                                            </Listeners>
-                                                        </ext:TextField>
-                                                    </Component>
-                                                </ext:HeaderColumn>
-                                                <ext:HeaderColumn Cls="x-small-editor">
-                                                    <Component>
-                                                        <ext:TextField ID="f_SOCIOS_NOMBRE_COMPLETO" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="5">
-                                                            <Listeners>
-                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
-                                                            </Listeners>
-                                                        </ext:TextField>
-                                                    </Component>
-                                                </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
                                                         <ext:ComboBox
@@ -254,7 +230,7 @@
             runat="server"
             Hidden="true"
             Icon="BrickEdit"
-            Title="Inventario de Café por Socio"
+            Title="Inventario de Café"
             Width="500"
             Layout="FormLayout"
             AutoHeight="True"
@@ -265,21 +241,11 @@
             <Items>
                 <ext:FormPanel ID="EditarTipoFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelWidth="120">
                     <Items>
-                        <ext:Panel ID="Panel12" runat="server" Title="Inventario de Café de Socio" Layout="AnchorLayout" AutoHeight="True"
+                        <ext:Panel ID="Panel12" runat="server" Title="Inventario de Café" Layout="AnchorLayout" AutoHeight="True"
                             Resizable="false">
                             <Items>
                                 <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false" AnchorHorizontal="100%">
                                     <Items>
-                                        <ext:TextField   runat="server" ID="EditSociosIdTxt"           DataIndex="SOCIOS_ID"                   LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Socio" AllowBlank="false" ReadOnly="true">
-                                            <ToolTips>
-                                                <ext:ToolTip runat="server" Title="Id de Socio" Html="El Id de Socio es de solo lectura." Width="200" TrackMouse="true" />
-                                            </ToolTips>
-                                        </ext:TextField>
-                                        <ext:TextField   runat="server" ID="EditNombreTxt"             DataIndex="SOCIOS_NOMBRE_COMPLETO"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre del Socio" ReadOnly="true" >
-                                            <ToolTips>
-                                                <ext:ToolTip runat="server" Html="El nombre de socio es de solo lectura." Title="Nombre del Socio" Width="200" TrackMouse="true" />
-                                            </ToolTips>
-                                        </ext:TextField>
                                         <ext:TextField   runat="server" ID="EditTipoDeCafeIdtxt"       DataIndex="CLASIFICACIONES_CAFE_NOMBRE" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Café" AllowBlank="false" ReadOnly="true" MsgTarget="Side">
                                             <ToolTips>
                                                 <ext:ToolTip runat="server" Title="Tipo de Café" Html="El tipo de café es de solo lectura." Width="200" TrackMouse="true" />

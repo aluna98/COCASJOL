@@ -15,7 +15,7 @@ using COCASJOL.LOGIC.Inventario.Salidas;
 
 namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
 {
-    public partial class AjustesInventarioDeCafeDeSocios : COCASJOL.LOGIC.Web.COCASJOLBASE
+    public partial class VentasInventarioDeCafe : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -36,28 +36,27 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
             }
         }
 
-        protected void AjusteInventarioDeCafeDs_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        protected void VentaInventarioDeCafeDs_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
         {
             if (!this.IsPostBack)
                 e.Cancel = true;
         }
 
         [DirectMethod(RethrowException = true)]
-        public void GetCantidadDeInventarioDeCafeDeSocio()
+        public void GetCantidadDeInventarioDeCafe()
         {
             try
             {
-                string SOCIOS_ID = this.AddSociosIdTxt.Text;
                 string TxtCLASIFICACIONES_CAFE_ID = this.AddClasificacionCafeCmb.Text;
 
                 int CLASIFICACIONES_CAFE_ID = string.IsNullOrEmpty(TxtCLASIFICACIONES_CAFE_ID) ? 0 : Convert.ToInt32(TxtCLASIFICACIONES_CAFE_ID);
 
-                if (string.IsNullOrEmpty(SOCIOS_ID) || CLASIFICACIONES_CAFE_ID == 0)
+                if (CLASIFICACIONES_CAFE_ID == 0)
                     return;
 
                 InventarioDeCafeLogic inventarioliquidacionlogic = new InventarioDeCafeLogic();
-                decimal inventarioSocio = inventarioliquidacionlogic.GetInventarioDeCafeDeSocio(SOCIOS_ID, CLASIFICACIONES_CAFE_ID);
-                this.AddInventarioDeCafeCantidadTxt.Value = inventarioSocio;
+                decimal inventario = inventarioliquidacionlogic.GetInventarioDeCafe(CLASIFICACIONES_CAFE_ID);
+                this.AddInventarioDeCafeCantidadTxt.Value = inventario;
             }
             catch (Exception)
             {

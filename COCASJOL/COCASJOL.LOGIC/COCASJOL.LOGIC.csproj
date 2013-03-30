@@ -83,6 +83,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Inventario\Salidas\AjusteInventarioDeCafeDeSocioLogic.cs" />
+    <Compile Include="Inventario\Salidas\VentaInventarioDeCafeLogic.cs" />
     <Compile Include="Prestamos\PrestamosLogic.cs" />
     <Compile Include="Prestamos\SolicitudesLogic.cs" />
     <Compile Include="Reportes\ConsolidadoDeInventarioDeCafeLogic.cs" />

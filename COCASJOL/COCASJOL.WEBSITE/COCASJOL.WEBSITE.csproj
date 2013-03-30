@@ -72,6 +72,9 @@
     <Content Include="resources\css\Desktop.css" />
     <Content Include="resources\css\DesktopShortcuts.css" />
     <Content Include="resources\images\background1.jpg" />
+    <Content Include="resources\images\balance.png" />
+    <Content Include="resources\images\balance16x16.png" />
+    <Content Include="resources\images\brick.png" />
     <Content Include="resources\images\bricks.png" />
     <Content Include="resources\images\Cafe_Colinas_Logo.jpg" />
     <Content Include="resources\images\cart_full.png" />
@@ -118,9 +121,11 @@
     <Content Include="resources\js\inventario\ingresos\notasDePesoEnAdministracion.js" />
     <Content Include="resources\js\inventario\ingresos\notasDePesoEnCatacion.js" />
     <Content Include="resources\js\inventario\ingresos\notasDePesoEnPesaje.js" />
+    <Content Include="resources\js\inventario\inventarioDeCafe.js" />
     <Content Include="resources\js\inventario\inventarioDeCafePorSocio.js" />
+    <Content Include="resources\js\inventario\salidas\ajustesInventarioDeCafeDeSocio.js" />
     <Content Include="resources\js\inventario\salidas\hojasDeLiquidacion.js" />
-    <Content Include="resources\js\inventario\salidas\ajusteInventarioDeCafeDeSocio.js" />
+    <Content Include="resources\js\inventario\salidas\ventasInventarioDeCafe.js" />
     <Content Include="resources\js\md5.js" />
     <Content Include="resources\js\prestamos\solicitudesDePrestamos.js" />
     <Content Include="resources\js\reportes\movimientosDeInventarioDeCafe.js" />
@@ -142,9 +147,11 @@
     <Content Include="Source\Inventario\Ingresos\NotasDePesoEnAdministracion.aspx" />
     <Content Include="Source\Inventario\Ingresos\NotasDePesoEnCatacion.aspx" />
     <Content Include="Source\Inventario\Ingresos\NotasDePesoEnPesaje.aspx" />
+    <Content Include="Source\Inventario\InventarioDeCafe.aspx" />
     <Content Include="Source\Inventario\InventarioDeCafePorSocio.aspx" />
     <Content Include="Source\Inventario\Salidas\HojasDeLiquidacion.aspx" />
     <Content Include="Source\Inventario\Salidas\AjustesInventarioDeCafeDeSocios.aspx" />
+    <Content Include="Source\Inventario\Salidas\VentasInventarioDeCafe.aspx" />
     <Content Include="Source\Prestamos\Prestamos.aspx" />
     <Content Include="Source\Prestamos\SolicitudesDePrestamos.aspx" />
     <Content Include="Source\Reportes\MovimientosDeInventarioDeCafe.aspx" />
@@ -245,6 +252,13 @@
     <Compile Include="Source\Inventario\Ingresos\NotasDePesoEnPesaje.aspx.designer.cs">
       <DependentUpon>NotasDePesoEnPesaje.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Source\Inventario\InventarioDeCafe.aspx.cs">
+      <DependentUpon>InventarioDeCafe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Inventario\InventarioDeCafe.aspx.designer.cs">
+      <DependentUpon>InventarioDeCafe.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Source\Inventario\InventarioDeCafePorSocio.aspx.cs">
       <DependentUpon>InventarioDeCafePorSocio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -265,6 +279,13 @@
     </Compile>
     <Compile Include="Source\Inventario\Salidas\AjustesInventarioDeCafeDeSocios.aspx.designer.cs">
       <DependentUpon>AjustesInventarioDeCafeDeSocios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Inventario\Salidas\VentasInventarioDeCafe.aspx.cs">
+      <DependentUpon>VentasInventarioDeCafe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Inventario\Salidas\VentasInventarioDeCafe.aspx.designer.cs">
+      <DependentUpon>VentasInventarioDeCafe.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Prestamos\Prestamos.aspx.cs">
       <DependentUpon>Prestamos.aspx</DependentUpon>

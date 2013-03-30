@@ -15,7 +15,7 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
 
         #region Select
 
-        public List<ajuste_inventario_cafe_x_socio> GetAjustesDeInventarioDeCafe()
+        public List<ajuste_inventario_cafe_x_socio> GetAjustesDeInventarioDeCafeDeSocio()
         {
             try
             {
@@ -31,7 +31,7 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
             }
         }
 
-        public List<ajuste_inventario_cafe_x_socio> GetAjustesDeInventarioDeCafe
+        public List<ajuste_inventario_cafe_x_socio> GetAjustesDeInventarioDeCafeDeSocio
             (int AJUSTES_INV_CAFE_ID,
             string SOCIOS_ID,
             int CLASIFICACIONES_CAFE_ID,
@@ -84,7 +84,7 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
 
         #region Insert
 
-        public void InsertarAjusteDeInventarioDeCafe
+        public void InsertarAjusteDeInventarioDeCafeDeSocio
             (int AJUSTES_INV_CAFE_ID,
             string SOCIOS_ID,
             int CLASIFICACIONES_CAFE_ID,

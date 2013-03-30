@@ -72,8 +72,25 @@
 
 .icon-inventarioDeCafePorSocio
 {
+    background-image: url(../images/brick.png) !important;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/brick.png", sizingMethod="center");
+}
+
+.icon-inventarioDeCafe
+{
     background-image: url(../images/bricks.png) !important;
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/bricks.png", sizingMethod="center");
+}
+
+.icon-ajustesDeInventarioDeCafeDeSocios
+{
+    background-image: url(../images/balance.png) !important;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/balance.png", sizingMethod="center");
+}
+
+.icon-ajustesDeInventarioDeCafeDeSocios16
+{
+    background-image: url(../images/balance16x16.png) !important;
 }
 
 .icon-hojaDeLiquidacion
@@ -82,7 +99,7 @@
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/script.png", sizingMethod="center");
 }
 
-.icon-ajustesDeInventarioDeCafeDeSocios
+.icon-ventasDeInventarioDeCafe
 {
     background-image: url(../images/cart_full.png) !important;
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/cart_full.png", sizingMethod="center");

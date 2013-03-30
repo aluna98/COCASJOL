@@ -85,6 +85,13 @@
     <menuitem>InventarioDeCafePorSocioMenuItem</menuitem>
   </privilege>
   <privilege>
+    <key>MANT_INVENTARIO</key>
+    <page>InventarioDeCafe</page>
+    <module>InventarioDeCafeModule</module>
+    <shortcut>scInventarioDeCafe</shortcut>
+    <menuitem>InventarioDeCafeMenuItem</menuitem>
+  </privilege>
+  <privilege>
     <key>MANT_HOJASLIQUIDACION</key>
     <page>HojasDeLiquidacion</page>
     <module>HojasDeLiquidacionModule</module>
@@ -97,8 +104,7 @@
     <module></module>
     <shortcut></shortcut>
     <menuitem></menuitem>
-  </privilege>
-  
+  </privilege>  
   <privilege>
     <key>MANT_AJUSTEINVENTARIOCAFE</key>
     <page>AjustesInventarioDeCafeDeSocios</page>
@@ -106,7 +112,13 @@
     <shortcut>scAjustesDeInventarioDeCafeDeSocios</shortcut>
     <menuitem>AjustesDeInventarioDeCafeDeSociosMenuItem</menuitem>
   </privilege>
-  
+  <privilege>
+    <key>MANT_VENTAINVENTARIOCAFE</key>
+    <page>VentasInventarioDeCafe</page>
+    <module>VentasDeInventarioDeCafeModule</module>
+    <shortcut>scVentasDeInventarioDeCafe</shortcut>
+    <menuitem>VentasDeInventarioDeCafeMenuItem</menuitem>
+  </privilege>
   <privilege>
     <key>REPRT_MOVIMIENTOSINVENTARIO</key>
     <page>MovimientosDeInventarioDeCafe</page>
@@ -121,7 +133,6 @@
     <shortcut>scAportacionesPorSocio</shortcut>
     <menuitem>AportacionesPorSocioMenuItem</menuitem>
   </privilege>
-
   <privilege>
     <key>MANT_RETIROAPORTACIONES</key>
     <page>RetiroDeAportaciones</page>
@@ -129,7 +140,6 @@
     <shortcut>scRetiroDeAportaciones</shortcut>
     <menuitem>RetiroDeAportacionesMenuItem</menuitem>
   </privilege>
-
   <privilege>
     <key>MANT_VARIABLESENTORNO</key>
     <page>VariablesDeEntorno</page>
