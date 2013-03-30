@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VentasDeInventarioDeCafe.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Inventario.Salidas.VentasDeInventarioDeCafe" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AjustesInventarioDeCafeDeSocios.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Inventario.Salidas.AjustesInventarioDeCafeDeSocios" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <%@ Register Src="~/Source/Auditoria/Auditoria.ascx" TagPrefix="aud" TagName="Auditoria" %>
@@ -7,10 +7,10 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Ventas de Inventario de Café</title>
+    <title>Ajustes de Inventario de Café de Socios</title>
 
     <link rel="Stylesheet" type="text/css" href="../../../resources/css/ComboBox_Grid.css" />
-    <script type="text/javascript" src="../../../resources/js/inventario/salidas/ventasDeInventarioDeCafe.js" ></script>
+    <script type="text/javascript" src="../../../resources/js/inventario/salidas/ajusteInventarioDeCafeDeSocio.js" ></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -30,37 +30,37 @@
 
         <aud:Auditoria runat="server" ID="AudWin" />
 
-        <asp:ObjectDataSource ID="VentaInventarioDeCafeDs" runat="server"
-                TypeName="COCASJOL.LOGIC.Inventario.Salidas.VentaDeInventarioDeCafeLogic"
-                SelectMethod="GetVentasDeInventarioDeCafe"
-                InsertMethod="InsertarVentaDeInventarioDeCafe" onselecting="VentaInventarioDeCafeDs_Selecting" >
+        <asp:ObjectDataSource ID="AjusteInventarioDeCafeDs" runat="server"
+                TypeName="COCASJOL.LOGIC.Inventario.Salidas.AjusteInventarioDeCafeDeSocioLogic"
+                SelectMethod="GetAjustesDeInventarioDeCafe"
+                InsertMethod="InsertarAjusteDeInventarioDeCafe" onselecting="AjusteInventarioDeCafeDs_Selecting" >
                 <SelectParameters>
-                    <asp:ControlParameter Name="VENTAS_INV_CAFE_ID"                  Type="Int32"    ControlID="f_VENTAS_INV_CAFE_ID"              PropertyName="Text" DefaultValue="0" />
+                    <asp:ControlParameter Name="AJUSTES_INV_CAFE_ID"                  Type="Int32"    ControlID="f_AJUSTES_INV_CAFE_ID"              PropertyName="Text" DefaultValue="0" />
                     <asp:ControlParameter Name="SOCIOS_ID"                           Type="String"   ControlID="f_SOCIOS_ID"                       PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="CLASIFICACIONES_CAFE_ID"             Type="Int32"    ControlID="f_CLASIFICACIONES_CAFE_ID"         PropertyName="Text" DefaultValue="0" />
                     <asp:ControlParameter Name="CLASIFICACIONES_CAFE_NOMBRE"         Type="String"   ControlID="nullHdn"                           PropertyName="Text" DefaultValue="0" />
-                    <asp:ControlParameter Name="VENTAS_INV_CAFE_FECHA"               Type="DateTime" ControlID="f_VENTAS_INV_CAFE_FECHA"           PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="AJUSTES_INV_CAFE_FECHA"               Type="DateTime" ControlID="f_AJUSTES_INV_CAFE_FECHA"           PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="FECHA_DESDE"                         Type="DateTime" ControlID="f_DATE_FROM"                       PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="FECHA_HASTA"                         Type="DateTime" ControlID="f_DATE_TO"                         PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="VENTAS_INV_CAFE_CANTIDAD_LIBRAS"     Type="Decimal"  ControlID="nullHdn"                           PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="VENTAS_INV_CAFE_PRECIO_LIBRAS"       Type="Decimal"  ControlID="nullHdn"                           PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="VENTAS_INV_CAFE_SALDO_TOTAL"         Type="Decimal"  ControlID="f_VENTAS_INV_CAFE_SALDO_TOTAL"     PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="AJUSTES_INV_CAFE_CANTIDAD_LIBRAS"     Type="Decimal"  ControlID="nullHdn"                           PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="AJUSTES_INV_CAFE_PRECIO_LIBRAS"       Type="Decimal"  ControlID="nullHdn"                           PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="AJUSTES_INV_CAFE_SALDO_TOTAL"         Type="Decimal"  ControlID="f_AJUSTES_INV_CAFE_SALDO_TOTAL"     PropertyName="Text" DefaultValue="-1" />
                     <asp:ControlParameter Name="CREADO_POR"                          Type="String"   ControlID="nullHdn"                           PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="FECHA_CREACION"                      Type="DateTime" ControlID="nullHdn"                           PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="MODIFICADO_POR"                      Type="String"   ControlID="nullHdn"                           PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="FECHA_MODIFICACION"                  Type="DateTime" ControlID="nullHdn"                           PropertyName="Text" DefaultValue="" />
                 </SelectParameters>
                 <InsertParameters>
-                    <asp:Parameter Name="VENTAS_INV_CAFE_ID"              Type="Int32"    />
+                    <asp:Parameter Name="AJUSTES_INV_CAFE_ID"              Type="Int32"    />
                     <asp:Parameter Name="SOCIOS_ID"                       Type="String"   />
                     <asp:Parameter Name="CLASIFICACIONES_CAFE_ID"         Type="Int32"    />
                     <asp:Parameter Name="CLASIFICACIONES_CAFE_NOMBRE"     Type="String"   />
-                    <asp:Parameter Name="VENTAS_INV_CAFE_FECHA"           Type="DateTime" />
+                    <asp:Parameter Name="AJUSTES_INV_CAFE_FECHA"           Type="DateTime" />
                     <asp:Parameter Name="FECHA_DESDE"                     Type="DateTime" />
                     <asp:Parameter Name="FECHA_HASTA"                     Type="DateTime" />
-                    <asp:Parameter Name="VENTAS_INV_CAFE_CANTIDAD_LIBRAS" Type="Decimal"  />
-                    <asp:Parameter Name="VENTAS_INV_CAFE_PRECIO_LIBRAS"   Type="Decimal"  />
-                    <asp:Parameter Name="VENTAS_INV_CAFE_SALDO_TOTAL"     Type="Decimal"  />
+                    <asp:Parameter Name="AJUSTES_INV_CAFE_CANTIDAD_LIBRAS" Type="Decimal"  />
+                    <asp:Parameter Name="AJUSTES_INV_CAFE_PRECIO_LIBRAS"   Type="Decimal"  />
+                    <asp:Parameter Name="AJUSTES_INV_CAFE_SALDO_TOTAL"     Type="Decimal"  />
                     <asp:Parameter Name="CREADO_POR"                      Type="String"   />
                     <asp:Parameter Name="FECHA_CREACION"                  Type="DateTime" />
                     <asp:Parameter Name="MODIFICADO_POR"                  Type="String"   />
@@ -131,10 +131,10 @@
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
             <Items>
-                <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Ventas de Inventario de Café" Icon="CartFull" Layout="Fit">
+                <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Ajustes de Inventario de Café de Socios" Icon="CartFull" Layout="Fit">
                     <Items>
-                        <ext:GridPanel ID="VentaInventarioDeCafeGridP" runat="server" AutoExpandColumn="SOCIOS_ID" Height="300"
-                            Title="Ventas de Inventario de Café" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
+                        <ext:GridPanel ID="AjusteInventarioDeCafeGridP" runat="server" AutoExpandColumn="SOCIOS_ID" Height="300"
+                            Title="Ajustes de Inventario de Café" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
                             <KeyMap>
                                 <ext:KeyBinding Ctrl="true" >
                                     <Keys>
@@ -147,20 +147,20 @@
                                 </ext:KeyBinding>
                             </KeyMap>
                             <Store>
-                                <ext:Store ID="VentaInventarioDeCafeSt" runat="server" DataSourceID="VentaInventarioDeCafeDs" AutoSave="true" SkipIdForNewRecords="false" >
+                                <ext:Store ID="AjusteInventarioDeCafeSt" runat="server" DataSourceID="AjusteInventarioDeCafeDs" AutoSave="true" SkipIdForNewRecords="false" >
                                     <Reader>
                                         <ext:JsonReader IDProperty="RETIROS_AP_ID">
                                             <Fields>
-                                                <ext:RecordField Name="VENTAS_INV_CAFE_ID"              />
+                                                <ext:RecordField Name="AJUSTES_INV_CAFE_ID"              />
                                                 <ext:RecordField Name="SOCIOS_ID"                       />
                                                 <ext:RecordField Name="CLASIFICACIONES_CAFE_ID"         />
                                                 <ext:RecordField Name="CLASIFICACIONES_CAFE_NOMBRE"     ServerMapping="clasificaciones_cafe.CLASIFICACIONES_CAFE_NOMBRE"/>
-                                                <ext:RecordField Name="VENTAS_INV_CAFE_FECHA"           Type="Date" />
+                                                <ext:RecordField Name="AJUSTES_INV_CAFE_FECHA"           Type="Date" />
                                                 <ext:RecordField Name="FECHA_DESDE"                     />
                                                 <ext:RecordField Name="FECHA_HASTA"                     />
-                                                <ext:RecordField Name="VENTAS_INV_CAFE_CANTIDAD_LIBRAS" />
-                                                <ext:RecordField Name="VENTAS_INV_CAFE_PRECIO_LIBRAS"   />
-                                                <ext:RecordField Name="VENTAS_INV_CAFE_SALDO_TOTAL"     />
+                                                <ext:RecordField Name="AJUSTES_INV_CAFE_CANTIDAD_LIBRAS" />
+                                                <ext:RecordField Name="AJUSTES_INV_CAFE_PRECIO_LIBRAS"   />
+                                                <ext:RecordField Name="AJUSTES_INV_CAFE_SALDO_TOTAL"     />
                                                 <ext:RecordField Name="CREADO_POR"                      />
                                                 <ext:RecordField Name="FECHA_CREACION"                  Type="Date" />
                                                 <ext:RecordField Name="MODIFICADO_POR"                  />
@@ -175,13 +175,13 @@
                             </Store>
                             <ColumnModel>
                                 <Columns>
-                                    <ext:Column       DataIndex="VENTAS_INV_CAFE_ID"          Header="Numero de Venta" Sortable="true"></ext:Column>
+                                    <ext:Column       DataIndex="AJUSTES_INV_CAFE_ID"          Header="Numero de Ajuste" Sortable="true"></ext:Column>
                                     <ext:Column       DataIndex="SOCIOS_ID"                   Header="Id de Socio" Sortable="true"></ext:Column>
                                     <ext:Column       DataIndex="CLASIFICACIONES_CAFE_NOMBRE" Header="Clasificación de Café" Sortable="true"></ext:Column>
-                                    <ext:DateColumn   DataIndex="VENTAS_INV_CAFE_FECHA"       Header="Fecha" Sortable="true"></ext:DateColumn>
-                                    <ext:NumberColumn DataIndex="VENTAS_INV_CAFE_SALDO_TOTAL" Header="Saldo Total" Sortable="true"></ext:NumberColumn>
+                                    <ext:DateColumn   DataIndex="AJUSTES_INV_CAFE_FECHA"       Header="Fecha" Sortable="true"></ext:DateColumn>
+                                    <ext:NumberColumn DataIndex="AJUSTES_INV_CAFE_SALDO_TOTAL" Header="Saldo Total" Sortable="true"></ext:NumberColumn>
 
-                                    <ext:Column DataIndex="VENTAS_INV_CAFE_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
+                                    <ext:Column DataIndex="AJUSTES_INV_CAFE_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
                                         <Renderer Handler="return '';" />
                                     </ext:Column>
                                 </Columns>
@@ -218,7 +218,7 @@
                                             <Columns>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:NumberField ID="f_VENTAS_INV_CAFE_ID" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="5">
+                                                        <ext:NumberField ID="f_AJUSTES_INV_CAFE_ID" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="5">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
@@ -262,7 +262,7 @@
 
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:DropDownField ID="f_VENTAS_INV_CAFE_FECHA" AllowBlur="true" runat="server" Editable="false"
+                                                        <ext:DropDownField ID="f_AJUSTES_INV_CAFE_FECHA" AllowBlur="true" runat="server" Editable="false"
                                                             Mode="ValueText" Icon="Find" TriggerIcon="SimpleArrowDown" CollapseMode="Default">
                                                             <Component>
                                                                 <ext:FormPanel ID="FormPanel1" runat="server" Height="100" Width="170" Frame="true"
@@ -314,7 +314,7 @@
 
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:NumberField ID="f_VENTAS_INV_CAFE_SALDO_TOTAL" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                        <ext:NumberField ID="f_AJUSTES_INV_CAFE_SALDO_TOTAL" runat="server" EnableKeyEvents="true" Icon="Find">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
@@ -340,7 +340,7 @@
                                 </ext:GridView>
                             </View>
                             <BottomBar>
-                                <ext:PagingToolbar ID="PagingToolbar1" runat="server" PageSize="20" StoreID="VentaInventarioDeCafeSt" />
+                                <ext:PagingToolbar ID="PagingToolbar1" runat="server" PageSize="20" StoreID="AjusteInventarioDeCafeSt" />
                             </BottomBar>
                             <LoadMask ShowMask="true" />
                             <SaveMask ShowMask="true" />
@@ -353,11 +353,11 @@
             </Items>
         </ext:Viewport>
 
-        <ext:Window ID="AgregarVentaDeInventarioDeCafeWin"
+        <ext:Window ID="AgregarAjusteDeInventarioDeCafeWin"
             runat="server"
             Hidden="true"
             Icon="CartAdd"
-            Title="Agregar Venta de Inventario de Café"
+            Title="Agregar Ajuste de Inventario de Café de Socio"
             Width="500"
             Layout="FormLayout"
             AutoHeight="True"
@@ -366,18 +366,18 @@
             Modal="true"
             X="10" Y="30">
             <Listeners>
-                <Show Handler="#{AddFechaVentaTxt}.setValue(new Date()); #{AddFechaVentaTxt}.focus(false,200);" />
-                <Hide Handler="#{AgregarVentaDeInventarioDeCafeFormP}.getForm().reset();" />
+                <Show Handler="#{AddFechaAjusteTxt}.setValue(new Date()); #{AddFechaAjusteTxt}.focus(false,200);" />
+                <Hide Handler="#{AgregarAjusteDeInventarioDeCafeFormP}.getForm().reset();" />
             </Listeners>
             <Items>
-                <ext:FormPanel ID="AgregarVentaDeInventarioDeCafeFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelWidth="200">
+                <ext:FormPanel ID="AgregarAjusteDeInventarioDeCafeFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelWidth="200">
                     <Items>
-                        <ext:Panel ID="Panel2" runat="server" Title="Venta de Inventario de Café" Layout="AnchorLayout" AutoHeight="True"
+                        <ext:Panel ID="Panel2" runat="server" Title="Ajuste de Inventario de Café de Socio" Layout="AnchorLayout" AutoHeight="True"
                             Resizable="false">
                             <Items>
                                 <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5" Layout="FormLayout" Border="false" AnchorHorizontal="100%" >
                                     <Items>
-                                        <ext:DateField runat="server" ID="AddFechaVentaTxt" DataIndex="VENTAS_INV_CAFE_FECHA" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha" AllowBlank="false" MsgTarget="Side" ></ext:DateField>
+                                        <ext:DateField runat="server" ID="AddFechaAjusteTxt" DataIndex="AJUSTES_INV_CAFE_FECHA" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha" AllowBlank="false" MsgTarget="Side" ></ext:DateField>
                                         
                                         <ext:ComboBox  runat="server" ID="AddSociosIdTxt"  DataIndex="SOCIOS_ID" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Código Socio" AllowBlank="false" MsgTarget="Side"
                                             TypeAhead="true"
@@ -418,7 +418,7 @@
                                             </Triggers>
                                             <Listeners>
                                                 <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
-                                                <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide(); AgregarVentaDeInventarioDeCafeFormP.getForm().reset(); }" />
+                                                <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide(); AgregarAjusteDeInventarioDeCafeFormP.getForm().reset(); }" />
                                                 <Select Handler="this.triggers[0].show(); PageX.addGetNombreDeSocio(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddNombreTxt')); PageX.getInventarioFueraDeCatacion();" />
                                             </Listeners>
                                         </ext:ComboBox>
@@ -443,11 +443,11 @@
                                             <Listeners>
                                                 <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
                                                 <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
-                                                <Select Handler="this.triggers[0].show(); PageX.getInventarioFueraDeCatacion(); PageX.validarCantidadVenta(#{AddCantidadLibrasTxt}, #{AddPrecioLibrasTxt}, #{AddInventarioDeCafeCantidadTxt}, #{AddTotalSaldoTxt});" />
+                                                <Select Handler="this.triggers[0].show(); PageX.getInventarioFueraDeCatacion(); PageX.validarCantidadAjuste(#{AddCantidadLibrasTxt}, #{AddPrecioLibrasTxt}, #{AddInventarioDeCafeCantidadTxt}, #{AddTotalSaldoTxt});" />
                                             </Listeners>
                                         </ext:ComboBox>
 
-                                        <ext:FieldSet runat="server" ID="AddVentasFS" Title="Inventario de Café de Socio" Padding="5" LabelWidth="200" >
+                                        <ext:FieldSet runat="server" ID="AddAjustesFS" Title="Inventario de Café de Socio" Padding="5" LabelWidth="200" >
                                             <Items>
                                                 <ext:NumberField runat="server" ID="AddInventarioDeCafeCantidadTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Disponible (Lbs)" AllowBlank="false" MsgTarget="Side" ReadOnly="true" >
                                                     <ToolTips>
@@ -457,19 +457,19 @@
                                             </Items>
                                         </ext:FieldSet>
 
-                                        <ext:FieldSet runat="server" ID="AddRetiroFS" Title="Venta" Padding="5" >
+                                        <ext:FieldSet runat="server" ID="AddRetiroFS" Title="Ajuste" Padding="5" >
                                             <Items>
-                                                <ext:NumberField runat="server" ID="AddCantidadLibrasTxt" FieldLabel="Total Lbs. Netas" Text="0" DataIndex="VENTAS_INV_CAFE_CANTIDAD_LIBRAS" AnchorHorizontal="90%" AllowBlank="false" MsgTarget="Side" >
+                                                <ext:NumberField runat="server" ID="AddCantidadLibrasTxt" FieldLabel="Total Lbs. Netas" Text="0" DataIndex="AJUSTES_INV_CAFE_CANTIDAD_LIBRAS" AnchorHorizontal="90%" AllowBlank="false" MsgTarget="Side" >
                                                     <Listeners>
-                                                        <Change Handler="PageX.validarCantidadVenta(#{AddCantidadLibrasTxt} ,#{AddPrecioLibrasTxt}, #{AddInventarioDeCafeCantidadTxt}, #{AddTotalSaldoTxt}); PageX.loadTotalRetiro();" />
+                                                        <Change Handler="PageX.validarCantidadAjuste(#{AddCantidadLibrasTxt} ,#{AddPrecioLibrasTxt}, #{AddInventarioDeCafeCantidadTxt}, #{AddTotalSaldoTxt}); PageX.loadTotalRetiro();" />
                                                     </Listeners>
                                                 </ext:NumberField>
-                                                <ext:NumberField runat="server" ID="AddPrecioLibrasTxt" FieldLabel="Precio por Libra" Text="0" DataIndex="VENTAS_INV_CAFE_PRECIO_LIBRAS" AnchorHorizontal="90%" AllowBlank="false" MsgTarget="Side" >
+                                                <ext:NumberField runat="server" ID="AddPrecioLibrasTxt" FieldLabel="Precio por Libra" Text="0" DataIndex="AJUSTES_INV_CAFE_PRECIO_LIBRAS" AnchorHorizontal="90%" AllowBlank="false" MsgTarget="Side" >
                                                     <Listeners>
-                                                        <Change Handler="PageX.validarCantidadVenta(#{AddCantidadLibrasTxt}, #{AddPrecioLibrasTxt}, #{AddInventarioDeCafeCantidadTxt}, #{AddTotalSaldoTxt}); PageX.loadTotalRetiro();" />
+                                                        <Change Handler="PageX.validarCantidadAjuste(#{AddCantidadLibrasTxt}, #{AddPrecioLibrasTxt}, #{AddInventarioDeCafeCantidadTxt}, #{AddTotalSaldoTxt}); PageX.loadTotalRetiro();" />
                                                     </Listeners>
                                                 </ext:NumberField>
-                                                <ext:NumberField runat="server" ID="AddTotalSaldoTxt" FieldLabel="Valor Total del Producto" Text="0" DataIndex="VENTAS_INV_CAFE_SALDO_TOTAL" AnchorHorizontal="90%" AllowBlank="false" ReadOnly="true" MsgTarget="Side" >
+                                                <ext:NumberField runat="server" ID="AddTotalSaldoTxt" FieldLabel="Valor Total del Producto" Text="0" DataIndex="AJUSTES_INV_CAFE_SALDO_TOTAL" AnchorHorizontal="90%" AllowBlank="false" ReadOnly="true" MsgTarget="Side" >
                                                     <ToolTips>
                                                         <ext:ToolTip ID="ToolTip19" runat="server" Title="Valor Total del Producto" Html="El valor total es de solo lectura." Width="200" TrackMouse="true" />
                                                     </ToolTips>
@@ -494,11 +494,11 @@
             </Items>
         </ext:Window>
 
-        <ext:Window ID="EditarVentaDeInventarioDeCafeWin"
+        <ext:Window ID="EditarAjusteDeInventarioDeCafeWin"
             runat="server"
             Hidden="true"
             Icon="CartEdit"
-            Title="Venta de Inventario de Café"
+            Title="Ajuste de Inventario de Café de Socio"
             Width="500"
             Layout="FormLayout"
             AutoHeight="True"
@@ -507,14 +507,14 @@
             Modal="true"
             X="10" Y="30">
             <Items>
-                <ext:FormPanel ID="EditarVentaDeInventarioDeCafeFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelWidth="200">
+                <ext:FormPanel ID="EditarAjusteDeInventarioDeCafeFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelWidth="200">
                     <Items>
-                        <ext:Panel ID="Panel4" runat="server" Title="Venta de Inventario de Café" Layout="AnchorLayout" AutoHeight="True"
+                        <ext:Panel ID="Panel4" runat="server" Title="Ajuste de Inventario de Café de Socio" Layout="AnchorLayout" AutoHeight="True"
                             Resizable="false">
                             <Items>
                                 <ext:Panel ID="Panel5" runat="server" Frame="false" Padding="5" Layout="FormLayout" Border="false" AnchorHorizontal="100%" >
                                     <Items>
-                                        <ext:DateField runat="server" ID="EditFechaVentaTxt" DataIndex="VENTAS_INV_CAFE_FECHA" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha" AllowBlank="false" MsgTarget="Side" ReadOnly="true" >
+                                        <ext:DateField runat="server" ID="EditFechaAjusteTxt" DataIndex="AJUSTES_INV_CAFE_FECHA" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha" AllowBlank="false" MsgTarget="Side" ReadOnly="true" >
                                             <ToolTips>
                                                 <ext:ToolTip ID="ToolTip2" runat="server" Title="Fecha" Html="La fecha es de solo lectura." Width="200" TrackMouse="true" />
                                             </ToolTips>
@@ -554,19 +554,19 @@
                                             </ToolTips>
                                         </ext:ComboBox>
 
-                                        <ext:FieldSet runat="server" ID="EditRetiroFS" Title="Venta" Padding="5" >
+                                        <ext:FieldSet runat="server" ID="EditRetiroFS" Title="Ajuste" Padding="5" >
                                             <Items>
-                                                <ext:NumberField runat="server" ID="EditCantidadLibrasTxt" FieldLabel="Total Lbs. Netas" Text="0" DataIndex="VENTAS_INV_CAFE_CANTIDAD_LIBRAS" AnchorHorizontal="90%" AllowBlank="false" MsgTarget="Side" ReadOnly="true" >
+                                                <ext:NumberField runat="server" ID="EditCantidadLibrasTxt" FieldLabel="Total Lbs. Netas" Text="0" DataIndex="AJUSTES_INV_CAFE_CANTIDAD_LIBRAS" AnchorHorizontal="90%" AllowBlank="false" MsgTarget="Side" ReadOnly="true" >
                                                     <ToolTips>
                                                         <ext:ToolTip ID="ToolTip5" runat="server" Title="Total Lbs. Netas" Html="Solo lectura." Width="200" TrackMouse="true" />
                                                     </ToolTips>
                                                 </ext:NumberField>
-                                                <ext:NumberField runat="server" ID="EditPrecioLibrasTxt" FieldLabel="Precio por Libra" Text="0" DataIndex="VENTAS_INV_CAFE_PRECIO_LIBRAS" AnchorHorizontal="90%" AllowBlank="false" MsgTarget="Side" ReadOnly="true" >
+                                                <ext:NumberField runat="server" ID="EditPrecioLibrasTxt" FieldLabel="Precio por Libra" Text="0" DataIndex="AJUSTES_INV_CAFE_PRECIO_LIBRAS" AnchorHorizontal="90%" AllowBlank="false" MsgTarget="Side" ReadOnly="true" >
                                                     <ToolTips>
                                                         <ext:ToolTip ID="ToolTip6" runat="server" Title="Precio por Libra" Html="Solo lectura." Width="200" TrackMouse="true" />
                                                     </ToolTips>
                                                 </ext:NumberField>
-                                                <ext:NumberField runat="server" ID="EditTotalSaldoTxt" FieldLabel="Valor Total del Producto" Text="0" DataIndex="VENTAS_INV_CAFE_SALDO_TOTAL" AnchorHorizontal="90%" AllowBlank="false" ReadOnly="true" MsgTarget="Side" >
+                                                <ext:NumberField runat="server" ID="EditTotalSaldoTxt" FieldLabel="Valor Total del Producto" Text="0" DataIndex="AJUSTES_INV_CAFE_SALDO_TOTAL" AnchorHorizontal="90%" AllowBlank="false" ReadOnly="true" MsgTarget="Side" >
                                                     <ToolTips>
                                                         <ext:ToolTip ID="ToolTip7" runat="server" Title="Valor Total del Producto" Html="Solo lectura." Width="200" TrackMouse="true" />
                                                     </ToolTips>

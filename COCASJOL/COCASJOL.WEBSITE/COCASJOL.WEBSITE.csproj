@@ -120,7 +120,7 @@
     <Content Include="resources\js\inventario\ingresos\notasDePesoEnPesaje.js" />
     <Content Include="resources\js\inventario\inventarioDeCafePorSocio.js" />
     <Content Include="resources\js\inventario\salidas\hojasDeLiquidacion.js" />
-    <Content Include="resources\js\inventario\salidas\ventasDeInventarioDeCafe.js" />
+    <Content Include="resources\js\inventario\salidas\ajusteInventarioDeCafeDeSocio.js" />
     <Content Include="resources\js\md5.js" />
     <Content Include="resources\js\prestamos\solicitudesDePrestamos.js" />
     <Content Include="resources\js\reportes\movimientosDeInventarioDeCafe.js" />
@@ -144,7 +144,7 @@
     <Content Include="Source\Inventario\Ingresos\NotasDePesoEnPesaje.aspx" />
     <Content Include="Source\Inventario\InventarioDeCafePorSocio.aspx" />
     <Content Include="Source\Inventario\Salidas\HojasDeLiquidacion.aspx" />
-    <Content Include="Source\Inventario\Salidas\VentasDeInventarioDeCafe.aspx" />
+    <Content Include="Source\Inventario\Salidas\AjustesInventarioDeCafeDeSocios.aspx" />
     <Content Include="Source\Prestamos\Prestamos.aspx" />
     <Content Include="Source\Prestamos\SolicitudesDePrestamos.aspx" />
     <Content Include="Source\Reportes\MovimientosDeInventarioDeCafe.aspx" />
@@ -259,12 +259,12 @@
     <Compile Include="Source\Inventario\Salidas\HojasDeLiquidacion.aspx.designer.cs">
       <DependentUpon>HojasDeLiquidacion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Source\Inventario\Salidas\VentasDeInventarioDeCafe.aspx.cs">
-      <DependentUpon>VentasDeInventarioDeCafe.aspx</DependentUpon>
+    <Compile Include="Source\Inventario\Salidas\AjustesInventarioDeCafeDeSocios.aspx.cs">
+      <DependentUpon>AjustesInventarioDeCafeDeSocios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Source\Inventario\Salidas\VentasDeInventarioDeCafe.aspx.designer.cs">
-      <DependentUpon>VentasDeInventarioDeCafe.aspx</DependentUpon>
+    <Compile Include="Source\Inventario\Salidas\AjustesInventarioDeCafeDeSocios.aspx.designer.cs">
+      <DependentUpon>AjustesInventarioDeCafeDeSocios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Prestamos\Prestamos.aspx.cs">
       <DependentUpon>Prestamos.aspx</DependentUpon>

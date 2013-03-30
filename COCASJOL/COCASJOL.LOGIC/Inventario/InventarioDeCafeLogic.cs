@@ -199,28 +199,28 @@ namespace COCASJOL.LOGIC.Inventario
             }
         }
 
-        //Venta de Inventario de Cafe
-        public void InsertarTransaccionInventarioDeCafeDeSocio(venta_inventario_cafe VentaDeInventarioDeCafe, colinasEntities db)
+        //Ajuste de Inventario de Cafe
+        public void InsertarTransaccionInventarioDeCafeDeSocio(ajuste_inventario_cafe_x_socio AjusteDeInventarioDeCafe, colinasEntities db)
         {
             try
             {
-                reporte_total_inventario_de_cafe_por_socio asocInventory = this.GetReporteTotalInventarioDeCafe(VentaDeInventarioDeCafe.SOCIOS_ID, VentaDeInventarioDeCafe.CLASIFICACIONES_CAFE_ID);
+                reporte_total_inventario_de_cafe_por_socio asocInventory = this.GetReporteTotalInventarioDeCafe(AjusteDeInventarioDeCafe.SOCIOS_ID, AjusteDeInventarioDeCafe.CLASIFICACIONES_CAFE_ID);
 
                 decimal cantidad_en_inventario = asocInventory == null ? 0 : asocInventory.INVENTARIO_ENTRADAS_CANTIDAD;
                 decimal salidas_de_inventario = asocInventory == null ? 0 : asocInventory.INVENTARIO_SALIDAS_SALDO;
 
                 inventario_cafe_de_socio inventarioDeCafe = new inventario_cafe_de_socio();
 
-                inventarioDeCafe.SOCIOS_ID = VentaDeInventarioDeCafe.SOCIOS_ID;
-                inventarioDeCafe.CLASIFICACIONES_CAFE_ID = VentaDeInventarioDeCafe.CLASIFICACIONES_CAFE_ID;
-                inventarioDeCafe.DOCUMENTO_ID = VentaDeInventarioDeCafe.VENTAS_INV_CAFE_ID;
-                inventarioDeCafe.DOCUMENTO_TIPO = "VENTA";
+                inventarioDeCafe.SOCIOS_ID = AjusteDeInventarioDeCafe.SOCIOS_ID;
+                inventarioDeCafe.CLASIFICACIONES_CAFE_ID = AjusteDeInventarioDeCafe.CLASIFICACIONES_CAFE_ID;
+                inventarioDeCafe.DOCUMENTO_ID = AjusteDeInventarioDeCafe.AJUSTES_INV_CAFE_ID;
+                inventarioDeCafe.DOCUMENTO_TIPO = "AJUSTE";
 
-                inventarioDeCafe.INVENTARIO_ENTRADAS_CANTIDAD = cantidad_en_inventario - VentaDeInventarioDeCafe.VENTAS_INV_CAFE_CANTIDAD_LIBRAS;
-                inventarioDeCafe.INVENTARIO_SALIDAS_SALDO = salidas_de_inventario + VentaDeInventarioDeCafe.VENTAS_INV_CAFE_SALDO_TOTAL;
+                inventarioDeCafe.INVENTARIO_ENTRADAS_CANTIDAD = cantidad_en_inventario - AjusteDeInventarioDeCafe.AJUSTES_INV_CAFE_CANTIDAD_LIBRAS;
+                inventarioDeCafe.INVENTARIO_SALIDAS_SALDO = salidas_de_inventario + AjusteDeInventarioDeCafe.AJUSTES_INV_CAFE_SALDO_TOTAL;
 
-                inventarioDeCafe.CREADO_POR = VentaDeInventarioDeCafe.CREADO_POR;
-                inventarioDeCafe.FECHA_CREACION = VentaDeInventarioDeCafe.FECHA_CREACION;
+                inventarioDeCafe.CREADO_POR = AjusteDeInventarioDeCafe.CREADO_POR;
+                inventarioDeCafe.FECHA_CREACION = AjusteDeInventarioDeCafe.FECHA_CREACION;
 
                 db.inventario_cafe_de_socio.AddObject(inventarioDeCafe);
 

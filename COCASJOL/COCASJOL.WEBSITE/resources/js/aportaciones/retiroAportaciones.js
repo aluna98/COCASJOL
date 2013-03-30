@@ -255,7 +255,6 @@ var PageX = {
             AddRetiroAportacionInteresesSAportacionesSaldoTxt.getValue() +
             AddRetiroAportacionExcedentePeriodoSaldoTxt.getValue();
 
-        var retiroTotalSaldo = AddAportacionTotalSaldoTxt.getValue() - retiro;
-        AddRetiroAportacionTotalSaldoTxt.setValue(retiroTotalSaldo);
+        AddRetiroAportacionTotalSaldoTxt.setValue(retiro);
     }
 };

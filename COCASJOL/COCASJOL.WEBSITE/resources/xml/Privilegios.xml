@@ -100,11 +100,11 @@
   </privilege>
   
   <privilege>
-    <key>MANT_VENTASINVENTARIOCAFE</key>
-    <page>VentasDeInventarioDeCafe</page>
-    <module>VentasDeInventarioDeCafeModule</module>
-    <shortcut>scVentasDeInventarioDeCafe</shortcut>
-    <menuitem>VentasDeInventarioDeCafeMenuItem</menuitem>
+    <key>MANT_AJUSTEINVENTARIOCAFE</key>
+    <page>AjustesInventarioDeCafeDeSocios</page>
+    <module>AjustesDeInventarioDeCafeDeSociosModule</module>
+    <shortcut>scAjustesDeInventarioDeCafeDeSocios</shortcut>
+    <menuitem>AjustesDeInventarioDeCafeDeSociosMenuItem</menuitem>
   </privilege>
   
   <privilege>

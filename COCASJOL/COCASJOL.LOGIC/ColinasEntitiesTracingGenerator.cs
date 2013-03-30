@@ -48,8 +48,8 @@ using System.Data;
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "SOCIO_ID_FK", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "socio_general", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.socio_general), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "SOCIOS_ID_FK2", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "socio_produccion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.LOGIC.socio_produccion), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "Solicitudesxsociofk", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "solicitud_prestamo", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.solicitud_prestamo), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "VENTAS_INV_CLASIFICACIONES_FK", "clasificacion_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.clasificacion_cafe), "ventas_inventario_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.venta_inventario_cafe), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "VENTAS_INV_SOCIOS_FK", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "ventas_inventario_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.venta_inventario_cafe), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "AJUSTES_INV_CLASIFICACIONES_FK", "clasificacion_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.clasificacion_cafe), "ajustes_inventario_cafe_x_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.ajuste_inventario_cafe_x_socio), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "AJUSTES_INV_SOCIOS_FK", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.LOGIC.socio), "ajustes_inventario_cafe_x_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.LOGIC.ajuste_inventario_cafe_x_socio), true)]
 
 #endregion
 
@@ -627,18 +627,18 @@ namespace COCASJOL.LOGIC
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<venta_inventario_cafe> ventas_inventario_cafe
+        public ObjectSet<ajuste_inventario_cafe_x_socio> ajustes_inventario_cafe_x_socio
         {
             get
             {
-                if ((_ventas_inventario_cafe == null))
+                if ((_ajustes_inventario_cafe_x_socio == null))
                 {
-                    _ventas_inventario_cafe = base.CreateObjectSet<venta_inventario_cafe>("ventas_inventario_cafe");
+                    _ajustes_inventario_cafe_x_socio = base.CreateObjectSet<ajuste_inventario_cafe_x_socio>("ajustes_inventario_cafe_x_socio");
                 }
-                return _ventas_inventario_cafe;
+                return _ajustes_inventario_cafe_x_socio;
             }
         }
-        private ObjectSet<venta_inventario_cafe> _ventas_inventario_cafe;
+        private ObjectSet<ajuste_inventario_cafe_x_socio> _ajustes_inventario_cafe_x_socio;
 
         #endregion
         #region AddTo Methods
@@ -860,11 +860,11 @@ namespace COCASJOL.LOGIC
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the ventas_inventario_cafe EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the ajustes_inventario_cafe_x_socio EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToventas_inventario_cafe(venta_inventario_cafe venta_inventario_cafe)
+        public void AddToajustes_inventario_cafe_x_socio(ajuste_inventario_cafe_x_socio ajuste_inventario_cafe_x_socio)
         {
-            base.AddObject("ventas_inventario_cafe", venta_inventario_cafe);
+            base.AddObject("ajustes_inventario_cafe_x_socio", ajuste_inventario_cafe_x_socio);
         }
 
         #endregion
@@ -1089,6 +1089,396 @@ namespace COCASJOL.LOGIC
     #endregion
     
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="COLINASMODEL", Name="ajuste_inventario_cafe_x_socio")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ajuste_inventario_cafe_x_socio : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new ajuste_inventario_cafe_x_socio object.
+        /// </summary>
+        /// <param name="aJUSTES_INV_CAFE_ID">Initial value of the AJUSTES_INV_CAFE_ID property.</param>
+        /// <param name="sOCIOS_ID">Initial value of the SOCIOS_ID property.</param>
+        /// <param name="cLASIFICACIONES_CAFE_ID">Initial value of the CLASIFICACIONES_CAFE_ID property.</param>
+        /// <param name="aJUSTES_INV_CAFE_FECHA">Initial value of the AJUSTES_INV_CAFE_FECHA property.</param>
+        /// <param name="aJUSTES_INV_CAFE_CANTIDAD_LIBRAS">Initial value of the AJUSTES_INV_CAFE_CANTIDAD_LIBRAS property.</param>
+        /// <param name="aJUSTES_INV_CAFE_PRECIO_LIBRAS">Initial value of the AJUSTES_INV_CAFE_PRECIO_LIBRAS property.</param>
+        /// <param name="aJUSTES_INV_CAFE_SALDO_TOTAL">Initial value of the AJUSTES_INV_CAFE_SALDO_TOTAL property.</param>
+        /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
+        /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
+        public static ajuste_inventario_cafe_x_socio Createajuste_inventario_cafe_x_socio(global::System.Int32 aJUSTES_INV_CAFE_ID, global::System.String sOCIOS_ID, global::System.Int32 cLASIFICACIONES_CAFE_ID, global::System.DateTime aJUSTES_INV_CAFE_FECHA, global::System.Decimal aJUSTES_INV_CAFE_CANTIDAD_LIBRAS, global::System.Decimal aJUSTES_INV_CAFE_PRECIO_LIBRAS, global::System.Decimal aJUSTES_INV_CAFE_SALDO_TOTAL, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
+        {
+            ajuste_inventario_cafe_x_socio ajuste_inventario_cafe_x_socio = new ajuste_inventario_cafe_x_socio();
+            ajuste_inventario_cafe_x_socio.AJUSTES_INV_CAFE_ID = aJUSTES_INV_CAFE_ID;
+            ajuste_inventario_cafe_x_socio.SOCIOS_ID = sOCIOS_ID;
+            ajuste_inventario_cafe_x_socio.CLASIFICACIONES_CAFE_ID = cLASIFICACIONES_CAFE_ID;
+            ajuste_inventario_cafe_x_socio.AJUSTES_INV_CAFE_FECHA = aJUSTES_INV_CAFE_FECHA;
+            ajuste_inventario_cafe_x_socio.AJUSTES_INV_CAFE_CANTIDAD_LIBRAS = aJUSTES_INV_CAFE_CANTIDAD_LIBRAS;
+            ajuste_inventario_cafe_x_socio.AJUSTES_INV_CAFE_PRECIO_LIBRAS = aJUSTES_INV_CAFE_PRECIO_LIBRAS;
+            ajuste_inventario_cafe_x_socio.AJUSTES_INV_CAFE_SALDO_TOTAL = aJUSTES_INV_CAFE_SALDO_TOTAL;
+            ajuste_inventario_cafe_x_socio.CREADO_POR = cREADO_POR;
+            ajuste_inventario_cafe_x_socio.FECHA_CREACION = fECHA_CREACION;
+            return ajuste_inventario_cafe_x_socio;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 AJUSTES_INV_CAFE_ID
+        {
+            get
+            {
+                return _AJUSTES_INV_CAFE_ID;
+            }
+            set
+            {
+                if (_AJUSTES_INV_CAFE_ID != value)
+                {
+                    OnAJUSTES_INV_CAFE_IDChanging(value);
+                    ReportPropertyChanging("AJUSTES_INV_CAFE_ID");
+                    _AJUSTES_INV_CAFE_ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("AJUSTES_INV_CAFE_ID");
+                    OnAJUSTES_INV_CAFE_IDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _AJUSTES_INV_CAFE_ID;
+        partial void OnAJUSTES_INV_CAFE_IDChanging(global::System.Int32 value);
+        partial void OnAJUSTES_INV_CAFE_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String SOCIOS_ID
+        {
+            get
+            {
+                return _SOCIOS_ID;
+            }
+            set
+            {
+                OnSOCIOS_IDChanging(value);
+                ReportPropertyChanging("SOCIOS_ID");
+                _SOCIOS_ID = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("SOCIOS_ID");
+                OnSOCIOS_IDChanged();
+            }
+        }
+        private global::System.String _SOCIOS_ID;
+        partial void OnSOCIOS_IDChanging(global::System.String value);
+        partial void OnSOCIOS_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 CLASIFICACIONES_CAFE_ID
+        {
+            get
+            {
+                return _CLASIFICACIONES_CAFE_ID;
+            }
+            set
+            {
+                OnCLASIFICACIONES_CAFE_IDChanging(value);
+                ReportPropertyChanging("CLASIFICACIONES_CAFE_ID");
+                _CLASIFICACIONES_CAFE_ID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CLASIFICACIONES_CAFE_ID");
+                OnCLASIFICACIONES_CAFE_IDChanged();
+            }
+        }
+        private global::System.Int32 _CLASIFICACIONES_CAFE_ID;
+        partial void OnCLASIFICACIONES_CAFE_IDChanging(global::System.Int32 value);
+        partial void OnCLASIFICACIONES_CAFE_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime AJUSTES_INV_CAFE_FECHA
+        {
+            get
+            {
+                return _AJUSTES_INV_CAFE_FECHA;
+            }
+            set
+            {
+                OnAJUSTES_INV_CAFE_FECHAChanging(value);
+                ReportPropertyChanging("AJUSTES_INV_CAFE_FECHA");
+                _AJUSTES_INV_CAFE_FECHA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AJUSTES_INV_CAFE_FECHA");
+                OnAJUSTES_INV_CAFE_FECHAChanged();
+            }
+        }
+        private global::System.DateTime _AJUSTES_INV_CAFE_FECHA;
+        partial void OnAJUSTES_INV_CAFE_FECHAChanging(global::System.DateTime value);
+        partial void OnAJUSTES_INV_CAFE_FECHAChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal AJUSTES_INV_CAFE_CANTIDAD_LIBRAS
+        {
+            get
+            {
+                return _AJUSTES_INV_CAFE_CANTIDAD_LIBRAS;
+            }
+            set
+            {
+                OnAJUSTES_INV_CAFE_CANTIDAD_LIBRASChanging(value);
+                ReportPropertyChanging("AJUSTES_INV_CAFE_CANTIDAD_LIBRAS");
+                _AJUSTES_INV_CAFE_CANTIDAD_LIBRAS = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AJUSTES_INV_CAFE_CANTIDAD_LIBRAS");
+                OnAJUSTES_INV_CAFE_CANTIDAD_LIBRASChanged();
+            }
+        }
+        private global::System.Decimal _AJUSTES_INV_CAFE_CANTIDAD_LIBRAS;
+        partial void OnAJUSTES_INV_CAFE_CANTIDAD_LIBRASChanging(global::System.Decimal value);
+        partial void OnAJUSTES_INV_CAFE_CANTIDAD_LIBRASChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal AJUSTES_INV_CAFE_PRECIO_LIBRAS
+        {
+            get
+            {
+                return _AJUSTES_INV_CAFE_PRECIO_LIBRAS;
+            }
+            set
+            {
+                OnAJUSTES_INV_CAFE_PRECIO_LIBRASChanging(value);
+                ReportPropertyChanging("AJUSTES_INV_CAFE_PRECIO_LIBRAS");
+                _AJUSTES_INV_CAFE_PRECIO_LIBRAS = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AJUSTES_INV_CAFE_PRECIO_LIBRAS");
+                OnAJUSTES_INV_CAFE_PRECIO_LIBRASChanged();
+            }
+        }
+        private global::System.Decimal _AJUSTES_INV_CAFE_PRECIO_LIBRAS;
+        partial void OnAJUSTES_INV_CAFE_PRECIO_LIBRASChanging(global::System.Decimal value);
+        partial void OnAJUSTES_INV_CAFE_PRECIO_LIBRASChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal AJUSTES_INV_CAFE_SALDO_TOTAL
+        {
+            get
+            {
+                return _AJUSTES_INV_CAFE_SALDO_TOTAL;
+            }
+            set
+            {
+                OnAJUSTES_INV_CAFE_SALDO_TOTALChanging(value);
+                ReportPropertyChanging("AJUSTES_INV_CAFE_SALDO_TOTAL");
+                _AJUSTES_INV_CAFE_SALDO_TOTAL = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AJUSTES_INV_CAFE_SALDO_TOTAL");
+                OnAJUSTES_INV_CAFE_SALDO_TOTALChanged();
+            }
+        }
+        private global::System.Decimal _AJUSTES_INV_CAFE_SALDO_TOTAL;
+        partial void OnAJUSTES_INV_CAFE_SALDO_TOTALChanging(global::System.Decimal value);
+        partial void OnAJUSTES_INV_CAFE_SALDO_TOTALChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CREADO_POR
+        {
+            get
+            {
+                return _CREADO_POR;
+            }
+            set
+            {
+                OnCREADO_PORChanging(value);
+                ReportPropertyChanging("CREADO_POR");
+                _CREADO_POR = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CREADO_POR");
+                OnCREADO_PORChanged();
+            }
+        }
+        private global::System.String _CREADO_POR;
+        partial void OnCREADO_PORChanging(global::System.String value);
+        partial void OnCREADO_PORChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime FECHA_CREACION
+        {
+            get
+            {
+                return _FECHA_CREACION;
+            }
+            set
+            {
+                OnFECHA_CREACIONChanging(value);
+                ReportPropertyChanging("FECHA_CREACION");
+                _FECHA_CREACION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_CREACION");
+                OnFECHA_CREACIONChanged();
+            }
+        }
+        private global::System.DateTime _FECHA_CREACION;
+        partial void OnFECHA_CREACIONChanging(global::System.DateTime value);
+        partial void OnFECHA_CREACIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MODIFICADO_POR
+        {
+            get
+            {
+                return _MODIFICADO_POR;
+            }
+            set
+            {
+                OnMODIFICADO_PORChanging(value);
+                ReportPropertyChanging("MODIFICADO_POR");
+                _MODIFICADO_POR = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MODIFICADO_POR");
+                OnMODIFICADO_PORChanged();
+            }
+        }
+        private global::System.String _MODIFICADO_POR;
+        partial void OnMODIFICADO_PORChanging(global::System.String value);
+        partial void OnMODIFICADO_PORChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> FECHA_MODIFICACION
+        {
+            get
+            {
+                return _FECHA_MODIFICACION;
+            }
+            set
+            {
+                OnFECHA_MODIFICACIONChanging(value);
+                ReportPropertyChanging("FECHA_MODIFICACION");
+                _FECHA_MODIFICACION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_MODIFICACION");
+                OnFECHA_MODIFICACIONChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _FECHA_MODIFICACION;
+        partial void OnFECHA_MODIFICACIONChanging(Nullable<global::System.DateTime> value);
+        partial void OnFECHA_MODIFICACIONChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "AJUSTES_INV_CLASIFICACIONES_FK", "clasificacion_cafe")]
+        public clasificacion_cafe clasificaciones_cafe
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<clasificacion_cafe>("COLINASMODEL.AJUSTES_INV_CLASIFICACIONES_FK", "clasificacion_cafe").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<clasificacion_cafe>("COLINASMODEL.AJUSTES_INV_CLASIFICACIONES_FK", "clasificacion_cafe").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<clasificacion_cafe> clasificaciones_cafeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<clasificacion_cafe>("COLINASMODEL.AJUSTES_INV_CLASIFICACIONES_FK", "clasificacion_cafe");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<clasificacion_cafe>("COLINASMODEL.AJUSTES_INV_CLASIFICACIONES_FK", "clasificacion_cafe", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "AJUSTES_INV_SOCIOS_FK", "socio")]
+        public socio socios
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.AJUSTES_INV_SOCIOS_FK", "socio").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.AJUSTES_INV_SOCIOS_FK", "socio").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<socio> sociosReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.AJUSTES_INV_SOCIOS_FK", "socio");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<socio>("COLINASMODEL.AJUSTES_INV_SOCIOS_FK", "socio", value);
+                }
+            }
+        }
+
+        #endregion
+    }
     
     /// <summary>
     /// No Metadata Documentation available.
@@ -2341,18 +2731,18 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "VENTAS_INV_CLASIFICACIONES_FK", "ventas_inventario_cafe")]
-        public EntityCollection<venta_inventario_cafe> ventas_inventario_cafe
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "AJUSTES_INV_CLASIFICACIONES_FK", "ajustes_inventario_cafe_x_socio")]
+        public EntityCollection<ajuste_inventario_cafe_x_socio> ajustes_inventario_cafe_x_socio
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<venta_inventario_cafe>("COLINASMODEL.VENTAS_INV_CLASIFICACIONES_FK", "ventas_inventario_cafe");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ajuste_inventario_cafe_x_socio>("COLINASMODEL.AJUSTES_INV_CLASIFICACIONES_FK", "ajustes_inventario_cafe_x_socio");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<venta_inventario_cafe>("COLINASMODEL.VENTAS_INV_CLASIFICACIONES_FK", "ventas_inventario_cafe", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ajuste_inventario_cafe_x_socio>("COLINASMODEL.AJUSTES_INV_CLASIFICACIONES_FK", "ajustes_inventario_cafe_x_socio", value);
                 }
             }
         }
@@ -9121,18 +9511,18 @@ namespace COCASJOL.LOGIC
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "VENTAS_INV_SOCIOS_FK", "ventas_inventario_cafe")]
-        public EntityCollection<venta_inventario_cafe> ventas_inventario_cafe
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "AJUSTES_INV_SOCIOS_FK", "ajustes_inventario_cafe_x_socio")]
+        public EntityCollection<ajuste_inventario_cafe_x_socio> ajustes_inventario_cafe_x_socio
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<venta_inventario_cafe>("COLINASMODEL.VENTAS_INV_SOCIOS_FK", "ventas_inventario_cafe");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ajuste_inventario_cafe_x_socio>("COLINASMODEL.AJUSTES_INV_SOCIOS_FK", "ajustes_inventario_cafe_x_socio");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<venta_inventario_cafe>("COLINASMODEL.VENTAS_INV_SOCIOS_FK", "ventas_inventario_cafe", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ajuste_inventario_cafe_x_socio>("COLINASMODEL.AJUSTES_INV_SOCIOS_FK", "ajustes_inventario_cafe_x_socio", value);
                 }
             }
         }
@@ -11249,396 +11639,6 @@ namespace COCASJOL.LOGIC
 
         #endregion
     
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="COLINASMODEL", Name="venta_inventario_cafe")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class venta_inventario_cafe : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new venta_inventario_cafe object.
-        /// </summary>
-        /// <param name="vENTAS_INV_CAFE_ID">Initial value of the VENTAS_INV_CAFE_ID property.</param>
-        /// <param name="sOCIOS_ID">Initial value of the SOCIOS_ID property.</param>
-        /// <param name="cLASIFICACIONES_CAFE_ID">Initial value of the CLASIFICACIONES_CAFE_ID property.</param>
-        /// <param name="vENTAS_INV_CAFE_FECHA">Initial value of the VENTAS_INV_CAFE_FECHA property.</param>
-        /// <param name="vENTAS_INV_CAFE_CANTIDAD_LIBRAS">Initial value of the VENTAS_INV_CAFE_CANTIDAD_LIBRAS property.</param>
-        /// <param name="vENTAS_INV_CAFE_PRECIO_LIBRAS">Initial value of the VENTAS_INV_CAFE_PRECIO_LIBRAS property.</param>
-        /// <param name="vENTAS_INV_CAFE_SALDO_TOTAL">Initial value of the VENTAS_INV_CAFE_SALDO_TOTAL property.</param>
-        /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
-        /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
-        public static venta_inventario_cafe Createventa_inventario_cafe(global::System.Int32 vENTAS_INV_CAFE_ID, global::System.String sOCIOS_ID, global::System.Int32 cLASIFICACIONES_CAFE_ID, global::System.DateTime vENTAS_INV_CAFE_FECHA, global::System.Decimal vENTAS_INV_CAFE_CANTIDAD_LIBRAS, global::System.Decimal vENTAS_INV_CAFE_PRECIO_LIBRAS, global::System.Decimal vENTAS_INV_CAFE_SALDO_TOTAL, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
-        {
-            venta_inventario_cafe venta_inventario_cafe = new venta_inventario_cafe();
-            venta_inventario_cafe.VENTAS_INV_CAFE_ID = vENTAS_INV_CAFE_ID;
-            venta_inventario_cafe.SOCIOS_ID = sOCIOS_ID;
-            venta_inventario_cafe.CLASIFICACIONES_CAFE_ID = cLASIFICACIONES_CAFE_ID;
-            venta_inventario_cafe.VENTAS_INV_CAFE_FECHA = vENTAS_INV_CAFE_FECHA;
-            venta_inventario_cafe.VENTAS_INV_CAFE_CANTIDAD_LIBRAS = vENTAS_INV_CAFE_CANTIDAD_LIBRAS;
-            venta_inventario_cafe.VENTAS_INV_CAFE_PRECIO_LIBRAS = vENTAS_INV_CAFE_PRECIO_LIBRAS;
-            venta_inventario_cafe.VENTAS_INV_CAFE_SALDO_TOTAL = vENTAS_INV_CAFE_SALDO_TOTAL;
-            venta_inventario_cafe.CREADO_POR = cREADO_POR;
-            venta_inventario_cafe.FECHA_CREACION = fECHA_CREACION;
-            return venta_inventario_cafe;
-        }
-
-        #endregion
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 VENTAS_INV_CAFE_ID
-        {
-            get
-            {
-                return _VENTAS_INV_CAFE_ID;
-            }
-            set
-            {
-                if (_VENTAS_INV_CAFE_ID != value)
-                {
-                    OnVENTAS_INV_CAFE_IDChanging(value);
-                    ReportPropertyChanging("VENTAS_INV_CAFE_ID");
-                    _VENTAS_INV_CAFE_ID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("VENTAS_INV_CAFE_ID");
-                    OnVENTAS_INV_CAFE_IDChanged();
-                }
-            }
-        }
-        private global::System.Int32 _VENTAS_INV_CAFE_ID;
-        partial void OnVENTAS_INV_CAFE_IDChanging(global::System.Int32 value);
-        partial void OnVENTAS_INV_CAFE_IDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String SOCIOS_ID
-        {
-            get
-            {
-                return _SOCIOS_ID;
-            }
-            set
-            {
-                OnSOCIOS_IDChanging(value);
-                ReportPropertyChanging("SOCIOS_ID");
-                _SOCIOS_ID = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("SOCIOS_ID");
-                OnSOCIOS_IDChanged();
-            }
-        }
-        private global::System.String _SOCIOS_ID;
-        partial void OnSOCIOS_IDChanging(global::System.String value);
-        partial void OnSOCIOS_IDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 CLASIFICACIONES_CAFE_ID
-        {
-            get
-            {
-                return _CLASIFICACIONES_CAFE_ID;
-            }
-            set
-            {
-                OnCLASIFICACIONES_CAFE_IDChanging(value);
-                ReportPropertyChanging("CLASIFICACIONES_CAFE_ID");
-                _CLASIFICACIONES_CAFE_ID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CLASIFICACIONES_CAFE_ID");
-                OnCLASIFICACIONES_CAFE_IDChanged();
-            }
-        }
-        private global::System.Int32 _CLASIFICACIONES_CAFE_ID;
-        partial void OnCLASIFICACIONES_CAFE_IDChanging(global::System.Int32 value);
-        partial void OnCLASIFICACIONES_CAFE_IDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.DateTime VENTAS_INV_CAFE_FECHA
-        {
-            get
-            {
-                return _VENTAS_INV_CAFE_FECHA;
-            }
-            set
-            {
-                OnVENTAS_INV_CAFE_FECHAChanging(value);
-                ReportPropertyChanging("VENTAS_INV_CAFE_FECHA");
-                _VENTAS_INV_CAFE_FECHA = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("VENTAS_INV_CAFE_FECHA");
-                OnVENTAS_INV_CAFE_FECHAChanged();
-            }
-        }
-        private global::System.DateTime _VENTAS_INV_CAFE_FECHA;
-        partial void OnVENTAS_INV_CAFE_FECHAChanging(global::System.DateTime value);
-        partial void OnVENTAS_INV_CAFE_FECHAChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Decimal VENTAS_INV_CAFE_CANTIDAD_LIBRAS
-        {
-            get
-            {
-                return _VENTAS_INV_CAFE_CANTIDAD_LIBRAS;
-            }
-            set
-            {
-                OnVENTAS_INV_CAFE_CANTIDAD_LIBRASChanging(value);
-                ReportPropertyChanging("VENTAS_INV_CAFE_CANTIDAD_LIBRAS");
-                _VENTAS_INV_CAFE_CANTIDAD_LIBRAS = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("VENTAS_INV_CAFE_CANTIDAD_LIBRAS");
-                OnVENTAS_INV_CAFE_CANTIDAD_LIBRASChanged();
-            }
-        }
-        private global::System.Decimal _VENTAS_INV_CAFE_CANTIDAD_LIBRAS;
-        partial void OnVENTAS_INV_CAFE_CANTIDAD_LIBRASChanging(global::System.Decimal value);
-        partial void OnVENTAS_INV_CAFE_CANTIDAD_LIBRASChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Decimal VENTAS_INV_CAFE_PRECIO_LIBRAS
-        {
-            get
-            {
-                return _VENTAS_INV_CAFE_PRECIO_LIBRAS;
-            }
-            set
-            {
-                OnVENTAS_INV_CAFE_PRECIO_LIBRASChanging(value);
-                ReportPropertyChanging("VENTAS_INV_CAFE_PRECIO_LIBRAS");
-                _VENTAS_INV_CAFE_PRECIO_LIBRAS = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("VENTAS_INV_CAFE_PRECIO_LIBRAS");
-                OnVENTAS_INV_CAFE_PRECIO_LIBRASChanged();
-            }
-        }
-        private global::System.Decimal _VENTAS_INV_CAFE_PRECIO_LIBRAS;
-        partial void OnVENTAS_INV_CAFE_PRECIO_LIBRASChanging(global::System.Decimal value);
-        partial void OnVENTAS_INV_CAFE_PRECIO_LIBRASChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Decimal VENTAS_INV_CAFE_SALDO_TOTAL
-        {
-            get
-            {
-                return _VENTAS_INV_CAFE_SALDO_TOTAL;
-            }
-            set
-            {
-                OnVENTAS_INV_CAFE_SALDO_TOTALChanging(value);
-                ReportPropertyChanging("VENTAS_INV_CAFE_SALDO_TOTAL");
-                _VENTAS_INV_CAFE_SALDO_TOTAL = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("VENTAS_INV_CAFE_SALDO_TOTAL");
-                OnVENTAS_INV_CAFE_SALDO_TOTALChanged();
-            }
-        }
-        private global::System.Decimal _VENTAS_INV_CAFE_SALDO_TOTAL;
-        partial void OnVENTAS_INV_CAFE_SALDO_TOTALChanging(global::System.Decimal value);
-        partial void OnVENTAS_INV_CAFE_SALDO_TOTALChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String CREADO_POR
-        {
-            get
-            {
-                return _CREADO_POR;
-            }
-            set
-            {
-                OnCREADO_PORChanging(value);
-                ReportPropertyChanging("CREADO_POR");
-                _CREADO_POR = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("CREADO_POR");
-                OnCREADO_PORChanged();
-            }
-        }
-        private global::System.String _CREADO_POR;
-        partial void OnCREADO_PORChanging(global::System.String value);
-        partial void OnCREADO_PORChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.DateTime FECHA_CREACION
-        {
-            get
-            {
-                return _FECHA_CREACION;
-            }
-            set
-            {
-                OnFECHA_CREACIONChanging(value);
-                ReportPropertyChanging("FECHA_CREACION");
-                _FECHA_CREACION = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("FECHA_CREACION");
-                OnFECHA_CREACIONChanged();
-            }
-        }
-        private global::System.DateTime _FECHA_CREACION;
-        partial void OnFECHA_CREACIONChanging(global::System.DateTime value);
-        partial void OnFECHA_CREACIONChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String MODIFICADO_POR
-        {
-            get
-            {
-                return _MODIFICADO_POR;
-            }
-            set
-            {
-                OnMODIFICADO_PORChanging(value);
-                ReportPropertyChanging("MODIFICADO_POR");
-                _MODIFICADO_POR = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("MODIFICADO_POR");
-                OnMODIFICADO_PORChanged();
-            }
-        }
-        private global::System.String _MODIFICADO_POR;
-        partial void OnMODIFICADO_PORChanging(global::System.String value);
-        partial void OnMODIFICADO_PORChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> FECHA_MODIFICACION
-        {
-            get
-            {
-                return _FECHA_MODIFICACION;
-            }
-            set
-            {
-                OnFECHA_MODIFICACIONChanging(value);
-                ReportPropertyChanging("FECHA_MODIFICACION");
-                _FECHA_MODIFICACION = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("FECHA_MODIFICACION");
-                OnFECHA_MODIFICACIONChanged();
-            }
-        }
-        private Nullable<global::System.DateTime> _FECHA_MODIFICACION;
-        partial void OnFECHA_MODIFICACIONChanging(Nullable<global::System.DateTime> value);
-        partial void OnFECHA_MODIFICACIONChanged();
-
-        #endregion
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "VENTAS_INV_CLASIFICACIONES_FK", "clasificacion_cafe")]
-        public clasificacion_cafe clasificaciones_cafe
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<clasificacion_cafe>("COLINASMODEL.VENTAS_INV_CLASIFICACIONES_FK", "clasificacion_cafe").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<clasificacion_cafe>("COLINASMODEL.VENTAS_INV_CLASIFICACIONES_FK", "clasificacion_cafe").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<clasificacion_cafe> clasificaciones_cafeReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<clasificacion_cafe>("COLINASMODEL.VENTAS_INV_CLASIFICACIONES_FK", "clasificacion_cafe");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<clasificacion_cafe>("COLINASMODEL.VENTAS_INV_CLASIFICACIONES_FK", "clasificacion_cafe", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "VENTAS_INV_SOCIOS_FK", "socio")]
-        public socio socios
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.VENTAS_INV_SOCIOS_FK", "socio").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.VENTAS_INV_SOCIOS_FK", "socio").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<socio> sociosReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.VENTAS_INV_SOCIOS_FK", "socio");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<socio>("COLINASMODEL.VENTAS_INV_SOCIOS_FK", "socio", value);
-                }
-            }
-        }
-
-        #endregion
     }
 
     #endregion

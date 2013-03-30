@@ -15,7 +15,7 @@ using COCASJOL.LOGIC.Inventario.Salidas;
 
 namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
 {
-    public partial class VentasDeInventarioDeCafe : COCASJOL.LOGIC.Web.COCASJOLBASE
+    public partial class AjustesInventarioDeCafeDeSocios : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -36,7 +36,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
             }
         }
 
-        protected void VentaInventarioDeCafeDs_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        protected void AjusteInventarioDeCafeDs_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
         {
             if (!this.IsPostBack)
                 e.Cancel = true;

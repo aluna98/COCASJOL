@@ -18,7 +18,7 @@ var calendar = {
 
         var strDate = dateFrom + (dateFrom == "" || dateTo == "" ? "" : " - ") + dateTo;
 
-        Ext.getCmp('f_VENTAS_INV_CAFE_FECHA').setValue("", strDate);
+        Ext.getCmp('f_AJUSTES_INV_CAFE_FECHA').setValue("", strDate);
         GridStore.reload();
     },
 
@@ -63,20 +63,20 @@ var EditForm = null;
 var AlertSelMsgTitle = "Atención";
 var AlertSelMsg = "Debe seleccionar 1 elemento";
 
-var ConfirmMsgTitle = "Ventas de Inventario de Café";
-var ConfirmUpdate = "Seguro desea realizar la venta de inventario de café? Nota: Una vez que se realice la acción no se podran deshacer los cambios.";
+var ConfirmMsgTitle = "Ajuste de Inventario de Café";
+var ConfirmUpdate = "Seguro desea realizar el ajuste de inventario de café? Nota: Una vez que se realice la acción no se podran deshacer los cambios.";
 
 
 var PageX = {
     _index: 0,
 
     setReferences: function () {
-        Grid = VentaInventarioDeCafeGridP;
+        Grid = AjusteInventarioDeCafeGridP;
         GridStore = Grid.getStore();
-        AddWindow = AgregarVentaDeInventarioDeCafeWin;
-        AddForm = AgregarVentaDeInventarioDeCafeFormP;
-        EditWindow = EditarVentaDeInventarioDeCafeWin;
-        EditForm = EditarVentaDeInventarioDeCafeFormP;
+        AddWindow = AgregarAjusteDeInventarioDeCafeWin;
+        AddForm = AgregarAjusteDeInventarioDeCafeFormP;
+        EditWindow = EditarAjusteDeInventarioDeCafeWin;
+        EditForm = EditarAjusteDeInventarioDeCafeFormP;
     },
 
     getIndex: function () {
@@ -191,7 +191,7 @@ var PageX = {
     clearFilter: function () {
         f_SOCIOS_ID.reset();
         f_APORTACIONES_SALDO_TOTAL.reset();
-        VentaInventarioDeCafeSt.reload();
+        AjusteInventarioDeCafeSt.reload();
     },
 
     gridKeyUpEvent: function (sender, e) {
@@ -233,13 +233,14 @@ var PageX = {
         PagingToolbar1.moveLast();
     },
 
-    validarCantidadVenta: function (cantidadTxt, precioTxt, cantidadEnInventarioTxt, totalVentaTxt) {
+    validarCantidadAjuste: function (cantidadTxt, precioTxt, cantidadEnInventarioTxt, totalAjusteTxt) {
         var cantidad = cantidadTxt.getValue();
         var precio = precioTxt.getValue();
         var cantindadInventario = cantidadEnInventarioTxt.getValue();
 
         cantidad = cantidad == null ? 0 : cantidad;
         cantidad = cantidad < 0 ? 0 : cantidad;
+        cantidad = cantidad > cantindadInventario ? cantindadInventario : cantidad;
 
         precio = precio == null ? 0 : precio;
         precio = precio < 0 ? 0 : precio;
@@ -248,7 +249,7 @@ var PageX = {
 
         cantidadTxt.setValue(cantidad);
         precioTxt.setValue(precio);
-        totalVentaTxt.setValue(cantidadXprecio);
+        totalAjusteTxt.setValue(cantidadXprecio);
     },
 
     getInventarioFueraDeCatacion: function () {
@@ -256,8 +257,8 @@ var PageX = {
     },
 
     loadTotalRetiro: function () {
-        var venta_saldo = AddCantidadLibrasTxt.getValue() * AddPrecioLibrasTxt.getValue();
+        var ajuste_saldo = AddCantidadLibrasTxt.getValue() * AddPrecioLibrasTxt.getValue();
 
-        AddTotalSaldoTxt.setValue(venta_saldo);
+        AddTotalSaldoTxt.setValue(ajuste_saldo);
     }
 };

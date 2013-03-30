@@ -301,13 +301,13 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.MenuItem VentasInventarioCafeMenu;
         
         /// <summary>
-        /// VentasDeInventarioDeCafeMenuItem control.
+        /// AjustesDeInventarioDeCafeDeSociosMenuItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.MenuItem VentasDeInventarioDeCafeMenuItem;
+        protected global::Ext.Net.MenuItem AjustesDeInventarioDeCafeDeSociosMenuItem;
         
         /// <summary>
         /// AportacionesPorSocioMenu control.
@@ -787,13 +787,13 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.ToolTip scHojasDeLiquidacionTooltip;
         
         /// <summary>
-        /// scVentasDeInventarioDeCafeTooltip control.
+        /// scAjustesDeInventarioDeCafeDeSociosTooltip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ToolTip scVentasDeInventarioDeCafeTooltip;
+        protected global::Ext.Net.ToolTip scAjustesDeInventarioDeCafeDeSociosTooltip;
         
         /// <summary>
         /// scAportacionesPorSocioTooltip control.

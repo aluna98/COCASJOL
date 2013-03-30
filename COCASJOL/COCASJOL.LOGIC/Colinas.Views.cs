@@ -14,7 +14,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySetsBBE50DE78CA8617FF9A30F7C41F18C60F02EFC00079F2D23E1D608E88CD52FB5))]
+[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets28637B86839A680ADF5267F3FD69109519B09EB633B9AFDC19677EA9EC709712))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
@@ -23,18 +23,18 @@ namespace Edm_EntityMappingGeneratedViews
     /// <Summary>
     /// The type contains views for EntitySets and AssociationSets that were generated at design time.
     /// </Summary>
-    public sealed class ViewsForBaseEntitySetsBBE50DE78CA8617FF9A30F7C41F18C60F02EFC00079F2D23E1D608E88CD52FB5 : System.Data.Mapping.EntityViewContainer
+    public sealed class ViewsForBaseEntitySets28637B86839A680ADF5267F3FD69109519B09EB633B9AFDC19677EA9EC709712 : System.Data.Mapping.EntityViewContainer
     {
         
         /// <Summary>
         /// The constructor stores the views for the extents and also the hash values generated based on the metadata and mapping closure and views.
         /// </Summary>
-        public ViewsForBaseEntitySetsBBE50DE78CA8617FF9A30F7C41F18C60F02EFC00079F2D23E1D608E88CD52FB5()
+        public ViewsForBaseEntitySets28637B86839A680ADF5267F3FD69109519B09EB633B9AFDC19677EA9EC709712()
         {
             this.EdmEntityContainerName = "colinasEntities";
             this.StoreEntityContainerName = "COLINASMODELStoreContainer";
-            this.HashOverMappingClosure = "096cffbbeb8697d6ce9dc656760fc00564623f9c145ee4e46505bb0a3e6dc409";
-            this.HashOverAllExtentViews = "4335ae4d634c43cacea6a19aa61dabbd4733bc6401e9e02dfec8fd6f65842eaf";
+            this.HashOverMappingClosure = "bfd4d656aab2d56e80c9bc1a1fb2b9c737fd18979ca0d003d068b762136a95ae";
+            this.HashOverAllExtentViews = "60eaae8f4c0a16234703a14915e318366336819e51160b461a29639676893eca";
             this.ViewCount = 60;
         }
         
@@ -857,32 +857,35 @@ namespace Edm_EntityMappingGeneratedViews
         }
         
         /// <Summary>
-        /// return view for COLINASMODELStoreContainer.ventas_inventario_cafe
+        /// return view for COLINASMODELStoreContainer.ajustes_inventario_cafe_x_socio
         /// </Summary>
         private System.Collections.Generic.KeyValuePair<string, string> GetView19()
         {
-            return new System.Collections.Generic.KeyValuePair<string, string>("COLINASMODELStoreContainer.ventas_inventario_cafe", "\r\n    SELECT VALUE -- Constructing ventas_inventario_cafe\r\n        [COLINASMODEL." +
-                    "Store.ventas_inventario_cafe](T1.[ventas_inventario_cafe.VENTAS_INV_CAFE_ID], T1" +
-                    ".[ventas_inventario_cafe.SOCIOS_ID], T1.[ventas_inventario_cafe.CLASIFICACIONES_" +
-                    "CAFE_ID], T1.[ventas_inventario_cafe.VENTAS_INV_CAFE_FECHA], T1.[ventas_inventar" +
-                    "io_cafe.VENTAS_INV_CAFE_CANTIDAD_LIBRAS], T1.[ventas_inventario_cafe.VENTAS_INV_" +
-                    "CAFE_PRECIO_LIBRAS], T1.[ventas_inventario_cafe.VENTAS_INV_CAFE_SALDO_TOTAL], T1" +
-                    ".[ventas_inventario_cafe.CREADO_POR], T1.[ventas_inventario_cafe.FECHA_CREACION]" +
-                    ", T1.[ventas_inventario_cafe.MODIFICADO_POR], T1.[ventas_inventario_cafe.FECHA_M" +
-                    "ODIFICACION])\r\n    FROM (\r\n        SELECT \r\n            T.VENTAS_INV_CAFE_ID AS " +
-                    "[ventas_inventario_cafe.VENTAS_INV_CAFE_ID], \r\n            T.SOCIOS_ID AS [venta" +
-                    "s_inventario_cafe.SOCIOS_ID], \r\n            T.CLASIFICACIONES_CAFE_ID AS [ventas" +
-                    "_inventario_cafe.CLASIFICACIONES_CAFE_ID], \r\n            T.VENTAS_INV_CAFE_FECHA" +
-                    " AS [ventas_inventario_cafe.VENTAS_INV_CAFE_FECHA], \r\n            T.VENTAS_INV_C" +
-                    "AFE_CANTIDAD_LIBRAS AS [ventas_inventario_cafe.VENTAS_INV_CAFE_CANTIDAD_LIBRAS]," +
-                    " \r\n            T.VENTAS_INV_CAFE_PRECIO_LIBRAS AS [ventas_inventario_cafe.VENTAS" +
-                    "_INV_CAFE_PRECIO_LIBRAS], \r\n            T.VENTAS_INV_CAFE_SALDO_TOTAL AS [ventas" +
-                    "_inventario_cafe.VENTAS_INV_CAFE_SALDO_TOTAL], \r\n            T.CREADO_POR AS [ve" +
-                    "ntas_inventario_cafe.CREADO_POR], \r\n            T.FECHA_CREACION AS [ventas_inve" +
-                    "ntario_cafe.FECHA_CREACION], \r\n            T.MODIFICADO_POR AS [ventas_inventari" +
-                    "o_cafe.MODIFICADO_POR], \r\n            T.FECHA_MODIFICACION AS [ventas_inventario" +
-                    "_cafe.FECHA_MODIFICACION], \r\n            True AS _from0\r\n        FROM colinasEnt" +
-                    "ities.ventas_inventario_cafe AS T\r\n    ) AS T1");
+            return new System.Collections.Generic.KeyValuePair<string, string>("COLINASMODELStoreContainer.ajustes_inventario_cafe_x_socio", "\r\n    SELECT VALUE -- Constructing ajustes_inventario_cafe_x_socio\r\n        [COLI" +
+                    "NASMODEL.Store.ajustes_inventario_cafe_x_socio](T1.[ajustes_inventario_cafe_x_so" +
+                    "cio.AJUSTES_INV_CAFE_ID], T1.[ajustes_inventario_cafe_x_socio.SOCIOS_ID], T1.[aj" +
+                    "ustes_inventario_cafe_x_socio.CLASIFICACIONES_CAFE_ID], T1.[ajustes_inventario_c" +
+                    "afe_x_socio.AJUSTES_INV_CAFE_FECHA], T1.[ajustes_inventario_cafe_x_socio.AJUSTES" +
+                    "_INV_CAFE_CANTIDAD_LIBRAS], T1.[ajustes_inventario_cafe_x_socio.AJUSTES_INV_CAFE" +
+                    "_PRECIO_LIBRAS], T1.[ajustes_inventario_cafe_x_socio.AJUSTES_INV_CAFE_SALDO_TOTA" +
+                    "L], T1.[ajustes_inventario_cafe_x_socio.CREADO_POR], T1.[ajustes_inventario_cafe" +
+                    "_x_socio.FECHA_CREACION], T1.[ajustes_inventario_cafe_x_socio.MODIFICADO_POR], T" +
+                    "1.[ajustes_inventario_cafe_x_socio.FECHA_MODIFICACION])\r\n    FROM (\r\n        SEL" +
+                    "ECT \r\n            T.AJUSTES_INV_CAFE_ID AS [ajustes_inventario_cafe_x_socio.AJUS" +
+                    "TES_INV_CAFE_ID], \r\n            T.SOCIOS_ID AS [ajustes_inventario_cafe_x_socio." +
+                    "SOCIOS_ID], \r\n            T.CLASIFICACIONES_CAFE_ID AS [ajustes_inventario_cafe_" +
+                    "x_socio.CLASIFICACIONES_CAFE_ID], \r\n            T.AJUSTES_INV_CAFE_FECHA AS [aju" +
+                    "stes_inventario_cafe_x_socio.AJUSTES_INV_CAFE_FECHA], \r\n            T.AJUSTES_IN" +
+                    "V_CAFE_CANTIDAD_LIBRAS AS [ajustes_inventario_cafe_x_socio.AJUSTES_INV_CAFE_CANT" +
+                    "IDAD_LIBRAS], \r\n            T.AJUSTES_INV_CAFE_PRECIO_LIBRAS AS [ajustes_inventa" +
+                    "rio_cafe_x_socio.AJUSTES_INV_CAFE_PRECIO_LIBRAS], \r\n            T.AJUSTES_INV_CA" +
+                    "FE_SALDO_TOTAL AS [ajustes_inventario_cafe_x_socio.AJUSTES_INV_CAFE_SALDO_TOTAL]" +
+                    ", \r\n            T.CREADO_POR AS [ajustes_inventario_cafe_x_socio.CREADO_POR], \r\n" +
+                    "            T.FECHA_CREACION AS [ajustes_inventario_cafe_x_socio.FECHA_CREACION]" +
+                    ", \r\n            T.MODIFICADO_POR AS [ajustes_inventario_cafe_x_socio.MODIFICADO_" +
+                    "POR], \r\n            T.FECHA_MODIFICACION AS [ajustes_inventario_cafe_x_socio.FEC" +
+                    "HA_MODIFICACION], \r\n            True AS _from0\r\n        FROM colinasEntities.aju" +
+                    "stes_inventario_cafe_x_socio AS T\r\n    ) AS T1");
         }
         
         /// <Summary>
@@ -1416,32 +1419,35 @@ namespace Edm_EntityMappingGeneratedViews
         }
         
         /// <Summary>
-        /// return view for colinasEntities.ventas_inventario_cafe
+        /// return view for colinasEntities.ajustes_inventario_cafe_x_socio
         /// </Summary>
         private System.Collections.Generic.KeyValuePair<string, string> GetView37()
         {
-            return new System.Collections.Generic.KeyValuePair<string, string>("colinasEntities.ventas_inventario_cafe", "\r\n    SELECT VALUE -- Constructing ventas_inventario_cafe\r\n        [COLINASMODEL." +
-                    "venta_inventario_cafe](T1.[venta_inventario_cafe.VENTAS_INV_CAFE_ID], T1.[venta_" +
-                    "inventario_cafe.SOCIOS_ID], T1.[venta_inventario_cafe.CLASIFICACIONES_CAFE_ID], " +
-                    "T1.[venta_inventario_cafe.VENTAS_INV_CAFE_FECHA], T1.[venta_inventario_cafe.VENT" +
-                    "AS_INV_CAFE_CANTIDAD_LIBRAS], T1.[venta_inventario_cafe.VENTAS_INV_CAFE_PRECIO_L" +
-                    "IBRAS], T1.[venta_inventario_cafe.VENTAS_INV_CAFE_SALDO_TOTAL], T1.[venta_invent" +
-                    "ario_cafe.CREADO_POR], T1.[venta_inventario_cafe.FECHA_CREACION], T1.[venta_inve" +
-                    "ntario_cafe.MODIFICADO_POR], T1.[venta_inventario_cafe.FECHA_MODIFICACION])\r\n   " +
-                    " FROM (\r\n        SELECT \r\n            T.VENTAS_INV_CAFE_ID AS [venta_inventario_" +
-                    "cafe.VENTAS_INV_CAFE_ID], \r\n            T.SOCIOS_ID AS [venta_inventario_cafe.SO" +
-                    "CIOS_ID], \r\n            T.CLASIFICACIONES_CAFE_ID AS [venta_inventario_cafe.CLAS" +
-                    "IFICACIONES_CAFE_ID], \r\n            T.VENTAS_INV_CAFE_FECHA AS [venta_inventario" +
-                    "_cafe.VENTAS_INV_CAFE_FECHA], \r\n            T.VENTAS_INV_CAFE_CANTIDAD_LIBRAS AS" +
-                    " [venta_inventario_cafe.VENTAS_INV_CAFE_CANTIDAD_LIBRAS], \r\n            T.VENTAS" +
-                    "_INV_CAFE_PRECIO_LIBRAS AS [venta_inventario_cafe.VENTAS_INV_CAFE_PRECIO_LIBRAS]" +
-                    ", \r\n            T.VENTAS_INV_CAFE_SALDO_TOTAL AS [venta_inventario_cafe.VENTAS_I" +
-                    "NV_CAFE_SALDO_TOTAL], \r\n            T.CREADO_POR AS [venta_inventario_cafe.CREAD" +
-                    "O_POR], \r\n            T.FECHA_CREACION AS [venta_inventario_cafe.FECHA_CREACION]" +
-                    ", \r\n            T.MODIFICADO_POR AS [venta_inventario_cafe.MODIFICADO_POR], \r\n  " +
-                    "          T.FECHA_MODIFICACION AS [venta_inventario_cafe.FECHA_MODIFICACION], \r\n" +
-                    "            True AS _from0\r\n        FROM COLINASMODELStoreContainer.ventas_inven" +
-                    "tario_cafe AS T\r\n    ) AS T1");
+            return new System.Collections.Generic.KeyValuePair<string, string>("colinasEntities.ajustes_inventario_cafe_x_socio", "\r\n    SELECT VALUE -- Constructing ajustes_inventario_cafe_x_socio\r\n        [COLI" +
+                    "NASMODEL.ajuste_inventario_cafe_x_socio](T1.[ajuste_inventario_cafe_x_socio.AJUS" +
+                    "TES_INV_CAFE_ID], T1.[ajuste_inventario_cafe_x_socio.SOCIOS_ID], T1.[ajuste_inve" +
+                    "ntario_cafe_x_socio.CLASIFICACIONES_CAFE_ID], T1.[ajuste_inventario_cafe_x_socio" +
+                    ".AJUSTES_INV_CAFE_FECHA], T1.[ajuste_inventario_cafe_x_socio.AJUSTES_INV_CAFE_CA" +
+                    "NTIDAD_LIBRAS], T1.[ajuste_inventario_cafe_x_socio.AJUSTES_INV_CAFE_PRECIO_LIBRA" +
+                    "S], T1.[ajuste_inventario_cafe_x_socio.AJUSTES_INV_CAFE_SALDO_TOTAL], T1.[ajuste" +
+                    "_inventario_cafe_x_socio.CREADO_POR], T1.[ajuste_inventario_cafe_x_socio.FECHA_C" +
+                    "REACION], T1.[ajuste_inventario_cafe_x_socio.MODIFICADO_POR], T1.[ajuste_inventa" +
+                    "rio_cafe_x_socio.FECHA_MODIFICACION])\r\n    FROM (\r\n        SELECT \r\n            " +
+                    "T.AJUSTES_INV_CAFE_ID AS [ajuste_inventario_cafe_x_socio.AJUSTES_INV_CAFE_ID], \r" +
+                    "\n            T.SOCIOS_ID AS [ajuste_inventario_cafe_x_socio.SOCIOS_ID], \r\n      " +
+                    "      T.CLASIFICACIONES_CAFE_ID AS [ajuste_inventario_cafe_x_socio.CLASIFICACION" +
+                    "ES_CAFE_ID], \r\n            T.AJUSTES_INV_CAFE_FECHA AS [ajuste_inventario_cafe_x" +
+                    "_socio.AJUSTES_INV_CAFE_FECHA], \r\n            T.AJUSTES_INV_CAFE_CANTIDAD_LIBRAS" +
+                    " AS [ajuste_inventario_cafe_x_socio.AJUSTES_INV_CAFE_CANTIDAD_LIBRAS], \r\n       " +
+                    "     T.AJUSTES_INV_CAFE_PRECIO_LIBRAS AS [ajuste_inventario_cafe_x_socio.AJUSTES" +
+                    "_INV_CAFE_PRECIO_LIBRAS], \r\n            T.AJUSTES_INV_CAFE_SALDO_TOTAL AS [ajust" +
+                    "e_inventario_cafe_x_socio.AJUSTES_INV_CAFE_SALDO_TOTAL], \r\n            T.CREADO_" +
+                    "POR AS [ajuste_inventario_cafe_x_socio.CREADO_POR], \r\n            T.FECHA_CREACI" +
+                    "ON AS [ajuste_inventario_cafe_x_socio.FECHA_CREACION], \r\n            T.MODIFICAD" +
+                    "O_POR AS [ajuste_inventario_cafe_x_socio.MODIFICADO_POR], \r\n            T.FECHA_" +
+                    "MODIFICACION AS [ajuste_inventario_cafe_x_socio.FECHA_MODIFICACION], \r\n         " +
+                    "   True AS _from0\r\n        FROM COLINASMODELStoreContainer.ajustes_inventario_ca" +
+                    "fe_x_socio AS T\r\n    ) AS T1");
         }
         
         /// <Summary>

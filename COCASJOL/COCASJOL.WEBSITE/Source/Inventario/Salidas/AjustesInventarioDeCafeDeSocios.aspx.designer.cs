@@ -10,7 +10,7 @@
 namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
     
     
-    public partial class VentasDeInventarioDeCafe {
+    public partial class AjustesInventarioDeCafeDeSocios {
         
         /// <summary>
         /// form1 control.
@@ -49,13 +49,13 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         protected global::COCASJOL.WEBSITE.Source.Auditoria.Auditoria AudWin;
         
         /// <summary>
-        /// VentaInventarioDeCafeDs control.
+        /// AjusteInventarioDeCafeDs control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource VentaInventarioDeCafeDs;
+        protected global::System.Web.UI.WebControls.ObjectDataSource AjusteInventarioDeCafeDs;
         
         /// <summary>
         /// SociosDS control.
@@ -148,22 +148,22 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         protected global::Ext.Net.Panel Panel1;
         
         /// <summary>
-        /// VentaInventarioDeCafeGridP control.
+        /// AjusteInventarioDeCafeGridP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.GridPanel VentaInventarioDeCafeGridP;
+        protected global::Ext.Net.GridPanel AjusteInventarioDeCafeGridP;
         
         /// <summary>
-        /// VentaInventarioDeCafeSt control.
+        /// AjusteInventarioDeCafeSt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store VentaInventarioDeCafeSt;
+        protected global::Ext.Net.Store AjusteInventarioDeCafeSt;
         
         /// <summary>
         /// RowSelectionModel1 control.
@@ -229,13 +229,13 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         protected global::Ext.Net.GridView GridView1;
         
         /// <summary>
-        /// f_VENTAS_INV_CAFE_ID control.
+        /// f_AJUSTES_INV_CAFE_ID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField f_VENTAS_INV_CAFE_ID;
+        protected global::Ext.Net.NumberField f_AJUSTES_INV_CAFE_ID;
         
         /// <summary>
         /// f_SOCIOS_ID control.
@@ -256,13 +256,13 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         protected global::Ext.Net.ComboBox f_CLASIFICACIONES_CAFE_ID;
         
         /// <summary>
-        /// f_VENTAS_INV_CAFE_FECHA control.
+        /// f_AJUSTES_INV_CAFE_FECHA control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DropDownField f_VENTAS_INV_CAFE_FECHA;
+        protected global::Ext.Net.DropDownField f_AJUSTES_INV_CAFE_FECHA;
         
         /// <summary>
         /// FormPanel1 control.
@@ -328,13 +328,13 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         protected global::Ext.Net.Button Button2;
         
         /// <summary>
-        /// f_VENTAS_INV_CAFE_SALDO_TOTAL control.
+        /// f_AJUSTES_INV_CAFE_SALDO_TOTAL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField f_VENTAS_INV_CAFE_SALDO_TOTAL;
+        protected global::Ext.Net.NumberField f_AJUSTES_INV_CAFE_SALDO_TOTAL;
         
         /// <summary>
         /// ClearFilterButton control.
@@ -364,22 +364,22 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         protected global::Ext.Net.PagingToolbar PagingToolbar1;
         
         /// <summary>
-        /// AgregarVentaDeInventarioDeCafeWin control.
+        /// AgregarAjusteDeInventarioDeCafeWin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Window AgregarVentaDeInventarioDeCafeWin;
+        protected global::Ext.Net.Window AgregarAjusteDeInventarioDeCafeWin;
         
         /// <summary>
-        /// AgregarVentaDeInventarioDeCafeFormP control.
+        /// AgregarAjusteDeInventarioDeCafeFormP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.FormPanel AgregarVentaDeInventarioDeCafeFormP;
+        protected global::Ext.Net.FormPanel AgregarAjusteDeInventarioDeCafeFormP;
         
         /// <summary>
         /// Panel2 control.
@@ -400,13 +400,13 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         protected global::Ext.Net.Panel Panel3;
         
         /// <summary>
-        /// AddFechaVentaTxt control.
+        /// AddFechaAjusteTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateField AddFechaVentaTxt;
+        protected global::Ext.Net.DateField AddFechaAjusteTxt;
         
         /// <summary>
         /// AddSociosIdTxt control.
@@ -445,13 +445,13 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         protected global::Ext.Net.ComboBox AddClasificacionCafeCmb;
         
         /// <summary>
-        /// AddVentasFS control.
+        /// AddAjustesFS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.FieldSet AddVentasFS;
+        protected global::Ext.Net.FieldSet AddAjustesFS;
         
         /// <summary>
         /// AddInventarioDeCafeCantidadTxt control.
@@ -544,22 +544,22 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         protected global::Ext.Net.Button Button3;
         
         /// <summary>
-        /// EditarVentaDeInventarioDeCafeWin control.
+        /// EditarAjusteDeInventarioDeCafeWin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Window EditarVentaDeInventarioDeCafeWin;
+        protected global::Ext.Net.Window EditarAjusteDeInventarioDeCafeWin;
         
         /// <summary>
-        /// EditarVentaDeInventarioDeCafeFormP control.
+        /// EditarAjusteDeInventarioDeCafeFormP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.FormPanel EditarVentaDeInventarioDeCafeFormP;
+        protected global::Ext.Net.FormPanel EditarAjusteDeInventarioDeCafeFormP;
         
         /// <summary>
         /// Panel4 control.
@@ -580,13 +580,13 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         protected global::Ext.Net.Panel Panel5;
         
         /// <summary>
-        /// EditFechaVentaTxt control.
+        /// EditFechaAjusteTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateField EditFechaVentaTxt;
+        protected global::Ext.Net.DateField EditFechaAjusteTxt;
         
         /// <summary>
         /// ToolTip2 control.
