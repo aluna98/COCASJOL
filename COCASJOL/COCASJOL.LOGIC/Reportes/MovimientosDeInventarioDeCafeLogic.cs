@@ -6,10 +6,14 @@ using System.Text;
 using System.Data;
 using System.Data.Objects;
 
+using log4net;
+
 namespace COCASJOL.LOGIC.Reportes
 {
     public class MovimientosDeInventarioDeCafeLogic
     {
+        private static ILog log = LogManager.GetLogger(typeof(MovimientosDeInventarioDeCafeLogic).Name);
+
         public MovimientosDeInventarioDeCafeLogic() { }
 
         #region Select
@@ -23,9 +27,9 @@ namespace COCASJOL.LOGIC.Reportes
                     return db.reporte_movimientos_de_inventario_de_cafe.ToList<reporte_movimientos_de_inventario_de_cafe>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al obtener el reporte de movimientos de inventario de cafe de socios.", ex);
                 throw;
             }
         }
@@ -73,9 +77,9 @@ namespace COCASJOL.LOGIC.Reportes
                     return query.ToList<reporte_movimientos_de_inventario_de_cafe>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener el reporte de movimientos de inventario de cafe de socios.", ex);
                 throw;
             }
         }

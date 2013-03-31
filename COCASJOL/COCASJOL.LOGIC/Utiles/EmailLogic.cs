@@ -11,10 +11,14 @@ using System.Data.Objects;
 using COCASJOL.LOGIC;
 using COCASJOL.LOGIC.Seguridad;
 
+using log4net;
+
 namespace COCASJOL.LOGIC.Utiles
 {
     public class EmailLogic
     {
+        private static ILog log = LogManager.GetLogger(typeof(EmailLogic).Name);
+
         public static void EnviarCorreoUsuarioNuevo(string USR_USERNAME, string USR_PASSWORD)
         {
             try
@@ -44,9 +48,9 @@ namespace COCASJOL.LOGIC.Utiles
 
                 EnviarCorreo(mailto, subject, message);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al enviar correo de usuario nuevo.", ex);
                 throw;
             }
         }
@@ -80,9 +84,9 @@ namespace COCASJOL.LOGIC.Utiles
 
                 EnviarCorreo(mailto, subject, message);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al enviar correo de password nuevo.", ex);
                 throw;
             }
         }
@@ -133,9 +137,9 @@ namespace COCASJOL.LOGIC.Utiles
 
                 EnviarCorreo(mailto, subject, message);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al enviar correo de rol nuevo.", ex);
                 throw;
             }
         }
@@ -196,9 +200,9 @@ namespace COCASJOL.LOGIC.Utiles
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al enviar correo de privilegios nuevos.", ex);
                 throw;
             }
         }
@@ -224,9 +228,9 @@ namespace COCASJOL.LOGIC.Utiles
                 else
                     sendMail(mailto, mailfrom, message, subject, host);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al preparar correo para envio.", ex);
                 throw;
             }
         }
@@ -241,13 +245,13 @@ namespace COCASJOL.LOGIC.Utiles
                 smtpcliente.Send(correo);
                 correo.Dispose();
             }
-            catch (SmtpException)
+            catch (SmtpException smtpex)
             {
-                //log & continue
+                log.Fatal("Error de smtp al enviar correo.", smtpex);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al enviar correo.", ex);
                 throw;
             }
         }
@@ -268,12 +272,13 @@ namespace COCASJOL.LOGIC.Utiles
                 smtpcliente.Send(correo);
                 correo.Dispose();
             }
-            catch (SmtpException)
+            catch (SmtpException smtpex)
             {
-                //log & continue
+                log.Fatal("Error de smtp al enviar correo.", smtpex);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al enviar correo.", ex);
                 throw;
             }
         }

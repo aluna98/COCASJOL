@@ -303,7 +303,7 @@ namespace COCASJOL.WEBSITE.Socios
         protected void SociosSt_Remove(object sender, DirectEventArgs e)
         {
             SociosLogic socios = new SociosLogic();
-            socios.EliminarUsuario(e.ExtraParams["SOCIOS_ID"]);
+            socios.EliminarSocio(e.ExtraParams["SOCIOS_ID"]);
             
         }
 
@@ -314,7 +314,7 @@ namespace COCASJOL.WEBSITE.Socios
             if (confirm)
             {
                 SociosLogic socios = new SociosLogic();
-                socios.DeshabilitarUsuario(id);
+                socios.DeshabilitarSocio(id);
                 confirm = false;
             }
             SociosSt_Reload(null, null);
@@ -328,7 +328,7 @@ namespace COCASJOL.WEBSITE.Socios
             if (confirm)
             {
                 SociosLogic socios = new SociosLogic();
-                socios.HabilitarUsuario(id);
+                socios.HabilitarSocio(id);
                 confirm = false;
             }
             SociosSt_Reload(null, null);

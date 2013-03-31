@@ -10,10 +10,14 @@ using System.Transactions;
 using COCASJOL.LOGIC.Seguridad;
 using COCASJOL.LOGIC.Utiles;
 
+using log4net;
+
 namespace COCASJOL.LOGIC.Inventario.Ingresos
 {
     public class NotaDePesoEnPesajeLogic : NotaDePesoLogic
     {
+        private static ILog log = LogManager.GetLogger(typeof(NotaDePesoEnPesajeLogic).Name);
+
         public NotaDePesoEnPesajeLogic() : base("PESAJE") { }
 
         #region Select
@@ -38,9 +42,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     return estadolist;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener estados de nota de peso.", ex);
                 throw;
             }
         }
@@ -163,9 +167,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     DateTime.Today,
                     Detalles);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al insertar nota de peso. Calculos.", ex);
                 throw;
             }
         }
@@ -254,9 +258,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al insertar nota de peso.", ex);
                 throw;
             }
         }
@@ -379,9 +383,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     DateTime.Today,
                     Detalles);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al actualizar nota de peso. Calculos.", ex);
                 throw;
             }
         }
@@ -472,9 +476,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al actualizar nota de peso.", ex);
                 throw;
             }
         }

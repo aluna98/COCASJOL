@@ -6,10 +6,14 @@ using System.Data.Odbc;
 using System.Data;
 using System.Data.Objects;
 
+using log4net;
+
 namespace COCASJOL.LOGIC.Prestamos
 {
     public class SolicitudesLogic
     {
+        private static ILog log = LogManager.GetLogger(typeof(SolicitudesLogic).Name);
+
         public SolicitudesLogic() { }
 
         #region Select
@@ -25,8 +29,9 @@ namespace COCASJOL.LOGIC.Prestamos
                     return query.ToList<solicitud_prestamo>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener solicitudes de prestamo.", ex);
                 throw;
             }
         }
@@ -44,8 +49,9 @@ namespace COCASJOL.LOGIC.Prestamos
                         return query.ToList<solicitud_prestamo>();
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    log.Fatal("Error fatal al obtener solicitudes de prestamo sin aprobar.", ex);
                     throw;
                 }
             }
@@ -63,8 +69,9 @@ namespace COCASJOL.LOGIC.Prestamos
                         return query.ToList<solicitud_prestamo>();
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    log.Fatal("Error fatal al obtener solicitudes de prestamo aprobadas.", ex);
                     throw;
                 }
             }
@@ -81,8 +88,9 @@ namespace COCASJOL.LOGIC.Prestamos
                     return query.ToList<socio>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener socios activos.", ex);
                 throw;
             }
         }
@@ -99,8 +107,9 @@ namespace COCASJOL.LOGIC.Prestamos
                     return query.First();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener socio.", ex);
                 throw;
             }
         }
@@ -117,8 +126,9 @@ namespace COCASJOL.LOGIC.Prestamos
                         return query.First();
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    log.Fatal("Error fatal al obtener solicitud de prestamo.", ex);
                     throw;
                 }
             }
@@ -135,8 +145,9 @@ namespace COCASJOL.LOGIC.Prestamos
                         return query.ToList<referencia_x_solicitud>();
                     }
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
+                    log.Fatal("Error fatal al obtener referencias de solicitud de prestamo.", ex);
                     throw;
                 }
 
@@ -156,8 +167,9 @@ namespace COCASJOL.LOGIC.Prestamos
                         return lista;
                     }
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
+                    log.Fatal("Error fatal al obtener avales de solicitud de prestamo.", ex);
                     throw;
                 }
             }
@@ -176,8 +188,9 @@ namespace COCASJOL.LOGIC.Prestamos
                         return lista;
                     }
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
+                    log.Fatal("Error fatal al obtener aval.", ex);
                     throw;
                 }
             }
@@ -190,45 +203,45 @@ namespace COCASJOL.LOGIC.Prestamos
             decimal produccion, string norte, string sur, string oeste, string este, int vehiculo, int agua,
             int enee, int casa, int beneficio, string cultivos, string calificacion, string creadopor)
         {
-            colinasEntities db = null;
             try
             {
-                db = new colinasEntities();
-                solicitud_prestamo solicitud = new solicitud_prestamo();
+                using (var db = new colinasEntities())
+                {
+                    solicitud_prestamo solicitud = new solicitud_prestamo();
 
-                solicitud.SOCIOS_ID = idsocio;
-                solicitud.SOLICITUDES_MONTO = monto;
-                solicitud.SOLICITUDES_INTERES = interes;
-                solicitud.SOLICITUDES_PLAZO = DateTime.Parse(plazo);
-                solicitud.SOLICITUDES_PAGO = pago;
-                solicitud.SOLICITUDES_DESTINO = destino;
-                solicitud.PRESTAMOS_ID = idprestamo;
-                solicitud.SOLICITUDES_CARGO = cargo;
-                solicitud.SOLICITUDES_PROMEDIO3 = promedio3;
-                solicitud.SOLICITUDES_PRODUCCIONACT = produccion;
-                solicitud.SOLICITUDES_NORTE = norte;
-                solicitud.SOLICITUDES_SUR = sur;
-                solicitud.SOLICITUDES_ESTE = este;
-                solicitud.SOLICITUDES_OESTE = oeste;
-                solicitud.SOLICITUDES_VEHICULO = (sbyte)vehiculo;
-                solicitud.SOLICITUDES_AGUA = (sbyte)agua;
-                solicitud.SOLICITUDES_ENEE = (sbyte)enee;
-                solicitud.SOLICITUDES_CASA = (sbyte)casa;
-                solicitud.SOLICITUDES_BENEFICIO = (sbyte)beneficio;
-                solicitud.SOLICITUD_OTROSCULTIVOS = cultivos;
-                solicitud.SOLICITUD_CALIFICACION = calificacion;
-                solicitud.SOLICITUD_ESTADO = "PENDIENTE";
-                solicitud.CREADO_POR = creadopor;
-                solicitud.FECHA_CREACION = DateTime.Today;
-                solicitud.MODIFICADO_POR = creadopor;
-                solicitud.FECHA_MODIFICACION = DateTime.Today;
-                db.solicitudes_prestamos.AddObject(solicitud);
-                db.SaveChanges();
-                db.Dispose();
+                    solicitud.SOCIOS_ID = idsocio;
+                    solicitud.SOLICITUDES_MONTO = monto;
+                    solicitud.SOLICITUDES_INTERES = interes;
+                    solicitud.SOLICITUDES_PLAZO = DateTime.Parse(plazo);
+                    solicitud.SOLICITUDES_PAGO = pago;
+                    solicitud.SOLICITUDES_DESTINO = destino;
+                    solicitud.PRESTAMOS_ID = idprestamo;
+                    solicitud.SOLICITUDES_CARGO = cargo;
+                    solicitud.SOLICITUDES_PROMEDIO3 = promedio3;
+                    solicitud.SOLICITUDES_PRODUCCIONACT = produccion;
+                    solicitud.SOLICITUDES_NORTE = norte;
+                    solicitud.SOLICITUDES_SUR = sur;
+                    solicitud.SOLICITUDES_ESTE = este;
+                    solicitud.SOLICITUDES_OESTE = oeste;
+                    solicitud.SOLICITUDES_VEHICULO = (sbyte)vehiculo;
+                    solicitud.SOLICITUDES_AGUA = (sbyte)agua;
+                    solicitud.SOLICITUDES_ENEE = (sbyte)enee;
+                    solicitud.SOLICITUDES_CASA = (sbyte)casa;
+                    solicitud.SOLICITUDES_BENEFICIO = (sbyte)beneficio;
+                    solicitud.SOLICITUD_OTROSCULTIVOS = cultivos;
+                    solicitud.SOLICITUD_CALIFICACION = calificacion;
+                    solicitud.SOLICITUD_ESTADO = "PENDIENTE";
+                    solicitud.CREADO_POR = creadopor;
+                    solicitud.FECHA_CREACION = DateTime.Today;
+                    solicitud.MODIFICADO_POR = creadopor;
+                    solicitud.FECHA_MODIFICACION = DateTime.Today;
+                    db.solicitudes_prestamos.AddObject(solicitud);
+                    db.SaveChanges(); 
+                }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                if (db != null) { db.Dispose(); }
+                log.Fatal("Error fatal al insertar solicitud de prestamo.", ex);
                 throw;
             }
         }
@@ -251,11 +264,11 @@ namespace COCASJOL.LOGIC.Prestamos
                     referencia.FECHA_MODIFICACION = DateTime.Today;
                     db.referencias_x_solicitudes.AddObject(referencia);
                     db.SaveChanges();
-                    db.Dispose();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al insertar referencia de solicitud de prestamo.", ex);
                 throw;
             }
         }
@@ -276,11 +289,11 @@ namespace COCASJOL.LOGIC.Prestamos
                     aval.FECHA_MODIFICACION = DateTime.Today;
                     db.avales_x_solicitud.AddObject(aval);
                     db.SaveChanges();
-                    db.Dispose();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al insertar aval solicitud de prestamo.", ex);
                 throw;
             }
         }
@@ -296,44 +309,42 @@ namespace COCASJOL.LOGIC.Prestamos
                 int luz, int casa, int beneficio, string otros, 
                 string calificacion, string estado, string modificadopor)
             {
-                colinasEntities db = null;
                 try
                 {
-                    db = new colinasEntities();
-                    var query = from solicitud in db.solicitudes_prestamos
-                                where idsolicitud == solicitud.SOLICITUDES_ID
-                                select solicitud;
-                    solicitud_prestamo sol = query.First();
-                    sol.SOLICITUDES_MONTO = monto;
-                    sol.SOLICITUDES_INTERES = interes;
-                    sol.SOLICITUDES_PLAZO = DateTime.Parse(plazo);
-                    sol.SOLICITUDES_PAGO = pago;
-                    sol.SOLICITUDES_DESTINO = destino;
-                    sol.SOLICITUDES_CARGO = cargo;
-                    sol.SOLICITUDES_PROMEDIO3 = promedio3;
-                    sol.SOLICITUDES_PRODUCCIONACT = prodact;
-                    sol.SOLICITUDES_NORTE = norte;
-                    sol.SOLICITUDES_SUR = sur;
-                    sol.SOLICITUDES_ESTE = este;
-                    sol.SOLICITUDES_OESTE = oeste;
-                    sol.SOLICITUD_ESTADO = estado;
-                    sol.SOLICITUDES_VEHICULO = (sbyte)carro;
-                    sol.SOLICITUDES_AGUA = (sbyte)agua;
-                    sol.SOLICITUDES_ENEE = (sbyte)luz;
-                    sol.SOLICITUDES_CASA = (sbyte)casa;
-                    sol.SOLICITUDES_BENEFICIO = (sbyte)beneficio;
-                    sol.SOLICITUD_OTROSCULTIVOS = otros;
-                    sol.SOLICITUD_CALIFICACION = calificacion;
-                    sol.MODIFICADO_POR = modificadopor;
-                    sol.FECHA_MODIFICACION = DateTime.Today;
-                    db.SaveChanges();
-                    db.Dispose();
-                }
-                catch (Exception e)
-                {
-                    if(db != null){
-                        db.Dispose();
+                    using (var db = new colinasEntities())
+                    {
+                        var query = from solicitud in db.solicitudes_prestamos
+                                    where idsolicitud == solicitud.SOLICITUDES_ID
+                                    select solicitud;
+                        solicitud_prestamo sol = query.First();
+                        sol.SOLICITUDES_MONTO = monto;
+                        sol.SOLICITUDES_INTERES = interes;
+                        sol.SOLICITUDES_PLAZO = DateTime.Parse(plazo);
+                        sol.SOLICITUDES_PAGO = pago;
+                        sol.SOLICITUDES_DESTINO = destino;
+                        sol.SOLICITUDES_CARGO = cargo;
+                        sol.SOLICITUDES_PROMEDIO3 = promedio3;
+                        sol.SOLICITUDES_PRODUCCIONACT = prodact;
+                        sol.SOLICITUDES_NORTE = norte;
+                        sol.SOLICITUDES_SUR = sur;
+                        sol.SOLICITUDES_ESTE = este;
+                        sol.SOLICITUDES_OESTE = oeste;
+                        sol.SOLICITUD_ESTADO = estado;
+                        sol.SOLICITUDES_VEHICULO = (sbyte)carro;
+                        sol.SOLICITUDES_AGUA = (sbyte)agua;
+                        sol.SOLICITUDES_ENEE = (sbyte)luz;
+                        sol.SOLICITUDES_CASA = (sbyte)casa;
+                        sol.SOLICITUDES_BENEFICIO = (sbyte)beneficio;
+                        sol.SOLICITUD_OTROSCULTIVOS = otros;
+                        sol.SOLICITUD_CALIFICACION = calificacion;
+                        sol.MODIFICADO_POR = modificadopor;
+                        sol.FECHA_MODIFICACION = DateTime.Today;
+                        db.SaveChanges(); 
                     }
+                }
+                catch (Exception ex)
+                {
+                    log.Fatal("Error fatal al actualizar solicitud de prestamo.", ex);
                     throw;
                 }
             }
@@ -355,11 +366,11 @@ namespace COCASJOL.LOGIC.Prestamos
                         nueva.MODIFICADO_POR = modificadopor;
                         nueva.FECHA_MODIFICACION = DateTime.Today;
                         db.SaveChanges();
-                        db.Dispose();
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    log.Fatal("Error fatal al actualizar referencia de solicitud de prestamo.", ex);
                     throw;
                 }
             }
@@ -379,11 +390,11 @@ namespace COCASJOL.LOGIC.Prestamos
                         aval.MODIFICADO_POR = modificadopor;
                         aval.FECHA_MODIFICACION = DateTime.Today;
                         db.SaveChanges();
-                        db.Dispose();
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    log.Fatal("Error fatal al actualizar aval de solicitud de prestamo.", ex);
                     throw;
                 }
             }
@@ -404,11 +415,11 @@ namespace COCASJOL.LOGIC.Prestamos
                         referencia_x_solicitud nueva = query.First();
                         db.referencias_x_solicitudes.DeleteObject(nueva);
                         db.SaveChanges();
-                        db.Dispose();
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    log.Fatal("Error fatal al eliminar referencia de solicitud de prestamo.", ex);
                     throw;
                 }
             }
@@ -426,11 +437,11 @@ namespace COCASJOL.LOGIC.Prestamos
                         aval_x_solicitud eliminar = query.First();
                         db.avales_x_solicitud.DeleteObject(eliminar);
                         db.SaveChanges();
-                        db.Dispose();
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    log.Fatal("Error fatal al eliminar aval de solicitud de prestamo.", ex);
                     throw;
                 }
             }
@@ -451,52 +462,60 @@ namespace COCASJOL.LOGIC.Prestamos
                         return query.First(); 
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    log.Fatal("Error fatal al obtener produccion de socio.", ex);
                     throw;
                 }
             }
 
-            public string getIHCAFE(string id){
-                using (var db = new colinasEntities())
+            public string getIHCAFE(string id)
+            {
+                try
                 {
+                    using (var db = new colinasEntities())
+                    {
 
-                    var query = from carnet in db.socios_generales
-                                where carnet.SOCIOS_ID == id
-                                select carnet;
+                        var query = from carnet in db.socios_generales
+                                    where carnet.SOCIOS_ID == id
+                                    select carnet;
 
-                    return query.First().GENERAL_CARNET_IHCAFE; 
+                        return query.First().GENERAL_CARNET_IHCAFE;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    log.Fatal("Error fatal al obtener IHCAFE de socio.", ex);
+                    throw;
                 }
             }
 
             public bool BuscarId(int SOLICITUDES_ID, string REFERENCIAS_ID)
             {
-                colinasEntities db = null;
                 try
                 {
-                    db = new colinasEntities();
-                    List<referencia_x_solicitud> lista;
-                    var query = from nuevo in db.referencias_x_solicitudes
-                                where nuevo.SOLICITUDES_ID == SOLICITUDES_ID && nuevo.REFERENCIAS_ID == REFERENCIAS_ID
-                                select nuevo;
-
-                    lista = query.ToList<referencia_x_solicitud>();
-
-                    if (lista.Count == 0)
+                    using (var db = new colinasEntities())
                     {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
+                        List<referencia_x_solicitud> lista;
+                        var query = from nuevo in db.referencias_x_solicitudes
+                                    where nuevo.SOLICITUDES_ID == SOLICITUDES_ID && nuevo.REFERENCIAS_ID == REFERENCIAS_ID
+                                    select nuevo;
+
+                        lista = query.ToList<referencia_x_solicitud>();
+
+                        if (lista.Count == 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        } 
                     }
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    if (db != null)
-                    {
-                        db.Dispose();
-                    }
+                    log.Fatal("Error fatal al buscar id de referencia en solicitudes de prestamos.", ex);
                     throw;
                 }
             }
@@ -521,8 +540,9 @@ namespace COCASJOL.LOGIC.Prestamos
                         }
                     }
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
+                    log.Fatal("Error fatal al buscar aval en solicitudes de prestamos.", ex);
                     throw;
                 }
             }
@@ -558,9 +578,9 @@ namespace COCASJOL.LOGIC.Prestamos
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    log.Fatal("Error fatal al obtener socios desde DBISAM.", ex);
                     throw;
                 }
             }

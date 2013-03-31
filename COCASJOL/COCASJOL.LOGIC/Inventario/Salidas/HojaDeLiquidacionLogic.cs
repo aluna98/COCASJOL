@@ -9,10 +9,14 @@ using System.Transactions;
 
 using COCASJOL.LOGIC.Aportaciones;
 
+using log4net;
+
 namespace COCASJOL.LOGIC.Inventario.Salidas
 {
     public class HojaDeLiquidacionLogic
     {
+        private static ILog log = LogManager.GetLogger(typeof(HojaDeLiquidacionLogic).Name);
+
         public HojaDeLiquidacionLogic() { }
 
         #region Select
@@ -32,9 +36,9 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                     return query.OrderBy(h => h.SOCIOS_ID).ToList<liquidacion>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al obtener hojas de liquidacion.", ex);
                 throw;
             }
         }
@@ -123,9 +127,9 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                     return query.OrderBy(h => h.SOCIOS_ID).OrderByDescending(h => h.FECHA_MODIFICACION).OrderByDescending(h => h.LIQUIDACIONES_FECHA).ToList<liquidacion>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al obtener hojas de liquidacion.", ex);
                 throw;
             }
         }
@@ -282,9 +286,9 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al insertar hoja de liquidacion.", ex);
                 throw;
             }
         }

@@ -6,6 +6,8 @@ using System.Text;
 using System.Data;
 using System.Data.Objects;
 
+using log4net;
+
 namespace COCASJOL.LOGIC.Utiles
 {
     public enum EstadosNotificacion
@@ -17,6 +19,8 @@ namespace COCASJOL.LOGIC.Utiles
 
     public class NotificacionLogic
     {
+        private static ILog log = LogManager.GetLogger(typeof(NotificacionLogic).Name);
+
         public NotificacionLogic() { }
 
         #region Select
@@ -30,9 +34,9 @@ namespace COCASJOL.LOGIC.Utiles
                     return db.notificaciones.Where(n => n.NOTIFICACION_ESTADO != (int)EstadosNotificacion.Leido).OrderBy(nt => nt.NOTIFICACION_FECHA).ToList<notificacion>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al obtener notificaciones.", ex);
                 throw;
             }
         }
@@ -52,9 +56,9 @@ namespace COCASJOL.LOGIC.Utiles
                     return user.notificaciones.OrderByDescending(nt => nt.NOTIFICACION_FECHA).ToList<notificacion>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al obtener notificaciones de usuario.", ex);
                 throw;
             }
         }
@@ -82,9 +86,9 @@ namespace COCASJOL.LOGIC.Utiles
                     db.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al insertar notificacion.", ex);
                 throw;
             }
         }
@@ -114,9 +118,9 @@ namespace COCASJOL.LOGIC.Utiles
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al actualizar notificacion.", ex);
                 throw;
             }
         }
@@ -147,9 +151,9 @@ namespace COCASJOL.LOGIC.Utiles
                     db.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al eliminar todas las notificaciones de usuario.", ex);
                 throw;
             }
         }
@@ -172,9 +176,9 @@ namespace COCASJOL.LOGIC.Utiles
                     db.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al obtener notificaciones leidas de usuario.", ex);
                 throw;
             }
         }
@@ -207,9 +211,9 @@ namespace COCASJOL.LOGIC.Utiles
                     db.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al notificar usuarios.", ex);
                 throw;
             }
         }

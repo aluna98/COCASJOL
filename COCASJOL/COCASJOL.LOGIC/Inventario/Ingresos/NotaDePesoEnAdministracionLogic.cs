@@ -9,10 +9,13 @@ using System.Transactions;
 
 using COCASJOL.LOGIC.Utiles;
 
+using log4net;
+
 namespace COCASJOL.LOGIC.Inventario.Ingresos
 {
     public class NotaDePesoEnAdministracionLogic : NotaDePesoLogic
     {
+        private static ILog log = LogManager.GetLogger(typeof(NotaDePesoEnAdministracionLogic).Name);
 
         public NotaDePesoEnAdministracionLogic() : base("") { }
         public NotaDePesoEnAdministracionLogic(string ESTADOS_LLAVE) : base(ESTADOS_LLAVE) { }
@@ -50,9 +53,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al actualizar nota de peso.", ex);
                 throw;
             }
         }
@@ -90,9 +93,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al registrar nota de peso.", ex);
                 throw;
             }
         }

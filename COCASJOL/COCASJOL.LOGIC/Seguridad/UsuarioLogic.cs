@@ -6,10 +6,14 @@ using System.Text;
 using System.Data;
 using System.Data.Objects;
 
+using log4net;
+
 namespace COCASJOL.LOGIC.Seguridad
 {
     public class UsuarioLogic
     {
+        private static ILog log = LogManager.GetLogger(typeof(UsuarioLogic).Name);
+
         public UsuarioLogic() { }
 
         #region Select
@@ -27,6 +31,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener usuarios.", ex);
                 throw;
             }
         }
@@ -75,6 +80,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener usuarios.", ex);
                 throw;
             }
         }
@@ -107,6 +113,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener roles de usuario.", ex);
                 throw;
             }
         }
@@ -132,6 +139,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener roles no de usuario.", ex);
                 throw;
             }
         }
@@ -155,6 +163,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener usuario.", ex);
                 throw;
             }
         }
@@ -182,6 +191,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener privilegios de usuario.", ex);
                 throw;
             }
         }
@@ -201,6 +211,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener privilegios no de usuario.", ex);
                 throw;
             }
         }
@@ -249,6 +260,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al insertar usuario.", ex);
                 throw;
             }
         }
@@ -330,6 +342,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al actualizar usuario (completo).", ex);
                 throw;
             }
         }
@@ -355,6 +368,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al actualizar clave.", ex);
                 throw;
             }
         }
@@ -391,6 +405,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al actualizar usuario (simple).", ex);
                 throw;
             }
         }
@@ -418,6 +433,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al eliminar usuario.", ex);
                 throw;
             }
         }
@@ -450,6 +466,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al eliminar roles.", ex);
                 throw;
             }
         }
@@ -481,6 +498,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al intentar login.", ex);
                 throw;
             }
         }
@@ -504,7 +522,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al intentar verificar usuario.", ex);
                 throw;
             }
         }
@@ -528,6 +546,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al intentar verificar cedula.", ex);
                 throw;
             }
         }
@@ -551,6 +570,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al intentar verificar cedula.", ex);
                 throw;
             }
         }

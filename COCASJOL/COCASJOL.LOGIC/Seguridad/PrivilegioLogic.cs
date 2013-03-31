@@ -6,10 +6,14 @@ using System.Text;
 using System.Data;
 using System.Data.Objects;
 
+using log4net;
+
 namespace COCASJOL.LOGIC.Seguridad
 {
     public class PrivilegioLogic
-    { 
+    {
+        private static ILog log = LogManager.GetLogger(typeof(PrivilegioLogic).Name);
+
         public PrivilegioLogic() { }
 
         #region Select
@@ -27,6 +31,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener privilegios.", ex);
                 throw;
             }
         }
@@ -65,6 +70,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener privilegios.", ex);
                 throw;
             }
         }
@@ -84,9 +90,9 @@ namespace COCASJOL.LOGIC.Seguridad
                     return query.ToList<usuario>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener usuarios con el privilegio especifico.", ex);
                 throw;
             }
         }

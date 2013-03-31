@@ -6,6 +6,8 @@ using System.Text;
 using System.Data;
 using System.Data.Objects;
 
+using log4net;
+
 namespace COCASJOL.LOGIC.Reportes
 {
     public class ReporteConsolidadoDeCafe
@@ -40,6 +42,8 @@ namespace COCASJOL.LOGIC.Reportes
 
     public class ConsolidadoDeInventarioDeCafeLogic
     {
+        private static ILog log = LogManager.GetLogger(typeof(ConsolidadoDeInventarioDeCafeLogic).Name);
+
         public ConsolidadoDeInventarioDeCafeLogic() { }
 
         #region Select
@@ -64,9 +68,9 @@ namespace COCASJOL.LOGIC.Reportes
                     return new ReporteConsolidadoDeCafe(TotalIngresado, TotalComprado, TotalDeposito);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al obtener reporte.", ex);
                 throw;
             }
         }
@@ -82,9 +86,9 @@ namespace COCASJOL.LOGIC.Reportes
 
                 return GetReporte(FechaDesde, FechaHasta);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener reporte.", ex);
                 throw;
             }
         }
@@ -105,9 +109,9 @@ namespace COCASJOL.LOGIC.Reportes
                     return new ReporteConsolidadoDeCafe(TotalIngresado, TotalComprado, TotalDeposito);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener reporte.", ex);
                 throw;
             }
         }

@@ -7,10 +7,14 @@ using System.Data;
 using System.Data.Objects;
 using System.Transactions;
 
+using log4net;
+
 namespace COCASJOL.LOGIC.Aportaciones
 {
     public class RetiroAportacionLogic
     {
+        private static ILog log = LogManager.GetLogger(typeof(RetiroAportacionLogic).Name);
+
         public RetiroAportacionLogic() { }
 
         #region Select
@@ -27,9 +31,9 @@ namespace COCASJOL.LOGIC.Aportaciones
                     return query.OrderBy(ra => ra.SOCIOS_ID).ToList<retiro_aportaciones>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al obtener retiros de aportaciones.", ex);
                 throw;
             }
         }
@@ -73,9 +77,9 @@ namespace COCASJOL.LOGIC.Aportaciones
                     return query.OrderBy(rp => rp.SOCIOS_ID).OrderByDescending(rp => rp.FECHA_CREACION).ToList<retiro_aportaciones>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener retiros de aportaciones.", ex);
                 throw;
             }
         }
@@ -136,9 +140,9 @@ namespace COCASJOL.LOGIC.Aportaciones
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al insertar retiro de aportaciones.", ex);
                 throw;
             }
         }

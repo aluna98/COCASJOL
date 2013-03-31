@@ -13,10 +13,14 @@ using System.Data.Objects;
 using COCASJOL.LOGIC.Seguridad;
 using COCASJOL.LOGIC.Entorno;
 
+using log4net;
+
 namespace COCASJOL.LOGIC.Web
 {
     public class COCASJOLBASE : System.Web.UI.Page
     {
+        private static ILog log = LogManager.GetLogger(typeof(COCASJOLBASE).Name);
+
         private string pagename;
         private XmlDocument docPrivilegios;
         private XmlDocument docEntorno;
@@ -24,76 +28,92 @@ namespace COCASJOL.LOGIC.Web
 
         public COCASJOLBASE()
         {
-            base.Init += new EventHandler(this.COCASJOLBASE_Init);
-            base.Error += new EventHandler(this.COCASJOL_Error);
-
-            //Get Derived Class Name
-            pagename = this.GetType().BaseType.Name;
-
-            //Get Cached Privilegios
-            string strPrivilegesPath = System.Configuration.ConfigurationManager.AppSettings.Get("privilegesXML");
-            var varPrivsXML = HttpContext.Current.Cache.Get("privilegesXML");
-
-            if (varPrivsXML == null)
+            try
             {
-                lock (lockObj)
+                base.Init += new EventHandler(this.COCASJOLBASE_Init);
+                base.Error += new EventHandler(this.COCASJOL_Error);
+
+                //Get Derived Class Name
+                pagename = this.GetType().BaseType.Name;
+
+                //Get Cached Privilegios
+                string strPrivilegesPath = System.Configuration.ConfigurationManager.AppSettings.Get("privilegesXML");
+                var varPrivsXML = HttpContext.Current.Cache.Get("privilegesXML");
+
+                if (varPrivsXML == null)
                 {
-                    docPrivilegios = new XmlDocument();
-                    docPrivilegios.Load(Server.MapPath(strPrivilegesPath));
+                    lock (lockObj)
+                    {
+                        docPrivilegios = new XmlDocument();
+                        docPrivilegios.Load(Server.MapPath(strPrivilegesPath));
 
-                    HttpContext.Current.Cache.Insert("privilegesXML", docPrivilegios,
-                        new System.Web.Caching.CacheDependency(Server.MapPath(strPrivilegesPath)));
+                        HttpContext.Current.Cache.Insert("privilegesXML", docPrivilegios,
+                            new System.Web.Caching.CacheDependency(Server.MapPath(strPrivilegesPath)));
+                    }
                 }
-            } else
-                docPrivilegios = varPrivsXML as XmlDocument;
+                else
+                    docPrivilegios = varPrivsXML as XmlDocument;
 
 
-            //Get Cached Entorno
-            string strEnvironmentPath = System.Configuration.ConfigurationManager.AppSettings.Get("variablesDeEntornoXML");
-            var varEnvsXML = HttpContext.Current.Cache.Get("variablesDeEntornoXML");
+                //Get Cached Entorno
+                string strEnvironmentPath = System.Configuration.ConfigurationManager.AppSettings.Get("variablesDeEntornoXML");
+                var varEnvsXML = HttpContext.Current.Cache.Get("variablesDeEntornoXML");
 
-            if (varEnvsXML == null)
-            {
-                lock (lockObj)
+                if (varEnvsXML == null)
                 {
-                    docEntorno = new XmlDocument();
-                    docEntorno.Load(Server.MapPath(System.Configuration.ConfigurationManager.AppSettings.Get("variablesDeEntornoXML")));
+                    lock (lockObj)
+                    {
+                        docEntorno = new XmlDocument();
+                        docEntorno.Load(Server.MapPath(System.Configuration.ConfigurationManager.AppSettings.Get("variablesDeEntornoXML")));
 
-                    HttpContext.Current.Cache.Insert("variablesDeEntornoXML", docEntorno,
-                        new System.Web.Caching.CacheDependency(Server.MapPath(strEnvironmentPath)));
+                        HttpContext.Current.Cache.Insert("variablesDeEntornoXML", docEntorno,
+                            new System.Web.Caching.CacheDependency(Server.MapPath(strEnvironmentPath)));
+                    }
                 }
+                else
+                    docEntorno = varEnvsXML as XmlDocument;
             }
-            else
-                docEntorno = varEnvsXML as XmlDocument;
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al inicializar constructor de COCASJOLBASE.", ex);
+                throw;
+            }
         }
 
         protected void COCASJOLBASE_Init(object sender, EventArgs e)
         {
-            this.Session["CurrentPage"] = HttpContext.Current.Request.FilePath;
+            try
+            {
+                this.Session["CurrentPage"] = HttpContext.Current.Request.FilePath;
 
 #if DEBUG
-            if (Session["username"] == null)
-                Session["username"] = "DEVELOPER";
+                if (Session["username"] == null)
+                    Session["username"] = "DEVELOPER";
 #endif
-            string username = Session["username"] as string;
+                string username = Session["username"] as string;
 
-            if (!this.Session["CurrentPage"].ToString().Contains("Default.aspx") && 
-                string.IsNullOrEmpty(username))
-            {
-                base.Response.Redirect("~/ExpiredSession.aspx");
+                if (!this.Session["CurrentPage"].ToString().Contains("Default.aspx") &&
+                    string.IsNullOrEmpty(username))
+                {
+                    base.Response.Redirect("~/ExpiredSession.aspx");
+                }
+
+                this.ValidarCredenciales();
+
+                Dictionary<string, string> variables = this.GetVariables();
+                this.ValidarVariables(variables);
             }
-
-            this.ValidarCredenciales();
-
-            Dictionary<string, string> variables = this.GetVariables();
-            this.ValidarVariables(variables);
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al inicializar pagina COCASJOLBASE.", ex);
+                throw;
+            }
         }
 
         protected void COCASJOL_Error(object sender, EventArgs e)
         {
             Exception ex = base.Server.GetLastError();
-            int x = 0;
-            //log error
+            log.Fatal("Error de aplicación COCASJOLBASE.", ex);
         }
 
         protected void ValidarCredenciales()
@@ -130,8 +150,9 @@ namespace COCASJOL.LOGIC.Web
 
                 base.Response.Redirect("~/NoAccess.aspx");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al validar credenciales.", ex);
                 throw;
             }
         }
@@ -166,9 +187,9 @@ namespace COCASJOL.LOGIC.Web
 
                 return variablesDictionary;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener variables de entorno.", ex);
                 throw;
             }
         }
@@ -240,9 +261,9 @@ namespace COCASJOL.LOGIC.Web
 
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al validar variables de entorno.", ex);
                 throw;
             }
         }
@@ -259,9 +280,9 @@ namespace COCASJOL.LOGIC.Web
                     Pinned = true
                 });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al mostrar notificacion.", ex);
                 throw;
             }
         }

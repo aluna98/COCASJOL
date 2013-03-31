@@ -8,10 +8,14 @@ using System.Data.Objects;
 
 using COCASJOL.LOGIC.Utiles;
 
+using log4net;
+
 namespace COCASJOL.LOGIC.Inventario.Ingresos
 {
     public class NotaDePesoLogic
     {
+        private static ILog log = LogManager.GetLogger(typeof(NotaDePesoLogic).Name);
+
         public int ESTADOS_NOTA_ID;
 
         public NotaDePesoLogic() { }
@@ -24,9 +28,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 estado_nota_de_peso esn = estadologic.GetEstadoNotaDePeso(ESTADOS_NOTA_LLAVE);
                 this.ESTADOS_NOTA_ID = esn == null ? 0 : esn.ESTADOS_NOTA_ID;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al construir NotaDePesoLogic.", ex);
                 throw;
             }
         }
@@ -48,9 +52,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     return query.OrderBy(n => n.SOCIOS_ID).ToList<nota_de_peso>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener notas de peso.", ex);
                 throw;
             }
         }
@@ -70,9 +74,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     return note.notas_detalles.OrderByDescending(nd => nd.DETALLES_PESO).ToList<nota_detalle>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener detalles de notas de peso.", ex);
                 throw;
             }
         }
@@ -147,8 +151,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     return query.OrderBy(n => n.SOCIOS_ID).OrderByDescending(n => n.FECHA_MODIFICACION).OrderByDescending(n => n.NOTAS_FECHA).ToList<nota_de_peso>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener notas de peso.", ex);
                 throw;
             }
         }
@@ -160,9 +165,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 EstadoNotaDePesoLogic estadosnotadepesologic = new EstadoNotaDePesoLogic();
                 return estadosnotadepesologic.GetEstadosNotaDePeso();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener estados de nota de peso.", ex);
                 throw;
             }
         }
@@ -186,9 +191,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     return hijos;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener estados hijos de nota de peso.", ex);
                 throw;
             }
         }
@@ -217,9 +222,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             {
                 throw new NotImplementedException();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al insertar nota de peso (BASE).", ex);
                 throw;
             }
         }
@@ -249,9 +254,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             {
                 throw new NotImplementedException();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al actualizar nota de peso (BASE).", ex);
                 throw;
             }
         }
@@ -274,9 +279,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                 db.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al notificar usuarios.", ex);
                 throw;
             }
         }

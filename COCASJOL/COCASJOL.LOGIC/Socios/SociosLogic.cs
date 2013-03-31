@@ -7,10 +7,14 @@ using System.Data;
 using System.Data.Objects;
 using System.Data.Odbc;
 
+using log4net;
+
 namespace COCASJOL.LOGIC.Socios
 {
     public class SociosLogic
     {
+        private static ILog log = LogManager.GetLogger(typeof(SociosLogic).Name);
+
         public SociosLogic() { } 
 
         #region Select
@@ -25,8 +29,9 @@ namespace COCASJOL.LOGIC.Socios
                         return query.ToList<socio>();
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    log.Fatal("Error fatal al obtener socios.", ex);
                     throw;
                 }
             }
@@ -48,6 +53,7 @@ namespace COCASJOL.LOGIC.Socios
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener beneficiarios de socio.", ex);
                 throw;
             }
         }
@@ -64,8 +70,9 @@ namespace COCASJOL.LOGIC.Socios
                         return query.ToList<socio>();
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    log.Fatal("Error fatal al obtener socios activos.", ex);
                     throw;
                 }
             }
@@ -79,36 +86,34 @@ namespace COCASJOL.LOGIC.Socios
             string BENEFICIARIO_PARENTEZCO,
             string BENEFICIARIO_NACIMIENTO,
             string BENEFICIARIO_LUGAR_NACIMIENTO,
-            string BENEFICIARIO_PORCENTAJE){
-                colinasEntities db = null;
+            string BENEFICIARIO_PORCENTAJE)
+        {
                 try
                 {
-                    db = new colinasEntities();
-                    List<beneficiario_x_socio> Lista;
-                    var query = from nuevo in db.beneficiario_x_socio
-                                where nuevo.SOCIOS_ID == SOCIOS_ID && nuevo.BENEFICIARIO_IDENTIFICACION == BENEFICIARIO_IDENTIFICACION
-                                select nuevo;
-                    Lista = query.ToList<beneficiario_x_socio>();
-                    if (Lista.Count > 0)
+                    using (var db = new colinasEntities())
                     {
-                        beneficiario_x_socio beneficiario = query.First();
-                        beneficiario.SOCIOS_ID = SOCIOS_ID;
-                        beneficiario.BENEFICIARIO_IDENTIFICACION = BENEFICIARIO_IDENTIFICACION;
-                        beneficiario.BENEFICIARIO_LUGAR_NACIMIENTO = BENEFICIARIO_LUGAR_NACIMIENTO;
-                        beneficiario.BENEFICIARIO_NACIMIENTO = DateTime.Parse(BENEFICIARIO_NACIMIENTO);
-                        beneficiario.BENEFICIARIO_NOMBRE = BENEFICIARIO_NOMBRE;
-                        beneficiario.BENEFICIARIO_PORCENTAJE = Convert.ToInt32(BENEFICIARIO_PORCENTAJE);
-                        beneficiario.BENEFICIARIO_PARENTEZCO = BENEFICIARIO_PARENTEZCO;
-                        db.SaveChanges();
-                        db.Dispose();
+                        List<beneficiario_x_socio> Lista;
+                        var query = from nuevo in db.beneficiario_x_socio
+                                    where nuevo.SOCIOS_ID == SOCIOS_ID && nuevo.BENEFICIARIO_IDENTIFICACION == BENEFICIARIO_IDENTIFICACION
+                                    select nuevo;
+                        Lista = query.ToList<beneficiario_x_socio>();
+                        if (Lista.Count > 0)
+                        {
+                            beneficiario_x_socio beneficiario = query.First();
+                            beneficiario.SOCIOS_ID = SOCIOS_ID;
+                            beneficiario.BENEFICIARIO_IDENTIFICACION = BENEFICIARIO_IDENTIFICACION;
+                            beneficiario.BENEFICIARIO_LUGAR_NACIMIENTO = BENEFICIARIO_LUGAR_NACIMIENTO;
+                            beneficiario.BENEFICIARIO_NACIMIENTO = DateTime.Parse(BENEFICIARIO_NACIMIENTO);
+                            beneficiario.BENEFICIARIO_NOMBRE = BENEFICIARIO_NOMBRE;
+                            beneficiario.BENEFICIARIO_PORCENTAJE = Convert.ToInt32(BENEFICIARIO_PORCENTAJE);
+                            beneficiario.BENEFICIARIO_PARENTEZCO = BENEFICIARIO_PARENTEZCO;
+                            db.SaveChanges();
+                        }
                     }
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    if (db != null)
-                    {
-                        db.Dispose();
-                    }
+                    log.Fatal("Error fatal al actualizar beneficiario de socio.", ex);
                     throw;
                 }
            
@@ -154,61 +159,58 @@ namespace COCASJOL.LOGIC.Socios
             string MODIFICADO_POR
             )
         {
-            colinasEntities db = null;
             try
             {
-                db = new colinasEntities();
-                var query = from soc in db.socios
-                            where soc.SOCIOS_ID == SOCIOS_ID
-                            select soc;
+                using (var db = new colinasEntities())
+                {
+                    var query = from soc in db.socios
+                                where soc.SOCIOS_ID == SOCIOS_ID
+                                select soc;
 
-                socio socio = query.First();
-                socio.SOCIOS_ID = SOCIOS_ID;
-                socio.SOCIOS_PRIMER_NOMBRE = SOCIOS_PRIMER_NOMBRE;
-                socio.SOCIOS_SEGUNDO_NOMBRE = SOCIOS_SEGUNDO_NOMBRE;
-                socio.SOCIOS_PRIMER_APELLIDO = SOCIOS_PRIMER_APELLIDO;
-                socio.SOCIOS_SEGUNDO_APELLIDO = SOCIOS_SEGUNDO_APELLIDO;
-                socio.SOCIOS_RESIDENCIA = SOCIOS_RESIDENCIA;
-                socio.SOCIOS_ESTADO_CIVIL = SOCIOS_ESTADO_CIVIL;
-                socio.SOCIOS_LUGAR_DE_NACIMIENTO = SOCIOS_LUGAR_DE_NACIMIENTO;
-                socio.SOCIOS_FECHA_DE_NACIMIENTO = DateTime.Parse(SOCIOS_FECHA_DE_NACIMIENTO);
-                socio.SOCIOS_NIVEL_EDUCATIVO = SOCIOS_NIVEL_EDUCATIVO;
-                socio.SOCIOS_IDENTIDAD = SOCIOS_IDENTIDAD;
-                socio.SOCIOS_PROFESION = SOCIOS_PROFESION;
-                socio.SOCIOS_RTN = SOCIOS_RTN;
-                socio.SOCIOS_TELEFONO = SOCIOS_TELEFONO;
-                socio.SOCIOS_LUGAR_DE_EMISION = SOCIOS_LUGAR_DE_EMISION;
-                socio.SOCIOS_FECHA_DE_EMISION = DateTime.Parse(SOCIOS_FECHA_DE_EMISION);
-                socio.MODIFICADO_POR = MODIFICADO_POR;
-                socio.FECHA_MODIFICACION = DateTime.Today;
-                socio.socios_generales.GENERAL_CARNET_IHCAFE = GENERAL_CARNET_IHCAFE;
-                socio.socios_generales.GENERAL_ORGANIZACION_SECUNDARIA = GENERAL_ORGANIZACION_SECUNDARIA;
-                socio.socios_generales.GENERAL_NUMERO_CARNET = GENERAL_NUMERO_CARNET;
-                socio.socios_generales.GENERAL_EMPRESA_LABORA = GENERAL_EMPRESA_LABORA;
-                socio.socios_generales.GENERAL_EMPRESA_CARGO = GENERAL_EMPRESA_CARGO;
-                socio.socios_generales.GENERAL_EMPRESA_DIRECCION = GENERAL_EMPRESA_DIRECCION;
-                socio.socios_generales.GENERAL_EMPRESA_TELEFONO = GENERAL_EMPRESA_TELEFONO;
-                socio.socios_generales.GENERAL_SEGURO = GENERAL_SEGURO;
-                socio.socios_generales.GENERAL_FECHA_ACEPTACION = string.IsNullOrEmpty(GENERAL_FECHA_ACEPTACION) ? default(DateTime) : DateTime.Parse(GENERAL_FECHA_ACEPTACION);
-                socio.socios_produccion.PRODUCCION_UBICACION_FINCA = PRODUCCION_UBICACION_FINCA;
-                socio.socios_produccion.PRODUCCION_AREA = PRODUCCION_AREA;
-                socio.socios_produccion.PRODUCCION_VARIEDAD = PRODUCCION_VARIEDAD;
-                socio.socios_produccion.PRODUCCION_ALTURA = PRODUCCION_ALTURA;
-                socio.socios_produccion.PRODUCCION_DISTANCIA = PRODUCCION_DISTANCIA;
-                socio.socios_produccion.PRODUCCION_ANUAL = PRODUCCION_ANUAL;
-                socio.socios_produccion.PRODUCCION_BENEFICIO_PROPIO = PRODUCCION_BENEFICIO_PROPIO;
-                socio.socios_produccion.PRODUCCION_ANALISIS_SUELO = PRODUCCION_ANALISIS_SUELO;
-                socio.socios_produccion.PRODUCCION_TIPO_INSUMOS = PRODUCCION_TIPO_INSUMOS;
-                socio.socios_produccion.PRODUCCION_MANZANAS_CULTIVADAS = PRODUCCION_MANZANAS_CULTIVADAS;
-                db.SaveChanges();
-                db.Dispose();
+                    socio socio = query.First();
+                    socio.SOCIOS_ID = SOCIOS_ID;
+                    socio.SOCIOS_PRIMER_NOMBRE = SOCIOS_PRIMER_NOMBRE;
+                    socio.SOCIOS_SEGUNDO_NOMBRE = SOCIOS_SEGUNDO_NOMBRE;
+                    socio.SOCIOS_PRIMER_APELLIDO = SOCIOS_PRIMER_APELLIDO;
+                    socio.SOCIOS_SEGUNDO_APELLIDO = SOCIOS_SEGUNDO_APELLIDO;
+                    socio.SOCIOS_RESIDENCIA = SOCIOS_RESIDENCIA;
+                    socio.SOCIOS_ESTADO_CIVIL = SOCIOS_ESTADO_CIVIL;
+                    socio.SOCIOS_LUGAR_DE_NACIMIENTO = SOCIOS_LUGAR_DE_NACIMIENTO;
+                    socio.SOCIOS_FECHA_DE_NACIMIENTO = DateTime.Parse(SOCIOS_FECHA_DE_NACIMIENTO);
+                    socio.SOCIOS_NIVEL_EDUCATIVO = SOCIOS_NIVEL_EDUCATIVO;
+                    socio.SOCIOS_IDENTIDAD = SOCIOS_IDENTIDAD;
+                    socio.SOCIOS_PROFESION = SOCIOS_PROFESION;
+                    socio.SOCIOS_RTN = SOCIOS_RTN;
+                    socio.SOCIOS_TELEFONO = SOCIOS_TELEFONO;
+                    socio.SOCIOS_LUGAR_DE_EMISION = SOCIOS_LUGAR_DE_EMISION;
+                    socio.SOCIOS_FECHA_DE_EMISION = DateTime.Parse(SOCIOS_FECHA_DE_EMISION);
+                    socio.MODIFICADO_POR = MODIFICADO_POR;
+                    socio.FECHA_MODIFICACION = DateTime.Today;
+                    socio.socios_generales.GENERAL_CARNET_IHCAFE = GENERAL_CARNET_IHCAFE;
+                    socio.socios_generales.GENERAL_ORGANIZACION_SECUNDARIA = GENERAL_ORGANIZACION_SECUNDARIA;
+                    socio.socios_generales.GENERAL_NUMERO_CARNET = GENERAL_NUMERO_CARNET;
+                    socio.socios_generales.GENERAL_EMPRESA_LABORA = GENERAL_EMPRESA_LABORA;
+                    socio.socios_generales.GENERAL_EMPRESA_CARGO = GENERAL_EMPRESA_CARGO;
+                    socio.socios_generales.GENERAL_EMPRESA_DIRECCION = GENERAL_EMPRESA_DIRECCION;
+                    socio.socios_generales.GENERAL_EMPRESA_TELEFONO = GENERAL_EMPRESA_TELEFONO;
+                    socio.socios_generales.GENERAL_SEGURO = GENERAL_SEGURO;
+                    socio.socios_generales.GENERAL_FECHA_ACEPTACION = string.IsNullOrEmpty(GENERAL_FECHA_ACEPTACION) ? default(DateTime) : DateTime.Parse(GENERAL_FECHA_ACEPTACION);
+                    socio.socios_produccion.PRODUCCION_UBICACION_FINCA = PRODUCCION_UBICACION_FINCA;
+                    socio.socios_produccion.PRODUCCION_AREA = PRODUCCION_AREA;
+                    socio.socios_produccion.PRODUCCION_VARIEDAD = PRODUCCION_VARIEDAD;
+                    socio.socios_produccion.PRODUCCION_ALTURA = PRODUCCION_ALTURA;
+                    socio.socios_produccion.PRODUCCION_DISTANCIA = PRODUCCION_DISTANCIA;
+                    socio.socios_produccion.PRODUCCION_ANUAL = PRODUCCION_ANUAL;
+                    socio.socios_produccion.PRODUCCION_BENEFICIO_PROPIO = PRODUCCION_BENEFICIO_PROPIO;
+                    socio.socios_produccion.PRODUCCION_ANALISIS_SUELO = PRODUCCION_ANALISIS_SUELO;
+                    socio.socios_produccion.PRODUCCION_TIPO_INSUMOS = PRODUCCION_TIPO_INSUMOS;
+                    socio.socios_produccion.PRODUCCION_MANZANAS_CULTIVADAS = PRODUCCION_MANZANAS_CULTIVADAS;
+                    db.SaveChanges(); 
+                }
             }
             catch (Exception ex)
             {
-                if (db != null)
-                {
-                    db.Dispose();
-                }
+                log.Fatal("Error fatal al actualizar socio.", ex);
                 throw;
             }
         }
@@ -255,81 +257,79 @@ namespace COCASJOL.LOGIC.Socios
             string CREADO_POR
             )
         {
-            colinasEntities db = null;
             try
             {
-                db = new colinasEntities();
-                string letra = SOCIOS_PRIMER_NOMBRE.Substring(0, 1);
-
-                var query = from cod in db.codigo
-                            where cod.CODIGO_LETRA == letra
-                            select cod;
-
-                codigo c = query.First();
-                string NuevoCodigo = c.CODIGO_LETRA + c.CODIGO_NUMERO;
-                c.CODIGO_NUMERO = c.CODIGO_NUMERO + 1;
-                socio soc = new socio();
-                soc.SOCIOS_ID = NuevoCodigo;
-                soc.SOCIOS_PRIMER_NOMBRE = SOCIOS_PRIMER_NOMBRE;
-                soc.SOCIOS_SEGUNDO_NOMBRE = SOCIOS_SEGUNDO_NOMBRE;
-                soc.SOCIOS_PRIMER_APELLIDO = SOCIOS_PRIMER_APELLIDO;
-                soc.SOCIOS_SEGUNDO_APELLIDO = SOCIOS_SEGUNDO_APELLIDO;
-                soc.SOCIOS_RESIDENCIA = SOCIOS_RESIDENCIA;
-                soc.SOCIOS_ESTADO_CIVIL = SOCIOS_ESTADO_CIVIL;
-                soc.SOCIOS_LUGAR_DE_NACIMIENTO = SOCIOS_LUGAR_DE_NACIMIENTO;
-                soc.SOCIOS_FECHA_DE_NACIMIENTO = DateTime.Parse(SOCIOS_FECHA_DE_NACIMIENTO);
-                soc.SOCIOS_NIVEL_EDUCATIVO = SOCIOS_NIVEL_EDUCATIVO;
-                soc.SOCIOS_IDENTIDAD = SOCIOS_IDENTIDAD;
-                soc.SOCIOS_PROFESION = SOCIOS_PROFESION;
-                soc.SOCIOS_RTN = SOCIOS_RTN;
-                soc.SOCIOS_TELEFONO = SOCIOS_TELEFONO;
-                soc.SOCIOS_LUGAR_DE_EMISION = SOCIOS_LUGAR_DE_EMISION;
-                soc.SOCIOS_FECHA_DE_EMISION = DateTime.Parse(SOCIOS_FECHA_DE_EMISION);
-                soc.CREADO_POR = CREADO_POR;
-                soc.FECHA_CREACION = DateTime.Today;
-                soc.MODIFICADO_POR = CREADO_POR;
-                soc.FECHA_MODIFICACION = DateTime.Today;
-                soc.SOCIOS_ESTATUS = 1;
-                db.socios.AddObject(soc);
-                socio_general socgen = new socio_general();
-                socgen.SOCIOS_ID = NuevoCodigo;
-                socgen.GENERAL_CARNET_IHCAFE = GENERAL_CARNET_IHCAFE;
-                socgen.GENERAL_ORGANIZACION_SECUNDARIA = GENERAL_ORGANIZACION_SECUNDARIA;
-                socgen.GENERAL_NUMERO_CARNET = GENERAL_NUMERO_CARNET;
-                socgen.GENERAL_EMPRESA_LABORA = GENERAL_EMPRESA_LABORA;
-                socgen.GENERAL_EMPRESA_CARGO = GENERAL_EMPRESA_CARGO;
-                socgen.GENERAL_EMPRESA_DIRECCION = GENERAL_EMPRESA_DIRECCION;
-                socgen.GENERAL_EMPRESA_TELEFONO = GENERAL_EMPRESA_TELEFONO;
-                socgen.GENERAL_SEGURO = GENERAL_SEGURO;
-                socgen.GENERAL_FECHA_ACEPTACION = DateTime.Parse(GENERAL_FECHA_ACEPTACION);
-                db.socios_generales.AddObject(socgen);
-                socio_produccion socprod = new socio_produccion();
-                socprod.SOCIOS_ID = NuevoCodigo;
-                socprod.PRODUCCION_UBICACION_FINCA = PRODUCCION_UBICACION_FINCA;
-                socprod.PRODUCCION_AREA = PRODUCCION_AREA;
-                socprod.PRODUCCION_VARIEDAD = PRODUCCION_VARIEDAD;
-                socprod.PRODUCCION_ALTURA = PRODUCCION_ALTURA;
-                socprod.PRODUCCION_DISTANCIA = PRODUCCION_DISTANCIA;
-                socprod.PRODUCCION_ANUAL = PRODUCCION_ANUAL;
-                socprod.PRODUCCION_BENEFICIO_PROPIO = PRODUCCION_BENEFICIO_PROPIO;
-                socprod.PRODUCCION_ANALISIS_SUELO = PRODUCCION_ANALISIS_SUELO;
-                socprod.PRODUCCION_TIPO_INSUMOS = PRODUCCION_TIPO_INSUMOS;
-                socprod.PRODUCCION_MANZANAS_CULTIVADAS = PRODUCCION_MANZANAS_CULTIVADAS;
-                db.socios_produccion.AddObject(socprod);
-                db.SaveChanges();
-                db.Dispose();
-            }
-            catch (Exception e)
-            {
-                if (db != null)
+                using (var db = new colinasEntities())
                 {
-                    db.Dispose();
+                    string letra = SOCIOS_PRIMER_NOMBRE.Substring(0, 1);
+
+                    var query = from cod in db.codigo
+                                where cod.CODIGO_LETRA == letra
+                                select cod;
+
+                    codigo c = query.First();
+                    string NuevoCodigo = c.CODIGO_LETRA + c.CODIGO_NUMERO;
+                    c.CODIGO_NUMERO = c.CODIGO_NUMERO + 1;
+                    socio soc = new socio();
+                    soc.SOCIOS_ID = NuevoCodigo;
+                    soc.SOCIOS_PRIMER_NOMBRE = SOCIOS_PRIMER_NOMBRE;
+                    soc.SOCIOS_SEGUNDO_NOMBRE = SOCIOS_SEGUNDO_NOMBRE;
+                    soc.SOCIOS_PRIMER_APELLIDO = SOCIOS_PRIMER_APELLIDO;
+                    soc.SOCIOS_SEGUNDO_APELLIDO = SOCIOS_SEGUNDO_APELLIDO;
+                    soc.SOCIOS_RESIDENCIA = SOCIOS_RESIDENCIA;
+                    soc.SOCIOS_ESTADO_CIVIL = SOCIOS_ESTADO_CIVIL;
+                    soc.SOCIOS_LUGAR_DE_NACIMIENTO = SOCIOS_LUGAR_DE_NACIMIENTO;
+                    soc.SOCIOS_FECHA_DE_NACIMIENTO = DateTime.Parse(SOCIOS_FECHA_DE_NACIMIENTO);
+                    soc.SOCIOS_NIVEL_EDUCATIVO = SOCIOS_NIVEL_EDUCATIVO;
+                    soc.SOCIOS_IDENTIDAD = SOCIOS_IDENTIDAD;
+                    soc.SOCIOS_PROFESION = SOCIOS_PROFESION;
+                    soc.SOCIOS_RTN = SOCIOS_RTN;
+                    soc.SOCIOS_TELEFONO = SOCIOS_TELEFONO;
+                    soc.SOCIOS_LUGAR_DE_EMISION = SOCIOS_LUGAR_DE_EMISION;
+                    soc.SOCIOS_FECHA_DE_EMISION = DateTime.Parse(SOCIOS_FECHA_DE_EMISION);
+                    soc.CREADO_POR = CREADO_POR;
+                    soc.FECHA_CREACION = DateTime.Today;
+                    soc.MODIFICADO_POR = CREADO_POR;
+                    soc.FECHA_MODIFICACION = DateTime.Today;
+                    soc.SOCIOS_ESTATUS = 1;
+                    db.socios.AddObject(soc);
+                    socio_general socgen = new socio_general();
+                    socgen.SOCIOS_ID = NuevoCodigo;
+                    socgen.GENERAL_CARNET_IHCAFE = GENERAL_CARNET_IHCAFE;
+                    socgen.GENERAL_ORGANIZACION_SECUNDARIA = GENERAL_ORGANIZACION_SECUNDARIA;
+                    socgen.GENERAL_NUMERO_CARNET = GENERAL_NUMERO_CARNET;
+                    socgen.GENERAL_EMPRESA_LABORA = GENERAL_EMPRESA_LABORA;
+                    socgen.GENERAL_EMPRESA_CARGO = GENERAL_EMPRESA_CARGO;
+                    socgen.GENERAL_EMPRESA_DIRECCION = GENERAL_EMPRESA_DIRECCION;
+                    socgen.GENERAL_EMPRESA_TELEFONO = GENERAL_EMPRESA_TELEFONO;
+                    socgen.GENERAL_SEGURO = GENERAL_SEGURO;
+                    socgen.GENERAL_FECHA_ACEPTACION = DateTime.Parse(GENERAL_FECHA_ACEPTACION);
+                    db.socios_generales.AddObject(socgen);
+                    socio_produccion socprod = new socio_produccion();
+                    socprod.SOCIOS_ID = NuevoCodigo;
+                    socprod.PRODUCCION_UBICACION_FINCA = PRODUCCION_UBICACION_FINCA;
+                    socprod.PRODUCCION_AREA = PRODUCCION_AREA;
+                    socprod.PRODUCCION_VARIEDAD = PRODUCCION_VARIEDAD;
+                    socprod.PRODUCCION_ALTURA = PRODUCCION_ALTURA;
+                    socprod.PRODUCCION_DISTANCIA = PRODUCCION_DISTANCIA;
+                    socprod.PRODUCCION_ANUAL = PRODUCCION_ANUAL;
+                    socprod.PRODUCCION_BENEFICIO_PROPIO = PRODUCCION_BENEFICIO_PROPIO;
+                    socprod.PRODUCCION_ANALISIS_SUELO = PRODUCCION_ANALISIS_SUELO;
+                    socprod.PRODUCCION_TIPO_INSUMOS = PRODUCCION_TIPO_INSUMOS;
+                    socprod.PRODUCCION_MANZANAS_CULTIVADAS = PRODUCCION_MANZANAS_CULTIVADAS;
+                    db.socios_produccion.AddObject(socprod);
+                    db.SaveChanges(); 
                 }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al insertar socio.", ex);
                 throw;
             }
         }
 
-        public void InsertarBeneficiario(string SOCIOS_ID,
+        public void InsertarBeneficiario
+            (string SOCIOS_ID,
             string BENEFICIARIO_IDENTIFICACION,
             string BENEFICIARIO_NOMBRE,
             string BENEFICIARIO_PARENTEZCO,
@@ -337,28 +337,25 @@ namespace COCASJOL.LOGIC.Socios
             string BENEFICIARIO_LUGAR_NACIMIENTO,
             string BENEFICIARIO_PORCENTAJE)
         {
-            colinasEntities db = null;
             try
             {
-                db = new colinasEntities();
-                beneficiario_x_socio benef = new beneficiario_x_socio();
-                benef.SOCIOS_ID = SOCIOS_ID;
-                benef.BENEFICIARIO_IDENTIFICACION = BENEFICIARIO_IDENTIFICACION;
-                benef.BENEFICIARIO_NOMBRE = BENEFICIARIO_NOMBRE;
-                benef.BENEFICIARIO_PARENTEZCO = BENEFICIARIO_PARENTEZCO;
-                benef.BENEFICIARIO_NACIMIENTO = DateTime.Parse(BENEFICIARIO_NACIMIENTO);
-                benef.BENEFICIARIO_LUGAR_NACIMIENTO = BENEFICIARIO_LUGAR_NACIMIENTO;
-                benef.BENEFICIARIO_PORCENTAJE = Convert.ToInt32(float.Parse(BENEFICIARIO_PORCENTAJE));
-                db.beneficiario_x_socio.AddObject(benef);
-                db.SaveChanges();
-                db.Dispose();
-            }
-            catch (Exception e)
-            {
-                if (db != null)
+                using (var db = new colinasEntities())
                 {
-                    db.Dispose();
+                    beneficiario_x_socio benef = new beneficiario_x_socio();
+                    benef.SOCIOS_ID = SOCIOS_ID;
+                    benef.BENEFICIARIO_IDENTIFICACION = BENEFICIARIO_IDENTIFICACION;
+                    benef.BENEFICIARIO_NOMBRE = BENEFICIARIO_NOMBRE;
+                    benef.BENEFICIARIO_PARENTEZCO = BENEFICIARIO_PARENTEZCO;
+                    benef.BENEFICIARIO_NACIMIENTO = DateTime.Parse(BENEFICIARIO_NACIMIENTO);
+                    benef.BENEFICIARIO_LUGAR_NACIMIENTO = BENEFICIARIO_LUGAR_NACIMIENTO;
+                    benef.BENEFICIARIO_PORCENTAJE = Convert.ToInt32(float.Parse(BENEFICIARIO_PORCENTAJE));
+                    db.beneficiario_x_socio.AddObject(benef);
+                    db.SaveChanges(); 
                 }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al insertar beneficiario de socio.", ex);
                 throw;
             }
         }
@@ -381,9 +378,9 @@ namespace COCASJOL.LOGIC.Socios
                     OdbcDataReader reader = command.ExecuteReader();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al insertar socio a DBISAM.", ex);
                 throw;
             }
         }
@@ -391,50 +388,48 @@ namespace COCASJOL.LOGIC.Socios
 
         #region Delete
 
-        public void EliminarUsuario(string SOCIOS_ID)
+        public void EliminarSocio(string SOCIOS_ID)
         {
-            colinasEntities db = null;
             try
             {
-                db = new colinasEntities();
+                using (var db = new colinasEntities())
+                {
+                    var query = from soc in db.socios
+                                where soc.SOCIOS_ID == SOCIOS_ID
+                                select soc;
 
-                var query = from soc in db.socios
-                            where soc.SOCIOS_ID == SOCIOS_ID
-                            select soc;
+                    socio socio = query.First();
 
-                socio socio = query.First();
+                    db.DeleteObject(socio);
 
-                db.DeleteObject(socio);
-
-                db.SaveChanges();
-                db.Dispose();
+                    db.SaveChanges(); 
+                }
             }
             catch (Exception ex)
             {
-                if (db != null)
-                    db.Dispose();
+                log.Fatal("Error fatal al eliminar socio.", ex);
                 throw;
             }
         }
 
-        public void EliminarBeneficiario(string SOCIO_ID, string BENEFICIARIO_ID){
-            colinasEntities db = null;
+        public void EliminarBeneficiario(string SOCIO_ID, string BENEFICIARIO_ID)
+        {
             try
             {
-                db = new colinasEntities();
-                var query = from ben in db.beneficiario_x_socio
-                            where ben.SOCIOS_ID == SOCIO_ID && ben.BENEFICIARIO_IDENTIFICACION == BENEFICIARIO_ID
-                            select ben;
+                using (var db = new colinasEntities())
+                {
+                    var query = from ben in db.beneficiario_x_socio
+                                where ben.SOCIOS_ID == SOCIO_ID && ben.BENEFICIARIO_IDENTIFICACION == BENEFICIARIO_ID
+                                select ben;
 
-                beneficiario_x_socio beneficiario = query.First();
-                db.DeleteObject(beneficiario);
-                db.SaveChanges();
-                db.Dispose();
+                    beneficiario_x_socio beneficiario = query.First();
+                    db.DeleteObject(beneficiario);
+                    db.SaveChanges(); 
+                }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                if (db != null)
-                    db.Dispose();
+                log.Fatal("Error fatal al eliminar beneficiario de socio.", ex);
                 throw;
             }
         }
@@ -442,54 +437,48 @@ namespace COCASJOL.LOGIC.Socios
         #endregion
 
         #region Disable
-        public void DeshabilitarUsuario(string SOCIOS_ID)
+        public void DeshabilitarSocio(string SOCIOS_ID)
         {
-            colinasEntities db = null;
             try
             {
-                db = new colinasEntities();
+                using (var db = new colinasEntities())
+                {
+                    var query = from soc in db.socios
+                                where soc.SOCIOS_ID == SOCIOS_ID
+                                select soc;
 
-                var query = from soc in db.socios
-                            where soc.SOCIOS_ID == SOCIOS_ID
-                            select soc;
-
-                socio socio = query.First();
-                socio.SOCIOS_ESTATUS = 0;
-                db.SaveChanges();
-                db.Dispose();
-
+                    socio socio = query.First();
+                    socio.SOCIOS_ESTATUS = 0;
+                    db.SaveChanges(); 
+                }
             }
             catch (Exception ex)
             {
-                if (db != null)
-                    db.Dispose();
+                log.Fatal("Error fatal al deshabilitar socio.", ex);
                 throw;
             }
         }
         #endregion
 
         #region Enable
-        public void HabilitarUsuario(string SOCIOS_ID)
+        public void HabilitarSocio(string SOCIOS_ID)
         {
-            colinasEntities db = null;
             try
             {
-                db = new colinasEntities();
+                using (var db = new colinasEntities())
+                {
+                    var query = from soc in db.socios
+                                where soc.SOCIOS_ID == SOCIOS_ID
+                                select soc;
 
-                var query = from soc in db.socios
-                            where soc.SOCIOS_ID == SOCIOS_ID
-                            select soc;
-
-                socio socio = query.First();
-                socio.SOCIOS_ESTATUS = 1;
-                db.SaveChanges();
-                db.Dispose();
-
+                    socio socio = query.First();
+                    socio.SOCIOS_ESTATUS = 1;
+                    db.SaveChanges(); 
+                }
             }
             catch (Exception ex)
             {
-                if (db != null)
-                    db.Dispose();
+                log.Fatal("Error fatal al habilitar socio.", ex);
                 throw;
             }
         }
@@ -497,168 +486,164 @@ namespace COCASJOL.LOGIC.Socios
 
         #region Metodos
 
-        public bool BuscarId(string SOCIOS_ID, string BENEFICIARIO_ID){
-            colinasEntities db = null;
+        public bool BuscarId(string SOCIOS_ID, string BENEFICIARIO_ID)
+        {
             try
             {
-                db = new colinasEntities();
-                List<beneficiario_x_socio> lista;
-                var query = from nuevo in db.beneficiario_x_socio
-                            where nuevo.SOCIOS_ID == SOCIOS_ID && nuevo.BENEFICIARIO_IDENTIFICACION == BENEFICIARIO_ID
-                            select nuevo;
-                lista = query.ToList<beneficiario_x_socio>();
+                using (var db = new colinasEntities())
+                {
+                    List<beneficiario_x_socio> lista;
+                    var query = from nuevo in db.beneficiario_x_socio
+                                where nuevo.SOCIOS_ID == SOCIOS_ID && nuevo.BENEFICIARIO_IDENTIFICACION == BENEFICIARIO_ID
+                                select nuevo;
+                    lista = query.ToList<beneficiario_x_socio>();
 
-                if (lista.Count == 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
+                    if (lista.Count == 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    } 
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                if (db != null)
-                {
-                    db.Dispose();
-                }
+                log.Fatal("Error fatal al buscar id de socio.", ex);
                 throw;
             }
         }
 
         public bool CienPorciento(string SOCIOS_ID, int PORCENTAJE)
         {
-            colinasEntities db = null;
             try
             {
-                db = new colinasEntities();
-                List<beneficiario_x_socio> lista;
-                var query = from nuevo in db.beneficiario_x_socio
-                            where nuevo.SOCIOS_ID == SOCIOS_ID
-                            select nuevo;
-                lista = query.ToList<beneficiario_x_socio>();
-                int total = PORCENTAJE;
-                foreach (beneficiario_x_socio ben in lista)
+                using (var db = new colinasEntities())
                 {
-                    total += ben.BENEFICIARIO_PORCENTAJE.Value;
-                }
-                if (total > 100)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
+                    List<beneficiario_x_socio> lista;
+                    var query = from nuevo in db.beneficiario_x_socio
+                                where nuevo.SOCIOS_ID == SOCIOS_ID
+                                select nuevo;
+                    lista = query.ToList<beneficiario_x_socio>();
+                    int total = PORCENTAJE;
+                    foreach (beneficiario_x_socio ben in lista)
+                    {
+                        total += ben.BENEFICIARIO_PORCENTAJE.Value;
+                    }
+                    if (total > 100)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    } 
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                if (db != null)
-                {
-                    db.Dispose();
-                }
+                log.Fatal("Error fatal al validar porcentaje de beneficiario de socio.", ex);
                 throw;
             }
         }
 
         public bool Igual100(string SOCIOS_ID)
         {
-            colinasEntities db = null;
             try
             {
-                db = new colinasEntities();
-                List<beneficiario_x_socio> lista;
-                var query = from nuevo in db.beneficiario_x_socio
-                            where nuevo.SOCIOS_ID == SOCIOS_ID
-                            select nuevo;
-                lista = query.ToList<beneficiario_x_socio>();
-                int total = 0;
-                foreach (beneficiario_x_socio ben in lista)
+                using (var db = new colinasEntities())
                 {
-                    total += ben.BENEFICIARIO_PORCENTAJE.Value;
-                }
-                if (total == 100)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
+                    List<beneficiario_x_socio> lista;
+                    var query = from nuevo in db.beneficiario_x_socio
+                                where nuevo.SOCIOS_ID == SOCIOS_ID
+                                select nuevo;
+                    lista = query.ToList<beneficiario_x_socio>();
+                    int total = 0;
+                    foreach (beneficiario_x_socio ben in lista)
+                    {
+                        total += ben.BENEFICIARIO_PORCENTAJE.Value;
+                    }
+                    if (total == 100)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    } 
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                if (db != null)
-                {
-                    db.Dispose();
-                }
+                log.Fatal("Error fatal al validar porcentaje al 100% de beneficiario de socio.", ex);
                 throw;
             }
         }
 
         public string Antiguedad(string SOCIOS_ID)
         {
-            colinasEntities db = null;
             try
             {
-                db = new colinasEntities();
-                var query = from nuevo in db.socios_generales
-                            where nuevo.SOCIOS_ID == SOCIOS_ID
-                            select nuevo;
-                socio_general socgrl = query.First();
+                using (var db = new colinasEntities())
+                {
+                    var query = from nuevo in db.socios_generales
+                                where nuevo.SOCIOS_ID == SOCIOS_ID
+                                select nuevo;
+                    socio_general socgrl = query.First();
 
-                DateTime aceptacion = (DateTime)socgrl.GENERAL_FECHA_ACEPTACION;
-                string tiempo = "";
-                //Años
-                int Anhos = DateTime.Now.Year - aceptacion.Year;
-                if (DateTime.Now.Month < aceptacion.Month)
-                {
-                    Anhos--;
-                }
-                else
-                {
-                    if (DateTime.Now.Month == aceptacion.Month)
+                    DateTime aceptacion = (DateTime)socgrl.GENERAL_FECHA_ACEPTACION;
+                    string tiempo = "";
+                    //Años
+                    int Anhos = DateTime.Now.Year - aceptacion.Year;
+                    if (DateTime.Now.Month < aceptacion.Month)
                     {
-                        if (DateTime.Now.Day < aceptacion.Day)
+                        Anhos--;
+                    }
+                    else
+                    {
+                        if (DateTime.Now.Month == aceptacion.Month)
                         {
-                            Anhos--;
+                            if (DateTime.Now.Day < aceptacion.Day)
+                            {
+                                Anhos--;
+                            }
                         }
                     }
-                }
-                if (Anhos > 0)
-                {
-                    if (Anhos >1)
-                        tiempo = Convert.ToString(Anhos) + " años ";
-                    else
-                        tiempo = Convert.ToString(Anhos) + " año ";
-                }
-                //Meses
-                int mes = DateTime.Now.Month - aceptacion.Month;
-                if (mes > 0)
-                {
-                    if (mes == 1)
-                        tiempo += Convert.ToString(mes) + " mes ";
-                    else
-                        tiempo += Convert.ToString(mes) + " meses ";
-                }
-                else
-                {
-                    int dias = DateTime.Now.Day - aceptacion.Day;
-                    if (dias == 1)
+                    if (Anhos > 0)
                     {
-                        tiempo = "Un dia";
+                        if (Anhos > 1)
+                            tiempo = Convert.ToString(Anhos) + " años ";
+                        else
+                            tiempo = Convert.ToString(Anhos) + " año ";
+                    }
+                    //Meses
+                    int mes = DateTime.Now.Month - aceptacion.Month;
+                    if (mes > 0)
+                    {
+                        if (mes == 1)
+                            tiempo += Convert.ToString(mes) + " mes ";
+                        else
+                            tiempo += Convert.ToString(mes) + " meses ";
                     }
                     else
                     {
-                        tiempo = Convert.ToString(dias) + "dias";
+                        int dias = DateTime.Now.Day - aceptacion.Day;
+                        if (dias == 1)
+                        {
+                            tiempo = "Un dia";
+                        }
+                        else
+                        {
+                            tiempo = Convert.ToString(dias) + "dias";
+                        }
                     }
+                    return tiempo; 
                 }
-                return tiempo;
-
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener antiguedad de socio.", ex);
                 throw;
             }
         }
@@ -681,9 +666,9 @@ namespace COCASJOL.LOGIC.Socios
                         return false;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al comprobar si es socio nuevo.", ex);
                 throw;
             }
         }
@@ -706,9 +691,9 @@ namespace COCASJOL.LOGIC.Socios
                         return false;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al comprobar si el socio debe pagar aportacion ordinaria.", ex);
                 throw;
             }
         }
@@ -731,9 +716,9 @@ namespace COCASJOL.LOGIC.Socios
                         return false;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al comprobar si el socio debe pagar aportacion extraordinaria.", ex);
                 throw;
             }
         }
@@ -755,9 +740,9 @@ namespace COCASJOL.LOGIC.Socios
 
                 db.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al pagar gasto de ingreso.", ex);
                 throw;
             }
         }
@@ -776,9 +761,9 @@ namespace COCASJOL.LOGIC.Socios
 
                 db.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al pagar aportacion ordinaria.", ex);
                 throw;
             }
         }
@@ -809,9 +794,9 @@ namespace COCASJOL.LOGIC.Socios
 
                 return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al pagar aportacion extraordinaria.", ex);
                 throw;
             }
         }
@@ -830,9 +815,9 @@ namespace COCASJOL.LOGIC.Socios
 
                 db.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al pagar intereses sobre aportaciones.", ex);
                 throw;
             }
         }

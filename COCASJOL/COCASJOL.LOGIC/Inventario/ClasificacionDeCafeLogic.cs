@@ -6,10 +6,14 @@ using System.Text;
 using System.Data;
 using System.Data.Objects;
 
+using log4net;
+
 namespace COCASJOL.LOGIC.Inventario
 {
     public class ClasificacionDeCafeLogic
     {
+        private static ILog log = LogManager.GetLogger(typeof(ClasificacionDeCafeLogic).Name);
+
         public ClasificacionDeCafeLogic() { }
 
         #region Select 
@@ -25,9 +29,9 @@ namespace COCASJOL.LOGIC.Inventario
                     return db.clasificaciones_cafe.OrderBy(cc => cc.CLASIFICACIONES_CAFE_NOMBRE).ToList<clasificacion_cafe>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener clasificaciones de cafe.", ex);
                 throw;
             }
         }
@@ -62,8 +66,9 @@ namespace COCASJOL.LOGIC.Inventario
                     return query.OrderBy(cc => cc.CLASIFICACIONES_CAFE_NOMBRE).OrderByDescending(cc => cc.FECHA_MODIFICACION).ToList<clasificacion_cafe>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener clasificaciones de cafe.", ex);
                 throw;
             }
         }
@@ -100,9 +105,9 @@ namespace COCASJOL.LOGIC.Inventario
                     db.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al insertar clasificacion de cafe.", ex);
                 throw;
             }
         }
@@ -140,9 +145,9 @@ namespace COCASJOL.LOGIC.Inventario
                     db.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al actualizar clasificacion de cafe.", ex);
                 throw;
             }
         }
@@ -171,6 +176,7 @@ namespace COCASJOL.LOGIC.Inventario
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al eliminar clasificacion de cafe.", ex);
                 throw;
             }
         }
@@ -197,6 +203,7 @@ namespace COCASJOL.LOGIC.Inventario
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al comprobar si clasificacion de cafe debe pasar por catacion.", ex);
                 throw;
             }
         }

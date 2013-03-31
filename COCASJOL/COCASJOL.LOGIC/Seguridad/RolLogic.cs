@@ -6,10 +6,14 @@ using System.Text;
 using System.Data;
 using System.Data.Objects;
 
+using log4net;
+
 namespace COCASJOL.LOGIC.Seguridad
 {
     public class RolLogic
     {
+        private static ILog log = LogManager.GetLogger(typeof(RolLogic).Name);
+
         public RolLogic() { }
          
         #region Select
@@ -27,6 +31,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener roles.", ex);
                 throw;
             }
         }
@@ -63,6 +68,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener roles.", ex);
                 throw;
             }
         }
@@ -85,6 +91,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener rol.", ex);
                 throw;
             }
         }
@@ -113,6 +120,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener privilegios.", ex);
                 throw;
             }
         }
@@ -137,6 +145,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener privilegios no de rol.", ex);
                 throw;
             }
         }
@@ -173,6 +182,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al insertar rol.", ex);
                 throw;
             }
         }
@@ -205,6 +215,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al insertar privilegios.", ex);
                 throw;
             }
         }
@@ -245,6 +256,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al actualizar rol.", ex);
                 throw;
             }
         }
@@ -273,6 +285,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al eliminar rol.", ex);
                 throw;
             }
         }
@@ -305,6 +318,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al eliminar privilegios.", ex);
                 throw;
             }
         }

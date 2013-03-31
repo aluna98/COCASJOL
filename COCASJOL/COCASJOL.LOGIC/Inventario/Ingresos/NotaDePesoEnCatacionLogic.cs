@@ -10,10 +10,14 @@ using System.Transactions;
 using COCASJOL.LOGIC.Seguridad;
 using COCASJOL.LOGIC.Utiles;
 
+using log4net;
+
 namespace COCASJOL.LOGIC.Inventario.Ingresos
 {
     public class NotaDePesoEnCatacionLogic : NotaDePesoLogic
     {
+        private static ILog log = LogManager.GetLogger(typeof(NotaDePesoEnCatacionLogic).Name);
+
         public NotaDePesoEnCatacionLogic() : base("CATACION") { }
 
         #region Select
@@ -34,9 +38,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     return query.OrderBy(n => n.SOCIOS_ID).ToList<nota_de_peso>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener Notas de Peso.", ex);
                 throw;
             }
         }
@@ -60,9 +64,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     return estadolist;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener estados de nota de peso.", ex);
                 throw;
             }
         }
@@ -145,9 +149,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al actualizar nota de peso.", ex);
                 throw;
             }
         }

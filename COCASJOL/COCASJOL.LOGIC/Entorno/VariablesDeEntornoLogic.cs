@@ -7,10 +7,14 @@ using System.Xml;
 using System.Data;
 using System.Data.Objects;
 
+using log4net;
+
 namespace COCASJOL.LOGIC.Entorno
 {
     public class VariablesDeEntornoLogic
     {
+        private static ILog log = LogManager.GetLogger(typeof(VariablesDeEntornoLogic).Name);
+
         public VariablesDeEntornoLogic() { }
 
         #region Select
@@ -26,9 +30,9 @@ namespace COCASJOL.LOGIC.Entorno
                     return db.variables_de_entorno.OrderBy(v => v.VARIABLES_NOMBRE).ToList<variable_de_entorno>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener variables de entorno.", ex);
                 throw;
             }
         }
@@ -52,9 +56,9 @@ namespace COCASJOL.LOGIC.Entorno
                     return db.variables_de_entorno.OrderBy(v => v.VARIABLES_NOMBRE).ToList<variable_de_entorno>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener variables de entorno.", ex);
                 throw;
             }
         }
@@ -76,9 +80,9 @@ namespace COCASJOL.LOGIC.Entorno
                     return environmentVariable;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al obtener variable de entorno.", ex);
                 throw;
             }
         }
@@ -111,9 +115,9 @@ namespace COCASJOL.LOGIC.Entorno
                     db.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al actualizar variables de entorno.", ex);
                 throw;
             }
         }

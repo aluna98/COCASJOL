@@ -8,10 +8,14 @@ using System.Data.Objects;
 
 using COCASJOL.LOGIC.Inventario;
 
+using log4net;
+
 namespace COCASJOL.LOGIC.Aportaciones
 {
     public class AportacionLogic
     {
+        private static ILog log = LogManager.GetLogger(typeof(AportacionLogic).Name);
+
         public AportacionLogic() { }
 
         #region Select
@@ -30,9 +34,9 @@ namespace COCASJOL.LOGIC.Aportaciones
                     return query.OrderBy(a => a.SOCIOS_ID).ToList<reporte_total_aportaciones_por_socio>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al obtener el reporte total de aportaciones por socios.", ex);
                 throw;
             }
         }
@@ -68,9 +72,9 @@ namespace COCASJOL.LOGIC.Aportaciones
                     return query.OrderBy(a => a.SOCIOS_ID).OrderByDescending(a => a.FECHA_CREACION).ToList<reporte_total_aportaciones_por_socio>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al obtener el reporte total de aportaciones por socios.", ex);
                 throw;
             }
         }
@@ -90,9 +94,9 @@ namespace COCASJOL.LOGIC.Aportaciones
                     return query.FirstOrDefault();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener el reporte total de aportaciones de socio.", ex);
                 throw;
             }
         }
@@ -145,9 +149,9 @@ namespace COCASJOL.LOGIC.Aportaciones
 
                 db.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al insertar transaccion de aportaciones de socio. Liquidacion.", ex);
                 throw;
             }
         }
@@ -190,9 +194,9 @@ namespace COCASJOL.LOGIC.Aportaciones
 
                 db.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al insertar transaccion de aportaciones de socio. Retiro de Aportaciones.", ex);
                 throw;
             }
         }

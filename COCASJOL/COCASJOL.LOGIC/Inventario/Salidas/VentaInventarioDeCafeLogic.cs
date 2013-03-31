@@ -7,10 +7,14 @@ using System.Data;
 using System.Data.Objects;
 using System.Transactions;
 
+using log4net;
+
 namespace COCASJOL.LOGIC.Inventario.Salidas
 {
     public class VentaInventarioDeCafeLogic
     {
+        private static ILog log = LogManager.GetLogger(typeof(VentaInventarioDeCafeLogic).Name);
+
         public VentaInventarioDeCafeLogic() { }
 
         #region Select
@@ -24,9 +28,9 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                     return db.ventas_inventario_cafe.ToList<venta_inventario_cafe>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al obtener ventas de inventario de cafe de cooperativa.", ex);
                 throw;
             }
         }
@@ -71,9 +75,9 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                     return query.ToList<venta_inventario_cafe>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener ventas de inventario de cafe de cooperativa.", ex);
                 throw;
             }
         }
@@ -129,9 +133,9 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al insertar venta de inventario de cafe de cooperativa.", ex);
                 throw;
             }
         }

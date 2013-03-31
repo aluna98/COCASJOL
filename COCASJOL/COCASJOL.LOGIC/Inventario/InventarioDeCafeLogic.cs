@@ -6,10 +6,14 @@ using System.Text;
 using System.Data;
 using System.Data.Objects;
 
+using log4net;
+
 namespace COCASJOL.LOGIC.Inventario
 {
     public class InventarioDeCafeLogic
     {
+        private static ILog log = LogManager.GetLogger(typeof(InventarioDeCafeLogic).Name);
+
         public InventarioDeCafeLogic() { }
          
         #region Select
@@ -23,9 +27,9 @@ namespace COCASJOL.LOGIC.Inventario
                     return db.reporte_total_inventario_de_cafe_por_socio.ToList<reporte_total_inventario_de_cafe_por_socio>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener reporte total de inventario de cafe por socios.", ex);
                 throw;
             }
         }
@@ -57,8 +61,9 @@ namespace COCASJOL.LOGIC.Inventario
                     return query.OrderByDescending(ic => ic.FECHA_CREACION).ToList<reporte_total_inventario_de_cafe_por_socio>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener reporte total de inventario de cafe por socios.", ex);
                 throw;
             }
         }
@@ -88,8 +93,9 @@ namespace COCASJOL.LOGIC.Inventario
                     return asocInventory;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener reporte total de inventario de cafe de socio.", ex);
                 throw;
             }
         }
@@ -118,9 +124,9 @@ namespace COCASJOL.LOGIC.Inventario
                         return 0;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al obtener total de inventario de cafe de socio.", ex);
                 throw;
             }
         }
@@ -136,9 +142,9 @@ namespace COCASJOL.LOGIC.Inventario
                     return db.reporte_total_inventario_de_cafe.ToList<reporte_total_inventario_de_cafe>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener reporte total de inventario de cafe de cooperativa.", ex);
                 throw;
             }
         }
@@ -166,8 +172,9 @@ namespace COCASJOL.LOGIC.Inventario
                     return query.OrderByDescending(ic => ic.FECHA_CREACION).ToList<reporte_total_inventario_de_cafe>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener reporte total de inventario de cafe de cooperativa.", ex);
                 throw;
             }
         }
@@ -192,8 +199,9 @@ namespace COCASJOL.LOGIC.Inventario
                     return inventory;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener reporte total de inventario de cafe de cooperativa.", ex);
                 throw;
             }
         }
@@ -217,9 +225,9 @@ namespace COCASJOL.LOGIC.Inventario
                         return 0;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener total de inventario de cafe de cooperativa.", ex);
                 throw;
             }
         }
@@ -257,9 +265,9 @@ namespace COCASJOL.LOGIC.Inventario
 
                 return inventarioDeCafeDeSocio.TRANSACCION_NUMERO;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al insertar transaccion de inventario de cafe de socio. Nota de Peso.", ex);
                 throw;
             }
         }
@@ -293,9 +301,9 @@ namespace COCASJOL.LOGIC.Inventario
 
                 this.InsertarTransaccionInventarioDeCafe(HojaDeLiquidacion, db);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al insertar transaccion de inventario de cafe de socio. Hoja de Liquidacion.", ex);
                 throw;
             }
         }
@@ -327,9 +335,9 @@ namespace COCASJOL.LOGIC.Inventario
 
                 db.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al insertar transaccion de inventario de cafe de socio. Ajuste de Inventario de Cafe.", ex);
                 throw;
             }
         }
@@ -360,9 +368,9 @@ namespace COCASJOL.LOGIC.Inventario
                 db.inventario_cafe.AddObject(inventarioDeCafe);
                 db.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al insertar transaccion de inventario de cafe. Hoja de Liquidacion.", ex);
                 throw;
             }
         }
@@ -392,9 +400,9 @@ namespace COCASJOL.LOGIC.Inventario
                 db.inventario_cafe.AddObject(inventarioDeCafe);
                 db.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al insertar transaccion de inventario de cafe. Venta de Inventario de Cafe.", ex);
                 throw;
             }
         }

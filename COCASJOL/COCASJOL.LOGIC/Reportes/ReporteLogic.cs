@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using log4net;
+
 namespace COCASJOL.LOGIC.Reportes
 {
     public class ReporteLogic
     {
+        private static ILog log = LogManager.GetLogger(typeof(ReporteLogic).Name);
+
         public ReporteLogic() { }
 
         public List<nota_de_peso> GetNotasDePeso(int NOTAS_ID = 0)
@@ -22,9 +26,9 @@ namespace COCASJOL.LOGIC.Reportes
                     return query.ToList<nota_de_peso>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener notas de peso.", ex);
                 throw;
             }
         }
@@ -42,9 +46,9 @@ namespace COCASJOL.LOGIC.Reportes
                     return query.First<nota_de_peso>().notas_detalles.ToList<nota_detalle>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al obtener detalles de notas de peso.", ex);
                 throw;
             }
         }
@@ -62,9 +66,9 @@ namespace COCASJOL.LOGIC.Reportes
                     return query.ToList<liquidacion>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al obtener hojas de liquidacion.", ex);
                 throw;
             }
         }
@@ -82,9 +86,9 @@ namespace COCASJOL.LOGIC.Reportes
                     return query.ToList<socio>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener socios.", ex);
                 throw;
             }
         }
@@ -102,9 +106,9 @@ namespace COCASJOL.LOGIC.Reportes
                     return query.First<socio>().beneficiario_x_socio.ToList<beneficiario_x_socio>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener beneficiarios de socios.", ex);
                 throw;
             }
         }

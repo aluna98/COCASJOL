@@ -8,10 +8,14 @@ using System.Data.Objects;
 
 using COCASJOL.LOGIC;
 
+using log4net;
+
 namespace COCASJOL.LOGIC.Utiles
 {
     public class PlantillaLogic
     {
+        private static ILog log = LogManager.GetLogger(typeof(PlantillaLogic).Name);
+
         public PlantillaLogic() { }
 
         #region Select
@@ -57,9 +61,9 @@ namespace COCASJOL.LOGIC.Utiles
 
                 return Formatkeys;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al obtener llaves de formatos.", ex);
                 throw;
             }
         }
@@ -73,9 +77,9 @@ namespace COCASJOL.LOGIC.Utiles
                     return db.plantillas_notificaciones.OrderBy(pl => pl.PLANTILLAS_LLAVE).ToList<plantilla_notificacion>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al obtener plantillas.", ex);
                 throw;
             }
         }
@@ -109,9 +113,9 @@ namespace COCASJOL.LOGIC.Utiles
                     return query.OrderBy(pl => pl.PLANTILLAS_LLAVE).OrderByDescending(pl => pl.FECHA_MODIFICACION).ToList<plantilla_notificacion>();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener plantillas.", ex);
                 throw;
             }
         }
@@ -129,9 +133,9 @@ namespace COCASJOL.LOGIC.Utiles
                     return plantilla;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al obtener plantilla.", ex);
                 throw;
             }
         }
@@ -167,9 +171,9 @@ namespace COCASJOL.LOGIC.Utiles
                     db.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al actualizar plantilla.", ex);
                 throw;
             }
         }
