@@ -31,6 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EFProviderWrapperToolkit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=def642f226e0e59b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\EFTracing\EFTracingProvider\bin\Debug\EFProviderWrapperToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="EFTracingProvider, Version=1.0.0.0, Culture=neutral, PublicKeyToken=def642f226e0e59b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\EFTracing\EFTracingProvider\bin\Debug\EFTracingProvider.dll</HintPath>
+    </Reference>
     <Reference Include="Ext.Net, Version=1.5.0.0, Culture=neutral, PublicKeyToken=2e12ce3d0176cd87, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Ext.NET.Community.1.6.0\lib\Ext.Net.dll</HintPath>
@@ -151,20 +159,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Dependencies\EFTracing\EFCachingProvider\EFCachingProvider.csproj">
-      <Project>{E9B10F80-134F-4DC1-BA6F-7728EF2CAE58}</Project>
-      <Name>EFCachingProvider</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Dependencies\EFTracing\EFProviderWrapperToolkit\EFProviderWrapperToolkit.csproj">
-      <Project>{BAF62DE6-51D0-49AB-9E4E-9240E85E9C35}</Project>
-      <Name>EFProviderWrapperToolkit</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Dependencies\EFTracing\EFTracingProvider\EFTracingProvider.csproj">
-      <Project>{F68D53D8-8926-49CF-B556-DF818C3BCA40}</Project>
-      <Name>EFTracingProvider</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
