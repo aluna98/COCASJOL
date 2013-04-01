@@ -11,6 +11,8 @@ using Ext.Net;
 
 using COCASJOL.LOGIC.Web;
 
+using System.Data.SQLite;
+
 namespace COCASJOL.WEBSITE.Source.Logger
 {
     public partial class ApplicationLog : COCASJOL.LOGIC.Web.COCASJOLBASE
@@ -34,10 +36,67 @@ namespace COCASJOL.WEBSITE.Source.Logger
             }
         }
 
-        protected void InventarioCafeDS_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
+
+        protected void stLog_OnRefreshData(object sender, StoreRefreshDataEventArgs e)
         {
-            if (!this.IsPostBack)
-                e.Cancel = true;
+            try
+            {
+                ApplyFilter(null, null);
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
+        private DataTable GetDataTable()
+        {
+            try
+            {
+                DataTable dt = new DataTable("log4net");
+
+                string query = System.Configuration.ConfigurationManager.AppSettings["AppLogSelectQuery"];
+
+                //query +=
+                //    string.IsNullOrEmpty(this.ff_level.Text) ? "" : " level like %" + this.ff_level.Text + "%";
+
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["log4netConnection"].ConnectionString;
+
+                using (SQLiteConnection conn = new SQLiteConnection(connectionString))
+                {
+                    SQLiteCommand cmd = conn.CreateCommand();
+                    cmd.CommandText = query;
+
+                    SQLiteDataAdapter adapter = new SQLiteDataAdapter(cmd);
+
+                    adapter.Fill(dt);
+                }
+
+                return dt;
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
+        protected void ApplyFilter(object sender, DirectEventArgs e)
+        {
+
+            try
+            {
+                DataTable dt = GetDataTable();
+
+                this.AppLogSt.DataSource = dt;
+                this.AppLogSt.DataBind();
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
         }
     }
 }

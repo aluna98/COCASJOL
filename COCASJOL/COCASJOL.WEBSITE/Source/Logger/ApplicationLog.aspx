@@ -6,8 +6,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Inventario de Café</title>
-    <script type="text/javascript" src="../../resources/js/inventario/inventarioDeCafe.js" ></script>
+    <title>Bitácora de Aplicación</title>
+    <script type="text/javascript" src="../../resources/js/logger/applicationLog.js" ></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -24,67 +24,16 @@
             <PageDown Handler="PageX.navNext();" />
             <End Handler="PageX.navEnd();" />
         </ext:KeyNav>
-
-        <asp:ObjectDataSource ID="InventarioCafeDS" runat="server"
-                TypeName="COCASJOL.LOGIC.Inventario.InventarioDeCafeLogic"
-                SelectMethod="GetInventarioDeCafe" onselecting="InventarioCafeDS_Selecting" >
-                <SelectParameters>
-                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_ID"      Type="Int32"   ControlID="f_CLASIFICACIONES_CAFE_ID"       PropertyName="Text" DefaultValue="0" />
-                    <asp:ControlParameter Name="INVENTARIO_ENTRADAS_CANTIDAD" Type="Decimal"  ControlID="f_INVENTARIO_ENTRADAS_CANTIDAD" PropertyName="Text" DefaultValue="-1"/>
-                    <asp:ControlParameter Name="INVENTARIO_SALIDAS_SALDO"     Type="Decimal"  ControlID="f_INVENTARIO_SALIDAS_SALDO"     PropertyName="Text" DefaultValue="-1"/>
-                    <asp:ControlParameter Name="CREADO_POR"                   Type="String"   ControlID="nullHdn"                        PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_CREACION"               Type="DateTime" ControlID="nullHdn"                        PropertyName="Text" DefaultValue="" />
-                </SelectParameters>
-        </asp:ObjectDataSource>
-
-        <asp:ObjectDataSource ID="ClasificacionesCafeDS" runat="server"
-                TypeName="COCASJOL.LOGIC.Inventario.ClasificacionDeCafeLogic"
-                SelectMethod="GetClasificacionesDeCafe">
-        </asp:ObjectDataSource>
-
-        <asp:ObjectDataSource ID="SociosDS" runat="server"
-                TypeName="COCASJOL.LOGIC.Socios.SociosLogic"
-                SelectMethod="getSociosActivos" >
-        </asp:ObjectDataSource>
-
-        <ext:Store ID="SocioSt" runat="server" DataSourceID="SociosDS">
-            <Reader>
-                <ext:JsonReader IDProperty="SOCIOS_ID">
-                    <Fields>
-                        <ext:RecordField Name="SOCIOS_ID" />
-                        <ext:RecordField Name="SOCIOS_PRIMER_NOMBRE" />
-                        <ext:RecordField Name="SOCIOS_SEGUNDO_NOMBRE" />
-                        <ext:RecordField Name="SOCIOS_PRIMER_APELLIDO" />
-                        <ext:RecordField Name="SOCIOS_SEGUNDO_APELLIDO" />
-                        <ext:RecordField Name="PRODUCCION_UBICACION_FINCA" ServerMapping="socios_produccion.PRODUCCION_UBICACION_FINCA" />
-                    </Fields>
-                </ext:JsonReader>
-            </Reader>
-        </ext:Store>
-
-        <ext:Store ID="ClasificacionesCafeSt" runat="server" DataSourceID="ClasificacionesCafeDS" >
-            <Reader>
-                <ext:JsonReader IDProperty="CLASIFICACIONES_CAFE_ID">
-                    <Fields>
-                        <ext:RecordField Name="CLASIFICACIONES_CAFE_ID" />
-                        <ext:RecordField Name="CLASIFICACIONES_CAFE_NOMBRE" />
-                    </Fields>
-                </ext:JsonReader>
-            </Reader>
-        </ext:Store>
         
-        <ext:Hidden ID="nullHdn" runat="server" >
-        </ext:Hidden>
-
         <ext:Hidden ID="LoggedUserHdn" runat="server" >
         </ext:Hidden>
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
             <Items>
-                <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Inventario de Café" Icon="Basket" Layout="Fit">
+                <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Bitácora de Aplicación" Icon="Basket" Layout="Fit">
                     <Items>
-                        <ext:GridPanel ID="InventarioCafeGridP" runat="server" AutoExpandColumn="CLASIFICACIONES_CAFE_NOMBRE" Height="300"
-                            Title="Inventario de Café" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
+                        <ext:GridPanel ID="AppLogGridP" runat="server" AutoExpandColumn="message" Height="300"
+                            Title="Bitácora de Aplicación" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
                             <KeyMap>
                                 <ext:KeyBinding Ctrl="true" >
                                     <Keys>
@@ -96,30 +45,75 @@
                                 </ext:KeyBinding>
                             </KeyMap>
                             <Store>
-                                <ext:Store ID="InventarioCafeSt" runat="server" DataSourceID="InventarioCafeDS" AutoSave="true" SkipIdForNewRecords="false" >
+                                <ext:Store ID="AppLogSt" runat="server" OnRefreshData="stLog_OnRefreshData">
                                     <Reader>
                                         <ext:JsonReader>
                                             <Fields>
-                                                <ext:RecordField Name="CLASIFICACIONES_CAFE_ID"      />
-                                                <ext:RecordField Name="CLASIFICACIONES_CAFE_NOMBRE"  />
-                                                <ext:RecordField Name="INVENTARIO_ENTRADAS_CANTIDAD" />
-                                                <ext:RecordField Name="INVENTARIO_SALIDAS_SALDO"     />
-                                                <ext:RecordField Name="CREADO_POR"                   />
-                                                <ext:RecordField Name="FECHA_CREACION"               Type="Date" />
+                                                <ext:RecordField Name="appdomain" />
+                                                <ext:RecordField Name="aspnetcache" />
+                                                <ext:RecordField Name="aspnetcontext" />
+                                                <ext:RecordField Name="aspnetrequest" />
+                                                <ext:RecordField Name="aspnetsession" />
+                                                <ext:RecordField Name="date" Type="Date" />
+                                                <ext:RecordField Name="exception" />
+                                                <ext:RecordField Name="file" />
+                                                <ext:RecordField Name="identity" />
+                                                <ext:RecordField Name="location" />
+                                                <ext:RecordField Name="level" />
+                                                <ext:RecordField Name="line" />
+                                                <ext:RecordField Name="logger" />
+                                                <ext:RecordField Name="message" />
+                                                <ext:RecordField Name="method" />
+                                                <ext:RecordField Name="ndc" />
+                                                <ext:RecordField Name="property" />
+                                                <ext:RecordField Name="stacktrace" />
+                                                <ext:RecordField Name="stacktracedetail" />
+                                                <ext:RecordField Name="timestamp" />
+                                                <ext:RecordField Name="thread" />
+                                                <ext:RecordField Name="type" />
+                                                <ext:RecordField Name="username" />
+                                                <ext:RecordField Name="utcdate" Type="Date" />
                                             </Fields>
                                         </ext:JsonReader>
                                     </Reader>
-                                    <Listeners>
-                                        <CommitDone Handler="Ext.Msg.alert('Guardar', 'Cambios guardados exitosamente.');" />
-                                    </Listeners>
                                 </ext:Store>
                             </Store>
                             <ColumnModel>
                                 <Columns>
-                                    <ext:Column DataIndex="CLASIFICACIONES_CAFE_NOMBRE"  Header="Clasificación de Café" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="INVENTARIO_ENTRADAS_CANTIDAD" Header="Cantidad" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="INVENTARIO_SALIDAS_SALDO"     Header="Saldo de Salidas" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="INVENTARIO_SALIDAS_SALDO" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
+                                    <ext:Column ColumnID="level" Header="Nivel" DataIndex="level">
+                                    <Renderer Fn="fnLevel" />
+                                </ext:Column>
+                                <ext:DateColumn ColumnID="date" Width="150" Header="Fecha" DataIndex="date" Format="dd/MMM/yyyy hh:mm:ss a" />
+                                <ext:Column ColumnID="logger" Header="Registrador" Width="150" DataIndex="logger" />
+                                <ext:Column ColumnID="message" Header="Mensaje" Width="150" DataIndex="message" />
+                                <ext:Column ColumnID="username" Header="Usuario" Width="150" DataIndex="username" />
+                                <ext:Column ColumnID="location" Header="Ubicación" Width="150" DataIndex="location" />
+                                <ext:Column ColumnID="method" Header="Método" Width="100" DataIndex="method" />
+                                <ext:Column ColumnID="line" Header="Línea" Width="50" DataIndex="line" />
+                                <ext:Column ColumnID="appdomain" Header="Dóminio de Aplicación" DataIndex="appdomain" Hidden="true" />
+                                <ext:Column ColumnID="aspnetcache" Header="aspnetcache" DataIndex="aspnetcache" Hidden="true" />
+                                <ext:Column ColumnID="aspnetcontext" Header="aspnetcontext" DataIndex="aspnetcontext"
+                                    Hidden="true" />
+                                <ext:Column ColumnID="aspnetrequest" Header="aspnetrequest" DataIndex="aspnetrequest"
+                                    Hidden="true" />
+                                <ext:Column ColumnID="aspnetsession" Header="aspnetsession" DataIndex="aspnetsession"
+                                    Hidden="true" />
+                                <ext:Column ColumnID="exception" Header="Excepción" DataIndex="exception" Hidden="true" />
+                                <ext:Column ColumnID="file" Header="Archivo" DataIndex="file" Hidden="true" />
+                                <ext:Column ColumnID="identity" Header="Identificación" DataIndex="identity" Hidden="true" />
+                                <ext:Column ColumnID="ndc" Header="ndc" DataIndex="ndc" Hidden="true" />
+                                <ext:Column ColumnID="property" Header="Propiedad" DataIndex="property" Hidden="true" />
+                                <ext:Column ColumnID="stacktrace" Header="Pista de Pila" DataIndex="stacktrace" Hidden="true" />
+                                <ext:Column ColumnID="stacktracedetail" Header="Detalle Pista de Pila" DataIndex="stacktracedetail"
+                                    Hidden="true" />
+                                <ext:Column ColumnID="timestamp" Header="Fecha y Hora" DataIndex="timestamp" Hidden="true" />
+                                <ext:Column ColumnID="thread" Header="Hilo" DataIndex="thread" Hidden="true" />
+                                <ext:Column ColumnID="type" Header="Tipo" DataIndex="type" Hidden="true" />
+                                <ext:DateColumn ColumnID="utcdate" Header="Fecha UTC" DataIndex="utcdate" Hidden="true"
+                                    Format="dd/MMM/yyyy hh:mm:ss am" />
+
+
+                                    <ext:Column DataIndex="level" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
                                         <Renderer Handler="return '';" />
                                     </ext:Column>
                                 </Columns>
@@ -145,47 +139,337 @@
                                             <Columns>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:ComboBox
-                                                            ID="f_CLASIFICACIONES_CAFE_ID" 
-                                                            runat="server"
-                                                            Icon="Find"
-                                                            AllowBlank="true"
-                                                            ForceSelection="true"
-                                                            StoreID="ClasificacionesCafeSt"
-                                                            ValueField="CLASIFICACIONES_CAFE_ID" 
-                                                            DisplayField="CLASIFICACIONES_CAFE_NOMBRE"
-                                                            Mode="Local"
-                                                            TypeAhead="true">
-                                                            <Triggers>
-                                                                <ext:FieldTrigger Icon="Clear"/>
-                                                            </Triggers>
-                                                            <Listeners>
-                                                                <Select Handler="PageX.reloadGridStore();" />
-                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
-                                                                <TriggerClick Handler="this.clearValue();" />
-                                                            </Listeners>
+                                                        <ext:ComboBox ID="ff_level" runat="server" TriggerAction="All" Mode="Remote" Icon="Find">
+                                                            <Items>
+                                                                <ext:ListItem Value="" Text="*" />
+                                                                <ext:ListItem Value="DEBUG" Text="DEBUG" />
+                                                                <ext:ListItem Value="INFO" Text="INFO" />
+                                                                <ext:ListItem Value="WARN" Text="WARN" />
+                                                                <ext:ListItem Value="ERROR" Text="ERROR" />
+                                                                <ext:ListItem Value="FATAL" Text="FATAL" />
+                                                            </Items>
+                                                            <SelectedItem Value="*" />
+                                                            <DirectEvents>
+                                                                <Select OnEvent="ApplyFilter">
+                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                </Select>
+                                                            </DirectEvents>
                                                         </ext:ComboBox>
                                                     </Component>
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:NumberField ID="f_INVENTARIO_ENTRADAS_CANTIDAD" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                        <ext:DropDownField ID="ddfFecha" AllowBlur="true" runat="server" Editable="false"
+                                                             Mode="ValueText"  Icon="Find" TriggerIcon="SimpleArrowDown" CollapseMode="Default" >
+                                                            <Component>
+                                                                <ext:FormPanel ID="FormPanel2" runat="server" Height="100" Width="270" 
+                                                                    Frame="true" LabelWidth="50" ButtonAlign="Left" BodyStyle="padding:2px 2px;">
+                                                                    <Items>
+                                                                        <ext:CompositeField ID="CompositeField4" runat="server" FieldLabel="De" LabelWidth="50">
+                                                                            <Items>
+                                                                                <ext:DateField ID="ff_date_from" Vtype="daterange" runat="server" Flex="1" Width="100" CausesValidation="false">
+                                                                                    <CustomConfig>
+                                                                                        <ext:ConfigItem Name="endDateField" Value="#{ff_date_to}" Mode="Value" />
+                                                                                    </CustomConfig>
+                                                                                    <Listeners>
+                                                                                        <KeyUp Fn="calendar.validateDateRange" />
+                                                                                    </Listeners>
+                                                                                </ext:DateField>
+                                                                                <ext:TimeField ID="ff_time_from" runat="server" Flex="1" Width="80" CausesValidation="false" />
+                                                                            </Items>
+                                                                        </ext:CompositeField>
+                                                                        <ext:CompositeField ID="CompositeField2" runat="server" FieldLabel="Hasta" LabelWidth="50">
+                                                                            <Items>
+                                                                                <ext:DateField ID="ff_date_to" runat="server" Vtype="daterange" Width="100">
+                                                                                    <CustomConfig>
+                                                                                        <ext:ConfigItem Name="startDateField" Value="#{ff_date_from}" Mode="Value" />
+                                                                                    </CustomConfig>
+                                                                                    <Listeners>
+                                                                                        <KeyUp Fn="calendar.validateDateRange" />
+                                                                                    </Listeners>
+                                                                                </ext:DateField>
+                                                                                <ext:TimeField ID="ff_time_to" runat="server" Width="80" />
+                                                                            </Items>
+                                                                        </ext:CompositeField>
+                                                                    </Items>
+                                                                    <Buttons>
+                                                                        <ext:Button ID="Button1" Text="Ok" Icon="Accept" runat="server">
+                                                                            <Listeners>
+                                                                                <Click Handler="
+                                                                                    calendar.setFecha();
+                                                                                    " />
+                                                                            </Listeners>
+                                                                            <DirectEvents>
+                                                                                <Click OnEvent="ApplyFilter">
+                                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                                </Click>
+                                                                            </DirectEvents>
+                                                                        </ext:Button>
+                                                                        <ext:Button ID="Button2" Text="Clear" Icon="Cancel" runat="server">
+                                                                            <Listeners>
+                                                                                <Click Handler="
+                                                                                    calendar.clearFecha();
+                                                                                    " />
+                                                                            </Listeners> 
+                                                                            <DirectEvents>
+                                                                                <Click OnEvent="ApplyFilter">
+                                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                                </Click>
+                                                                            </DirectEvents>
+                                                                        </ext:Button>
+                                                                    </Buttons>
+                                                                </ext:FormPanel>
+                                                            </Component>
                                                             <Listeners>
-                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                                <Collapse Handler="calendar.setFecha();" />
                                                             </Listeners>
-                                                        </ext:NumberField>
+                                                        </ext:DropDownField>
                                                     </Component>
                                                 </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
-                                                        <ext:NumberField ID="f_INVENTARIO_SALIDAS_SALDO" runat="server" EnableKeyEvents="true" Icon="Find">
-                                                            <Listeners>
-                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
-                                                            </Listeners>
-                                                        </ext:NumberField>
+                                                        <ext:TextField ID="ff_logger" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <DirectEvents>
+                                                                <KeyUp OnEvent="ApplyFilter" Before="return KeyUpEvent(this, e);">
+                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                </KeyUp>
+                                                            </DirectEvents>
+                                                        </ext:TextField>
                                                     </Component>
                                                 </ext:HeaderColumn>
-                                                               
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="ff_message" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <DirectEvents>
+                                                                <KeyUp OnEvent="ApplyFilter" Before="return KeyUpEvent(this, e);">
+                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                </KeyUp>
+                                                            </DirectEvents>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="ff_username" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <DirectEvents>
+                                                                <KeyUp OnEvent="ApplyFilter" Before="return KeyUpEvent(this, e);">
+                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                </KeyUp>
+                                                            </DirectEvents>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="ff_method" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <DirectEvents>
+                                                                <KeyUp OnEvent="ApplyFilter" Before="return KeyUpEvent(this, e);">
+                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                </KeyUp>
+                                                            </DirectEvents>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="ff_location" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <DirectEvents>
+                                                                <KeyUp OnEvent="ApplyFilter" Before="return KeyUpEvent(this, e);">
+                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                </KeyUp>
+                                                            </DirectEvents>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="ff_line" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <DirectEvents>
+                                                                <KeyUp OnEvent="ApplyFilter" Before="return KeyUpEvent(this, e);">
+                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                </KeyUp>
+                                                            </DirectEvents>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="ff_appdomain" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <DirectEvents>
+                                                                <KeyUp OnEvent="ApplyFilter" Before="return KeyUpEvent(this, e);">
+                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                </KeyUp>
+                                                            </DirectEvents>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="ff_aspnetcache" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <DirectEvents>
+                                                                <KeyUp OnEvent="ApplyFilter" Before="return KeyUpEvent(this, e);">
+                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                </KeyUp>
+                                                            </DirectEvents>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="ff_aspnetcontext" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <DirectEvents>
+                                                                <KeyUp OnEvent="ApplyFilter" Before="return KeyUpEvent(this, e);">
+                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                </KeyUp>
+                                                            </DirectEvents>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="ff_aspnetrequest" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <DirectEvents>
+                                                                <KeyUp OnEvent="ApplyFilter" Before="return KeyUpEvent(this, e);">
+                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                </KeyUp>
+                                                            </DirectEvents>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="ff_aspnetsession" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <DirectEvents>
+                                                                <KeyUp OnEvent="ApplyFilter" Before="return KeyUpEvent(this, e);">
+                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                </KeyUp>
+                                                            </DirectEvents>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="ff_exception" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <DirectEvents>
+                                                                <KeyUp OnEvent="ApplyFilter" Before="return KeyUpEvent(this, e);">
+                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                </KeyUp>
+                                                            </DirectEvents>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="ff_file" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <DirectEvents>
+                                                                <KeyUp OnEvent="ApplyFilter" Before="return KeyUpEvent(this, e);">
+                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                </KeyUp>
+                                                            </DirectEvents>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="ff_identity" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <DirectEvents>
+                                                                <KeyUp OnEvent="ApplyFilter" Before="return KeyUpEvent(this, e);">
+                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                </KeyUp>
+                                                            </DirectEvents>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="ff_ndc" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <DirectEvents>
+                                                                <KeyUp OnEvent="ApplyFilter" Before="return KeyUpEvent(this, e);">
+                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                </KeyUp>
+                                                            </DirectEvents>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="ff_property" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <DirectEvents>
+                                                                <KeyUp OnEvent="ApplyFilter" Before="return KeyUpEvent(this, e);">
+                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                </KeyUp>
+                                                            </DirectEvents>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="ff_stacktrace" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <DirectEvents>
+                                                                <KeyUp OnEvent="ApplyFilter" Before="return KeyUpEvent(this, e);">
+                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                </KeyUp>
+                                                            </DirectEvents>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="ff_stacktracedetail" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <DirectEvents>
+                                                                <KeyUp OnEvent="ApplyFilter" Before="return KeyUpEvent(this, e);">
+                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                </KeyUp>
+                                                            </DirectEvents>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="ff_timestamp" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <DirectEvents>
+                                                                <KeyUp OnEvent="ApplyFilter" Before="return KeyUpEvent(this, e);">
+                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                </KeyUp>
+                                                            </DirectEvents>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="ff_thread" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <DirectEvents>
+                                                                <KeyUp OnEvent="ApplyFilter" Before="return KeyUpEvent(this, e);">
+                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                </KeyUp>
+                                                            </DirectEvents>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="ff_type" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <DirectEvents>
+                                                                <KeyUp OnEvent="ApplyFilter" Before="return KeyUpEvent(this, e);">
+                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                </KeyUp>
+                                                            </DirectEvents>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:DateField ID="ff_utcdate" runat="server" AllowBlank="true" Editable="true" Format="yyyy/MM/dd"
+                                                            Icon="Find">
+                                                            <DirectEvents>
+                                                                <Select OnEvent="ApplyFilter">
+                                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{AppLogGridP}" />
+                                                                </Select>
+                                                            </DirectEvents>
+                                                        </ext:DateField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+
                                                 <ext:HeaderColumn AutoWidthElement="false">
                                                     <Component>
                                                         <ext:Button ID="ClearFilterButton" runat="server" Icon="Cancel">
@@ -204,10 +488,9 @@
                                 </ext:GridView>
                             </View>
                             <BottomBar>
-                                <ext:PagingToolbar ID="PagingToolbar1" runat="server" PageSize="20" StoreID="InventarioCafeSt" />
+                                <ext:PagingToolbar ID="PagingToolbar1" runat="server" PageSize="20" StoreID="AppLogSt" />
                             </BottomBar>
                             <LoadMask ShowMask="true" />
-                            <SaveMask ShowMask="true" />
                             <Listeners>
                                 <RowDblClick Handler="PageX.edit();" />
                             </Listeners>
@@ -220,9 +503,9 @@
         <ext:Window ID="EditarInventarioCafeWin"
             runat="server"
             Hidden="true"
-            Icon="BrickEdit"
-            Title="Inventario de Café"
-            Width="500"
+            Icon="Clipboard"
+            Title="Bitácora de Aplicación"
+            Width="800"
             Layout="FormLayout"
             AutoHeight="True"
             Resizable="false"
@@ -232,28 +515,27 @@
             <Items>
                 <ext:FormPanel ID="EditarTipoFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelWidth="120">
                     <Items>
-                        <ext:Panel ID="Panel12" runat="server" Title="Inventario de Café" Layout="AnchorLayout" AutoHeight="True"
+                        <ext:Panel ID="Panel12" runat="server" Title="Bitácora de Aplicación" Layout="AnchorLayout" AutoHeight="True"
                             Resizable="false">
                             <Items>
-                                <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false" AnchorHorizontal="100%">
+                                <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="FormLayout" Border="false" AnchorHorizontal="100%">
                                     <Items>
-                                        <ext:TextField   runat="server" ID="EditTipoDeCafeIdtxt"       DataIndex="CLASIFICACIONES_CAFE_NOMBRE" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Café" AllowBlank="false" ReadOnly="true" MsgTarget="Side">
-                                            <ToolTips>
-                                                <ext:ToolTip ID="ToolTip1" runat="server" Title="Tipo de Café" Html="El tipo de café es de solo lectura." Width="200" TrackMouse="true" />
-                                            </ToolTips>
-                                        </ext:TextField>
-                                        <ext:NumberField runat="server" ID="EditInventarioCantidadTxt" DataIndex="INVENTARIO_ENTRADAS_CANTIDAD" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cantidad" AllowBlank="false" ReadOnly="true" MsgTarget="Side">
-                                            <ToolTips>
-                                                <ext:ToolTip ID="ToolTip2" runat="server" Title="Cantidad" Html="La cantidad de inventario es de solo lectura." Width="200" TrackMouse="true" />
-                                            </ToolTips>
-                                        </ext:NumberField>
-                                        <ext:NumberField runat="server" ID="EditInventarioSalidasTxt"  DataIndex="INVENTARIO_SALIDAS_SALDO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Saldo de Salidas" AllowBlank="false" ReadOnly="true" MsgTarget="Side">
-                                            <ToolTips>
-                                                <ext:ToolTip ID="ToolTip3" runat="server" Title="Salidas" Html="El saldo de salidas de inventario es de solo lectura." Width="200" TrackMouse="true" />
-                                            </ToolTips>
-                                        </ext:NumberField>
-                                        <ext:TextField runat="server"   ID="EditCreatedByTxt"          DataIndex="CREADO_POR"                  LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
-                                        <ext:TextField runat="server"   ID="EditCreationDateTxt"       DataIndex="FECHA_CREACION"              LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
+                                        <ext:TextField ID="EditLevelTxt" runat="server" FieldLabel="Nivel" Width="100" DataIndex="level"></ext:TextField>
+                                        <ext:TextArea ID="EditMessagetxt" FieldLabel="Mensaje" runat="server" DataIndex="message" Anchor="0" Height="50" ReadOnly="true" />
+                                        <ext:TextField ID="EditLocation" runat="server" FieldLabel="Origen" DataIndex="location" Anchor="0" ReadOnly="true" />
+                                        <ext:CompositeField ID="cfieldExcStk" runat="server" FieldLabel="Exception/Stacktrace">
+                                            <Items>
+                                                <ext:TextArea ID="EditExceptionTxt" runat="server" DataIndex="exception" Flex="1" Anchor="0" Height="50" ReadOnly="true" />
+                                                <ext:TextArea ID="EditStacktxt" runat="server" DataIndex="stacktracedetail" Flex="1" Height="50" Anchor="0" ReadOnly="true" />
+                                            </Items>
+                                        </ext:CompositeField>
+                                        <ext:CompositeField ID="cfieldCtxRqst" runat="server" FieldLabel="ASP Context/Request">
+                                            <Items>
+                                                <ext:TextArea ID="EditContextTxt" runat="server" DataIndex="aspnetcontext" Flex="1" Height="50" Anchor="0" ReadOnly="true" />
+                                                <ext:TextArea ID="EditRequestTxt" runat="server" DataIndex="aspnetrequest" Flex="1" Height="50" Anchor="0" ReadOnly="true" />
+                                            </Items>
+                                        </ext:CompositeField>
+                                        <ext:TextArea ID="EditPropertyTxt" runat="server" FieldLabel="log4Net Property" DataIndex="property" Anchor="0" Height="50" ReadOnly="true" />
                                     </Items>
                                 </ext:Panel>
                             </Items>

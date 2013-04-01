@@ -161,6 +161,12 @@
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/database.png", sizingMethod="center");
 }
 
+.icon-applicationLog
+{
+    background-image: url(../images/clipboard_invoice.png) !important;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/clipboard_invoice.png", sizingMethod="center");
+}
+
 .icon-window48
 {
     background-image: url(../images/window48x48.png) !important;

@@ -328,6 +328,16 @@
                     <Launcher ID="CambiarClaveLauncher" runat="server" Text="Cambiar Clave" Icon="Key" />
                 </ext:DesktopModule>
                 <%--Configuracion--%>
+
+                <%--Soporte--%>
+                <ext:DesktopModule ModuleID="ApplicationLogModule">
+                    <Launcher ID="ApplicationLogLauncher" runat="server" Text="Bitácora de Aplicación" Icon="Clipboard" >
+                        <Listeners>
+                            <Click Handler="WindowX.variablesDeEntorno(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
+                <%--Soporte--%>
             </Modules>  
             
             <Shortcuts>
@@ -335,6 +345,7 @@
                 <ext:DesktopShortcut ShortcutID="scRoles"                                  Text="Roles"                                        IconCls="shortcut-icon icon-roles" />
                 <ext:DesktopShortcut ShortcutID="scPlantillasNotificaciones"               Text="Plantillas de Notificaciones"                 IconCls="shortcut-icon icon-plantillasNotificaciones" />
                 <ext:DesktopShortcut ShortcutID="scVariablesDeEntorno"                     Text="Variables de Entorno"                         IconCls="shortcut-icon icon-variablesEntorno" />
+                <ext:DesktopShortcut ShortcutID="scApplicationLog"                         Text="Bitácora de Aplicación"                       IconCls="shortcut-icon icon-applicationLog" />
                 <ext:DesktopShortcut ShortcutID="scSocios"                                 Text="Socios"                                       IconCls="shortcut-icon icon-socios" />
                 <ext:DesktopShortcut ShortcutID="scEstadosNotasDePeso"                     Text="Estados de Notas de Peso"                     IconCls="shortcut-icon icon-estadosNotasDePeso" />
                 <ext:DesktopShortcut ShortcutID="scNotasDePesoEnPesaje"                    Text="Notas de Peso en Area de Pesaje"              IconCls="shortcut-icon icon-notasDePesoEnPesaje" />
@@ -408,11 +419,24 @@
                     </ext:MenuItem>
                     <ext:MenuItem ID="EnvironmentMenu" runat="server" Text="Entorno" Icon="Folder" HideOnClick="false">
                         <Menu>
-                            <ext:Menu ID="Menu2" runat="server">
+                            <ext:Menu runat="server">
                                 <Items>
                                     <ext:MenuItem ID="VariablesDeEntornoMenuItem" Text="Variables de Entorno" Icon="Database" >
                                         <Listeners>
                                             <click Handler="WindowX.variablesDeEntorno(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                </Items>
+                            </ext:Menu>
+                        </Menu>
+                    </ext:MenuItem>
+                    <ext:MenuItem ID="SupportMenu" runat="server" Text="Soporte" Icon="Folder" HideOnClick="false">
+                        <Menu>
+                            <ext:Menu runat="server">
+                                <Items>
+                                    <ext:MenuItem ID="ApplicationLogMenuItem" Text="Bitácora de Aplicación" Icon="Clipboard" >
+                                        <Listeners>
+                                            <click Handler="WindowX.applicationLog(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
                                 </Items>
@@ -816,6 +840,7 @@
         <ext:ToolTip runat="server" ID="scRolesTooltip"                             Html="Roles"                                        Target="scRoles-shortcut"                             ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scPlantillasNotificacionesTooltip"          Html="Plantillas de Notificaciones"                 Target="scPlantillasNotificaciones-shortcut"          ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scVariablesDeEntornoTooltip"                Html="Variables de Entorno"                         Target="scVariablesDeEntorno-shortcut"                ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scApplicationLogTooltip"                    Html="Bitácora de Aplicación"                       Target="scApplicationLog-shortcut"                    ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scSociosTooltip"                            Html="Socios"                                       Target="scSocios-shortcut"                            ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scEstadosNotasDePesoTooltip"                Html="Estados de Notas de Peso"                     Target="scEstadosNotasDePeso-shortcut"                ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scNotasDePesoEnPesajeTooltip"               Html="Notas De Peso en Area de Pesaje"              Target="scNotasDePesoEnPesaje-shortcut"               ></ext:ToolTip>

@@ -148,6 +148,13 @@
     <menuitem>VariablesDeEntornoMenuItem</menuitem>
   </privilege>
   <privilege>
+    <key>SYS_APPLICATIONLOG</key>
+    <page>ApplicationLog</page>
+    <module>ApplicationLogModule</module>
+    <shortcut>scApplicationLog</shortcut>
+    <menuitem>ApplicationLogMenuItem</menuitem>
+  </privilege>
+  <privilege>
     <key>MANT_PRESTAMOS</key>
     <page>Prestamos</page>
     <module>PrestamosModule</module>

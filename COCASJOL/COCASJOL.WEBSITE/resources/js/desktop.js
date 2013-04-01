@@ -264,6 +264,10 @@ var WindowX = {
         DesktopX.createDynamicWindow(app, 'database', 'Variables de Entorno', 'Entorno/VariablesDeEntorno.aspx');
     },
 
+    applicationLog: function (app) {
+        DesktopX.createDynamicWindow(app, 'clipboard', 'Bitácora de Aplicación', 'Logger/ApplicationLog.aspx', 1000, 600);
+    },
+
     settings: function () {
         SettingsWin.show();
     },
@@ -316,5 +320,7 @@ var ShorcutClickHandler = function (app, id) {
         WindowX.clasificacionesDeCafe(app);
     } else if (id == 'scVariablesDeEntorno') {
         WindowX.variablesDeEntorno(app);
+    } else if (id == 'scApplicationLog') {
+        WindowX.applicationLog(app);
     }
 };

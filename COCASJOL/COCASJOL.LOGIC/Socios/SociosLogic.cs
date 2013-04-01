@@ -361,29 +361,29 @@ namespace COCASJOL.LOGIC.Socios
         }
 
 
-        public static void InsertSociosDBISAM()
-        {
-            try
-            {
-                string queryString = "INSERT INTO Sclientes (";
-                OdbcCommand command = new OdbcCommand(queryString);
+        //public static void InsertSociosDBISAM()
+        //{
+        //    try
+        //    {
+        //        string queryString = "INSERT INTO Sclientes (";
+        //        OdbcCommand command = new OdbcCommand(queryString);
 
-                string connectionString = "PROVIDER=MSDASQL;DSN=MYDBISAM";
+        //        string connectionString = "PROVIDER=MSDASQL;DSN=MYDBISAM";
 
-                using (OdbcConnection connection = new OdbcConnection(connectionString))
-                {
-                    command.Connection = connection;
-                    connection.Open();
+        //        using (OdbcConnection connection = new OdbcConnection(connectionString))
+        //        {
+        //            command.Connection = connection;
+        //            connection.Open();
 
-                    OdbcDataReader reader = command.ExecuteReader();
-                }
-            }
-            catch (Exception ex)
-            {
-                log.Fatal("Error fatal al insertar socio a DBISAM.", ex);
-                throw;
-            }
-        }
+        //            OdbcDataReader reader = command.ExecuteReader();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        log.Fatal("Error fatal al insertar socio a DBISAM.", ex);
+        //        throw;
+        //    }
+        //}
         #endregion insert
 
         #region Delete

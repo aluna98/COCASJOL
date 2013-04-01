@@ -42,7 +42,7 @@
     <script type="text/javascript">
         var validate = function () {
             if (!Ext.getCmp('txtUsername').validate() || !Ext.getCmp('txtPassword').validate()) {
-                Ext.Msg.alert('Login', 'El nombre de usuario y contrase�a son necesarios.');
+                Ext.Msg.alert('Login', 'El nombre de usuario y password son necesarios.');
                 return;
             } else {
                 var encryptedpass = md5(txtPassword.getValue());

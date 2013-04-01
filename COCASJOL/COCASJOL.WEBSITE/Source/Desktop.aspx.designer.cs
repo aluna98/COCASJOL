@@ -157,15 +157,6 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.MenuItem EnvironmentMenu;
         
         /// <summary>
-        /// Menu2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Menu Menu2;
-        
-        /// <summary>
         /// VariablesDeEntornoMenuItem control.
         /// </summary>
         /// <remarks>
@@ -173,6 +164,24 @@ namespace COCASJOL.WEBSITE {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.MenuItem VariablesDeEntornoMenuItem;
+        
+        /// <summary>
+        /// SupportMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem SupportMenu;
+        
+        /// <summary>
+        /// ApplicationLogMenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem ApplicationLogMenuItem;
         
         /// <summary>
         /// AsociatesMenu control.
@@ -722,6 +731,15 @@ namespace COCASJOL.WEBSITE {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ToolTip scVariablesDeEntornoTooltip;
+        
+        /// <summary>
+        /// scApplicationLogTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scApplicationLogTooltip;
         
         /// <summary>
         /// scSociosTooltip control.

@@ -88,6 +88,7 @@
     <Content Include="resources\images\cart_full.png" />
     <Content Include="resources\images\cheque.png" />
     <Content Include="resources\images\cheque16x16.png" />
+    <Content Include="resources\images\clipboard_invoice.png" />
     <Content Include="resources\images\cocasjol_start_button.gif" />
     <Content Include="resources\images\coins.png" />
     <Content Include="resources\images\coins16x16.png" />
@@ -134,6 +135,7 @@
     <Content Include="resources\js\inventario\salidas\ajustesInventarioDeCafeDeSocio.js" />
     <Content Include="resources\js\inventario\salidas\hojasDeLiquidacion.js" />
     <Content Include="resources\js\inventario\salidas\ventasInventarioDeCafe.js" />
+    <Content Include="resources\js\logger\applicationLog.js" />
     <Content Include="resources\js\md5.js" />
     <Content Include="resources\js\prestamos\solicitudesDePrestamos.js" />
     <Content Include="resources\js\reportes\movimientosDeInventarioDeCafe.js" />
