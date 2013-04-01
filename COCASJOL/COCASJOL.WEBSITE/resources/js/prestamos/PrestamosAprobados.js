@@ -10,21 +10,7 @@ var EditAvalWindow = null;
 var EditRefForm = null;
 var EditForm = null;
 var EditAvalForm = null;
-var AddWindow = null;
-var AddForm = null;
-var AddRefForm = null;
-var AddWindowAval = null;
-var AddAvalForm = null;
-var ConfirmMsgTitleAval = "Aval";
-var ConfirmMsgTitleRef = "Referencia";
-var ConfirmUpdateRef = "Seguro que desea editar la Referencia?";
-var ConfirmMsgTitle = "Socio";
-var ConfirmUpdate = "Seguro que desea editar la Solicitud?";
-var ConfirmAvalUpdate = "Seguro desea editar el aval?";
-var ConfirmDelete = "Seguro desea rechazar la Solicitud?";
-var ConfirmDeleteAval = "Seguro desea eliminar el aval de la solicitud?";
-var ConfirmAprobbe = "Seguro desea aprobar la Solicitud?";
-var Confirmacion = "Se ha finalizado correctamente";
+
 
 var SolicitudX = {
     _index: 0, _indexRef: 0, _indexAval: 0,
@@ -33,18 +19,12 @@ var SolicitudX = {
         Grid = SolicitudesGriP;
         GridRef = ReferenciasGridP;
         GridAval = AvalesGridP;
+        EditWindow = EditarSolicitudWin;
+        EditForm = EditarSolicitudFormP;
         EditRefWindow = EditarReferenciaWin;
         EditRefForm = EditarReferenciaForm;
         EditAvalWindow = EditarAvalWin;
         EditAvalForm = EditarAvalForm;
-        AddWindowAval = NuevoAvalWin;
-        AddAvalForm = NuevoAvalForm;
-        EditWindow = EditarSolicitudWin;
-        EditForm = EditarSolicitudFormP;
-        AddWindow = NuevaSolicitudWin;
-        AddForm = NuevaSolicitudFormP;
-        AddRefWin = NuevaReferenciaWin;
-        AddRefForm = NuevaReferenciaForm;
     },
 
     getRecordRef: function () {
@@ -62,77 +42,10 @@ var SolicitudX = {
     },
 
     getRecordAval: function () {
-        var registro = GridAval.getStore().getAt(this.getIndexAval());
+        var registro = GridAval.getStore().getAt(this.getIndexAval()); ;
         if (registro != null) {
             return registro;
         }
-    },
-
-    addRef: function () {
-        AddRefWin.show();
-    },
-
-    add: function () {
-        AddWindow.show();
-    },
-
-    addAval: function () {
-        AddWindowAval.show();
-    },
-
-    removeRef: function () {
-        if (EditRefForm.record == null) {
-            return;
-        }
-        if (GridRef.getSelectionModel().hasSelection()) {
-            Ext.Msg.confirm(ConfirmMsgTitleRef, ConfirmDelete, function (btn, text) {
-                if (btn == 'yes') {
-                    var record = GridRef.getSelectionModel().getSelected();
-                    if (rec != null) {
-                        EditRefForm.getForm().loadRecord(record);
-                        EditRefForm.record = record;
-                        DirectX.EliminarReferencias();
-                    }
-                }
-            });
-        } else {
-            var msg = Ext.Msg;
-            Ext.Msg.alert('Atencion', 'Seleccione al menos 1 elemento');
-        }
-    },
-
-    removeAval: function () {
-        if (EditAvalForm.record == null) {
-            return;
-        }
-        if (GridAval.getSelectionModel().hasSelection()) {
-            Ext.Msg.confirm(ConfirmMsgTitleAval, ConfirmDeleteAval, function (btn, text) {
-                if (btn == 'yes') {
-                    var record = GridAval.getSelectionModel().getSelected();
-                    if (rec != null) {
-                        EditAvalForm.getForm().loadRecord(record);
-                        EditAvalForm.record = record;
-                        DirectX.EliminarAvales();
-                    }
-                }
-            });
-        } else {
-            var msg = Ext.Msg;
-            Ext.Msg.alert('Atencion', 'Seleccione al menos 1 elemento');
-        }
-    },
-
-    insertAval: function () {
-        DirectX.InsertarAvales();
-    },
-
-    insertRef: function () {
-        DirectX.InsertarReferencias();
-    },
-
-    insert: function () {
-        var fields = AddForm.getForm().getFieldValues(false, "");
-        Grid.insertRecord(0, fields, false);
     },
 
     editAval: function () {
@@ -240,41 +153,6 @@ var SolicitudX = {
         }
     },
 
-    updateAval: function () {
-        if (EditAvalForm.record == null) {
-            return;
-        }
-        Ext.Msg.confirm(ConfirmMsgTitleAval, ConfirmAvalUpdate, function (btn, text) {
-            if (btn == 'yes') {
-                EditAvalForm.getForm().updateRecord(EditAvalForm.record);
-            }
-        });
-    },
-
-    updateRef: function () {
-        if (EditRefForm.record == null) {
-            return;
-        }
-
-        Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdateRef, function (btn, text) {
-            if (btn == 'yes') {
-                EditRefForm.getForm().updateRecord(EditRefForm.record);
-            }
-        });
-    },
-
-    update: function () {
-        if (EditForm.record == null) {
-            return;
-        }
-
-        Ext.Msg.confirm(ConfirmMsgTitleRef, ConfirmUpdate, function (btn, text) {
-            if (btn == 'yes') {
-                EditForm.getForm().updateRecord(EditForm.record);
-            }
-        });
-    },
-
     getIndexAval: function () {
         return this._indexAval;
     },
@@ -317,21 +195,21 @@ var applyFilter = function (field) {
 };
 
 var clearFilter = function () {
-    FilterSolicitudSocioId.reset();
-    FilterSolicitudId.reset();
-    FilterSolicitudNombre.reset();
-    FilterSolicitudMonto.reset();
-    FilterSolicitudEstado.reset();
-    SolicitudesSt.clearFilter();
-};
+    FilterPrestamoSocioId.reset();
+    FilterPrestamoId.reset();
+    FilterPrestamoNombre.reset();
+    FilterPrestamoMonto.reset();
+    FilterPrestamoEstado.reset();
+    PrestamosSt.clearFilter();
+}
 
 var filterString = function (value, dataIndex, record) {
     var val = record.get(dataIndex);
-
+    
     if (typeof val != "string") {
         return value.length == 0;
     }
-
+    
     return val.toLowerCase().indexOf(value.toLowerCase()) > -1;
 };
 
@@ -350,7 +228,7 @@ var filterNumber = function (value, dataIndex, record) {
     if (!Ext.isEmpty(value, false) && val != value) {
         return false;
     }
-
+    
     return true;
 };
 
@@ -358,37 +236,37 @@ var getRecordFilter = function () {
     var f = [];
 
     f.push({
-        filter: function (record) {
-            return filterString(FilterSolicitudSocioId.getValue(), "SOCIOS_ID", record);
+        filter: function (record) {                         
+            return filterString(FilterPrestamoSocioId.getValue(), "SOCIOS_ID", record);
+        }
+    });
+
+    f.push({
+        filter: function (record) {                      
+            return filterNumber(FilterPrestamoId.getValue(), "SOLICITUDES_ID", record);
+        }
+    });
+
+    f.push({
+        filter: function (record) {                         
+            return filterString(FilterPrestamoNombre.getValue(), "SOCIOS_PRIMER_NOMBRE", record);
+        }
+    });
+     
+    f.push({
+        filter: function (record) {                      
+            return filterNumber(FilterPrestamoMonto.getValue(), "SOLICITUDES_MONTO", record);
         }
     });
 
     f.push({
         filter: function (record) {
-            return filterNumber(FilterSolicitudId.getValue(), "SOLICITUDES_ID", record);
-        }
-    });
-
-    f.push({
-        filter: function (record) {
-            return filterString(FilterSolicitudNombre.getValue(), "SOCIOS_PRIMER_NOMBRE", record);
-        }
-    });
-
-    f.push({
-        filter: function (record) {
-            return filterNumber(FilterSolicitudMonto.getValue(), "SOLICITUDES_MONTO", record);
-        }
-    });
-
-    f.push({
-        filter: function (record) {
-            return filterString(FilterSolicitudEstado.getValue(), "SOLICITUD_ESTADO", record);
+            return filterString(FilterPrestamoEstado.getValue(), "SOLICITUD_ESTADO", record);
         }
     });
 
     var len = f.length;
-
+     
     return function (record) {
         for (var i = 0; i < len; i++) {
             if (!f[i].filter(record)) {
