@@ -11,10 +11,14 @@ using Ext.Net;
 
 using COCASJOL.LOGIC.Web;
 
+using log4net;
+
 namespace COCASJOL.WEBSITE.Source.Inventario
 {
     public partial class InventarioDeCafe : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
+        private static ILog log = LogManager.GetLogger(typeof(InventarioDeCafe).Name);
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -27,9 +31,9 @@ namespace COCASJOL.WEBSITE.Source.Inventario
                 string loggedUsr = Session["username"] as string;
                 this.LoggedUserHdn.Text = loggedUsr;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //log
+                log.Fatal("Error fatal al cargar pagina de inventario de cafe.", ex);
                 throw;
             }
         }

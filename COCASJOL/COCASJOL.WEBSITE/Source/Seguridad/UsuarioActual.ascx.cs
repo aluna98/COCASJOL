@@ -12,10 +12,14 @@ using COCASJOL.LOGIC.Web;
 using System.Data;
 using System.Data.Objects;
 
+using log4net;
+
 namespace COCASJOL.WEBSITE.Source.Seguridad
 {
     public partial class UsuarioActual : System.Web.UI.UserControl
-    { 
+    {
+        private static ILog log = LogManager.GetLogger(typeof(UsuarioActual).Name);
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -45,9 +49,9 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                     this.EditEmailTxt.Text = user.USR_CORREO;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al cargar control de actualizar informacion de usuario.", ex);
                 throw;
             }
         }
@@ -73,9 +77,9 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                         loggedUsr);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al actualizar informacion de usuario.", ex);
                 throw;
             }
         }

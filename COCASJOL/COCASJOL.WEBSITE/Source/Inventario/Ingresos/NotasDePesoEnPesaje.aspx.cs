@@ -10,12 +10,16 @@ using System.Data.Objects;
 using Ext.Net;
 
 using COCASJOL.LOGIC;
-using COCASJOL.LOGIC.Inventario.Ingresos; 
+using COCASJOL.LOGIC.Inventario.Ingresos;
+
+using log4net;
 
 namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
 {
     public partial class NotasDePesoEnPesaje : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
+        private static ILog log = LogManager.GetLogger(typeof(NotasDePesoEnPesaje).Name);
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -28,9 +32,9 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 string loggedUsr = Session["username"] as string;
                 this.LoggedUserHdn.Text = loggedUsr;//necesario actualizarlo siempre, para el tracking correcto
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //log
+                log.Fatal("Error fatal al cargar pagina de notas de peso en pesaje.", ex);
                 throw;
             }
         }
@@ -47,9 +51,9 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
             {
                 this.DataBindEstadosNotasDePesoStore(this.AddEstadosNotaSt, AddClasificacionCafeCmb.Text);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al obtener estados de nota de peso en pesaje para agregar.", ex);
                 throw;
             }
         }
@@ -60,9 +64,9 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
             {
                 this.DataBindEstadosNotasDePesoStore(this.EditEstadosNotaSt, EditClasificacionCafeCmb.Text);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener estados de nota de peso en pesaje para actualizar.", ex);
                 throw;
             }
         }
@@ -80,14 +84,14 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
 
                 EstadosNotasDePesoStore.DataBind();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al obtener estados de nota de peso en pesaje.", ex);
                 throw;
             }
         }
 
-        private static object lockObj = new object();
+        //private static object lockObj = new object();
 
         [DirectMethod(RethrowException = true, ShowMask = true, Target = MaskTarget.CustomTarget, CustomTarget = "AgregarNotasFormP")]
         public void AddNotaDePeso_Click(string Detalles)
@@ -127,14 +131,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                     NOTA_PORCENTAJEHUMEDADMIN,
                     NOTA_TRANSPORTECOOP);
 
-                lock (lockObj)
-                {
-                    COCASJOL.LOGIC.Reportes.ConsolidadoDeInventarioDeCafeLogic consolidadoinventariologic = new LOGIC.Reportes.ConsolidadoDeInventarioDeCafeLogic();
-                    Application["ReporteConsolidadoDeCafe"] = consolidadoinventariologic.GetReporte();
-                }
+                //lock (lockObj)
+                //{
+                //    COCASJOL.LOGIC.Reportes.ConsolidadoDeInventarioDeCafeLogic consolidadoinventariologic = new LOGIC.Reportes.ConsolidadoDeInventarioDeCafeLogic();
+                //    Application["ReporteConsolidadoDeCafe"] = consolidadoinventariologic.GetReporte();
+                //}
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al agregar nota de peso en pesaje.", ex);
                 throw;
             }
         }
@@ -177,8 +182,9 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                     NOTA_PORCENTAJEHUMEDADMIN,
                     NOTA_TRANSPORTECOOP);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al actualizar nota de peso en pesaje.", ex);
                 throw;
             }
         }
@@ -197,8 +203,9 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 this.EditNotaDetalleSt.DataSource = notadepesologic.GetDetalleNotaDePeso(Convert.ToInt32(notaId));
                 this.EditNotaDetalleSt.DataBind();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener detalles nota de peso en pesaje para actualizar.", ex);
                 throw;
             }
         }
@@ -215,8 +222,9 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 NotaDePesoEnPesajeLogic notadepesologic = new NotaDePesoEnPesajeLogic();
                 notadepesologic.EliminarNotaDePeso(NOTAS_ID);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al eliminar nota de peso en pesaje.", ex);
                 throw;
             }
         }

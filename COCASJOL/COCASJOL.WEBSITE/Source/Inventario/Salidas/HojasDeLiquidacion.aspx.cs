@@ -14,10 +14,14 @@ using COCASJOL.LOGIC.Inventario;
 using COCASJOL.LOGIC.Inventario.Salidas;
 using COCASJOL.LOGIC.Socios;
 
+using log4net;
+
 namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
 {
     public partial class HojasDeLiquidacion : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
+        private static ILog log = LogManager.GetLogger(typeof(HojasDeLiquidacion).Name);
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -31,9 +35,9 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
                 string loggedUsr = Session["username"] as string;
                 this.LoggedUserHdn.Text = loggedUsr;//necesario actualizarlo siempre, para el tracking correcto
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al cargar pagina de hojas de liquidacion.", ex);
                 throw;
             }
         }
@@ -64,16 +68,14 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
                     e.ErrorMessage = "La cantidad sobrepasa el inventario de café disponible por " + (CantidadLibrasLiquidar - CantidadInventarioDisponible) + " libras.";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al validar cantidad de libras de inventario de cafe de socio.", ex);
                 throw;
             }
         }
 
         #endregion
-
-        private static object lockObj = new object();
 
         [DirectMethod(RethrowException=true)]
         public void GetCantidadDeInventarioDeCafeDeSocio()
@@ -92,9 +94,9 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
                 decimal inventarioSocio = inventarioliquidacionlogic.GetInventarioDeCafeDeSocio(SOCIOS_ID, CLASIFICACIONES_CAFE_ID);
                 this.AddInventarioCafeTxt.Value = inventarioSocio;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al obtener cantidad de inventario de cafe de socio.", ex);
                 throw;
             }
         }
@@ -110,9 +112,9 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
 
                 this.AddCapitalizacionXRetencionTxt.Text = variables["HOJAS_CAPITALIZACIONRETN"];
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al cargar capitalizacion por retencion de variables de entorno.", ex);
                 throw;
             }
         }
@@ -139,9 +141,9 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
                     this.AddGastosAdminTxt.Text = (0).ToString();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al cargar cuota de ingreso y gastos de administracion de variables de entorno.", ex);
                 throw;
             }
         }
@@ -169,12 +171,14 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
                 else
                     this.AddAportacionExtraOrdinariaTxt.Text = (0).ToString();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al cargar aportaciones ordinaria y extraordinaria de variables de entorno.", ex);
                 throw;
             }
         }
+
+        private static object lockObj = new object();
 
         [DirectMethod(RethrowException = true)]
         public void UpdateReporteConsolidadoDeInventarioDeCafe()
@@ -187,9 +191,9 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
                     Application["ReporteConsolidadoDeCafe"] = consolidadoinventariologic.GetReporte();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al actualizar reporte consolidado de inventario de cafe.", ex);
                 throw;
             }
         }

@@ -12,10 +12,14 @@ using Ext.Net;
 using COCASJOL.LOGIC.Seguridad;
 using COCASJOL.LOGIC.Utiles;
 
+using log4net;
+
 namespace COCASJOL.WEBSITE.Source.Seguridad
 {
     public partial class Usuarios : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
+        private static ILog log = LogManager.GetLogger(typeof(Usuarios).Name);
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -28,9 +32,9 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                 string loggedUsr = Session["username"] as string;
                 this.LoggedUserHdn.Text = loggedUsr;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al cargar pagina de usuarios.", ex);
                 throw;
             }
         }
@@ -54,9 +58,9 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
 
                 usuariologic.ActualizarClave(user, this.CambiarClaveConfirmarTxt.Text, this.LoggedUserHdn.Text);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al cambiar clave de usuario.", ex);
                 throw;
             }
         }
@@ -80,6 +84,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al validar existencia de nombre de usuario.", ex);
                 throw;
             }
         }
@@ -100,6 +105,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al validar existencia de cedula para usuario nuevo.", ex);
                 throw;
             }
         }
@@ -121,6 +127,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al validar existencia de cedula para usuario existente.", ex);
                 throw;
             }
         }
@@ -142,9 +149,9 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                 this.RolesDeUsuarioSt.DataSource = usuariologic.GetRoles(user, rol_id, this.f_ROL_NOMBRE.Text);
                 this.RolesDeUsuarioSt.DataBind();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al cargar roles de usuario.", ex);
                 throw;
             }
         }
@@ -169,9 +176,9 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
 
                 this.RolesDeUsuarioSelectionM.ClearSelections();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al eliminar roles.", ex);
                 throw;
             }
         }
@@ -187,9 +194,9 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                 this.RolesNoDeUsuarioSt.DataSource = usuariologica.GetRolesNoDeUsuario(user, rol_id, this.f2_ROL_NOMBRE.Text);
                 this.RolesNoDeUsuarioSt.DataBind();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al cargar roles no de usuario.", ex);
                 throw;
             }
         }
@@ -211,12 +218,10 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
 
                 UsuarioLogic usuariologica = new UsuarioLogic();
                 usuariologica.InsertarRoles(user, roles, loggeduser);
-
-                //this.RolesNoDeUsuarioSelectionM.ClearSelections();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al agregar roles.", ex);
                 throw;
             }
         }
@@ -233,9 +238,9 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                 string USR_USERNAME = this.AddUsernameTxt.Text;
                 EmailLogic.EnviarCorreoUsuarioNuevo(USR_USERNAME, USR_PASSWORD);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al enviar correo de usuario nuevo.", ex);
                 throw;
             }
         }
@@ -248,9 +253,9 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                 string USR_USERNAME = this.CambiarClaveUsernameTxt.Text;
                 EmailLogic.EnviarCorreoUsuarioPasswordNuevo(USR_USERNAME, USR_PASSWORD);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al enviar correo de password nuevo.", ex);
                 throw;
             }
         }
@@ -267,9 +272,9 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                 foreach (string r in rolesList)
                     EmailLogic.EnviarCorreoRolNuevo(USR_USERNAME, Convert.ToInt32(r));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al enviar correo de roles nuevos.", ex);
                 throw;
             }
         }

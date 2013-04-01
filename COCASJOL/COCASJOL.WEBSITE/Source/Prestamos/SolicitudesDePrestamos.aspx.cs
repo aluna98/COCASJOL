@@ -15,43 +15,71 @@ using COCASJOL.LOGIC.Prestamos;
 using COCASJOL.LOGIC.Socios;
 using COCASJOL.LOGIC.Aportaciones;
 
+using log4net;
+
 namespace COCASJOL.WEBSITE.Source.Prestamos
 {
     public partial class SolicitudesDePrestamos : COCASJOLBASE
     {
+        private static ILog log = LogManager.GetLogger(typeof(SolicitudesDePrestamos).Name);
+
         string Socioid;
         int Solicitudid;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            SolicitudesLogic.getSociosDBISAM();
-            this.RM1.DirectMethodNamespace = "DirectX";
-            SociosSt_Reload(null, null);
-            if (!X.IsAjaxRequest)
+            try
             {
-                
-            }
+                SolicitudesLogic.getSociosDBISAM();
+                this.RM1.DirectMethodNamespace = "DirectX";
+                SociosSt_Reload(null, null);
+                if (!X.IsAjaxRequest)
+                {
 
-            string loggedUsr = Session["username"] as string;
-            this.LoggedUserHdn.Text = loggedUsr;
+                }
+
+                string loggedUsr = Session["username"] as string;
+                this.LoggedUserHdn.Text = loggedUsr;
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al cargar pagina de solicitudes de prestamos.", ex);
+                throw;
+            }
         }
 
-        [DirectMethod]
+        [DirectMethod(RethrowException=true)]
         public void SeleccionarInteres()
         {
-            PrestamosLogic prestamo = new PrestamosLogic();
-            int interes = prestamo.Intereses(Convert.ToInt32(AddTipoDeProdIdCmb.Value));
-            AddInteresTxt.Text = Convert.ToString(interes);
+            try
+            {
+                PrestamosLogic prestamo = new PrestamosLogic();
+                int interes = prestamo.Intereses(Convert.ToInt32(AddTipoDeProdIdCmb.Value));
+                AddInteresTxt.Text = Convert.ToString(interes);
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al cargar intereses de prestamos.", ex);
+                throw;
+            }
         }
 
-        [DirectMethod]
+        [DirectMethod(RethrowException=true)]
         public void RefrescarSocio(string id)
         {
-            Socioid = id;
-            Socios_Refresh(null, null);
+            try
+            {
+                Socioid = id;
+                Socios_Refresh(null, null);
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al cargar socios.", ex);
+                throw;
+            }
         }
 
-        [DirectMethod]
+        [DirectMethod(RethrowException=true)]
         public void RefrescarAvales(int id)
         {
             try
@@ -60,37 +88,42 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
                 StoreAvales.DataSource = logica.getAvales(id);
                 StoreAvales.DataBind();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al cargar avales.", ex);
+                throw;
             }
         }
 
-        [DirectMethod]
+        [DirectMethod(RethrowException=true)]
         public void refreshTabAvales()
         {
             try
             {
                 RefrescarAvales(Convert.ToInt32(EditIdSolicitud.Text));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al cargar tab de avales.", ex);
+                throw;
             }
         }
 
-        [DirectMethod]
+        [DirectMethod(RethrowException=true)]
         public void SetIdSolicitud(int id)
         {
             try
             {
                 Solicitudid = id;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al configurar id de solicitud de prestamo.", ex);
+                throw;
             }
         }
 
-        [DirectMethod]
+        [DirectMethod(RethrowException=true)]
         public void RefrescarReferencias(int id)
         {
             try
@@ -99,13 +132,14 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
                 StoreReferencias.DataSource = logica.getReferencia(id);
                 StoreReferencias.DataBind();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al cargar referencias.", ex);
+                throw;
             }
         }
 
-        [DirectMethod]
+        [DirectMethod(RethrowException=true)]
         public void InsertarAvales()
         {
             try
@@ -130,14 +164,15 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al insertar aval.", ex);
                 throw;
             }
             
         }
 
-        [DirectMethod]
+        [DirectMethod(RethrowException=true)]
         public void InsertarReferencias()
         {
             try
@@ -155,29 +190,38 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
                     X.Msg.Alert("Referencia", "La referencia ya existe, imposible crear duplicados").Show();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-               throw;
+                log.Fatal("Error fatal al insertar referencia.", ex);
+                throw;
             }
 
         }
 
-        [DirectMethod]
+        [DirectMethod(RethrowException=true)]
         public void SetDatosAval()
         {
-            SociosLogic logica = new SociosLogic();
-            AportacionLogic aportacion = new AportacionLogic();
-            if (EditAvalId.Text != "")
+            try
             {
-                SolicitudesLogic solicitud = new SolicitudesLogic();
-                EditAvalAntiguedad.Text = logica.Antiguedad(EditAvalId.Text);
-                socio aval = solicitud.getAval(EditAvalId.Text);
-                EditAvalNombre.Text = aval.SOCIOS_PRIMER_NOMBRE + " " + aval.SOCIOS_PRIMER_APELLIDO;
-                EditAvalAportaciones.Text = aportacion.GetAportacionesXSocio(EditAvalId.Text).APORTACIONES_SALDO_TOTAL.ToString();
+                SociosLogic logica = new SociosLogic();
+                AportacionLogic aportacion = new AportacionLogic();
+                if (EditAvalId.Text != "")
+                {
+                    SolicitudesLogic solicitud = new SolicitudesLogic();
+                    EditAvalAntiguedad.Text = logica.Antiguedad(EditAvalId.Text);
+                    socio aval = solicitud.getAval(EditAvalId.Text);
+                    EditAvalNombre.Text = aval.SOCIOS_PRIMER_NOMBRE + " " + aval.SOCIOS_PRIMER_APELLIDO;
+                    EditAvalAportaciones.Text = aportacion.GetAportacionesXSocio(EditAvalId.Text).APORTACIONES_SALDO_TOTAL.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al configurar datos de aval.", ex);
+                throw;
             }
         }
 
-        [DirectMethod]
+        [DirectMethod(RethrowException=true)]
         public void ActualizarAvales()
         {
             try
@@ -188,13 +232,14 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
                 RefrescarAvales(Convert.ToInt32(EditIdSolicitud.Text));
                 X.Msg.Alert("Avales", "El aval ha sido modificado satisfactoriamente").Show();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al actualizar aval.", ex);
                 throw;
             }
         }
 
-        [DirectMethod]
+        [DirectMethod(RethrowException=true)]
         public void ActualizarReferencias(){
             try
             {
@@ -204,13 +249,14 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
                     RefrescarReferencias(Convert.ToInt32(EditIdSolicitud.Text));
                     X.Msg.Alert("Referencia", "La referencia ha sido modificada satisfactoriamente").Show();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al actualizar referencia.", ex);
                 throw;
             }
         }
 
-        [DirectMethod]
+        [DirectMethod(RethrowException=true)]
         public void EliminarAvales()
         {
             try
@@ -220,13 +266,14 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
                 RefrescarAvales(Convert.ToInt32(EditIdSolicitud.Text));
                 X.Msg.Alert("Avales", "El Aval ha sido eliminado satisfactoriamente").Show();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al eliminar aval.", ex);
                 throw;
             }
         }
 
-        [DirectMethod]
+        [DirectMethod(RethrowException=true)]
         public void EliminarReferencias()
         {
             try
@@ -236,29 +283,54 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
                 RefrescarReferencias(Convert.ToInt32(EditIdSolicitud.Text));
                 X.Msg.Alert("Referencia", "La referencia ha sido eliminada satisfactoriamente").Show();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al eliminar referencia.", ex);
                 throw;
             }
         }
 
         protected void Referencias_Refresh(object sender, StoreRefreshDataEventArgs e)
         {
-            RefrescarReferencias(Convert.ToInt32(EditIdSolicitud.Text));
+            try
+            {
+                RefrescarReferencias(Convert.ToInt32(EditIdSolicitud.Text));
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al cargar referencias.", ex);
+                throw;
+            }
             
         }
 
         protected void Avales_Refresh(object sender, StoreRefreshDataEventArgs e)
         {
-            RefrescarAvales(Convert.ToInt32(EditIdSolicitud.Text));
+            try
+            {
+                RefrescarAvales(Convert.ToInt32(EditIdSolicitud.Text));
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al cargar avales.", ex);
+                throw;
+            }
         }
 
         protected void SolicitudesSt_Reload(object sender, StoreRefreshDataEventArgs e)
         {
-            SolicitudesLogic prestamo = new SolicitudesLogic();
-            var store1 = this.SolicitudesGriP.GetStore();
-            store1.DataSource = prestamo.getData();
-            store1.DataBind();
+            try
+            {
+                SolicitudesLogic prestamo = new SolicitudesLogic();
+                var store1 = this.SolicitudesGriP.GetStore();
+                store1.DataSource = prestamo.getData();
+                store1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al cargar solicitudes de prestamos.", ex);
+                throw;
+            }
         }
 
         protected void SolicitudesSt_Update(object sender, DirectEventArgs e)
@@ -282,17 +354,26 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
                 X.Msg.Alert("Solicitudes de Prestamos", "La solicitud se ha modificado satisfactoriamente.").Show();
                 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al actualizar de solicitud de prestamo.", ex);
                 throw;
             }
         }
 
         protected void SociosSt_Reload(object sender, StoreRefreshDataEventArgs e)
         {
-            SolicitudesLogic solicitud = new SolicitudesLogic();
-            ComboBoxSt.DataSource = solicitud.getSocios();
-            ComboBoxSt.DataBind();
+            try
+            {
+                SolicitudesLogic solicitud = new SolicitudesLogic();
+                ComboBoxSt.DataSource = solicitud.getSocios();
+                ComboBoxSt.DataBind();
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al cargar socios.", ex);
+                throw;
+            }
         }
 
         protected void SolicitudesSt_Insert(object sender, DirectEventArgs e)
@@ -320,29 +401,38 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
                 X.Msg.Alert("Solicitudes de Prestamos", "La solicitud se ha creado satisfactoriamente.").Show();
                 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al insertar de solicitud de prestamo.", ex);
                 throw;
             }
         }
 
         protected void Socios_Refresh(object sender, StoreRefreshDataEventArgs e)
         {
-            SolicitudesLogic solicitud = new SolicitudesLogic();
-            socio socio = solicitud.getSocio(Socioid);
-            socio_produccion produccion = solicitud.getProduccion(Socioid);
-            EditSocioid.Text = socio.SOCIOS_ID;
-            EditNombre.Text = socio.SOCIOS_PRIMER_NOMBRE + " " + socio.SOCIOS_SEGUNDO_NOMBRE + " " + socio.SOCIOS_PRIMER_APELLIDO + " " + socio.SOCIOS_SEGUNDO_APELLIDO;
-            EditIdentidad.Text = socio.SOCIOS_IDENTIDAD;
-            EditLugarNcax.Text = socio.SOCIOS_LUGAR_DE_NACIMIENTO;
-            EditCarnetIHCAFE.Text = solicitud.getIHCAFE(Socioid);
-            EditRTN.Text = socio.SOCIOS_RTN;
-            EditEstadoCivil.Text = socio.SOCIOS_ESTADO_CIVIL;
-            EditProfesion.Text = socio.SOCIOS_PROFESION;
-            EditTelefono.Text = socio.SOCIOS_TELEFONO;
-            EditResidencia.Text = socio.SOCIOS_RESIDENCIA;
-            EditManzanas.Text = Convert.ToString(produccion.PRODUCCION_MANZANAS_CULTIVADAS);
-            EditUbicacion.Text = produccion.PRODUCCION_UBICACION_FINCA;
+            try
+            {
+                SolicitudesLogic solicitud = new SolicitudesLogic();
+                socio socio = solicitud.getSocio(Socioid);
+                socio_produccion produccion = solicitud.getProduccion(Socioid);
+                EditSocioid.Text = socio.SOCIOS_ID;
+                EditNombre.Text = socio.SOCIOS_PRIMER_NOMBRE + " " + socio.SOCIOS_SEGUNDO_NOMBRE + " " + socio.SOCIOS_PRIMER_APELLIDO + " " + socio.SOCIOS_SEGUNDO_APELLIDO;
+                EditIdentidad.Text = socio.SOCIOS_IDENTIDAD;
+                EditLugarNcax.Text = socio.SOCIOS_LUGAR_DE_NACIMIENTO;
+                EditCarnetIHCAFE.Text = solicitud.getIHCAFE(Socioid);
+                EditRTN.Text = socio.SOCIOS_RTN;
+                EditEstadoCivil.Text = socio.SOCIOS_ESTADO_CIVIL;
+                EditProfesion.Text = socio.SOCIOS_PROFESION;
+                EditTelefono.Text = socio.SOCIOS_TELEFONO;
+                EditResidencia.Text = socio.SOCIOS_RESIDENCIA;
+                EditManzanas.Text = Convert.ToString(produccion.PRODUCCION_MANZANAS_CULTIVADAS);
+                EditUbicacion.Text = produccion.PRODUCCION_UBICACION_FINCA;
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al cargar socios.", ex);
+                throw;
+            }
         }
     }
 }

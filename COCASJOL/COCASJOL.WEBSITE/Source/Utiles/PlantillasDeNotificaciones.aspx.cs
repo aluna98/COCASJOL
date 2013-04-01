@@ -12,10 +12,14 @@ using Ext.Net;
 using COCASJOL.LOGIC.Utiles;
 using COCASJOL.LOGIC.Web;
 
+using log4net;
+
 namespace COCASJOL.WEBSITE.Source.Utiles
 {
     public partial class PlantillasDeNotificaciones : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
+        private static ILog log = LogManager.GetLogger(typeof(PlantillasDeNotificaciones).Name);
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -28,9 +32,9 @@ namespace COCASJOL.WEBSITE.Source.Utiles
                 string loggedUsr = Session["username"] as string;
                 this.LoggedUserHdn.Text = loggedUsr;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //log
+                log.Fatal("Error fatal al cargar pagina de plantillas de notificaciones.", ex);
                 throw;
             }
         }
@@ -51,9 +55,9 @@ namespace COCASJOL.WEBSITE.Source.Utiles
                 this.FormatKeysSt.DataSource = plantillalogic.GetFormatKeys(formatKey);
                 this.FormatKeysSt.DataBind();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al cargar llaves de formato para plantilla de notificacion.", ex);
                 throw;
             }
         }

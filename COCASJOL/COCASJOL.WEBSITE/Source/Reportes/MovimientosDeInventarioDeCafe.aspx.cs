@@ -10,11 +10,14 @@ using System.Data.Objects;
 using Ext.Net;
 
 using COCASJOL.LOGIC.Web;
+using log4net;
 
 namespace COCASJOL.WEBSITE.Source.Reportes
 {
     public partial class MovimientosDeInventarioDeCafe : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
+        private static ILog log = LogManager.GetLogger(typeof(MovimientosDeInventarioDeCafe).Name);
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -27,9 +30,9 @@ namespace COCASJOL.WEBSITE.Source.Reportes
                 string loggedUsr = Session["username"] as string;
                 this.LoggedUserHdn.Text = loggedUsr;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //log
+                log.Fatal("Error fatal al cargar reporte de movimientos de inventario de cafe de socios.", ex);
                 throw;
             }
         }

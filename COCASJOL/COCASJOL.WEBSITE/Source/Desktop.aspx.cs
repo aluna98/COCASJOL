@@ -18,15 +18,26 @@ using COCASJOL.LOGIC.Utiles;
 using COCASJOL.LOGIC.Reportes;
 
 using System.Reflection;
+using log4net;
 
 namespace COCASJOL.WEBSITE
 {
     public partial class Desktop : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
+        private static ILog log = LogManager.GetLogger(typeof(Desktop).Name);
+
         protected override void OnInit(EventArgs e)
         {
-            base.OnInit(e);
-            RemoveObjects();
+            try
+            {
+                base.OnInit(e);
+                RemoveObjects();
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al inicializar pagina desktop.", ex);
+                throw;
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -53,7 +64,7 @@ namespace COCASJOL.WEBSITE
             }
             catch (Exception ex)
             {
-                //log
+                log.Fatal("Error fatal al cargar pagina desktop.", ex);
                 throw;
             }
         }
@@ -154,6 +165,7 @@ namespace COCASJOL.WEBSITE
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al remover objetos sin acceso.", ex);
                 throw;
             }
         }
@@ -169,7 +181,7 @@ namespace COCASJOL.WEBSITE
             }
             catch (Exception ex)
             {
-                //log
+                log.Fatal("Error fatal al salir de pagina desktop.", ex);
                 throw;
             }
         }
@@ -196,9 +208,9 @@ namespace COCASJOL.WEBSITE
                         this.ShowPinnedNotification(notif.NOTIFICACION_TITLE, notif.NOTIFICACION_MENSAJE, notif.NOTIFICACION_ID);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al cargar notificaciones inicial.", ex);
                 throw;
             }
         }
@@ -237,9 +249,9 @@ namespace COCASJOL.WEBSITE
                         }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al cargar notificaciones.", ex);
                 throw;
             }
         }
@@ -252,9 +264,9 @@ namespace COCASJOL.WEBSITE
                 NotificacionLogic notificacionlogic = new NotificacionLogic();
                 notificacionlogic.ActualizarNotificacion(Convert.ToInt32(NOTIFICACION_ID) , EstadosNotificacion.Leido);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al marcar como leida la notificacion.", ex);
                 throw;
             }
         }
@@ -275,9 +287,9 @@ namespace COCASJOL.WEBSITE
                 notificacionlogic.EliminarNotificacionesDeUsuario(loggedUser);
                 dsReport_Refresh(null, null);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al eliminar notificaciones leidas.", ex);   
                 throw;
             }
         }
@@ -302,9 +314,9 @@ namespace COCASJOL.WEBSITE
                     }
                 });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al mostrar notificacion.", ex);
                 throw;
             }
         }
@@ -324,9 +336,9 @@ namespace COCASJOL.WEBSITE
                 this.dsReport.DataSource = notificacionlogic.GetNotificacionesDeUsuario(loggedUser);
                 this.dsReport.DataBind();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al cargar bandeja de notificaciones.", ex);
                 throw;
             }
         }
@@ -337,16 +349,24 @@ namespace COCASJOL.WEBSITE
         {
             get
             {
-                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
-                if (attributes.Length > 0)
+                try
                 {
-                    AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0];
-                    if (titleAttribute.Title != "")
+                    object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
+                    if (attributes.Length > 0)
                     {
-                        return titleAttribute.Title;
+                        AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0];
+                        if (titleAttribute.Title != "")
+                        {
+                            return titleAttribute.Title;
+                        }
                     }
+                    return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
                 }
-                return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
+                catch (Exception ex)
+                {
+                    log.Fatal("Error fatal al obtener informacion de assembly de aplicacion web.", ex);
+                    throw;
+                }
             }
         }
 
@@ -354,7 +374,15 @@ namespace COCASJOL.WEBSITE
         {
             get
             {
-                return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                try
+                {
+                    return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                }
+                catch (Exception ex)
+                {
+                    log.Fatal("Error fatal al obtener informacion de assembly de aplicacion web.", ex);
+                    throw;
+                }
             }
         }
 
@@ -362,16 +390,24 @@ namespace COCASJOL.WEBSITE
         {
             get
             {
-                object[] attributes = Assembly.LoadFrom(Server.MapPath("~/bin/COCASJOL.LOGIC.dll")).GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
-                if (attributes.Length > 0)
+                try
                 {
-                    AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0];
-                    if (titleAttribute.Title != "")
+                    object[] attributes = Assembly.LoadFrom(Server.MapPath("~/bin/COCASJOL.LOGIC.dll")).GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
+                    if (attributes.Length > 0)
                     {
-                        return titleAttribute.Title;
+                        AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0];
+                        if (titleAttribute.Title != "")
+                        {
+                            return titleAttribute.Title;
+                        }
                     }
+                    return System.IO.Path.GetFileNameWithoutExtension(Assembly.LoadFrom(Server.MapPath("~/bin/COCASJOL.LOGIC.dll")).CodeBase);
                 }
-                return System.IO.Path.GetFileNameWithoutExtension(Assembly.LoadFrom(Server.MapPath("~/bin/COCASJOL.LOGIC.dll")).CodeBase);
+                catch (Exception ex)
+                {
+                    log.Fatal("Error fatal al obtener informacion de assembly de logica de aplicacion.", ex);
+                    throw;
+                }
             }
         }
 
@@ -379,7 +415,15 @@ namespace COCASJOL.WEBSITE
         {
             get
             {
-                return Assembly.LoadFrom(Server.MapPath("~/bin/COCASJOL.LOGIC.dll")).GetName().Version.ToString();
+                try
+                {
+                    return Assembly.LoadFrom(Server.MapPath("~/bin/COCASJOL.LOGIC.dll")).GetName().Version.ToString();
+                }
+                catch (Exception ex)
+                {
+                    log.Fatal("Error fatal al obtener informacion de assembly de logica de aplicacion.", ex);
+                    throw;
+                }
             }
         }
 

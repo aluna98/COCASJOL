@@ -13,10 +13,14 @@ using COCASJOL.LOGIC.Seguridad;
 using COCASJOL.LOGIC.Utiles;
 using COCASJOL.LOGIC.Web;
 
+using log4net;
+
 namespace COCASJOL.WEBSITE.Source.Seguridad
 { 
     public partial class Roles : COCASJOLBASE //System.Web.UI.Page
     {
+        private static ILog log = LogManager.GetLogger(typeof(Roles).Name);
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -29,9 +33,9 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                 string loggedUsr = Session["username"] as string;
                 this.LoggedUserHdn.Text = loggedUsr;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //log
+                log.Fatal("Error fatal al cargar pagina de roles.", ex);
                 throw;
             }
         }
@@ -55,9 +59,9 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                 this.PrivilegiosDeRolSt.DataSource = rollogic.GetPrivilegios(rol_id, priv_id, this.f_ROL_NOMBRE.Text, this.f_PRIV_LLAVE.Text);
                 this.PrivilegiosDeRolSt.DataBind();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //log
+                log.Fatal("Error fatal al cargar privilegios de rol.", ex);
                 throw;
             }
         }
@@ -83,9 +87,9 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
 
                 this.PrivilegiosDeRolSelectionM.ClearSelections();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al eliminar privilegios de rol.", ex);
                 throw;
             }
         }
@@ -101,9 +105,9 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                 this.PrivilegiosNoDeRolesSt.DataSource = rollogic.GetPrivilegiosNoDeRol(rol_id, priv_id, this.f2_PRIV_NOMBRE.Text, this.f2_PRIV_LLAVE.Text);
                 this.PrivilegiosNoDeRolesSt.DataBind();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al cargar privilegios no de rol.", ex);
                 throw;
             }
         }
@@ -126,12 +130,10 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
 
                 RolLogic rollogic = new RolLogic();
                 rollogic.InsertarPrivilegios(rol_id, privs, loggeduser);
-
-                //this.PrivilegiosNoDeRolSelectionM.ClearSelections();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al agregar privilegios de rol.", ex);
                 throw;
             }
         }
@@ -150,9 +152,9 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
 
                 EmailLogic.EnviarCorreosPrivilegiosNuevos(Convert.ToInt32(ROL_ID), privsList);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al enviar correo de rol nuevo.", ex);
                 throw;
             }
         }

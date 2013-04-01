@@ -12,10 +12,14 @@ using Ext.Net;
 using COCASJOL.LOGIC;
 using COCASJOL.LOGIC.Inventario.Ingresos;
 
+using log4net;
+
 namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
 {
     public partial class NotasDePesoEnAdministracion : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
+        private static ILog log = LogManager.GetLogger(typeof(NotasDePesoEnAdministracion).Name);
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -29,9 +33,9 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 string loggedUsr = Session["username"] as string;
                 this.LoggedUserHdn.Text = loggedUsr;//necesario actualizarlo siempre, para el tracking correcto
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //log
+                log.Fatal("Error fatal al cargar pagina de nota de peso en administracion.", ex);
                 throw;
             }
         }
@@ -56,11 +60,14 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                     Convert.ToInt32(this.EditEstadoNotaCmb.Text),
                     loggedUser);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al actualizar nota de peso en administracion.", ex);
                 throw;
             }
         }
+
+        private static object lockObj = new object();
 
         [DirectMethod(RethrowException = true, Target = MaskTarget.CustomTarget, CustomTarget = "EditarNotasFormP")]
         public void RegisterNotaDePeso_Click()
@@ -78,9 +85,16 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
 
                 this.EditRegistrarBtn.Hidden = true;
                 this.EditGuardarBtn.Hidden = true;
+
+                lock (lockObj)
+                {
+                    COCASJOL.LOGIC.Reportes.ConsolidadoDeInventarioDeCafeLogic consolidadoinventariologic = new LOGIC.Reportes.ConsolidadoDeInventarioDeCafeLogic();
+                    Application["ReporteConsolidadoDeCafe"] = consolidadoinventariologic.GetReporte();
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al registrar nota de peso en administracion.", ex);
                 throw;
             }
         }
@@ -99,8 +113,9 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 this.EditNotaDetalleSt.DataSource = notadepesologic.GetDetalleNotaDePeso(Convert.ToInt32(notaId));
                 this.EditNotaDetalleSt.DataBind();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener detalles de nota de peso en administracion.", ex);
                 throw;
             }
         }

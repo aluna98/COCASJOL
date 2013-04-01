@@ -11,11 +11,14 @@ using COCASJOL.LOGIC.Web;
 
 using System.Data;
 using System.Data.Objects;
+using log4net;
 
 namespace COCASJOL.WEBSITE.Source.Seguridad
 {
     public partial class CambiarClave : System.Web.UI.UserControl
     {
+        private static ILog log = LogManager.GetLogger(typeof(CambiarClave).Name);
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -41,9 +44,9 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                     this.CambiarClaveActualTxt.Text = user.USR_PASSWORD;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //log
+                log.Fatal("Error fatal al cargar control de cambiar clave.", ex);
                 throw;
             }
         }
@@ -58,9 +61,9 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                 UsuarioLogic usuariologic = new UsuarioLogic();
                 usuariologic.ActualizarClave(this.CambiarClaveUsernameTxt.Text, this.CambiarClaveNuevaConfirmarTxt.Text, loggedUsr);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //log
+                log.Fatal("Error fatal al actualizar clave.", ex);
                 throw;
             }
         }

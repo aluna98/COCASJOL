@@ -9,19 +9,31 @@ using COCASJOL.LOGIC;
 using COCASJOL.LOGIC.Reportes;
 using Microsoft.Reporting.WebForms;
 
+using log4net;
+
 namespace COCASJOL.WEBSITE.Source.Reportes
 {
     public partial class ReporteNotasDePeso : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
         int NOTAS_ID = 0;
 
+        private static ILog log = LogManager.GetLogger(typeof(ReporteNotasDePeso).Name);
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!this.IsPostBack)
+            try
             {
-                string strNOTAS_ID = Request.QueryString["NOTAS_ID"];
+                if (!this.IsPostBack)
+                {
+                    string strNOTAS_ID = Request.QueryString["NOTAS_ID"];
 
-                 this.NOTAS_ID = string.IsNullOrEmpty(strNOTAS_ID) ? 0 : Convert.ToInt32(strNOTAS_ID);
+                    this.NOTAS_ID = string.IsNullOrEmpty(strNOTAS_ID) ? 0 : Convert.ToInt32(strNOTAS_ID);
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al cargar reporte de notas de peso.", ex);
+                throw;
             }
         }
 
@@ -42,9 +54,9 @@ namespace COCASJOL.WEBSITE.Source.Reportes
                 ReportDataSource dataSource = new ReportDataSource("DataSet2", detallesLst);
                 e.DataSources.Add(dataSource);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al cargar subreporte de detalles de notas de peso.", ex);
                 throw;
             }
         }

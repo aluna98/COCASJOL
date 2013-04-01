@@ -12,10 +12,14 @@ using Ext.Net;
 using COCASJOL.LOGIC.Web;
 using COCASJOL.LOGIC.Aportaciones;
 
+using log4net;
+
 namespace COCASJOL.WEBSITE.Source.Aportaciones
 {
     public partial class RetiroDeAportaciones : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
+        private static ILog log = LogManager.GetLogger(typeof(RetiroDeAportaciones).Name);
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -28,9 +32,9 @@ namespace COCASJOL.WEBSITE.Source.Aportaciones
                 string loggedUsr = Session["username"] as string;
                 this.LoggedUserHdn.Text = loggedUsr;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //log
+                log.Fatal("Error fatal al cargar pagina de retiro de aportaciones por socio.", ex);
                 throw;
             }
         }
@@ -59,9 +63,9 @@ namespace COCASJOL.WEBSITE.Source.Aportaciones
                         logged_user, DateTime.Today, logged_user, DateTime.Today);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al retirar de aportaciones de socio.", ex);
                 throw;
             }
         }

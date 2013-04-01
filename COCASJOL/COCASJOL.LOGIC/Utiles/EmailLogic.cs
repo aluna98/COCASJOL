@@ -247,7 +247,7 @@ namespace COCASJOL.LOGIC.Utiles
             }
             catch (SmtpException smtpex)
             {
-                log.Fatal("Error de smtp al enviar correo.", smtpex);
+                log.Error("Error de smtp al enviar correo.", smtpex);
             }
             catch (Exception ex)
             {
@@ -274,7 +274,7 @@ namespace COCASJOL.LOGIC.Utiles
             }
             catch (SmtpException smtpex)
             {
-                log.Fatal("Error de smtp al enviar correo.", smtpex);
+                log.Error("Error de smtp al enviar correo.", smtpex);
             }
             catch (Exception ex)
             {

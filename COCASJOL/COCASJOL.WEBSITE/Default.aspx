@@ -63,6 +63,8 @@
     </script>
 
     <script runat="server">
+        private static log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -75,10 +77,9 @@
                     Response.Redirect("~/Source/Desktop.aspx");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
-                throw;
+                log.Fatal("Error fatal cargar pagina de login (Default.aspx).", ex);
             }
         }
     
@@ -102,10 +103,9 @@
                     X.Msg.Alert("Inicio de Sesión", "El nombre de usuario o contraseña son incorrectos.", "#{txtUsername}.focus();").Show();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //log
-                throw;
+                log.Fatal("Error fatal al intentar autenticar usuario.", ex);
             }
         }
     </script>

@@ -13,10 +13,14 @@ using COCASJOL.LOGIC.Web;
 using COCASJOL.LOGIC.Inventario;
 using COCASJOL.LOGIC.Inventario.Salidas;
 
+using log4net;
+
 namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
 {
     public partial class AjustesInventarioDeCafeDeSocios : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
+        private static ILog log = LogManager.GetLogger(typeof(AjustesInventarioDeCafeDeSocios).Name);
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -29,9 +33,9 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
                 string loggedUsr = Session["username"] as string;
                 this.LoggedUserHdn.Text = loggedUsr;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //log
+                log.Fatal("Error fatal al cargar pagina de ajustes de inventario de cafe de socios.", ex);
                 throw;
             }
         }
@@ -59,9 +63,9 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
                 decimal inventarioSocio = inventarioliquidacionlogic.GetInventarioDeCafeDeSocio(SOCIOS_ID, CLASIFICACIONES_CAFE_ID);
                 this.AddInventarioDeCafeCantidadTxt.Value = inventarioSocio;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al obtener cantidad de inventario de cafe de socio.", ex);
                 throw;
             }
         }

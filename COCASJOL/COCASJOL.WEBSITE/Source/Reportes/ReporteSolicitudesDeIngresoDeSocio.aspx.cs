@@ -10,20 +10,31 @@ using COCASJOL.LOGIC.Reportes;
 using Microsoft.Reporting.WebForms;
 
 using System.Globalization;
+using log4net;
 
 namespace COCASJOL.WEBSITE.Source.Reportes
 {
     public partial class ReporteSolicitudesDeIngresoDeSocio : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
+        private static ILog log = LogManager.GetLogger(typeof(ReporteSolicitudesDeIngresoDeSocio).Name);
+
         string SOCIOS_ID = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!this.IsPostBack)
+            try
             {
-                string strSOCIOS_ID = Request.QueryString["SOCIOS_ID"];
+                if (!this.IsPostBack)
+                {
+                    string strSOCIOS_ID = Request.QueryString["SOCIOS_ID"];
 
-                this.SOCIOS_ID = string.IsNullOrEmpty(strSOCIOS_ID) ? "" : strSOCIOS_ID;
+                    this.SOCIOS_ID = string.IsNullOrEmpty(strSOCIOS_ID) ? "" : strSOCIOS_ID;
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al cargar pagina de reporte de solicitudes de ingreso de socios.", ex);
+                throw;
             }
         }
 
@@ -38,9 +49,9 @@ namespace COCASJOL.WEBSITE.Source.Reportes
                 ReportDataSource dataSource = new ReportDataSource("DataSet2", beneficiariosLst);
                 e.DataSources.Add(dataSource);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                log.Fatal("Error fatal al cargar subreporte de beneficiarios de socio.", ex);
                 throw;
             }
         }

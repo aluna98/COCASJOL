@@ -10,11 +10,15 @@ using Ext.Net;
 using COCASJOL.LOGIC;
 using COCASJOL.LOGIC.Entorno;
 using COCASJOL.LOGIC.Web;
+
+using log4net;
  
 namespace COCASJOL.WEBSITE.Source.Entorno
 {
     public partial class VariablesDeEntorno : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
+        private static ILog log = LogManager.GetLogger(typeof(VariablesDeEntorno).Name);
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -28,9 +32,9 @@ namespace COCASJOL.WEBSITE.Source.Entorno
                 string loggedUsr = Session["username"] as string;
                 this.LoggedUserHdn.Text = loggedUsr;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //log
+                log.Fatal("Error fatal al cargar pagina de variables de entorno.", ex);
                 throw;
             }
         }
@@ -47,9 +51,9 @@ namespace COCASJOL.WEBSITE.Source.Entorno
                 VariablesDeEntornoLogic varenvlogic = new VariablesDeEntornoLogic();
                 varenvlogic.ActualizarVariablesDeEntorno(VariablesDeEntorno, loggeduser);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                log.Fatal("Error fatal al guardar variables de entorno.", ex);
                 throw;
             }
         }

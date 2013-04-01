@@ -12,10 +12,14 @@ using Ext.Net;
 using COCASJOL.LOGIC.Web;
 using COCASJOL.LOGIC.Aportaciones;
 
+using log4net;
+
 namespace COCASJOL.WEBSITE.Source.Aportaciones
 {
     public partial class AportacionesPorSocio : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
+        private static ILog log = LogManager.GetLogger(typeof(AportacionesPorSocio).Name);
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -28,9 +32,9 @@ namespace COCASJOL.WEBSITE.Source.Aportaciones
                 string loggedUsr = Session["username"] as string;
                 this.LoggedUserHdn.Text = loggedUsr;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //log
+                log.Fatal("Error fatal al cargar pagina de aportaciones por socio.", ex);
                 throw;
             }
         }
