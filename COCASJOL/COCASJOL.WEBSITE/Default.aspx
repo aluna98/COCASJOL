@@ -109,6 +109,10 @@
                     X.Msg.Alert("Inicio de Sesión", "El nombre de usuario o contraseña son incorrectos.", "#{txtUsername}.focus();").Show();
                 }
             }
+            catch (System.Threading.ThreadAbortException tex)
+            {
+                log.Error("Error de terminacion de hilo al al intentar autenticar usuario. Nota: Este error pudo ser causado por Response.Redirect.", tex);
+            }
             catch (Exception ex)
             {
                 log.Fatal("Error fatal al intentar autenticar usuario.", ex);

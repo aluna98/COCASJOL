@@ -103,6 +103,10 @@ namespace COCASJOL.LOGIC.Web
                 Dictionary<string, string> variables = this.GetVariables();
                 this.ValidarVariables(variables);
             }
+            catch (System.Threading.ThreadAbortException tex)
+            {
+                log.Error("Error de terminacion de hilo al al intentar inicializar pagina COCASJOL. Sesion Expirada. Nota: Este error pudo ser causado por Response.Redirect.", tex);
+            }
             catch (Exception ex)
             {
                 log.Fatal("Error fatal al inicializar pagina COCASJOLBASE.", ex);
@@ -149,6 +153,10 @@ namespace COCASJOL.LOGIC.Web
                 }
 
                 base.Response.Redirect("~/NoAccess.aspx");
+            }
+            catch (System.Threading.ThreadAbortException tex)
+            {
+                log.Error("Error de terminacion de hilo al al intentar validar credeciales (Accesos) de usuario. Nota: Este error pudo ser causado por Response.Redirect.", tex);
             }
             catch (Exception ex)
             {
