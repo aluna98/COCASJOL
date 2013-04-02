@@ -179,6 +179,10 @@ namespace COCASJOL.WEBSITE
                 Session.Abandon();
                 this.Response.Redirect("~/Default.aspx");
             }
+            catch (System.Threading.ThreadAbortException tex)
+            {
+                log.Error("Error de terminacion de hilo al salir de pagina desktop. Nota: Este error pudo ser causado por Response.Redirect.", tex);
+            }
             catch (Exception ex)
             {
                 log.Fatal("Error fatal al salir de pagina desktop.", ex);

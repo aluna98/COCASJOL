@@ -19,7 +19,7 @@ var calendar = {
         var strDate = dateFrom + (dateFrom == "" || dateTo == "" ? "" : " - ") + dateTo;
 
         Ext.getCmp('ddfFecha').setValue("", strDate);
-        GridStore.reload();
+        //GridStore.reload();
     },
 
     clearFecha: function () {

@@ -124,7 +124,7 @@
                             <TopBar>
                                 <ext:Toolbar ID="Toolbar1" runat="server">
                                     <Items>
-                                        <ext:Button ID="EditarBtn" runat="server" Text="Ver" Icon="BrickEdit">
+                                        <ext:Button ID="EditarBtn" runat="server" Text="Ver" Icon="Clipboard">
                                             <Listeners>
                                                 <Click Handler="PageX.edit();" />
                                             </Listeners>
@@ -520,19 +520,39 @@
                             <Items>
                                 <ext:Panel ID="Panel13" runat="server" Frame="false" Padding="5" Layout="FormLayout" Border="false" AnchorHorizontal="100%">
                                     <Items>
-                                        <ext:TextField ID="EditLevelTxt" runat="server" FieldLabel="Nivel" Width="100" DataIndex="level"></ext:TextField>
+                                        <ext:FieldSet ID="CompositeField1" runat="server" Border="false" Layout="ColumnLayout" AnchorHorizontal="0">
+                                            <LayoutConfig>
+                                                <ext:ColumnLayoutConfig FitHeight="false" />
+                                            </LayoutConfig>
+                                            <Items>
+                                                <ext:Panel ID="Panel2" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
+                                                    <Items>
+                                                        <ext:TextField ID="EditLevelTxt"  runat="server"   AnchorHorizontal="100%"  FieldLabel="Nivel" DataIndex="level" ReadOnly="true" ColumnWidth=".5"></ext:TextField>
+                                                        <ext:TextField ID="EditMethodTxt" runat="server"  AnchorHorizontal="100%" FieldLabel="Metodo" DataIndex="method" ReadOnly="true" ColumnWidth=".5"></ext:TextField>
+                                                    </Items>
+                                                </ext:Panel>
+                                                <ext:Panel ID="Panel3" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
+                                                    <Items>
+                                                        <ext:DateField ID="EditDateTxt" runat="server" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Fecha" DataIndex="date" ReadOnly="true" ColumnWidth=".5"></ext:DateField>
+                                                        <ext:TextField ID="EditLineTxt" runat="server" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Linea" DataIndex="line" ReadOnly="true" ColumnWidth=".5"></ext:TextField>
+                                                    </Items>
+                                                </ext:Panel>
+                                            </Items>
+                                        </ext:FieldSet>
                                         <ext:TextArea ID="EditMessagetxt" FieldLabel="Mensaje" runat="server" DataIndex="message" Anchor="0" Height="50" ReadOnly="true" />
-                                        <ext:TextField ID="EditLocation" runat="server" FieldLabel="Origen" DataIndex="location" Anchor="0" ReadOnly="true" />
+                                        <ext:TextField ID="EditLocation" runat="server" FieldLabel="Ubicación" DataIndex="location" Anchor="0" ReadOnly="true" />
+
+
                                         <ext:CompositeField ID="cfieldExcStk" runat="server" FieldLabel="Exception/Stacktrace">
                                             <Items>
-                                                <ext:TextArea ID="EditExceptionTxt" runat="server" DataIndex="exception" Flex="1" Anchor="0" Height="50" ReadOnly="true" />
-                                                <ext:TextArea ID="EditStacktxt" runat="server" DataIndex="stacktracedetail" Flex="1" Height="50" Anchor="0" ReadOnly="true" />
+                                                <ext:TextArea ID="EditExceptionTxt" runat="server" DataIndex="exception" Flex="1" Anchor="0" Height="100" ReadOnly="true" />
+                                                <ext:TextArea ID="EditStacktxt" runat="server" DataIndex="stacktracedetail" Flex="1" Anchor="0" Height="100" ReadOnly="true" />
                                             </Items>
                                         </ext:CompositeField>
                                         <ext:CompositeField ID="cfieldCtxRqst" runat="server" FieldLabel="ASP Context/Request">
                                             <Items>
-                                                <ext:TextArea ID="EditContextTxt" runat="server" DataIndex="aspnetcontext" Flex="1" Height="50" Anchor="0" ReadOnly="true" />
-                                                <ext:TextArea ID="EditRequestTxt" runat="server" DataIndex="aspnetrequest" Flex="1" Height="50" Anchor="0" ReadOnly="true" />
+                                                <ext:TextArea ID="EditContextTxt" runat="server" DataIndex="aspnetcontext" Flex="1" Height="100" Anchor="0" ReadOnly="true" />
+                                                <ext:TextArea ID="EditRequestTxt" runat="server" DataIndex="aspnetrequest" Flex="1" Height="100" Anchor="0" ReadOnly="true" />
                                             </Items>
                                         </ext:CompositeField>
                                         <ext:TextArea ID="EditPropertyTxt" runat="server" FieldLabel="log4Net Property" DataIndex="property" Anchor="0" Height="50" ReadOnly="true" />

@@ -77,6 +77,10 @@
                     Response.Redirect("~/Source/Desktop.aspx");
                 }
             }
+            catch (System.Threading.ThreadAbortException tex)
+            {
+                log.Error("Error de terminacion de hilo al cargar pagina de login (Default.aspx). Nota: Este error pudo ser causado por Response.Redirect.", tex);
+            }
             catch (Exception ex)
             {
                 log.Fatal("Error fatal cargar pagina de login (Default.aspx).", ex);
@@ -98,6 +102,8 @@
                 }
                 else
                 {
+                    log.ErrorFormat("Error al intentar autenticar usuario. Username: {0} - Password: {1} .", this.txtUsername.Text, this.txtPassword.Text);
+                    
                     this.txtUsername.Clear();
                     this.txtPassword.Clear();
                     X.Msg.Alert("Inicio de Sesión", "El nombre de usuario o contraseña son incorrectos.", "#{txtUsername}.focus();").Show();
