@@ -63,7 +63,7 @@ namespace COCASJOL.LOGIC.Prestamos
                     using (var db = new colinasEntities())
                     {
                         var query = from solicitud in db.solicitudes_prestamos.Include("socios")
-                                    where solicitud.SOLICITUD_ESTADO == "APROBADAS" || solicitud.SOLICITUD_ESTADO == "FINALIZADAS"
+                                    where solicitud.SOLICITUD_ESTADO == "APROBADA" || solicitud.SOLICITUD_ESTADO == "FINALIZADA"
                                     select solicitud;
 
                         return query.ToList<solicitud_prestamo>();
@@ -264,6 +264,7 @@ namespace COCASJOL.LOGIC.Prestamos
                     referencia.FECHA_MODIFICACION = DateTime.Today;
                     db.referencias_x_solicitudes.AddObject(referencia);
                     db.SaveChanges();
+                    db.Dispose();
                 }
             }
             catch (Exception ex)
@@ -289,6 +290,7 @@ namespace COCASJOL.LOGIC.Prestamos
                     aval.FECHA_MODIFICACION = DateTime.Today;
                     db.avales_x_solicitud.AddObject(aval);
                     db.SaveChanges();
+                    db.Dispose();
                 }
             }
             catch (Exception ex)
@@ -307,7 +309,7 @@ namespace COCASJOL.LOGIC.Prestamos
                 decimal prodact, string norte, string sur, 
                 string este, string oeste, int carro, int agua, 
                 int luz, int casa, int beneficio, string otros, 
-                string calificacion, string estado, string modificadopor)
+                string calificacion, string modificadopor)
             {
                 try
                 {
@@ -329,7 +331,7 @@ namespace COCASJOL.LOGIC.Prestamos
                         sol.SOLICITUDES_SUR = sur;
                         sol.SOLICITUDES_ESTE = este;
                         sol.SOLICITUDES_OESTE = oeste;
-                        sol.SOLICITUD_ESTADO = estado;
+                        sol.SOLICITUD_ESTADO = "PENDIENTE";
                         sol.SOLICITUDES_VEHICULO = (sbyte)carro;
                         sol.SOLICITUDES_AGUA = (sbyte)agua;
                         sol.SOLICITUDES_ENEE = (sbyte)luz;
@@ -366,6 +368,7 @@ namespace COCASJOL.LOGIC.Prestamos
                         nueva.MODIFICADO_POR = modificadopor;
                         nueva.FECHA_MODIFICACION = DateTime.Today;
                         db.SaveChanges();
+                        db.Dispose();
                     }
                 }
                 catch (Exception ex)
@@ -390,6 +393,7 @@ namespace COCASJOL.LOGIC.Prestamos
                         aval.MODIFICADO_POR = modificadopor;
                         aval.FECHA_MODIFICACION = DateTime.Today;
                         db.SaveChanges();
+                        db.Dispose();
                     }
                 }
                 catch (Exception ex)
@@ -449,6 +453,104 @@ namespace COCASJOL.LOGIC.Prestamos
 
         #region Metodos
 
+            public string getEstado(int ID_SOLICITUD)
+            {
+                colinasEntities db = null;
+                try
+                {
+                    db = new colinasEntities();
+
+                    var query = from soc in db.solicitudes_prestamos
+                                where soc.SOLICITUDES_ID == ID_SOLICITUD
+                                select soc;
+
+                    solicitud_prestamo solicitud = query.First();
+                    return solicitud.SOLICITUD_ESTADO;
+
+                }
+                catch (Exception)
+                {
+                    if (db != null)
+                        db.Dispose();
+                    throw;
+                }
+            }
+
+            public void DenegarSolicitud(int ID_SOLICITUD)
+            {
+                colinasEntities db = null;
+                try
+                {
+                    db = new colinasEntities();
+
+                    var query = from soc in db.solicitudes_prestamos
+                                where soc.SOLICITUDES_ID == ID_SOLICITUD
+                                select soc;
+
+                    solicitud_prestamo solicitud = query.First();
+                    solicitud.SOLICITUD_ESTADO = "RECHAZADA";
+                    db.SaveChanges();
+                    db.Dispose();
+
+                }
+                catch (Exception)
+                {
+                    if (db != null)
+                        db.Dispose();
+                    throw;
+                }
+            }
+
+            public void AprobarSolicitud(int ID_SOLICITUD)
+            {
+                colinasEntities db = null;
+                try
+                {
+                    db = new colinasEntities();
+
+                    var query = from soc in db.solicitudes_prestamos
+                                where soc.SOLICITUDES_ID == ID_SOLICITUD
+                                select soc;
+
+                    solicitud_prestamo solicitud = query.First();
+                    solicitud.SOLICITUD_ESTADO = "APROBADA";
+                    db.SaveChanges();
+                    db.Dispose();
+
+                }
+                catch (Exception ex)
+                {
+                    if (db != null)
+                        db.Dispose();
+                    throw;
+                }
+            }
+
+            public void FinalizarSolicitud(int ID_SOLICITUD)
+            {
+                colinasEntities db = null;
+                try
+                {
+                    db = new colinasEntities();
+
+                    var query = from soc in db.solicitudes_prestamos
+                                where soc.SOLICITUDES_ID == ID_SOLICITUD
+                                select soc;
+
+                    solicitud_prestamo solicitud = query.First();
+                    solicitud.SOLICITUD_ESTADO = "FINALIZADA";
+                    db.SaveChanges();
+                    db.Dispose();
+
+                }
+                catch (Exception ex)
+                {
+                    if (db != null)
+                        db.Dispose();
+                    throw;
+                }
+            }
+			
             public socio_produccion getProduccion(string id)
             {
                 try

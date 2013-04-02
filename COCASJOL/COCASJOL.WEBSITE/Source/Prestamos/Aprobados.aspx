@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SolicitudesDePrestamos.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Prestamos.SolicitudesDePrestamos" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Aprobados.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Prestamos.Aprobados" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 
@@ -6,9 +6,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Solicitudes de Prestamo</title>
+    <title>Prestamos Aprobados</title>
     <link rel="Stylesheet" type="text/css" href="../../resources/css/ComboBox_Grid.css" />
-    <script type="text/javascript" src="../../resources/js/prestamos/solicitudesDePrestamos.js" ></script>
+    <script type="text/javascript" src="../../resources/js/prestamos/PrestamosAprobados.js" ></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -24,6 +24,7 @@
                         <ext:RecordField Name="SOCIOS_ID" />
                         <ext:RecordField Name="SOCIOS_PRIMER_NOMBRE" />
                         <ext:RecordField Name="SOCIOS_PRIMER_APELLIDO" />
+
                     </Fields>
                 </ext:JsonReader>
             </Reader>
@@ -84,35 +85,17 @@
                                             </Fields>
                                         </ext:JsonReader>
                                     </Reader>
-                                    <DirectEvents>
-                                        <Add OnEvent="SolicitudesSt_Insert" Success="#{SolicitudesSt}.reload()">
-                                            <EventMask ShowMask="true" Target="CustomTarget" />
-                                        </Add>
-                                        <Update OnEvent="SolicitudesSt_Update" Success="#{SolicitudesSt}.reload()">
-                                            <EventMask ShowMask="true" Target="CustomTarget" />
-                                        </Update>
-                                    </DirectEvents>
                                 </ext:Store>
                             </Store>
                             <TopBar>
                                 <ext:Toolbar ID="ToolBar1" runat="server">
                                     <Items>
-                                        <ext:Button ID="AddBtn" runat="server" Text="Agregar" Icon="Add">
-                                            <Listeners>
-                                                <Click Handler="SolicitudX.add()" />
-                                            </Listeners>
-                                        </ext:Button>
-                                        <ext:Button ID="EditBtn" runat="server" Text="Editar" Icon="ApplicationEdit">
+                                        <ext:Button ID="EditBtn" runat="server" Text="Visualizar" Icon="Find">
                                             <Listeners>
                                                 <Click Handler="SolicitudX.edit()" />
                                             </Listeners>
                                         </ext:Button>
-                                        <ext:Button ID="DeleteBtn" runat="server"  Text="Denegar" Icon="MoneyDelete">
-                                            <Listeners>
-                                                <Click Handler="DirectX.DoConfirmDisable()" />
-                                            </Listeners>
-                                        </ext:Button>
-                                        <ext:Button ID="ApproveBtn" runat="server" Text="Aprobar" Icon="MoneyAdd">
+                                        <ext:Button ID="ApproveBtn" runat="server" Text="Finalizar" Icon="MoneyAdd">
                                             <Listeners>
                                                 <Click Handler="DirectX.DoConfirmEnable()" />
                                             </Listeners>
@@ -127,7 +110,7 @@
                                             <Columns>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                         <Component>
-                                                            <ext:TextField ID="FilterSolicitudSocioId" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <ext:TextField ID="FilterPrestamoSocioId" runat="server" EnableKeyEvents="true" Icon="Find">
                                                                 <Listeners>
                                                                     <KeyUp Handler="applyFilter(this);" Buffer="250" />                                                
                                                                 </Listeners>
@@ -137,7 +120,7 @@
 
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                         <Component>
-                                                            <ext:TextField ID="FilterSolicitudId" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <ext:TextField ID="FilterPrestamoId" runat="server" EnableKeyEvents="true" Icon="Find">
                                                                 <Listeners>
                                                                     <KeyUp Handler="applyFilter(this);" Buffer="250" />                                                
                                                                 </Listeners>
@@ -147,7 +130,7 @@
 
                                                     <ext:HeaderColumn Cls="x-small-editor">
                                                         <Component>
-                                                            <ext:TextField ID="FilterSolicitudNombre" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <ext:TextField ID="FilterPrestamoNombre" runat="server" EnableKeyEvents="true" Icon="Find">
                                                                 <Listeners>
                                                                     <KeyUp Handler="applyFilter(this);" Buffer="250" />                                                
                                                                 </Listeners>
@@ -157,7 +140,7 @@
 
                                                     <ext:HeaderColumn Cls="x-small-editor">
                                                         <Component>
-                                                            <ext:TextField ID="FilterSolicitudMonto" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <ext:TextField ID="FilterPrestamoMonto" runat="server" EnableKeyEvents="true" Icon="Find">
                                                                 <Listeners>
                                                                     <KeyUp Handler="applyFilter(this);" Buffer="250" />                                                
                                                                 </Listeners>
@@ -167,7 +150,7 @@
 
                                                  <ext:HeaderColumn Cls="x-small-editor">
                                                         <Component>
-                                                            <ext:TextField ID="FilterSolicitudEstado" runat="server" EnableKeyEvents="true" Icon="Find">
+                                                            <ext:TextField ID="FilterPrestamoEstado" runat="server" EnableKeyEvents="true" Icon="Find">
                                                                 <Listeners>
                                                                     <KeyUp Handler="applyFilter(this);" Buffer="250" />                                                
                                                                 </Listeners>
@@ -232,7 +215,7 @@
                 Icon="Money"
                 width="550"
                 layout="FormLayout"
-                autoheight="true" Title="Editar Solicitud"
+                autoheight="true" Title="Visualizar Prestamo"
                 resizable="false"
                 shadow="None"
                 modal="true"
@@ -252,11 +235,11 @@
                                                     <ext:TextField ID="EditIdSolicitud"     ReadOnly="true" runat="server" FieldLabel="Solicitud Id" DataIndex="SOLICITUDES_ID" AnchorHorizontal="90%"  AllowBlank="false" />                                                    
                                                     <ext:TextField ID="EditSocioid"         ReadOnly="true" runat="server" FieldLabel="ID Socio" AnchorHorizontal="90%" />
                                                     <ext:TextField ID="EditNombre"    ReadOnly="true" runat="server" FieldLabel="Nombre" AnchorHorizontal="90%" />
-                                                    <ext:NumberField    runat="server" ID="EditMontoTxt"     DataIndex="SOLICITUDES_MONTO"           AnchorHorizontal="90%"      FieldLabel="Monto                     " AllowBlank="false" MaxLength="11" AllowDecimals="true" DecimalPrecision="3" DecimalSeparator="." />
-                                                    <ext:DateField      runat="server" ID="EditPlazo"     DataIndex="SOLICITUDES_PLAZO"           AnchorHorizontal="90%"      FieldLabel="Fecha de Plazo            " AllowBlank="false" />
-                                                    <ext:TextField      runat="server" ID="EditPagoTxt"      DataIndex="SOLICITUDES_PAGO"            AnchorHorizontal="90%"      FieldLabel="Tipo de Pago              " AllowBlank="false" MaxLength="45" />
-                                                    <ext:TextField      runat="server" ID="EditDestinoTxt"   DataIndex="SOLICITUDES_DESTINO"         AnchorHorizontal="90%"      FieldLabel="Destino                   " AllowBlank="false" MaxLength="45" />
-                                                    <ext:ComboBox runat="server"    ID="EditCmbPrestamo"     DataIndex="PRESTAMOS_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Prestamo" AllowBlank="false" MsgTarget="Side"
+                                                    <ext:NumberField    runat="server" ReadOnly="true" ID="EditMontoTxt"     DataIndex="SOLICITUDES_MONTO"           AnchorHorizontal="90%"      FieldLabel="Monto                     " AllowBlank="false" MaxLength="11" AllowDecimals="true" DecimalPrecision="3" DecimalSeparator="." />
+                                                    <ext:DateField      runat="server" ReadOnly="true" ID="EditPlazo"     DataIndex="SOLICITUDES_PLAZO"           AnchorHorizontal="90%"      FieldLabel="Fecha de Plazo            " AllowBlank="false" />
+                                                    <ext:TextField      runat="server" ReadOnly="true" ID="EditPagoTxt"      DataIndex="SOLICITUDES_PAGO"            AnchorHorizontal="90%"      FieldLabel="Tipo de Pago              " AllowBlank="false" MaxLength="45" />
+                                                    <ext:TextField      runat="server" ReadOnly="true" ID="EditDestinoTxt"   DataIndex="SOLICITUDES_DESTINO"         AnchorHorizontal="90%"      FieldLabel="Destino                   " AllowBlank="false" MaxLength="45" />
+                                                    <ext:ComboBox runat="server"    ID="EditCmbPrestamo"     DataIndex="PRESTAMOS_ID"  ReadOnly="true"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Prestamo" AllowBlank="false" MsgTarget="Side"
                                                         StoreID="TiposDePrestamoSt"
                                                         ValueField="PRESTAMOS_ID" 
                                                         DisplayField="PRESTAMOS_NOMBRE" 
@@ -267,22 +250,21 @@
                                                         </Triggers>
                                                         <Listeners>
                                                             <TriggerClick Handler="this.clearValue();" />
-                                                            <Select Handler="DirectX.SeleccionarInteres();" />
                                                         </Listeners>
                                                     </ext:ComboBox>
-                                                    <ext:NumberField    runat="server" ID="EditInteres"   DataIndex="SOLICITUDES_INTERES"         AnchorHorizontal="90%"      FieldLabel="Interes                   " AllowBlank="false" MinValue="0" MaxValue="100" AllowDecimals="false" />
-                                                    <ext:TextField      runat="server" ID="EditCargoTxt"     DataIndex="SOLICITUDES_CARGO"           AnchorHorizontal="90%"      FieldLabel="Cargo en la cooperativa   " MaxLength="45" />                                            
-                                                    <ext:NumberField    runat="server" ID="EditPromedio"  DataIndex="SOLICITUDES_PROMEDIO3"       AnchorHorizontal="90%"      FieldLabel="Promedio produccion (3 años)" MinValue="0" AllowDecimals="true" DecimalPrecision="3" DecimalSeparator="." />
-                                                    <ext:NumberField    runat="server" ID="EditProd"   DataIndex="SOLICITUDES_PRODUCCIONACT"   AnchorHorizontal="90%"      FieldLabel="Promedio Actual           " MinValue="0" AllowDecimals="true" DecimalPrecision="3" DecimalSeparator="." />
-                                                    <ext:TextField      runat="server" ID="EditNorteTxt"     DataIndex="SOLICITUDES_NORTE"           AnchorHorizontal="90%"      FieldLabel="Colindancias Norte" MaxLength="45" />
-                                                    <ext:TextField      runat="server" ID="EditSurTxt"       DataIndex="SOLICITUDES_SUR"             AnchorHorizontal="90%"      FieldLabel="Colindancias Sur" MaxLength="45" />
-                                                    <ext:TextField      runat="server" ID="EditEsteTxt"      DataIndex="SOLICITUDES_ESTE"            AnchorHorizontal="90%"      FieldLabel="Colindancias Este" MaxLength="45" />
-                                                    <ext:TextField      runat="server" ID="EditOesteTxt"     DataIndex="SOLICITUDES_OESTE"           AnchorHorizontal="90%"      FieldLabel="Colindancias Oeste" MaxLength="45" />
+                                                    <ext:NumberField    runat="server" ID="EditInteres"   ReadOnly="true" DataIndex="SOLICITUDES_INTERES"         AnchorHorizontal="90%"      FieldLabel="Interes                   " AllowBlank="false" MinValue="0" MaxValue="100" AllowDecimals="false" />
+                                                    <ext:TextField      runat="server" ID="EditCargoTxt"  ReadOnly="true"   DataIndex="SOLICITUDES_CARGO"           AnchorHorizontal="90%"      FieldLabel="Cargo en la cooperativa   " MaxLength="45" />                                            
+                                                    <ext:NumberField    runat="server" ID="EditPromedio"  ReadOnly="true" DataIndex="SOLICITUDES_PROMEDIO3"       AnchorHorizontal="90%"      FieldLabel="Promedio produccion (3 años)" MinValue="0" AllowDecimals="true" DecimalPrecision="3" DecimalSeparator="." />
+                                                    <ext:NumberField    runat="server" ID="EditProd"      ReadOnly="true"  DataIndex="SOLICITUDES_PRODUCCIONACT"   AnchorHorizontal="90%"      FieldLabel="Promedio Actual           " MinValue="0" AllowDecimals="true" DecimalPrecision="3" DecimalSeparator="." />
+                                                    <ext:TextField      runat="server" ID="EditNorteTxt"  ReadOnly="true"   DataIndex="SOLICITUDES_NORTE"           AnchorHorizontal="90%"      FieldLabel="Colindancias Norte" MaxLength="45" />
+                                                    <ext:TextField      runat="server" ID="EditSurTxt"    ReadOnly="true"   DataIndex="SOLICITUDES_SUR"             AnchorHorizontal="90%"      FieldLabel="Colindancias Sur" MaxLength="45" />
+                                                    <ext:TextField      runat="server" ID="EditEsteTxt"   ReadOnly="true"   DataIndex="SOLICITUDES_ESTE"            AnchorHorizontal="90%"      FieldLabel="Colindancias Este" MaxLength="45" />
+                                                    <ext:TextField      runat="server" ID="EditOesteTxt"  ReadOnly="true"   DataIndex="SOLICITUDES_OESTE"           AnchorHorizontal="90%"      FieldLabel="Colindancias Oeste" MaxLength="45" />
                                                 </Items>
                                             </ext:Panel>
                                         </Items>
                                     </ext:Panel>
-                                    <ext:Panel ID="PanelSolicitud" runat="server" Title="Datos de Solicitud" Layout="AnchorLayout" AutoHeight="true" Icon="User" LabelWidth="150" >
+                                    <ext:Panel ID="PanelSolicitud" runat="server" Title="Datos de Prestamo" Layout="AnchorLayout" AutoHeight="true" Icon="User" LabelWidth="150" >
                                         <Items>
                                             <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                                 <Items>
@@ -296,13 +278,13 @@
                                                     <ext:TextField ID="EditResidencia"      ReadOnly="true" runat="server" FieldLabel="Residencia" AnchorHorizontal="90%" />
                                                     <ext:TextField ID="EditManzanas"        ReadOnly="true" runat="server" FieldLabel="Manzanas Cultivadas" AnchorHorizontal="90%" />
                                                     <ext:TextField ID="EditUbicacion"       ReadOnly="true" runat="server" FieldLabel="Ubicacion de la finca" AnchorHorizontal="90%" />
-                                                    <ext:Checkbox runat="server" ID="EditCarro"     DataIndex="SOLICITUDES_VEHICULO" FieldLabel="Acceso en Vehiculo?" LabelWidth="100" />
-                                                    <ext:Checkbox runat="server" ID="EditAgua"         DataIndex="SOLICITUDES_AGUA" FieldLabel="Posee Agua?" />
-                                                    <ext:Checkbox runat="server" ID="EditLuz"         DataIndex="SOLICITUDES_ENEE" FieldLabel="Posee Energia Electrica?" LabelWidth="100" /> 
-                                                    <ext:Checkbox runat="server" ID="EditCasa"         DataIndex="SOLICITUDES_CASA" FieldLabel="Posee Casa Propia?" />                                
-                                                    <ext:Checkbox       runat="server" ID="EditBeneficio"    DataIndex="SOLICITUDES_BENEFICIO" FieldLabel="Posee Beneficio?" />
-                                                    <ext:TextField      runat="server" ID="EditOtrosTxt"     DataIndex="SOLICITUD_OTROSCULTIVOS" FieldLabel="Otros Cultivos?" MaxLength="45" AnchorHorizontal="90%" />
-                                                    <ext:ComboBox ID="EditCalifCmb"
+                                                    <ext:Checkbox runat="server" ID="EditCarro" Selectable="false" DataIndex="SOLICITUDES_VEHICULO" FieldLabel="Acceso en Vehiculo?" LabelWidth="100" />
+                                                    <ext:Checkbox runat="server" ID="EditAgua"  Selectable="false"   DataIndex="SOLICITUDES_AGUA" FieldLabel="Posee Agua?" />
+                                                    <ext:Checkbox runat="server" ID="EditLuz"   Selectable="false"   DataIndex="SOLICITUDES_ENEE" FieldLabel="Posee Energia Electrica?" LabelWidth="100" /> 
+                                                    <ext:Checkbox runat="server" ID="EditCasa"  Selectable="false"      DataIndex="SOLICITUDES_CASA" FieldLabel="Posee Casa Propia?" />                                
+                                                    <ext:Checkbox       runat="server" ID="EditBeneficio" Selectable="false"   DataIndex="SOLICITUDES_BENEFICIO" FieldLabel="Posee Beneficio?" />
+                                                    <ext:TextField      runat="server" ID="EditOtrosTxt" ReadOnly="true"    DataIndex="SOLICITUD_OTROSCULTIVOS" FieldLabel="Otros Cultivos?" MaxLength="45" AnchorHorizontal="90%" />
+                                                    <ext:ComboBox ID="EditCalifCmb" ReadOnly="true"
                                                         runat="server" DataIndex="SOLICITUD_CALIFICACION"
                                                         Editable="false" FieldLabel="Calificacion de Socio"         
                                                         EmptyText="Seleccione Calificacion..." AnchorHorizontal="90%">
@@ -318,7 +300,7 @@
                                     </ext:Panel>
 
                                     <ext:Panel ID="PanelRefer" runat="server" Title="Referencias" Layout="AnchorLayout" AutoHeight="true" Icon="GroupAdd">
-                                         <Listeners>
+                                        <Listeners>
                                             <Activate Handler="DirectX.refreshTabReferencias();" />
                                         </Listeners>
                                         <Items>
@@ -355,23 +337,12 @@
                                                         
                                                         <SelectionModel>
                                                             <ext:RowSelectionModel ID="RowSelectionModelReferencias" runat="server" SingleSelect="true">
-                                                                
                                                             </ext:RowSelectionModel>
                                                         </SelectionModel>
                                                         <TopBar>
                                                             <ext:Toolbar ID="ToolbarReferencias" runat="server">
                                                                 <Items>
-                                                                    <ext:Button ID="AgregarReferenciasBtn" runat="server" Text="Agregar" Icon="CogAdd">
-                                                                        <Listeners>
-                                                                            <Click Handler="SolicitudX.addRef()" />
-                                                                        </Listeners>
-                                                                    </ext:Button>
-                                                                    <ext:Button ID="EliminarReferenciasBtn" runat="server" Text="Eliminar" Icon="CogDelete">
-                                                                        <Listeners>
-                                                                            <click  handler="SolicitudX.removeRef()" />
-                                                                        </Listeners>
-                                                                    </ext:Button>
-                                                                    <ext:Button ID="EditarReferenciaBtn" runat="server" Text="Editar" Icon="CogEdit" >
+                                                                    <ext:Button ID="EditarReferenciaBtn" runat="server" Text="Visualizar" Icon="Find" >
                                                                         <Listeners>
                                                                             <Click Handler="SolicitudX.editRef()" />
                                                                         </Listeners>
@@ -437,17 +408,7 @@
                                                         <TopBar>
                                                             <ext:Toolbar ID="ToolbarAvales" runat="server">
                                                                 <Items>
-                                                                    <ext:Button ID="AgregarAvalesBtn" runat="server" Text="Agregar" Icon="CogAdd">
-                                                                        <Listeners>
-                                                                            <Click Handler="SolicitudX.addAval()" />
-                                                                        </Listeners>
-                                                                    </ext:Button>
-                                                                    <ext:Button ID="EliminarAvalesBtn" runat="server" Text="Eliminar" Icon="CogDelete">
-                                                                        <Listeners>
-                                                                            <click Handler="SolicitudX.removeAval()" />
-                                                                        </Listeners>
-                                                                    </ext:Button>
-                                                                    <ext:Button ID="EditarAvalesBtn" runat="server" Text="Editar" Icon="CogEdit" >
+                                                                    <ext:Button ID="EditarAvalesBtn" runat="server" Text="Visualizar" Icon="Find" >
                                                                         <listeners>
                                                                             <click Handler="SolicitudX.editAval()" />
                                                                         </listeners>
@@ -484,200 +445,19 @@
                             <Click Handler="SolicitudX.next()" />
                         </Listeners>
                     </ext:Button>
-                    <ext:Button ID="EditSaveBtn" runat="server" Text="Guardar" Icon="Disk">
+                    <ext:Button ID="EditSaveBtn" runat="server" Text="Salir" Icon="Cancel">
                         <Listeners>
-                            <Click Handler="SolicitudX.update()" />
+                            <Click Handler="DirectX.CerrarPrestamo()" />
                         </Listeners>
                     </ext:Button>
                 </Buttons>
-         </ext:Window>
-
-         <ext:Window ID="NuevaSolicitudWin" 
-                    runat="server" 
-                    Hidden="true" 
-                    Icon="ApplicationAdd" 
-                    Title="Agregar Nueva Solicitud" 
-                    Width="550" 
-                    Layout="FormLayout" 
-                    AutoHeight="true" 
-                    Resizable="false" 
-                    Shadow="None" 
-                    Modal="true" 
-                    X="10" Y="30">
-            <Listeners>
-                <Hide Handler="NuevaSolicitudFormP.getForm().reset()" />
-            </Listeners>         
-            <Items>
-                <ext:FormPanel ID="NuevaSolicitudFormP" runat="server" Header="false" ButtonAlign="Right" MonitorValid="true">
-                    <Items>
-                        <ext:TabPanel ID="TabSolicitudAdd" runat="server" LabelAlign="Right">
-                            <Items>
-                                <ext:Panel ID="AddPanelDatos" runat="server" Title="Datos Solicitud" Layout="AnchorLayout" AutoHeight="true" Icon="PageEdit" LabelWidth="200">
-                                    <Items>
-                                        <ext:Panel ID="Panel2" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
-                                            <Items>
-                                                <ext:ComboBox ID="cbSociosId" runat="server" EmptyText="Seleccione Socio"  TypeAhead="true"
-                                                    ForceSelection="true" StoreID="ComboBoxSt" Mode="Local" DisplayField="SOCIOS_ID" FieldLabel="Codigo Socio" 
-                                                    ValueField="SOCIOS_ID" MinChars="2" ListWidth="350" PageSize="10" ItemSelector="tr.list-item" AnchorHorizontal="90%">
-                                                    <Template ID="Template1" runat="server" Width="200">
-                                                        <Html>
-					                                        <tpl for=".">
-						                                        <tpl if="[xindex] == 1">
-							                                        <table class="cbStates-list">
-								                                        <tr>
-									                                        <th>Id Socio</th>
-									                                        <th>Primer Nombre</th>
-                                                                            <th>Primer Apellido</th>
-								                                        </tr>
-						                                        </tpl>
-						                                        <tr class="list-item">
-							                                        <td style="padding:3px 0px;">{SOCIOS_ID}</td>
-							                                        <td>{SOCIOS_PRIMER_NOMBRE}</td>
-                                                                    <td>{SOCIOS_PRIMER_APELLIDO}</td>
-						                                        </tr>
-						                                        <tpl if="[xcount-xindex]==0">
-							                                        </table>
-						                                        </tpl>
-					                                        </tpl>
-				                                        </Html>
-                                                    </Template>
-                                                    <Triggers>
-                                                        <ext:FieldTrigger Icon="Clear" HideTrigger="true" />
-                                                    </Triggers>
-                                                    <Listeners>
-                                                        <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
-                                                        <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
-                                                        <Select Handler="this.triggers[0].show();" />
-                                                    </Listeners>
-                                                </ext:ComboBox>
-                                                <ext:NumberField    runat="server" ID="AddMontoTxt"     DataIndex="SOLICITUDES_MONTO"           AnchorHorizontal="90%"      FieldLabel="Monto                     " AllowBlank="false" MaxLength="14" MinValue="0" />
-                                                <ext:DateField      runat="server" ID="AddPlazoTxt"     DataIndex="SOLICITUDES_PLAZO"           AnchorHorizontal="90%"      FieldLabel="Fecha de Plazo            " AllowBlank="false">
-                                                    <RemoteValidation OnValidation="AddFecha_Change" />
-                                                </ext:DateField>
-                                                <ext:TextField      runat="server" ID="AddPagoTxt"      DataIndex="SOLICITUDES_PAGO"            AnchorHorizontal="90%"      FieldLabel="Tipo de Pago              " AllowBlank="false" MaxLength="45" />
-                                                <ext:TextField      runat="server" ID="AddDestinoTxt"   DataIndex="SOLICITUDES_DESTINO"         AnchorHorizontal="90%"      FieldLabel="Destino                   " AllowBlank="false" MaxLength="45" />
-                                                <ext:ComboBox runat="server"    ID="AddTipoDeProdIdCmb"     DataIndex="PRESTAMOS_ID"          LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tipo de Prestamo" AllowBlank="false" MsgTarget="Side"
-                                                    StoreID="TiposDePrestamoSt"
-                                                    ValueField="PRESTAMOS_ID" 
-                                                    DisplayField="PRESTAMOS_NOMBRE" 
-                                                    Mode="Local"
-                                                    TypeAhead="true">
-                                                    <Triggers>
-                                                        <ext:FieldTrigger Icon="Clear" />
-                                                    </Triggers>
-                                                    <Listeners>
-                                                        <TriggerClick Handler="this.clearValue();" />
-                                                        <Select Handler="DirectX.SeleccionarInteres();" />
-                                                    </Listeners>
-                                                </ext:ComboBox>
-                                                <ext:NumberField    runat="server" ID="AddInteresTxt"   DataIndex="SOLICITUDES_INTERES"         AnchorHorizontal="90%"      FieldLabel="Interes                   " AllowBlank="false" MinValue="0" MaxValue="100" AllowDecimals="false" />
-                                                <ext:TextField      runat="server" ID="AddCargoTxt"     DataIndex="SOLICITUDES_CARGO"           AnchorHorizontal="90%"      FieldLabel="Cargo en la cooperativa   " MaxLength="45" />
-                                            </Items>
-                                        </ext:Panel>
-                                    </Items>
-                                </ext:Panel>
-                                <ext:Panel ID="AddPanelGrl" runat="server" Title="Datos Generales" Layout="AnchorLayout" AutoHeight="true" Icon="UserEdit" LabelWidth="200">
-                                    <Items>
-                                        <ext:Panel ID="P1" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
-                                            <Items>
-                                                <ext:NumberField    runat="server" ID="AddPromedioTxt"  DataIndex="SOLICITUDES_PROMEDIO3"       AnchorHorizontal="90%"      FieldLabel="Promedio produccion (3 años)" MinValue="0" AllowDecimals="true" DecimalPrecision="3" DecimalSeparator="." />
-                                                <ext:NumberField    runat="server" ID="AddPromActTxt"   DataIndex="SOLICITUDES_PRODUCCIONACT"   AnchorHorizontal="90%"      FieldLabel="Promedio Actual           " MinValue="0" AllowDecimals="true" DecimalPrecision="3" DecimalSeparator="." />
-                                                <ext:TextField      runat="server" ID="AddNorteTxt"     DataIndex="SOLICITUDES_NORTE"           AnchorHorizontal="90%"      FieldLabel="Colindancias Norte" MaxLength="45" />
-                                                <ext:TextField      runat="server" ID="AddSurTxt"       DataIndex="SOLICITUDES_SUR"             AnchorHorizontal="90%"      FieldLabel="Colindancias Sur" MaxLength="45" />
-                                                <ext:TextField      runat="server" ID="AddEsteTxt"      DataIndex="SOLICITUDES_ESTE"            AnchorHorizontal="90%"      FieldLabel="Colindancias Este" MaxLength="45" />
-                                                <ext:TextField      runat="server" ID="AddOesteTxt"     DataIndex="SOLICITUDES_OESTE"           AnchorHorizontal="90%"      FieldLabel="Colindancias Oeste" MaxLength="45" />
-                                                
-                                                <ext:Checkbox runat="server" ID="AddVehiculo"     DataIndex="SOLICITUDES_VEHICULO" FieldLabel="Acceso en Vehiculo?" LabelWidth="100" />
-                                                <ext:Checkbox runat="server" ID="AddAgua"         DataIndex="SOLICITUDES_AGUA" FieldLabel="Posee Agua?" />
-                                                    
-                                                <ext:Checkbox runat="server" ID="AddENEE"         DataIndex="SOLICITUDES_ENEE" FieldLabel="Posee Energia Electrica?" LabelWidth="100" /> 
-                                                <ext:Checkbox runat="server" ID="AddCasa"         DataIndex="SOLICITUDES_CASA" FieldLabel="Posee Casa Propia?" />                                
-                                                
-                                                <ext:Checkbox       runat="server" ID="AddBeneficio"    DataIndex="SOLICITUDES_BENEFICIO" FieldLabel="Posee Beneficio?" />
-                                                <ext:TextField      runat="server" ID="AddOtrosTxt"     DataIndex="SOLICITUD_OTROSCULTIVOS" FieldLabel="Otros Cultivos?" MaxLength="45" AnchorHorizontal="90%" />
-                                                <ext:ComboBox ID="AddCalificacion"
-                                                    runat="server" 
-                                                    Editable="false" FieldLabel="Calificacion de Socio"         
-                                                    EmptyText="Seleccione Calificacion..." AnchorHorizontal="90%">
-                                                    <Items>
-                                                        <ext:ListItem Text="Muy Bueno" Value="Muy Bueno" />
-                                                        <ext:ListItem Text="Bueno" Value="Bueno" />
-                                                        <ext:ListItem Text="Regular" Value="Regular" />
-                                                    </Items>
-                                                </ext:ComboBox>
-                                            </Items>
-                                        </ext:Panel>
-                                    </Items>
-                                </ext:Panel>
-                            </Items>
-                        </ext:TabPanel>
-                    </Items>
-                    <Buttons>
-                        <ext:Button ID="AddGuardarBtn" runat="server" Text="Crear" Icon="Add" formBind="true">
-                            <Listeners>
-                                <Click Handler="SolicitudX.insert()" />
-                            </Listeners>
-                        </ext:Button>
-                    </Buttons>
-                </ext:FormPanel>
-            </Items>
-         </ext:Window>
-
-         <ext:Window ID="NuevaReferenciaWin"
-            runat= "server"
-            Hidden="true"
-            ICon="UserAdd"
-            Title="Agregar Referencia"
-            Width="550"
-            Layout="FormLayout"
-            Autoheight="True"
-            resizable="false"
-            Shadow="None"
-            modal="true"
-            x="15" Y="35" >
-            <Listeners>
-                <Hide Handler="NuevaReferenciaForm.getForm().reset()" />
-           </Listeners>   
-            <Items>
-                <ext:FormPanel runat="server" ID="NuevaReferenciaForm" Title="Form" Header="false" ButtonAlign="Right" MonitorValid="true">
-                    <Items>
-                        <ext:Panel ID="PanelRefencia" runat="server" Title="Datos Referencia Nueva" Layout="AnchorLayout" AutoHeight="true" Icon="UserAdd" LabelWidth="150">
-                            <Items>
-                                <ext:Panel ID="Panel" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
-                                    <Items>
-                                        <ext:TextField runat="server" ID="AddReferenciaId" FieldLabel="No. de Identificacion" AnchorHorizontal="90%" AllowBlank="false" /> 
-                                        <ext:TextField runat="server" ID="AddReferenciaNombre" FieldLabel="Nombre" AnchorHorizontal="90%" AllowBlank="false" />
-                                        <ext:TextField runat="server" ID="AddReferenciaTel" FieldLabel="Telefono" AnchorHorizontal="90%" AllowBlank="false" />
-                                        <ext:ComboBox ID="AddReferenciaTipo"
-                                            runat="server" 
-                                            Editable="false" FieldLabel="Tipo de Referencia"         
-                                            EmptyText="Seleccione un tipo..." AnchorHorizontal="90%">
-                                            <Items>
-                                                <ext:ListItem Text="Personal" Value="Personal" />
-                                                <ext:ListItem Text="Comercial" Value="Comercial" />
-                                            </Items>
-                                        </ext:ComboBox>
-                                    </Items>
-                                </ext:Panel>
-                            </Items>
-                        </ext:Panel>
-                    </Items>
-                    <Buttons>
-                        <ext:Button ID="AddReferenciaBtn" runat="server" Text="Crear" Icon="Add" FormBind="true">
-                            <Listeners>
-                                <Click Handler="SolicitudX.insertRef();" />
-                            </Listeners>
-                        </ext:Button>
-                    </Buttons>
-                </ext:FormPanel>
-            </Items>
          </ext:Window>
 
          <ext:Window ID="EditarReferenciaWin"
             runat= "server"
             Hidden="true"
             ICon="UserEdit"
-            Title="Editar Referencia"
+            Title="Visualizar Referencia"
             Width="550"
             Layout="FormLayout"
             Autoheight="True"
@@ -696,9 +476,9 @@
                                 <ext:Panel ID="Panel8" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                                     <Items>
                                         <ext:TextField runat="server" ID="EditIdRef" DataIndex="REFERENCIAS_ID" FieldLabel="No. de Identificacion" AnchorHorizontal="90%" AllowBlank="false" ReadOnly="true" /> 
-                                        <ext:TextField runat="server" ID="EditNombreRef" DataIndex="REFERENCIAS_NOMBRE" FieldLabel="Nombre" AnchorHorizontal="90%" AllowBlank="false" />
-                                        <ext:TextField runat="server" ID="EditTelRef" DataIndex="REFERENCIAS_TELEFONO" FieldLabel="Telefono" AnchorHorizontal="90%" AllowBlank="false" />
-                                        <ext:ComboBox ID="EditTipoRef"
+                                        <ext:TextField runat="server" ID="EditNombreRef" DataIndex="REFERENCIAS_NOMBRE" FieldLabel="Nombre" AnchorHorizontal="90%" AllowBlank="false" ReadOnly="true" />
+                                        <ext:TextField runat="server" ID="EditTelRef" DataIndex="REFERENCIAS_TELEFONO" FieldLabel="Telefono" AnchorHorizontal="90%" AllowBlank="false" ReadOnly="true" />
+                                        <ext:ComboBox ID="EditTipoRef" ReadOnly="true"
                                             runat="server" DataIndex="REFERENCIAS_TIPO"
                                             Editable="false" FieldLabel="Tipo de Referencia"         
                                             EmptyText="Seleccione un tipo..." AnchorHorizontal="90%">
@@ -713,91 +493,9 @@
                         </ext:Panel>
                     </Items>
                     <Buttons>
-                        <ext:Button ID="EditarRefBtn" runat="server" Text="Editar" Icon="UserEdit" FormBind="true">
+                        <ext:Button ID="EditarRefBtn" runat="server" Text="Salir" Icon="Cancel" FormBind="true">
                             <Listeners>
-                                <Click Handler="DirectX.ActualizarReferencias()" />
-                            </Listeners>
-                        </ext:Button>
-                    </Buttons>
-                </ext:FormPanel>
-            </Items>
-         </ext:Window>
-
-         <ext:Window ID="NuevoAvalWin"
-            runat= "server"
-            Hidden="true"
-            ICon="UserAdd"
-            Title="Agregar Aval"
-            Width="550"
-            Layout="FormLayout"
-            Autoheight="True"
-            resizable="false"
-            Shadow="None"
-            modal="true"
-            x="15" Y="35" >
-            <Listeners>
-                <Hide Handler="NuevoAvalForm.getForm().reset()" />
-           </Listeners>   
-            <Items>
-                <ext:FormPanel runat="server" ID="NuevoAvalForm" Title="Form" Header="false" ButtonAlign="Right" MonitorValid="true">
-                    <Items>
-                        <ext:Panel ID="Panel6" runat="server" Title="Datos Aval" Layout="AnchorLayout" AutoHeight="true" Icon="UserAdd" LabelWidth="150">
-                            <Items>
-                                <ext:Panel ID="Panel9" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
-                                    <Items>
-                                        <ext:ComboBox ID="CodigoAval" runat="server" EmptyText="Seleccione Socio"  TypeAhead="true"
-                                            ForceSelection="true" StoreID="ComboBoxSt" Mode="Local" DisplayField="SOCIOS_ID" FieldLabel="Codigo Socio" 
-                                            ValueField="SOCIOS_ID" MinChars="2" ListWidth="350" PageSize="10" ItemSelector="tr.list-item" AnchorHorizontal="90%">
-                                            <Template ID="Template2" runat="server" Width="200">
-                                                <Html>
-					                                <tpl for=".">
-						                                <tpl if="[xindex] == 1">
-							                                <table class="cbStates-list">
-								                                <tr>
-									                                <th>Id Socio</th>
-									                                <th>Primer Nombre</th>
-                                                                    <th>Primer Apellido</th>
-								                                </tr>
-						                                </tpl>
-						                                <tr class="list-item">
-							                                <td style="padding:3px 0px;">{SOCIOS_ID}</td>
-							                                <td>{SOCIOS_PRIMER_NOMBRE}</td>
-                                                            <td>{SOCIOS_PRIMER_APELLIDO}</td>
-						                                </tr>
-						                                <tpl if="[xcount-xindex]==0">
-							                                </table>
-						                                </tpl>
-					                                </tpl>
-				                                </Html>
-                                            </Template>
-                                            <Triggers>
-                                                <ext:FieldTrigger Icon="Clear" HideTrigger="true" />
-                                            </Triggers>
-                                            <Listeners>
-                                                <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
-                                                <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
-                                                <Select Handler="this.triggers[0].show(); "/>
-                                            </Listeners>
-                                        </ext:ComboBox>
-                                        <ext:ComboBox ID="AvalCalificacion"
-                                            runat="server" 
-                                            Editable="false" FieldLabel="Calificacion del aval"         
-                                            EmptyText="Seleccione Calificacion..." AnchorHorizontal="90%">
-                                            <Items>
-                                                <ext:ListItem Text="Muy Bueno" Value="Muy Bueno" />
-                                                <ext:ListItem Text="Bueno" Value="Bueno" />
-                                                <ext:ListItem Text="Regular" Value="Regular" />
-                                            </Items>
-                                        </ext:ComboBox>
-                                    </Items>
-                                </ext:Panel>
-                            </Items>
-                        </ext:Panel>
-                    </Items>
-                    <Buttons>
-                        <ext:Button ID="Button1" runat="server" Text="Crear" Icon="Add" FormBind="true">
-                            <Listeners>
-                                <Click Handler="SolicitudX.insertAval();" />
+                                <Click Handler="DirectX.CerrarReferencias()" />
                             </Listeners>
                         </ext:Button>
                     </Buttons>
@@ -809,7 +507,7 @@
             runat= "server"
             Hidden="true"
             ICon="UserEdit"
-            Title="Editar Aval"
+            Title="Visualizar Aval"
             Width="550"
             Layout="FormLayout"
             Autoheight="True"
@@ -831,7 +529,7 @@
                                         <ext:TextField runat="server" ID="EditAvalNombre" FieldLabel="Nombre Socio" AnchorHorizontal="90%" AllowBlank="false" ReadOnly="true" /> 
                                         <ext:TextField runat="server" ID="EditAvalAportaciones" FieldLabel="Aportaciones" AnchorHorizontal="90%" ReadOnly="true" /> 
                                         <ext:TextField runat="server" ID="EditAvalAntiguedad" FieldLabel="Antigüedad" AnchorHorizontal="90%" ReadOnly="true" />
-                                        <ext:ComboBox ID="EditarCalificacionAval"
+                                        <ext:ComboBox ID="EditarCalificacionAval" ReadOnly="true"
                                             runat="server" DataIndex="AVALES_CALIFICACION" 
                                             Editable="false" FieldLabel="Calificacion del Aval"         
                                             EmptyText="Seleccione Calificacion..." AnchorHorizontal="90%">
@@ -847,9 +545,9 @@
                         </ext:Panel>
                     </Items>
                     <Buttons>
-                        <ext:Button ID="Button2" runat="server" Text="Editar" Icon="UserEdit" FormBind="true">
+                        <ext:Button ID="Button2" runat="server" Text="Salir" Icon="Cancel" FormBind="true">
                             <Listeners>
-                                <Click Handler="DirectX.ActualizarAvales()" />
+                                <Click Handler="DirectX.CerrarAvales()" />
                             </Listeners>
                         </ext:Button>
                     </Buttons>

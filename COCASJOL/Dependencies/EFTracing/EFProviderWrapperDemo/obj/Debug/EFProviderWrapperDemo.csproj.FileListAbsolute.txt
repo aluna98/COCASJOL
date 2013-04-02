@@ -15,3 +15,6 @@ C:\Users\REB\Desktop\C#\EFProviderWrapperDemo\obj\Debug\EFProviderWrapperDemo.pd
 C:\Git\COCASJOL\COCASJOL\Dependencies\EFTracing\EFProviderWrapperDemo\bin\Debug\EFProviderWrapperDemo.exe.config
 C:\Git\COCASJOL\COCASJOL\Dependencies\EFTracing\EFProviderWrapperDemo\obj\Debug\EFProviderWrapperDemo.exe
 C:\Git\COCASJOL\COCASJOL\Dependencies\EFTracing\EFProviderWrapperDemo\obj\Debug\EFProviderWrapperDemo.pdb
+C:\Users\Edlin\COCASJOL\COCASJOL\Dependencies\EFTracing\EFProviderWrapperDemo\bin\Debug\EFProviderWrapperDemo.exe.config
+C:\Users\Edlin\COCASJOL\COCASJOL\Dependencies\EFTracing\EFProviderWrapperDemo\obj\Debug\EFProviderWrapperDemo.exe
+C:\Users\Edlin\COCASJOL\COCASJOL\Dependencies\EFTracing\EFProviderWrapperDemo\obj\Debug\EFProviderWrapperDemo.pdb

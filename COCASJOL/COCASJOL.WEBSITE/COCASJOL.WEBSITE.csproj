@@ -137,6 +137,7 @@
     <Content Include="resources\js\inventario\salidas\ventasInventarioDeCafe.js" />
     <Content Include="resources\js\logger\applicationLog.js" />
     <Content Include="resources\js\md5.js" />
+    <Content Include="resources\js\prestamos\PrestamosAprobados.js" />
     <Content Include="resources\js\prestamos\solicitudesDePrestamos.js" />
     <Content Include="resources\js\reportes\movimientosDeInventarioDeCafe.js" />
     <Content Include="resources\js\seguridad\roles.js" />
@@ -163,6 +164,7 @@
     <Content Include="Source\Inventario\Salidas\AjustesInventarioDeCafeDeSocios.aspx" />
     <Content Include="Source\Inventario\Salidas\VentasInventarioDeCafe.aspx" />
     <Content Include="Source\Logger\ApplicationLog.aspx" />
+    <Content Include="Source\Prestamos\Aprobados.aspx" />
     <Content Include="Source\Prestamos\Prestamos.aspx" />
     <Content Include="Source\Prestamos\SolicitudesDePrestamos.aspx" />
     <Content Include="Source\Reportes\MovimientosDeInventarioDeCafe.aspx" />
@@ -304,6 +306,13 @@
     </Compile>
     <Compile Include="Source\Logger\ApplicationLog.aspx.designer.cs">
       <DependentUpon>ApplicationLog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Prestamos\Aprobados.aspx.cs">
+      <DependentUpon>Aprobados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Prestamos\Aprobados.aspx.designer.cs">
+      <DependentUpon>Aprobados.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Prestamos\Prestamos.aspx.cs">
       <DependentUpon>Prestamos.aspx</DependentUpon>

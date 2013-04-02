@@ -25,6 +25,7 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
 
         string Socioid;
         int Solicitudid;
+        public bool confirm;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -51,7 +52,7 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
         [DirectMethod(RethrowException=true)]
         public void SeleccionarInteres()
         {
-            try
+           try
             {
                 PrestamosLogic prestamo = new PrestamosLogic();
                 int interes = prestamo.Intereses(Convert.ToInt32(AddTipoDeProdIdCmb.Value));
@@ -65,9 +66,97 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
         }
 
         [DirectMethod(RethrowException=true)]
+        public void DoConfirmEnable()
+        {
+			try{
+				RowSelectionModel sm = SolicitudesGriP.SelectionModel.Primary as RowSelectionModel;
+				int id = Convert.ToInt32(sm.SelectedRow.RecordID);
+				SolicitudesLogic logica = new SolicitudesLogic();
+				string estado = logica.getEstado(id);
+				if (estado != "RECHAZADA")
+				{
+					X.Msg.Confirm("Message", "Desea aprobar la solicitud?", new MessageBoxButtonsConfig
+					{
+						Yes = new MessageBoxButtonConfig
+						{
+							Handler = "DirectX.DoYesEnable()",
+							Text = "Aceptar"
+						},
+						No = new MessageBoxButtonConfig
+						{
+							Handler = "DirectX.DoNo()",
+							Text = "Cancelar"
+						}
+					}).Show();
+				}
+				else
+				{
+					X.Msg.Alert("ERROR", "La solicitud ya ha sido rechazada").Show();
+				}
+			}catch(Exception ex){
+				log.Fatal("Error fatal al intentar aprobar una solicitud.", ex);
+                throw;
+			}
+        }
+
+        [DirectMethod(RethrowException=true)]
+        public void DoConfirmDisable()
+        {
+			try{
+				X.Msg.Confirm("Message", "Desea rechazar la solicitud?", new MessageBoxButtonsConfig
+				{
+					Yes = new MessageBoxButtonConfig
+					{
+						Handler = "DirectX.DoYesDisable()",
+						Text = "Aceptar"
+					},
+					No = new MessageBoxButtonConfig
+					{
+						Handler = "DirectX.DoNo()",
+						Text = "Cancelar"
+					}
+				}).Show();
+			}
+			catch(Exception ex)
+            {
+                log.Fatal("Error fatal al intentar rechazar la solicitud", ex);
+                throw;
+            }
+        }
+
+        [DirectMethod(RethrowException=true)]
+        public void DoYesDisable()
+        {
+			try{
+				confirm = true;
+				SolicitudSt_Disable(null, null);
+			
+			}
+			catch(Exception ex)
+            {
+                log.Fatal("Error fatal al rechazar solicitud", ex);
+                throw;
+            }
+        }
+
+        [DirectMethod(RethrowException=true)]
+        public void DoYesEnable()
+        {
+			try{
+				confirm = true;
+				SolicitudSt_Enable(null, null);
+			}
+			catch(Exception ex)
+            {
+                log.Fatal("Error fatal al aprobar solicitud", ex);
+                throw;
+            }
+        }
+
+        [DirectMethod(RethrowException=true)]
         public void RefrescarSocio(string id)
         {
-            try
+           try
             {
                 Socioid = id;
                 Socios_Refresh(null, null);
@@ -91,6 +180,20 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
             catch (Exception ex)
             {
                 log.Fatal("Error fatal al cargar avales.", ex);
+                throw;
+            }
+        }
+
+        [DirectMethod(RethrowException = true)]
+        public void refreshTabReferencias()
+        {
+            try
+            {
+                RefrescarReferencias(Convert.ToInt32(EditIdSolicitud.Text));
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al cargar tab de referencias.", ex);
                 throw;
             }
         }
@@ -290,6 +393,28 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
             }
         }
 
+        protected void AddFecha_Change(object sender, RemoteValidationEventArgs e)
+        {
+            try
+            {
+                DateTime Fecha = DateTime.Parse(this.AddPlazoTxt.Text);
+                DateTime Ahora = DateTime.Now;
+                UsuarioLogic usuarioLogic = new UsuarioLogic();
+                if (Ahora.CompareTo(Fecha)<1)
+                {
+                    e.Success = false;
+                    e.ErrorMessage = "La Fecha debe ser posterior a la actual.";
+                }
+                else
+                    e.Success = true;
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al validar la fecha de plazo para la solicitud de prestamo.", ex);
+                throw;
+            }
+        }
+
         protected void Referencias_Refresh(object sender, StoreRefreshDataEventArgs e)
         {
             try
@@ -301,7 +426,6 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
                 log.Fatal("Error fatal al cargar referencias.", ex);
                 throw;
             }
-            
         }
 
         protected void Avales_Refresh(object sender, StoreRefreshDataEventArgs e)
@@ -315,17 +439,17 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
                 log.Fatal("Error fatal al cargar avales.", ex);
                 throw;
             }
-        }
+		}
 
         protected void SolicitudesSt_Reload(object sender, StoreRefreshDataEventArgs e)
         {
-            try
+			try
             {
-                SolicitudesLogic prestamo = new SolicitudesLogic();
-                var store1 = this.SolicitudesGriP.GetStore();
-                store1.DataSource = prestamo.getData();
-                store1.DataBind();
-            }
+				SolicitudesLogic prestamo = new SolicitudesLogic();
+				var store1 = this.SolicitudesGriP.GetStore();
+				store1.DataSource = prestamo.getViewSolicitud();
+				store1.DataBind();
+			}
             catch (Exception ex)
             {
                 log.Fatal("Error fatal al cargar solicitudes de prestamos.", ex);
@@ -347,9 +471,11 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
                 decimal promact = 0;
                 if(EditProd != null)
                     promact = Decimal.Parse(EditProd.Text);
-                logica.EditarSolicitud(id, monto, interes, EditPlazo.Text, EditPagoTxt.Text, EditDestinoTxt.Text, EditCargoTxt.Text, promedio3, promact, EditNorteTxt.Text, EditSurTxt.Text,
-                    EditEsteTxt.Text, EditOesteTxt.Text, EditCarro.Checked ? 1 : 0, EditAgua.Checked ? 1 : 0, EditLuz.Checked ? 1 : 0, EditCasa.Checked ? 1 : 0, EditBeneficio.Checked ? 1 : 0, EditOtrosTxt.Text,
-                    EditCalifCmb.Text, EditCmbEstado.Text, LoggedUserHdn.Text);
+                logica.EditarSolicitud(id, monto, interes, EditPlazo.Text, EditPagoTxt.Text, 
+                    EditDestinoTxt.Text, EditCargoTxt.Text, promedio3, promact, EditNorteTxt.Text, EditSurTxt.Text,
+                    EditEsteTxt.Text, EditOesteTxt.Text, EditCarro.Checked ? 1 : 0, EditAgua.Checked ? 1 : 0, 
+                    EditLuz.Checked ? 1 : 0, EditCasa.Checked ? 1 : 0, EditBeneficio.Checked ? 1 : 0, EditOtrosTxt.Text,
+                    EditCalifCmb.Text, LoggedUserHdn.Text);
                 EditarSolicitudWin.Hide();
                 X.Msg.Alert("Solicitudes de Prestamos", "La solicitud se ha modificado satisfactoriamente.").Show();
                 
@@ -383,20 +509,41 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
 
                 SolicitudesLogic logica = new SolicitudesLogic();
                 int vehiculo = 0, agua = 0, luz = 0, beneficio = 0, casa = 0;
-                if (AddVehiculo.Checked) { vehiculo = 1; }
-                if (AddAgua.Checked) { agua = 1; }
-                if (AddENEE.Checked) { luz = 1; }
-                if (AddCasa.Checked) { casa = 1; }
-                if (AddBeneficio.Checked) { beneficio = 1; }
+                string norte, sur, oeste, este, otros, calificacion;
+                norte = sur = oeste = este = otros = calificacion= "";
+                if (AddVehiculo != null && AddAgua != null && AddENEE != null && AddCasa != null && AddBeneficio != null)
+                {
+                    if (AddVehiculo.Checked) { vehiculo = 1; }
+                    if (AddAgua.Checked) { agua = 1; }
+                    if (AddENEE.Checked) { luz = 1; }
+                    if (AddCasa.Checked) { casa = 1; }
+                    if (AddBeneficio.Checked) { beneficio = 1; }
+                }
                 int tipoPrestamo = Convert.ToInt32(AddTipoDeProdIdCmb.Value.ToString());
                 decimal monto = Decimal.Parse(AddMontoTxt.Value.ToString());
                 int interes = Convert.ToInt32(AddInteresTxt.Value.ToString());
-                decimal promedio = Decimal.Parse(AddPromedioTxt.Value.ToString());
-                decimal promact = Decimal.Parse(AddPromActTxt.Value.ToString());
+                decimal promedio=0;
+                if (AddPromedioTxt.Text!="")
+                     promedio = Decimal.Parse(AddPromedioTxt.Text);
+                decimal promact = 0;
+                if (AddPromActTxt.Text!="")
+                    promact = Decimal.Parse(AddPromActTxt.Text);
+                if (AddNorteTxt!= null && AddSurTxt!= null && AddOesteTxt!= null && AddEsteTxt!= null)
+                {
+                    norte = AddNorteTxt.Text;
+                    sur = AddSurTxt.Text;
+                    oeste = AddOesteTxt.Text;
+                    este = AddEsteTxt.Text;
+                }
+                if (AddOtrosTxt != null && AddCalificacion != null)
+                {
+                    otros = AddOtrosTxt.Text;
+                    calificacion = AddCalificacion.Text;
+                }
                 logica.InsertarSolicitud(cbSociosId.Text, monto, interes, AddPlazoTxt.Text,
                     AddPagoTxt.Text, AddDestinoTxt.Text, tipoPrestamo, AddCargoTxt.Text, promedio,
-                    promact, AddNorteTxt.Text, AddSurTxt.Text, AddOesteTxt.Text, AddEsteTxt.Text, vehiculo, agua, luz, casa, beneficio,
-                    AddOtrosTxt.Text, AddCalificacion.Text, LoggedUserHdn.Text);
+                    promact, norte, sur, oeste, este, vehiculo, agua, luz, casa, beneficio,
+                    otros, calificacion, LoggedUserHdn.Text);
                 NuevaSolicitudWin.Hide();
                 X.Msg.Alert("Solicitudes de Prestamos", "La solicitud se ha creado satisfactoriamente.").Show();
                 
@@ -410,27 +557,67 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
 
         protected void Socios_Refresh(object sender, StoreRefreshDataEventArgs e)
         {
-            try
+			try
             {
-                SolicitudesLogic solicitud = new SolicitudesLogic();
-                socio socio = solicitud.getSocio(Socioid);
-                socio_produccion produccion = solicitud.getProduccion(Socioid);
-                EditSocioid.Text = socio.SOCIOS_ID;
-                EditNombre.Text = socio.SOCIOS_PRIMER_NOMBRE + " " + socio.SOCIOS_SEGUNDO_NOMBRE + " " + socio.SOCIOS_PRIMER_APELLIDO + " " + socio.SOCIOS_SEGUNDO_APELLIDO;
-                EditIdentidad.Text = socio.SOCIOS_IDENTIDAD;
-                EditLugarNcax.Text = socio.SOCIOS_LUGAR_DE_NACIMIENTO;
-                EditCarnetIHCAFE.Text = solicitud.getIHCAFE(Socioid);
-                EditRTN.Text = socio.SOCIOS_RTN;
-                EditEstadoCivil.Text = socio.SOCIOS_ESTADO_CIVIL;
-                EditProfesion.Text = socio.SOCIOS_PROFESION;
-                EditTelefono.Text = socio.SOCIOS_TELEFONO;
-                EditResidencia.Text = socio.SOCIOS_RESIDENCIA;
-                EditManzanas.Text = Convert.ToString(produccion.PRODUCCION_MANZANAS_CULTIVADAS);
-                EditUbicacion.Text = produccion.PRODUCCION_UBICACION_FINCA;
-            }
-            catch (Exception ex)
+				SolicitudesLogic solicitud = new SolicitudesLogic();
+				socio socio = solicitud.getSocio(Socioid);
+				socio_produccion produccion = solicitud.getProduccion(Socioid);
+				EditSocioid.Text = socio.SOCIOS_ID;
+				EditNombre.Text = socio.SOCIOS_PRIMER_NOMBRE + " " + socio.SOCIOS_SEGUNDO_NOMBRE + " " + socio.SOCIOS_PRIMER_APELLIDO + " " + socio.SOCIOS_SEGUNDO_APELLIDO;
+				EditIdentidad.Text = socio.SOCIOS_IDENTIDAD;
+				EditLugarNcax.Text = socio.SOCIOS_LUGAR_DE_NACIMIENTO;
+				EditCarnetIHCAFE.Text = solicitud.getIHCAFE(Socioid);
+				EditRTN.Text = socio.SOCIOS_RTN;
+				EditEstadoCivil.Text = socio.SOCIOS_ESTADO_CIVIL;
+				EditProfesion.Text = socio.SOCIOS_PROFESION;
+				EditTelefono.Text = socio.SOCIOS_TELEFONO;
+				EditResidencia.Text = socio.SOCIOS_RESIDENCIA;
+				EditManzanas.Text = Convert.ToString(produccion.PRODUCCION_MANZANAS_CULTIVADAS);
+				EditUbicacion.Text = produccion.PRODUCCION_UBICACION_FINCA;
+			}
+			catch (Exception ex)
             {
                 log.Fatal("Error fatal al cargar socios.", ex);
+                throw;
+            }
+        }
+
+        protected void SolicitudSt_Disable(object sender, EventArgs e)
+        {
+			try{
+				RowSelectionModel sm = SolicitudesGriP.SelectionModel.Primary as RowSelectionModel;
+				int id = Convert.ToInt32(sm.SelectedRow.RecordID);
+				if (confirm)
+				{
+					SolicitudesLogic solicitud = new SolicitudesLogic();
+					solicitud.DenegarSolicitud(id);
+					confirm = false;
+				}
+				SolicitudesSt_Reload(null, null);
+			}
+			catch(Exception ex)
+            {
+                log.Fatal("Error fatal al rechazar la solicitud.", ex);
+                throw;
+            }
+        }
+
+        protected void SolicitudSt_Enable(object sender, EventArgs e)
+        {
+			try{
+				RowSelectionModel sm = SolicitudesGriP.SelectionModel.Primary as RowSelectionModel;
+				int id = Convert.ToInt32(sm.SelectedRow.RecordID);
+				if (confirm)
+				{
+					SolicitudesLogic solicitudes = new SolicitudesLogic();
+					solicitudes.AprobarSolicitud(id);
+					confirm = false;
+				}
+				SolicitudesSt_Reload(null, null);
+			}
+			catch(Exception ex)
+            {
+                log.Fatal("Error fatal al aprobar la solicitud.", ex);
                 throw;
             }
         }
