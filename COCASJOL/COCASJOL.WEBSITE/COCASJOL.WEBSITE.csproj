@@ -114,6 +114,8 @@
     <Content Include="resources\images\page_white_office.png" />
     <Content Include="resources\images\page_white_put.png" />
     <Content Include="resources\images\page_white_text.png" />
+    <Content Include="resources\images\page_white_text_valid.png" />
+    <Content Include="resources\images\page_white_text_valid16x16.png" />
     <Content Include="resources\images\report_bricks.png" />
     <Content Include="resources\images\report_bricks16x16.png" />
     <Content Include="resources\images\script.png" />

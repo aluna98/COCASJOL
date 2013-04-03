@@ -17,6 +17,14 @@
                 <DocumentReady Handler="SolicitudX.setReferences();" />
             </Listeners>
         </ext:ResourceManager>
+
+        <ext:KeyNav ID="KeyNav1" runat="server" Target="={document.body}" >
+            <Home Handler="SolicitudX.navHome();" />
+            <PageUp Handler="SolicitudX.navPrev();" />
+            <PageDown Handler="SolicitudX.navNext();" />
+            <End Handler="SolicitudX.navEnd();" />
+        </ext:KeyNav>
+
         <ext:Store ID="ComboBoxSt" runat="server" OnRefreshData="SociosSt_Reload">
             <Reader>
                 <ext:JsonReader>
@@ -240,6 +248,17 @@
                 <Listeners>
                     <Hide Handler="EditarSolicitudFormP.getForm().reset()" />
                 </Listeners>
+                <TopBar>
+                    <ext:Toolbar ID="Toolbar2" runat="server">
+                        <Items>
+                            <ext:Button ID="ImprimirBtn" runat="server" Text="Versión para Imprimir" Icon="Printer">
+                                <Listeners>
+                                    <Click Handler="SolicitudX.print();" />
+                                </Listeners>
+                            </ext:Button>
+                        </Items>
+                    </ext:Toolbar>
+                </TopBar>
                 <Items>
                     <ext:FormPanel ID="EditarSolicitudFormP" runat="server" Header="false" ButtonAlign="Right" MonitorValid="true" LabelAlign="Right">
                         <Items>

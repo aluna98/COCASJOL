@@ -248,12 +248,16 @@ var WindowX = {
         DesktopX.createDynamicWindow(app, 'retiroAportaciones16', 'Retiro de Aportaciones', 'Aportaciones/RetiroDeAportaciones.aspx', 1000, 600);
     },
 
+    prestamos: function (app) {
+        DesktopX.createDynamicWindow(app, 'prestamos16', 'Tipos de Prestamo', 'Prestamos/Prestamos.aspx');
+    },
+
     solicitudesDePrestamo: function (app) {
         DesktopX.createDynamicWindow(app, 'pagewhitetext', 'Solicitudes de Prestamo', 'Prestamos/SolicitudesDePrestamos.aspx');
     },
 
-    prestamos: function (app) {
-        DesktopX.createDynamicWindow(app, 'prestamos16', 'Prestamos', 'Prestamos/Prestamos.aspx');
+    prestamosAprobados: function (app) {
+        DesktopX.createDynamicWindow(app, 'prestamosAprobados16', 'Solicitudes de Prestamo Aprobado', 'Prestamos/Aprobados.aspx');
     },
 
     clasificacionesDeCafe: function (app) {
@@ -312,10 +316,12 @@ var ShorcutClickHandler = function (app, id) {
         WindowX.aportacionesPorSocio(app);
     } else if (id == 'scRetiroDeAportaciones') {
         WindowX.retiroDeAportaciones(app);
-    } else if (id == 'scSolicitudesDePrestamo') {
-        WindowX.solicitudesDePrestamo(app);
     } else if (id == 'scPrestamos') {
         WindowX.prestamos(app);
+    } else if (id == 'scSolicitudesDePrestamo') {
+        WindowX.solicitudesDePrestamo(app);
+    } else if (id == 'scPrestamosAprobados') {
+        WindowX.prestamosAprobados(app);
     } else if (id == 'scClasificacionesDeCafe') {
         WindowX.clasificacionesDeCafe(app);
     } else if (id == 'scVariablesDeEntorno') {

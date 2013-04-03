@@ -364,6 +364,15 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.MenuItem PrestamosMenu;
         
         /// <summary>
+        /// PrestamosMenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem PrestamosMenuItem;
+        
+        /// <summary>
         /// SolicitudesDePrestamoMenuItem control.
         /// </summary>
         /// <remarks>
@@ -373,13 +382,13 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.MenuItem SolicitudesDePrestamoMenuItem;
         
         /// <summary>
-        /// PrestamosMenuItem control.
+        /// PrestamosAprobadosMenuItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.MenuItem PrestamosMenuItem;
+        protected global::Ext.Net.MenuItem PrestamosAprobadosMenuItem;
         
         /// <summary>
         /// ReportesMenu control.
@@ -859,6 +868,15 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.ToolTip scRetiroDeAportacionesTooltip;
         
         /// <summary>
+        /// scPrestamosTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scPrestamosTooltip;
+        
+        /// <summary>
         /// scSolicitudesDePrestamoTooltip control.
         /// </summary>
         /// <remarks>
@@ -868,13 +886,13 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.ToolTip scSolicitudesDePrestamoTooltip;
         
         /// <summary>
-        /// scPrestamosTooltip control.
+        /// scPrestamosAprobadosTooltip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ToolTip scPrestamosTooltip;
+        protected global::Ext.Net.ToolTip scPrestamosAprobadosTooltip;
         
         /// <summary>
         /// scMovimientosDeInventarioDeCafeTooltip control.
