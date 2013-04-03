@@ -295,7 +295,7 @@ var PageX = {
 
     print: function () {
         var notas_id = EditNotaIdTxt.getValue();
-        window.open('../../Reportes/ReporteNotasDePeso.aspx?NOTAS_ID=' + notas_id, "_blank", "resizable=yes, scrollbars=yes, top=10, left=10");
+        window.open('../../Reportes/ImprimirNotasDePeso.aspx?NOTAS_ID=' + notas_id, "_blank", "resizable=yes, scrollbars=yes, top=10, left=10");
     }
 };
 

@@ -342,6 +342,6 @@ var PageX = {
 
     print: function () {
         var liquidaciones_id = EditHojasIdTxt.getValue();
-        window.open('../../Reportes/ReporteHojasDeLiquidacion.aspx?LIQUIDACIONES_ID=' + liquidaciones_id, "_blank", "resizable=yes, scrollbars=yes, top=10, left=10");
+        window.open('../../Reportes/ImprimirHojasDeLiquidacion.aspx?LIQUIDACIONES_ID=' + liquidaciones_id, "_blank", "resizable=yes, scrollbars=yes, top=10, left=10");
     }
 };

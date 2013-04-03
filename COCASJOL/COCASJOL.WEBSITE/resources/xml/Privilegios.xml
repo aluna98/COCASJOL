@@ -30,7 +30,7 @@
   </privilege>
   <privilege>
     <key>MANT_SOCIOS</key>
-    <page>ReporteSolicitudesDeIngresoDeSocio</page>
+    <page>ImprimirSolicitudesDeIngresoDeSocio</page>
     <module></module>
     <shortcut></shortcut>
     <menuitem></menuitem>
@@ -65,7 +65,7 @@
   </privilege>
   <privilege>
     <key>MANT_NOTASPESOENADMINISTRACION</key>
-    <page>ReporteNotasDePeso</page>
+    <page>ImprimirNotasDePeso</page>
     <module></module>
     <shortcut></shortcut>
     <menuitem></menuitem>
@@ -100,7 +100,7 @@
   </privilege>
   <privilege>
     <key>MANT_HOJASLIQUIDACION</key>
-    <page>ReporteHojasDeLiquidacion</page>
+    <page>ImprimirHojasDeLiquidacion</page>
     <module></module>
     <shortcut></shortcut>
     <menuitem></menuitem>

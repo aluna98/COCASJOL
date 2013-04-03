@@ -10,7 +10,7 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DataSet2">
+    <DataSet Name="NotasDetalleDataSet">
       <Fields>
         <Field Name="DETALLES_ID">
           <DataField>DETALLES_ID</DataField>
@@ -34,7 +34,7 @@
         </Field>
         <Field Name="notas_de_pesoReference">
           <DataField>notas_de_pesoReference</DataField>
-          <rd:TypeName>System.Data.Objects.DataClasses.EntityReference`1[[COCASJOL.LOGIC.nota_de_peso, COCASJOL.LOGIC, Version=1.0.4817.5775, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Data.Objects.DataClasses.EntityReference`1[[COCASJOL.LOGIC.nota_de_peso, COCASJOL.LOGIC, Version=1.0.4840.39367, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
         </Field>
         <Field Name="EntityState">
           <DataField>EntityState</DataField>
@@ -54,7 +54,7 @@
         <rd:TableName>ReporteLogic</rd:TableName>
         <rd:ObjectDataSourceSelectMethod>GetNotasDetalle</rd:ObjectDataSourceSelectMethod>
         <rd:ObjectDataSourceSelectMethodSignature>System.Collections.Generic.List`1[COCASJOL.LOGIC.nota_detalle] GetNotasDetalle(Int32)</rd:ObjectDataSourceSelectMethodSignature>
-        <rd:ObjectDataSourceType>COCASJOL.LOGIC.Reportes.ReporteLogic, COCASJOL.LOGIC, Version=1.0.4817.5775, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>COCASJOL.LOGIC.Reportes.ReporteLogic, COCASJOL.LOGIC, Version=1.0.4840.39367, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -237,9 +237,9 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>DataSet2</DataSetName>
+        <DataSetName>NotasDetalleDataSet</DataSetName>
         <Height>0.46542in</Height>
-        <Width>3.19097in</Width>
+        <Width>3.19096in</Width>
         <Style>
           <Border>
             <Style>None</Style>

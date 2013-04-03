@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReporteNotasDePeso.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Reportes.ReporteNotasDePeso" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ImprimirHojasDeLiquidacion.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Reportes.ImprimirHojasDeLiquidacion" %>
 
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
     Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
@@ -12,15 +12,16 @@
 <body>
     <form id="form1" runat="server">
     <div>
+
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
 
-        <asp:ObjectDataSource ID="ObjectDataSource2" runat="server" 
-            SelectMethod="GetNotasDePeso" 
+        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
+            SelectMethod="GetHojasDeLiquidacion" 
             TypeName="COCASJOL.LOGIC.Reportes.ReporteLogic">
             <SelectParameters>
-                <asp:QueryStringParameter DefaultValue="0" Name="NOTAS_ID" 
-                    QueryStringField="NOTAS_ID" Type="Int32" />
+                <asp:QueryStringParameter DefaultValue="0" Name="LIQUIDACIONES_ID" 
+                    QueryStringField="LIQUIDACIONES_ID" Type="Int32" />
             </SelectParameters>
         </asp:ObjectDataSource>
 
@@ -31,10 +32,11 @@
                 ShowBackButton="False" ShowCredentialPrompts="False" 
                 ShowDocumentMapButton="False" ShowFindControls="False" 
                 ShowPageNavigationControls="False" ShowParameterPrompts="False" 
-                ShowPromptAreaButton="False" SizeToReportContent="True">
-                <LocalReport ReportPath="resources\rdlcs\NotasDePeso.rdlc" OnSubreportProcessing="ReportViewer1_SubreportProcessing">
+                ShowPromptAreaButton="False" SizeToReportContent="True" 
+                AsyncRendering="False">
+                <LocalReport ReportPath="resources\rdlcs\HojasDeLiquidacion.rdlc" >
                     <DataSources>
-                        <rsweb:ReportDataSource DataSourceId="ObjectDataSource2" Name="DataSet1" />
+                        <rsweb:ReportDataSource DataSourceId="ObjectDataSource1" Name="HojasDeLiquidacionDataSet" />
                     </DataSources>
                 </LocalReport>
             </rsweb:ReportViewer>

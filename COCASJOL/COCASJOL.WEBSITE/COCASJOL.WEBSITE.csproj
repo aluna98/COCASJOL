@@ -167,10 +167,11 @@
     <Content Include="Source\Prestamos\Aprobados.aspx" />
     <Content Include="Source\Prestamos\Prestamos.aspx" />
     <Content Include="Source\Prestamos\SolicitudesDePrestamos.aspx" />
+    <Content Include="Source\Reportes\ImprimirSolicitudDePrestamo.aspx" />
     <Content Include="Source\Reportes\MovimientosDeInventarioDeCafe.aspx" />
-    <Content Include="Source\Reportes\ReporteHojasDeLiquidacion.aspx" />
-    <Content Include="Source\Reportes\ReporteNotasDePeso.aspx" />
-    <Content Include="Source\Reportes\ReporteSolicitudesDeIngresoDeSocio.aspx" />
+    <Content Include="Source\Reportes\ImprimirHojasDeLiquidacion.aspx" />
+    <Content Include="Source\Reportes\ImprimirNotasDePeso.aspx" />
+    <Content Include="Source\Reportes\ImprimirSolicitudesDeIngresoDeSocio.aspx" />
     <Content Include="Source\Seguridad\CambiarClave.ascx" />
     <Content Include="Source\Seguridad\Roles.aspx" />
     <Content Include="Source\Seguridad\Usuarios.aspx" />
@@ -328,6 +329,13 @@
     <Compile Include="Source\Prestamos\SolicitudesDePrestamos.aspx.designer.cs">
       <DependentUpon>SolicitudesDePrestamos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Source\Reportes\ImprimirSolicitudDePrestamo.aspx.cs">
+      <DependentUpon>ImprimirSolicitudDePrestamo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Reportes\ImprimirSolicitudDePrestamo.aspx.designer.cs">
+      <DependentUpon>ImprimirSolicitudDePrestamo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Source\Reportes\MovimientosDeInventarioDeCafe.aspx.cs">
       <DependentUpon>MovimientosDeInventarioDeCafe.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -335,26 +343,26 @@
     <Compile Include="Source\Reportes\MovimientosDeInventarioDeCafe.aspx.designer.cs">
       <DependentUpon>MovimientosDeInventarioDeCafe.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Source\Reportes\ReporteHojasDeLiquidacion.aspx.cs">
-      <DependentUpon>ReporteHojasDeLiquidacion.aspx</DependentUpon>
+    <Compile Include="Source\Reportes\ImprimirHojasDeLiquidacion.aspx.cs">
+      <DependentUpon>ImprimirHojasDeLiquidacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Source\Reportes\ReporteHojasDeLiquidacion.aspx.designer.cs">
-      <DependentUpon>ReporteHojasDeLiquidacion.aspx</DependentUpon>
+    <Compile Include="Source\Reportes\ImprimirHojasDeLiquidacion.aspx.designer.cs">
+      <DependentUpon>ImprimirHojasDeLiquidacion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Source\Reportes\ReporteNotasDePeso.aspx.cs">
-      <DependentUpon>ReporteNotasDePeso.aspx</DependentUpon>
+    <Compile Include="Source\Reportes\ImprimirNotasDePeso.aspx.cs">
+      <DependentUpon>ImprimirNotasDePeso.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Source\Reportes\ReporteNotasDePeso.aspx.designer.cs">
-      <DependentUpon>ReporteNotasDePeso.aspx</DependentUpon>
+    <Compile Include="Source\Reportes\ImprimirNotasDePeso.aspx.designer.cs">
+      <DependentUpon>ImprimirNotasDePeso.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Source\Reportes\ReporteSolicitudesDeIngresoDeSocio.aspx.cs">
-      <DependentUpon>ReporteSolicitudesDeIngresoDeSocio.aspx</DependentUpon>
+    <Compile Include="Source\Reportes\ImprimirSolicitudesDeIngresoDeSocio.aspx.cs">
+      <DependentUpon>ImprimirSolicitudesDeIngresoDeSocio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Source\Reportes\ReporteSolicitudesDeIngresoDeSocio.aspx.designer.cs">
-      <DependentUpon>ReporteSolicitudesDeIngresoDeSocio.aspx</DependentUpon>
+    <Compile Include="Source\Reportes\ImprimirSolicitudesDeIngresoDeSocio.aspx.designer.cs">
+      <DependentUpon>ImprimirSolicitudesDeIngresoDeSocio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Seguridad\CambiarClave.ascx.cs">
       <DependentUpon>CambiarClave.ascx</DependentUpon>
@@ -409,13 +417,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="resources\rdlcs\BeneficiariosPorSocio.rdlc" />
+    <EmbeddedResource Include="resources\rdlcs\solicitudesDeIngresoDeSocio\BeneficiariosPorSocio.rdlc" />
     <EmbeddedResource Include="resources\rdlcs\HojasDeLiquidacion.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="resources\rdlcs\NotaDetalles.rdlc" />
-    <EmbeddedResource Include="resources\rdlcs\NotasDePeso.rdlc" />
-    <EmbeddedResource Include="resources\rdlcs\SolicitudDeIngresoDeSocio.rdlc" />
+    <EmbeddedResource Include="resources\rdlcs\notasDePeso\NotaDetalles.rdlc" />
+    <EmbeddedResource Include="resources\rdlcs\notasDePeso\NotasDePeso.rdlc" />
+    <EmbeddedResource Include="resources\rdlcs\solicitudesDePrestamo\Avales.rdlc" />
+    <EmbeddedResource Include="resources\rdlcs\solicitudesDePrestamo\ReferenciasComerciales.rdlc" />
+    <EmbeddedResource Include="resources\rdlcs\solicitudesDePrestamo\ReferenciasPersonales.rdlc" />
+    <EmbeddedResource Include="resources\rdlcs\solicitudesDeIngresoDeSocio\SolicitudDeIngresoDeSocio.rdlc" />
+    <EmbeddedResource Include="resources\rdlcs\solicitudesDePrestamo\SolicitudDePrestamo.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Data\log4net.db" />

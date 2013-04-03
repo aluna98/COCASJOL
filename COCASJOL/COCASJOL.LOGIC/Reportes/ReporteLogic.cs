@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using System.Data;
+using System.Data.Objects;
+
 using log4net;
 
 namespace COCASJOL.LOGIC.Reportes
@@ -43,7 +46,9 @@ namespace COCASJOL.LOGIC.Reportes
                                 where NOTAS_ID == 0 ? true : nd.NOTAS_ID.Equals(NOTAS_ID)
                                 select nd;
 
-                    return query.First<nota_de_peso>().notas_detalles.ToList<nota_detalle>();
+                    nota_de_peso nota = query.FirstOrDefault<nota_de_peso>();
+
+                    return nota == null ? new List<nota_detalle>() :  nota.notas_detalles.ToList<nota_detalle>();
                 }
             }
             catch (Exception ex)
@@ -103,12 +108,95 @@ namespace COCASJOL.LOGIC.Reportes
                                 where string.IsNullOrEmpty(SOCIOS_ID) ? true : bs.SOCIOS_ID == SOCIOS_ID
                                 select bs;
 
-                    return query.First<socio>().beneficiario_x_socio.ToList<beneficiario_x_socio>();
+                    socio soc = query.FirstOrDefault<socio>();
+
+                    return soc == null ? new List<beneficiario_x_socio>() :  soc.beneficiario_x_socio.ToList<beneficiario_x_socio>();
                 }
             }
             catch (Exception ex)
             {
                 log.Fatal("Error fatal al obtener beneficiarios de socios.", ex);
+                throw;
+            }
+        }
+
+        public List<solicitud_prestamo> GetSolicitudesDePrestamo(int SOLICITUDES_ID = 0 , string SOCIOS_ID = "")
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    var query = from sp in db.solicitudes_prestamos.Include("prestamos").Include("socios")
+                                where
+                                (SOLICITUDES_ID == 0 ? true : sp.SOLICITUDES_ID.Equals(SOLICITUDES_ID)) &&
+                                (string.IsNullOrEmpty(SOCIOS_ID) ? true : sp.SOCIOS_ID == SOCIOS_ID)
+                                select sp;
+
+                    return query.ToList<solicitud_prestamo>();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al obtener solicitudes de prestamo.", ex);
+                throw;
+            }
+        }
+
+        public List<referencia_x_solicitud> GetReferenciasXSolicitud(int SOLICITUDES_ID = 0, string REFERENCIAS_TIPO = "")
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    EntityKey k = new EntityKey("colinasEntities.solicitudes_prestamos", "SOLICITUDES_ID", SOLICITUDES_ID);
+
+                    Object solic = null;
+
+                    if (db.TryGetObjectByKey(k, out solic))
+                    {
+                        solicitud_prestamo solicitud = (solicitud_prestamo)solic;
+
+                        var query = from rs in solicitud.referencias_x_solicitudes
+                                    where string.IsNullOrEmpty(REFERENCIAS_TIPO) ? true : rs.REFERENCIAS_TIPO == REFERENCIAS_TIPO
+                                    select rs;
+
+                        return query.ToList<referencia_x_solicitud>();
+                    }
+                    else
+                        return new List<referencia_x_solicitud>();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al obtener referencias por solicitud de prestamo.", ex);
+                throw;
+            }
+        }
+
+        public List<aval_x_solicitud> GetAvalesXSolicitud(int SOLICITUDES_ID = 0)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+
+                    EntityKey k = new EntityKey("colinasEntities.solicitudes_prestamos", "SOLICITUDES_ID", SOLICITUDES_ID);
+
+                    Object solic = null;
+
+                    if (db.TryGetObjectByKey(k, out solic))
+                    {
+                        solicitud_prestamo solicitud = (solicitud_prestamo)solic;
+
+                        return solicitud.avales_x_solicitud.ToList<aval_x_solicitud>();
+                    }
+                    else
+                        return new List<aval_x_solicitud>();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al obtener avales por solicitud de prestamo.", ex);
                 throw;
             }
         }

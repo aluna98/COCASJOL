@@ -10,7 +10,7 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DataSet1">
+    <DataSet Name="NotasDePesoDataSet">
       <Fields>
         <Field Name="NOTAS_ID">
           <DataField>NOTAS_ID</DataField>
@@ -110,19 +110,11 @@
         </Field>
         <Field Name="clasificaciones_cafeReference">
           <DataField>clasificaciones_cafeReference</DataField>
-          <rd:TypeName>System.Data.Objects.DataClasses.EntityReference`1[[COCASJOL.LOGIC.clasificacion_cafe, COCASJOL.LOGIC, Version=1.0.4817.5775, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
-        </Field>
-        <Field Name="socios">
-          <DataField>socios</DataField>
-          <rd:TypeName>COCASJOL.LOGIC.socio</rd:TypeName>
-        </Field>
-        <Field Name="sociosReference">
-          <DataField>sociosReference</DataField>
-          <rd:TypeName>System.Data.Objects.DataClasses.EntityReference`1[[COCASJOL.LOGIC.socio, COCASJOL.LOGIC, Version=1.0.4817.5775, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Data.Objects.DataClasses.EntityReference`1[[COCASJOL.LOGIC.clasificacion_cafe, COCASJOL.LOGIC, Version=1.0.4840.39151, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
         </Field>
         <Field Name="notas_detalles">
           <DataField>notas_detalles</DataField>
-          <rd:TypeName>System.Data.Objects.DataClasses.EntityCollection`1[[COCASJOL.LOGIC.nota_detalle, COCASJOL.LOGIC, Version=1.0.4817.5775, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Data.Objects.DataClasses.EntityCollection`1[[COCASJOL.LOGIC.nota_detalle, COCASJOL.LOGIC, Version=1.0.4840.39151, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
         </Field>
         <Field Name="estados_nota_de_peso">
           <DataField>estados_nota_de_peso</DataField>
@@ -130,7 +122,15 @@
         </Field>
         <Field Name="estados_nota_de_pesoReference">
           <DataField>estados_nota_de_pesoReference</DataField>
-          <rd:TypeName>System.Data.Objects.DataClasses.EntityReference`1[[COCASJOL.LOGIC.estado_nota_de_peso, COCASJOL.LOGIC, Version=1.0.4817.5775, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Data.Objects.DataClasses.EntityReference`1[[COCASJOL.LOGIC.estado_nota_de_peso, COCASJOL.LOGIC, Version=1.0.4840.39151, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+        </Field>
+        <Field Name="socios">
+          <DataField>socios</DataField>
+          <rd:TypeName>COCASJOL.LOGIC.socio</rd:TypeName>
+        </Field>
+        <Field Name="sociosReference">
+          <DataField>sociosReference</DataField>
+          <rd:TypeName>System.Data.Objects.DataClasses.EntityReference`1[[COCASJOL.LOGIC.socio, COCASJOL.LOGIC, Version=1.0.4840.39151, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
         </Field>
         <Field Name="EntityState">
           <DataField>EntityState</DataField>
@@ -150,7 +150,7 @@
         <rd:TableName>ReporteLogic</rd:TableName>
         <rd:ObjectDataSourceSelectMethod>GetNotasDePeso</rd:ObjectDataSourceSelectMethod>
         <rd:ObjectDataSourceSelectMethodSignature>System.Collections.Generic.List`1[COCASJOL.LOGIC.nota_de_peso] GetNotasDePeso(Int32)</rd:ObjectDataSourceSelectMethodSignature>
-        <rd:ObjectDataSourceType>COCASJOL.LOGIC.Reportes.ReporteLogic, COCASJOL.LOGIC, Version=1.0.4817.5775, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>COCASJOL.LOGIC.Reportes.ReporteLogic, COCASJOL.LOGIC, Version=1.0.4840.39151, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

@@ -14,9 +14,9 @@ using log4net;
 
 namespace COCASJOL.WEBSITE.Source.Reportes
 {
-    public partial class ReporteHojasDeLiquidacion : COCASJOL.LOGIC.Web.COCASJOLBASE
+    public partial class ImprimirHojasDeLiquidacion : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
-        private static ILog log = LogManager.GetLogger(typeof(ReporteHojasDeLiquidacion).Name);
+        private static ILog log = LogManager.GetLogger(typeof(ImprimirHojasDeLiquidacion).Name);
 
         int LIQUIDACIONES_ID = 0;
 

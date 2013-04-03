@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReporteHojasDeLiquidacion.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Reportes.ReporteHojasDeLiquidacion" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ImprimirSolicitudesDeIngresoDeSocio.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Reportes.ImprimirSolicitudesDeIngresoDeSocio" %>
 
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
     Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
@@ -12,16 +12,16 @@
 <body>
     <form id="form1" runat="server">
     <div>
-
+    
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
 
-        <asp:ObjectDataSource ID="ObjectDataSource2" runat="server" 
-            SelectMethod="GetHojasDeLiquidacion" 
+        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
+            SelectMethod="GetSocios" 
             TypeName="COCASJOL.LOGIC.Reportes.ReporteLogic">
             <SelectParameters>
-                <asp:QueryStringParameter DefaultValue="0" Name="LIQUIDACIONES_ID" 
-                    QueryStringField="LIQUIDACIONES_ID" Type="Int32" />
+                <asp:QueryStringParameter DefaultValue="" Name="SOCIOS_ID" 
+                    QueryStringField="SOCIOS_ID" Type="String" />
             </SelectParameters>
         </asp:ObjectDataSource>
 
@@ -34,13 +34,13 @@
                 ShowPageNavigationControls="False" ShowParameterPrompts="False" 
                 ShowPromptAreaButton="False" SizeToReportContent="True" 
                 AsyncRendering="False">
-                <LocalReport ReportPath="resources\rdlcs\HojasDeLiquidacion.rdlc" >
+                <LocalReport ReportPath="resources\rdlcs\solicitudesDeIngresoDeSocio\SolicitudDeIngresoDeSocio.rdlc" OnSubreportProcessing="ReportViewer1_SubreportProcessing" >
                     <DataSources>
-                        <rsweb:ReportDataSource DataSourceId="ObjectDataSource2" Name="DataSet1" />
+                        <rsweb:ReportDataSource DataSourceId="ObjectDataSource1" Name="SociosDataSet" />
                     </DataSources>
                 </LocalReport>
             </rsweb:ReportViewer>
-        </div>
+        </div> 
     </div>
     </form>
 </body>

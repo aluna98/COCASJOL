@@ -10,7 +10,7 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DataSet1">
+    <DataSet Name="SociosDataSet">
       <Fields>
         <Field Name="SOCIOS_ID">
           <DataField>SOCIOS_ID</DataField>
@@ -118,35 +118,35 @@
         </Field>
         <Field Name="aportaciones_socio">
           <DataField>aportaciones_socio</DataField>
-          <rd:TypeName>System.Data.Objects.DataClasses.EntityCollection`1[[COCASJOL.LOGIC.aportacion_socio, COCASJOL.LOGIC, Version=1.0.4835.39300, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Data.Objects.DataClasses.EntityCollection`1[[COCASJOL.LOGIC.aportacion_socio, COCASJOL.LOGIC, Version=1.0.4840.39367, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
         </Field>
         <Field Name="avales_x_solicitud">
           <DataField>avales_x_solicitud</DataField>
-          <rd:TypeName>System.Data.Objects.DataClasses.EntityCollection`1[[COCASJOL.LOGIC.aval_x_solicitud, COCASJOL.LOGIC, Version=1.0.4835.39300, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Data.Objects.DataClasses.EntityCollection`1[[COCASJOL.LOGIC.aval_x_solicitud, COCASJOL.LOGIC, Version=1.0.4840.39367, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
         </Field>
         <Field Name="beneficiario_x_socio">
           <DataField>beneficiario_x_socio</DataField>
-          <rd:TypeName>System.Data.Objects.DataClasses.EntityCollection`1[[COCASJOL.LOGIC.beneficiario_x_socio, COCASJOL.LOGIC, Version=1.0.4835.39300, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Data.Objects.DataClasses.EntityCollection`1[[COCASJOL.LOGIC.beneficiario_x_socio, COCASJOL.LOGIC, Version=1.0.4840.39367, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
         </Field>
         <Field Name="inventario_cafe_de_socio">
           <DataField>inventario_cafe_de_socio</DataField>
-          <rd:TypeName>System.Data.Objects.DataClasses.EntityCollection`1[[COCASJOL.LOGIC.inventario_cafe_de_socio, COCASJOL.LOGIC, Version=1.0.4835.39300, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Data.Objects.DataClasses.EntityCollection`1[[COCASJOL.LOGIC.inventario_cafe_de_socio, COCASJOL.LOGIC, Version=1.0.4840.39367, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
         </Field>
         <Field Name="liquidaciones">
           <DataField>liquidaciones</DataField>
-          <rd:TypeName>System.Data.Objects.DataClasses.EntityCollection`1[[COCASJOL.LOGIC.liquidacion, COCASJOL.LOGIC, Version=1.0.4835.39300, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Data.Objects.DataClasses.EntityCollection`1[[COCASJOL.LOGIC.liquidacion, COCASJOL.LOGIC, Version=1.0.4840.39367, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
         </Field>
         <Field Name="notas_de_peso">
           <DataField>notas_de_peso</DataField>
-          <rd:TypeName>System.Data.Objects.DataClasses.EntityCollection`1[[COCASJOL.LOGIC.nota_de_peso, COCASJOL.LOGIC, Version=1.0.4835.39300, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Data.Objects.DataClasses.EntityCollection`1[[COCASJOL.LOGIC.nota_de_peso, COCASJOL.LOGIC, Version=1.0.4840.39367, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
         </Field>
         <Field Name="prestamos_x_socio">
           <DataField>prestamos_x_socio</DataField>
-          <rd:TypeName>System.Data.Objects.DataClasses.EntityCollection`1[[COCASJOL.LOGIC.prestamo_x_socio, COCASJOL.LOGIC, Version=1.0.4835.39300, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Data.Objects.DataClasses.EntityCollection`1[[COCASJOL.LOGIC.prestamo_x_socio, COCASJOL.LOGIC, Version=1.0.4840.39367, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
         </Field>
         <Field Name="retiros_aportaciones">
           <DataField>retiros_aportaciones</DataField>
-          <rd:TypeName>System.Data.Objects.DataClasses.EntityCollection`1[[COCASJOL.LOGIC.retiro_aportaciones, COCASJOL.LOGIC, Version=1.0.4835.39300, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Data.Objects.DataClasses.EntityCollection`1[[COCASJOL.LOGIC.retiro_aportaciones, COCASJOL.LOGIC, Version=1.0.4840.39367, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
         </Field>
         <Field Name="socios_generales">
           <DataField>socios_generales</DataField>
@@ -154,7 +154,7 @@
         </Field>
         <Field Name="socios_generalesReference">
           <DataField>socios_generalesReference</DataField>
-          <rd:TypeName>System.Data.Objects.DataClasses.EntityReference`1[[COCASJOL.LOGIC.socio_general, COCASJOL.LOGIC, Version=1.0.4835.39300, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Data.Objects.DataClasses.EntityReference`1[[COCASJOL.LOGIC.socio_general, COCASJOL.LOGIC, Version=1.0.4840.39367, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
         </Field>
         <Field Name="socios_produccion">
           <DataField>socios_produccion</DataField>
@@ -162,15 +162,15 @@
         </Field>
         <Field Name="socios_produccionReference">
           <DataField>socios_produccionReference</DataField>
-          <rd:TypeName>System.Data.Objects.DataClasses.EntityReference`1[[COCASJOL.LOGIC.socio_produccion, COCASJOL.LOGIC, Version=1.0.4835.39300, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Data.Objects.DataClasses.EntityReference`1[[COCASJOL.LOGIC.socio_produccion, COCASJOL.LOGIC, Version=1.0.4840.39367, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
         </Field>
         <Field Name="solicitudes_prestamos">
           <DataField>solicitudes_prestamos</DataField>
-          <rd:TypeName>System.Data.Objects.DataClasses.EntityCollection`1[[COCASJOL.LOGIC.solicitud_prestamo, COCASJOL.LOGIC, Version=1.0.4835.39300, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Data.Objects.DataClasses.EntityCollection`1[[COCASJOL.LOGIC.solicitud_prestamo, COCASJOL.LOGIC, Version=1.0.4840.39367, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
         </Field>
-        <Field Name="ventas_inventario_cafe">
-          <DataField>ventas_inventario_cafe</DataField>
-          <rd:TypeName>System.Data.Objects.DataClasses.EntityCollection`1[[COCASJOL.LOGIC.venta_inventario_cafe, COCASJOL.LOGIC, Version=1.0.4835.39300, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+        <Field Name="ajustes_inventario_cafe_x_socio">
+          <DataField>ajustes_inventario_cafe_x_socio</DataField>
+          <rd:TypeName>System.Data.Objects.DataClasses.EntityCollection`1[[COCASJOL.LOGIC.ajuste_inventario_cafe_x_socio, COCASJOL.LOGIC, Version=1.0.4840.39367, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
         </Field>
         <Field Name="EntityState">
           <DataField>EntityState</DataField>
@@ -190,7 +190,7 @@
         <rd:TableName>ReporteLogic</rd:TableName>
         <rd:ObjectDataSourceSelectMethod>GetSocios</rd:ObjectDataSourceSelectMethod>
         <rd:ObjectDataSourceSelectMethodSignature>System.Collections.Generic.List`1[COCASJOL.LOGIC.socio] GetSocios(System.String)</rd:ObjectDataSourceSelectMethodSignature>
-        <rd:ObjectDataSourceType>COCASJOL.LOGIC.Reportes.ReporteLogic, COCASJOL.LOGIC, Version=1.0.4835.39300, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>COCASJOL.LOGIC.Reportes.ReporteLogic, COCASJOL.LOGIC, Version=1.0.4840.39367, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -503,7 +503,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox48</rd:DefaultName>
-        <Top>1.13903in</Top>
+        <Top>1.09736in</Top>
         <Left>0.02778in</Left>
         <Height>0.25in</Height>
         <Width>6.40278in</Width>
@@ -542,7 +542,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox49</rd:DefaultName>
-        <Top>1.45847in</Top>
+        <Top>1.37514in</Top>
         <Left>0.02778in</Left>
         <Height>0.25in</Height>
         <Width>3.16667in</Width>
@@ -581,7 +581,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox50</rd:DefaultName>
-        <Top>1.45847in</Top>
+        <Top>1.37514in</Top>
         <Left>3.26389in</Left>
         <Height>0.25in</Height>
         <Width>3.16667in</Width>
@@ -620,7 +620,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox51</rd:DefaultName>
-        <Top>1.77792in</Top>
+        <Top>1.65291in</Top>
         <Left>0.02778in</Left>
         <Height>0.25in</Height>
         <Width>6.40278in</Width>
@@ -659,7 +659,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox52</rd:DefaultName>
-        <Top>2.09736in</Top>
+        <Top>1.93069in</Top>
         <Left>0.02778in</Left>
         <Height>0.25in</Height>
         <Width>6.40278in</Width>
@@ -712,7 +712,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox53</rd:DefaultName>
-        <Top>2.41681in</Top>
+        <Top>2.20847in</Top>
         <Left>0.02778in</Left>
         <Height>0.25in</Height>
         <Width>6.40278in</Width>
@@ -751,7 +751,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox54</rd:DefaultName>
-        <Top>2.73625in</Top>
+        <Top>2.48625in</Top>
         <Left>0.02778in</Left>
         <Height>0.25in</Height>
         <Width>3.16666in</Width>
@@ -790,7 +790,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox55</rd:DefaultName>
-        <Top>2.73625in</Top>
+        <Top>2.48625in</Top>
         <Left>3.26389in</Left>
         <Height>0.25in</Height>
         <Width>3.16667in</Width>
@@ -829,7 +829,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox56</rd:DefaultName>
-        <Top>3.05569in</Top>
+        <Top>2.76402in</Top>
         <Left>0.02778in</Left>
         <Height>0.25in</Height>
         <Width>6.40278in</Width>
@@ -868,7 +868,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox57</rd:DefaultName>
-        <Top>3.37514in</Top>
+        <Top>3.0418in</Top>
         <Left>0.02778in</Left>
         <Height>0.25in</Height>
         <Width>3.16667in</Width>
@@ -907,7 +907,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox58</rd:DefaultName>
-        <Top>3.37514in</Top>
+        <Top>3.0418in</Top>
         <Left>3.26389in</Left>
         <Height>0.25in</Height>
         <Width>3.16667in</Width>
@@ -946,8 +946,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox59</rd:DefaultName>
-        <Top>3.69458in</Top>
-        <Left>0.01736in</Left>
+        <Top>3.31958in</Top>
+        <Left>0.02778in</Left>
         <Height>0.25in</Height>
         <Width>6.40278in</Width>
         <ZIndex>17</ZIndex>
@@ -985,7 +985,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox60</rd:DefaultName>
-        <Top>4.01403in</Top>
+        <Top>3.59736in</Top>
         <Left>0.02778in</Left>
         <Height>0.25in</Height>
         <Width>3.16667in</Width>
@@ -1024,7 +1024,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox61</rd:DefaultName>
-        <Top>4.01403in</Top>
+        <Top>3.59736in</Top>
         <Left>3.26389in</Left>
         <Height>0.25in</Height>
         <Width>3.16667in</Width>
@@ -1063,10 +1063,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox62</rd:DefaultName>
-        <Top>4.33347in</Top>
+        <Top>3.87514in</Top>
         <Left>0.01736in</Left>
         <Height>0.25in</Height>
-        <Width>6.40278in</Width>
+        <Width>6.4132in</Width>
         <ZIndex>20</ZIndex>
         <Style>
           <Border>
@@ -1102,7 +1102,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox63</rd:DefaultName>
-        <Top>4.65292in</Top>
+        <Top>4.15291in</Top>
         <Left>0.02778in</Left>
         <Height>0.25in</Height>
         <Width>6.40278in</Width>
@@ -1141,7 +1141,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox64</rd:DefaultName>
-        <Top>4.97236in</Top>
+        <Top>4.43069in</Top>
         <Left>0.02778in</Left>
         <Height>0.25in</Height>
         <Width>2.07292in</Width>
@@ -1180,7 +1180,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox65</rd:DefaultName>
-        <Top>4.97236in</Top>
+        <Top>4.43069in</Top>
         <Left>2.1658in</Left>
         <Height>0.25in</Height>
         <Width>2.15799in</Width>
@@ -1219,7 +1219,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox66</rd:DefaultName>
-        <Top>4.97236in</Top>
+        <Top>4.43069in</Top>
         <Left>4.39323in</Left>
         <Height>0.25in</Height>
         <Width>2.03733in</Width>
@@ -1258,10 +1258,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox67</rd:DefaultName>
-        <Top>5.29181in</Top>
+        <Top>4.72236in</Top>
         <Left>0.02778in</Left>
         <Height>0.25in</Height>
-        <Width>6.38889in</Width>
+        <Width>6.40278in</Width>
         <ZIndex>25</ZIndex>
         <Style>
           <Border>
@@ -1297,8 +1297,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox68</rd:DefaultName>
-        <Top>5.61125in</Top>
-        <Left>3.25in</Left>
+        <Top>5.00014in</Top>
+        <Left>3.26389in</Left>
         <Height>0.25in</Height>
         <Width>3.16667in</Width>
         <ZIndex>26</ZIndex>
@@ -1336,8 +1336,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox69</rd:DefaultName>
-        <Top>5.61125in</Top>
-        <Left>0.01389in</Left>
+        <Top>5.00014in</Top>
+        <Left>0.02778in</Left>
         <Height>0.25in</Height>
         <Width>3.16667in</Width>
         <ZIndex>27</ZIndex>
@@ -1375,10 +1375,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox70</rd:DefaultName>
-        <Top>5.93069in</Top>
+        <Top>5.27791in</Top>
         <Left>0.02778in</Left>
         <Height>0.25in</Height>
-        <Width>6.38889in</Width>
+        <Width>6.40278in</Width>
         <ZIndex>28</ZIndex>
         <Style>
           <Border>
@@ -1414,10 +1414,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox71</rd:DefaultName>
-        <Top>6.25014in</Top>
+        <Top>5.55569in</Top>
         <Left>0.02778in</Left>
         <Height>0.25in</Height>
-        <Width>6.38889in</Width>
+        <Width>6.40278in</Width>
         <ZIndex>29</ZIndex>
         <Style>
           <Border>
@@ -1446,10 +1446,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>6.81611in</Top>
+        <Top>5.83347in</Top>
         <Left>0.02778in</Left>
         <Height>0.4375in</Height>
-        <Width>6.38889in</Width>
+        <Width>6.40278in</Width>
         <ZIndex>30</ZIndex>
         <Style>
           <Border>
@@ -1468,13 +1468,13 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Lps.    </Value>
+                <Value>Lps. ________ </Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>     Como Cuota de Ingreso</Value>
+                <Value>Como Cuota de Ingreso</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                   <TextDecoration>None</TextDecoration>
@@ -1485,7 +1485,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox3</rd:DefaultName>
-        <Top>7.32306in</Top>
+        <Top>6.29875in</Top>
         <Left>0.02778in</Left>
         <Height>0.25in</Height>
         <Width>3.16667in</Width>
@@ -1524,7 +1524,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox3</rd:DefaultName>
-        <Top>7.6425in</Top>
+        <Top>6.57652in</Top>
         <Left>0.02778in</Left>
         <Height>0.25in</Height>
         <Width>3.16667in</Width>
@@ -1563,7 +1563,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox3</rd:DefaultName>
-        <Top>7.96194in</Top>
+        <Top>6.8543in</Top>
         <Left>0.02778in</Left>
         <Height>0.25in</Height>
         <Width>3.16667in</Width>
@@ -1602,7 +1602,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox3</rd:DefaultName>
-        <Top>8.28139in</Top>
+        <Top>7.13208in</Top>
         <Left>0.02778in</Left>
         <Height>0.25in</Height>
         <Width>3.16667in</Width>
@@ -1634,7 +1634,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox7</rd:DefaultName>
-        <Top>8.60083in</Top>
+        <Top>7.40986in</Top>
         <Left>0.02778in</Left>
         <Height>0.25in</Height>
         <Width>6.38889in</Width>
@@ -1666,7 +1666,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox8</rd:DefaultName>
-        <Top>9.40292in</Top>
+        <Top>8.40986in</Top>
         <Left>1.63194in</Left>
         <Height>0.25in</Height>
         <Width>3.19445in</Width>
@@ -1769,7 +1769,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox9</rd:DefaultName>
-        <Top>9.69458in</Top>
+        <Top>8.83in</Top>
         <Left>0.02778in</Left>
         <Height>1.30542in</Height>
         <Width>6.40278in</Width>
@@ -1804,7 +1804,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>11.54875in</Top>
+        <Top>10.25708in</Top>
         <Left>0.02778in</Left>
         <Height>0.25in</Height>
         <Width>6.40278in</Width>
@@ -1821,7 +1821,7 @@
       </Textbox>
       <Subreport Name="Subreport1">
         <ReportName>BeneficiariosPorSocio</ReportName>
-        <Top>12.03833in</Top>
+        <Top>10.53486in</Top>
         <Left>0.0434in</Left>
         <Height>1.45833in</Height>
         <Width>6.40278in</Width>
@@ -1856,8 +1856,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox11</rd:DefaultName>
-        <Top>14.38201in</Top>
-        <Left>1.94726in</Left>
+        <Top>13.07993in</Top>
+        <Left>1.93164in</Left>
         <Height>0.25in</Height>
         <Width>2.59505in</Width>
         <ZIndex>40</ZIndex>
@@ -1888,8 +1888,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox8</rd:DefaultName>
-        <Top>14.07646in</Top>
-        <Left>1.64756in</Left>
+        <Top>12.77438in</Top>
+        <Left>1.63194in</Left>
         <Height>0.25in</Height>
         <Width>3.19445in</Width>
         <ZIndex>41</ZIndex>
@@ -1907,10 +1907,10 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>14.71542in</Height>
+    <Height>13.46542in</Height>
     <Style />
   </Body>
-  <Width>6.48958in</Width>
+  <Width>6.5in</Width>
   <Page>
     <PageHeader>
       <Height>1in</Height>

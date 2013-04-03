@@ -10,7 +10,7 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DataSet1">
+    <DataSet Name="HojasDeLiquidacionDataSet">
       <Fields>
         <Field Name="LIQUIDACIONES_ID">
           <DataField>LIQUIDACIONES_ID</DataField>
@@ -50,15 +50,15 @@
         </Field>
         <Field Name="LIQUIDACIONES_D_APORTACION_ORDINARIO">
           <DataField>LIQUIDACIONES_D_APORTACION_ORDINARIO</DataField>
-          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA">
           <DataField>LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA</DataField>
-          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="LIQUIDACIONES_D_CUOTA_ADMIN">
-          <DataField>LIQUIDACIONES_D_CUOTA_ADMIN</DataField>
-          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+        <Field Name="LIQUIDACIONES_D_APORTACION_EXTRAORD_COOP">
+          <DataField>LIQUIDACIONES_D_APORTACION_EXTRAORD_COOP</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
         <Field Name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION">
           <DataField>LIQUIDACIONES_D_CAPITALIZACION_RETENCION</DataField>
@@ -68,21 +68,13 @@
           <DataField>LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="LIQUIDACIONES_D_SERVICIO_SECADO_CAFE">
-          <DataField>LIQUIDACIONES_D_SERVICIO_SECADO_CAFE</DataField>
-          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
-        </Field>
         <Field Name="LIQUIDACIONES_D_INTERESES_S_APORTACIONES">
           <DataField>LIQUIDACIONES_D_INTERESES_S_APORTACIONES</DataField>
-          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
-        </Field>
-        <Field Name="LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE">
-          <DataField>LIQUIDACIONES_D_EXCEDENTE_X_RENDIMIENTO_CAFE</DataField>
-          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="LIQUIDACIONES_D_EXCEDENTE_PERIODO">
           <DataField>LIQUIDACIONES_D_EXCEDENTE_PERIODO</DataField>
-          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO">
           <DataField>LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO</DataField>
@@ -102,10 +94,6 @@
         </Field>
         <Field Name="LIQUIDACIONES_D_INTERESES_X_COBRAR">
           <DataField>LIQUIDACIONES_D_INTERESES_X_COBRAR</DataField>
-          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
-        </Field>
-        <Field Name="LIQUIDACIONES_D_RETENCION_X_TORREFACCION">
-          <DataField>LIQUIDACIONES_D_RETENCION_X_TORREFACCION</DataField>
           <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
         <Field Name="LIQUIDACIONES_D_OTRAS_DEDUCCIONES">
@@ -146,7 +134,7 @@
         </Field>
         <Field Name="clasificaciones_cafeReference">
           <DataField>clasificaciones_cafeReference</DataField>
-          <rd:TypeName>System.Data.Objects.DataClasses.EntityReference`1[[COCASJOL.LOGIC.clasificacion_cafe, COCASJOL.LOGIC, Version=1.0.4817.5775, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Data.Objects.DataClasses.EntityReference`1[[COCASJOL.LOGIC.clasificacion_cafe, COCASJOL.LOGIC, Version=1.0.4840.39367, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
         </Field>
         <Field Name="socios">
           <DataField>socios</DataField>
@@ -154,7 +142,7 @@
         </Field>
         <Field Name="sociosReference">
           <DataField>sociosReference</DataField>
-          <rd:TypeName>System.Data.Objects.DataClasses.EntityReference`1[[COCASJOL.LOGIC.socio, COCASJOL.LOGIC, Version=1.0.4817.5775, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Data.Objects.DataClasses.EntityReference`1[[COCASJOL.LOGIC.socio, COCASJOL.LOGIC, Version=1.0.4840.39367, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
         </Field>
         <Field Name="EntityState">
           <DataField>EntityState</DataField>
@@ -174,7 +162,7 @@
         <rd:TableName>ReporteLogic</rd:TableName>
         <rd:ObjectDataSourceSelectMethod>GetHojasDeLiquidacion</rd:ObjectDataSourceSelectMethod>
         <rd:ObjectDataSourceSelectMethodSignature>System.Collections.Generic.List`1[COCASJOL.LOGIC.liquidacion] GetHojasDeLiquidacion(Int32)</rd:ObjectDataSourceSelectMethodSignature>
-        <rd:ObjectDataSourceType>COCASJOL.LOGIC.Reportes.ReporteLogic, COCASJOL.LOGIC, Version=1.0.4817.5775, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>COCASJOL.LOGIC.Reportes.ReporteLogic, COCASJOL.LOGIC, Version=1.0.4840.39367, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -1609,7 +1597,7 @@
             <TablixMember />
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>DataSet1</DataSetName>
+        <DataSetName>HojasDeLiquidacionDataSet</DataSetName>
         <Top>0.80366in</Top>
         <Left>0.12157in</Left>
         <Height>3.88719in</Height>
@@ -2909,7 +2897,7 @@
             <TablixMember />
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>DataSet1</DataSetName>
+        <DataSetName>HojasDeLiquidacionDataSet</DataSetName>
         <Top>0.80366in</Top>
         <Left>3.34375in</Left>
         <Height>3.88822in</Height>

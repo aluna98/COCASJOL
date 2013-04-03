@@ -9,16 +9,15 @@ using COCASJOL.LOGIC;
 using COCASJOL.LOGIC.Reportes;
 using Microsoft.Reporting.WebForms;
 
-using System.Globalization;
 using log4net;
 
 namespace COCASJOL.WEBSITE.Source.Reportes
 {
-    public partial class ReporteSolicitudesDeIngresoDeSocio : COCASJOL.LOGIC.Web.COCASJOLBASE
+    public partial class ImprimirNotasDePeso : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
-        private static ILog log = LogManager.GetLogger(typeof(ReporteSolicitudesDeIngresoDeSocio).Name);
+        int NOTAS_ID = 0;
 
-        string SOCIOS_ID = "";
+        private static ILog log = LogManager.GetLogger(typeof(ImprimirNotasDePeso).Name);
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,16 +25,22 @@ namespace COCASJOL.WEBSITE.Source.Reportes
             {
                 if (!this.IsPostBack)
                 {
-                    string strSOCIOS_ID = Request.QueryString["SOCIOS_ID"];
+                    string strNOTAS_ID = Request.QueryString["NOTAS_ID"];
 
-                    this.SOCIOS_ID = string.IsNullOrEmpty(strSOCIOS_ID) ? "" : strSOCIOS_ID;
+                    this.NOTAS_ID = string.IsNullOrEmpty(strNOTAS_ID) ? 0 : Convert.ToInt32(strNOTAS_ID);
                 }
             }
             catch (Exception ex)
             {
-                log.Fatal("Error fatal al cargar pagina de reporte de solicitudes de ingreso de socios.", ex);
+                log.Fatal("Error fatal al cargar reporte de notas de peso.", ex);
                 throw;
             }
+        }
+
+        protected void ObjectDataSource2_OnSelecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        {
+            if (!this.IsPostBack)
+                e.Cancel = true;
         }
 
         protected void ReportViewer1_SubreportProcessing(object sender, SubreportProcessingEventArgs e)
@@ -44,14 +49,14 @@ namespace COCASJOL.WEBSITE.Source.Reportes
             {
                 ReporteLogic rpt = new ReporteLogic();
 
-                List<beneficiario_x_socio> beneficiariosLst = rpt.GetBeneficiariosDeSocio(SOCIOS_ID);
+                List<nota_detalle> detallesLst = rpt.GetNotasDetalle(NOTAS_ID);
 
-                ReportDataSource dataSource = new ReportDataSource("DataSet2", beneficiariosLst);
+                ReportDataSource dataSource = new ReportDataSource("NotasDetalleDataSet", detallesLst);
                 e.DataSources.Add(dataSource);
             }
             catch (Exception ex)
             {
-                log.Fatal("Error fatal al cargar subreporte de beneficiarios de socio.", ex);
+                log.Fatal("Error fatal al cargar subreporte de detalles de notas de peso.", ex);
                 throw;
             }
         }
