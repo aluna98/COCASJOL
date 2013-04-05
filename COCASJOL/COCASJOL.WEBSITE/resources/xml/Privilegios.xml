@@ -168,4 +168,25 @@
     <shortcut>scSolicitudesDePrestamo</shortcut>
     <menuitem>SolicitudesDePrestamoMenuItem</menuitem>
   </privilege>
+  <privilege>
+    <key>MANT_SOLICITUDESPRESTAMO</key>
+    <page>ImprimirSolicitudDePrestamo</page>
+    <module></module>
+    <shortcut></shortcut>
+    <menuitem></menuitem>
+  </privilege>
+  <privilege>
+    <key>MANT_PRESTAMOAPROBADO</key>
+    <page>Aprobados</page>
+    <module>PrestamosAprobadosModule</module>
+    <shortcut>scPrestamosAprobados</shortcut>
+    <menuitem>PrestamosAprobadosMenuItem</menuitem>
+  </privilege>
+  <privilege>
+    <key>MANT_PRESTAMOAPROBADO</key>
+    <page>ImprimirSolicitudDePrestamo</page>
+    <module></module>
+    <shortcut></shortcut>
+    <menuitem></menuitem>
+  </privilege>
 </privilegios>

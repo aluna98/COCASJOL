@@ -181,6 +181,34 @@ var SolicitudX = {
         if (index > -1 && index < GridRef.getStore().getCount()) {
             this._indexRef = index;
         }
+    },
+
+    navHome: function () {
+        if (Grid.getStore().getTotalCount() == 0)
+            Grid.getStore().reload();
+        Paginacion1.moveFirst();
+    },
+
+    navPrev: function () {
+        if (Grid.getStore().getTotalCount() > 0)
+            Paginacion1.movePrevious();
+    },
+
+    navNext: function () {
+        if (Grid.getStore().getTotalCount() > 0)
+            if (Grid.getStore().getTotalCount() > (Paginacion1.cursor + Paginacion1.pageSize))
+                Paginacion1.moveNext();
+    },
+
+    navEnd: function () {
+        if (Grid.getStore().getTotalCount() == 0)
+            Grid.getStore().reload();
+        Paginacion1.moveLast();
+    },
+
+    print: function () {
+        var solicitud_id = EditIdSolicitud.getValue();
+        window.open('../../Reportes/ImprimirSolicitudDePrestamo.aspx?SOLICITUDES_ID=' + solicitud_id, "_blank", "resizable=yes, scrollbars=yes, top=10, left=10");
     }
 };
 

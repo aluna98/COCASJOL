@@ -31,6 +31,15 @@ namespace COCASJOL.WEBSITE.Source.Prestamos {
         protected global::Ext.Net.ResourceManager RM1;
         
         /// <summary>
+        /// KeyNav1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.KeyNav KeyNav1;
+        
+        /// <summary>
         /// ComboBoxSt control.
         /// </summary>
         /// <remarks>
@@ -245,6 +254,24 @@ namespace COCASJOL.WEBSITE.Source.Prestamos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Window EditarSolicitudWin;
+        
+        /// <summary>
+        /// Toolbar2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Toolbar Toolbar2;
+        
+        /// <summary>
+        /// ImprimirBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button ImprimirBtn;
         
         /// <summary>
         /// EditarSolicitudFormP control.

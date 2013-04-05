@@ -144,15 +144,26 @@
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_text.png", sizingMethod="center");
 }
 
-.icon-prestamos16
+.icon-prestamosAprobados
 {
-    background-image: url("../images/cheque16x16.png") !important;
+    background-image: url(../images/page_white_text_valid.png) !important;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_text_valid.png", sizingMethod="center");
 }
 
 .icon-prestamos
 {
     background-image: url(../images/cheque.png) !important;
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/cheque.png", sizingMethod="center");
+}
+
+.icon-prestamosAprobados16
+{
+    background-image: url(../images/page_white_text_valid16x16.png) !important;
+}
+
+.icon-prestamos16
+{
+    background-image: url("../images/cheque16x16.png") !important;
 }
 
 .icon-variablesEntorno
