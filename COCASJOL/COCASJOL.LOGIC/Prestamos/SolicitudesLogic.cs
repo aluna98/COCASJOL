@@ -76,6 +76,86 @@ namespace COCASJOL.LOGIC.Prestamos
                 }
             }
 
+            public List<solicitud_prestamo> getViewPrestamosXSocio(string id)
+            {
+                try
+                {
+                    using (var db = new colinasEntities())
+                    {
+                        var query = from solicitud in db.solicitudes_prestamos.Include("socios").Include("prestamos")
+                                    where solicitud.SOLICITUD_ESTADO == "APROBADA" && solicitud.SOCIOS_ID == id
+                                    select solicitud;
+
+                        return query.ToList<solicitud_prestamo>();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    log.Fatal("Error fatal al obtener solicitudes de prestamo aprobadas.", ex);
+                    throw;
+                }
+            }
+
+            public List<solicitud_prestamo> getViewPrestamosXSocioXPrestamo(string id, int prestamo)
+            {
+                try
+                {
+                    using (var db = new colinasEntities())
+                    {
+                        var query = from solicitud in db.solicitudes_prestamos.Include("socios").Include("prestamos")
+                                    where solicitud.SOLICITUD_ESTADO == "APROBADA" && solicitud.SOCIOS_ID == id && solicitud.PRESTAMOS_ID == prestamo
+                                    select solicitud;
+
+                        return query.ToList<solicitud_prestamo>();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    log.Fatal("Error fatal al obtener solicitudes de prestamo aprobadas.", ex);
+                    throw;
+                }
+            }
+
+            public List<solicitud_prestamo> getViewPrestamosXTipoPrestamo(int prestamo)
+            {
+                try
+                {
+                    using (var db = new colinasEntities())
+                    {
+                        var query = from solicitud in db.solicitudes_prestamos.Include("socios").Include("prestamos")
+                                    where solicitud.SOLICITUD_ESTADO == "APROBADA" && solicitud.PRESTAMOS_ID == prestamo
+                                    select solicitud;
+
+                        return query.ToList<solicitud_prestamo>();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    log.Fatal("Error fatal al obtener solicitudes de prestamo aprobadas.", ex);
+                    throw;
+                }
+            }
+
+            public List<solicitud_prestamo> getViewPrestamosXSocio()
+            {
+                try
+                {
+                    using (var db = new colinasEntities())
+                    {
+                        var query = from solicitud in db.solicitudes_prestamos.Include("socios").Include("prestamos")
+                                    where solicitud.SOLICITUD_ESTADO == "APROBADA"
+                                    select solicitud;
+
+                        return query.ToList<solicitud_prestamo>();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    log.Fatal("Error fatal al obtener solicitudes de prestamo aprobadas.", ex);
+                    throw;
+                }
+            }
+
             public List<socio> getSocios()
         {
             try

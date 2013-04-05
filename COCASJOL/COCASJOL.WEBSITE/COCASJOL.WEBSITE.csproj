@@ -138,6 +138,7 @@
     <Content Include="resources\js\logger\applicationLog.js" />
     <Content Include="resources\js\md5.js" />
     <Content Include="resources\js\prestamos\PrestamosAprobados.js" />
+    <Content Include="resources\js\prestamos\ReportePrestamos.js" />
     <Content Include="resources\js\prestamos\solicitudesDePrestamos.js" />
     <Content Include="resources\js\reportes\movimientosDeInventarioDeCafe.js" />
     <Content Include="resources\js\seguridad\roles.js" />
@@ -172,6 +173,7 @@
     <Content Include="Source\Reportes\ImprimirHojasDeLiquidacion.aspx" />
     <Content Include="Source\Reportes\ImprimirNotasDePeso.aspx" />
     <Content Include="Source\Reportes\ImprimirSolicitudesDeIngresoDeSocio.aspx" />
+    <Content Include="Source\Reportes\ReportePrestamosPorSocio.aspx" />
     <Content Include="Source\Seguridad\CambiarClave.ascx" />
     <Content Include="Source\Seguridad\Roles.aspx" />
     <Content Include="Source\Seguridad\Usuarios.aspx" />
@@ -363,6 +365,13 @@
     </Compile>
     <Compile Include="Source\Reportes\ImprimirSolicitudesDeIngresoDeSocio.aspx.designer.cs">
       <DependentUpon>ImprimirSolicitudesDeIngresoDeSocio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Reportes\ReportePrestamosPorSocio.aspx.cs">
+      <DependentUpon>ReportePrestamosPorSocio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Reportes\ReportePrestamosPorSocio.aspx.designer.cs">
+      <DependentUpon>ReportePrestamosPorSocio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Seguridad\CambiarClave.ascx.cs">
       <DependentUpon>CambiarClave.ascx</DependentUpon>
