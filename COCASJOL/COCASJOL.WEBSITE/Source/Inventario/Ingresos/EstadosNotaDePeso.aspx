@@ -275,7 +275,7 @@
                                             </ToolTips>
                                         </ext:TextField>
                                         <ext:TextField runat="server"   ID="EditNombreTxt"        DataIndex="ESTADOS_NOTA_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" ></ext:TextField>
-                                        <ext:TextField runat="server"   ID="EditDescripcionTxt"   DataIndex="ESTADOS_NOTA_DESCRIPCION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100"></ext:TextField>
+                                        <ext:TextArea runat="server"   ID="EditDescripcionTxt"   DataIndex="ESTADOS_NOTA_DESCRIPCION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100" Height="50" ></ext:TextArea>
                                         <ext:ComboBox runat="server"    ID="EditPadreIdCmb"       DataIndex="ESTADOS_NOTA_SIGUIENTE"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Estado Siguiente" MsgTarget="Side"
                                             StoreID="EstadosNotaPadreSt"
                                             ValueField="ESTADOS_NOTA_ID" 

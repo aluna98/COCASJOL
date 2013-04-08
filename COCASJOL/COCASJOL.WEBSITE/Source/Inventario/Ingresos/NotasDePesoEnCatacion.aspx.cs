@@ -71,10 +71,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
         {
             try
             {
-                Dictionary<string, string> variables = this.GetVariables();
-                if (!this.ValidarVariables(variables))
-                    return;
-
                 string loggedUser = this.LoggedUserHdn.Text;
 
                 var detalles = JSON.Deserialize<Dictionary<string, string>[]>(Detalles);

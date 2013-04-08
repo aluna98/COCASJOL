@@ -117,12 +117,8 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
         {
             try
             {
-                Dictionary<string, string> variables = this.GetVariables();
-                if (!this.ValidarVariables(variables))
-                    return;
-
-                decimal NOTA_PORCENTAJEHUMEDADMIN = Convert.ToDecimal(variables["NOTA_PORCENTAJEHUMEDADMIN"]);
-                decimal NOTA_TRANSPORTECOOP = Convert.ToDecimal(variables["NOTA_TRANSPORTECOOP"]);
+                decimal NOTA_PORCENTAJEHUMEDADMIN = Convert.ToDecimal(this.Variables["NOTA_PORCENTAJEHUMEDADMIN"]);
+                decimal NOTA_TRANSPORTECOOP = Convert.ToDecimal(this.Variables["NOTA_TRANSPORTECOOP"]);
 
                 string loggedUser = this.LoggedUserHdn.Text;
 
@@ -162,12 +158,8 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
         {
             try
             {
-                Dictionary<string, string> variables = this.GetVariables();
-                if (!this.ValidarVariables(variables))
-                    return;
-
-                decimal NOTA_PORCENTAJEHUMEDADMIN = Convert.ToDecimal(variables["NOTA_PORCENTAJEHUMEDADMIN"]);
-                decimal NOTA_TRANSPORTECOOP = Convert.ToDecimal(variables["NOTA_TRANSPORTECOOP"]);
+                decimal NOTA_PORCENTAJEHUMEDADMIN = Convert.ToDecimal(this.Variables["NOTA_PORCENTAJEHUMEDADMIN"]);
+                decimal NOTA_TRANSPORTECOOP = Convert.ToDecimal(this.Variables["NOTA_TRANSPORTECOOP"]);
 
                 string loggedUser = this.LoggedUserHdn.Text;
 

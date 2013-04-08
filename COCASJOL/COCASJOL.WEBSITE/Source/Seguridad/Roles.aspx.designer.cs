@@ -307,7 +307,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField AddDescripcionTxt;
+        protected global::Ext.Net.TextArea AddDescripcionTxt;
         
         /// <summary>
         /// AddCreatedByTxt control.
@@ -424,7 +424,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField EditDescripcionTxt;
+        protected global::Ext.Net.TextArea EditDescripcionTxt;
         
         /// <summary>
         /// EditCreatedByTxt control.

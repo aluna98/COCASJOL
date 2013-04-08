@@ -26,6 +26,8 @@ namespace COCASJOL.LOGIC.Web
         private XmlDocument docEntorno;
         private static object lockObj = new object();
 
+        public Dictionary<string, string> Variables = null;
+
         public COCASJOLBASE()
         {
             try
@@ -100,8 +102,8 @@ namespace COCASJOL.LOGIC.Web
 
                 this.ValidarCredenciales();
 
-                Dictionary<string, string> variables = this.GetVariables();
-                this.ValidarVariables(variables);
+                this.Variables = this.GetVariables();
+                this.ValidarVariables(this.Variables);
             }
             catch (System.Threading.ThreadAbortException tex)
             {
