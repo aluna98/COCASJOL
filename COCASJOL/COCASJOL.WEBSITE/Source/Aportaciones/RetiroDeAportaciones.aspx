@@ -36,7 +36,7 @@
                 <SelectParameters>
                     <asp:ControlParameter Name="RETIROS_AP_ID"                       Type="Int32"    ControlID="f_RETIROS_AP_ID"             PropertyName="Text" DefaultValue="0" />
                     <asp:ControlParameter Name="SOCIOS_ID"                           Type="String"   ControlID="f_SOCIOS_ID"                 PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="RETIROS_AP_FECHA"                    Type="DateTime" ControlID="f_RETIROS_AP_FECHA"          PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="RETIROS_AP_FECHA"                    Type="DateTime" ControlID="nullHdn"                        PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="FECHA_DESDE"                         Type="DateTime" ControlID="f_DATE_FROM"                 PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="FECHA_HASTA"                         Type="DateTime" ControlID="f_DATE_TO"                   PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="RETIROS_AP_ORDINARIA"                Type="Decimal"  ControlID="nullHdn"                     PropertyName="Text" DefaultValue="-1" />

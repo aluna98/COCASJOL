@@ -35,19 +35,19 @@
                 SelectMethod="GetVentasDeInventarioDeCafe"
                 InsertMethod="InsertarVentaDeInventarioDeCafe" onselecting="VentaInventarioDeCafeDs_Selecting" >
                 <SelectParameters>
-                    <asp:ControlParameter Name="VENTAS_INV_CAFE_ID"                  Type="Int32"    ControlID="f_VENTAS_INV_CAFE_ID"              PropertyName="Text" DefaultValue="0" />
-                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_ID"             Type="Int32"    ControlID="f_CLASIFICACIONES_CAFE_ID"         PropertyName="Text" DefaultValue="0" />
-                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_NOMBRE"         Type="String"   ControlID="nullHdn"                           PropertyName="Text" DefaultValue="0" />
-                    <asp:ControlParameter Name="VENTAS_INV_CAFE_FECHA"               Type="DateTime" ControlID="f_VENTAS_INV_CAFE_FECHA"           PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_DESDE"                         Type="DateTime" ControlID="f_DATE_FROM"                       PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_HASTA"                         Type="DateTime" ControlID="f_DATE_TO"                         PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="VENTAS_INV_CAFE_CANTIDAD_LIBRAS"     Type="Decimal"  ControlID="nullHdn"                           PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="VENTAS_INV_CAFE_PRECIO_LIBRAS"       Type="Decimal"  ControlID="nullHdn"                           PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="VENTAS_INV_CAFE_SALDO_TOTAL"         Type="Decimal"  ControlID="f_VENTAS_INV_CAFE_SALDO_TOTAL"     PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="CREADO_POR"                          Type="String"   ControlID="nullHdn"                           PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_CREACION"                      Type="DateTime" ControlID="nullHdn"                           PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="MODIFICADO_POR"                      Type="String"   ControlID="nullHdn"                           PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_MODIFICACION"                  Type="DateTime" ControlID="nullHdn"                           PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="VENTAS_INV_CAFE_ID"                  Type="Int32"    ControlID="f_VENTAS_INV_CAFE_ID"          PropertyName="Text" DefaultValue="0" />
+                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_ID"             Type="Int32"    ControlID="f_CLASIFICACIONES_CAFE_ID"     PropertyName="Text" DefaultValue="0" />
+                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_NOMBRE"         Type="String"   ControlID="nullHdn"                       PropertyName="Text" DefaultValue="0" />
+                    <asp:ControlParameter Name="VENTAS_INV_CAFE_FECHA"               Type="DateTime" ControlID="nullHdn"                       PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_DESDE"                         Type="DateTime" ControlID="f_DATE_FROM"                   PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_HASTA"                         Type="DateTime" ControlID="f_DATE_TO"                     PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="VENTAS_INV_CAFE_CANTIDAD_LIBRAS"     Type="Decimal"  ControlID="nullHdn"                       PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="VENTAS_INV_CAFE_PRECIO_LIBRAS"       Type="Decimal"  ControlID="nullHdn"                       PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="VENTAS_INV_CAFE_SALDO_TOTAL"         Type="Decimal"  ControlID="f_VENTAS_INV_CAFE_SALDO_TOTAL" PropertyName="Text" DefaultValue="-1" />
+                    <asp:ControlParameter Name="CREADO_POR"                          Type="String"   ControlID="nullHdn"                       PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_CREACION"                      Type="DateTime" ControlID="nullHdn"                       PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="MODIFICADO_POR"                      Type="String"   ControlID="nullHdn"                       PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="FECHA_MODIFICACION"                  Type="DateTime" ControlID="nullHdn"                       PropertyName="Text" DefaultValue="" />
                 </SelectParameters>
                 <InsertParameters>
                     <asp:Parameter Name="VENTAS_INV_CAFE_ID"              Type="Int32"    />

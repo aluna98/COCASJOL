@@ -155,13 +155,15 @@ var PageX = {
                 var pesoJson = EditDetailX.pesoToJson();
 
                 Ext.net.DirectMethods.EditNotaDePeso_Click(pesoJson,
-                {   success: function () {
+                {
+                    success: function () {
                         GridStore.reload();
                         Ext.Msg.alert('Editar Nota de Peso', 'Nota de peso actualizada exitosamente.');
-                        EditWindow.hide();
-                    }
-                },
-                {   failure: function () {
+                    },
+                    eventMask: {
+                        showMask: true, target: 'customtarget', customTarget: EditForm
+                    },
+                    failure: function () {
                         Ext.Msg.alert('Editar Nota de Peso', 'Error al actualizar la nota de peso.');
                     }
                 });

@@ -83,11 +83,6 @@
                                 <ext:Toolbar ID="Toolbar1" runat="server">
                                     <Items>
                                         <ext:Button ID="GuardarVariablesBtn" runat="server" Text="Guardar" Icon="DatabaseSave">
-                                            <%--<DirectEvents>
-                                                <Click OnEvent="GuardarVariablesBtn_Click" Success="Ext.Msg.alert('Guardar Variables de Entorno', 'Variables de entorno guardadas exitosamente!');">
-                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="#{VariablesEntornoGridP}" />
-                                                </Click>
-                                            </DirectEvents>--%>
                                             <Listeners>
                                                 <Click Handler="PageX.update();" />
                                             </Listeners>
@@ -107,14 +102,22 @@
                             <View>
                                 <ext:GridView ID="GridView1" ForceFit="true" ScrollOffset="2" runat="server" />
                             </View>
-                            <%--<Listeners>
-                                <RowDblClick Handler="Ext.Msg.alert('lol', Ext.encode(#{VariablesEntornoGridP}.getRowsValues({selectedOnly : true})));" />
-                            </Listeners>--%>
                         </ext:GridPanel>
                     </Items>
                 </ext:Panel>
             </Items>
         </ext:Viewport>
+
+        <ext:ToolTip 
+            ID="RowTip" 
+            runat="server" 
+            Target="={#{VariablesEntornoGridP}.getView().mainBody}"
+            Delegate=".x-grid3-row"
+            TrackMouse="true">
+            <Listeners>
+                <Show Handler="var rowIndex = #{VariablesEntornoGridP}.view.findRowIndex(this.triggerElement); this.body.dom.innerHTML = #{VariablesEntornoGridP}.getStore().getAt(rowIndex).get('VARIABLES_DESCRIPCION');" />
+            </Listeners>
+        </ext:ToolTip>
     </div>
     </form>
 </body>

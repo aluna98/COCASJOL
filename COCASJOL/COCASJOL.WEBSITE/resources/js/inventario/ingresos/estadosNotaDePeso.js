@@ -108,7 +108,6 @@ var PageX = {
         f_ESTADOS_NOTA_SIGUIENTE.reset();
         f_ESTADOS_NOTA_LLAVE.reset();
         f_ESTADOS_NOTA_NOMBRE.reset();
-        f_ESTADOS_NOTA_DESCRIPCION.reset();
 
         EstadosNotaSt.reload();
     },

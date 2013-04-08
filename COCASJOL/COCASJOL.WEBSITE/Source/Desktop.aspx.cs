@@ -33,6 +33,10 @@ namespace COCASJOL.WEBSITE
                 base.OnInit(e);
                 RemoveObjects();
             }
+            catch (System.Threading.ThreadAbortException tex)
+            {
+                log.Warn("Error de terminacion de hilo al inicializar pagina desktop. Nota: Este error pudo ser causado por Response.Redirect.", tex);
+            }
             catch (Exception ex)
             {
                 log.Fatal("Error fatal al inicializar pagina desktop.", ex);
@@ -181,7 +185,7 @@ namespace COCASJOL.WEBSITE
             }
             catch (System.Threading.ThreadAbortException tex)
             {
-                log.Error("Error de terminacion de hilo al salir de pagina desktop. Nota: Este error pudo ser causado por Response.Redirect.", tex);
+                log.Warn("Error de terminacion de hilo al salir de pagina desktop. Nota: Este error pudo ser causado por Response.Redirect.", tex);
             }
             catch (Exception ex)
             {

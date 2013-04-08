@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="COCASJOL.WEBSITE.Default" %>
 
 <%@ Register assembly="Ext.Net" namespace="Ext.Net" tagprefix="ext" %>
 
@@ -60,64 +60,6 @@
         var alinearLogin = function () {
             Window1.getEl().alignTo(Ext.getBody(), 'bl', [50, -200], false);
         };
-    </script>
-
-    <script runat="server">
-        private static log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                string loggedUser = Session["username"] as string;
-
-                if (!string.IsNullOrEmpty(loggedUser))
-                {
-                    Window1.Close();
-                    Response.Redirect("~/Source/Desktop.aspx");
-                }
-            }
-            catch (System.Threading.ThreadAbortException tex)
-            {
-                log.Error("Error de terminacion de hilo al cargar pagina de login (Default.aspx). Nota: Este error pudo ser causado por Response.Redirect.", tex);
-            }
-            catch (Exception ex)
-            {
-                log.Fatal("Error fatal cargar pagina de login (Default.aspx).", ex);
-            }
-        }
-    
-        [DirectMethod(RethrowException=true)]
-        public void Button1_Click()
-        {
-            try
-            {
-                UsuarioLogic usuarioLogic = new UsuarioLogic();
-                if (usuarioLogic.Autenticar(this.txtUsername.Text, this.txtPassword.Text) == true)
-                {                    
-                    Session["username"] = this.txtUsername.Text;
-
-                    Window1.Close();
-                    Response.Redirect("~/Source/Desktop.aspx");
-                }
-                else
-                {
-                    log.ErrorFormat("Error al intentar autenticar usuario. Username: {0} - Password: {1} .", this.txtUsername.Text, this.txtPassword.Text);
-                    
-                    this.txtUsername.Clear();
-                    this.txtPassword.Clear();
-                    X.Msg.Alert("Inicio de Sesión", "El nombre de usuario o contraseña son incorrectos.", "#{txtUsername}.focus();").Show();
-                }
-            }
-            catch (System.Threading.ThreadAbortException tex)
-            {
-                log.Error("Error de terminacion de hilo al al intentar autenticar usuario. Nota: Este error pudo ser causado por Response.Redirect.", tex);
-            }
-            catch (Exception ex)
-            {
-                log.Fatal("Error fatal al intentar autenticar usuario.", ex);
-            }
-        }
     </script>
 </head>
 <body>

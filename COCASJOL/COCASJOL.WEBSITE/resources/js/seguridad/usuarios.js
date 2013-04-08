@@ -46,15 +46,22 @@ var PageX = {
         if (RolesNoDeUsuarioGridP.getSelectionModel().hasSelection()) {
             Ext.Msg.confirm('Agregar Roles', 'Seguro desea agregar estos roles?', function (btn, text) {
                 if (btn == 'yes') {
-                    Ext.net.DirectMethods.AddRolesAddRolBtn_Click({
+                    Ext.net.DirectMethods.AddRolesAddRolBtn_Click(
+                    {
                         success: function () {
                             RolesDeUsuarioSt.reload();
                             Ext.net.DirectMethods.EnviarCorreoRolesNuevos();
                             RolesNoDeUsuarioSt.reload();
                             RolesNoDeUsuarioGridP.getSelectionModel().clearSelections();
                             Ext.Msg.alert('Agregar Roles', 'Roles agregado exitosamente.');
+                        },
+                        eventMask: {
+                            showMask: true, target: 'customtarget', customTarget: RolesNoDeUsuarioGridP
+                        },
+                        failure: function () {
+                            Ext.Msg.alert('Agregar Roles', 'Error al agregar roles.');
                         }
-                    }, { eventMask: { showMask: true, target: 'customtarget', customTarget: RolesNoDeUsuarioGridP} }, { failure: function () { Ext.Msg.alert('Agregar Roles', 'Error al agregar roles.'); } });
+                    });
                 }
             });
         } else {
@@ -153,14 +160,18 @@ var PageX = {
                 var encrypted = md5(CambiarClaveConfirmarTxt.getValue());
                 CambiarClaveTxt.setValue(encrypted);
                 CambiarClaveConfirmarTxt.setValue(encrypted);
-                Ext.net.DirectMethods.CambiarClaveGuardarBtn_Click({
+                Ext.net.DirectMethods.CambiarClaveGuardarBtn_Click(
+                {
                     success: function () {
                         Ext.net.DirectMethods.EnviarCorreoUsuarioPasswordNuevo(pss);
                         Ext.Msg.alert('Cambiar Contraseña', 'Contraseña actualizada exitosamente.');
                         FormPanel2.getForm().reset();
                         CambiarClaveWin.hide();
+                    },
+                    eventMask: {
+                        showMask: true, target: 'customtarget', customTarget: FormPanel2
                     }
-                }, { eventMask: { showMask: true, target: 'customtarget', customTarget: FormPanel2} });
+                });
             }
         });
     },
@@ -183,7 +194,19 @@ var PageX = {
         if (RolesDeUsuarioGridP.getSelectionModel().hasSelection()) {
             Ext.Msg.confirm('Eliminar Roles', 'Seguro desea eliminar estos roles?', function (btn, text) {
                 if (btn == 'yes') {
-                    Ext.net.DirectMethods.EditUsuarioDeleteRolBtn_Click({ success: function () { RolesDeUsuarioSt.reload(); Ext.Msg.alert('Eliminar Roles', 'Roles eliminados exitosamente.'); } }, { eventMask: { showMask: true, target: 'customtarget', customTarget: RolesDeUsuarioGridP} }, { failure: function () { Ext.Msg.alert('Eliminar Roles', 'Error al eliminar roles.'); } });
+                    Ext.net.DirectMethods.EditUsuarioDeleteRolBtn_Click(
+                    {
+                        success: function () {
+                            RolesDeUsuarioSt.reload();
+                            Ext.Msg.alert('Eliminar Roles', 'Roles eliminados exitosamente.');
+                        },
+                        eventMask: {
+                            showMask: true, target: 'customtarget', customTarget: RolesDeUsuarioGridP
+                        },
+                        failure: function () {
+                            Ext.Msg.alert('Eliminar Roles', 'Error al eliminar roles.');
+                        }
+                    });
                 }
             });
         } else {

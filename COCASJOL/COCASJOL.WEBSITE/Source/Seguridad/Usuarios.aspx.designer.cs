@@ -778,6 +778,15 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         protected global::Ext.Net.Button EditGuardarBtn;
         
         /// <summary>
+        /// EditarRolesRowTip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip EditarRolesRowTip;
+        
+        /// <summary>
         /// AgregarRolesWin control.
         /// </summary>
         /// <remarks>
@@ -902,6 +911,15 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.PagingToolbar PagingToolbar4;
+        
+        /// <summary>
+        /// AgregarRolesRowTip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip AgregarRolesRowTip;
         
         /// <summary>
         /// CambiarClaveWin control.

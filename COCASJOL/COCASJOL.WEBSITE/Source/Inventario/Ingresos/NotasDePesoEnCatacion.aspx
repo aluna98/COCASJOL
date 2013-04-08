@@ -41,7 +41,7 @@
                     <asp:ControlParameter Name="SOCIOS_ID"                                  Type="String"   ControlID="f_SOCIOS_ID"               PropertyName="Text" />
                     <asp:ControlParameter Name="CLASIFICACIONES_CAFE_ID"                    Type="Int32"    ControlID="f_CLASIFICACIONES_CAFE_ID" PropertyName="Text" />
                     <asp:ControlParameter Name="CLASIFICACIONES_CAFE_NOMBRE"                Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="NOTAS_FECHA"                                Type="DateTime" ControlID="f_NOTAS_FECHA"             PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="NOTAS_FECHA"                                Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="FECHA_DESDE"                                Type="DateTime" ControlID="f_DATE_FROM"               PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="FECHA_HASTA"                                Type="DateTime" ControlID="f_DATE_TO"                 PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="NOTAS_TRANSPORTE_COOPERATIVA"               Type="Boolean"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
@@ -174,9 +174,6 @@
                                             </Fields>
                                         </ext:JsonReader>
                                     </Reader>
-                                    <Listeners>
-                                        <CommitDone Handler="Ext.Msg.alert('Guardar', 'Cambios guardados exitosamente.');" />
-                                    </Listeners>
                                 </ext:Store>
                             </Store>
                             <ColumnModel>

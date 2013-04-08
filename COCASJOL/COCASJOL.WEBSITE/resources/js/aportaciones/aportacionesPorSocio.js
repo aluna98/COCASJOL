@@ -104,6 +104,12 @@ var PageX = {
 
     clearFilter: function () {
         f_SOCIOS_ID.reset();
+        f_SOCIOS_NOMBRE_COMPLETO.reset();
+        f_APORTACIONES_ORDINARIA_SALDO.reset();
+        f_APORTACIONES_EXTRAORDINARIA_SALDO.reset();
+        f_APORTACIONES_CAPITALIZACION_RETENCION_SALDO.reset();
+        f_APORTACIONES_INTERESES_S_APORTACION_SALDO.reset();
+        f_APORTACIONES_EXCEDENTE_PERIODO_SALDO.reset();
         f_APORTACIONES_SALDO_TOTAL.reset();
         AportacionesSt.reload();
     },

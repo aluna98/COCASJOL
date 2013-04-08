@@ -162,8 +162,10 @@ var PageX = {
     },
 
     clearFilter: function () {
-        f_SOCIOS_ID.reset();
-        f_APORTACIONES_SALDO_TOTAL.reset();
+        f_VENTAS_INV_CAFE_ID.reset();
+        f_CLASIFICACIONES_CAFE_ID.reset();
+        f_VENTAS_INV_CAFE_SALDO_TOTAL.reset();
+        calendar.clearFecha();
         VentaInventarioDeCafeSt.reload();
     },
 

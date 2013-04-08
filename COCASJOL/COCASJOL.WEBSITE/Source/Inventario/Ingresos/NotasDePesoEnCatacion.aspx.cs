@@ -45,7 +45,28 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 e.Cancel = true;
         }
 
-        [DirectMethod(RethrowException = true, ShowMask = true, Target = MaskTarget.CustomTarget, CustomTarget = "EditarNotasFormP")]
+        protected void EditNotaDetalleSt_Refresh(object sender, StoreRefreshDataEventArgs e)
+        {
+            try
+            {
+                string notaId = this.EditNotaIdTxt.Text;
+
+                if (string.IsNullOrEmpty(notaId))
+                    return;
+
+                NotaDePesoEnCatacionLogic notadepesologic = new NotaDePesoEnCatacionLogic();
+
+                this.EditNotaDetalleSt.DataSource = notadepesologic.GetDetalleNotaDePeso(Convert.ToInt32(notaId));
+                this.EditNotaDetalleSt.DataBind();
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al obtener detalles de nota de peso en catacion.", ex);
+                throw;
+            }
+        }
+
+        [DirectMethod(RethrowException = true)]
         public void EditNotaDePeso_Click(string Detalles)
         {
             try
@@ -83,27 +104,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
             catch (Exception ex)
             {
                 log.Fatal("Error fatal al actualizar nota de peso en catacion.", ex);
-                throw;
-            }
-        }
-
-        protected void EditNotaDetalleSt_Refresh(object sender, StoreRefreshDataEventArgs e)
-        {
-            try
-            {
-                string notaId = this.EditNotaIdTxt.Text;
-
-                if (string.IsNullOrEmpty(notaId))
-                    return;
-
-                NotaDePesoEnCatacionLogic notadepesologic = new NotaDePesoEnCatacionLogic();
-
-                this.EditNotaDetalleSt.DataSource = notadepesologic.GetDetalleNotaDePeso(Convert.ToInt32(notaId));
-                this.EditNotaDetalleSt.DataBind();
-            }
-            catch (Exception ex)
-            {
-                log.Fatal("Error fatal al obtener detalles de nota de peso en catacion.", ex);
                 throw;
             }
         }

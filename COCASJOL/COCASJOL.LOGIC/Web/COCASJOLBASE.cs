@@ -105,7 +105,7 @@ namespace COCASJOL.LOGIC.Web
             }
             catch (System.Threading.ThreadAbortException tex)
             {
-                log.Error("Error de terminacion de hilo al al intentar inicializar pagina COCASJOL. Sesion Expirada. Nota: Este error pudo ser causado por Response.Redirect.", tex);
+                log.Warn("Error de terminacion de hilo al intentar inicializar clase COCASJOLBASE. Nota: Este error pudo ser causado por Response.Redirect.", tex);
             }
             catch (Exception ex)
             {
@@ -117,7 +117,12 @@ namespace COCASJOL.LOGIC.Web
         protected void COCASJOL_Error(object sender, EventArgs e)
         {
             Exception ex = base.Server.GetLastError();
-            log.Fatal("Error de aplicación COCASJOLBASE.", ex);
+
+            string currentPage = this.Session["CurrentPage"] as string;
+            StringBuilder errorMessage = new StringBuilder();
+            errorMessage.AppendFormat("Error de aplicación COCASJOLBASE. Url Actual: {0}", currentPage);
+
+            log.Fatal(errorMessage.ToString(), ex);
         }
 
         protected void ValidarCredenciales()
@@ -156,7 +161,7 @@ namespace COCASJOL.LOGIC.Web
             }
             catch (System.Threading.ThreadAbortException tex)
             {
-                log.Error("Error de terminacion de hilo al al intentar validar credeciales (Accesos) de usuario. Nota: Este error pudo ser causado por Response.Redirect.", tex);
+                log.Warn("Error de terminacion de hilo al intentar validar credeciales (Accesos) de usuario. Nota: Este error pudo ser causado por Response.Redirect.", tex);
             }
             catch (Exception ex)
             {

@@ -158,16 +158,18 @@ var PageX = {
 
         Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
             if (btn == 'yes') {
-                Ext.net.DirectMethods.EditNotaDePeso_Click('',
-                { success: function () {
-                    GridStore.reload();
-                    Ext.Msg.alert('Editar Nota de Peso', 'Nota de peso actualizada exitosamente.');
-                    EditWindow.hide();
-                }
-                },
-                { failure: function () {
-                    Ext.Msg.alert('Editar Nota de Peso', 'Error al actualizar la nota de peso.');
-                }
+                Ext.net.DirectMethods.EditNotaDePeso_Click(
+                {
+                    success: function () {
+                        GridStore.reload();
+                        Ext.Msg.alert('Editar Nota de Peso', 'Nota de peso actualizada exitosamente.');
+                    },
+                    eventMask: {
+                        showMask: true, target: 'customtarget', customTarget: EditForm
+                    },
+                    failure: function () {
+                        Ext.Msg.alert('Editar Nota de Peso', 'Error al actualizar la nota de peso.');
+                    }
                 });
             }
         });
@@ -181,16 +183,18 @@ var PageX = {
         Ext.Msg.confirm(ConfirmRegMsgTitle, ConfirmRegUpdate, function (btn, text) {
             if (btn == 'yes') {
                 Ext.net.DirectMethods.RegisterNotaDePeso_Click(
-                    { success: function () {
+                {
+                    success: function () {
                         GridStore.reload();
-                        Ext.Msg.alert('Editar Nota de Peso', 'Nota de peso actualizada exitosamente.');
-                        EditWindow.hide();
-                    }
+                        Ext.Msg.alert('Editar Nota de Peso', 'Nota de peso registrada exitosamente.');
                     },
-                    { failure: function () {
-                        Ext.Msg.alert('Editar Nota de Peso', 'Error al actualizar la nota de peso.');
+                    eventMask: {
+                        showMask: true, target: 'customtarget', customTarget: EditForm
+                    },
+                    failure: function () {
+                        Ext.Msg.alert('Editar Nota de Peso', 'Error al registrar la nota de peso.');
                     }
-                    });
+                });
             }
         });
     },

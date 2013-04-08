@@ -453,6 +453,17 @@
             </Items>
         </ext:Window>
 
+        <ext:ToolTip 
+            ID="EditarPrivilegiosRowTipo" 
+            runat="server" 
+            Target="={#{PrivilegiosDeRolGridP}.getView().mainBody}"
+            Delegate=".x-grid3-row"
+            TrackMouse="true">
+            <Listeners>
+                <Show Handler="var rowIndex = #{PrivilegiosDeRolGridP}.view.findRowIndex(this.triggerElement); this.body.dom.innerHTML = #{PrivilegiosDeRolGridP}.getStore().getAt(rowIndex).get('PRIV_DESCRIPCION');" />
+            </Listeners>
+        </ext:ToolTip>
+
         <ext:Window ID="AgregarPrivilegiosWin" runat="server" Hidden="true" Icon="KeyAdd" Title="Agregar Privilegios"
             Width="500" Layout="FormLayout" AutoHeight="True" Resizable="false" Shadow="None"
             X="30" Y="70" Modal="true">
@@ -571,6 +582,17 @@
                 </ext:FormPanel>
             </Items>
         </ext:Window>
+
+        <ext:ToolTip 
+            ID="AgregarPrivilegiosRowTip" 
+            runat="server" 
+            Target="={#{PrivilegiosNoDeRolGridP}.getView().mainBody}"
+            Delegate=".x-grid3-row"
+            TrackMouse="true">
+            <Listeners>
+                <Show Handler="var rowIndex = #{PrivilegiosNoDeRolGridP}.view.findRowIndex(this.triggerElement); this.body.dom.innerHTML = #{PrivilegiosNoDeRolGridP}.getStore().getAt(rowIndex).get('PRIV_DESCRIPCION');" />
+            </Listeners>
+        </ext:ToolTip>
     </div>
     </form>
 </body>
