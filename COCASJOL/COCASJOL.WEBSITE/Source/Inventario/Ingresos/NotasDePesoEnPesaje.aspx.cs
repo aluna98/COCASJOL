@@ -91,19 +91,34 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
             }
         }
 
-        //private static object lockObj = new object();
+        protected void EditNotaDetalleSt_Refresh(object sender, StoreRefreshDataEventArgs e)
+        {
+            try
+            {
+                string notaId = this.EditNotaIdTxt.Text;
 
-        [DirectMethod(RethrowException = true, ShowMask = true, Target = MaskTarget.CustomTarget, CustomTarget = "AgregarNotasFormP")]
+                if (string.IsNullOrEmpty(notaId))
+                    return;
+
+                NotaDePesoEnPesajeLogic notadepesologic = new NotaDePesoEnPesajeLogic();
+
+                this.EditNotaDetalleSt.DataSource = notadepesologic.GetDetalleNotaDePeso(Convert.ToInt32(notaId));
+                this.EditNotaDetalleSt.DataBind();
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al obtener detalles nota de peso en pesaje para actualizar.", ex);
+                throw;
+            }
+        }
+
+        [DirectMethod(RethrowException = true)]
         public void AddNotaDePeso_Click(string Detalles)
         {
             try
             {
-                Dictionary<string, string> variables = this.GetVariables();
-                if (!this.ValidarVariables(variables))
-                    return;
-
-                decimal NOTA_PORCENTAJEHUMEDADMIN = Convert.ToDecimal(variables["NOTA_PORCENTAJEHUMEDADMIN"]);
-                decimal NOTA_TRANSPORTECOOP = Convert.ToDecimal(variables["NOTA_TRANSPORTECOOP"]);
+                decimal NOTA_PORCENTAJEHUMEDADMIN = Convert.ToDecimal(this.Variables["NOTA_PORCENTAJEHUMEDADMIN"]);
+                decimal NOTA_TRANSPORTECOOP = Convert.ToDecimal(this.Variables["NOTA_TRANSPORTECOOP"]);
 
                 string loggedUser = this.LoggedUserHdn.Text;
 
@@ -130,12 +145,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                     detalles,
                     NOTA_PORCENTAJEHUMEDADMIN,
                     NOTA_TRANSPORTECOOP);
-
-                //lock (lockObj)
-                //{
-                //    COCASJOL.LOGIC.Reportes.ConsolidadoDeInventarioDeCafeLogic consolidadoinventariologic = new LOGIC.Reportes.ConsolidadoDeInventarioDeCafeLogic();
-                //    Application["ReporteConsolidadoDeCafe"] = consolidadoinventariologic.GetReporte();
-                //}
             }
             catch (Exception ex)
             {
@@ -144,17 +153,13 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
             }
         }
 
-        [DirectMethod(RethrowException = true, ShowMask = true, Target = MaskTarget.CustomTarget, CustomTarget = "EditarNotasFormP")]
+        [DirectMethod(RethrowException = true)]
         public void EditNotaDePeso_Click(string Detalles)
         {
             try
             {
-                Dictionary<string, string> variables = this.GetVariables();
-                if (!this.ValidarVariables(variables))
-                    return;
-
-                decimal NOTA_PORCENTAJEHUMEDADMIN = Convert.ToDecimal(variables["NOTA_PORCENTAJEHUMEDADMIN"]);
-                decimal NOTA_TRANSPORTECOOP = Convert.ToDecimal(variables["NOTA_TRANSPORTECOOP"]);
+                decimal NOTA_PORCENTAJEHUMEDADMIN = Convert.ToDecimal(this.Variables["NOTA_PORCENTAJEHUMEDADMIN"]);
+                decimal NOTA_TRANSPORTECOOP = Convert.ToDecimal(this.Variables["NOTA_TRANSPORTECOOP"]);
 
                 string loggedUser = this.LoggedUserHdn.Text;
 
@@ -185,27 +190,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
             catch (Exception ex)
             {
                 log.Fatal("Error fatal al actualizar nota de peso en pesaje.", ex);
-                throw;
-            }
-        }
-
-        protected void EditNotaDetalleSt_Refresh(object sender, StoreRefreshDataEventArgs e)
-        {
-            try
-            {
-                string notaId = this.EditNotaIdTxt.Text;
-
-                if (string.IsNullOrEmpty(notaId))
-                    return;
-
-                NotaDePesoEnPesajeLogic notadepesologic = new NotaDePesoEnPesajeLogic();
-
-                this.EditNotaDetalleSt.DataSource = notadepesologic.GetDetalleNotaDePeso(Convert.ToInt32(notaId));
-                this.EditNotaDetalleSt.DataBind();
-            }
-            catch (Exception ex)
-            {
-                log.Fatal("Error fatal al obtener detalles nota de peso en pesaje para actualizar.", ex);
                 throw;
             }
         }

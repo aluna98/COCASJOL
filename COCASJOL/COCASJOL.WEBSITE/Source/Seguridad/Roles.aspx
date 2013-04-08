@@ -238,11 +238,11 @@
                                 <ext:Panel ID="Panel2" runat="server" Title="Información" Layout="AnchorLayout" AutoHeight="True"
                                     Resizable="false">
                                     <Items>
-                                        <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
+                                        <ext:Panel ID="Panel3" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="true">
                                             <Items>
                                                 <ext:NumberField runat="server" ID="AddIdTxt"               DataIndex="ROL_ID"             LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Rol" AllowBlank="false" Text="0" Hidden="true" ReadOnly="true"></ext:NumberField>
                                                 <ext:TextField   runat="server" ID="AddNombreTxt"           DataIndex="ROL_NOMBRE"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45"></ext:TextField>
-                                                <ext:TextField   runat="server" ID="AddDescripcionTxt"      DataIndex="ROL_DESCRIPCION"    LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100"></ext:TextField>
+                                                <ext:TextArea   runat="server" ID="AddDescripcionTxt"      DataIndex="ROL_DESCRIPCION"    LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100" Height="50" ></ext:TextArea>
                                                 <ext:TextField   runat="server" ID="AddCreatedByTxt"        DataIndex="CREADO_POR"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado por" Hidden="true" ></ext:TextField>
                                                 <ext:TextField   runat="server" ID="AddCreatedDateTxt"      DataIndex="FECHA_CREACION"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
                                                 <ext:TextField   runat="server" ID="AddModifiedByTxt"       DataIndex="MODIFICADO_POR"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
@@ -298,7 +298,7 @@
                                             <Items>
                                                 <ext:NumberField runat="server" ID="EditIdTxt"            DataIndex="ROL_ID"             LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Id de Rol" AllowBlank="false" ReadOnly="true" Hidden="true"></ext:NumberField>
                                                 <ext:TextField runat="server"   ID="EditNombreTxt"        DataIndex="ROL_NOMBRE"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45"></ext:TextField>
-                                                <ext:TextField runat="server"   ID="EditDescripcionTxt"   DataIndex="ROL_DESCRIPCION"    LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100"></ext:TextField>
+                                                <ext:TextArea runat="server"   ID="EditDescripcionTxt"   DataIndex="ROL_DESCRIPCION"    LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100" Height="50" ></ext:TextArea>
                                                 <ext:TextField runat="server"   ID="EditCreatedByTxt"     DataIndex="CREADO_POR"         LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
                                                 <ext:TextField runat="server"   ID="EditCreationDateTxt"  DataIndex="FECHA_CREACION"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
                                                 <ext:TextField runat="server"   ID="EditModifiedByTxt"    DataIndex="MODIFICADO_POR"     LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
@@ -453,6 +453,17 @@
             </Items>
         </ext:Window>
 
+        <ext:ToolTip 
+            ID="EditarPrivilegiosRowTipo" 
+            runat="server" 
+            Target="={#{PrivilegiosDeRolGridP}.getView().mainBody}"
+            Delegate=".x-grid3-row"
+            TrackMouse="true">
+            <Listeners>
+                <Show Handler="var rowIndex = #{PrivilegiosDeRolGridP}.view.findRowIndex(this.triggerElement); this.body.dom.innerHTML = #{PrivilegiosDeRolGridP}.getStore().getAt(rowIndex).get('PRIV_DESCRIPCION');" />
+            </Listeners>
+        </ext:ToolTip>
+
         <ext:Window ID="AgregarPrivilegiosWin" runat="server" Hidden="true" Icon="KeyAdd" Title="Agregar Privilegios"
             Width="500" Layout="FormLayout" AutoHeight="True" Resizable="false" Shadow="None"
             X="30" Y="70" Modal="true">
@@ -571,6 +582,17 @@
                 </ext:FormPanel>
             </Items>
         </ext:Window>
+
+        <ext:ToolTip 
+            ID="AgregarPrivilegiosRowTip" 
+            runat="server" 
+            Target="={#{PrivilegiosNoDeRolGridP}.getView().mainBody}"
+            Delegate=".x-grid3-row"
+            TrackMouse="true">
+            <Listeners>
+                <Show Handler="var rowIndex = #{PrivilegiosNoDeRolGridP}.view.findRowIndex(this.triggerElement); this.body.dom.innerHTML = #{PrivilegiosNoDeRolGridP}.getStore().getAt(rowIndex).get('PRIV_DESCRIPCION');" />
+            </Listeners>
+        </ext:ToolTip>
     </div>
     </form>
 </body>

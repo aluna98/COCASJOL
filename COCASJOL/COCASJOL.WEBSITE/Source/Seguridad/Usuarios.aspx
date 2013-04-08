@@ -544,6 +544,17 @@
             </Items>
         </ext:Window>
 
+        <ext:ToolTip 
+            ID="EditarRolesRowTip" 
+            runat="server" 
+            Target="={#{RolesDeUsuarioGridP}.getView().mainBody}"
+            Delegate=".x-grid3-row"
+            TrackMouse="true">
+            <Listeners>
+                <Show Handler="var rowIndex = #{RolesDeUsuarioGridP}.view.findRowIndex(this.triggerElement); this.body.dom.innerHTML = #{RolesDeUsuarioGridP}.getStore().getAt(rowIndex).get('ROL_DESCRIPCION');" />
+            </Listeners>
+        </ext:ToolTip>
+
         <ext:Window ID="AgregarRolesWin" runat="server" Hidden="true" Icon="CogAdd" Title="Agregar Roles"
             Width="400" Layout="FormLayout" AutoHeight="True" Resizable="false" Shadow="None"
             X="30" Y="70" Modal="true">
@@ -651,6 +662,17 @@
                 </ext:FormPanel>
             </Items>
         </ext:Window>
+
+        <ext:ToolTip 
+            ID="AgregarRolesRowTip" 
+            runat="server" 
+            Target="={#{RolesNoDeUsuarioGridP}.getView().mainBody}"
+            Delegate=".x-grid3-row"
+            TrackMouse="true">
+            <Listeners>
+                <Show Handler="var rowIndex = #{RolesNoDeUsuarioGridP}.view.findRowIndex(this.triggerElement); this.body.dom.innerHTML = #{RolesNoDeUsuarioGridP}.getStore().getAt(rowIndex).get('ROL_DESCRIPCION');" />
+            </Listeners>
+        </ext:ToolTip>
     
         <ext:Window ID="CambiarClaveWin" runat="server" Hidden="true" Icon="Key" Title="Cambiar Contraseña"
             Width="400" Layout="FormLayout" AutoHeight="True" Resizable="false" Shadow="None"
@@ -663,7 +685,11 @@
                     <Items>
                         <ext:Panel ID="Panel4" runat="server" Frame="false" Padding="5" Layout="AnchorLayout" Border="false">
                             <Items>
-                                <ext:TextField runat="server" ID="CambiarClaveUsernameTxt"  DataIndex="USR_USERNAME" MaxLength="32" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre de Usuario" AllowBlank="false" Hidden="true" ReadOnly="true"></ext:TextField>
+                                <ext:TextField runat="server" ID="CambiarClaveUsernameTxt"  DataIndex="USR_USERNAME" MaxLength="32" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre de Usuario" AllowBlank="false" ReadOnly="true">
+                                    <ToolTips>
+                                        <ext:ToolTip runat="server" Title="Usuario" Html="El nombre de usuario es de solo lectura." />
+                                    </ToolTips>
+                                </ext:TextField>
                                 <ext:TextField runat="server" ID="CambiarClaveTxt"                                   MaxLength="32" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nueva Contraseña"     InputType="Password" AllowBlank="false" MsgTarget="Side" MinLength="6" ></ext:TextField>
                                 <ext:TextField runat="server" ID="CambiarClaveConfirmarTxt"                          MaxLength="32" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Confirmar Contraseña" InputType="Password" AllowBlank="false" Vtype="password" MsgTarget="Side" MinLength="6" >
                                     <CustomConfig>

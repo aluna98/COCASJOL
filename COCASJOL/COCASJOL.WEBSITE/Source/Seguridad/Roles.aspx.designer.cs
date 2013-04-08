@@ -307,7 +307,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField AddDescripcionTxt;
+        protected global::Ext.Net.TextArea AddDescripcionTxt;
         
         /// <summary>
         /// AddCreatedByTxt control.
@@ -424,7 +424,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField EditDescripcionTxt;
+        protected global::Ext.Net.TextArea EditDescripcionTxt;
         
         /// <summary>
         /// EditCreatedByTxt control.
@@ -625,6 +625,15 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         protected global::Ext.Net.Button EditGuardarBtn;
         
         /// <summary>
+        /// EditarPrivilegiosRowTipo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip EditarPrivilegiosRowTipo;
+        
+        /// <summary>
         /// AgregarPrivilegiosWin control.
         /// </summary>
         /// <remarks>
@@ -758,5 +767,14 @@ namespace COCASJOL.WEBSITE.Source.Seguridad {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.PagingToolbar PagingToolbar4;
+        
+        /// <summary>
+        /// AgregarPrivilegiosRowTip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip AgregarPrivilegiosRowTip;
     }
 }

@@ -42,7 +42,19 @@ var PageX = {
     update: function () {
         Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
             if (btn == 'yes') {
-                Ext.net.DirectMethods.GuardarVariablesBtn_Click(this.variablesToJson());
+                Ext.net.DirectMethods.GuardarVariablesBtn_Click(this.variablesToJson(),
+                    {
+                        success: function () {
+                            GridStore.reload();
+                            Ext.Msg.alert('Guardar', 'Variables de Entorno actualizadas exitosamente.');
+                        },
+                        eventMask: {
+                            showMask: true, target: 'customtarget', customTarget: Grid
+                        },
+                        failure: function () {
+                            Ext.Msg.alert('Guardar', 'Error al actualizar Variables de Entorno.');
+                        } 
+                    });
             }
         });
     }

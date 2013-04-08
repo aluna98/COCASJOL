@@ -177,9 +177,6 @@
                                             </Fields>
                                         </ext:JsonReader>
                                     </Reader>
-                                    <Listeners>
-                                        <CommitDone Handler="Ext.Msg.alert('Guardar', 'Cambios guardados exitosamente.');" />
-                                    </Listeners>
                                 </ext:Store>
                             </Store>
                             <ColumnModel>

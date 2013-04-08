@@ -43,14 +43,21 @@ var PageX = {
             Ext.Msg.confirm('Agregar Privilegios', 'Seguro desea agregar estos privilegios?', function (btn, text) {
                 if (btn == 'yes') {
                     Ext.net.DirectMethods.AddPrivilegiosAddPrivilegioBtn_Click(
-                            { success: function () {
+                        {
+                            success: function () {
                                 PrivilegiosDeRolSt.reload();
                                 Ext.net.DirectMethods.EnviarCorreoPrivilegiosNuevos();
                                 PrivilegiosNoDeRolesSt.reload();
                                 PrivilegiosNoDeRolGridP.getSelectionModel().clearSelections();
-                                Ext.Msg.alert('Agregar Privilegios', 'Privilegios agregado exitosamente.');
+                                Ext.Msg.alert('Agregar Privilegios', 'Privilegios agregados exitosamente.');
+                            },
+                            eventMask: {
+                                showMask: true, target: 'customtarget', customTarget: PrivilegiosNoDeRolGridP
+                            },
+                            failure: function () {
+                                Ext.Msg.alert('Agregar Privilegios', 'Error al agregar privilegios.');
                             }
-                            }, { eventMask: { showMask: true, target: 'customtarget', customTarget: PrivilegiosNoDeRolGridP} }, { failure: function () { Ext.Msg.alert('Agregar Privilegios', 'Error al agregar privilegios.'); } });
+                        });
                 }
             });
         } else {
@@ -143,7 +150,19 @@ var PageX = {
         if (PrivilegiosDeRolGridP.getSelectionModel().hasSelection()) {
             Ext.Msg.confirm('Eliminar Privilegios', 'Seguro desea eliminar estos privilegios?', function (btn, text) {
                 if (btn == 'yes') {
-                    Ext.net.DirectMethods.EditRolDeletePrivilegioBtn_Click({ success: function () { PrivilegiosDeRolSt.reload(); Ext.Msg.alert('Eliminar Privilegios', 'Privilegios eliminados exitosamente.'); } }, { eventMask: { showMask: true, target: 'customtarget', customTarget: PrivilegiosDeRolGridP} }, { failure: function () { Ext.Msg.alert('Eliminar Privilegios', 'Error al eliminar privilegios.'); } });
+                    Ext.net.DirectMethods.EditRolDeletePrivilegioBtn_Click(
+                        {
+                            success: function () {
+                                PrivilegiosDeRolSt.reload();
+                                Ext.Msg.alert('Eliminar Privilegios', 'Privilegios eliminados exitosamente.');
+                            },
+                            eventMask: {
+                                showMask: true, target: 'customtarget', customTarget: PrivilegiosDeRolGridP
+                            },
+                            failure: function () {
+                                Ext.Msg.alert('Eliminar Privilegios', 'Error al eliminar privilegios.');
+                            }
+                        });
                 }
             });
         } else {

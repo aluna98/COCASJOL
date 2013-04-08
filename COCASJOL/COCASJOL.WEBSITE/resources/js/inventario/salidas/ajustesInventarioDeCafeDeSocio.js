@@ -189,8 +189,11 @@ var PageX = {
     },
 
     clearFilter: function () {
+        f_AJUSTES_INV_CAFE_ID.reset();
         f_SOCIOS_ID.reset();
-        f_APORTACIONES_SALDO_TOTAL.reset();
+        f_CLASIFICACIONES_CAFE_ID.reset();
+        f_AJUSTES_INV_CAFE_SALDO_TOTAL.reset();
+        calendar.clearFecha();
         AjusteInventarioDeCafeSt.reload();
     },
 

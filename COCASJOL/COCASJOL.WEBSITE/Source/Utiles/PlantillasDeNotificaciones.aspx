@@ -31,7 +31,7 @@
         <asp:ObjectDataSource ID="PlantillaDS" runat="server"
                 TypeName="COCASJOL.LOGIC.Utiles.PlantillaLogic"
                 SelectMethod="GetPlantillas"
-                UpdateMethod="ActualizarProducto" onselecting="PlantillaDS_Selecting" >
+                UpdateMethod="ActualizarPlantilla" onselecting="PlantillaDS_Selecting" >
                 <SelectParameters>
                     <asp:ControlParameter Name="PLANTILLAS_LLAVE"   Type="String"    ControlID="f_PLANTILLAS_LLAVE"  PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="PLANTILLAS_NOMBRE"  Type="String"    ControlID="f_PLANTILLAS_NOMBRE" PropertyName="Text" DefaultValue="" />
@@ -43,8 +43,8 @@
                     <asp:ControlParameter Name="FECHA_MODIFICACION" Type="DateTime" ControlID="nullHdn"              PropertyName="Text" DefaultValue="" />
                 </SelectParameters>
                 <UpdateParameters>
-                    <asp:Parameter Name="PLANTILLAS_LLAVE"    Type="Int32" />
-                    <asp:Parameter Name="PLANTILLAS_NOMBRE"   Type="Int32" />
+                    <asp:Parameter Name="PLANTILLAS_LLAVE"    Type="String" />
+                    <asp:Parameter Name="PLANTILLAS_NOMBRE"   Type="String" />
                     <asp:Parameter Name="PLANTILLAS_ASUNTO"   Type="String" />
                     <asp:Parameter Name="PLANTILLAS_MENSAJE"  Type="String" />
                     <asp:Parameter Name="CREADO_POR"          Type="String" />

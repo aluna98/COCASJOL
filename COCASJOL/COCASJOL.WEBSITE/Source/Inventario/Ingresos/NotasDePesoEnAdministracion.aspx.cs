@@ -46,8 +46,29 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 e.Cancel = true;
         }
 
-        [DirectMethod(RethrowException = true, ShowMask = true, Target = MaskTarget.CustomTarget, CustomTarget = "EditarNotasFormP")]
-        public void EditNotaDePeso_Click(string Detalles)
+        protected void EditNotaDetalleSt_Refresh(object sender, StoreRefreshDataEventArgs e)
+        {
+            try
+            {
+                string notaId = this.EditNotaIdTxt.Text;
+
+                if (string.IsNullOrEmpty(notaId))
+                    return;
+
+                NotaDePesoEnCatacionLogic notadepesologic = new NotaDePesoEnCatacionLogic();
+
+                this.EditNotaDetalleSt.DataSource = notadepesologic.GetDetalleNotaDePeso(Convert.ToInt32(notaId));
+                this.EditNotaDetalleSt.DataBind();
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al obtener detalles de nota de peso en administracion.", ex);
+                throw;
+            }
+        }
+
+        [DirectMethod(RethrowException = true)]
+        public void EditNotaDePeso_Click()
         {
             try
             {
@@ -69,7 +90,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
 
         private static object lockObj = new object();
 
-        [DirectMethod(RethrowException = true, Target = MaskTarget.CustomTarget, CustomTarget = "EditarNotasFormP")]
+        [DirectMethod(RethrowException = true)]
         public void RegisterNotaDePeso_Click()
         {
             try
@@ -95,27 +116,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
             catch (Exception ex)
             {
                 log.Fatal("Error fatal al registrar nota de peso en administracion.", ex);
-                throw;
-            }
-        }
-
-        protected void EditNotaDetalleSt_Refresh(object sender, StoreRefreshDataEventArgs e)
-        {
-            try
-            {
-                string notaId = this.EditNotaIdTxt.Text;
-
-                if (string.IsNullOrEmpty(notaId))
-                    return;
-
-                NotaDePesoEnCatacionLogic notadepesologic = new NotaDePesoEnCatacionLogic();
-
-                this.EditNotaDetalleSt.DataSource = notadepesologic.GetDetalleNotaDePeso(Convert.ToInt32(notaId));
-                this.EditNotaDetalleSt.DataBind();
-            }
-            catch (Exception ex)
-            {
-                log.Fatal("Error fatal al obtener detalles de nota de peso en administracion.", ex);
                 throw;
             }
         }

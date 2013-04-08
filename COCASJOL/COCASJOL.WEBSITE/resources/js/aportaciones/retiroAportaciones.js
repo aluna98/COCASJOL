@@ -145,27 +145,33 @@ var PageX = {
     insert: function () {
         Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
             if (btn == 'yes') {
-                Ext.net.DirectMethods.RetirarBtn_Click
-                    ({ success: function () {
+                Ext.net.DirectMethods.RetirarBtn_Click(
+                {
+                    success: function () {
                         AportacionesSt.reload();
                         GridStore.reload();
                         Ext.Msg.alert('Agregar Retiro de Aportaciones', 'Retiro de aportaciones ejecutado exitosamente.');
                         AddForm.getForm().reset();
-                    }
                     },
-                    { failure: function () {
+                    eventMask: {
+                        showMask: true, target: 'customtarget', customTarget: AddForm
+                    },
+                    failure: function () {
                         Ext.Msg.alert('Agregar Retiro de Aportaciones', 'Error al ejecutar el retiro de aportaciones.');
-                    }});
+                    }
+                });
             }
         });
     },
 
     addGetNombreDeSocio: function (sociosIdTxt, nombreTxt) {
         var value = sociosIdTxt.getValue();
-        var record = AportacionesSt.getById(value);
+        var record = SocioSt.getById(value);
 
         AddForm.getForm().loadRecord(record);
         AddForm.record = record;
+
+        this.getNombreDeSocio(AddSociosIdTxt, AddNombreTxt);
 
         this.loadTotalRetiro();
     },
@@ -192,8 +198,10 @@ var PageX = {
     },
 
     clearFilter: function () {
+        f_RETIROS_AP_ID.reset();
         f_SOCIOS_ID.reset();
-        f_APORTACIONES_SALDO_TOTAL.reset();
+        f_RETIROS_AP_TOTAL_RETIRADO.reset();
+        calendar.clearFecha();
         RetiroAportacionesSt.reload();
     },
 

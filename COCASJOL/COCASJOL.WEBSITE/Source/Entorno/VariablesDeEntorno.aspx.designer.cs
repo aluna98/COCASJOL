@@ -164,5 +164,14 @@ namespace COCASJOL.WEBSITE.Source.Entorno {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.GridView GridView1;
+        
+        /// <summary>
+        /// RowTip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip RowTip;
     }
 }

@@ -90,17 +90,20 @@ var PageX = {
 
 
         Ext.net.DirectMethods.AddNotaDePeso_Click(pesoJson,
-                { success: function () {
-                    GridStore.reload();
-                    Ext.Msg.alert('Agregar Nota de Peso', 'Nota de peso agregada exitosamente.');
-                    AddForm.getForm().reset();
-                    AddNotaDetalleSt.removeAll();
-                }
-                },
-                { failure: function () {
-                    Ext.Msg.alert('Agregar Nota de Peso', 'Error al agregar nota de peso.');
-                }
-                });
+        {
+            success: function () {
+                GridStore.reload();
+                Ext.Msg.alert('Agregar Nota de Peso', 'Nota de peso agregada exitosamente.');
+                AddForm.getForm().reset();
+                AddNotaDetalleSt.removeAll();
+            },
+            eventMask: {
+                showMask: true, target: 'customtarget', customTarget: AddForm
+            },
+            failure: function () {
+                Ext.Msg.alert('Agregar Nota de Peso', 'Error al agregar nota de peso.');
+            }
+        });
     },
 
     getIndex: function () {
@@ -182,13 +185,15 @@ var PageX = {
                 var pesoJson = EditDetailX.pesoToJson();
 
                 Ext.net.DirectMethods.EditNotaDePeso_Click(pesoJson,
-                {   success: function () {
+                {
+                    success: function () {
                         GridStore.reload();
                         Ext.Msg.alert('Editar Nota de Peso', 'Nota de peso actualizada exitosamente.');
-                        EditWindow.hide();
-                    }
-                },
-                {   failure: function () {
+                    },
+                    eventMask: {
+                        showMask: true, target: 'customtarget', customTarget: EditForm
+                    },
+                    failure: function () {
                         Ext.Msg.alert('Editar Nota de Peso', 'Error al actualizar la nota de peso.');
                     }
                 });
@@ -201,7 +206,20 @@ var PageX = {
             Ext.Msg.confirm(ConfirmMsgTitle, ConfirmDelete, function (btn, text) {
                 if (btn == 'yes') {
                     var rec = Grid.getSelectionModel().getSelected();
-                    Ext.net.DirectMethods.DeleteNotaDePeso_Click(rec.data.NOTAS_ID);
+                    Ext.net.DirectMethods.DeleteNotaDePeso_Click(rec.data.NOTAS_ID,
+                    {
+                        success: function () {
+                            GridStore.reload();
+                            Ext.Msg.alert('Eliminar Nota de Peso', 'Nota de peso eliminada exitosamente.');
+                            EditWindow.hide();
+                        },
+                        eventMask: {
+                            showMask: true, target: 'customtarget', customTarget: Grid
+                        },
+                        failure: function () {
+                            Ext.Msg.alert('Eliminar Nota de Peso', 'Error al eliminar la nota de peso.');
+                        }
+                    });
                 }
             });
         } else {

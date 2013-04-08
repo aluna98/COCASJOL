@@ -28,8 +28,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
             {
                 if (!X.IsAjaxRequest)
                 {
-                    Dictionary<string, string> variables = this.GetVariables();
-                    this.CantidadDeAportacionExtraordParaCoopHdn.Text = variables["HOJAS_APORTACIONEXTRACANT"];
+                    this.CantidadDeAportacionExtraordParaCoopHdn.Text = this.Variables["HOJAS_APORTACIONEXTRACANT"];
                 }
 
                 string loggedUsr = Session["username"] as string;
@@ -106,11 +105,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
         {
             try
             {
-                Dictionary<string, string> variables = this.GetVariables();
-                if (!this.ValidarVariables(variables))
-                    return;
-
-                this.AddCapitalizacionXRetencionTxt.Text = variables["HOJAS_CAPITALIZACIONRETN"];
+                this.AddCapitalizacionXRetencionTxt.Text = this.Variables["HOJAS_CAPITALIZACIONRETN"];
             }
             catch (Exception ex)
             {
@@ -124,16 +119,12 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
         {
             try
             {
-                Dictionary<string, string> variables = this.GetVariables();
-                if (!this.ValidarVariables(variables))
-                    return;
-
                 string socios_id = this.AddSociosIdTxt.Text;
 
                 if (SociosLogic.EsNuevo(socios_id) == true)
                 {
-                    this.AddCuotaIngresoTxt.Text = variables["HOJAS_CUOTAINGRESO"];
-                    this.AddGastosAdminTxt.Text = variables["HOJAS_GASTOADMINISTRACION"];
+                    this.AddCuotaIngresoTxt.Text = this.Variables["HOJAS_CUOTAINGRESO"];
+                    this.AddGastosAdminTxt.Text = this.Variables["HOJAS_GASTOADMINISTRACION"];
                 }
                 else
                 {
@@ -153,21 +144,17 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
         {
             try
             {
-                Dictionary<string, string> variables = this.GetVariables();
-                if (!this.ValidarVariables(variables))
-                    return;
-
                 string socios_id = this.AddSociosIdTxt.Text;
 
                 if (SociosLogic.DebePagarAportacionOrdinaria(socios_id))
-                    this.AddAportacionOrdinariaTxt.Text = variables["HOJAS_APORTACIONORD"];
+                    this.AddAportacionOrdinariaTxt.Text = this.Variables["HOJAS_APORTACIONORD"];
                 else
                     this.AddAportacionOrdinariaTxt.Text = (0).ToString();
 
 
 
                 if (SociosLogic.DebePagarAportacionExtraordinaria(socios_id))
-                    this.AddAportacionExtraOrdinariaTxt.Text = variables["HOJAS_APORTACIONEXTRAORD"];
+                    this.AddAportacionExtraOrdinariaTxt.Text = this.Variables["HOJAS_APORTACIONEXTRAORD"];
                 else
                     this.AddAportacionExtraOrdinariaTxt.Text = (0).ToString();
             }

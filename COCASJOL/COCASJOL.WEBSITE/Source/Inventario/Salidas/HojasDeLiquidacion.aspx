@@ -39,7 +39,7 @@
                 <SelectParameters>
                     <asp:ControlParameter Name="LIQUIDACIONES_ID"                                   Type="Int32"    ControlID="f_LIQUIDACIONES_ID"        PropertyName="Text" />
                     <asp:ControlParameter Name="SOCIOS_ID"                                          Type="String"   ControlID="f_SOCIOS_ID"               PropertyName="Text" />
-                    <asp:ControlParameter Name="LIQUIDACIONES_FECHA"                                Type="DateTime" ControlID="f_LIQUIDACIONES_FECHA"     PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="LIQUIDACIONES_FECHA"                                Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="FECHA_DESDE"                                        Type="DateTime" ControlID="f_DATE_FROM"               PropertyName="Text" />
                     <asp:ControlParameter Name="FECHA_HASTA"                                        Type="DateTime" ControlID="f_DATE_TO"                 PropertyName="Text" />
                     <asp:ControlParameter Name="CLASIFICACIONES_CAFE_ID"                            Type="Int32"    ControlID="f_CLASIFICACIONES_CAFE_ID" PropertyName="Text" />
