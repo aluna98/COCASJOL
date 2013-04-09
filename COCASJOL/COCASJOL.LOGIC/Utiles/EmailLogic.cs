@@ -11,6 +11,8 @@ using System.Data.Objects;
 using COCASJOL.LOGIC;
 using COCASJOL.LOGIC.Seguridad;
 
+using System.Xml;
+
 using log4net;
 
 namespace COCASJOL.LOGIC.Utiles
@@ -19,7 +21,7 @@ namespace COCASJOL.LOGIC.Utiles
     {
         private static ILog log = LogManager.GetLogger(typeof(EmailLogic).Name);
 
-        public static void EnviarCorreoUsuarioNuevo(string USR_USERNAME, string USR_PASSWORD)
+        public static void EnviarCorreoUsuarioNuevo(string USR_USERNAME, string USR_PASSWORD, XmlDocument Configuracion)
         {
             try
             {
@@ -46,7 +48,7 @@ namespace COCASJOL.LOGIC.Utiles
                 message = message.Replace("{USUARIO}", USR_USERNAME);
                 message = message.Replace("{CONTRASEÑA}", USR_PASSWORD);
 
-                EnviarCorreo(mailto, subject, message);
+                EnviarCorreo(mailto, subject, message, Configuracion);
             }
             catch (Exception ex)
             {
@@ -55,7 +57,7 @@ namespace COCASJOL.LOGIC.Utiles
             }
         }
 
-        public static void EnviarCorreoUsuarioPasswordNuevo(string USR_USERNAME, string USR_PASSWORD)
+        public static void EnviarCorreoUsuarioPasswordNuevo(string USR_USERNAME, string USR_PASSWORD, XmlDocument Configuracion)
         {
             try
             {
@@ -82,7 +84,7 @@ namespace COCASJOL.LOGIC.Utiles
                 message = message.Replace("{USUARIO}", USR_USERNAME);
                 message = message.Replace("{CONTRASEÑA}", USR_PASSWORD);
 
-                EnviarCorreo(mailto, subject, message);
+                EnviarCorreo(mailto, subject, message, Configuracion);
             }
             catch (Exception ex)
             {
@@ -91,7 +93,7 @@ namespace COCASJOL.LOGIC.Utiles
             }
         }
 
-        public static void EnviarCorreoRolNuevo(string USR_USERNAME, int ROL_ID)
+        public static void EnviarCorreoRolNuevo(string USR_USERNAME, int ROL_ID, XmlDocument Configuracion)
         {
             try
             {
@@ -135,7 +137,7 @@ namespace COCASJOL.LOGIC.Utiles
                 message = message.Replace("{ROL}", rol);
                 message = message.Replace("{PRIVILEGIOS}", privs);
 
-                EnviarCorreo(mailto, subject, message);
+                EnviarCorreo(mailto, subject, message, Configuracion);
             }
             catch (Exception ex)
             {
@@ -144,7 +146,7 @@ namespace COCASJOL.LOGIC.Utiles
             }
         }
 
-        public static void EnviarCorreosPrivilegiosNuevos(int ROL_ID, List<string> PRIVS_ID)
+        public static void EnviarCorreosPrivilegiosNuevos(int ROL_ID, List<string> PRIVS_ID, XmlDocument Configuracion)
         {
             try
             {
@@ -196,7 +198,7 @@ namespace COCASJOL.LOGIC.Utiles
                         message = message.Replace("{USUARIO}", user.USR_USERNAME);
                         message = message.Replace("{PRIVILEGIO}", priv);
 
-                        EnviarCorreo(mailto, subject, message);
+                        EnviarCorreo(mailto, subject, message, Configuracion);
                     }
                 }
             }
@@ -207,23 +209,24 @@ namespace COCASJOL.LOGIC.Utiles
             }
         }
 
-        private static void EnviarCorreo(string mailto, string subject, string message)
+        private static void EnviarCorreo(string mailto, string subject, string message, XmlDocument Configuracion)
         {
             try
             {
-                string strUsePassword = System.Configuration.ConfigurationManager.AppSettings.Get("CorreoUsarPassword");
-                string mailfrom = System.Configuration.ConfigurationManager.AppSettings.Get("CorreoLocal");
-                string host = System.Configuration.ConfigurationManager.AppSettings.Get("SMTP_SERVER");
+                Configuracion.ConfiguracionDeSistemaLogic configLogic = new Configuracion.ConfiguracionDeSistemaLogic(Configuracion);
 
-                bool usePassword = Convert.ToBoolean(strUsePassword);
+                string mailfrom = configLogic.CorreoCorreoLocal;
+                string host = configLogic.CorreoSMTP;
+
+                bool usePassword = configLogic.CorreoUsarPassword;
 
                 if (usePassword)
                 {
-                    string fromPassword = System.Configuration.ConfigurationManager.AppSettings.Get("CorreoLocalPassword");
-                    string port = System.Configuration.ConfigurationManager.AppSettings.Get("CorreoLocalPort");
-                    string enableSSL = System.Configuration.ConfigurationManager.AppSettings.Get("CorreoLocalUsarSSL");
+                    string fromPassword = configLogic.CorreoPassword;
+                    int port = configLogic.CorreoPuerto;
+                    bool enableSSL = configLogic.CorreoUsarSSL;
 
-                    sendMail(mailto, mailfrom, fromPassword, message, subject, host, Convert.ToInt32(port), Convert.ToBoolean(enableSSL));
+                    sendMail(mailto, mailfrom, fromPassword, message, subject, host, port, enableSSL);
                 }
                 else
                     sendMail(mailto, mailfrom, message, subject, host);

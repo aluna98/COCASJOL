@@ -6,14 +6,14 @@
   </ventanas>
   <consolidadoInventario>
     <InicioPeriodo>4/11/2013</InicioPeriodo>
-    <FinalPeriodo>4/30/2013</FinalPeriodo>
+    <FinalPeriodo>1/1/0001</FinalPeriodo>
   </consolidadoInventario>
   <correo>
-    <correoLocal>ndgr2008@unitec.edu</correoLocal>
+    <correoLocal>lol@lolix.edu</correoLocal>
     <usarPassword>True</usarPassword>
-    <password>123452</password>
-    <smtp>smtp.gmail.com1</smtp>
-    <puerto>5872</puerto>
+    <password>0IPLoYhiUUw=</password>
+    <smtp>smtp.gmail.com</smtp>
+    <puerto>587</puerto>
     <usarSSL>True</usarSSL>
   </correo>
   <auditoria>

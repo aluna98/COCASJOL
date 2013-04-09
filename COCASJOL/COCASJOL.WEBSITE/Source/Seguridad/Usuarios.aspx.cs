@@ -236,7 +236,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
             try
             {
                 string USR_USERNAME = this.AddUsernameTxt.Text;
-                EmailLogic.EnviarCorreoUsuarioNuevo(USR_USERNAME, USR_PASSWORD);
+                EmailLogic.EnviarCorreoUsuarioNuevo(USR_USERNAME, USR_PASSWORD, this.docConfiguracion);
             }
             catch (Exception ex)
             {
@@ -251,7 +251,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
             try
             {
                 string USR_USERNAME = this.CambiarClaveUsernameTxt.Text;
-                EmailLogic.EnviarCorreoUsuarioPasswordNuevo(USR_USERNAME, USR_PASSWORD);
+                EmailLogic.EnviarCorreoUsuarioPasswordNuevo(USR_USERNAME, USR_PASSWORD, this.docConfiguracion);
             }
             catch (Exception ex)
             {
@@ -270,7 +270,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                 List<string> rolesList = this.RolesNoDeUsuarioSelectionM.SelectedRows.Select(s => s.RecordID).ToList<string>();
 
                 foreach (string r in rolesList)
-                    EmailLogic.EnviarCorreoRolNuevo(USR_USERNAME, Convert.ToInt32(r));
+                    EmailLogic.EnviarCorreoRolNuevo(USR_USERNAME, Convert.ToInt32(r), this.docConfiguracion);
             }
             catch (Exception ex)
             {

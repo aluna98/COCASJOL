@@ -5,6 +5,8 @@ using System.Text;
 
 using System.Web;
 using System.Xml;
+using System.IO;
+using System.Security.Cryptography;
 
 using log4net;
 
@@ -15,6 +17,8 @@ namespace COCASJOL.LOGIC.Configuracion
         #region Private Members
 
         private static ILog log = LogManager.GetLogger(typeof(ConfiguracionDeSistemaLogic).Name);
+        private string vector = "***PDG**";
+        private string key = "********!!PDG1!!********";
 
         private XmlDocument Configuracion;
 
@@ -191,10 +195,29 @@ namespace COCASJOL.LOGIC.Configuracion
 
         #region Constructors
 
+        private static object lockObj = new object();
+
         public ConfiguracionDeSistemaLogic()
         {
             try
             {
+                string strConfigurationPath = System.Configuration.ConfigurationManager.AppSettings.Get("configuracionDeSistemaXML");
+                var varConfigXML = HttpContext.Current.Cache.Get("configuracionDeSistemaXML");
+
+                if (varConfigXML == null)
+                {
+                    lock (lockObj)
+                    {
+                        Configuracion = new XmlDocument();
+                        Configuracion.Load(HttpContext.Current.Server.MapPath(strConfigurationPath));
+
+                        HttpContext.Current.Cache.Insert("configuracionDeSistemaXML", Configuracion,
+                            new System.Web.Caching.CacheDependency(HttpContext.Current.Server.MapPath(strConfigurationPath)));
+                    }
+                }
+                else
+                    Configuracion = varConfigXML as XmlDocument;
+
                 string path = System.Configuration.ConfigurationManager.AppSettings.Get("configuracionDeSistemaXML");
                 Configuracion = new XmlDocument();
                 Configuracion.Load(System.Web.HttpContext.Current.Server.MapPath(path));
@@ -226,25 +249,53 @@ namespace COCASJOL.LOGIC.Configuracion
 
         #region Methods
 
+        private string encryptTDES(string plainText)
+        {
+            try
+            {
+                Seguridad.CriptografiaTDES des = new Seguridad.CriptografiaTDES(key, vector);
+                return des.EncondeString(plainText);
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al encriptar TDES.", ex);
+                throw;
+            }
+        }
+
+        private string dencryptTDES(string cypherText)
+        {
+            try
+            {
+                Seguridad.CriptografiaTDES des = new Seguridad.CriptografiaTDES(key, vector);
+                return des.DecodeString(cypherText);
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al desencriptar AES.", ex);
+                throw;
+            }
+        }
+
         private void LoadMembers()
         {
             try
             {
-                string strMaximizar = Configuracion.SelectSingleNode("configuracion/ventanas/MaximizarAlCargar").InnerText;
-                string strCargarDatos = Configuracion.SelectSingleNode("configuracion/ventanas/CargarDatosAlInicio").InnerText;
+                string strMaximizar = Configuracion.SelectSingleNode("configuracion/ventanas/MaximizarAlCargar").InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
+                string strCargarDatos = Configuracion.SelectSingleNode("configuracion/ventanas/CargarDatosAlInicio").InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
 
-                string strConsolidadoInicio = Configuracion.SelectSingleNode("configuracion/consolidadoInventario/InicioPeriodo").InnerText;
-                string strConsolidadoFinal = Configuracion.SelectSingleNode("configuracion/consolidadoInventario/FinalPeriodo").InnerText;
+                string strConsolidadoInicio = Configuracion.SelectSingleNode("configuracion/consolidadoInventario/InicioPeriodo").InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
+                string strConsolidadoFinal = Configuracion.SelectSingleNode("configuracion/consolidadoInventario/FinalPeriodo").InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
 
-                string strCorreoLocal = Configuracion.SelectSingleNode("configuracion/correo/correoLocal").InnerText;
-                string strCorreoUsarPassword = Configuracion.SelectSingleNode("configuracion/correo/usarPassword").InnerText;
-                string strCorreoPassword = Configuracion.SelectSingleNode("configuracion/correo/password").InnerText;
-                string strCorreoSMTP = Configuracion.SelectSingleNode("configuracion/correo/smtp").InnerText;
-                string strCorreoPuerto = Configuracion.SelectSingleNode("configuracion/correo/puerto").InnerText;
-                string strCorreoUsarSSL = Configuracion.SelectSingleNode("configuracion/correo/usarSSL").InnerText;
+                string strCorreoLocal = Configuracion.SelectSingleNode("configuracion/correo/correoLocal").InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
+                string strCorreoUsarPassword = Configuracion.SelectSingleNode("configuracion/correo/usarPassword").InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
+                string strCorreoPassword = Configuracion.SelectSingleNode("configuracion/correo/password").InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
+                string strCorreoSMTP = Configuracion.SelectSingleNode("configuracion/correo/smtp").InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
+                string strCorreoPuerto = Configuracion.SelectSingleNode("configuracion/correo/puerto").InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
+                string strCorreoUsarSSL = Configuracion.SelectSingleNode("configuracion/correo/usarSSL").InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
 
-                string strAuditoriaUsername = Configuracion.SelectSingleNode("configuracion/auditoria/username").InnerText;
-                string strAuditoriaDate = Configuracion.SelectSingleNode("configuracion/auditoria/date").InnerText;
+                string strAuditoriaUsername = Configuracion.SelectSingleNode("configuracion/auditoria/username").InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
+                string strAuditoriaDate = Configuracion.SelectSingleNode("configuracion/auditoria/date").InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
 
 
 
@@ -256,7 +307,7 @@ namespace COCASJOL.LOGIC.Configuracion
 
                 this.correo_CorreoLocal = strCorreoLocal;
                 bool.TryParse(strCorreoUsarPassword, out this.correo_UsarPassword);
-                this.correo_Password = strCorreoPassword;
+                this.correo_Password = string.IsNullOrEmpty(strCorreoPassword) ? "" : this.dencryptTDES(strCorreoPassword);
                 this.correo_SMTP = strCorreoSMTP;
                 int.TryParse(strCorreoPuerto, out this.correo_Puerto);
                 bool.TryParse(strCorreoUsarSSL, out this.correo_UsarSSL);
@@ -275,6 +326,8 @@ namespace COCASJOL.LOGIC.Configuracion
         {
             try
             {
+                string passwrd = string.IsNullOrEmpty(this.correo_Password) ? "" : this.encryptTDES(this.correo_Password);
+
                 Configuracion.SelectSingleNode("configuracion/ventanas/MaximizarAlCargar").InnerText = this.ventana_Maximizar.ToString();
                 Configuracion.SelectSingleNode("configuracion/ventanas/CargarDatosAlInicio").InnerText = this.ventana_CargarDatos.ToString();
 
@@ -283,7 +336,7 @@ namespace COCASJOL.LOGIC.Configuracion
 
                 Configuracion.SelectSingleNode("configuracion/correo/correoLocal").InnerText = this.correo_CorreoLocal;
                 Configuracion.SelectSingleNode("configuracion/correo/usarPassword").InnerText = this.correo_UsarPassword.ToString();
-                Configuracion.SelectSingleNode("configuracion/correo/password").InnerText = this.correo_Password;
+                Configuracion.SelectSingleNode("configuracion/correo/password").InnerText = passwrd;
                 Configuracion.SelectSingleNode("configuracion/correo/smtp").InnerText = this.correo_SMTP;
                 Configuracion.SelectSingleNode("configuracion/correo/puerto").InnerText = this.correo_Puerto.ToString();
                 Configuracion.SelectSingleNode("configuracion/correo/usarSSL").InnerText = this.correo_UsarSSL.ToString();

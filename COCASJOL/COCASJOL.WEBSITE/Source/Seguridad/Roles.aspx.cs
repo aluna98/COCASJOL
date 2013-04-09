@@ -150,7 +150,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                 int ROL_ID = Convert.ToInt32(this.EditIdTxt.Value);
                 List<string> privsList = this.PrivilegiosNoDeRolSelectionM.SelectedRows.Select(s => s.RecordID).ToList<string>();
 
-                EmailLogic.EnviarCorreosPrivilegiosNuevos(Convert.ToInt32(ROL_ID), privsList);
+                EmailLogic.EnviarCorreosPrivilegiosNuevos(Convert.ToInt32(ROL_ID), privsList, this.docConfiguracion);
             }
             catch (Exception ex)
             {
