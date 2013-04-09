@@ -178,6 +178,14 @@
 
                 <%--Utiles--%>
 
+                <ext:DesktopModule ModuleID="ConfiguracionDeSistemaModule">
+                    <Launcher ID="ConfiguracionDeSistemaLauncher" runat="server" Text="Configuración de Sistema" Icon="ServerEdit" >
+                        <Listeners>
+                            <Click Handler="WindowX.configuracionDeSistema(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
+
                 <ext:DesktopModule ModuleID="PlantillasNotificacionesModule">
                     <Launcher ID="PlantillasNotificacionesLauncher" runat="server" Text="Plantillas de Notificaciones" IconCls="icon-plantillasNotificaciones16" >
                         <Listeners>
@@ -371,6 +379,7 @@
             <Shortcuts>
                 <ext:DesktopShortcut ShortcutID="scUsuarios"                               Text="Usuarios"                                     IconCls="shortcut-icon icon-usuarios" />
                 <ext:DesktopShortcut ShortcutID="scRoles"                                  Text="Roles"                                        IconCls="shortcut-icon icon-roles" />
+                <ext:DesktopShortcut ShortcutID="scConfiguracionDeSistema"                 Text="Configuración de Sistema"                     IconCls="shortcut-icon icon-configuracionDeSistema" />
                 <ext:DesktopShortcut ShortcutID="scPlantillasNotificaciones"               Text="Plantillas de Notificaciones"                 IconCls="shortcut-icon icon-plantillasNotificaciones" />
                 <ext:DesktopShortcut ShortcutID="scVariablesDeEntorno"                     Text="Variables de Entorno"                         IconCls="shortcut-icon icon-variablesEntorno" />
                 <ext:DesktopShortcut ShortcutID="scApplicationLog"                         Text="Bitácora de Aplicación"                       IconCls="shortcut-icon icon-applicationLog" />
@@ -427,6 +436,19 @@
                                     <ext:MenuItem ID="RolesMenuItem" Text="Roles" Icon="Cog">
                                         <Listeners>
                                             <Click Handler="WindowX.roles(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                </Items>
+                            </ext:Menu>
+                        </Menu>
+                    </ext:MenuItem>
+                    <ext:MenuItem ID="SettingsMenu" runat="server" Text="Configuración" Icon="Folder" HideOnClick="false">
+                        <Menu>
+                            <ext:Menu runat="server">
+                                <Items>
+                                    <ext:MenuItem ID="ConfiguracionDeSistemaMenuItem" Text="Configuración de Sistema" Icon="ServerEdit">
+                                        <Listeners>
+                                            <Click Handler="WindowX.configuracionDeSistema(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
                                 </Items>
@@ -872,6 +894,7 @@
 
         <ext:ToolTip runat="server" ID="scUsuariosTooltip"                          Html="Usuarios"                                     Target="scUsuarios-shortcut"                          ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scRolesTooltip"                             Html="Roles"                                        Target="scRoles-shortcut"                             ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scConfiguracionDeSistemaTooltip"            Html="Configuración de Sistema"                     Target="scConfiguracionDeSistema-shortcut"            ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scPlantillasNotificacionesTooltip"          Html="Plantillas de Notificaciones"                 Target="scPlantillasNotificaciones-shortcut"          ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scVariablesDeEntornoTooltip"                Html="Variables de Entorno"                         Target="scVariablesDeEntorno-shortcut"                ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scApplicationLogTooltip"                    Html="Bitácora de Aplicación"                       Target="scApplicationLog-shortcut"                    ></ext:ToolTip>

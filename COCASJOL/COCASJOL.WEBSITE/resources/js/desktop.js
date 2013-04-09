@@ -194,6 +194,10 @@ var WindowX = {
         DesktopX.createDynamicWindow(app, 'cog', 'Roles', 'Seguridad/Roles.aspx');
     },
 
+    configuracionDeSistema: function (app) {
+        DesktopX.createDynamicWindow(app, 'serveredit', 'Configuración de Sistema', 'Configuracion/ConfiguracionDeSistema.aspx', 600, 400);
+    },
+
     plantillasNotificaciones: function (app) {
         DesktopX.createDynamicWindow(app, 'plantillasNotificaciones16', 'Plantillas de Notificaciones', 'Utiles/PlantillasDeNotificaciones.aspx', 1000, 600);
     },
@@ -290,6 +294,8 @@ var ShorcutClickHandler = function (app, id) {
         WindowX.usuarios(app);
     } else if (id == 'scRoles') {
         WindowX.roles(app);
+    } else if (id == 'scConfiguracionDeSistema') {
+        WindowX.configuracionDeSistema(app);
     } else if (id == 'scPlantillasNotificaciones') {
         WindowX.plantillasNotificaciones(app);
     } else if (id == 'scSocios') {

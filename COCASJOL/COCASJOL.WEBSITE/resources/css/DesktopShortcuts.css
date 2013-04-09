@@ -23,6 +23,12 @@
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/gear_in.png", sizingMethod="center");
 }
 
+.icon-configuracionDeSistema
+{
+    background-image: url(../images/server_edit.png) !important;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/server_edit.png", sizingMethod="center");
+}
+
 .icon-plantillasNotificaciones16
 {
     background-image: url("../images/mail_server_setting16.png") !important;
