@@ -35,15 +35,29 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
             }
             catch (Exception ex)
             {
-                log.Fatal("Error fatal al cargar pagina de nota de peso en administracion.", ex);
+                log.Fatal("Error fatal al cargar pagina de notas de peso en administracion.", ex);
                 throw;
             }
         }
 
         protected void NotasDS_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
         {
-            if (!this.IsPostBack)
-                e.Cancel = true;
+            try
+            {
+                if (!this.IsPostBack)
+                {
+                    COCASJOL.LOGIC.Configuracion.ConfiguracionDeSistemaLogic configLogic = new COCASJOL.LOGIC.Configuracion.ConfiguracionDeSistemaLogic(this.docConfiguracion);
+                    if (configLogic.VentanasCargarDatos == true)
+                        e.Cancel = false;
+                    else
+                        e.Cancel = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al cargar notas de peso en administracion.", ex);
+                throw;
+            }
         }
 
         protected void EditNotaDetalleSt_Refresh(object sender, StoreRefreshDataEventArgs e)

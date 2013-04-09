@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <configuracion>
   <ventanas>
-    <MaximizarAlCargar>False</MaximizarAlCargar>
-    <CargarDatosAlInicio>False</CargarDatosAlInicio>
+    <MaximizarAlCargar>True</MaximizarAlCargar>
+    <CargarDatosAlInicio>True</CargarDatosAlInicio>
   </ventanas>
   <consolidadoInventario>
-    <InicioPeriodo>4/11/2013</InicioPeriodo>
-    <FinalPeriodo>1/1/0001</FinalPeriodo>
+    <InicioPeriodo>11/4/2013</InicioPeriodo>
+    <FinalPeriodo>11/7/2013</FinalPeriodo>
   </consolidadoInventario>
   <correo>
     <correoLocal>lol@lolix.edu</correoLocal>

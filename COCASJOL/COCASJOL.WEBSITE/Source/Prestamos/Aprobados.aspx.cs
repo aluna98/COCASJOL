@@ -36,7 +36,11 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
                 SociosSt_Reload(null, null);
                 if (!X.IsAjaxRequest)
                 {
-
+                    COCASJOL.LOGIC.Configuracion.ConfiguracionDeSistemaLogic configLogic = new COCASJOL.LOGIC.Configuracion.ConfiguracionDeSistemaLogic(this.docConfiguracion);
+                    if (configLogic.VentanasCargarDatos == true)
+                    {
+                        this.SolicitudesSt_Reload(null, null);
+                    }
                 }
                 string loggedUsr = Session["username"] as string;
                 this.LoggedUserHdn.Text = loggedUsr;

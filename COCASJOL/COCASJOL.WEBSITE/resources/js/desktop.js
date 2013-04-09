@@ -3,7 +3,7 @@
 
 var DesktopX = {
     alignPanels: function () {
-        pnlSample.getEl().alignTo(Ext.getBody(), "tr", [-405, 5], false)
+        pnlSample.getEl().alignTo(Ext.getBody(), "tr", [-455, 5], false)
     },
 
     createDynamicWindow: function (app, ico, title, url, width, height) {
@@ -11,6 +11,8 @@ var DesktopX = {
 
         width = width == null ? 640 : width;
         height = height == null ? 480 : height;
+
+        var maximizeWindow = maximizarVentanasHdn.getValue();
 
         var desk = app.getDesktop();
 
@@ -25,6 +27,7 @@ var DesktopX = {
                 height: height,
                 maximizable: true,
                 minimizable: true,
+                maximized: maximizeWindow,
                 closeAction: 'close',
                 shadow: false,
                 shim: false,
@@ -44,7 +47,6 @@ var DesktopX = {
                     }
                 }]
             });
-            w.center();
         }
         w.show();
     },

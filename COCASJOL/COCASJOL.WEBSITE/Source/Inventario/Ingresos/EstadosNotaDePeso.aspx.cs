@@ -39,8 +39,22 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
 
         protected void EstadosNotaDS_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
         {
-            if (!this.IsPostBack)
-                e.Cancel = true;
+            try
+            {
+                if (!this.IsPostBack)
+                {
+                    COCASJOL.LOGIC.Configuracion.ConfiguracionDeSistemaLogic configLogic = new COCASJOL.LOGIC.Configuracion.ConfiguracionDeSistemaLogic(this.docConfiguracion);
+                    if (configLogic.VentanasCargarDatos == true)
+                        e.Cancel = false;
+                    else
+                        e.Cancel = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al cargar estados de nota de peso.", ex);
+                throw;
+            }
         }
 
         protected void EstadosNotaPadreSt_Refresh(object sender, StoreRefreshDataEventArgs e)

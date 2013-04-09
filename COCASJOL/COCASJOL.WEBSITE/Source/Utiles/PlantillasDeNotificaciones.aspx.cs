@@ -41,8 +41,22 @@ namespace COCASJOL.WEBSITE.Source.Utiles
 
         protected void PlantillaDS_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
         {
-            if (!this.IsPostBack)
-                e.Cancel = true;
+            try
+            {
+                if (!this.IsPostBack)
+                {
+                    COCASJOL.LOGIC.Configuracion.ConfiguracionDeSistemaLogic configLogic = new COCASJOL.LOGIC.Configuracion.ConfiguracionDeSistemaLogic(this.docConfiguracion);
+                    if (configLogic.VentanasCargarDatos == true)
+                        e.Cancel = false;
+                    else
+                        e.Cancel = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al cargar plantillas de notificaciones.", ex);
+                throw;
+            }
         }
 
         protected void FormatKeysSt_Refresh(object sender, StoreRefreshDataEventArgs e)

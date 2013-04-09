@@ -20,11 +20,15 @@ using COCASJOL.LOGIC.Reportes;
 using System.Reflection;
 using log4net;
 
+using COCASJOL.LOGIC.Configuracion;
+
 namespace COCASJOL.WEBSITE
 {
     public partial class Desktop : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
         private static ILog log = LogManager.GetLogger(typeof(Desktop).Name);
+
+        private ConfiguracionDeSistemaLogic configuracionLogic;
 
         protected override void OnInit(EventArgs e)
         {
@@ -50,11 +54,18 @@ namespace COCASJOL.WEBSITE
             {
                 if (!X.IsAjaxRequest)
                 {
+                    configuracionLogic = new ConfiguracionDeSistemaLogic(this.docConfiguracion);
+                    this.ConsolidadoFechaInicialTxt.Text = configuracionLogic.ConsolidadoInventarioInicioPeriodo.ToString();
+                    this.ConsolidadoFechaFinalTxt.Text = configuracionLogic.ConsolidadoInventarioFinalPeriodo.ToString();
+
                     ConsolidadoDeInventarioDeCafeLogic consolidadoinventariologic = new ConsolidadoDeInventarioDeCafeLogic();
-                    ReporteConsolidadoDeCafe reporteConsolidadoDeCafe = consolidadoinventariologic.GetReporte(1, 12, 1, 31);
+                    ReporteConsolidadoDeCafe reporteConsolidadoDeCafe = consolidadoinventariologic.GetReporte(configuracionLogic.ConsolidadoInventarioInicioPeriodo, configuracionLogic.ConsolidadoInventarioFinalPeriodo);
                     this.TotalIngresadoTxt.Text = reporteConsolidadoDeCafe.TotalIngresado.ToString();
                     this.TotalCompradoTxt.Text = reporteConsolidadoDeCafe.TotalComprado.ToString();
                     this.TotalDepositoTxt.Text = reporteConsolidadoDeCafe.TotalDeposito.ToString();
+
+
+                    this.maximizarVentanasHdn.Checked = configuracionLogic.VentanasMaximizar;
 
                     this.WebAssemblyTitle.Text = this.WAssemblyTitle;
                     this.WebAssemblyVersion.Text = this.WAssemblyVersion;

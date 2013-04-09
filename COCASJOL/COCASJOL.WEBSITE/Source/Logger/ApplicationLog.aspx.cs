@@ -27,7 +27,11 @@ namespace COCASJOL.WEBSITE.Source.Logger
             {
                 if (!X.IsAjaxRequest)
                 {
-
+                    COCASJOL.LOGIC.Configuracion.ConfiguracionDeSistemaLogic configLogic = new COCASJOL.LOGIC.Configuracion.ConfiguracionDeSistemaLogic(this.docConfiguracion);
+                    if (configLogic.VentanasCargarDatos == true)
+                    {
+                        this.stLog_OnRefreshData(null, null);
+                    }
                 }
 
                 string loggedUsr = Session["username"] as string;

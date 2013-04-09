@@ -93,6 +93,8 @@
 
         <%--Desktop--%>
 
+        <ext:Checkbox runat="server" ID="maximizarVentanasHdn" Hidden="true"></ext:Checkbox>
+
         <ext:Desktop
             ID="MyDesktop" 
             runat="server" 
@@ -109,12 +111,31 @@
                     runat="server"
                     Title="Reporte Consolidado de Inventario de Café"
                     Cls="desktopEl"
-                    Height="150"
-                    Width="400"
+                    Height="200"
+                    Width="450"
                     Padding="5"
                     Collapsible="true">
                     <Items>
                         <ext:BorderLayout ID="BorderLayout1" runat="server" >
+                            <North MarginsSummary="0 0 5 0">
+                                <ext:FieldSet ID="FieldSet1" runat="server" Header="false" Layout="ColumnLayout" >
+                                    <LayoutConfig>
+                                        <ext:ColumnLayoutConfig FitHeight="false" />
+                                    </LayoutConfig>
+                                    <Items>
+                                        <ext:Panel ID="Panel5" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
+                                            <Items>
+                                                <ext:DateField runat="server" ID="ConsolidadoFechaInicialTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Desde" AllowBlank="false" MsgTarget="Side" ReadOnly="true" ></ext:DateField>
+                                            </Items>
+                                        </ext:Panel>
+                                        <ext:Panel ID="Panel6" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
+                                            <Items>
+                                                <ext:DateField runat="server" ID="ConsolidadoFechaFinalTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Hasta" AllowBlank="false" MsgTarget="Side" ReadOnly="true" ></ext:DateField>
+                                            </Items>
+                                        </ext:Panel>
+                                    </Items>
+                                </ext:FieldSet>
+                            </North>
                             <Center MarginsSummary="5 5 5 5" >
                                 <ext:FormPanel
                                     ID="IngresosFormP"

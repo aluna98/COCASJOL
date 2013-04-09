@@ -42,8 +42,22 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
 
         protected void AjusteInventarioDeCafeDs_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
         {
-            if (!this.IsPostBack)
-                e.Cancel = true;
+            try
+            {
+                if (!this.IsPostBack)
+                {
+                    COCASJOL.LOGIC.Configuracion.ConfiguracionDeSistemaLogic configLogic = new COCASJOL.LOGIC.Configuracion.ConfiguracionDeSistemaLogic(this.docConfiguracion);
+                    if (configLogic.VentanasCargarDatos == true)
+                        e.Cancel = false;
+                    else
+                        e.Cancel = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al cargar ajustes de inventario de cafe de socios.", ex);
+                throw;
+            }
         }
 
         [DirectMethod(RethrowException = true)]
