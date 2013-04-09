@@ -25,8 +25,7 @@ namespace COCASJOL.WEBSITE.Source.Entorno
             {
                 if (!X.IsAjaxRequest)
                 {
-                    //this.VariablesEntornoGridP.RemoveProperty("tmp");//remove temp propertygrid parameter
-                    //Variables_Refresh(null, null);
+
                 }
 
                 string loggedUsr = Session["username"] as string;

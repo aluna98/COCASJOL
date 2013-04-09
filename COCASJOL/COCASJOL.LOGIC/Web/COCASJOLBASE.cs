@@ -24,7 +24,10 @@ namespace COCASJOL.LOGIC.Web
         private string pagename;
         private XmlDocument docPrivilegios;
         private XmlDocument docEntorno;
+        public XmlDocument docConfiguracion;
         private static object lockObj = new object();
+        private static object lockObj2 = new object();
+        private static object lockObj3 = new object();
 
         public Dictionary<string, string> Variables = null;
 
@@ -63,10 +66,10 @@ namespace COCASJOL.LOGIC.Web
 
                 if (varEnvsXML == null)
                 {
-                    lock (lockObj)
+                    lock (lockObj2)
                     {
                         docEntorno = new XmlDocument();
-                        docEntorno.Load(Server.MapPath(System.Configuration.ConfigurationManager.AppSettings.Get("variablesDeEntornoXML")));
+                        docEntorno.Load(Server.MapPath(strEnvironmentPath));
 
                         HttpContext.Current.Cache.Insert("variablesDeEntornoXML", docEntorno,
                             new System.Web.Caching.CacheDependency(Server.MapPath(strEnvironmentPath)));
@@ -74,6 +77,24 @@ namespace COCASJOL.LOGIC.Web
                 }
                 else
                     docEntorno = varEnvsXML as XmlDocument;
+
+                //Get Configuracion de Sistema
+                string strConfigurationPath = System.Configuration.ConfigurationManager.AppSettings.Get("configuracionDeSistemaXML");
+                var varConfigXML = HttpContext.Current.Cache.Get("configuracionDeSistemaXML");
+
+                if (varConfigXML == null)
+                {
+                    lock (lockObj3)
+                    {
+                        docConfiguracion = new XmlDocument();
+                        docConfiguracion.Load(Server.MapPath(strConfigurationPath));
+
+                        HttpContext.Current.Cache.Insert("configuracionDeSistemaXML", docConfiguracion,
+                            new System.Web.Caching.CacheDependency(Server.MapPath(strConfigurationPath)));
+                    }
+                }
+                else
+                    docConfiguracion = varConfigXML as XmlDocument;
             }
             catch (Exception ex)
             {

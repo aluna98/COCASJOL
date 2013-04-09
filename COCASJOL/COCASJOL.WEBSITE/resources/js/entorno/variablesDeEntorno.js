@@ -3,13 +3,6 @@
 
 var Grid = null;
 var GridStore = null;
-var AddWindow = null;
-var AddForm = null;
-var EditWindow = null;
-var EditForm = null;
-
-var AlertSelMsgTitle = "Atención";
-var AlertSelMsg = "Debe seleccionar 1 elemento";
 
 var ConfirmMsgTitle = "Variables de Entorno";
 var ConfirmUpdate = "Seguro desea modificar las variables de entorno?";
@@ -21,40 +14,22 @@ var PageX = {
         GridStore = VariablesEntornoSt;
     },
 
-    getIndex: function () {
-        return this._index;
-    },
-
-    setIndex: function (index) {
-        if (index > -1 && index < Grid.getStore().getCount()) {
-            this._index = index;
-        }
-    },
-
-    getRecord: function () {
-        var rec = Grid.getStore().getAt(this.getIndex());  // Get the Record
-
-        if (rec != null) {
-            return rec;
-        }
-    },
-
     update: function () {
         Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
             if (btn == 'yes') {
                 Ext.net.DirectMethods.GuardarVariablesBtn_Click(this.variablesToJson(),
-                    {
-                        success: function () {
-                            GridStore.reload();
-                            Ext.Msg.alert('Guardar', 'Variables de Entorno actualizadas exitosamente.');
-                        },
-                        eventMask: {
-                            showMask: true, target: 'customtarget', customTarget: Grid
-                        },
-                        failure: function () {
-                            Ext.Msg.alert('Guardar', 'Error al actualizar Variables de Entorno.');
-                        } 
-                    });
+                {
+                    success: function () {
+                        GridStore.reload();
+                        Ext.Msg.alert('Guardar', 'Variables de Entorno actualizadas exitosamente.');
+                    },
+                    eventMask: {
+                        showMask: true, target: 'customtarget', customTarget: Grid
+                    },
+                    failure: function () {
+                        Ext.Msg.alert('Guardar', 'Error al actualizar Variables de Entorno.');
+                    }
+                });
             }
         });
     }

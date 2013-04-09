@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuracion>
+  <ventanas>
+    <MaximizarAlCargar>False</MaximizarAlCargar>
+    <CargarDatosAlInicio>False</CargarDatosAlInicio>
+  </ventanas>
+  <consolidadoInventario>
+    <InicioPeriodo>4/11/2013</InicioPeriodo>
+    <FinalPeriodo>4/30/2013</FinalPeriodo>
+  </consolidadoInventario>
+  <correo>
+    <correoLocal>ndgr2008@unitec.edu</correoLocal>
+    <usarPassword>True</usarPassword>
+    <password>123452</password>
+    <smtp>smtp.gmail.com1</smtp>
+    <puerto>5872</puerto>
+    <usarSSL>True</usarSSL>
+  </correo>
+  <auditoria>
+    <username>DEVELOPER</username>
+    <date>4/9/2013</date>
+  </auditoria>
+</configuracion>

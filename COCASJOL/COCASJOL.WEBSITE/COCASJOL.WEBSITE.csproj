@@ -125,6 +125,7 @@
     <Content Include="resources\images\window48x48.png" />
     <Content Include="resources\js\aportaciones\aportacionesPorSocio.js" />
     <Content Include="resources\js\aportaciones\retiroAportaciones.js" />
+    <Content Include="resources\js\configuracion\configuracionDeSistema.js" />
     <Content Include="resources\js\desktop.js" />
     <Content Include="resources\js\entorno\variablesDeEntorno.js" />
     <Content Include="resources\js\inventario\clasificacionesDeCafe.js" />
@@ -147,6 +148,7 @@
     <Content Include="resources\js\seguridad\usuarios.js" />
     <Content Include="resources\js\socios\socios.js" />
     <Content Include="resources\js\utiles\plantillasDeNotificaciones.js" />
+    <Content Include="resources\xml\ConfiguracionDeSistema.xml" />
     <Content Include="resources\xml\VariablesDeEntorno.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -154,6 +156,7 @@
     <Content Include="Source\Aportaciones\AportacionesPorSocio.aspx" />
     <Content Include="Source\Aportaciones\RetiroDeAportaciones.aspx" />
     <Content Include="Source\Auditoria\Auditoria.ascx" />
+    <Content Include="Source\Configuracion\ConfiguracionDeSistema.aspx" />
     <Content Include="Source\Desktop.aspx" />
     <Content Include="Source\Entorno\VariablesDeEntorno.aspx" />
     <Content Include="Source\Inventario\ClasificacionesDeCafe.aspx" />
@@ -255,6 +258,13 @@
     </Compile>
     <Compile Include="Source\Auditoria\Auditoria.ascx.designer.cs">
       <DependentUpon>Auditoria.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Configuracion\ConfiguracionDeSistema.aspx.cs">
+      <DependentUpon>ConfiguracionDeSistema.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Configuracion\ConfiguracionDeSistema.aspx.designer.cs">
+      <DependentUpon>ConfiguracionDeSistema.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Desktop.aspx.cs">
       <DependentUpon>Desktop.aspx</DependentUpon>
@@ -477,6 +487,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Data\log4net.db" />
+    <Content Include="resources\xml\Web.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
