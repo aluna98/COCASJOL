@@ -318,7 +318,15 @@ namespace COCASJOL.LOGIC.Socios
                     socprod.PRODUCCION_TIPO_INSUMOS = PRODUCCION_TIPO_INSUMOS;
                     socprod.PRODUCCION_MANZANAS_CULTIVADAS = PRODUCCION_MANZANAS_CULTIVADAS;
                     db.socios_produccion.AddObject(socprod);
-                    db.SaveChanges(); 
+                    db.SaveChanges();  
+                    string nombreCompleto = SOCIOS_PRIMER_NOMBRE+" ";
+                    if (SOCIOS_SEGUNDO_NOMBRE != "")
+                        nombreCompleto += SOCIOS_SEGUNDO_NOMBRE+" ";
+                    if (SOCIOS_PRIMER_APELLIDO != "")
+                        nombreCompleto += SOCIOS_PRIMER_APELLIDO + " ";
+                    if (SOCIOS_SEGUNDO_APELLIDO != "")
+                        nombreCompleto += SOCIOS_SEGUNDO_APELLIDO + " ";
+                    InsertSociosDBISAM(NuevoCodigo, nombreCompleto);
                 }
             }
             catch (Exception ex)
@@ -360,30 +368,6 @@ namespace COCASJOL.LOGIC.Socios
             }
         }
 
-
-        //public static void InsertSociosDBISAM()
-        //{
-        //    try
-        //    {
-        //        string queryString = "INSERT INTO Sclientes (";
-        //        OdbcCommand command = new OdbcCommand(queryString);
-
-        //        string connectionString = "PROVIDER=MSDASQL;DSN=MYDBISAM";
-
-        //        using (OdbcConnection connection = new OdbcConnection(connectionString))
-        //        {
-        //            command.Connection = connection;
-        //            connection.Open();
-
-        //            OdbcDataReader reader = command.ExecuteReader();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        log.Fatal("Error fatal al insertar socio a DBISAM.", ex);
-        //        throw;
-        //    }
-        //}
         #endregion insert
 
         #region Delete
@@ -818,6 +802,27 @@ namespace COCASJOL.LOGIC.Socios
             catch (Exception ex)
             {
                 log.Fatal("Error fatal al pagar intereses sobre aportaciones.", ex);
+                throw;
+            }
+        }
+
+        public static void InsertSociosDBISAM(string id, string nombre)
+        {
+            try
+            {
+                string connectionString = "PROVIDER=MSDASQL;DSN=MYDBISAM";
+                bool activo = true;
+                int zero = 0;
+                using (OdbcConnection connection = new OdbcConnection(connectionString))
+                {
+                    OdbcCommand myCommand = new OdbcCommand("insert into Sclientes(FC_CODIGO, FC_DESCRIPCION, FC_STATUS, FC_CLASIFICACION, FC_NIT, FC_RIF) values ('" + id + "', '" + nombre + "', "+ activo+" , '"+ zero +"', '" + id + "', '" + id + "')", connection);
+                    connection.Open();
+                    myCommand.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al obtener socios desde DBISAM.", ex);
                 throw;
             }
         }

@@ -148,7 +148,9 @@
     <Content Include="resources\js\seguridad\usuarios.js" />
     <Content Include="resources\js\socios\socios.js" />
     <Content Include="resources\js\utiles\plantillasDeNotificaciones.js" />
-    <Content Include="resources\xml\ConfiguracionDeSistema.xml" />
+    <Content Include="resources\xml\ConfiguracionDeSistema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="resources\xml\VariablesDeEntorno.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -464,6 +466,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="bin\" />
   </ItemGroup>
   <ItemGroup>
@@ -486,7 +489,6 @@
     <EmbeddedResource Include="resources\rdlcs\solicitudesDePrestamo\SolicitudDePrestamo.rdlc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Data\log4net.db" />
     <Content Include="resources\xml\Web.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
