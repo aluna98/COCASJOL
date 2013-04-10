@@ -157,6 +157,15 @@ namespace COCASJOL.WEBSITE.Socios {
         protected global::Ext.Net.ToolbarFill ToolbarFill1;
         
         /// <summary>
+        /// ImportarSociosBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button ImportarSociosBtn;
+        
+        /// <summary>
         /// AuditoriaBtn control.
         /// </summary>
         /// <remarks>
@@ -1415,5 +1424,59 @@ namespace COCASJOL.WEBSITE.Socios {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button Button5;
+        
+        /// <summary>
+        /// ImportarSociosWin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Window ImportarSociosWin;
+        
+        /// <summary>
+        /// BasicForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FormPanel BasicForm;
+        
+        /// <summary>
+        /// Panel6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Panel6;
+        
+        /// <summary>
+        /// FileUploadField1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FileUploadField FileUploadField1;
+        
+        /// <summary>
+        /// GetTemplateBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button GetTemplateBtn;
+        
+        /// <summary>
+        /// ExcelUploadBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button ExcelUploadBtn;
     }
 }

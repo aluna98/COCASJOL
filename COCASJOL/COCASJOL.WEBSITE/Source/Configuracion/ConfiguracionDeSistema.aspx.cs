@@ -40,6 +40,8 @@ namespace COCASJOL.WEBSITE.Source.Configuracion
             try
             {
                 ConfiguracionDeSistemaLogic configLogic = new ConfiguracionDeSistemaLogic(this.docConfiguracion);
+
+                this.EditSociosImportacionChk.Checked = configLogic.SociosImportacion;
                 
                 this.EditVentanasMaximizarChk.Checked = configLogic.VentanasMaximizar;
                 this.EditVentanasCargarDatosChk.Checked = configLogic.VentanasCargarDatos;
@@ -72,6 +74,8 @@ namespace COCASJOL.WEBSITE.Source.Configuracion
                 string loggeduser = Session["username"] as string;
 
                 ConfiguracionDeSistemaLogic configLogic = new ConfiguracionDeSistemaLogic(this.docConfiguracion);
+
+                configLogic.SociosImportacion = this.EditSociosImportacionChk.Checked;
 
                 configLogic.VentanasMaximizar = this.EditVentanasMaximizarChk.Checked;
                 configLogic.VentanasCargarDatos = this.EditVentanasCargarDatosChk.Checked;

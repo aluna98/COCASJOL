@@ -113,6 +113,7 @@
     <Compile Include="Entorno\VariablesDeEntornoLogic.cs" />
     <Compile Include="Seguridad\CriptografiaTDES.cs" />
     <Compile Include="Utiles\EmailLogic.cs" />
+    <Compile Include="Utiles\ImportarExcelLogic.cs" />
     <Compile Include="Utiles\NotificacionLogic.cs" />
     <Compile Include="Utiles\Numalet.cs" />
     <Compile Include="Utiles\PlantillaLogic.cs" />

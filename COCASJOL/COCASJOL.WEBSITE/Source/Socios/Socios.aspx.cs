@@ -14,6 +14,8 @@ using COCASJOL.LOGIC.Web;
 using COCASJOL.LOGIC.Seguridad;
 
 using log4net;
+using System.IO;
+using Microsoft.Reporting.WebForms;
 
 namespace COCASJOL.WEBSITE.Socios
 {
@@ -38,6 +40,8 @@ namespace COCASJOL.WEBSITE.Socios
                     {
                         this.SociosSt_Reload(null, null);
                     }
+
+                    this.ImportarSociosBtn.Hidden = !configLogic.SociosImportacion;
                 }
 
                 string loggedUsr = Session["username"] as string;
@@ -46,6 +50,98 @@ namespace COCASJOL.WEBSITE.Socios
             catch (Exception ex)
             {
                 log.Fatal("Error fatal al cargar pagina de socios.", ex);
+                throw;
+            }
+        }
+
+        private static object lockObj = new object();
+
+        protected void UploadClick(object sender, DirectEventArgs e)
+        {
+            try
+            {
+                if (this.FileUploadField1.HasFile)
+                {
+                    string loggedUsr = Session["username"] as string;
+
+                    COCASJOL.LOGIC.Utiles.ImportarExcelLogic excelImport = new LOGIC.Utiles.ImportarExcelLogic();
+
+                    string extension = Path.GetExtension(this.FileUploadField1.FileName);
+
+                    string uploadSavePath = System.Configuration.ConfigurationManager.AppSettings.Get("uploadSavePath");
+                    string uploadNameSocios = System.Configuration.ConfigurationManager.AppSettings.Get("uploadNameSocios");
+
+                    string savePath = Server.MapPath(uploadSavePath) + uploadNameSocios + extension;
+
+                    lock (lockObj)
+                    {
+                        this.FileUploadField1.PostedFile.SaveAs(savePath);
+                        excelImport.SociosCargarDatos(savePath, loggedUsr);
+                    }
+                    this.BasicForm.Reset();
+                    X.Msg.Alert("Importar Socios", "Importacion realizada Exitosamente.").Show();
+                    this.SociosSt_Reload(null, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al guardar archivo subido.", ex);
+                throw;
+            }
+        }
+
+        protected void GetImportTemplateClick(object sender, DirectEventArgs e)
+        {
+            try
+            {
+                string uploadNameSocios = System.Configuration.ConfigurationManager.AppSettings.Get("uploadNameSocios");
+                this.CreateExcel(uploadNameSocios);
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al obtener plantilla de importacion de socios.", ex);
+                throw;
+            }
+        }
+
+        private void CreateExcel(string fileName)
+        {
+            try
+            {
+                // Variables
+                Warning[] warnings;
+                string[] streamIds;
+                string mimeType = string.Empty;
+                string encoding = string.Empty;
+                string extension = string.Empty;
+
+
+                // Setup the report viewer object and get the array of bytes
+                ReportViewer viewer = new ReportViewer();
+                viewer.ProcessingMode = ProcessingMode.Local;
+                viewer.LocalReport.ReportPath = Server.MapPath("~/resources/rdlcs/Socios.rdlc");
+
+                List<socio> socios = new List<socio>();
+
+                ReportDataSource datasourceSocios = new ReportDataSource("SociosDataSet", socios);
+
+                viewer.LocalReport.DataSources.Add(datasourceSocios);
+
+
+                byte[] bytes = viewer.LocalReport.Render("Excel", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
+
+
+                // Now that you have all the bytes representing the PDF report, buffer it and send it to the client.
+                Response.Buffer = true;
+                Response.Clear();
+                Response.ContentType = mimeType;
+                Response.AddHeader("content-disposition", "attachment; filename=" + fileName + "." + extension);
+                Response.BinaryWrite(bytes); // create the file
+                Response.Flush(); // send it to the client to download
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al obtener plantilla de importacion de socios.", ex);
                 throw;
             }
         }

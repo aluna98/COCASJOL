@@ -101,15 +101,4 @@
       </variable>
     </variables>
   </pagina>
-
-  <pagina>
-    <Name>Socios</Name>
-    <variables>
-      <variable>
-        <key>SOCIOS_IMPORTAREXCEL</key>
-        <descripcion>Indica si esta habilitada la opción de importar socios.</descripcion>
-        <type>int</type>
-      </variable>
-    </variables>
-  </pagina>
 </paginas>

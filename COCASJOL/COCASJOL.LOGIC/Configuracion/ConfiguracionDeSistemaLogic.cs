@@ -38,6 +38,8 @@ namespace COCASJOL.LOGIC.Configuracion
         private string auditoria_username;
         private DateTime auditoria_date;
 
+        private bool socios_importacion;
+
         #endregion
 
         #region Public Properties
@@ -190,6 +192,19 @@ namespace COCASJOL.LOGIC.Configuracion
             }
         }
 
+
+        public bool SociosImportacion
+        {
+            get
+            {
+                return this.socios_importacion;
+            }
+            set
+            {
+                this.socios_importacion = value;
+            }
+        }
+
         #endregion
 
 
@@ -281,6 +296,8 @@ namespace COCASJOL.LOGIC.Configuracion
         {
             try
             {
+                string strSociosImportacion = Configuracion.SelectSingleNode("configuracion/socios/importacionInicial").InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
+
                 string strMaximizar = Configuracion.SelectSingleNode("configuracion/ventanas/MaximizarAlCargar").InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
                 string strCargarDatos = Configuracion.SelectSingleNode("configuracion/ventanas/CargarDatosAlInicio").InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
 
@@ -298,6 +315,7 @@ namespace COCASJOL.LOGIC.Configuracion
                 string strAuditoriaDate = Configuracion.SelectSingleNode("configuracion/auditoria/date").InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
 
 
+                bool.TryParse(strSociosImportacion, out this.socios_importacion);
 
                 bool.TryParse(strMaximizar, out this.ventana_Maximizar);
                 bool.TryParse(strCargarDatos, out this.ventana_CargarDatos);
@@ -327,6 +345,8 @@ namespace COCASJOL.LOGIC.Configuracion
             try
             {
                 string passwrd = string.IsNullOrEmpty(this.correo_Password) ? "" : this.encryptTDES(this.correo_Password);
+
+                Configuracion.SelectSingleNode("configuracion/socios/importacionInicial").InnerText = this.socios_importacion.ToString();
 
                 Configuracion.SelectSingleNode("configuracion/ventanas/MaximizarAlCargar").InnerText = this.ventana_Maximizar.ToString();
                 Configuracion.SelectSingleNode("configuracion/ventanas/CargarDatosAlInicio").InnerText = this.ventana_CargarDatos.ToString();

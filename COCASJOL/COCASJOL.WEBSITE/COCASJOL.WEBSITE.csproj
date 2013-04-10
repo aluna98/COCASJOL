@@ -469,6 +469,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="bin\" />
+    <Folder Include="resources\uploads\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\COCASJOL.LOGIC\COCASJOL.LOGIC.csproj">
@@ -477,6 +478,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="resources\rdlcs\Socios.rdlc" />
     <EmbeddedResource Include="resources\rdlcs\solicitudesDeIngresoDeSocio\BeneficiariosPorSocio.rdlc" />
     <EmbeddedResource Include="resources\rdlcs\HojasDeLiquidacion.rdlc">
       <SubType>Designer</SubType>

@@ -51,6 +51,20 @@
                             </Items>
                         </ext:FieldSet>
 
+                        <ext:FieldSet ID="FieldSet2" runat="server" Title="Socios" Layout="AnchorLayout">
+                            <Items>
+                                <ext:Panel ID="EditSociosPnl" runat="server" Title="Socios" Layout="AnchorLayout" Header="false" Border="false" Padding="5">
+                                    <Items>
+                                        <ext:Checkbox runat="server" ID="EditSociosImportacionChk" LabelWidth="200" LabelAlign="Right" FieldLabel="Importacion de Socios" AllowBlank="false" MsgTarget="Side" >
+                                            <ToolTips>
+                                                <ext:ToolTip ID="ToolTip1" runat="server" Title="Importación de Socios" Html="Indica si esta habilitada la opción de importar socios." />
+                                            </ToolTips>
+                                        </ext:Checkbox>
+                                    </Items>
+                                </ext:Panel>
+                            </Items>
+                        </ext:FieldSet>
+
                         <ext:FieldSet ID="FieldSet1" runat="server" Title="Consolidado de Inventario" Layout="AnchorLayout">
                             <Items>
                                 <ext:Panel ID="EditReporteConsolidadoInventarioPnl" runat ="server" Layout="ColumnLayout" Border="false" AnchorHorizontal="95%" >

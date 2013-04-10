@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <configuracion>
+  <socios>
+    <importacionInicial>True</importacionInicial>
+  </socios>
   <ventanas>
     <MaximizarAlCargar>True</MaximizarAlCargar>
     <CargarDatosAlInicio>True</CargarDatosAlInicio>

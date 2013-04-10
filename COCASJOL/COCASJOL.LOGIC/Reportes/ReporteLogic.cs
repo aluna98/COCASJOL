@@ -85,7 +85,7 @@ namespace COCASJOL.LOGIC.Reportes
                 using (var db = new colinasEntities())
                 {
                     var query = from s in db.socios.Include("socios_generales").Include("socios_produccion")
-                                where string.IsNullOrEmpty(SOCIOS_ID) ? true : s.SOCIOS_ID == SOCIOS_ID
+                                where s.SOCIOS_ID == SOCIOS_ID
                                 select s;
 
                     return query.ToList<socio>();

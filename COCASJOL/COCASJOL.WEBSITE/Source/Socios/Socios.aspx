@@ -198,6 +198,11 @@
                                             </Listeners>
                                         </ext:Button>
                                         <ext:ToolbarFill ID="ToolbarFill1" runat="server" />
+                                        <ext:Button ID="ImportarSociosBtn" runat="server" Text="Importar Socios" Icon="PageExcel">
+                                            <Listeners>
+                                                <Click Handler="PageX.openExcelImport();" />
+                                            </Listeners>
+                                        </ext:Button>
                                         <ext:Button ID="AuditoriaBtn" runat="server" Text="Auditoria" Icon="Cog">
                                             <Listeners>
                                                 <Click Handler="PageX.showAudit();" />
@@ -746,6 +751,37 @@
                 </ext:FormPanel>
             </Items>
          </ext:Window>
+
+         
+         <ext:Window ID="ImportarSociosWin" runat="server" Hidden="true" Icon="CogAdd" Title="Importación de Socios"
+            Width="600" Layout="FormLayout" AutoHeight="True" Resizable="false" Shadow="None" Modal="true" >
+            <Items>         
+            <ext:FormPanel runat="server" ID="BasicForm" Title="Form Panel" Header="false" Handler="false" ButtonAlign="Right" MonitorValid="true">
+                <Items>
+                    <ext:Panel ID="Panel6" runat="server" Frame="false" Padding="5" Layout="FormLayout" Border="false">
+                        <Items>
+                            <ext:FileUploadField ID="FileUploadField1" runat="server" EmptyText="Seleccione Excel" FieldLabel="Excel" Icon="PageAttach" MsgTarget="Side" AnchorHorizontal="90%" LabelAlign="Right" AllowBlank="false" ButtonText="" />
+                        </Items>
+                    </ext:Panel>
+                </Items>
+                <Buttons>
+                    <ext:Button ID="GetTemplateBtn" runat="server" Text="Obtener Plantilla" Icon="ArrowDown">
+                        <DirectEvents>
+                            <Click OnEvent="GetImportTemplateClick" >
+                            </Click>
+                        </DirectEvents>
+                    </ext:Button>
+                    <ext:Button ID="ExcelUploadBtn" runat="server" Text="Subir" Icon="ArrowUp">
+                        <DirectEvents>
+                            <Click OnEvent="UploadClick" >
+                                <EventMask Target="CustomTarget" CustomTarget="ImportarSociosWin" ShowMask="true" />
+                            </Click>
+                        </DirectEvents>
+                    </ext:Button>
+                </Buttons>
+                </ext:FormPanel>
+            </Items>
+        </ext:Window>
     </div>
     </form>
 </body>
