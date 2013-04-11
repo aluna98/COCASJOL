@@ -27,7 +27,7 @@
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
             <Items>
-                <ext:FormPanel ID="FormPanel1" runat="server" Frame="false" Header="false" Icon="ApplicationOsxTerminal" Layout="FormLayout">
+                <ext:FormPanel ID="FormPanel1" runat="server" Frame="false" Header="false" Icon="ApplicationOsxTerminal" Layout="FormLayout" Padding="5">
                     <Items>
                         <ext:FieldSet runat="server" Title="Ventanas" Layout="AnchorLayout">
                             <Items>
@@ -102,7 +102,7 @@
                                                         <Change Handler="if (#{EditCorreoUsarPasswordChk}.getValue() == true) #{EditCorreoPasswordTxt}.show(); else #{EditCorreoPasswordTxt}.hide(); " />
                                                     </Listeners>
                                                 </ext:Checkbox>
-                                                <ext:TextField   runat="server" ID="EditCorreoPasswordTxt"        LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Contraseña" AllowBlank="false" MsgTarget="Side" >
+                                                <ext:TextField   runat="server" ID="EditCorreoPasswordTxt"        LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Contraseña" AllowBlank="false" MsgTarget="Side" InputType="Password" >
                                                     <Listeners>
                                                         <AfterRender Handler="if (#{EditCorreoUsarPasswordChk}.getValue() == true) #{EditCorreoPasswordTxt}.show(); else #{EditCorreoPasswordTxt}.hide(); " />
                                                     </Listeners>

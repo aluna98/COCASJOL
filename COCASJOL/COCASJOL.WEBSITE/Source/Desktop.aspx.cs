@@ -59,10 +59,17 @@ namespace COCASJOL.WEBSITE
                     this.ConsolidadoFechaFinalTxt.Text = configuracionLogic.ConsolidadoInventarioFinalPeriodo.ToString();
 
                     ConsolidadoDeInventarioDeCafeLogic consolidadoinventariologic = new ConsolidadoDeInventarioDeCafeLogic();
-                    ReporteConsolidadoDeCafe reporteConsolidadoDeCafe = consolidadoinventariologic.GetReporte(configuracionLogic.ConsolidadoInventarioInicioPeriodo, configuracionLogic.ConsolidadoInventarioFinalPeriodo);
-                    this.TotalIngresadoTxt.Text = reporteConsolidadoDeCafe.TotalIngresado.ToString();
-                    this.TotalCompradoTxt.Text = reporteConsolidadoDeCafe.TotalComprado.ToString();
-                    this.TotalDepositoTxt.Text = reporteConsolidadoDeCafe.TotalDeposito.ToString();
+                    ReporteConsolidadoDeCafeDeSocios reporteConsolidadoDeCafeSocios = consolidadoinventariologic.GetReporteCafeDeSocios(configuracionLogic.ConsolidadoInventarioInicioPeriodo, configuracionLogic.ConsolidadoInventarioFinalPeriodo);
+                    this.TotalIngresadoTxt.Text = reporteConsolidadoDeCafeSocios.TotalIngresado.ToString();
+                    this.TotalAjustadoTxt.Text = String.Format("({0})", reporteConsolidadoDeCafeSocios.TotalAjustado.ToString());
+                    this.TotalCompradoTxt.Text = String.Format("({0})", reporteConsolidadoDeCafeSocios.TotalComprado.ToString());
+                    this.TotalDepositoTxt.Text = reporteConsolidadoDeCafeSocios.TotalDeposito.ToString();
+
+                    ReporteConsolidadoDeCafe reporteConsolidadoDeCafe = consolidadoinventariologic.GetReporteCafeCooperativa(configuracionLogic.ConsolidadoInventarioInicioPeriodo, configuracionLogic.ConsolidadoInventarioFinalPeriodo);
+
+                    this.TotalCoopCompradoTxt.Text = reporteConsolidadoDeCafe.TotalComprado.ToString();
+                    this.TotalCoopVendidoTxt.Text = String.Format("({0})", reporteConsolidadoDeCafe.TotalVendido.ToString());
+                    this.TotalCoopDepositoTxt.Text = reporteConsolidadoDeCafe.TotalDeposito.ToString();
 
 
                     this.maximizarVentanasHdn.Checked = configuracionLogic.VentanasMaximizar;
@@ -239,12 +246,24 @@ namespace COCASJOL.WEBSITE
         {
             try
             {
+                configuracionLogic = new ConfiguracionDeSistemaLogic(this.docConfiguracion);
+                this.ConsolidadoFechaInicialTxt.Text = configuracionLogic.ConsolidadoInventarioInicioPeriodo.ToString();
+                this.ConsolidadoFechaFinalTxt.Text = configuracionLogic.ConsolidadoInventarioFinalPeriodo.ToString();
+
                 //actualizar reporte consolidado de inventario de cafe
                 ConsolidadoDeInventarioDeCafeLogic consolidadoinventariologic = new ConsolidadoDeInventarioDeCafeLogic();
-                ReporteConsolidadoDeCafe reporteConsolidadoDeCafe = consolidadoinventariologic.GetReporte(1, 12, 1, 31);
-                this.TotalIngresadoTxt.Text = reporteConsolidadoDeCafe.TotalIngresado.ToString();
-                this.TotalCompradoTxt.Text = reporteConsolidadoDeCafe.TotalComprado.ToString();
-                this.TotalDepositoTxt.Text = reporteConsolidadoDeCafe.TotalDeposito.ToString();
+                ReporteConsolidadoDeCafeDeSocios reporteConsolidadoDeCafeSocios = consolidadoinventariologic.GetReporteCafeDeSocios(configuracionLogic.ConsolidadoInventarioInicioPeriodo, configuracionLogic.ConsolidadoInventarioFinalPeriodo);
+                this.TotalIngresadoTxt.Text = reporteConsolidadoDeCafeSocios.TotalIngresado.ToString();
+                this.TotalAjustadoTxt.Text = String.Format("({0})", reporteConsolidadoDeCafeSocios.TotalAjustado.ToString());
+                this.TotalCompradoTxt.Text = String.Format("({0})", reporteConsolidadoDeCafeSocios.TotalComprado.ToString());
+                this.TotalDepositoTxt.Text = reporteConsolidadoDeCafeSocios.TotalDeposito.ToString();
+
+
+                ReporteConsolidadoDeCafe reporteConsolidadoDeCafe = consolidadoinventariologic.GetReporteCafeCooperativa(configuracionLogic.ConsolidadoInventarioInicioPeriodo, configuracionLogic.ConsolidadoInventarioFinalPeriodo);
+
+                this.TotalCoopCompradoTxt.Text = reporteConsolidadoDeCafe.TotalComprado.ToString();
+                this.TotalCoopVendidoTxt.Text = String.Format("({0})", reporteConsolidadoDeCafe.TotalVendido.ToString());
+                this.TotalCoopDepositoTxt.Text = reporteConsolidadoDeCafe.TotalDeposito.ToString();
 
                 //check for notification
                 NotificacionLogic notificacionlogic = new NotificacionLogic();

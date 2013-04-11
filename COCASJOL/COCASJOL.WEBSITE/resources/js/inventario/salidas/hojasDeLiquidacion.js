@@ -136,9 +136,6 @@ var PageX = {
 
         Grid.insertRecord(0, fields, false);
         AddForm.getForm().reset();
-
-        /* Update Reporte */
-        Ext.net.DirectMethods.UpdateReporteConsolidadoDeInventarioDeCafe();
     },
 
     getIndex: function () {

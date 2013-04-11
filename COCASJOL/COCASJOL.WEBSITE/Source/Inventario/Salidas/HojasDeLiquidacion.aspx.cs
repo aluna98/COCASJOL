@@ -178,25 +178,5 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas
                 throw;
             }
         }
-
-        private static object lockObj = new object();
-
-        [DirectMethod(RethrowException = true)]
-        public void UpdateReporteConsolidadoDeInventarioDeCafe()
-        {
-            try
-            {
-                lock (lockObj)
-                {
-                    COCASJOL.LOGIC.Reportes.ConsolidadoDeInventarioDeCafeLogic consolidadoinventariologic = new LOGIC.Reportes.ConsolidadoDeInventarioDeCafeLogic();
-                    Application["ReporteConsolidadoDeCafe"] = consolidadoinventariologic.GetReporte();
-                }
-            }
-            catch (Exception ex)
-            {
-                log.Fatal("Error fatal al actualizar reporte consolidado de inventario de cafe.", ex);
-                throw;
-            }
-        }
     }
 }

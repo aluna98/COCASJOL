@@ -102,8 +102,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
             }
         }
 
-        private static object lockObj = new object();
-
         [DirectMethod(RethrowException = true)]
         public void RegisterNotaDePeso_Click()
         {
@@ -120,12 +118,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
 
                 this.EditRegistrarBtn.Hidden = true;
                 this.EditGuardarBtn.Hidden = true;
-
-                lock (lockObj)
-                {
-                    COCASJOL.LOGIC.Reportes.ConsolidadoDeInventarioDeCafeLogic consolidadoinventariologic = new LOGIC.Reportes.ConsolidadoDeInventarioDeCafeLogic();
-                    Application["ReporteConsolidadoDeCafe"] = consolidadoinventariologic.GetReporte();
-                }
             }
             catch (Exception ex)
             {

@@ -111,46 +111,43 @@
                     runat="server"
                     Title="Reporte Consolidado de Inventario de Café"
                     Cls="desktopEl"
-                    Height="200"
+                    AutoHeight="true"
                     Width="450"
                     Padding="5"
-                    Collapsible="true">
+                    Collapsible="true" Layout="FormLayout">
                     <Items>
-                        <ext:BorderLayout ID="BorderLayout1" runat="server" >
-                            <North MarginsSummary="0 0 5 0">
-                                <ext:FieldSet ID="FieldSet1" runat="server" Header="false" Layout="ColumnLayout" >
-                                    <LayoutConfig>
-                                        <ext:ColumnLayoutConfig FitHeight="false" />
-                                    </LayoutConfig>
+                        <ext:FieldSet ID="FieldSet1" runat="server" Header="false" Layout="ColumnLayout" >
+                            <LayoutConfig>
+                                <ext:ColumnLayoutConfig FitHeight="false" />
+                            </LayoutConfig>
+                            <Items>
+                                <ext:Panel ID="Panel5" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" Padding="1">
                                     <Items>
-                                        <ext:Panel ID="Panel5" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
-                                            <Items>
-                                                <ext:DateField runat="server" ID="ConsolidadoFechaInicialTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Desde" AllowBlank="false" MsgTarget="Side" ReadOnly="true" ></ext:DateField>
-                                            </Items>
-                                        </ext:Panel>
-                                        <ext:Panel ID="Panel6" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
-                                            <Items>
-                                                <ext:DateField runat="server" ID="ConsolidadoFechaFinalTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Hasta" AllowBlank="false" MsgTarget="Side" ReadOnly="true" ></ext:DateField>
-                                            </Items>
-                                        </ext:Panel>
+                                        <ext:DateField runat="server" ID="ConsolidadoFechaInicialTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Desde" AllowBlank="false" MsgTarget="Side" ReadOnly="true" ></ext:DateField>
                                     </Items>
-                                </ext:FieldSet>
-                            </North>
-                            <Center MarginsSummary="5 5 5 5" >
-                                <ext:FormPanel
-                                    ID="IngresosFormP"
-                                    runat="server"
-                                    Title="Ingresos de Café a la Fecha"
-                                    Padding="5"
-                                    Layout="AnchorLayout">
+                                </ext:Panel>
+                                <ext:Panel ID="Panel6" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" Padding="1">
                                     <Items>
-                                        <ext:TextField runat="server" ID="TotalIngresadoTxt" FieldLabel="Total Ingresado (QQ)" AnchorHorizontal="90%" ReadOnly="true" LabelAlign="Right" LabelWidth="150" ></ext:TextField>
-                                        <ext:TextField runat="server" ID="TotalCompradoTxt" FieldLabel="Total Comprado (QQ)" AnchorHorizontal="90%" ReadOnly="true" LabelAlign="Right" LabelWidth="150" ></ext:TextField>
-                                        <ext:TextField runat="server" ID="TotalDepositoTxt" FieldLabel="Total Deposito (QQ)" AnchorHorizontal="90%" ReadOnly="true" LabelAlign="Right" LabelWidth="150" ></ext:TextField>
+                                        <ext:DateField runat="server" ID="ConsolidadoFechaFinalTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Hasta" AllowBlank="false" MsgTarget="Side" ReadOnly="true" ></ext:DateField>
                                     </Items>
-                                </ext:FormPanel>
-                            </Center>
-                        </ext:BorderLayout>
+                                </ext:Panel>
+                            </Items>
+                        </ext:FieldSet>
+                        <ext:FieldSet ID="FieldSet2" runat="server" Title="Ingresos de Café de Socios a la Fecha" Padding="5" Layout="AnchorLayout">
+                            <Items>
+                                <ext:TextField runat="server" ID="TotalIngresadoTxt" FieldLabel="Total Ingresado (QQ)" AnchorHorizontal="90%" ReadOnly="true" LabelWidth="150" ></ext:TextField>
+                                <ext:TextField runat="server" ID="TotalAjustadoTxt" FieldLabel="Total Ajustado (QQ)" AnchorHorizontal="90%" ReadOnly="true" LabelWidth="150" ></ext:TextField>
+                                <ext:TextField runat="server" ID="TotalCompradoTxt" FieldLabel="Total Comprado (QQ)" AnchorHorizontal="90%" ReadOnly="true" LabelWidth="150" ></ext:TextField>
+                                <ext:TextField runat="server" ID="TotalDepositoTxt" FieldLabel="Total Deposito (QQ)" AnchorHorizontal="90%" ReadOnly="true" LabelWidth="150" ></ext:TextField>
+                            </Items>
+                        </ext:FieldSet>
+                        <ext:FieldSet ID="FieldSet3" runat="server" Title="Ingresos de Café de Cooperativa a la Fecha" Padding="5" Layout="AnchorLayout">
+                            <Items>
+                                <ext:TextField runat="server" ID="TotalCoopCompradoTxt" FieldLabel="Total Comprado (QQ)" AnchorHorizontal="90%" ReadOnly="true" LabelWidth="150" ></ext:TextField>
+                                <ext:TextField runat="server" ID="TotalCoopVendidoTxt" FieldLabel="Total Vendido (QQ)" AnchorHorizontal="90%" ReadOnly="true" LabelWidth="150" ></ext:TextField>
+                                <ext:TextField runat="server" ID="TotalCoopDepositoTxt" FieldLabel="Total Deposito (QQ)" AnchorHorizontal="90%" ReadOnly="true" LabelWidth="150" ></ext:TextField>
+                            </Items>
+                        </ext:FieldSet>
                     </Items>
                 </ext:Panel>
             </Content>

@@ -67,15 +67,6 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.Panel pnlSample;
         
         /// <summary>
-        /// BorderLayout1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.BorderLayout BorderLayout1;
-        
-        /// <summary>
         /// FieldSet1 control.
         /// </summary>
         /// <remarks>
@@ -121,13 +112,13 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.DateField ConsolidadoFechaFinalTxt;
         
         /// <summary>
-        /// IngresosFormP control.
+        /// FieldSet2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.FormPanel IngresosFormP;
+        protected global::Ext.Net.FieldSet FieldSet2;
         
         /// <summary>
         /// TotalIngresadoTxt control.
@@ -137,6 +128,15 @@ namespace COCASJOL.WEBSITE {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField TotalIngresadoTxt;
+        
+        /// <summary>
+        /// TotalAjustadoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField TotalAjustadoTxt;
         
         /// <summary>
         /// TotalCompradoTxt control.
@@ -155,6 +155,42 @@ namespace COCASJOL.WEBSITE {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField TotalDepositoTxt;
+        
+        /// <summary>
+        /// FieldSet3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FieldSet FieldSet3;
+        
+        /// <summary>
+        /// TotalCoopCompradoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField TotalCoopCompradoTxt;
+        
+        /// <summary>
+        /// TotalCoopVendidoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField TotalCoopVendidoTxt;
+        
+        /// <summary>
+        /// TotalCoopDepositoTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField TotalCoopDepositoTxt;
         
         /// <summary>
         /// SecurityMenu control.

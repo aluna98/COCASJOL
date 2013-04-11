@@ -1155,6 +1155,66 @@ namespace COCASJOL.LOGIC
     
             return base.ExecuteFunction<Nullable<global::System.Decimal>>("GetSumatoriaHojasDeLiquidacion", dFechaDesdeParameter, dFechaHastaParameter);
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="dFechaDesde">No Metadata Documentation available.</param>
+        /// <param name="dFechaHasta">No Metadata Documentation available.</param>
+        public ObjectResult<Nullable<global::System.Decimal>> GetSumatoriaAjustesDeInventarioDeCafeDeSocios(Nullable<global::System.DateTime> dFechaDesde, Nullable<global::System.DateTime> dFechaHasta)
+        {
+            ObjectParameter dFechaDesdeParameter;
+            if (dFechaDesde.HasValue)
+            {
+                dFechaDesdeParameter = new ObjectParameter("dFechaDesde", dFechaDesde);
+            }
+            else
+            {
+                dFechaDesdeParameter = new ObjectParameter("dFechaDesde", typeof(global::System.DateTime));
+            }
+    
+            ObjectParameter dFechaHastaParameter;
+            if (dFechaHasta.HasValue)
+            {
+                dFechaHastaParameter = new ObjectParameter("dFechaHasta", dFechaHasta);
+            }
+            else
+            {
+                dFechaHastaParameter = new ObjectParameter("dFechaHasta", typeof(global::System.DateTime));
+            }
+    
+            return base.ExecuteFunction<Nullable<global::System.Decimal>>("GetSumatoriaAjustesDeInventarioDeCafeDeSocios", dFechaDesdeParameter, dFechaHastaParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="dFechaDesde">No Metadata Documentation available.</param>
+        /// <param name="dFechaHasta">No Metadata Documentation available.</param>
+        public ObjectResult<Nullable<global::System.Decimal>> GetSumatoriaVentasDeInventarioDeCafe(Nullable<global::System.DateTime> dFechaDesde, Nullable<global::System.DateTime> dFechaHasta)
+        {
+            ObjectParameter dFechaDesdeParameter;
+            if (dFechaDesde.HasValue)
+            {
+                dFechaDesdeParameter = new ObjectParameter("dFechaDesde", dFechaDesde);
+            }
+            else
+            {
+                dFechaDesdeParameter = new ObjectParameter("dFechaDesde", typeof(global::System.DateTime));
+            }
+    
+            ObjectParameter dFechaHastaParameter;
+            if (dFechaHasta.HasValue)
+            {
+                dFechaHastaParameter = new ObjectParameter("dFechaHasta", dFechaHasta);
+            }
+            else
+            {
+                dFechaHastaParameter = new ObjectParameter("dFechaHasta", typeof(global::System.DateTime));
+            }
+    
+            return base.ExecuteFunction<Nullable<global::System.Decimal>>("GetSumatoriaVentasDeInventarioDeCafe", dFechaDesdeParameter, dFechaHastaParameter);
+        }
 
         #endregion
     }

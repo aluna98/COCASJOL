@@ -1175,11 +1175,19 @@
         <Function Name="GetRolesNoDeUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="colinas">
           <Parameter Name="strUSR_USERNAME" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="GetSumatoriaAjustesDeInventarioDeCafeDeSocios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="colinas">
+          <Parameter Name="dFechaDesde" Type="date" Mode="In" />
+          <Parameter Name="dFechaHasta" Type="date" Mode="In" />
+        </Function>
         <Function Name="GetSumatoriaHojasDeLiquidacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="colinas">
           <Parameter Name="dFechaDesde" Type="date" Mode="In" />
           <Parameter Name="dFechaHasta" Type="date" Mode="In" />
         </Function>
         <Function Name="GetSumatoriaNotasDePeso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="colinas">
+          <Parameter Name="dFechaDesde" Type="date" Mode="In" />
+          <Parameter Name="dFechaHasta" Type="date" Mode="In" />
+        </Function>
+        <Function Name="GetSumatoriaVentasDeInventarioDeCafe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="colinas">
           <Parameter Name="dFechaDesde" Type="date" Mode="In" />
           <Parameter Name="dFechaHasta" Type="date" Mode="In" />
         </Function>
@@ -1351,6 +1359,14 @@
             <End Role="clasificacion_cafe" EntitySet="clasificaciones_cafe" />
             <End Role="ventas_inventario_cafe" EntitySet="ventas_inventario_cafe" />
           </AssociationSet>
+          <FunctionImport Name="GetSumatoriaAjustesDeInventarioDeCafeDeSocios" ReturnType="Collection(Decimal)">
+            <Parameter Name="dFechaDesde" Mode="In" Type="DateTime" />
+            <Parameter Name="dFechaHasta" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="GetSumatoriaVentasDeInventarioDeCafe" ReturnType="Collection(Decimal)">
+            <Parameter Name="dFechaDesde" Mode="In" Type="DateTime" />
+            <Parameter Name="dFechaHasta" Mode="In" Type="DateTime" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="codigo">
           <Key>
@@ -2794,6 +2810,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetSumatoriaAjustesDeInventarioDeCafeDeSocios" FunctionName="COLINASMODEL.Store.GetSumatoriaAjustesDeInventarioDeCafeDeSocios" />
+          <FunctionImportMapping FunctionImportName="GetSumatoriaVentasDeInventarioDeCafe" FunctionName="COLINASMODEL.Store.GetSumatoriaVentasDeInventarioDeCafe" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -2815,7 +2833,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Colinas" ZoomLevel="100" ShowGrid="false">
+      <Diagram Name="Colinas" ZoomLevel="86" ShowGrid="false">
         <EntityTypeShape EntityType="COLINASMODEL.codigo" Width="1.5" PointX="7.625" PointY="0.5" Height="1.4033821614583317" />
         <EntityTypeShape EntityType="COLINASMODEL.beneficiario_x_socio" Width="1.5" PointX="0.5" PointY="12.25" Height="2.5571907552083317" />
         <EntityTypeShape EntityType="COLINASMODEL.socio_general" Width="1.5" PointX="0.5" PointY="4.875" Height="3.1340950520833353" />

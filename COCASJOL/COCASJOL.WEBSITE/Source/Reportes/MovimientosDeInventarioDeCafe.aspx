@@ -281,8 +281,8 @@
                                         Sortable="false"
                                         Groupable="false"
                                         DataIndex="INVENTARIO_SALIDAS_SALDO"
-                                        SummaryType="Average">
-                                        <SummaryRenderer Handler="return '(' + Ext.util.Format.number(value,'0,000.0000') + ' Promedio' + ')';" />
+                                        SummaryType="Sum">
+                                        <SummaryRenderer Handler="return '(' + Ext.util.Format.number(value,'0,000.0000') + ' Total' + ')';" />
                                         <Renderer Format="Number" FormatArgs="'0,000.0000'" />
                                     </ext:GroupingSummaryColumn>
 
