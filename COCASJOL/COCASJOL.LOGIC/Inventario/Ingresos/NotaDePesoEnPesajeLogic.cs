@@ -504,8 +504,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     db.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Fatal("Error fatal al eliminar nota de peso.", ex);
                 throw;
             }
         }

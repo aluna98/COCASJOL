@@ -344,7 +344,6 @@ namespace COCASJOL.LOGIC.Prestamos
                     referencia.FECHA_MODIFICACION = DateTime.Today;
                     db.referencias_x_solicitudes.AddObject(referencia);
                     db.SaveChanges();
-                    db.Dispose();
                 }
             }
             catch (Exception ex)
@@ -370,7 +369,6 @@ namespace COCASJOL.LOGIC.Prestamos
                     aval.FECHA_MODIFICACION = DateTime.Today;
                     db.avales_x_solicitud.AddObject(aval);
                     db.SaveChanges();
-                    db.Dispose();
                 }
             }
             catch (Exception ex)
@@ -448,7 +446,6 @@ namespace COCASJOL.LOGIC.Prestamos
                         nueva.MODIFICADO_POR = modificadopor;
                         nueva.FECHA_MODIFICACION = DateTime.Today;
                         db.SaveChanges();
-                        db.Dispose();
                     }
                 }
                 catch (Exception ex)
@@ -473,7 +470,6 @@ namespace COCASJOL.LOGIC.Prestamos
                         aval.MODIFICADO_POR = modificadopor;
                         aval.FECHA_MODIFICACION = DateTime.Today;
                         db.SaveChanges();
-                        db.Dispose();
                     }
                 }
                 catch (Exception ex)
@@ -535,98 +531,88 @@ namespace COCASJOL.LOGIC.Prestamos
 
             public string getEstado(int ID_SOLICITUD)
             {
-                colinasEntities db = null;
                 try
                 {
-                    db = new colinasEntities();
+                    using (var db = new colinasEntities())
+                    {
+                        var query = from soc in db.solicitudes_prestamos
+                                    where soc.SOLICITUDES_ID == ID_SOLICITUD
+                                    select soc;
 
-                    var query = from soc in db.solicitudes_prestamos
-                                where soc.SOLICITUDES_ID == ID_SOLICITUD
-                                select soc;
-
-                    solicitud_prestamo solicitud = query.First();
-                    return solicitud.SOLICITUD_ESTADO;
+                        solicitud_prestamo solicitud = query.First();
+                        return solicitud.SOLICITUD_ESTADO; 
+                    }
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    if (db != null)
-                        db.Dispose();
+                    log.Fatal("Error fatal al obtener estado.", ex);
                     throw;
                 }
             }
 
             public void DenegarSolicitud(int ID_SOLICITUD)
             {
-                colinasEntities db = null;
                 try
                 {
-                    db = new colinasEntities();
+                    using (var db = new colinasEntities())
+                    {
+                        var query = from soc in db.solicitudes_prestamos
+                                    where soc.SOLICITUDES_ID == ID_SOLICITUD
+                                    select soc;
 
-                    var query = from soc in db.solicitudes_prestamos
-                                where soc.SOLICITUDES_ID == ID_SOLICITUD
-                                select soc;
-
-                    solicitud_prestamo solicitud = query.First();
-                    solicitud.SOLICITUD_ESTADO = "RECHAZADA";
-                    db.SaveChanges();
-                    db.Dispose();
-
+                        solicitud_prestamo solicitud = query.First();
+                        solicitud.SOLICITUD_ESTADO = "RECHAZADA";
+                        db.SaveChanges(); 
+                    }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    if (db != null)
-                        db.Dispose();
+                    log.Fatal("Error fatal al denegar solicitud.", ex);
                     throw;
                 }
             }
 
             public void AprobarSolicitud(int ID_SOLICITUD)
             {
-                colinasEntities db = null;
                 try
                 {
-                    db = new colinasEntities();
+                    using (var db = new colinasEntities())
+                    {
+                        var query = from soc in db.solicitudes_prestamos
+                                    where soc.SOLICITUDES_ID == ID_SOLICITUD
+                                    select soc;
 
-                    var query = from soc in db.solicitudes_prestamos
-                                where soc.SOLICITUDES_ID == ID_SOLICITUD
-                                select soc;
-
-                    solicitud_prestamo solicitud = query.First();
-                    solicitud.SOLICITUD_ESTADO = "APROBADA";
-                    db.SaveChanges();
-                    db.Dispose();
-
+                        solicitud_prestamo solicitud = query.First();
+                        solicitud.SOLICITUD_ESTADO = "APROBADA";
+                        db.SaveChanges(); 
+                    }
                 }
                 catch (Exception ex)
                 {
-                    if (db != null)
-                        db.Dispose();
+                    log.Fatal("Error fatal al aprobar solicitud de prestamo.", ex);
                     throw;
                 }
             }
 
             public void FinalizarSolicitud(int ID_SOLICITUD)
             {
-                colinasEntities db = null;
                 try
                 {
-                    db = new colinasEntities();
+                    using (var db = new colinasEntities())
+                    {
+                        var query = from soc in db.solicitudes_prestamos
+                                    where soc.SOLICITUDES_ID == ID_SOLICITUD
+                                    select soc;
 
-                    var query = from soc in db.solicitudes_prestamos
-                                where soc.SOLICITUDES_ID == ID_SOLICITUD
-                                select soc;
-
-                    solicitud_prestamo solicitud = query.First();
-                    solicitud.SOLICITUD_ESTADO = "FINALIZADA";
-                    db.SaveChanges();
-                    db.Dispose();
-
+                        solicitud_prestamo solicitud = query.First();
+                        solicitud.SOLICITUD_ESTADO = "FINALIZADA";
+                        db.SaveChanges(); 
+                    }
                 }
                 catch (Exception ex)
                 {
-                    if (db != null)
-                        db.Dispose();
+                    log.Fatal("Error fatal al finalizar solicitud de prestamo.", ex);
                     throw;
                 }
             }

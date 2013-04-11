@@ -21,10 +21,12 @@ namespace COCASJOL.LOGIC.Prestamos
         {
             try
             {
-                colinasEntities db = new colinasEntities();
-                var query = from prestamos in db.prestamos
-                            select prestamos;
-                return query.ToList<prestamo>();
+                using (var db = new colinasEntities())
+                {
+                    var query = from prestamos in db.prestamos
+                                select prestamos;
+                    return query.ToList<prestamo>();
+                }
             }
             catch (Exception ex)
             {

@@ -73,13 +73,15 @@ namespace COCASJOL.WEBSITE.Socios
 
                     string savePath = Server.MapPath(uploadSavePath) + uploadNameSocios + extension;
 
+                    string msg = "";
+
                     lock (lockObj)
                     {
                         this.FileUploadField1.PostedFile.SaveAs(savePath);
-                        excelImport.SociosCargarDatos(savePath, loggedUsr);
+                         msg = excelImport.SociosCargarDatos(savePath, loggedUsr);
                     }
                     this.BasicForm.Reset();
-                    X.Msg.Alert("Importar Socios", "Importacion realizada Exitosamente.").Show();
+                    X.Msg.Alert("Importar Socios", msg).Show();
                     this.SociosSt_Reload(null, null);
                 }
             }

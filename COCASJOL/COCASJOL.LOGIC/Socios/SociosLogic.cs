@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.Objects;
 using System.Data.Odbc;
 
+using System.Transactions;
 using log4net;
 
 namespace COCASJOL.LOGIC.Socios
@@ -259,74 +260,80 @@ namespace COCASJOL.LOGIC.Socios
         {
             try
             {
-                using (var db = new colinasEntities())
+                using (var scope1 = new TransactionScope())
                 {
-                    string letra = SOCIOS_PRIMER_NOMBRE.Substring(0, 1);
+                    using (var db = new colinasEntities())
+                    {
+                        string letra = SOCIOS_PRIMER_NOMBRE.Substring(0, 1);
 
-                    var query = from cod in db.codigo
-                                where cod.CODIGO_LETRA == letra
-                                select cod;
+                        var query = from cod in db.codigo
+                                    where cod.CODIGO_LETRA == letra
+                                    select cod;
 
-                    codigo c = query.First();
-                    string NuevoCodigo = c.CODIGO_LETRA + c.CODIGO_NUMERO;
-                    c.CODIGO_NUMERO = c.CODIGO_NUMERO + 1;
-                    socio soc = new socio();
-                    soc.SOCIOS_ID = NuevoCodigo;
-                    soc.SOCIOS_PRIMER_NOMBRE = SOCIOS_PRIMER_NOMBRE;
-                    soc.SOCIOS_SEGUNDO_NOMBRE = SOCIOS_SEGUNDO_NOMBRE;
-                    soc.SOCIOS_PRIMER_APELLIDO = SOCIOS_PRIMER_APELLIDO;
-                    soc.SOCIOS_SEGUNDO_APELLIDO = SOCIOS_SEGUNDO_APELLIDO;
-                    soc.SOCIOS_RESIDENCIA = SOCIOS_RESIDENCIA;
-                    soc.SOCIOS_ESTADO_CIVIL = SOCIOS_ESTADO_CIVIL;
-                    soc.SOCIOS_LUGAR_DE_NACIMIENTO = SOCIOS_LUGAR_DE_NACIMIENTO;
-                    soc.SOCIOS_FECHA_DE_NACIMIENTO = DateTime.Parse(SOCIOS_FECHA_DE_NACIMIENTO);
-                    soc.SOCIOS_NIVEL_EDUCATIVO = SOCIOS_NIVEL_EDUCATIVO;
-                    soc.SOCIOS_IDENTIDAD = SOCIOS_IDENTIDAD;
-                    soc.SOCIOS_PROFESION = SOCIOS_PROFESION;
-                    soc.SOCIOS_RTN = SOCIOS_RTN;
-                    soc.SOCIOS_TELEFONO = SOCIOS_TELEFONO;
-                    soc.SOCIOS_LUGAR_DE_EMISION = SOCIOS_LUGAR_DE_EMISION;
-                    soc.SOCIOS_FECHA_DE_EMISION = DateTime.Parse(SOCIOS_FECHA_DE_EMISION);
-                    soc.CREADO_POR = CREADO_POR;
-                    soc.FECHA_CREACION = DateTime.Today;
-                    soc.MODIFICADO_POR = CREADO_POR;
-                    soc.FECHA_MODIFICACION = DateTime.Today;
-                    soc.SOCIOS_ESTATUS = 1;
-                    db.socios.AddObject(soc);
-                    socio_general socgen = new socio_general();
-                    socgen.SOCIOS_ID = NuevoCodigo;
-                    socgen.GENERAL_CARNET_IHCAFE = GENERAL_CARNET_IHCAFE;
-                    socgen.GENERAL_ORGANIZACION_SECUNDARIA = GENERAL_ORGANIZACION_SECUNDARIA;
-                    socgen.GENERAL_NUMERO_CARNET = GENERAL_NUMERO_CARNET;
-                    socgen.GENERAL_EMPRESA_LABORA = GENERAL_EMPRESA_LABORA;
-                    socgen.GENERAL_EMPRESA_CARGO = GENERAL_EMPRESA_CARGO;
-                    socgen.GENERAL_EMPRESA_DIRECCION = GENERAL_EMPRESA_DIRECCION;
-                    socgen.GENERAL_EMPRESA_TELEFONO = GENERAL_EMPRESA_TELEFONO;
-                    socgen.GENERAL_SEGURO = GENERAL_SEGURO;
-                    socgen.GENERAL_FECHA_ACEPTACION = DateTime.Parse(GENERAL_FECHA_ACEPTACION);
-                    db.socios_generales.AddObject(socgen);
-                    socio_produccion socprod = new socio_produccion();
-                    socprod.SOCIOS_ID = NuevoCodigo;
-                    socprod.PRODUCCION_UBICACION_FINCA = PRODUCCION_UBICACION_FINCA;
-                    socprod.PRODUCCION_AREA = PRODUCCION_AREA;
-                    socprod.PRODUCCION_VARIEDAD = PRODUCCION_VARIEDAD;
-                    socprod.PRODUCCION_ALTURA = PRODUCCION_ALTURA;
-                    socprod.PRODUCCION_DISTANCIA = PRODUCCION_DISTANCIA;
-                    socprod.PRODUCCION_ANUAL = PRODUCCION_ANUAL;
-                    socprod.PRODUCCION_BENEFICIO_PROPIO = PRODUCCION_BENEFICIO_PROPIO;
-                    socprod.PRODUCCION_ANALISIS_SUELO = PRODUCCION_ANALISIS_SUELO;
-                    socprod.PRODUCCION_TIPO_INSUMOS = PRODUCCION_TIPO_INSUMOS;
-                    socprod.PRODUCCION_MANZANAS_CULTIVADAS = PRODUCCION_MANZANAS_CULTIVADAS;
-                    db.socios_produccion.AddObject(socprod);
-                    db.SaveChanges();  
-                    string nombreCompleto = SOCIOS_PRIMER_NOMBRE+" ";
-                    if (SOCIOS_SEGUNDO_NOMBRE != "")
-                        nombreCompleto += SOCIOS_SEGUNDO_NOMBRE+" ";
-                    if (SOCIOS_PRIMER_APELLIDO != "")
-                        nombreCompleto += SOCIOS_PRIMER_APELLIDO + " ";
-                    if (SOCIOS_SEGUNDO_APELLIDO != "")
-                        nombreCompleto += SOCIOS_SEGUNDO_APELLIDO + " ";
-                    InsertSociosDBISAM(NuevoCodigo, nombreCompleto);
+                        codigo c = query.First();
+                        string NuevoCodigo = c.CODIGO_LETRA + c.CODIGO_NUMERO;
+                        c.CODIGO_NUMERO = c.CODIGO_NUMERO + 1;
+                        socio soc = new socio();
+                        soc.SOCIOS_ID = NuevoCodigo;
+                        soc.SOCIOS_PRIMER_NOMBRE = SOCIOS_PRIMER_NOMBRE;
+                        soc.SOCIOS_SEGUNDO_NOMBRE = SOCIOS_SEGUNDO_NOMBRE;
+                        soc.SOCIOS_PRIMER_APELLIDO = SOCIOS_PRIMER_APELLIDO;
+                        soc.SOCIOS_SEGUNDO_APELLIDO = SOCIOS_SEGUNDO_APELLIDO;
+                        soc.SOCIOS_RESIDENCIA = SOCIOS_RESIDENCIA;
+                        soc.SOCIOS_ESTADO_CIVIL = SOCIOS_ESTADO_CIVIL;
+                        soc.SOCIOS_LUGAR_DE_NACIMIENTO = SOCIOS_LUGAR_DE_NACIMIENTO;
+                        soc.SOCIOS_FECHA_DE_NACIMIENTO = DateTime.Parse(SOCIOS_FECHA_DE_NACIMIENTO);
+                        soc.SOCIOS_NIVEL_EDUCATIVO = SOCIOS_NIVEL_EDUCATIVO;
+                        soc.SOCIOS_IDENTIDAD = SOCIOS_IDENTIDAD;
+                        soc.SOCIOS_PROFESION = SOCIOS_PROFESION;
+                        soc.SOCIOS_RTN = SOCIOS_RTN;
+                        soc.SOCIOS_TELEFONO = SOCIOS_TELEFONO;
+                        soc.SOCIOS_LUGAR_DE_EMISION = SOCIOS_LUGAR_DE_EMISION;
+                        soc.SOCIOS_FECHA_DE_EMISION = DateTime.Parse(SOCIOS_FECHA_DE_EMISION);
+                        soc.CREADO_POR = CREADO_POR;
+                        soc.FECHA_CREACION = DateTime.Today;
+                        soc.MODIFICADO_POR = CREADO_POR;
+                        soc.FECHA_MODIFICACION = DateTime.Today;
+                        soc.SOCIOS_ESTATUS = 1;
+                        db.socios.AddObject(soc);
+                        socio_general socgen = new socio_general();
+                        socgen.SOCIOS_ID = NuevoCodigo;
+                        socgen.GENERAL_CARNET_IHCAFE = GENERAL_CARNET_IHCAFE;
+                        socgen.GENERAL_ORGANIZACION_SECUNDARIA = GENERAL_ORGANIZACION_SECUNDARIA;
+                        socgen.GENERAL_NUMERO_CARNET = GENERAL_NUMERO_CARNET;
+                        socgen.GENERAL_EMPRESA_LABORA = GENERAL_EMPRESA_LABORA;
+                        socgen.GENERAL_EMPRESA_CARGO = GENERAL_EMPRESA_CARGO;
+                        socgen.GENERAL_EMPRESA_DIRECCION = GENERAL_EMPRESA_DIRECCION;
+                        socgen.GENERAL_EMPRESA_TELEFONO = GENERAL_EMPRESA_TELEFONO;
+                        socgen.GENERAL_SEGURO = GENERAL_SEGURO;
+                        socgen.GENERAL_FECHA_ACEPTACION = DateTime.Parse(GENERAL_FECHA_ACEPTACION);
+                        db.socios_generales.AddObject(socgen);
+                        socio_produccion socprod = new socio_produccion();
+                        socprod.SOCIOS_ID = NuevoCodigo;
+                        socprod.PRODUCCION_UBICACION_FINCA = PRODUCCION_UBICACION_FINCA;
+                        socprod.PRODUCCION_AREA = PRODUCCION_AREA;
+                        socprod.PRODUCCION_VARIEDAD = PRODUCCION_VARIEDAD;
+                        socprod.PRODUCCION_ALTURA = PRODUCCION_ALTURA;
+                        socprod.PRODUCCION_DISTANCIA = PRODUCCION_DISTANCIA;
+                        socprod.PRODUCCION_ANUAL = PRODUCCION_ANUAL;
+                        socprod.PRODUCCION_BENEFICIO_PROPIO = PRODUCCION_BENEFICIO_PROPIO;
+                        socprod.PRODUCCION_ANALISIS_SUELO = PRODUCCION_ANALISIS_SUELO;
+                        socprod.PRODUCCION_TIPO_INSUMOS = PRODUCCION_TIPO_INSUMOS;
+                        socprod.PRODUCCION_MANZANAS_CULTIVADAS = PRODUCCION_MANZANAS_CULTIVADAS;
+                        db.socios_produccion.AddObject(socprod);
+                        db.SaveChanges();
+
+                        scope1.Complete();
+
+                        string nombreCompleto = SOCIOS_PRIMER_NOMBRE + " ";
+                        if (SOCIOS_SEGUNDO_NOMBRE != "")
+                            nombreCompleto += SOCIOS_SEGUNDO_NOMBRE + " ";
+                        if (SOCIOS_PRIMER_APELLIDO != "")
+                            nombreCompleto += SOCIOS_PRIMER_APELLIDO + " ";
+                        if (SOCIOS_SEGUNDO_APELLIDO != "")
+                            nombreCompleto += SOCIOS_SEGUNDO_APELLIDO + " ";
+                        InsertSociosDBISAM(NuevoCodigo, nombreCompleto);
+                    }
                 }
             }
             catch (Exception ex)
