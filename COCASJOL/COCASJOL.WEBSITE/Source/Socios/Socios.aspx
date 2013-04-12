@@ -773,7 +773,7 @@
                     </ext:Button>
                     <ext:Button ID="ExcelUploadBtn" runat="server" Text="Subir" Icon="ArrowUp">
                         <DirectEvents>
-                            <Click OnEvent="UploadClick" >
+                            <Click OnEvent="UploadClick" IsUpload="true" >
                                 <EventMask Target="CustomTarget" CustomTarget="ImportarSociosWin" ShowMask="true" />
                             </Click>
                         </DirectEvents>

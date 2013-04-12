@@ -478,6 +478,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="resources\rdlcs\ReporteMovimientosDeInventarioDeCafeDeSocios.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="resources\rdlcs\Socios.rdlc" />
     <EmbeddedResource Include="resources\rdlcs\solicitudesDeIngresoDeSocio\BeneficiariosPorSocio.rdlc" />
     <EmbeddedResource Include="resources\rdlcs\HojasDeLiquidacion.rdlc">

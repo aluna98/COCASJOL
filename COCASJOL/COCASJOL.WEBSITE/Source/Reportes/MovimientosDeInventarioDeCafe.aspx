@@ -582,6 +582,19 @@
                                                 <Click Handler="#{MovimientoInventarioCafeGridP}.getView().toggleAllGroups();" />
                                             </Listeners>
                                         </ext:Button>
+                                        <ext:ToolbarFill />
+                                        <ext:Button ID="ExportToExcelBtn" runat="server" Text="Exportar Excel" Icon="PageExcel">
+                                            <DirectEvents>
+                                                <Click OnEvent="ExportToExcelBtn_Click" IsUpload="true">
+                                                </Click>
+                                            </DirectEvents>
+                                        </ext:Button>
+                                        <ext:Button ID="ExportToPDFBtn" runat="server" Text="Exportar PDF" Icon="PageWhiteAcrobat">
+                                            <DirectEvents>
+                                                <Click OnEvent="ExportToPDFBtn_Click" IsUpload="true">
+                                                </Click>
+                                            </DirectEvents>
+                                        </ext:Button>
                                     </Items>
                                 </ext:Toolbar>
                             </TopBar>

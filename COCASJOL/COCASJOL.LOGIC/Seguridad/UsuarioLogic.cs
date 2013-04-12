@@ -293,6 +293,7 @@ namespace COCASJOL.LOGIC.Seguridad
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al insertar roles.", ex);
                 throw;
             }
         }
