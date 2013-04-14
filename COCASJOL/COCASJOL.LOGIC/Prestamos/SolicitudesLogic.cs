@@ -738,44 +738,6 @@ namespace COCASJOL.LOGIC.Prestamos
                 }
             }
 
-            public static void getSociosDBISAM()
-            {
-                try
-                {
-                    string queryString = "select * from scategoria";
-                    OdbcCommand command = new OdbcCommand(queryString);
-
-                    string connectionString = "PROVIDER=MSDASQL;DSN=MYDBISAM";
-
-                    using (OdbcConnection connection = new OdbcConnection(connectionString))
-                    {
-                        command.Connection = connection;
-                        connection.Open();
-
-                        OdbcDataReader reader = command.ExecuteReader();
-
-                        int fCount = reader.FieldCount;
-
-                        string rec = "";
-
-                        while (reader.Read())
-                        {
-                            for (int i = 0; i < fCount; i++)
-                            {
-                                rec += " " + (reader.GetValue(i).ToString());
-                            }
-
-                            rec += "\n";
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    log.Fatal("Error fatal al obtener socios desde DBISAM.", ex);
-                    throw;
-                }
-            }
-
         #endregion
     }
 }

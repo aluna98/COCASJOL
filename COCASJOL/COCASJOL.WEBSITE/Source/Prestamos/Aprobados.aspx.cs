@@ -31,7 +31,6 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
         {
             try
             {
-                SolicitudesLogic.getSociosDBISAM();
                 this.RM1.DirectMethodNamespace = "DirectX";
                 SociosSt_Reload(null, null);
                 if (!X.IsAjaxRequest)

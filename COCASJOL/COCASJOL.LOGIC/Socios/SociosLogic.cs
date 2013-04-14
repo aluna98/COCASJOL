@@ -164,51 +164,56 @@ namespace COCASJOL.LOGIC.Socios
         {
             try
             {
-                using (var db = new colinasEntities())
+                using (var scope1 = new TransactionScope())
                 {
-                    var query = from soc in db.socios
-                                where soc.SOCIOS_ID == SOCIOS_ID
-                                select soc;
+                    using (var db = new colinasEntities())
+                    {
+                        var query = from soc in db.socios
+                                    where soc.SOCIOS_ID == SOCIOS_ID
+                                    select soc;
 
-                    socio socio = query.First();
-                    socio.SOCIOS_ID = SOCIOS_ID;
-                    socio.SOCIOS_PRIMER_NOMBRE = SOCIOS_PRIMER_NOMBRE;
-                    socio.SOCIOS_SEGUNDO_NOMBRE = SOCIOS_SEGUNDO_NOMBRE;
-                    socio.SOCIOS_PRIMER_APELLIDO = SOCIOS_PRIMER_APELLIDO;
-                    socio.SOCIOS_SEGUNDO_APELLIDO = SOCIOS_SEGUNDO_APELLIDO;
-                    socio.SOCIOS_RESIDENCIA = SOCIOS_RESIDENCIA;
-                    socio.SOCIOS_ESTADO_CIVIL = SOCIOS_ESTADO_CIVIL;
-                    socio.SOCIOS_LUGAR_DE_NACIMIENTO = SOCIOS_LUGAR_DE_NACIMIENTO;
-                    socio.SOCIOS_FECHA_DE_NACIMIENTO = DateTime.Parse(SOCIOS_FECHA_DE_NACIMIENTO);
-                    socio.SOCIOS_NIVEL_EDUCATIVO = SOCIOS_NIVEL_EDUCATIVO;
-                    socio.SOCIOS_IDENTIDAD = SOCIOS_IDENTIDAD;
-                    socio.SOCIOS_PROFESION = SOCIOS_PROFESION;
-                    socio.SOCIOS_RTN = SOCIOS_RTN;
-                    socio.SOCIOS_TELEFONO = SOCIOS_TELEFONO;
-                    socio.SOCIOS_LUGAR_DE_EMISION = SOCIOS_LUGAR_DE_EMISION;
-                    socio.SOCIOS_FECHA_DE_EMISION = DateTime.Parse(SOCIOS_FECHA_DE_EMISION);
-                    socio.MODIFICADO_POR = MODIFICADO_POR;
-                    socio.FECHA_MODIFICACION = DateTime.Today;
-                    socio.socios_generales.GENERAL_CARNET_IHCAFE = GENERAL_CARNET_IHCAFE;
-                    socio.socios_generales.GENERAL_ORGANIZACION_SECUNDARIA = GENERAL_ORGANIZACION_SECUNDARIA;
-                    socio.socios_generales.GENERAL_NUMERO_CARNET = GENERAL_NUMERO_CARNET;
-                    socio.socios_generales.GENERAL_EMPRESA_LABORA = GENERAL_EMPRESA_LABORA;
-                    socio.socios_generales.GENERAL_EMPRESA_CARGO = GENERAL_EMPRESA_CARGO;
-                    socio.socios_generales.GENERAL_EMPRESA_DIRECCION = GENERAL_EMPRESA_DIRECCION;
-                    socio.socios_generales.GENERAL_EMPRESA_TELEFONO = GENERAL_EMPRESA_TELEFONO;
-                    socio.socios_generales.GENERAL_SEGURO = GENERAL_SEGURO;
-                    socio.socios_generales.GENERAL_FECHA_ACEPTACION = string.IsNullOrEmpty(GENERAL_FECHA_ACEPTACION) ? default(DateTime) : DateTime.Parse(GENERAL_FECHA_ACEPTACION);
-                    socio.socios_produccion.PRODUCCION_UBICACION_FINCA = PRODUCCION_UBICACION_FINCA;
-                    socio.socios_produccion.PRODUCCION_AREA = PRODUCCION_AREA;
-                    socio.socios_produccion.PRODUCCION_VARIEDAD = PRODUCCION_VARIEDAD;
-                    socio.socios_produccion.PRODUCCION_ALTURA = PRODUCCION_ALTURA;
-                    socio.socios_produccion.PRODUCCION_DISTANCIA = PRODUCCION_DISTANCIA;
-                    socio.socios_produccion.PRODUCCION_ANUAL = PRODUCCION_ANUAL;
-                    socio.socios_produccion.PRODUCCION_BENEFICIO_PROPIO = PRODUCCION_BENEFICIO_PROPIO;
-                    socio.socios_produccion.PRODUCCION_ANALISIS_SUELO = PRODUCCION_ANALISIS_SUELO;
-                    socio.socios_produccion.PRODUCCION_TIPO_INSUMOS = PRODUCCION_TIPO_INSUMOS;
-                    socio.socios_produccion.PRODUCCION_MANZANAS_CULTIVADAS = PRODUCCION_MANZANAS_CULTIVADAS;
-                    db.SaveChanges(); 
+                        socio socio = query.First();
+                        socio.SOCIOS_ID = SOCIOS_ID;
+                        socio.SOCIOS_PRIMER_NOMBRE = SOCIOS_PRIMER_NOMBRE;
+                        socio.SOCIOS_SEGUNDO_NOMBRE = SOCIOS_SEGUNDO_NOMBRE;
+                        socio.SOCIOS_PRIMER_APELLIDO = SOCIOS_PRIMER_APELLIDO;
+                        socio.SOCIOS_SEGUNDO_APELLIDO = SOCIOS_SEGUNDO_APELLIDO;
+                        socio.SOCIOS_RESIDENCIA = SOCIOS_RESIDENCIA;
+                        socio.SOCIOS_ESTADO_CIVIL = SOCIOS_ESTADO_CIVIL;
+                        socio.SOCIOS_LUGAR_DE_NACIMIENTO = SOCIOS_LUGAR_DE_NACIMIENTO;
+                        socio.SOCIOS_FECHA_DE_NACIMIENTO = DateTime.Parse(SOCIOS_FECHA_DE_NACIMIENTO);
+                        socio.SOCIOS_NIVEL_EDUCATIVO = SOCIOS_NIVEL_EDUCATIVO;
+                        socio.SOCIOS_IDENTIDAD = SOCIOS_IDENTIDAD;
+                        socio.SOCIOS_PROFESION = SOCIOS_PROFESION;
+                        socio.SOCIOS_RTN = SOCIOS_RTN;
+                        socio.SOCIOS_TELEFONO = SOCIOS_TELEFONO;
+                        socio.SOCIOS_LUGAR_DE_EMISION = SOCIOS_LUGAR_DE_EMISION;
+                        socio.SOCIOS_FECHA_DE_EMISION = DateTime.Parse(SOCIOS_FECHA_DE_EMISION);
+                        socio.MODIFICADO_POR = MODIFICADO_POR;
+                        socio.FECHA_MODIFICACION = DateTime.Today;
+                        socio.socios_generales.GENERAL_CARNET_IHCAFE = GENERAL_CARNET_IHCAFE;
+                        socio.socios_generales.GENERAL_ORGANIZACION_SECUNDARIA = GENERAL_ORGANIZACION_SECUNDARIA;
+                        socio.socios_generales.GENERAL_NUMERO_CARNET = GENERAL_NUMERO_CARNET;
+                        socio.socios_generales.GENERAL_EMPRESA_LABORA = GENERAL_EMPRESA_LABORA;
+                        socio.socios_generales.GENERAL_EMPRESA_CARGO = GENERAL_EMPRESA_CARGO;
+                        socio.socios_generales.GENERAL_EMPRESA_DIRECCION = GENERAL_EMPRESA_DIRECCION;
+                        socio.socios_generales.GENERAL_EMPRESA_TELEFONO = GENERAL_EMPRESA_TELEFONO;
+                        socio.socios_generales.GENERAL_SEGURO = GENERAL_SEGURO;
+                        socio.socios_generales.GENERAL_FECHA_ACEPTACION = string.IsNullOrEmpty(GENERAL_FECHA_ACEPTACION) ? default(DateTime) : DateTime.Parse(GENERAL_FECHA_ACEPTACION);
+                        socio.socios_produccion.PRODUCCION_UBICACION_FINCA = PRODUCCION_UBICACION_FINCA;
+                        socio.socios_produccion.PRODUCCION_AREA = PRODUCCION_AREA;
+                        socio.socios_produccion.PRODUCCION_VARIEDAD = PRODUCCION_VARIEDAD;
+                        socio.socios_produccion.PRODUCCION_ALTURA = PRODUCCION_ALTURA;
+                        socio.socios_produccion.PRODUCCION_DISTANCIA = PRODUCCION_DISTANCIA;
+                        socio.socios_produccion.PRODUCCION_ANUAL = PRODUCCION_ANUAL;
+                        socio.socios_produccion.PRODUCCION_BENEFICIO_PROPIO = PRODUCCION_BENEFICIO_PROPIO;
+                        socio.socios_produccion.PRODUCCION_ANALISIS_SUELO = PRODUCCION_ANALISIS_SUELO;
+                        socio.socios_produccion.PRODUCCION_TIPO_INSUMOS = PRODUCCION_TIPO_INSUMOS;
+                        socio.socios_produccion.PRODUCCION_MANZANAS_CULTIVADAS = PRODUCCION_MANZANAS_CULTIVADAS;
+                        db.SaveChanges();
+
+                        scope1.Complete();
+                    }
                 }
             }
             catch (Exception ex)
@@ -262,6 +267,7 @@ namespace COCASJOL.LOGIC.Socios
         {
             try
             {
+                string NuevoCodigo = "";
                 using (var scope1 = new TransactionScope())
                 {
                     using (var db = new colinasEntities())
@@ -273,7 +279,7 @@ namespace COCASJOL.LOGIC.Socios
                                     select cod;
 
                         codigo c = query.First();
-                        string NuevoCodigo = c.CODIGO_LETRA + c.CODIGO_NUMERO;
+                        NuevoCodigo = c.CODIGO_LETRA + c.CODIGO_NUMERO;
                         c.CODIGO_NUMERO = c.CODIGO_NUMERO + 1;
                         socio soc = new socio();
                         soc.SOCIOS_ID = NuevoCodigo;
@@ -326,17 +332,17 @@ namespace COCASJOL.LOGIC.Socios
                         db.SaveChanges();
 
                         scope1.Complete();
-
-                        string nombreCompleto = SOCIOS_PRIMER_NOMBRE + " ";
-                        if (SOCIOS_SEGUNDO_NOMBRE != "")
-                            nombreCompleto += SOCIOS_SEGUNDO_NOMBRE + " ";
-                        if (SOCIOS_PRIMER_APELLIDO != "")
-                            nombreCompleto += SOCIOS_PRIMER_APELLIDO + " ";
-                        if (SOCIOS_SEGUNDO_APELLIDO != "")
-                            nombreCompleto += SOCIOS_SEGUNDO_APELLIDO + " ";
-                        InsertSociosDBISAM(NuevoCodigo, nombreCompleto);
                     }
                 }
+
+                string nombreCompleto = SOCIOS_PRIMER_NOMBRE + " ";
+                if (SOCIOS_SEGUNDO_NOMBRE != "")
+                    nombreCompleto += SOCIOS_SEGUNDO_NOMBRE + " ";
+                if (SOCIOS_PRIMER_APELLIDO != "")
+                    nombreCompleto += SOCIOS_PRIMER_APELLIDO + " ";
+                if (SOCIOS_SEGUNDO_APELLIDO != "")
+                    nombreCompleto += SOCIOS_SEGUNDO_APELLIDO + " ";
+                InsertSociosDBISAM(NuevoCodigo, nombreCompleto);
             }
             catch (Exception ex)
             {
@@ -817,22 +823,61 @@ namespace COCASJOL.LOGIC.Socios
 
         public static void InsertSociosDBISAM(string id, string nombre)
         {
+            OdbcTransaction transaction = null;
+
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["A2DBISAM"].ConnectionString;
+
+            bool activo = true;
+            int zero = 0;
+
+            string parameterChar = System.Configuration.ConfigurationManager.AppSettings["A2DBISAM_ParameterChar"];
+            string queryStringCliente = System.Configuration.ConfigurationManager.AppSettings["A2DBISAM_InsertarCliente"];
+            string queryStringProveedor = System.Configuration.ConfigurationManager.AppSettings["A2DBISAM_InsertarProveedor"];
+
+            string queryCliente = string.Format(queryStringCliente, parameterChar);
+            string queryProveedor = string.Format(queryStringProveedor, parameterChar);
+
             try
             {
-                string connectionString = "PROVIDER=MSDASQL;DSN=MYDBISAM";
-                bool activo = true;
-                int zero = 0;
                 using (OdbcConnection connection = new OdbcConnection(connectionString))
                 {
-                    OdbcCommand myCommand = new OdbcCommand("insert into Sclientes(FC_CODIGO, FC_DESCRIPCION, FC_STATUS, FC_CLASIFICACION, FC_NIT, FC_RIF) values ('" + id + "', '" + nombre + "', "+ activo+" , '"+ zero +"', '" + id + "', '" + id + "')", connection);
+                    OdbcCommand myCommandCliente = new OdbcCommand(queryCliente, connection);
+                    myCommandCliente.Parameters.Clear();
+                    myCommandCliente.Parameters.Add(new OdbcParameter { Value = id, DbType = DbType.String, Direction = ParameterDirection.Input });
+                    myCommandCliente.Parameters.Add(new OdbcParameter { Value = nombre, DbType = DbType.String, Direction = ParameterDirection.Input });
+                    myCommandCliente.Parameters.Add(new OdbcParameter { Value = activo, DbType = DbType.Boolean, Direction = ParameterDirection.Input });
+                    myCommandCliente.Parameters.Add(new OdbcParameter { Value = zero, DbType = DbType.String, Direction = ParameterDirection.Input });
+                    myCommandCliente.Parameters.Add(new OdbcParameter { Value = id, DbType = DbType.String, Direction = ParameterDirection.Input });
+                    myCommandCliente.Parameters.Add(new OdbcParameter { Value = id, DbType = DbType.String, Direction = ParameterDirection.Input });
+
+
+                    OdbcCommand myCommandProveedor = new OdbcCommand(queryProveedor, connection);
+                    myCommandProveedor.Parameters.Clear();
+                    myCommandProveedor.Parameters.Add(new OdbcParameter { Value = id, DbType = DbType.String, Direction = ParameterDirection.Input });
+                    myCommandProveedor.Parameters.Add(new OdbcParameter { Value = nombre, DbType = DbType.String, Direction = ParameterDirection.Input });
+                    myCommandProveedor.Parameters.Add(new OdbcParameter { Value = activo, DbType = DbType.Boolean, Direction = ParameterDirection.Input });
+                    myCommandProveedor.Parameters.Add(new OdbcParameter { Value = zero, DbType = DbType.String, Direction = ParameterDirection.Input });
+                    myCommandProveedor.Parameters.Add(new OdbcParameter { Value = id, DbType = DbType.String, Direction = ParameterDirection.Input });
+                    myCommandProveedor.Parameters.Add(new OdbcParameter { Value = id, DbType = DbType.String, Direction = ParameterDirection.Input });
+
                     connection.Open();
-                    myCommand.ExecuteNonQuery();
+                    transaction = connection.BeginTransaction();
+
+                    myCommandCliente.Transaction = transaction;
+                    myCommandProveedor.Transaction = transaction;
+
+                    myCommandCliente.ExecuteNonQuery();
+                    myCommandProveedor.ExecuteNonQuery();
+
+                    transaction.Commit();
                 }
             }
             catch (Exception ex)
             {
-                log.Fatal("Error fatal al obtener socios desde DBISAM.", ex);
-                throw;
+                transaction.Rollback();
+
+                string errorMsg = string.Format("Error al obtener socios desde DBISAM. ConnectionString: {0} - SQLInsertCliente: {1} - SQLInsertProveedor: {2}", connectionString, queryCliente, queryProveedor);
+                log.Error(errorMsg, ex);
             }
         }
 
