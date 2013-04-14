@@ -4,17 +4,19 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using COCASJOL.LOGIC;
+
+
 using System.Data;
 using System.Data.Objects;
-using Ext.Net;
+
+using COCASJOL.DATAACCESS;
 using COCASJOL.LOGIC.Web;
 using COCASJOL.LOGIC.Seguridad;
 using COCASJOL.LOGIC.Prestamos;
 using COCASJOL.LOGIC.Socios;
 using COCASJOL.LOGIC.Aportaciones;
 
-
+using Ext.Net;
 using log4net;
 
 namespace COCASJOL.WEBSITE.Source.Reportes

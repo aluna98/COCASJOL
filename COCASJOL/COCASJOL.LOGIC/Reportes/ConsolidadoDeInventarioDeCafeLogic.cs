@@ -6,6 +6,8 @@ using System.Text;
 using System.Data;
 using System.Data.Objects;
 
+using COCASJOL.DATAACCESS;
+
 using log4net;
 
 namespace COCASJOL.LOGIC.Reportes

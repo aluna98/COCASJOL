@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using COCASJOL.DATAACCESS;
 using COCASJOL.LOGIC;
 using COCASJOL.LOGIC.Reportes;
 using Microsoft.Reporting.WebForms;

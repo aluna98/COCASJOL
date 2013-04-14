@@ -123,7 +123,7 @@ namespace COCASJOL.WEBSITE.Socios
                 viewer.ProcessingMode = ProcessingMode.Local;
                 viewer.LocalReport.ReportPath = Server.MapPath("~/resources/rdlcs/Socios.rdlc");
 
-                List<socio> socios = new List<socio>();
+                List<COCASJOL.DATAACCESS.socio> socios = new List<COCASJOL.DATAACCESS.socio>();
 
                 ReportDataSource datasourceSocios = new ReportDataSource("SociosDataSet", socios);
 

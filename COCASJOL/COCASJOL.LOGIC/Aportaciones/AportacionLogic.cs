@@ -6,6 +6,7 @@ using System.Text;
 using System.Data;
 using System.Data.Objects;
 
+using COCASJOL.DATAACCESS;
 using COCASJOL.LOGIC.Inventario;
 
 using log4net;
@@ -203,5 +204,30 @@ namespace COCASJOL.LOGIC.Aportaciones
 
         #endregion
 
+        #region Metodos
+
+        public decimal GetSaldoTotalAportacionesXSocio(string SOCIOS_ID)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    var query = from ap in db.reporte_total_aportaciones_por_socio
+                                join s in db.socios
+                                on ap.SOCIOS_ID equals s.SOCIOS_ID
+                                where ap.SOCIOS_ID == SOCIOS_ID
+                                select ap;
+
+                    return query.First<reporte_total_aportaciones_por_socio>().APORTACIONES_SALDO_TOTAL;
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al obtener el reporte total de aportaciones de socio.", ex);
+                throw;
+            }
+        }
+
+        #endregion
     }
 }

@@ -8,7 +8,7 @@ using System.Net.Mail;
 using System.Data;
 using System.Data.Objects;
 
-using COCASJOL.LOGIC;
+using COCASJOL.DATAACCESS;
 using COCASJOL.LOGIC.Seguridad;
 
 using System.Xml;

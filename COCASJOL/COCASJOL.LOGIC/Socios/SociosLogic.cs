@@ -6,8 +6,10 @@ using System.Text;
 using System.Data;
 using System.Data.Objects;
 using System.Data.Odbc;
-
 using System.Transactions;
+
+using COCASJOL.DATAACCESS;
+
 using log4net;
 
 namespace COCASJOL.LOGIC.Socios

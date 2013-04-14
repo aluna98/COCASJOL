@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.Objects;
 using System.Transactions;
 
+using COCASJOL.DATAACCESS;
 using COCASJOL.LOGIC.Seguridad;
 using COCASJOL.LOGIC.Utiles;
 

@@ -6,6 +6,9 @@ using System.Text;
 using System.Data;
 using System.Data.OleDb;
 using System.Transactions;
+
+using COCASJOL.DATAACCESS;
+
 using log4net;
 
 namespace COCASJOL.LOGIC.Utiles

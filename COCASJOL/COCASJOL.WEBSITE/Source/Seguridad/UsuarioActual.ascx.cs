@@ -40,7 +40,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                 if (loggedUsr.CompareTo("DEVELOPER") != 0)
                 {
                     UsuarioLogic usuarioActual = new UsuarioLogic();
-                    COCASJOL.LOGIC.usuario user = usuarioActual.GetUsuario(loggedUsr);
+                    COCASJOL.DATAACCESS.usuario user = usuarioActual.GetUsuario(loggedUsr);
 
                     this.EditNombreTxt.Text = user.USR_NOMBRE;
                     this.EditSegundoNombreTxt.Text = user.USR_SEGUNDO_NOMBRE;

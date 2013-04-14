@@ -472,6 +472,10 @@
     <Folder Include="resources\uploads\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\COCASJOL.DATAACCESS\COCASJOL.DATAACCESS.csproj">
+      <Project>{246E4FE7-8E03-45EC-8CDA-DA87EDF98B59}</Project>
+      <Name>COCASJOL.DATAACCESS</Name>
+    </ProjectReference>
     <ProjectReference Include="..\COCASJOL.LOGIC\COCASJOL.LOGIC.csproj">
       <Project>{4E2A8EDC-D2EC-4897-BFFA-D87CFCD3FE01}</Project>
       <Name>COCASJOL.LOGIC</Name>

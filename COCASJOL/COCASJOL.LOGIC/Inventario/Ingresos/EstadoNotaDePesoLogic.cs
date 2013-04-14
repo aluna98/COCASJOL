@@ -6,6 +6,8 @@ using System.Text;
 using System.Data;
 using System.Data.Objects;
 
+using COCASJOL.DATAACCESS;
+
 using log4net;
 
 namespace COCASJOL.LOGIC.Inventario.Ingresos
@@ -276,5 +278,30 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
         #endregion
 
+        #region METHODS
+
+        public int GetIdEstadoNotaDePeso(string ESTADOS_NOTA_LLAVE)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    db.estados_nota_de_peso.MergeOption = MergeOption.NoTracking;
+
+                    var query = from en in db.estados_nota_de_peso
+                                where en.ESTADOS_NOTA_LLAVE == ESTADOS_NOTA_LLAVE
+                                select en;
+
+                    return query.First<estado_nota_de_peso>().ESTADOS_NOTA_ID;
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al obtener id de estado de nota de peso.", ex);
+                throw;
+            }
+        }
+
+        #endregion
     }
 }

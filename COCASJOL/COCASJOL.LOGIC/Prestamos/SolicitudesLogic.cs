@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using System.Data.Odbc;
 using System.Data;
 using System.Data.Objects;
+
+using COCASJOL.DATAACCESS;
 
 using log4net;
 
@@ -711,6 +714,26 @@ namespace COCASJOL.LOGIC.Prestamos
                 catch (Exception ex)
                 {
                     log.Fatal("Error fatal al buscar aval en solicitudes de prestamos.", ex);
+                    throw;
+                }
+            }
+
+            public string getAvalNombreCompleto(string id)
+            {
+                try
+                {
+                    using (var db = new colinasEntities())
+                    {
+                        var query = from soc in db.socios
+                                    where soc.SOCIOS_ID == id
+                                    select soc;
+                        socio lista = query.First();
+                        return lista.SOCIOS_PRIMER_NOMBRE + " " + lista.SOCIOS_PRIMER_APELLIDO;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    log.Fatal("Error fatal al obtener aval.", ex);
                     throw;
                 }
             }

@@ -316,9 +316,9 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
                 {
                     SolicitudesLogic solicitud = new SolicitudesLogic();
                     EditAvalAntiguedad.Text = logica.Antiguedad(EditAvalId.Text);
-                    socio aval = solicitud.getAval(EditAvalId.Text);
-                    EditAvalNombre.Text = aval.SOCIOS_PRIMER_NOMBRE + " " + aval.SOCIOS_PRIMER_APELLIDO;
-                    EditAvalAportaciones.Text = aportacion.GetAportacionesXSocio(EditAvalId.Text).APORTACIONES_SALDO_TOTAL.ToString();
+                    string avalNombreCompleto = solicitud.getAvalNombreCompleto(EditAvalId.Text);
+                    EditAvalNombre.Text = avalNombreCompleto;
+                    EditAvalAportaciones.Text = aportacion.GetSaldoTotalAportacionesXSocio(EditAvalId.Text).ToString();
                 }
             }
             catch (Exception ex)
@@ -564,8 +564,8 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
 			try
             {
 				SolicitudesLogic solicitud = new SolicitudesLogic();
-				socio socio = solicitud.getSocio(Socioid);
-				socio_produccion produccion = solicitud.getProduccion(Socioid);
+                COCASJOL.DATAACCESS.socio socio = solicitud.getSocio(Socioid);
+                COCASJOL.DATAACCESS.socio_produccion produccion = solicitud.getProduccion(Socioid);
 				EditSocioid.Text = socio.SOCIOS_ID;
 				EditNombre.Text = socio.SOCIOS_PRIMER_NOMBRE + " " + socio.SOCIOS_SEGUNDO_NOMBRE + " " + socio.SOCIOS_PRIMER_APELLIDO + " " + socio.SOCIOS_SEGUNDO_APELLIDO;
 				EditIdentidad.Text = socio.SOCIOS_IDENTIDAD;

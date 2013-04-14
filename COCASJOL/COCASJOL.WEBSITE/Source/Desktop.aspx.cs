@@ -103,7 +103,7 @@ namespace COCASJOL.WEBSITE
 
                 UsuarioLogic usuariologic = new UsuarioLogic();
 
-                List<privilegio> privs = usuariologic.GetPrivilegiosDeUsuario(loggedUser);
+                List<COCASJOL.DATAACCESS.privilegio> privs = usuariologic.GetPrivilegiosDeUsuario(loggedUser);
 
                 XmlDocument doc = new XmlDocument();
                 doc.Load(Server.MapPath(System.Configuration.ConfigurationManager.AppSettings.Get("privilegesXML")));
@@ -219,7 +219,7 @@ namespace COCASJOL.WEBSITE
             {
                 NotificacionLogic notificacionlogic = new NotificacionLogic();
                 string loggedUser = Session["username"] as string;
-                List<notificacion> NotificacionesList = notificacionlogic.GetNotificaciones();
+                List<COCASJOL.DATAACCESS.notificacion> NotificacionesList = notificacionlogic.GetNotificaciones();
 
                 if (NotificacionesList == null)
                     return;
@@ -230,7 +230,7 @@ namespace COCASJOL.WEBSITE
 
                 if (query.Count() > 0)
                 {
-                    foreach (notificacion notif in query.ToList<notificacion>())
+                    foreach (COCASJOL.DATAACCESS.notificacion notif in query.ToList<COCASJOL.DATAACCESS.notificacion>())
                         this.ShowPinnedNotification(notif.NOTIFICACION_TITLE, notif.NOTIFICACION_MENSAJE, notif.NOTIFICACION_ID);
                 }
             }
@@ -269,7 +269,7 @@ namespace COCASJOL.WEBSITE
                 NotificacionLogic notificacionlogic = new NotificacionLogic();
 
                 string loggedUser = Session["username"] as string;
-                List<notificacion> NotificacionesList = notificacionlogic.GetNotificaciones();
+                List<COCASJOL.DATAACCESS.notificacion> NotificacionesList = notificacionlogic.GetNotificaciones();
 
                 if (NotificacionesList == null)
                     return;
@@ -280,7 +280,7 @@ namespace COCASJOL.WEBSITE
 
                 if (query.Count() > 0)
                 {
-                        foreach (notificacion notif in query.ToList<notificacion>())
+                    foreach (COCASJOL.DATAACCESS.notificacion notif in query.ToList<COCASJOL.DATAACCESS.notificacion>())
                         {
                             this.ShowPinnedNotification(notif.NOTIFICACION_TITLE, notif.NOTIFICACION_MENSAJE, notif.NOTIFICACION_ID);
                             notificacionlogic.ActualizarNotificacion(notif.NOTIFICACION_ID, EstadosNotificacion.Notificado);

@@ -27,7 +27,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 if (!X.IsAjaxRequest)
                 {
                     EstadoNotaDePesoLogic estadologic = new EstadoNotaDePesoLogic();
-                    this.EstadoIdHdn.Text = estadologic.GetEstadoNotaDePeso("ADMINISTRACION").ESTADOS_NOTA_ID.ToString();
+                    this.EstadoIdHdn.Text = estadologic.GetIdEstadoNotaDePeso("ADMINISTRACION").ToString();
                 }
 
                 string loggedUsr = Session["username"] as string;

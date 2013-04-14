@@ -9,7 +9,8 @@ using System.Xml;
 
 using System.Data;
 using System.Data.Objects;
- 
+
+using COCASJOL.DATAACCESS; 
 using COCASJOL.LOGIC.Seguridad;
 using COCASJOL.LOGIC.Entorno;
 

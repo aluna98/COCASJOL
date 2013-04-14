@@ -7,6 +7,8 @@ using System.Data;
 using System.Data.Objects;
 using System.Transactions;
 
+using COCASJOL.DATAACCESS;
+
 using log4net;
 
 namespace COCASJOL.LOGIC.Aportaciones

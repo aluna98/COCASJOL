@@ -38,7 +38,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
                 {
                     UsuarioLogic usuariologic = new UsuarioLogic();
 
-                    COCASJOL.LOGIC.usuario user = usuariologic.GetUsuario(loggedUsr);
+                    COCASJOL.DATAACCESS.usuario user = usuariologic.GetUsuario(loggedUsr);
 
                     this.CambiarClaveUsernameTxt.Text = loggedUsr;
                     this.CambiarClaveActualTxt.Text = user.USR_PASSWORD;
