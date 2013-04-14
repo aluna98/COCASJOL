@@ -55,8 +55,8 @@ namespace COCASJOL.WEBSITE
                 if (!X.IsAjaxRequest)
                 {
                     configuracionLogic = new ConfiguracionDeSistemaLogic(this.docConfiguracion);
-                    this.ConsolidadoFechaInicialTxt.Text = configuracionLogic.ConsolidadoInventarioInicioPeriodo.ToString();
-                    this.ConsolidadoFechaFinalTxt.Text = configuracionLogic.ConsolidadoInventarioFinalPeriodo.ToString();
+                    this.ConsolidadoFechaInicialTxt.Value = configuracionLogic.ConsolidadoInventarioInicioPeriodo;
+                    this.ConsolidadoFechaFinalTxt.Value = configuracionLogic.ConsolidadoInventarioFinalPeriodo;
 
                     ConsolidadoDeInventarioDeCafeLogic consolidadoinventariologic = new ConsolidadoDeInventarioDeCafeLogic();
                     ReporteConsolidadoDeCafeDeSocios reporteConsolidadoDeCafeSocios = consolidadoinventariologic.GetReporteCafeDeSocios(configuracionLogic.ConsolidadoInventarioInicioPeriodo, configuracionLogic.ConsolidadoInventarioFinalPeriodo);
@@ -247,8 +247,8 @@ namespace COCASJOL.WEBSITE
             try
             {
                 configuracionLogic = new ConfiguracionDeSistemaLogic(this.docConfiguracion);
-                this.ConsolidadoFechaInicialTxt.Text = configuracionLogic.ConsolidadoInventarioInicioPeriodo.ToString();
-                this.ConsolidadoFechaFinalTxt.Text = configuracionLogic.ConsolidadoInventarioFinalPeriodo.ToString();
+                this.ConsolidadoFechaInicialTxt.Value = configuracionLogic.ConsolidadoInventarioInicioPeriodo;
+                this.ConsolidadoFechaFinalTxt.Value = configuracionLogic.ConsolidadoInventarioFinalPeriodo;
 
                 //actualizar reporte consolidado de inventario de cafe
                 ConsolidadoDeInventarioDeCafeLogic consolidadoinventariologic = new ConsolidadoDeInventarioDeCafeLogic();

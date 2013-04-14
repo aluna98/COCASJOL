@@ -5,11 +5,11 @@
   </socios>
   <ventanas>
     <MaximizarAlCargar>True</MaximizarAlCargar>
-    <CargarDatosAlInicio>True</CargarDatosAlInicio>
+    <CargarDatosAlInicio>False</CargarDatosAlInicio>
   </ventanas>
   <consolidadoInventario>
-    <InicioPeriodo>11/4/2013</InicioPeriodo>
-    <FinalPeriodo>11/7/2013</FinalPeriodo>
+    <InicioPeriodo>9/1/2013</InicioPeriodo>
+    <FinalPeriodo>9/30/2013</FinalPeriodo>
   </consolidadoInventario>
   <correo>
     <correoLocal>lol@lolix.edu</correoLocal>
@@ -21,6 +21,6 @@
   </correo>
   <auditoria>
     <username>DEVELOPER</username>
-    <date>4/9/2013</date>
+    <date>4/12/2013</date>
   </auditoria>
 </configuracion>
