@@ -10,7 +10,7 @@
 namespace COCASJOL.WEBSITE.Source.Reportes {
     
     
-    public partial class MovimientosDeInventarioDeCafe {
+    public partial class ReporteMovimientosInventarioDeCafeDeSocios {
         
         /// <summary>
         /// Head1 control.

@@ -331,10 +331,10 @@
                 <%--Prestamos--%>
 
                 <%--Reportes--%>
-                <ext:DesktopModule ModuleID="MovimientosDeInventarioDeCafeModule">
-                    <Launcher ID="MovimientosDeInventarioDeCafeLauncher" runat="server" Text="Reporte de Movimientos de Inventario de Café" IconCls="icon-movimientosDeInventarioDeCafe16" >
+                <ext:DesktopModule ModuleID="ReporteMovimientosInventarioDeCafeDeSociosModule">
+                    <Launcher ID="ReporteMovimientosInventarioDeCafeDeSociosLauncher" runat="server" Text="Reporte de Movimientos de Inventario de Café" IconCls="icon-reporteMovimientosInventarioDeCafeDeSocios16" >
                         <Listeners>
-                            <Click Handler="WindowX.movimientosDeInventarioDeCafe(#{MyDesktop});" />
+                            <Click Handler="WindowX.reporteMovimientosInventarioDeCafeDeSocios(#{MyDesktop});" />
                         </Listeners>
                     </Launcher>
                 </ext:DesktopModule>
@@ -403,7 +403,7 @@
                 <ext:DesktopShortcut ShortcutID="scPrestamos"                              Text="Tipos de Prestamo"                            IconCls="shortcut-icon icon-prestamos" />
                 <ext:DesktopShortcut ShortcutID="scSolicitudesDePrestamo"                  Text="Solicitudes de Prestamo"                      IconCls="shortcut-icon icon-solicitudesDePrestamo" />
                 <ext:DesktopShortcut ShortcutID="scPrestamosAprobados"                     Text="Solicitudes de Prestamo Aprobado"             IconCls="shortcut-icon icon-prestamosAprobados" />
-                <ext:DesktopShortcut ShortcutID="scMovimientosDeInventarioDeCafe"          Text="Reporte de Movimientos de Inventario de Café" IconCls="shortcut-icon icon-movimientosDeInventarioDeCafe" />
+                <ext:DesktopShortcut ShortcutID="scReporteMovimientosInventarioDeCafeDeSocios"          Text="Reporte de Movimientos de Inventario de Café" IconCls="shortcut-icon icon-reporteMovimientosInventarioDeCafeDeSocios" />
                 <ext:DesktopShortcut ShortcutID="scReportePrestamosPorSocios"              Text="Reporte de Prestamos por Socios"              IconCls="shortcut-icon icon-reportePrestamosPorSocios" />
             </Shortcuts>
 
@@ -633,9 +633,9 @@
                         <Menu>
                             <ext:Menu runat="server">
                                 <Items>
-                                    <ext:MenuItem ID="MovimientosDeInventarioDeCafeMenuItem" Text="Reporte de Movimientos de Inventario de Café" IconCls="icon-movimientosDeInventarioDeCafe16" >
+                                    <ext:MenuItem ID="ReporteMovimientosInventarioDeCafeDeSociosMenuItem" Text="Reporte de Movimientos de Inventario de Café" IconCls="icon-reporteMovimientosInventarioDeCafeDeSocios16" >
                                         <Listeners>
-                                            <click Handler="WindowX.movimientosDeInventarioDeCafe(#{MyDesktop});" />
+                                            <click Handler="WindowX.reporteMovimientosInventarioDeCafeDeSocios(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
                                     <ext:MenuItem ID="ReportePrestamosPorSociosMenuItem" Text="Reporte de Prestamos por Socios" IconCls="icon-reportePrestamosPorSocios16" >
@@ -924,7 +924,7 @@
         <ext:ToolTip runat="server" ID="scPrestamosTooltip"                         Html="Tipos de Prestamo"                            Target="scPrestamos-shortcut"                         ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scSolicitudesDePrestamoTooltip"             Html="Solicitudes de Prestamo"                      Target="scSolicitudesDePrestamo-shortcut"             ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scPrestamosAprobadosTooltip"                Html="Solicitudes de Prestamo Aprobado"             Target="scPrestamosAprobados-shortcut"                ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scMovimientosDeInventarioDeCafeTooltip"     Html="Reporte de Movimientos de Inventario de Café" Target="scMovimientosDeInventarioDeCafe-shortcut"     ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scReporteMovimientosInventarioDeCafeDeSociosTooltip"     Html="Reporte de Movimientos de Inventario de Café" Target="scReporteMovimientosInventarioDeCafeDeSocios-shortcut"     ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scReportePrestamosPorSociosTooltip"         Html="Reporte de Prestamos por Socios"              Target="scReportePrestamosPorSocios-shortcut"     ></ext:ToolTip>
 
         <%--shortcuts' tooltips--%>

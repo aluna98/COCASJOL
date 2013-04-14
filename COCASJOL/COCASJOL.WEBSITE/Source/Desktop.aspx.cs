@@ -219,19 +219,21 @@ namespace COCASJOL.WEBSITE
             {
                 NotificacionLogic notificacionlogic = new NotificacionLogic();
                 string loggedUser = Session["username"] as string;
-                List<COCASJOL.DATAACCESS.notificacion> NotificacionesList = notificacionlogic.GetNotificaciones();
+                List<COCASJOL.DATAACCESS.notificacion> NotificacionesList = notificacionlogic.GetNotificacionesDeUsuario(loggedUser);
 
                 if (NotificacionesList == null)
                     return;
 
                 var query = from n in NotificacionesList
-                            where n.USR_USERNAME == loggedUser && n.NOTIFICACION_ESTADO.Equals((int)EstadosNotificacion.Notificado)
+                            where n.NOTIFICACION_ESTADO.Equals((int)EstadosNotificacion.Notificado)
                             select n;
 
                 if (query.Count() > 0)
                 {
                     foreach (COCASJOL.DATAACCESS.notificacion notif in query.ToList<COCASJOL.DATAACCESS.notificacion>())
+                    {
                         this.ShowPinnedNotification(notif.NOTIFICACION_TITLE, notif.NOTIFICACION_MENSAJE, notif.NOTIFICACION_ID);
+                    }
                 }
             }
             catch (Exception ex)
@@ -269,22 +271,22 @@ namespace COCASJOL.WEBSITE
                 NotificacionLogic notificacionlogic = new NotificacionLogic();
 
                 string loggedUser = Session["username"] as string;
-                List<COCASJOL.DATAACCESS.notificacion> NotificacionesList = notificacionlogic.GetNotificaciones();
+                List<COCASJOL.DATAACCESS.notificacion> NotificacionesList = notificacionlogic.GetNotificacionesDeUsuario(loggedUser);
 
                 if (NotificacionesList == null)
                     return;
 
                 var query = from n in NotificacionesList
-                            where n.USR_USERNAME == loggedUser && n.NOTIFICACION_ESTADO.Equals((int)EstadosNotificacion.Creado)
+                            where n.NOTIFICACION_ESTADO.Equals((int)EstadosNotificacion.Creado)
                             select n;
 
                 if (query.Count() > 0)
                 {
                     foreach (COCASJOL.DATAACCESS.notificacion notif in query.ToList<COCASJOL.DATAACCESS.notificacion>())
-                        {
-                            this.ShowPinnedNotification(notif.NOTIFICACION_TITLE, notif.NOTIFICACION_MENSAJE, notif.NOTIFICACION_ID);
-                            notificacionlogic.ActualizarNotificacion(notif.NOTIFICACION_ID, EstadosNotificacion.Notificado);
-                        }
+                    {
+                        this.ShowPinnedNotification(notif.NOTIFICACION_TITLE, notif.NOTIFICACION_MENSAJE, notif.NOTIFICACION_ID);
+                        notificacionlogic.ActualizarNotificacion(notif.NOTIFICACION_ID, EstadosNotificacion.Notificado);
+                    }
                 }
             }
             catch (Exception ex)

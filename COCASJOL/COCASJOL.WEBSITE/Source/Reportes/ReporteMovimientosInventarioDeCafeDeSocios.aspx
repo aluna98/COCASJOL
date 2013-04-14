@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MovimientosDeInventarioDeCafe.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Reportes.MovimientosDeInventarioDeCafe" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReporteMovimientosInventarioDeCafeDeSocios.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Reportes.ReporteMovimientosInventarioDeCafeDeSocios" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 
@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>Movimientos de Inventario de Café</title>
-    <script type="text/javascript" src="../../resources/js/reportes/movimientosDeInventarioDeCafe.js" ></script>
+    <script type="text/javascript" src="../../resources/js/reportes/reporteMovimientosInventarioDeCafeDeSocios.js" ></script>
 
     <style type="text/css">
         .x-grid3-cell-inner {
@@ -67,8 +67,8 @@
         </ext:KeyNav>
 
         <asp:ObjectDataSource ID="MovimientoDeInventarioCafeDS" runat="server"
-                TypeName="COCASJOL.LOGIC.Reportes.MovimientosDeInventarioDeCafeLogic"
-                SelectMethod="GetMovimientosDeInventarioDeCafeLogic" onselecting="MovimientoDeInventarioCafeDS_Selecting" >
+                TypeName="COCASJOL.LOGIC.Reportes.ReporteMovimientosInventarioDeCafeDeSociosLogic"
+                SelectMethod="GetReporteMovimientosInventarioDeCafeDeSociosLogic" onselecting="MovimientoDeInventarioCafeDS_Selecting" >
                 <SelectParameters>
                     <asp:ControlParameter Name="SOCIOS_ID"                    Type="String"   ControlID="f_SOCIOS_ID"                    PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="TRANSACCION_NUMERO"           Type="Int32"    ControlID="f_TRANSACCION_NUMERO"           PropertyName="Text" />

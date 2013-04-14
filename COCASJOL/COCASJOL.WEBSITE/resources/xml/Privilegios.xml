@@ -127,11 +127,11 @@
     <menuitem>VentasDeInventarioDeCafeMenuItem</menuitem>
   </privilege>
   <privilege>
-    <key>REPRT_MOVIMIENTOSINVENTARIO</key>
-    <page>MovimientosDeInventarioDeCafe</page>
-    <module>MovimientosDeInventarioDeCafeModule</module>
-    <shortcut>scMovimientosDeInventarioDeCafe</shortcut>
-    <menuitem>MovimientosDeInventarioDeCafeMenuItem</menuitem>
+    <key>REPRT_MOVIMIENTOSINVSOCIO</key>
+    <page>ReporteMovimientosInventarioDeCafeDeSocios</page>
+    <module>ReporteMovimientosInventarioDeCafeDeSociosModule</module>
+    <shortcut>scReporteMovimientosInventarioDeCafeDeSocios</shortcut>
+    <menuitem>ReporteMovimientosInventarioDeCafeDeSociosMenuItem</menuitem>
   </privilege>
   <privilege>
     <key>REPRT_PRESTAMOSPORSOCIOS</key>

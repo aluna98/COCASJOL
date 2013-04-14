@@ -203,7 +203,7 @@ namespace COCASJOL.LOGIC.Reportes
             }
         }
 
-        public List<reporte_movimientos_de_inventario_de_cafe> GetMovimientosDeInventarioDeCafeDeSocio
+        public List<reporte_movimientos_de_inventario_de_cafe> GetReporteMovimientosInventarioDeCafeDeSociosDeSocio
             (int TRANSACCION_NUMERO,
             DateTime FECHA,
             DateTime FECHA_DESDE,

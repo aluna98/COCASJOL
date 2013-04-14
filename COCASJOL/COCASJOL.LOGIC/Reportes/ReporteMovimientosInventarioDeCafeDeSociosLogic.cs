@@ -12,15 +12,15 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Reportes
 {
-    public class MovimientosDeInventarioDeCafeLogic
+    public class ReporteMovimientosInventarioDeCafeDeSociosLogic
     {
-        private static ILog log = LogManager.GetLogger(typeof(MovimientosDeInventarioDeCafeLogic).Name);
+        private static ILog log = LogManager.GetLogger(typeof(ReporteMovimientosInventarioDeCafeDeSociosLogic).Name);
 
-        public MovimientosDeInventarioDeCafeLogic() { }
+        public ReporteMovimientosInventarioDeCafeDeSociosLogic() { }
 
         #region Select
 
-        public List<reporte_movimientos_de_inventario_de_cafe> GetMovimientosDeInventarioDeCafeLogic()
+        public List<reporte_movimientos_de_inventario_de_cafe> GetReporteMovimientosInventarioDeCafeDeSociosLogic()
         {
             try
             {
@@ -36,7 +36,7 @@ namespace COCASJOL.LOGIC.Reportes
             }
         }
 
-        public List<reporte_movimientos_de_inventario_de_cafe> GetMovimientosDeInventarioDeCafeLogic
+        public List<reporte_movimientos_de_inventario_de_cafe> GetReporteMovimientosInventarioDeCafeDeSociosLogic
             (int TRANSACCION_NUMERO,
             DateTime FECHA,
             DateTime FECHA_DESDE,

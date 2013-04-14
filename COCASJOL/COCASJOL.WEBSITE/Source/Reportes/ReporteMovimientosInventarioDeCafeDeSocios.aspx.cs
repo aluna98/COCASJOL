@@ -18,9 +18,9 @@ using Microsoft.Reporting.WebForms;
 
 namespace COCASJOL.WEBSITE.Source.Reportes
 {
-    public partial class MovimientosDeInventarioDeCafe : COCASJOL.LOGIC.Web.COCASJOLBASE
+    public partial class ReporteMovimientosInventarioDeCafeDeSocios : COCASJOL.LOGIC.Web.COCASJOLBASE
     {
-        private static ILog log = LogManager.GetLogger(typeof(MovimientosDeInventarioDeCafe).Name);
+        private static ILog log = LogManager.GetLogger(typeof(ReporteMovimientosInventarioDeCafeDeSocios).Name);
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -51,7 +51,7 @@ namespace COCASJOL.WEBSITE.Source.Reportes
         {
             try
             {
-                this.CreateFileOutput("MovimientosDeInventarioDeCafeDeSocios", "Excel");
+                this.CreateFileOutput("ReporteMovimientosInventarioDeCafeDeSociosDeSocios", "Excel");
             }
             catch (Exception ex)
             {
@@ -64,7 +64,7 @@ namespace COCASJOL.WEBSITE.Source.Reportes
         {
             try
             {
-                this.CreateFileOutput("MovimientosDeInventarioDeCafeDeSocios", "PDF");
+                this.CreateFileOutput("ReporteMovimientosInventarioDeCafeDeSociosDeSocios", "PDF");
             }
             catch (Exception ex)
             {
@@ -97,10 +97,10 @@ namespace COCASJOL.WEBSITE.Source.Reportes
 
                 ReporteLogic reporteLogic = new ReporteLogic();
 
-                List<reporte_movimientos_de_inventario_de_cafe> MovimientosDeInventarioDeCafeDeSociosLst = reporteLogic.GetMovimientosDeInventarioDeCafeDeSocio
+                List<reporte_movimientos_de_inventario_de_cafe> ReporteMovimientosInventarioDeCafeDeSociosLst = reporteLogic.GetReporteMovimientosInventarioDeCafeDeSociosDeSocio
                     (0, default(DateTime), default(DateTime), default(DateTime), "", "", "", -1, -1, -1, -1, -1, -1, "", default(DateTime));
 
-                ReportDataSource datasourceMovimientoInventarioCafeSocios = new ReportDataSource("MovimientosDeInventarioDeCafeDeSociosDataSet", MovimientosDeInventarioDeCafeDeSociosLst);
+                ReportDataSource datasourceMovimientoInventarioCafeSocios = new ReportDataSource("ReporteMovimientosInventarioDeCafeDeSociosDataSet", ReporteMovimientosInventarioDeCafeDeSociosLst);
 
                 viewer.LocalReport.DataSources.Add(datasourceMovimientoInventarioCafeSocios);
 

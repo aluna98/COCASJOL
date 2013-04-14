@@ -146,7 +146,7 @@
     <Content Include="resources\js\prestamos\PrestamosAprobados.js" />
     <Content Include="resources\js\prestamos\ReportePrestamos.js" />
     <Content Include="resources\js\prestamos\solicitudesDePrestamos.js" />
-    <Content Include="resources\js\reportes\movimientosDeInventarioDeCafe.js" />
+    <Content Include="resources\js\reportes\reporteMovimientosInventarioDeCafeDeSocios.js" />
     <Content Include="resources\js\seguridad\roles.js" />
     <Content Include="resources\js\seguridad\usuarios.js" />
     <Content Include="resources\js\socios\socios.js" />
@@ -179,7 +179,7 @@
     <Content Include="Source\Prestamos\Prestamos.aspx" />
     <Content Include="Source\Prestamos\SolicitudesDePrestamos.aspx" />
     <Content Include="Source\Reportes\ImprimirSolicitudDePrestamo.aspx" />
-    <Content Include="Source\Reportes\MovimientosDeInventarioDeCafe.aspx" />
+    <Content Include="Source\Reportes\ReporteMovimientosInventarioDeCafeDeSocios.aspx" />
     <Content Include="Source\Reportes\ImprimirHojasDeLiquidacion.aspx" />
     <Content Include="Source\Reportes\ImprimirNotasDePeso.aspx" />
     <Content Include="Source\Reportes\ImprimirSolicitudesDeIngresoDeSocio.aspx" />
@@ -390,12 +390,12 @@
     <Compile Include="Source\Reportes\ImprimirSolicitudDePrestamo.aspx.designer.cs">
       <DependentUpon>ImprimirSolicitudDePrestamo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Source\Reportes\MovimientosDeInventarioDeCafe.aspx.cs">
-      <DependentUpon>MovimientosDeInventarioDeCafe.aspx</DependentUpon>
+    <Compile Include="Source\Reportes\ReporteMovimientosInventarioDeCafeDeSocios.aspx.cs">
+      <DependentUpon>ReporteMovimientosInventarioDeCafeDeSocios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Source\Reportes\MovimientosDeInventarioDeCafe.aspx.designer.cs">
-      <DependentUpon>MovimientosDeInventarioDeCafe.aspx</DependentUpon>
+    <Compile Include="Source\Reportes\ReporteMovimientosInventarioDeCafeDeSocios.aspx.designer.cs">
+      <DependentUpon>ReporteMovimientosInventarioDeCafeDeSocios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Reportes\ImprimirHojasDeLiquidacion.aspx.cs">
       <DependentUpon>ImprimirHojasDeLiquidacion.aspx</DependentUpon>

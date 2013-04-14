@@ -80,7 +80,7 @@
     <Compile Include="Prestamos\PrestamosLogic.cs" />
     <Compile Include="Prestamos\SolicitudesLogic.cs" />
     <Compile Include="Reportes\ConsolidadoDeInventarioDeCafeLogic.cs" />
-    <Compile Include="Reportes\MovimientosDeInventarioDeCafeLogic.cs" />
+    <Compile Include="Reportes\ReporteMovimientosInventarioDeCafeDeSociosLogic.cs" />
     <Compile Include="Reportes\ReporteLogic.cs" />
     <Compile Include="Seguridad\PrivilegioLogic.cs" />
     <Compile Include="Seguridad\RolLogic.cs" />
