@@ -163,36 +163,6 @@ namespace <#=namespaceName#>
             remove { this.TracingConnection.CommandFailed -= value; }
         }
 
-        //private void AppendToLog(object sender, CommandExecutionEventArgs e)
-        //{
-        //    if (this.logOutput != null)
-        //    {
-        //        this.logOutput.WriteLine(e.ToTraceString().TrimEnd());
-        //        this.logOutput.WriteLine();
-        //    }
-        //}
-		//
-        //public TextWriter Log
-        //{
-        //    get { return this.logOutput; }
-        //    set
-        //    {
-        //        if ((this.logOutput != null) != (value != null))
-        //        {
-        //            if (value == null)
-        //            {
-        //                CommandExecuting -= AppendToLog;
-        //            }
-        //            else
-        //            {
-        //                CommandExecuting += AppendToLog;
-        //            }
-        //        }
-		//
-        //        this.logOutput = value;
-        //    }
-        //}
-
         #endregion
 
     }
