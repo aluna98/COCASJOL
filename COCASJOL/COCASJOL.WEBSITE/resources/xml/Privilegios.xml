@@ -134,6 +134,13 @@
     <menuitem>MovimientosDeInventarioDeCafeMenuItem</menuitem>
   </privilege>
   <privilege>
+    <key>REPRT_PRESTAMOSPORSOCIOS</key>
+    <page>ReportePrestamosPorSocios</page>
+    <module>ReportePrestamosPorSociosModule</module>
+    <shortcut>scReportePrestamosPorSocios</shortcut>
+    <menuitem>ReportePrestamosPorSociosMenuItem</menuitem>
+  </privilege>
+  <privilege>
     <key>MANT_APORTACIONESPORSOCIO</key>
     <page>AportacionesPorSocio</page>
     <module>AportacionesPorSocioModule</module>

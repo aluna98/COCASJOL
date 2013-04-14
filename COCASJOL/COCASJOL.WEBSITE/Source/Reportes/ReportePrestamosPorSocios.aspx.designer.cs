@@ -10,7 +10,7 @@
 namespace COCASJOL.WEBSITE.Source.Reportes {
     
     
-    public partial class ReportePrestamosPorSocio {
+    public partial class ReportePrestamosPorSocios {
         
         /// <summary>
         /// form1 control.

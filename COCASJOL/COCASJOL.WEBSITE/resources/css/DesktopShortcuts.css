@@ -172,6 +172,18 @@
     background-image: url("../images/cheque16x16.png") !important;
 }
 
+.icon-reportePrestamosPorSocios
+{
+    background-image: url(../images/report_cheque.png) !important;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/report_cheque.png", sizingMethod="center");
+}
+
+.icon-reportePrestamosPorSocios16
+{
+    background-image: url("../images/report_cheque16x16.png") !important;
+}
+
+
 .icon-variablesEntorno
 {
     background-image: url(../images/database.png) !important;

@@ -21,10 +21,10 @@ using log4net;
 
 namespace COCASJOL.WEBSITE.Source.Reportes
 {
-    public partial class ReportePrestamosPorSocio : COCASJOLBASE
+    public partial class ReportePrestamosPorSocios : COCASJOLBASE
     {
 
-        private static ILog log = LogManager.GetLogger(typeof(ReportePrestamosPorSocio).Name);
+        private static ILog log = LogManager.GetLogger(typeof(ReportePrestamosPorSocios).Name);
 
         protected void Page_Load(object sender, EventArgs e)
         {

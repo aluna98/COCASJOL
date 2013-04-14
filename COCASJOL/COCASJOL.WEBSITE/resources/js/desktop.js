@@ -243,7 +243,7 @@ var WindowX = {
     },
 
     movimientosDeInventarioDeCafe: function (app) {
-        DesktopX.createDynamicWindow(app, 'report', 'Reporte de Movimientos de Inventario de Café', 'Reportes/MovimientosDeInventarioDeCafe.aspx', 1000, 600);
+        DesktopX.createDynamicWindow(app, 'movimientosDeInventarioDeCafe16', 'Reporte de Movimientos de Inventario de Café', 'Reportes/MovimientosDeInventarioDeCafe.aspx', 1000, 600);
     },
 
     aportacionesPorSocio: function (app) {
@@ -264,6 +264,10 @@ var WindowX = {
 
     prestamosAprobados: function (app) {
         DesktopX.createDynamicWindow(app, 'prestamosAprobados16', 'Solicitudes de Prestamo Aprobado', 'Prestamos/Aprobados.aspx');
+    },
+
+    reportePrestamosPorSocios: function (app) {
+        DesktopX.createDynamicWindow(app, 'reportePrestamosPorSocios16', 'Reporte de Prestamos por Socios', 'Reportes/ReportePrestamosPorSocios.aspx');
     },
 
     clasificacionesDeCafe: function (app) {
@@ -330,6 +334,8 @@ var ShorcutClickHandler = function (app, id) {
         WindowX.solicitudesDePrestamo(app);
     } else if (id == 'scPrestamosAprobados') {
         WindowX.prestamosAprobados(app);
+    } else if (id == 'scReportePrestamosPorSocios') {
+        WindowX.reportePrestamosPorSocios(app);
     } else if (id == 'scClasificacionesDeCafe') {
         WindowX.clasificacionesDeCafe(app);
     } else if (id == 'scVariablesDeEntorno') {

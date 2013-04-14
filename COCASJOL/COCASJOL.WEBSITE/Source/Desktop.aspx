@@ -109,7 +109,7 @@
                 <ext:Panel
                     ID="pnlSample"
                     runat="server"
-                    Title="Reporte Consolidado de Inventario de Café"
+                    Title="Consolidado de Inventario de Café"
                     Cls="desktopEl"
                     AutoHeight="true"
                     Width="450"
@@ -338,6 +338,13 @@
                         </Listeners>
                     </Launcher>
                 </ext:DesktopModule>
+                <ext:DesktopModule ModuleID="ReportePrestamosPorSociosModule">
+                    <Launcher ID="ReportePrestamosPorSociosLauncher" runat="server" Text="Reporte de Prestamos por Socios" IconCls="icon-reportePrestamosPorSocios16" >
+                        <Listeners>
+                            <Click Handler="WindowX.reportePrestamosPorSocios(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
                 <%--Reportes--%>
 
                 <%--Configuracion--%>
@@ -397,6 +404,7 @@
                 <ext:DesktopShortcut ShortcutID="scSolicitudesDePrestamo"                  Text="Solicitudes de Prestamo"                      IconCls="shortcut-icon icon-solicitudesDePrestamo" />
                 <ext:DesktopShortcut ShortcutID="scPrestamosAprobados"                     Text="Solicitudes de Prestamo Aprobado"             IconCls="shortcut-icon icon-prestamosAprobados" />
                 <ext:DesktopShortcut ShortcutID="scMovimientosDeInventarioDeCafe"          Text="Reporte de Movimientos de Inventario de Café" IconCls="shortcut-icon icon-movimientosDeInventarioDeCafe" />
+                <ext:DesktopShortcut ShortcutID="scReportePrestamosPorSocios"              Text="Reporte de Prestamos por Socios"              IconCls="shortcut-icon icon-reportePrestamosPorSocios" />
             </Shortcuts>
 
             <StartMenu Height="550" Width="420" ToolsWidth="127" Title="Start Menu" Icon="UserSuit">
@@ -625,9 +633,14 @@
                         <Menu>
                             <ext:Menu runat="server">
                                 <Items>
-                                    <ext:MenuItem ID="MovimientosDeInventarioDeCafeMenuItem" Text="Reporte de Movimientos de Inventario de Café" Icon="Report" >
+                                    <ext:MenuItem ID="MovimientosDeInventarioDeCafeMenuItem" Text="Reporte de Movimientos de Inventario de Café" IconCls="icon-movimientosDeInventarioDeCafe16" >
                                         <Listeners>
                                             <click Handler="WindowX.movimientosDeInventarioDeCafe(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                    <ext:MenuItem ID="ReportePrestamosPorSociosMenuItem" Text="Reporte de Prestamos por Socios" IconCls="icon-reportePrestamosPorSocios16" >
+                                        <Listeners>
+                                            <click Handler="WindowX.reportePrestamosPorSocios(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
                                 </Items>
@@ -912,6 +925,7 @@
         <ext:ToolTip runat="server" ID="scSolicitudesDePrestamoTooltip"             Html="Solicitudes de Prestamo"                      Target="scSolicitudesDePrestamo-shortcut"             ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scPrestamosAprobadosTooltip"                Html="Solicitudes de Prestamo Aprobado"             Target="scPrestamosAprobados-shortcut"                ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scMovimientosDeInventarioDeCafeTooltip"     Html="Reporte de Movimientos de Inventario de Café" Target="scMovimientosDeInventarioDeCafe-shortcut"     ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scReportePrestamosPorSociosTooltip"         Html="Reporte de Prestamos por Socios"              Target="scReportePrestamosPorSocios-shortcut"     ></ext:ToolTip>
 
         <%--shortcuts' tooltips--%>
 

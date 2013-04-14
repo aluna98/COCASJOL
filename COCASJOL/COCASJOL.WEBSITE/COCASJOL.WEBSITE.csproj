@@ -118,6 +118,8 @@
     <Content Include="resources\images\page_white_text_valid16x16.png" />
     <Content Include="resources\images\report_bricks.png" />
     <Content Include="resources\images\report_bricks16x16.png" />
+    <Content Include="resources\images\report_cheque.png" />
+    <Content Include="resources\images\report_cheque16x16.png" />
     <Content Include="resources\images\script.png" />
     <Content Include="resources\images\server_edit.png" />
     <Content Include="resources\images\user.png" />
@@ -181,7 +183,7 @@
     <Content Include="Source\Reportes\ImprimirHojasDeLiquidacion.aspx" />
     <Content Include="Source\Reportes\ImprimirNotasDePeso.aspx" />
     <Content Include="Source\Reportes\ImprimirSolicitudesDeIngresoDeSocio.aspx" />
-    <Content Include="Source\Reportes\ReportePrestamosPorSocio.aspx" />
+    <Content Include="Source\Reportes\ReportePrestamosPorSocios.aspx" />
     <Content Include="Source\Seguridad\CambiarClave.ascx" />
     <Content Include="Source\Seguridad\Roles.aspx" />
     <Content Include="Source\Seguridad\Usuarios.aspx" />
@@ -416,12 +418,12 @@
     <Compile Include="Source\Reportes\ImprimirSolicitudesDeIngresoDeSocio.aspx.designer.cs">
       <DependentUpon>ImprimirSolicitudesDeIngresoDeSocio.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Source\Reportes\ReportePrestamosPorSocio.aspx.cs">
-      <DependentUpon>ReportePrestamosPorSocio.aspx</DependentUpon>
+    <Compile Include="Source\Reportes\ReportePrestamosPorSocios.aspx.cs">
+      <DependentUpon>ReportePrestamosPorSocios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Source\Reportes\ReportePrestamosPorSocio.aspx.designer.cs">
-      <DependentUpon>ReportePrestamosPorSocio.aspx</DependentUpon>
+    <Compile Include="Source\Reportes\ReportePrestamosPorSocios.aspx.designer.cs">
+      <DependentUpon>ReportePrestamosPorSocios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Seguridad\CambiarClave.ascx.cs">
       <DependentUpon>CambiarClave.ascx</DependentUpon>
