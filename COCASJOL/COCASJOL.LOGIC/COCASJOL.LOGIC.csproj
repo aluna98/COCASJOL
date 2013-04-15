@@ -39,6 +39,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\log4net-1.2.11-src\DLL\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -47,6 +49,7 @@
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -72,7 +75,6 @@
     <Compile Include="Prestamos\PrestamosLogic.cs" />
     <Compile Include="Prestamos\SolicitudesLogic.cs" />
     <Compile Include="Reportes\ConsolidadoDeInventarioDeCafeLogic.cs" />
-    <Compile Include="Reportes\ReporteMovimientosInventarioDeCafeDeSociosLogic.cs" />
     <Compile Include="Reportes\ReporteLogic.cs" />
     <Compile Include="Seguridad\PrivilegioLogic.cs" />
     <Compile Include="Seguridad\RolLogic.cs" />
@@ -89,6 +91,9 @@
     <Compile Include="Utiles\Numalet.cs" />
     <Compile Include="Utiles\PlantillaLogic.cs" />
     <Compile Include="Web\COCASJOLBASE.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Web\COCASJOLREPORT.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
   </ItemGroup>

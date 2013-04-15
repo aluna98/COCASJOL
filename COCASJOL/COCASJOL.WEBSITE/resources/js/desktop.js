@@ -243,7 +243,7 @@ var WindowX = {
     },
 
     reporteMovimientosInventarioDeCafeDeSocios: function (app) {
-        DesktopX.createDynamicWindow(app, 'reporteMovimientosInventarioDeCafeDeSocios16', 'Reporte de Movimientos de Inventario de Café de Socios', 'Reportes/ReporteMovimientosInventarioDeCafeDeSocios.aspx', 1000, 600);
+        DesktopX.createDynamicWindow(app, 'reporteMovimientosInventarioDeCafeDeSocios16', 'Reporte de Movimientos de Inventario de Café de Socios', 'Reportes/ReporteMovimientosInventarioDeCafeDeSocios.aspx', 600, 300);
     },
 
     aportacionesPorSocio: function (app) {
@@ -267,7 +267,7 @@ var WindowX = {
     },
 
     reportePrestamosPorSocios: function (app) {
-        DesktopX.createDynamicWindow(app, 'reportePrestamosPorSocios16', 'Reporte de Prestamos por Socios', 'Reportes/ReportePrestamosPorSocios.aspx');
+        DesktopX.createDynamicWindow(app, 'reportePrestamosPorSocios16', 'Reporte de Prestamos por Socios', 'Reportes/ReportePrestamosPorSocios.aspx', 600, 300);
     },
 
     clasificacionesDeCafe: function (app) {

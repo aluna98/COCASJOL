@@ -10,18 +10,16 @@ using System.Data;
 using System.Data.Objects;
 
 using COCASJOL.DATAACCESS;
-using COCASJOL.LOGIC.Web;
-using COCASJOL.LOGIC.Seguridad;
-using COCASJOL.LOGIC.Prestamos;
-using COCASJOL.LOGIC.Socios;
-using COCASJOL.LOGIC.Aportaciones;
+using COCASJOL.LOGIC;
+using COCASJOL.LOGIC.Reportes;
 
 using Ext.Net;
 using log4net;
+using Microsoft.Reporting.WebForms;
 
 namespace COCASJOL.WEBSITE.Source.Reportes
 {
-    public partial class ReportePrestamosPorSocios : COCASJOLBASE
+    public partial class ReportePrestamosPorSocios : COCASJOL.LOGIC.Web.COCASJOLREPORT
     {
 
         private static ILog log = LogManager.GetLogger(typeof(ReportePrestamosPorSocios).Name);
@@ -31,8 +29,6 @@ namespace COCASJOL.WEBSITE.Source.Reportes
 
             try
             {
-                this.RM1.DirectMethodNamespace = "DirectX";
-                SociosSt_Reload(null, null);
                 if (!X.IsAjaxRequest)
                 {
 
@@ -48,98 +44,74 @@ namespace COCASJOL.WEBSITE.Source.Reportes
             }
         }
 
-        [DirectMethod(RethrowException = true)]
-        public void RefrescarReporte()
+        protected override void Report_Execution(object sender, DirectEventArgs e)
         {
+            string formatoSalida = "";
             try
             {
-                SolicitudesSt_Reload(null, null);
+                ReporteLogic reporteLogic = new ReporteLogic();
+
+                int prestamos_id = string.IsNullOrEmpty(this.f_PRESTAMOS_ID.Text) ? 0 : Convert.ToInt32(this.f_PRESTAMOS_ID.Text);
+
+                List<solicitud_prestamo> ReportePrestamosXSociosLst = reporteLogic.GetPrestamosXSocio
+                    (this.f_SOCIOS_ID.Text,
+                    prestamos_id);
+
+                ReportDataSource datasourceMovimientoInventarioCafeSocios = new ReportDataSource("PrestamosXSocioDataSet", ReportePrestamosXSociosLst);
+
+
+                ReportParameterCollection reportParamCollection = new ReportParameterCollection();
+                reportParamCollection.Add(new ReportParameter("parGroupBySocios", this.g_SOCIOS_ID.Checked.ToString()));
+                reportParamCollection.Add(new ReportParameter("parGroupByPrestamo", this.g_PRESTAMOS_ID.Checked.ToString()));
+
+                formatoSalida = this.f_SALIDA_FORMATO.Text;
+
+                string rdlPath = "~/resources/rdlcs/ReportePrestamosPorSocios.rdlc";
+
+                this.CreateFileOutput("ReportePrestamosPorSocios", formatoSalida, rdlPath, datasourceMovimientoInventarioCafeSocios, reportParamCollection);
             }
             catch (Exception ex)
             {
-                log.Fatal("Error fatal al eliminar nota de peso en pesaje.", ex);
+                log.Fatal(string.Format("Error fatal al generar reporte. Formato de salida: {0}", formatoSalida), ex);
                 throw;
             }
         }
 
-        protected void NombreSocio(object sender, DirectEventArgs e)
-        {
-            try
-            {
-                SolicitudesLogic logica = new SolicitudesLogic();
-                socio nuevo = logica.getSocio(AddSociosIdTxt.Text);
-                AddNombreTxt.Text = nuevo.SOCIOS_PRIMER_NOMBRE + " " + nuevo.SOCIOS_PRIMER_APELLIDO;
-            }
-            catch (Exception ex)
-            {
-                log.Fatal("Error fatal al actualizar Solicitudes por Socio.", ex);
-                throw;
-            }
-        }
-
-        protected void Reporte_Refresh(object sender, DirectEventArgs e)
-        {
-            try
-            {
-                SolicitudesSt_Reload(null, null);
-            }
-            catch (Exception ex)
-            {
-                log.Fatal("Error fatal al actualizar Solicitudes por Socio.", ex);
-                throw;
-            }
-        }
-
-        protected void SociosSt_Reload(object sender, StoreRefreshDataEventArgs e)
-        {
-            try
-            {
-                SolicitudesLogic solicitud = new SolicitudesLogic();
-                ComboBoxSt.DataSource = solicitud.getSocios();
-                ComboBoxSt.DataBind();
-            }
-            catch (Exception ex)
-            {
-                log.Fatal("Error fatal al cargar socios.", ex);
-                throw;
-            }
-        }
-
-        protected void SolicitudesSt_Reload(object sender, StoreRefreshDataEventArgs e)
-        {
-            try
-            {
-                SolicitudesLogic prestamo = new SolicitudesLogic();
-                var store1 = this.PrestamosGrid.GetStore();
-                List<solicitud_prestamo> Resultado; 
-                if (AddSociosIdTxt.Text != "")
-                {
-                    if (EditCmbPrestamo.Text != "")
-                        Resultado = prestamo.getViewPrestamosXSocioXPrestamo(AddSociosIdTxt.Text, Convert.ToInt32(EditCmbPrestamo.Text));
-                    else
-                        Resultado = prestamo.getViewPrestamosXSocio(AddSociosIdTxt.Text);
-                }
-                else
-                {
-                    if (EditCmbPrestamo.Text != "")
-                    {
-                        Resultado = prestamo.getViewPrestamosXTipoPrestamo(Convert.ToInt32(EditCmbPrestamo.Text));
-                    }
-                    else
-                    {
-                        Resultado = prestamo.getViewPrestamosXSocio();
-                    }
-                }
-                Decimal Monto = Decimal.Parse(Resultado.Select(c => c.SOLICITUDES_MONTO).Sum().ToString());
-                MontoTotal.Text = Monto.ToString();
-                store1.DataSource = Resultado;
-                store1.DataBind();
-            }
-            catch (Exception ex)
-            {
-                log.Fatal("error fatal al cargar solicitudes de prestamos.", ex);
-                throw;
-            }
-        }
+        //protected void SolicitudesSt_Reload(object sender, StoreRefreshDataEventArgs e)
+        //{
+        //    try
+        //    {
+        //        SolicitudesLogic prestamo = new SolicitudesLogic();
+        //        var store1 = this.PrestamosGrid.GetStore();
+        //        List<solicitud_prestamo> Resultado; 
+        //        if (AddSociosIdTxt.Text != "")
+        //        {
+        //            if (EditCmbPrestamo.Text != "")
+        //                Resultado = prestamo.getViewPrestamosXSocioXPrestamo(AddSociosIdTxt.Text, Convert.ToInt32(EditCmbPrestamo.Text));
+        //            else
+        //                Resultado = prestamo.getViewPrestamosXSocio(AddSociosIdTxt.Text);
+        //        }
+        //        else
+        //        {
+        //            if (EditCmbPrestamo.Text != "")
+        //            {
+        //                Resultado = prestamo.getViewPrestamosXTipoPrestamo(Convert.ToInt32(EditCmbPrestamo.Text));
+        //            }
+        //            else
+        //            {
+        //                Resultado = prestamo.getViewPrestamosXSocio();
+        //            }
+        //        }
+        //        Decimal Monto = Decimal.Parse(Resultado.Select(c => c.SOLICITUDES_MONTO).Sum().ToString());
+        //        MontoTotal.Text = Monto.ToString();
+        //        store1.DataSource = Resultado;
+        //        store1.DataBind();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        log.Fatal("error fatal al cargar solicitudes de prestamos.", ex);
+        //        throw;
+        //    }
+        //}
     }
 }

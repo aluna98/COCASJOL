@@ -203,7 +203,7 @@ namespace COCASJOL.LOGIC.Reportes
             }
         }
 
-        public List<reporte_movimientos_de_inventario_de_cafe> GetMovimientosInventarioDeCafeDeSocios
+        public List<reporte_movimientos_de_inventario_de_cafe_de_socios> GetMovimientosInventarioDeCafeDeSocios
             (string SOCIOS_ID,
             string CLASIFICACIONES_CAFE_NOMBRE,
             string DESCRIPCION,
@@ -217,7 +217,7 @@ namespace COCASJOL.LOGIC.Reportes
             {
                 using (var db = new colinasEntities())
                 {
-                    var query = from mov in db.reporte_movimientos_de_inventario_de_cafe
+                    var query = from mov in db.reporte_movimientos_de_inventario_de_cafe_de_socios
                                 where
                                 (FECHA_DESDE == default(DateTime) ? true : mov.FECHA >= FECHA_DESDE) &&
                                 (FECHA_HASTA == default(DateTime) ? true : mov.FECHA <= FECHA_HASTA) &&
@@ -228,12 +228,35 @@ namespace COCASJOL.LOGIC.Reportes
                                 (default(DateTime) == FECHA_CREACION ? true : mov.FECHA_CREACION == FECHA_CREACION)
                                 select mov;
 
-                    return query.ToList<reporte_movimientos_de_inventario_de_cafe>();
+                    return query.ToList<reporte_movimientos_de_inventario_de_cafe_de_socios>();
                 }
             }
             catch (Exception ex)
             {
                 log.Fatal("Error fatal al obtener el reporte de movimientos de inventario de cafe de socios.", ex);
+                throw;
+            }
+        }
+
+        public List<solicitud_prestamo> GetPrestamosXSocio(string SOCIOS_ID, int PRESTAMOS_ID)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    var query = from s in db.solicitudes_prestamos.Include("socios").Include("prestamos")
+                                where
+                                s.SOLICITUD_ESTADO == "APROBADA" &&
+                                (string.IsNullOrEmpty(SOCIOS_ID) ? true : s.SOCIOS_ID == SOCIOS_ID) &&
+                                (PRESTAMOS_ID == 0 ? true : s.PRESTAMOS_ID == PRESTAMOS_ID)
+                                select s;
+
+                    return query.ToList<solicitud_prestamo>();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al obtener solicitudes de prestamo aprobadas.", ex);
                 throw;
             }
         }

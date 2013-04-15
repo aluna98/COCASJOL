@@ -18,7 +18,7 @@ using Microsoft.Reporting.WebForms;
 
 namespace COCASJOL.WEBSITE.Source.Reportes
 {
-    public partial class ReporteMovimientosInventarioDeCafeDeSocios : COCASJOL.LOGIC.Web.COCASJOLBASE
+    public partial class ReporteMovimientosInventarioDeCafeDeSocios : COCASJOL.LOGIC.Web.COCASJOLREPORT
     {
         private static ILog log = LogManager.GetLogger(typeof(ReporteMovimientosInventarioDeCafeDeSocios).Name);
 
@@ -41,14 +41,14 @@ namespace COCASJOL.WEBSITE.Source.Reportes
             }
         }
 
-        protected void Report_Execution(object sender, DirectEventArgs e)
+        protected override void Report_Execution(object sender, DirectEventArgs e)
         {
             string formatoSalida = "";
             try
             {
                 ReporteLogic reporteLogic = new ReporteLogic();
 
-                List<reporte_movimientos_de_inventario_de_cafe> ReporteMovimientosInventarioDeCafeDeSociosLst = reporteLogic.GetMovimientosInventarioDeCafeDeSocios
+                List<reporte_movimientos_de_inventario_de_cafe_de_socios> ReporteMovimientosInventarioDeCafeDeSociosLst = reporteLogic.GetMovimientosInventarioDeCafeDeSocios
                     (this.f_SOCIOS_ID.Text,
                     this.f_CLASIFICACIONES_CAFE_NOMBRE.Text,
                     this.f_DESCRIPCION.Text,
@@ -85,40 +85,40 @@ namespace COCASJOL.WEBSITE.Source.Reportes
             }
         }
 
-        private void CreateFileOutput(string fileName, string format, string RDL_Path, ReportDataSource RptDatasource, ReportParameterCollection RptParams)
-        {
-            try
-            {
-                // Variables
-                Warning[] warnings;
-                string[] streamIds;
-                string mimeType = string.Empty;
-                string encoding = string.Empty;
-                string extension = string.Empty;
+        //private void CreateFileOutput(string fileName, string format, string RDL_Path, ReportDataSource RptDatasource, ReportParameterCollection RptParams)
+        //{
+        //    try
+        //    {
+        //        // Variables
+        //        Warning[] warnings;
+        //        string[] streamIds;
+        //        string mimeType = string.Empty;
+        //        string encoding = string.Empty;
+        //        string extension = string.Empty;
 
 
-                // Setup the report viewer object and get the array of bytes
-                ReportViewer viewer = new ReportViewer();
-                viewer.ProcessingMode = ProcessingMode.Local;
-                viewer.LocalReport.ReportPath = Server.MapPath(RDL_Path);
-                viewer.LocalReport.SetParameters(RptParams);
-                viewer.LocalReport.DataSources.Add(RptDatasource);
+        //        // Setup the report viewer object and get the array of bytes
+        //        ReportViewer viewer = new ReportViewer();
+        //        viewer.ProcessingMode = ProcessingMode.Local;
+        //        viewer.LocalReport.ReportPath = Server.MapPath(RDL_Path);
+        //        viewer.LocalReport.SetParameters(RptParams);
+        //        viewer.LocalReport.DataSources.Add(RptDatasource);
 
-                byte[] bytes = viewer.LocalReport.Render(format, null, out mimeType, out encoding, out extension, out streamIds, out warnings);
+        //        byte[] bytes = viewer.LocalReport.Render(format, null, out mimeType, out encoding, out extension, out streamIds, out warnings);
 
-                // Now that you have all the bytes representing the PDF report, buffer it and send it to the client.
-                Response.Buffer = true;
-                Response.Clear();
-                Response.ContentType = mimeType;
-                Response.AddHeader("content-disposition", "attachment; filename=" + fileName + "." + extension);
-                Response.BinaryWrite(bytes); // create the file
-                Response.Flush(); // send it to the client to download
-            }
-            catch (Exception ex)
-            {
-                log.Fatal("Error fatal al obtener reporte.", ex);
-                throw;
-            }
-        }
+        //        // Now that you have all the bytes representing the PDF report, buffer it and send it to the client.
+        //        Response.Buffer = true;
+        //        Response.Clear();
+        //        Response.ContentType = mimeType;
+        //        Response.AddHeader("content-disposition", "attachment; filename=" + fileName + "." + extension);
+        //        Response.BinaryWrite(bytes); // create the file
+        //        Response.Flush(); // send it to the client to download
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        log.Fatal("Error fatal al obtener reporte.", ex);
+        //        throw;
+        //    }
+        //}
     }
 }

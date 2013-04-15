@@ -144,7 +144,7 @@
     <Content Include="resources\js\logger\applicationLog.js" />
     <Content Include="resources\js\md5.js" />
     <Content Include="resources\js\prestamos\PrestamosAprobados.js" />
-    <Content Include="resources\js\prestamos\ReportePrestamos.js" />
+    <Content Include="resources\js\reportes\reportePrestamos.js" />
     <Content Include="resources\js\prestamos\solicitudesDePrestamos.js" />
     <Content Include="resources\js\reportes\reporteMovimientosInventarioDeCafeDeSocios.js" />
     <Content Include="resources\js\seguridad\roles.js" />
@@ -470,7 +470,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="bin\" />
+    <Folder Include="resources\bin\" />
     <Folder Include="resources\uploads\" />
   </ItemGroup>
   <ItemGroup>
@@ -485,6 +485,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="resources\rdlcs\ReporteMovimientosDeInventarioDeCafeDeSocios.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\rdlcs\ReportePrestamosPorSocios.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\rdlcs\Socios.rdlc" />

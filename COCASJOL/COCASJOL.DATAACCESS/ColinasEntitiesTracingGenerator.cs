@@ -503,22 +503,6 @@ namespace COCASJOL.DATAACCESS
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<reporte_movimientos_de_inventario_de_cafe> reporte_movimientos_de_inventario_de_cafe
-        {
-            get
-            {
-                if ((_reporte_movimientos_de_inventario_de_cafe == null))
-                {
-                    _reporte_movimientos_de_inventario_de_cafe = base.CreateObjectSet<reporte_movimientos_de_inventario_de_cafe>("reporte_movimientos_de_inventario_de_cafe");
-                }
-                return _reporte_movimientos_de_inventario_de_cafe;
-            }
-        }
-        private ObjectSet<reporte_movimientos_de_inventario_de_cafe> _reporte_movimientos_de_inventario_de_cafe;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<aportacion_socio> aportaciones_socio
         {
             get
@@ -659,6 +643,22 @@ namespace COCASJOL.DATAACCESS
             }
         }
         private ObjectSet<venta_inventario_cafe> _ventas_inventario_cafe;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<reporte_movimientos_de_inventario_de_cafe_de_socios> reporte_movimientos_de_inventario_de_cafe_de_socios
+        {
+            get
+            {
+                if ((_reporte_movimientos_de_inventario_de_cafe_de_socios == null))
+                {
+                    _reporte_movimientos_de_inventario_de_cafe_de_socios = base.CreateObjectSet<reporte_movimientos_de_inventario_de_cafe_de_socios>("reporte_movimientos_de_inventario_de_cafe_de_socios");
+                }
+                return _reporte_movimientos_de_inventario_de_cafe_de_socios;
+            }
+        }
+        private ObjectSet<reporte_movimientos_de_inventario_de_cafe_de_socios> _reporte_movimientos_de_inventario_de_cafe_de_socios;
 
         #endregion
         #region AddTo Methods
@@ -832,14 +832,6 @@ namespace COCASJOL.DATAACCESS
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the reporte_movimientos_de_inventario_de_cafe EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToreporte_movimientos_de_inventario_de_cafe(reporte_movimientos_de_inventario_de_cafe reporte_movimientos_de_inventario_de_cafe)
-        {
-            base.AddObject("reporte_movimientos_de_inventario_de_cafe", reporte_movimientos_de_inventario_de_cafe);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the aportaciones_socio EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToaportaciones_socio(aportacion_socio aportacion_socio)
@@ -909,6 +901,14 @@ namespace COCASJOL.DATAACCESS
         public void AddToventas_inventario_cafe(venta_inventario_cafe venta_inventario_cafe)
         {
             base.AddObject("ventas_inventario_cafe", venta_inventario_cafe);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the reporte_movimientos_de_inventario_de_cafe_de_socios EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToreporte_movimientos_de_inventario_de_cafe_de_socios(reporte_movimientos_de_inventario_de_cafe_de_socios reporte_movimientos_de_inventario_de_cafe_de_socios)
+        {
+            base.AddObject("reporte_movimientos_de_inventario_de_cafe_de_socios", reporte_movimientos_de_inventario_de_cafe_de_socios);
         }
 
         #endregion
@@ -7361,15 +7361,15 @@ namespace COCASJOL.DATAACCESS
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="COLINASMODEL", Name="reporte_movimientos_de_inventario_de_cafe")]
+    [EdmEntityTypeAttribute(NamespaceName="COLINASMODEL", Name="reporte_movimientos_de_inventario_de_cafe_de_socios")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class reporte_movimientos_de_inventario_de_cafe : EntityObject
+    public partial class reporte_movimientos_de_inventario_de_cafe_de_socios : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new reporte_movimientos_de_inventario_de_cafe object.
+        /// Create a new reporte_movimientos_de_inventario_de_cafe_de_socios object.
         /// </summary>
         /// <param name="tRANSACCION_NUMERO">Initial value of the TRANSACCION_NUMERO property.</param>
         /// <param name="fECHA">Initial value of the FECHA property.</param>
@@ -7378,17 +7378,17 @@ namespace COCASJOL.DATAACCESS
         /// <param name="iNVENTARIO_SALIDAS_SALDO">Initial value of the INVENTARIO_SALIDAS_SALDO property.</param>
         /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
         /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
-        public static reporte_movimientos_de_inventario_de_cafe Createreporte_movimientos_de_inventario_de_cafe(global::System.Int32 tRANSACCION_NUMERO, global::System.DateTime fECHA, global::System.String cLASIFICACIONES_CAFE_NOMBRE, global::System.String dOCUMENTO_TIPO, global::System.Decimal iNVENTARIO_SALIDAS_SALDO, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
+        public static reporte_movimientos_de_inventario_de_cafe_de_socios Createreporte_movimientos_de_inventario_de_cafe_de_socios(global::System.Int32 tRANSACCION_NUMERO, global::System.DateTime fECHA, global::System.String cLASIFICACIONES_CAFE_NOMBRE, global::System.String dOCUMENTO_TIPO, global::System.Decimal iNVENTARIO_SALIDAS_SALDO, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
         {
-            reporte_movimientos_de_inventario_de_cafe reporte_movimientos_de_inventario_de_cafe = new reporte_movimientos_de_inventario_de_cafe();
-            reporte_movimientos_de_inventario_de_cafe.TRANSACCION_NUMERO = tRANSACCION_NUMERO;
-            reporte_movimientos_de_inventario_de_cafe.FECHA = fECHA;
-            reporte_movimientos_de_inventario_de_cafe.CLASIFICACIONES_CAFE_NOMBRE = cLASIFICACIONES_CAFE_NOMBRE;
-            reporte_movimientos_de_inventario_de_cafe.DOCUMENTO_TIPO = dOCUMENTO_TIPO;
-            reporte_movimientos_de_inventario_de_cafe.INVENTARIO_SALIDAS_SALDO = iNVENTARIO_SALIDAS_SALDO;
-            reporte_movimientos_de_inventario_de_cafe.CREADO_POR = cREADO_POR;
-            reporte_movimientos_de_inventario_de_cafe.FECHA_CREACION = fECHA_CREACION;
-            return reporte_movimientos_de_inventario_de_cafe;
+            reporte_movimientos_de_inventario_de_cafe_de_socios reporte_movimientos_de_inventario_de_cafe_de_socios = new reporte_movimientos_de_inventario_de_cafe_de_socios();
+            reporte_movimientos_de_inventario_de_cafe_de_socios.TRANSACCION_NUMERO = tRANSACCION_NUMERO;
+            reporte_movimientos_de_inventario_de_cafe_de_socios.FECHA = fECHA;
+            reporte_movimientos_de_inventario_de_cafe_de_socios.CLASIFICACIONES_CAFE_NOMBRE = cLASIFICACIONES_CAFE_NOMBRE;
+            reporte_movimientos_de_inventario_de_cafe_de_socios.DOCUMENTO_TIPO = dOCUMENTO_TIPO;
+            reporte_movimientos_de_inventario_de_cafe_de_socios.INVENTARIO_SALIDAS_SALDO = iNVENTARIO_SALIDAS_SALDO;
+            reporte_movimientos_de_inventario_de_cafe_de_socios.CREADO_POR = cREADO_POR;
+            reporte_movimientos_de_inventario_de_cafe_de_socios.FECHA_CREACION = fECHA_CREACION;
+            return reporte_movimientos_de_inventario_de_cafe_de_socios;
         }
 
         #endregion

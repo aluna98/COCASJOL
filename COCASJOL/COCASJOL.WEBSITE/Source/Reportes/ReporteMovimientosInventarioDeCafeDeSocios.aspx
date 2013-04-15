@@ -9,7 +9,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>Movimientos de Inventario de Café</title>
+    <title>Reporte Movimientos de Inventario de Café</title>
     <script type="text/javascript" src="../../resources/js/reportes/reporteMovimientosInventarioDeCafeDeSocios.js" ></script> 
 </head>
 <body>
@@ -63,9 +63,6 @@
                 </ext:JsonReader>
             </Reader>
         </ext:Store>
-        
-        <ext:Hidden ID="nullHdn" runat="server" >
-        </ext:Hidden>
 
         <ext:Hidden ID="LoggedUserHdn" runat="server" >
         </ext:Hidden>
@@ -74,14 +71,14 @@
             <Items>
                 <ext:FormPanel ID="Panel3" runat="server" Padding="5" Layout="FormLayout" AnchorHorizontal="100%" Title="Parámetros, Filtros y Agrupaciones" ButtonAlign="Left">
                     <Items>
-                        <ext:FieldSet ID="AddNotaHeaderFS" runat="server" Header="false" Padding="5" Layout="AnchorLayout" Anchor="100%">
+                        <ext:FieldSet ID="AddNotaHeaderFS" runat="server" Header="false" Padding="2" Layout="AnchorLayout" Anchor="100%" Border="false">
                             <Items>
-                                <ext:Panel ID="AddSocioPnl" runat ="server" Layout="ColumnLayout" Border="false" AnchorHorizontal="95%" >
+                                <ext:Panel ID="AddSocioPnl" runat ="server" Layout="ColumnLayout" Border="false" AnchorHorizontal="100%" >
                                     <LayoutConfig>
                                         <ext:ColumnLayoutConfig FitHeight="false" />
                                     </LayoutConfig>
                                     <Items>
-                                        <ext:Panel ID="Panel4" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".7">
+                                        <ext:Panel ID="Panel4" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                             <Items>
                                                 <ext:ComboBox  runat="server" ID="f_SOCIOS_ID" FieldLabel="Código de Socio" LabelAlign="Right" AnchorHorizontal="100%" LabelWidth="150"
                                                     AllowBlank="true"
@@ -213,7 +210,7 @@
                                                 
                                                 <ext:DateField ID="f_FECHA_CREACION" runat="server" FieldLabel="Fecha de Creación" LabelAlign="Right" AnchorHorizontal="100%" LabelWidth="150" ></ext:DateField>
                                                 
-                                                <ext:ComboBox ID="f_SALIDA_FORMATO" runat="server" FieldLabel="Formato de Saliad" LabelAlign="Right" AnchorHorizontal="100%" ForceSelection="true" Text="PDF" LabelWidth="150">
+                                                <ext:ComboBox ID="f_SALIDA_FORMATO" runat="server" FieldLabel="Formato de Salida" LabelAlign="Right" AnchorHorizontal="100%" ForceSelection="true" Text="PDF" LabelWidth="150">
                                                     <Items>
                                                         <ext:ListItem Text="PDF" Value="PDF" />
                                                         <ext:ListItem Text="Excel" Value="EXCEL" />
@@ -221,7 +218,7 @@
                                                 </ext:ComboBox>
                                             </Items>
                                         </ext:Panel>
-                                        <ext:Panel ID="Panel1" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".3" PaddingSummary="0 0 5 5">
+                                        <ext:Panel ID="Panel1" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" PaddingSummary="0 0 5 5">
                                             <Items>
                                                 <ext:Checkbox runat="server" ID="g_SOCIOS_ID" LabelWidth="200" LabelAlign="Left" FieldLabel="Agrupar por Socio" MsgTarget="Side" ></ext:Checkbox>
                                                 <ext:Checkbox runat="server" ID="g_CLASIFICACIONES_CAFE_NOMBRE" LabelWidth="200" LabelAlign="Left" FieldLabel="Agrupar por Clasificación de Café" MsgTarget="Side" ></ext:Checkbox>
