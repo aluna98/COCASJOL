@@ -187,7 +187,6 @@
                                                 <ext:RecordField Name="LIQUIDACIONES_D_GASTOS_ADMIN"                      />
                                                 <ext:RecordField Name="LIQUIDACIONES_D_APORTACION_ORDINARIO"              />
                                                 <ext:RecordField Name="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA"         />
-                                                <ext:RecordField Name="LIQUIDACIONES_D_CUOTA_ADMIN"                       />
                                                 <ext:RecordField Name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION"          />
                                                 <ext:RecordField Name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD" />
                                                 <ext:RecordField Name="LIQUIDACIONES_D_INTERESES_S_APORTACIONES"          />
@@ -201,11 +200,11 @@
                                                 <ext:RecordField Name="LIQUIDACIONES_D_TOTAL_DEDUCCIONES"                 />
                                                 <ext:RecordField Name="LIQUIDACIONES_D_AF_SOCIO"                          />
                                                 <ext:RecordField Name="LIQUIDACIONES_D_TOTAL"                             />
-                                                <ext:RecordField Name="SOCIOS_APORTACION_EXTRAORD_COOP_COUNT"             />
                                                 <ext:RecordField Name="CREADO_POR"                                        />
                                                 <ext:RecordField Name="FECHA_CREACION"                                    Type="Date" />
                                                 <ext:RecordField Name="MODIFICADO_POR"                                    />
                                                 <ext:RecordField Name="FECHA_MODIFICACION"                                Type="Date" />
+                                                <ext:RecordField Name="SOCIOS_APORTACION_EXTRAORD_COOP_COUNT"             />
                                             </Fields>
                                         </ext:JsonReader>
                                     </Reader>

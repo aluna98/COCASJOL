@@ -217,8 +217,12 @@ namespace COCASJOL.WEBSITE
         {
             try
             {
-                NotificacionLogic notificacionlogic = new NotificacionLogic();
                 string loggedUser = Session["username"] as string;
+#if DEBUG
+                if (loggedUser == "DEVELOPER")
+                    return;
+#endif
+                NotificacionLogic notificacionlogic = new NotificacionLogic();
                 List<COCASJOL.DATAACCESS.notificacion> NotificacionesList = notificacionlogic.GetNotificacionesDeUsuario(loggedUser);
 
                 if (NotificacionesList == null)
@@ -268,9 +272,15 @@ namespace COCASJOL.WEBSITE
                 this.TotalCoopDepositoTxt.Text = reporteConsolidadoDeCafe.TotalDeposito.ToString();
 
                 //check for notification
-                NotificacionLogic notificacionlogic = new NotificacionLogic();
 
                 string loggedUser = Session["username"] as string;
+
+#if DEBUG
+                if (loggedUser == "DEVELOPER")
+                    return;
+#endif
+
+                NotificacionLogic notificacionlogic = new NotificacionLogic();
                 List<COCASJOL.DATAACCESS.notificacion> NotificacionesList = notificacionlogic.GetNotificacionesDeUsuario(loggedUser);
 
                 if (NotificacionesList == null)
