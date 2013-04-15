@@ -133,6 +133,15 @@
     <shortcut>scReporteMovimientosInventarioDeCafeDeSocios</shortcut>
     <menuitem>ReporteMovimientosInventarioDeCafeDeSociosMenuItem</menuitem>
   </privilege>
+
+  <privilege>
+    <key>REPRT_MOVIMIENTOSINVCOOP</key>
+    <page>ReporteMovimientosInventarioDeCafeDeCooperativa</page>
+    <module>ReporteMovimientosInventarioDeCafeDeCooperativaModule</module>
+    <shortcut>scReporteMovimientosInventarioDeCafeDeCooperativa</shortcut>
+    <menuitem>ReporteMovimientosInventarioDeCafeDeCooperativaMenuItem</menuitem>
+  </privilege>
+
   <privilege>
     <key>REPRT_PRESTAMOSPORSOCIOS</key>
     <page>ReportePrestamosPorSocios</page>

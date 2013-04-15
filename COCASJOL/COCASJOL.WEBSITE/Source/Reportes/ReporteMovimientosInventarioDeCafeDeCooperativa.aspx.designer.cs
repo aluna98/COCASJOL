@@ -10,7 +10,7 @@
 namespace COCASJOL.WEBSITE.Source.Reportes {
     
     
-    public partial class ReporteMovimientosInventarioDeCafeDeSocios {
+    public partial class ReporteMovimientosInventarioDeCafeDeCooperativa {
         
         /// <summary>
         /// Head1 control.
@@ -65,24 +65,6 @@ namespace COCASJOL.WEBSITE.Source.Reportes {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource ClasificacionesCafeDS;
-        
-        /// <summary>
-        /// SociosDS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource SociosDS;
-        
-        /// <summary>
-        /// SocioSt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store SocioSt;
         
         /// <summary>
         /// ClasificacionesCafeSt control.
@@ -146,15 +128,6 @@ namespace COCASJOL.WEBSITE.Source.Reportes {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Panel Panel4;
-        
-        /// <summary>
-        /// f_SOCIOS_ID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox f_SOCIOS_ID;
         
         /// <summary>
         /// f_CLASIFICACIONES_CAFE_ID control.
@@ -281,15 +254,6 @@ namespace COCASJOL.WEBSITE.Source.Reportes {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Panel Panel1;
-        
-        /// <summary>
-        /// g_SOCIOS_ID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Checkbox g_SOCIOS_ID;
         
         /// <summary>
         /// g_CLASIFICACIONES_CAFE_ID control.

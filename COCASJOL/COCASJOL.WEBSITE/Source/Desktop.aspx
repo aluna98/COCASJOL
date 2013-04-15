@@ -332,9 +332,16 @@
 
                 <%--Reportes--%>
                 <ext:DesktopModule ModuleID="ReporteMovimientosInventarioDeCafeDeSociosModule">
-                    <Launcher ID="ReporteMovimientosInventarioDeCafeDeSociosLauncher" runat="server" Text="Reporte de Movimientos de Inventario de Café" IconCls="icon-reporteMovimientosInventarioDeCafeDeSocios16" >
+                    <Launcher ID="ReporteMovimientosInventarioDeCafeDeSociosLauncher" runat="server" Text="Reporte de Movimientos de Inventario de Café de Socios" IconCls="icon-reporteMovimientosInventarioDeCafeDeSocios16" >
                         <Listeners>
                             <Click Handler="WindowX.reporteMovimientosInventarioDeCafeDeSocios(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
+                <ext:DesktopModule ModuleID="ReporteMovimientosInventarioDeCafeDeCooperativaModule">
+                    <Launcher ID="ReporteMovimientosInventarioDeCafeDeCooperativaLauncher" runat="server" Text="Reporte de Movimientos de Inventario de Café de Cooperativa" IconCls="icon-reporteMovimientosInventarioDeCafeDeCooperativa16" >
+                        <Listeners>
+                            <Click Handler="WindowX.reporteMovimientosInventarioDeCafeDeCooperativa(#{MyDesktop});" />
                         </Listeners>
                     </Launcher>
                 </ext:DesktopModule>
@@ -381,33 +388,34 @@
             </Modules>  
             
             <Shortcuts>
-                <ext:DesktopShortcut ShortcutID="scUsuarios"                               Text="Usuarios"                                     IconCls="shortcut-icon icon-usuarios" />
-                <ext:DesktopShortcut ShortcutID="scRoles"                                  Text="Roles"                                        IconCls="shortcut-icon icon-roles" />
-                <ext:DesktopShortcut ShortcutID="scConfiguracionDeSistema"                 Text="Configuración de Sistema"                     IconCls="shortcut-icon icon-configuracionDeSistema" />
-                <ext:DesktopShortcut ShortcutID="scPlantillasNotificaciones"               Text="Plantillas de Notificaciones"                 IconCls="shortcut-icon icon-plantillasNotificaciones" />
-                <ext:DesktopShortcut ShortcutID="scVariablesDeEntorno"                     Text="Variables de Entorno"                         IconCls="shortcut-icon icon-variablesEntorno" />
-                <ext:DesktopShortcut ShortcutID="scApplicationLog"                         Text="Bitácora de Aplicación"                       IconCls="shortcut-icon icon-applicationLog" />
-                <ext:DesktopShortcut ShortcutID="scSocios"                                 Text="Socios"                                       IconCls="shortcut-icon icon-socios" />
-                <ext:DesktopShortcut ShortcutID="scEstadosNotasDePeso"                     Text="Estados de Notas de Peso"                     IconCls="shortcut-icon icon-estadosNotasDePeso" />
-                <ext:DesktopShortcut ShortcutID="scNotasDePesoEnPesaje"                    Text="Notas de Peso en Area de Pesaje"              IconCls="shortcut-icon icon-notasDePesoEnPesaje" />
-                <ext:DesktopShortcut ShortcutID="scNotasDePesoEnCatacion"                  Text="Notas de Peso en Area de Catación"            IconCls="shortcut-icon icon-notasDePesoEnCatacion" />
-                <ext:DesktopShortcut ShortcutID="scNotasDePeso"                            Text="Notas de Peso"                                IconCls="shortcut-icon icon-notasDePeso" />
-                <ext:DesktopShortcut ShortcutID="scClasificacionesDeCafe"                  Text="Clasificaciones de Café"                      IconCls="shortcut-icon icon-clasificacionesDeCafe" />
-                <ext:DesktopShortcut ShortcutID="scInventarioDeCafePorSocio"               Text="Inventario de Café por Socio"                 IconCls="shortcut-icon icon-inventarioDeCafePorSocio" />
-                <ext:DesktopShortcut ShortcutID="scInventarioDeCafe"                       Text="Inventario de Café"                           IconCls="shortcut-icon icon-inventarioDeCafe" />
-                <ext:DesktopShortcut ShortcutID="scHojasDeLiquidacion"                     Text="Hojas de Liquidación"                         IconCls="shortcut-icon icon-hojaDeLiquidacion" />
-                <ext:DesktopShortcut ShortcutID="scAjustesDeInventarioDeCafeDeSocios"      Text="Ajustes de Inventario de Café de Socios"      IconCls="shortcut-icon icon-ajustesDeInventarioDeCafeDeSocios" />
-                <ext:DesktopShortcut ShortcutID="scVentasDeInventarioDeCafe"               Text="Ventas de Inventario de Café"                 IconCls="shortcut-icon icon-ventasDeInventarioDeCafe" />
-                <ext:DesktopShortcut ShortcutID="scAportacionesPorSocio"                   Text="Aportaciones por Socio"                       IconCls="shortcut-icon icon-aportacionesPorSocio" />
-                <ext:DesktopShortcut ShortcutID="scRetiroDeAportaciones"                   Text="Retiro de Aportaciones"                       IconCls="shortcut-icon icon-retiroAportaciones" />
-                <ext:DesktopShortcut ShortcutID="scPrestamos"                              Text="Tipos de Prestamo"                            IconCls="shortcut-icon icon-prestamos" />
-                <ext:DesktopShortcut ShortcutID="scSolicitudesDePrestamo"                  Text="Solicitudes de Prestamo"                      IconCls="shortcut-icon icon-solicitudesDePrestamo" />
-                <ext:DesktopShortcut ShortcutID="scPrestamosAprobados"                     Text="Solicitudes de Prestamo Aprobado"             IconCls="shortcut-icon icon-prestamosAprobados" />
-                <ext:DesktopShortcut ShortcutID="scReporteMovimientosInventarioDeCafeDeSocios"          Text="Reporte de Movimientos de Inventario de Café" IconCls="shortcut-icon icon-reporteMovimientosInventarioDeCafeDeSocios" />
-                <ext:DesktopShortcut ShortcutID="scReportePrestamosPorSocios"              Text="Reporte de Prestamos por Socios"              IconCls="shortcut-icon icon-reportePrestamosPorSocios" />
+                <ext:DesktopShortcut ShortcutID="scUsuarios"                                        Text="Usuarios"                                                    IconCls="shortcut-icon icon-usuarios" />
+                <ext:DesktopShortcut ShortcutID="scRoles"                                           Text="Roles"                                                       IconCls="shortcut-icon icon-roles" />
+                <ext:DesktopShortcut ShortcutID="scConfiguracionDeSistema"                          Text="Configuración de Sistema"                                    IconCls="shortcut-icon icon-configuracionDeSistema" />
+                <ext:DesktopShortcut ShortcutID="scPlantillasNotificaciones"                        Text="Plantillas de Notificaciones"                                IconCls="shortcut-icon icon-plantillasNotificaciones" />
+                <ext:DesktopShortcut ShortcutID="scVariablesDeEntorno"                              Text="Variables de Entorno"                                        IconCls="shortcut-icon icon-variablesEntorno" />
+                <ext:DesktopShortcut ShortcutID="scApplicationLog"                                  Text="Bitácora de Aplicación"                                      IconCls="shortcut-icon icon-applicationLog" />
+                <ext:DesktopShortcut ShortcutID="scSocios"                                          Text="Socios"                                                      IconCls="shortcut-icon icon-socios" />
+                <ext:DesktopShortcut ShortcutID="scEstadosNotasDePeso"                              Text="Estados de Notas de Peso"                                    IconCls="shortcut-icon icon-estadosNotasDePeso" />
+                <ext:DesktopShortcut ShortcutID="scNotasDePesoEnPesaje"                             Text="Notas de Peso en Area de Pesaje"                             IconCls="shortcut-icon icon-notasDePesoEnPesaje" />
+                <ext:DesktopShortcut ShortcutID="scNotasDePesoEnCatacion"                           Text="Notas de Peso en Area de Catación"                           IconCls="shortcut-icon icon-notasDePesoEnCatacion" />
+                <ext:DesktopShortcut ShortcutID="scNotasDePeso"                                     Text="Notas de Peso"                                               IconCls="shortcut-icon icon-notasDePeso" />
+                <ext:DesktopShortcut ShortcutID="scClasificacionesDeCafe"                           Text="Clasificaciones de Café"                                     IconCls="shortcut-icon icon-clasificacionesDeCafe" />
+                <ext:DesktopShortcut ShortcutID="scInventarioDeCafePorSocio"                        Text="Inventario de Café por Socio"                                IconCls="shortcut-icon icon-inventarioDeCafePorSocio" />
+                <ext:DesktopShortcut ShortcutID="scInventarioDeCafe"                                Text="Inventario de Café"                                          IconCls="shortcut-icon icon-inventarioDeCafe" />
+                <ext:DesktopShortcut ShortcutID="scHojasDeLiquidacion"                              Text="Hojas de Liquidación"                                        IconCls="shortcut-icon icon-hojaDeLiquidacion" />
+                <ext:DesktopShortcut ShortcutID="scAjustesDeInventarioDeCafeDeSocios"               Text="Ajustes de Inventario de Café de Socios"                     IconCls="shortcut-icon icon-ajustesDeInventarioDeCafeDeSocios" />
+                <ext:DesktopShortcut ShortcutID="scVentasDeInventarioDeCafe"                        Text="Ventas de Inventario de Café"                                IconCls="shortcut-icon icon-ventasDeInventarioDeCafe" />
+                <ext:DesktopShortcut ShortcutID="scAportacionesPorSocio"                            Text="Aportaciones por Socio"                                      IconCls="shortcut-icon icon-aportacionesPorSocio" />
+                <ext:DesktopShortcut ShortcutID="scRetiroDeAportaciones"                            Text="Retiro de Aportaciones"                                      IconCls="shortcut-icon icon-retiroAportaciones" />
+                <ext:DesktopShortcut ShortcutID="scPrestamos"                                       Text="Tipos de Prestamo"                                           IconCls="shortcut-icon icon-prestamos" />
+                <ext:DesktopShortcut ShortcutID="scSolicitudesDePrestamo"                           Text="Solicitudes de Prestamo"                                     IconCls="shortcut-icon icon-solicitudesDePrestamo" />
+                <ext:DesktopShortcut ShortcutID="scPrestamosAprobados"                              Text="Solicitudes de Prestamo Aprobado"                            IconCls="shortcut-icon icon-prestamosAprobados" />
+                <ext:DesktopShortcut ShortcutID="scReporteMovimientosInventarioDeCafeDeSocios"      Text="Reporte de Movimientos de Inventario de Café de Socios"      IconCls="shortcut-icon icon-reporteMovimientosInventarioDeCafeDeSocios" />
+                <ext:DesktopShortcut ShortcutID="scReporteMovimientosInventarioDeCafeDeCooperativa" Text="Reporte de Movimientos de Inventario de Café de Coopetativa" IconCls="shortcut-icon icon-reporteMovimientosInventarioDeCafeDeCooperativa" />
+                <ext:DesktopShortcut ShortcutID="scReportePrestamosPorSocios"                       Text="Reporte de Prestamos por Socios"                             IconCls="shortcut-icon icon-reportePrestamosPorSocios" />
             </Shortcuts>
 
-            <StartMenu Height="550" Width="420" ToolsWidth="127" Title="Start Menu" Icon="UserSuit">
+            <StartMenu Height="550" Width="500" ToolsWidth="127" Title="Start Menu" Icon="UserSuit">
                 <ToolItems>
                     <ext:MenuItem Text="Configuración" Icon="Wrench">
                         <Listeners>
@@ -633,9 +641,14 @@
                         <Menu>
                             <ext:Menu runat="server">
                                 <Items>
-                                    <ext:MenuItem ID="ReporteMovimientosInventarioDeCafeDeSociosMenuItem" Text="Reporte de Movimientos de Inventario de Café" IconCls="icon-reporteMovimientosInventarioDeCafeDeSocios16" >
+                                    <ext:MenuItem ID="ReporteMovimientosInventarioDeCafeDeSociosMenuItem" Text="Reporte de Movimientos de Inventario de Café de Socios" IconCls="icon-reporteMovimientosInventarioDeCafeDeSocios16" >
                                         <Listeners>
                                             <click Handler="WindowX.reporteMovimientosInventarioDeCafeDeSocios(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                    <ext:MenuItem ID="ReporteMovimientosInventarioDeCafeDeCooperativaMenuItem" Text="Reporte de Movimientos de Inventario de Café de Cooperativa" IconCls="icon-reporteMovimientosInventarioDeCafeDeCooperativa16" >
+                                        <Listeners>
+                                            <click Handler="WindowX.reporteMovimientosInventarioDeCafeDeCooperativa(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
                                     <ext:MenuItem ID="ReportePrestamosPorSociosMenuItem" Text="Reporte de Prestamos por Socios" IconCls="icon-reportePrestamosPorSocios16" >
@@ -902,30 +915,31 @@
 
         <%--shortcuts' tooltips--%>
 
-        <ext:ToolTip runat="server" ID="scUsuariosTooltip"                          Html="Usuarios"                                     Target="scUsuarios-shortcut"                          ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scRolesTooltip"                             Html="Roles"                                        Target="scRoles-shortcut"                             ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scConfiguracionDeSistemaTooltip"            Html="Configuración de Sistema"                     Target="scConfiguracionDeSistema-shortcut"            ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scPlantillasNotificacionesTooltip"          Html="Plantillas de Notificaciones"                 Target="scPlantillasNotificaciones-shortcut"          ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scVariablesDeEntornoTooltip"                Html="Variables de Entorno"                         Target="scVariablesDeEntorno-shortcut"                ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scApplicationLogTooltip"                    Html="Bitácora de Aplicación"                       Target="scApplicationLog-shortcut"                    ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scSociosTooltip"                            Html="Socios"                                       Target="scSocios-shortcut"                            ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scEstadosNotasDePesoTooltip"                Html="Estados de Notas de Peso"                     Target="scEstadosNotasDePeso-shortcut"                ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scNotasDePesoEnPesajeTooltip"               Html="Notas De Peso en Area de Pesaje"              Target="scNotasDePesoEnPesaje-shortcut"               ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scNotasDePesoEnCatacionTooltip"             Html="Notas De Peso en Area de Catación"            Target="scNotasDePesoEnCatacion-shortcut"             ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scNotasDePesoTooltip"                       Html="Notas de Peso"                                Target="scNotasDePeso-shortcut"                       ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scClasificacionesDeCafeTooltip"             Html="Clasificaciones de Café"                      Target="scClasificacionesDeCafe-shortcut"             ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scInventarioDeCafePorSocioTooltip"          Html="Inventario de Café por Socio"                 Target="scInventarioDeCafePorSocio-shortcut"          ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scInventarioDeCafeTooltip"                  Html="Inventario de Café"                           Target="scInventarioDeCafe-shortcut"                  ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scHojasDeLiquidacionTooltip"                Html="Hojas de Liquidación"                         Target="scHojasDeLiquidacion-shortcut"                ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scAjustesDeInventarioDeCafeDeSociosTooltip" Html="Ajustes de Inventario de Café de Socios"      Target="scAjustesDeInventarioDeCafeDeSocios-shortcut" ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scVentasDeInventarioDeCafeTooltip"          Html="Ventas de Inventario de Café"                 Target="scVentasDeInventarioDeCafe-shortcut"          ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scAportacionesPorSocioTooltip"              Html="Aportaciones por Socio"                       Target="scAportacionesPorSocio-shortcut"              ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scRetiroDeAportacionesTooltip"              Html="Retiro de Aportaciones"                       Target="scRetiroDeAportaciones-shortcut"              ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scPrestamosTooltip"                         Html="Tipos de Prestamo"                            Target="scPrestamos-shortcut"                         ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scSolicitudesDePrestamoTooltip"             Html="Solicitudes de Prestamo"                      Target="scSolicitudesDePrestamo-shortcut"             ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scPrestamosAprobadosTooltip"                Html="Solicitudes de Prestamo Aprobado"             Target="scPrestamosAprobados-shortcut"                ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scReporteMovimientosInventarioDeCafeDeSociosTooltip"     Html="Reporte de Movimientos de Inventario de Café" Target="scReporteMovimientosInventarioDeCafeDeSocios-shortcut"     ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scReportePrestamosPorSociosTooltip"         Html="Reporte de Prestamos por Socios"              Target="scReportePrestamosPorSocios-shortcut"     ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scUsuariosTooltip"                                        Html="Usuarios"                                                    Target="scUsuarios-shortcut"                                        ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scRolesTooltip"                                           Html="Roles"                                                       Target="scRoles-shortcut"                                           ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scConfiguracionDeSistemaTooltip"                          Html="Configuración de Sistema"                                    Target="scConfiguracionDeSistema-shortcut"                          ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scPlantillasNotificacionesTooltip"                        Html="Plantillas de Notificaciones"                                Target="scPlantillasNotificaciones-shortcut"                        ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scVariablesDeEntornoTooltip"                              Html="Variables de Entorno"                                        Target="scVariablesDeEntorno-shortcut"                              ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scApplicationLogTooltip"                                  Html="Bitácora de Aplicación"                                      Target="scApplicationLog-shortcut"                                  ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scSociosTooltip"                                          Html="Socios"                                                      Target="scSocios-shortcut"                                          ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scEstadosNotasDePesoTooltip"                              Html="Estados de Notas de Peso"                                    Target="scEstadosNotasDePeso-shortcut"                              ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scNotasDePesoEnPesajeTooltip"                             Html="Notas De Peso en Area de Pesaje"                             Target="scNotasDePesoEnPesaje-shortcut"                             ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scNotasDePesoEnCatacionTooltip"                           Html="Notas De Peso en Area de Catación"                           Target="scNotasDePesoEnCatacion-shortcut"                           ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scNotasDePesoTooltip"                                     Html="Notas de Peso"                                               Target="scNotasDePeso-shortcut"                                     ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scClasificacionesDeCafeTooltip"                           Html="Clasificaciones de Café"                                     Target="scClasificacionesDeCafe-shortcut"                           ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scInventarioDeCafePorSocioTooltip"                        Html="Inventario de Café por Socio"                                Target="scInventarioDeCafePorSocio-shortcut"                        ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scInventarioDeCafeTooltip"                                Html="Inventario de Café"                                          Target="scInventarioDeCafe-shortcut"                                ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scHojasDeLiquidacionTooltip"                              Html="Hojas de Liquidación"                                        Target="scHojasDeLiquidacion-shortcut"                              ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scAjustesDeInventarioDeCafeDeSociosTooltip"               Html="Ajustes de Inventario de Café de Socios"                     Target="scAjustesDeInventarioDeCafeDeSocios-shortcut"               ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scVentasDeInventarioDeCafeTooltip"                        Html="Ventas de Inventario de Café"                                Target="scVentasDeInventarioDeCafe-shortcut"                        ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scAportacionesPorSocioTooltip"                            Html="Aportaciones por Socio"                                      Target="scAportacionesPorSocio-shortcut"                            ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scRetiroDeAportacionesTooltip"                            Html="Retiro de Aportaciones"                                      Target="scRetiroDeAportaciones-shortcut"                            ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scPrestamosTooltip"                                       Html="Tipos de Prestamo"                                           Target="scPrestamos-shortcut"                                       ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scSolicitudesDePrestamoTooltip"                           Html="Solicitudes de Prestamo"                                     Target="scSolicitudesDePrestamo-shortcut"                           ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scPrestamosAprobadosTooltip"                              Html="Solicitudes de Prestamo Aprobado"                            Target="scPrestamosAprobados-shortcut"                              ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scReporteMovimientosInventarioDeCafeDeSociosTooltip"      Html="Reporte de Movimientos de Inventario de Café de Socios"      Target="scReporteMovimientosInventarioDeCafeDeSocios-shortcut"      ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scReporteMovimientosInventarioDeCafeDeCooperativaTooltip" Html="Reporte de Movimientos de Inventario de Café de Cooperativa" Target="scReporteMovimientosInventarioDeCafeDeCooperativa-shortcut" ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scReportePrestamosPorSociosTooltip"                       Html="Reporte de Prestamos por Socios"                             Target="scReportePrestamosPorSocios-shortcut"                       ></ext:ToolTip>
 
         <%--shortcuts' tooltips--%>
 

@@ -113,11 +113,22 @@
 
 .icon-reporteMovimientosInventarioDeCafeDeSocios
 {
+    background-image: url(../images/report_brick.png) !important;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/report_brick.png", sizingMethod="center");
+}
+
+.icon-reporteMovimientosInventarioDeCafeDeSocios16
+{
+    background-image: url(../images/report_brick16x16.png) !important;
+}
+
+.icon-reporteMovimientosInventarioDeCafeDeCooperativa
+{
     background-image: url(../images/report_bricks.png) !important;
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/report_bricks.png", sizingMethod="center");
 }
 
-.icon-reporteMovimientosInventarioDeCafeDeSocios16
+.icon-reporteMovimientosInventarioDeCafeDeCooperativa16
 {
     background-image: url(../images/report_bricks16x16.png) !important;
 }

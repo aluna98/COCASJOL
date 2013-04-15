@@ -246,6 +246,10 @@ var WindowX = {
         DesktopX.createDynamicWindow(app, 'reporteMovimientosInventarioDeCafeDeSocios16', 'Reporte de Movimientos de Inventario de Café de Socios', 'Reportes/ReporteMovimientosInventarioDeCafeDeSocios.aspx', 600, 300);
     },
 
+    reporteMovimientosInventarioDeCafeDeCooperativa: function (app) {
+        DesktopX.createDynamicWindow(app, 'reporteMovimientosInventarioDeCafeDeCooperativa16', 'Reporte de Movimientos de Inventario de Café de Cooperativa', 'Reportes/ReporteMovimientosInventarioDeCafeDeCooperativa.aspx', 600, 300);
+    },
+
     aportacionesPorSocio: function (app) {
         DesktopX.createDynamicWindow(app, 'aportacionesPorSocio16', 'Aportaciones por Socio', 'Aportaciones/AportacionesPorSocio.aspx', 1000, 600);
     },
@@ -324,6 +328,8 @@ var ShorcutClickHandler = function (app, id) {
         WindowX.ventasDeInventarioDeCafe(app);
     } else if (id == 'scReporteMovimientosInventarioDeCafeDeSocios') {
         WindowX.reporteMovimientosInventarioDeCafeDeSocios(app);
+    } else if (id == 'scReporteMovimientosInventarioDeCafeDeCooperativa') {
+        WindowX.reporteMovimientosInventarioDeCafeDeCooperativa(app);
     } else if (id == 'scAportacionesPorSocio') {
         WindowX.aportacionesPorSocio(app);
     } else if (id == 'scRetiroDeAportaciones') {

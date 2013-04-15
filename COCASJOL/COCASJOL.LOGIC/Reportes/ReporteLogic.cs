@@ -205,7 +205,7 @@ namespace COCASJOL.LOGIC.Reportes
 
         public List<reporte_movimientos_de_inventario_de_cafe_de_socios> GetMovimientosInventarioDeCafeDeSocios
             (string SOCIOS_ID,
-            string CLASIFICACIONES_CAFE_NOMBRE,
+            int CLASIFICACIONES_CAFE_ID,
             string DESCRIPCION,
             string FECHA,
             DateTime FECHA_DESDE,
@@ -222,7 +222,7 @@ namespace COCASJOL.LOGIC.Reportes
                                 (FECHA_DESDE == default(DateTime) ? true : mov.FECHA >= FECHA_DESDE) &&
                                 (FECHA_HASTA == default(DateTime) ? true : mov.FECHA <= FECHA_HASTA) &&
                                 (string.IsNullOrEmpty(SOCIOS_ID) ? true : mov.SOCIOS_ID == SOCIOS_ID) &&
-                                (string.IsNullOrEmpty(CLASIFICACIONES_CAFE_NOMBRE) ? true : mov.CLASIFICACIONES_CAFE_NOMBRE == CLASIFICACIONES_CAFE_NOMBRE) &&
+                                (CLASIFICACIONES_CAFE_ID == 0 ? true : mov.CLASIFICACIONES_CAFE_ID == CLASIFICACIONES_CAFE_ID) &&
                                 (string.IsNullOrEmpty(DESCRIPCION) ? true : mov.DOCUMENTO_TIPO == DESCRIPCION) &&
                                 (string.IsNullOrEmpty(CREADO_POR) ? true : mov.CREADO_POR.Contains(CREADO_POR)) &&
                                 (default(DateTime) == FECHA_CREACION ? true : mov.FECHA_CREACION == FECHA_CREACION)
@@ -234,6 +234,39 @@ namespace COCASJOL.LOGIC.Reportes
             catch (Exception ex)
             {
                 log.Fatal("Error fatal al obtener el reporte de movimientos de inventario de cafe de socios.", ex);
+                throw;
+            }
+        }
+
+        public List<reporte_movimientos_de_inventario_de_cafe_de_cooperativa> GetMovimientosInventarioDeCafeDeCooperativa
+            (int CLASIFICACIONES_CAFE_ID,
+            string DESCRIPCION,
+            string FECHA,
+            DateTime FECHA_DESDE,
+            DateTime FECHA_HASTA,
+            string CREADO_POR,
+            DateTime FECHA_CREACION)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    var query = from mov in db.reporte_movimientos_de_inventario_de_cafe_de_cooperativa
+                                where
+                                (FECHA_DESDE == default(DateTime) ? true : mov.FECHA >= FECHA_DESDE) &&
+                                (FECHA_HASTA == default(DateTime) ? true : mov.FECHA <= FECHA_HASTA) &&
+                                (CLASIFICACIONES_CAFE_ID == 0 ? true : mov.CLASIFICACIONES_CAFE_ID == CLASIFICACIONES_CAFE_ID) &&
+                                (string.IsNullOrEmpty(DESCRIPCION) ? true : mov.DOCUMENTO_TIPO == DESCRIPCION) &&
+                                (string.IsNullOrEmpty(CREADO_POR) ? true : mov.CREADO_POR.Contains(CREADO_POR)) &&
+                                (default(DateTime) == FECHA_CREACION ? true : mov.FECHA_CREACION == FECHA_CREACION)
+                                select mov;
+
+                    return query.ToList<reporte_movimientos_de_inventario_de_cafe_de_cooperativa>();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al obtener el reporte de movimientos de inventario de cafe de cooperativa.", ex);
                 throw;
             }
         }
