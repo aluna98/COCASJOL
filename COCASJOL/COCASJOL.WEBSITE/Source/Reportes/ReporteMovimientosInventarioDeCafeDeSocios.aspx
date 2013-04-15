@@ -81,9 +81,9 @@
                                         <ext:ColumnLayoutConfig FitHeight="false" />
                                     </LayoutConfig>
                                     <Items>
-                                        <ext:Panel ID="Panel4" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
+                                        <ext:Panel ID="Panel4" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".7">
                                             <Items>
-                                                <ext:ComboBox  runat="server" ID="f_SOCIOS_ID" FieldLabel="Código de Socio" LabelAlign="Right" AnchorHorizontal="100%"
+                                                <ext:ComboBox  runat="server" ID="f_SOCIOS_ID" FieldLabel="Código de Socio" LabelAlign="Right" AnchorHorizontal="100%" LabelWidth="150"
                                                     AllowBlank="true"
                                                     TypeAhead="true"
                                                     EmptyText="Seleccione un Socio"
@@ -131,7 +131,7 @@
                                                 </ext:ComboBox>
 
                                                 <ext:ComboBox
-                                                    ID="f_CLASIFICACIONES_CAFE_NOMBRE" FieldLabel="Clasificación de Café" LabelAlign="Right" AnchorHorizontal="100%"
+                                                    ID="f_CLASIFICACIONES_CAFE_NOMBRE" FieldLabel="Clasificación de Café" LabelAlign="Right" AnchorHorizontal="100%" LabelWidth="150"
                                                     runat="server"
                                                     AllowBlank="true"
                                                     ForceSelection="true"
@@ -148,7 +148,7 @@
                                                     </Listeners>
                                                 </ext:ComboBox>
 
-                                                <ext:ComboBox ID="f_DESCRIPCION" runat="server" FieldLabel="Descripción" LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="true" ForceSelection="true" TypeAhead="true">
+                                                <ext:ComboBox ID="f_DESCRIPCION" runat="server" FieldLabel="Descripción" LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="true" ForceSelection="true" TypeAhead="true" LabelWidth="150" >
                                                     <Items>
                                                         <ext:ListItem Text="Deposito de Café" Value="ENTRADA" />
                                                         <ext:ListItem Text="Hoja de Liquidación" Value="SALIDA" />
@@ -161,7 +161,7 @@
                                                     </Listeners>
                                                 </ext:ComboBox>
 
-                                                <ext:DropDownField ID="f_FECHA" runat="server" FieldLabel="Fecha" LabelAlign="Right" AnchorHorizontal="100%"
+                                                <ext:DropDownField ID="f_FECHA" runat="server" FieldLabel="Fecha" LabelAlign="Right" AnchorHorizontal="100%" LabelWidth="150"
                                                     Mode="ValueText" TriggerIcon="SimpleArrowDown" CollapseMode="Default">
                                                     <Component>
                                                         <ext:FormPanel ID="FormPanel1" runat="server" Height="100" Width="170" Frame="true"
@@ -209,11 +209,11 @@
                                                         </Component>
                                                 </ext:DropDownField>
                                                 
-                                                <ext:TextField ID="f_CREADO_POR" runat="server" FieldLabel="Creado Por" LabelAlign="Right" AnchorHorizontal="100%" ></ext:TextField>
+                                                <ext:TextField ID="f_CREADO_POR" runat="server" FieldLabel="Creado Por" LabelAlign="Right" AnchorHorizontal="100%" LabelWidth="150" ></ext:TextField>
                                                 
-                                                <ext:DateField ID="f_FECHA_CREACION" runat="server" FieldLabel="Fecha de Creación" LabelAlign="Right" AnchorHorizontal="100%" ></ext:DateField>
+                                                <ext:DateField ID="f_FECHA_CREACION" runat="server" FieldLabel="Fecha de Creación" LabelAlign="Right" AnchorHorizontal="100%" LabelWidth="150" ></ext:DateField>
                                                 
-                                                <ext:ComboBox ID="f_SALIDA_FORMATO" runat="server" FieldLabel="Formato de Saliad" LabelAlign="Right" AnchorHorizontal="100%" ForceSelection="true" Text="PDF" >
+                                                <ext:ComboBox ID="f_SALIDA_FORMATO" runat="server" FieldLabel="Formato de Saliad" LabelAlign="Right" AnchorHorizontal="100%" ForceSelection="true" Text="PDF" LabelWidth="150">
                                                     <Items>
                                                         <ext:ListItem Text="PDF" Value="PDF" />
                                                         <ext:ListItem Text="Excel" Value="EXCEL" />
@@ -221,17 +221,16 @@
                                                 </ext:ComboBox>
                                             </Items>
                                         </ext:Panel>
-                                        <%--<ext:Panel ID="Panel1" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
+                                        <ext:Panel ID="Panel1" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".3" PaddingSummary="0 0 5 5">
                                             <Items>
-                                                <ext:Checkbox runat="server" ID="EditVentanasMaximizarChk" LabelWidth="200" LabelAlign="Right" FieldLabel="Maximizar Ventanas al Cargar" MsgTarget="Side" ></ext:Checkbox>
-                                                <ext:Checkbox runat="server" ID="Checkbox1" LabelWidth="200" LabelAlign="Right" FieldLabel="Maximizar Ventanas al Cargar" MsgTarget="Side" ></ext:Checkbox>
-                                                <ext:Checkbox runat="server" ID="Checkbox2" LabelWidth="200" LabelAlign="Right" FieldLabel="Maximizar Ventanas al Cargar" MsgTarget="Side" ></ext:Checkbox>
-                                                <ext:Checkbox runat="server" ID="Checkbox3" LabelWidth="200" LabelAlign="Right" FieldLabel="Maximizar Ventanas al Cargar" MsgTarget="Side" ></ext:Checkbox>
-                                                <ext:Checkbox runat="server" ID="Checkbox4" LabelWidth="200" LabelAlign="Right" FieldLabel="Maximizar Ventanas al Cargar" MsgTarget="Side" ></ext:Checkbox>
-                                                <ext:Checkbox runat="server" ID="Checkbox5" LabelWidth="200" LabelAlign="Right" FieldLabel="Maximizar Ventanas al Cargar" MsgTarget="Side" ></ext:Checkbox>
-                                                <ext:Checkbox runat="server" ID="Checkbox6" LabelWidth="200" LabelAlign="Right" FieldLabel="Maximizar Ventanas al Cargar" MsgTarget="Side" ></ext:Checkbox>
+                                                <ext:Checkbox runat="server" ID="g_SOCIOS_ID" LabelWidth="200" LabelAlign="Left" FieldLabel="Agrupar por Socio" MsgTarget="Side" ></ext:Checkbox>
+                                                <ext:Checkbox runat="server" ID="g_CLASIFICACIONES_CAFE_NOMBRE" LabelWidth="200" LabelAlign="Left" FieldLabel="Agrupar por Clasificación de Café" MsgTarget="Side" ></ext:Checkbox>
+                                                <ext:Checkbox runat="server" ID="g_DESCRIPCION" LabelWidth="200" LabelAlign="Left" FieldLabel="Agrupar por Descripción" MsgTarget="Side" ></ext:Checkbox>
+                                                <ext:Checkbox runat="server" ID="g_FECHA" LabelWidth="200" LabelAlign="Left" FieldLabel="Agrupar por Fecha" MsgTarget="Side" ></ext:Checkbox>
+                                                <ext:Checkbox runat="server" ID="g_CREADO_POR" LabelWidth="200" LabelAlign="Left" FieldLabel="Agrupar por Creador" MsgTarget="Side" ></ext:Checkbox>
+                                                <ext:Checkbox runat="server" ID="g_FECHA_CREACION" LabelWidth="200" LabelAlign="Left" FieldLabel="Agrupar por Fecha de Creación" MsgTarget="Side" ></ext:Checkbox>
                                             </Items>
-                                        </ext:Panel>--%>
+                                        </ext:Panel>
                                     </Items>
                                 </ext:Panel>
                             </Items>

@@ -283,6 +283,69 @@ namespace COCASJOL.WEBSITE.Source.Reportes {
         protected global::Ext.Net.ComboBox f_SALIDA_FORMATO;
         
         /// <summary>
+        /// Panel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Panel1;
+        
+        /// <summary>
+        /// g_SOCIOS_ID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox g_SOCIOS_ID;
+        
+        /// <summary>
+        /// g_CLASIFICACIONES_CAFE_NOMBRE control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox g_CLASIFICACIONES_CAFE_NOMBRE;
+        
+        /// <summary>
+        /// g_DESCRIPCION control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox g_DESCRIPCION;
+        
+        /// <summary>
+        /// g_FECHA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox g_FECHA;
+        
+        /// <summary>
+        /// g_CREADO_POR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox g_CREADO_POR;
+        
+        /// <summary>
+        /// g_FECHA_CREACION control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox g_FECHA_CREACION;
+        
+        /// <summary>
         /// Button3 control.
         /// </summary>
         /// <remarks>
