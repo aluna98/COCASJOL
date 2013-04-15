@@ -41,39 +41,45 @@ namespace COCASJOL.WEBSITE.Source.Reportes
             }
         }
 
-        protected void MovimientoDeInventarioCafeDS_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        protected void Report_Execution(object sender, DirectEventArgs e)
         {
-            //if (!this.IsPostBack)
-            //    e.Cancel = true;
-        }
-
-        protected void ExportToExcelBtn_Click(object sender, DirectEventArgs e)
-        {
+            string formatoSalida = "";
             try
             {
-                this.CreateFileOutput("ReporteMovimientosInventarioDeCafeDeSociosDeSocios", "Excel");
+                ReporteLogic reporteLogic = new ReporteLogic();
+
+                List<reporte_movimientos_de_inventario_de_cafe> ReporteMovimientosInventarioDeCafeDeSociosLst = reporteLogic.GetMovimientosInventarioDeCafeDeSocios
+                    (this.f_SOCIOS_ID.Text,
+                    this.f_CLASIFICACIONES_CAFE_NOMBRE.Text,
+                    this.f_DESCRIPCION.Text,
+                    this.f_FECHA.Text,
+                    this.f_DATE_FROM.SelectedDate,
+                    this.f_DATE_TO.SelectedDate,
+                    this.f_CREADO_POR.Text,
+                    this.f_FECHA_CREACION.SelectedDate);
+
+                ReportDataSource datasourceMovimientoInventarioCafeSocios = new ReportDataSource("MovimientosInventarioDeCafeDeSociosDataSet", ReporteMovimientosInventarioDeCafeDeSociosLst);
+
+                ReportParameter param = new ReportParameter();
+                param = new ReportParameter("parReportType", "m"); // m-> default, s->socio, c->clasificacion cafe, d->descripcion, f->fecha, cp->creado por, fc->fecha creacion
+
+                ReportParameterCollection reportParamCollection = new ReportParameterCollection();
+                reportParamCollection.Add(param);
+
+                formatoSalida = this.f_SALIDA_FORMATO.Text;
+
+                string rdlPath = "~/resources/rdlcs/ReporteMovimientosDeInventarioDeCafeDeSocios.rdlc";
+
+                this.CreateFileOutput("ReporteMovimientosInventarioDeCafeDeSociosDeSocios", formatoSalida, rdlPath, datasourceMovimientoInventarioCafeSocios, reportParamCollection);
             }
             catch (Exception ex)
             {
-                log.Fatal("Error fatal al exportar reporte Excel.", ex);
+                log.Fatal(string.Format("Error fatal al generar reporte. Formato de salida: {0}", formatoSalida), ex);
                 throw;
             }
         }
 
-        protected void ExportToPDFBtn_Click(object sender, DirectEventArgs e)
-        {
-            try
-            {
-                this.CreateFileOutput("ReporteMovimientosInventarioDeCafeDeSociosDeSocios", "PDF");
-            }
-            catch (Exception ex)
-            {
-                log.Fatal("Error fatal al exportar reporte PDF.", ex);
-                throw;
-            }
-        }
-
-        private void CreateFileOutput(string fileName, string format)
+        private void CreateFileOutput(string fileName, string format, string RDL_Path, ReportDataSource RptDatasource, ReportParameterCollection RptParams)
         {
             try
             {
@@ -88,24 +94,11 @@ namespace COCASJOL.WEBSITE.Source.Reportes
                 // Setup the report viewer object and get the array of bytes
                 ReportViewer viewer = new ReportViewer();
                 viewer.ProcessingMode = ProcessingMode.Local;
-                viewer.LocalReport.ReportPath = Server.MapPath("~/resources/rdlcs/ReporteMovimientosDeInventarioDeCafeDeSocios.rdlc");
-
-                ReportParameter param = new ReportParameter();
-                param = new ReportParameter("parReportType", "m"); // m-> default, s->socio, c->clasificacion cafe, d->descripcion, f->fecha, cp->creado por, fc->fecha creacion
-
-                viewer.LocalReport.SetParameters(param);
-
-                ReporteLogic reporteLogic = new ReporteLogic();
-
-                List<reporte_movimientos_de_inventario_de_cafe> ReporteMovimientosInventarioDeCafeDeSociosLst = reporteLogic.GetReporteMovimientosInventarioDeCafeDeSociosDeSocio
-                    (0, default(DateTime), default(DateTime), default(DateTime), "", "", "", -1, -1, -1, -1, -1, -1, "", default(DateTime));
-
-                ReportDataSource datasourceMovimientoInventarioCafeSocios = new ReportDataSource("ReporteMovimientosInventarioDeCafeDeSociosDataSet", ReporteMovimientosInventarioDeCafeDeSociosLst);
-
-                viewer.LocalReport.DataSources.Add(datasourceMovimientoInventarioCafeSocios);
+                viewer.LocalReport.ReportPath = Server.MapPath(RDL_Path);
+                viewer.LocalReport.SetParameters(RptParams);
+                viewer.LocalReport.DataSources.Add(RptDatasource);
 
                 byte[] bytes = viewer.LocalReport.Render(format, null, out mimeType, out encoding, out extension, out streamIds, out warnings);
-
 
                 // Now that you have all the bytes representing the PDF report, buffer it and send it to the client.
                 Response.Buffer = true;
@@ -117,7 +110,7 @@ namespace COCASJOL.WEBSITE.Source.Reportes
             }
             catch (Exception ex)
             {
-                log.Fatal("Error fatal al obtener plantilla de importacion de socios.", ex);
+                log.Fatal("Error fatal al obtener reporte.", ex);
                 throw;
             }
         }

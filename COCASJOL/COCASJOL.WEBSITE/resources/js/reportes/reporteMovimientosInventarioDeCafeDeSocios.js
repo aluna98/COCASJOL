@@ -60,8 +60,8 @@ var PageX = {
     _index: 0,
 
     setReferences: function () {
-        Grid = MovimientoInventarioCafeGridP;
-        GridStore = MovimientoInventarioCafeSt;
+        //Grid = MovimientoInventarioCafeGridP;
+        //GridStore = MovimientoInventarioCafeSt;
     },
 
     reloadGridStore: function () {

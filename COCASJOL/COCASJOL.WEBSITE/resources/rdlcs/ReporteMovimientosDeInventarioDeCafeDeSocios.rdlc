@@ -10,7 +10,7 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="ReporteMovimientosInventarioDeCafeDeSociosDataSet">
+    <DataSet Name="MovimientosInventarioDeCafeDeSociosDataSet">
       <Fields>
         <Field Name="TRANSACCION_NUMERO">
           <DataField>TRANSACCION_NUMERO</DataField>
@@ -84,9 +84,8 @@
       <rd:DataSetInfo>
         <rd:DataSetName>COCASJOL.LOGIC.Reportes</rd:DataSetName>
         <rd:TableName>ReporteLogic</rd:TableName>
-        <rd:ObjectDataSourceSelectMethod>GetReporteMovimientosInventarioDeCafeDeSociosDeSocio</rd:ObjectDataSourceSelectMethod>
-        <rd:ObjectDataSourceSelectMethodSignature>System.Collections.Generic.List`1[COCASJOL.LOGIC.reporte_movimientos_de_inventario_de_cafe] GetReporteMovimientosInventarioDeCafeDeSociosDeSocio(Int32, System.DateTime, System.DateTime, System.DateTime, System.String, System.String, System.String, System.Decimal, System.Decimal, System.Decimal, System.Decimal, System.Decimal, System.Decimal, System.String, System.DateTime)</rd:ObjectDataSourceSelectMethodSignature>
-        <rd:ObjectDataSourceType>COCASJOL.LOGIC.Reportes.ReporteLogic, COCASJOL.LOGIC, Version=1.0.4848.18474, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceSelectMethod>GetMovimientosInventarioDeCafeDeSocios</rd:ObjectDataSourceSelectMethod>
+        <rd:ObjectDataSourceType>COCASJOL.LOGIC.Reportes.ReporteLogic, COCASJOL.LOGIC, Version=1.0.4852.32642, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -2638,7 +2637,7 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>ReporteMovimientosInventarioDeCafeDeSociosDataSet</DataSetName>
+        <DataSetName>MovimientosInventarioDeCafeDeSociosDataSet</DataSetName>
         <Height>1.75in</Height>
         <Width>13in</Width>
         <Style>
@@ -2654,6 +2653,12 @@
   <ReportParameters>
     <ReportParameter Name="parReportType">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>="m"</Value>
+        </Values>
+      </DefaultValue>
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
