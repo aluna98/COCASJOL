@@ -18,9 +18,9 @@ using Microsoft.Reporting.WebForms;
 
 namespace COCASJOL.WEBSITE.Source.Reportes
 {
-    public partial class ReporteMovimientosInventarioDeCafeDeCooperativa : COCASJOL.LOGIC.Web.COCASJOLREPORT
+    public partial class ReporteDetalleDeAportacionesPorSocio : COCASJOL.LOGIC.Web.COCASJOLREPORT
     {
-        private static ILog log = LogManager.GetLogger(typeof(ReporteMovimientosInventarioDeCafeDeCooperativa).Name);
+        private static ILog log = LogManager.GetLogger(typeof(ReporteDetalleDeAportacionesPorSocio).Name);
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -36,7 +36,7 @@ namespace COCASJOL.WEBSITE.Source.Reportes
             }
             catch (Exception ex)
             {
-                log.Fatal("Error fatal al cargar reporte de movimientos de inventario de cafe de cooperativa.", ex);
+                log.Fatal("Error fatal al cargar reporte detalle de aportaciones por socio.", ex);
                 throw;
             }
         }
@@ -48,8 +48,8 @@ namespace COCASJOL.WEBSITE.Source.Reportes
             {
                 ReporteLogic reporteLogic = new ReporteLogic();
 
-                List<reporte_movimientos_de_inventario_de_cafe_de_cooperativa> ReporteMovimientosInventarioDeCafeDeCooperativaLst = reporteLogic.GetMovimientosInventarioDeCafeDeCooperativa
-                    (string.IsNullOrEmpty(this.f_CLASIFICACIONES_CAFE_ID.Text) ? 0 : Convert.ToInt32(this.f_CLASIFICACIONES_CAFE_ID.Text),
+                List<reporte_detalle_de_aportaciones_por_socio> ReporteDetalleAportacionesXSocioLst = reporteLogic.GetDetalleAportacionesPorSocio
+                    (this.f_SOCIOS_ID.Text,
                     this.f_DESCRIPCION.Text,
                     this.f_FECHA.Text,
                     this.f_DATE_FROM.SelectedDate,
@@ -57,10 +57,10 @@ namespace COCASJOL.WEBSITE.Source.Reportes
                     this.f_CREADO_POR.Text,
                     this.f_FECHA_CREACION.SelectedDate);
 
-                ReportDataSource datasourceMovimientoInventarioCafeCooperativa = new ReportDataSource("MovimientosInventarioDeCafeDeCooperativaDataSet", ReporteMovimientosInventarioDeCafeDeCooperativaLst);
+                ReportDataSource datasourceDetalleAportacionesXSocio = new ReportDataSource("DetalleAportacionesPorSocioDataSet", ReporteDetalleAportacionesXSocioLst);
 
                 ReportParameterCollection reportParamCollection = new ReportParameterCollection();
-                reportParamCollection.Add(new ReportParameter("parGroupByClasificacionCafe", this.g_CLASIFICACIONES_CAFE_ID.Checked.ToString()));
+                reportParamCollection.Add(new ReportParameter("parGroupBySocios", this.g_SOCIOS_ID.Checked.ToString()));
                 reportParamCollection.Add(new ReportParameter("parGroupByDescripcion", this.g_DESCRIPCION.Checked.ToString()));
                 reportParamCollection.Add(new ReportParameter("parGroupByFecha", this.g_FECHA.Checked.ToString()));
                 reportParamCollection.Add(new ReportParameter("parGroupByCreadoPor", this.g_CREADO_POR.Checked.ToString()));
@@ -68,9 +68,9 @@ namespace COCASJOL.WEBSITE.Source.Reportes
 
                 formatoSalida = this.f_SALIDA_FORMATO.Text;
 
-                string rdlPath = "~/resources/rdlcs/ReporteMovimientosDeInventarioDeCafeDeCooperativa.rdlc";
+                string rdlPath = "~/resources/rdlcs/ReporteDetalleDeAportacionesPorSocio.rdlc";
 
-                this.CreateFileOutput("ReporteMovimientosInventarioDeCafeDeCooperativa", formatoSalida, rdlPath, datasourceMovimientoInventarioCafeCooperativa, reportParamCollection);
+                this.CreateFileOutput("ReporteDetalleAportacionesPorSocio", formatoSalida, rdlPath, datasourceDetalleAportacionesXSocio, reportParamCollection);
             }
             catch (Exception ex)
             {

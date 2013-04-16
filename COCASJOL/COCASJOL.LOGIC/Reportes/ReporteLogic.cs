@@ -206,7 +206,7 @@ namespace COCASJOL.LOGIC.Reportes
         public List<reporte_movimientos_de_inventario_de_cafe_de_socios> GetMovimientosInventarioDeCafeDeSocios
             (string SOCIOS_ID,
             int CLASIFICACIONES_CAFE_ID,
-            string DESCRIPCION,
+            string DOCUMENTO_TIPO,
             string FECHA,
             DateTime FECHA_DESDE,
             DateTime FECHA_HASTA,
@@ -223,7 +223,7 @@ namespace COCASJOL.LOGIC.Reportes
                                 (FECHA_HASTA == default(DateTime) ? true : mov.FECHA <= FECHA_HASTA) &&
                                 (string.IsNullOrEmpty(SOCIOS_ID) ? true : mov.SOCIOS_ID == SOCIOS_ID) &&
                                 (CLASIFICACIONES_CAFE_ID == 0 ? true : mov.CLASIFICACIONES_CAFE_ID == CLASIFICACIONES_CAFE_ID) &&
-                                (string.IsNullOrEmpty(DESCRIPCION) ? true : mov.DOCUMENTO_TIPO == DESCRIPCION) &&
+                                (string.IsNullOrEmpty(DOCUMENTO_TIPO) ? true : mov.DOCUMENTO_TIPO == DOCUMENTO_TIPO) &&
                                 (string.IsNullOrEmpty(CREADO_POR) ? true : mov.CREADO_POR.Contains(CREADO_POR)) &&
                                 (default(DateTime) == FECHA_CREACION ? true : mov.FECHA_CREACION == FECHA_CREACION)
                                 select mov;
@@ -240,7 +240,7 @@ namespace COCASJOL.LOGIC.Reportes
 
         public List<reporte_movimientos_de_inventario_de_cafe_de_cooperativa> GetMovimientosInventarioDeCafeDeCooperativa
             (int CLASIFICACIONES_CAFE_ID,
-            string DESCRIPCION,
+            string DOCUMENTO_TIPO,
             string FECHA,
             DateTime FECHA_DESDE,
             DateTime FECHA_HASTA,
@@ -256,7 +256,7 @@ namespace COCASJOL.LOGIC.Reportes
                                 (FECHA_DESDE == default(DateTime) ? true : mov.FECHA >= FECHA_DESDE) &&
                                 (FECHA_HASTA == default(DateTime) ? true : mov.FECHA <= FECHA_HASTA) &&
                                 (CLASIFICACIONES_CAFE_ID == 0 ? true : mov.CLASIFICACIONES_CAFE_ID == CLASIFICACIONES_CAFE_ID) &&
-                                (string.IsNullOrEmpty(DESCRIPCION) ? true : mov.DOCUMENTO_TIPO == DESCRIPCION) &&
+                                (string.IsNullOrEmpty(DOCUMENTO_TIPO) ? true : mov.DOCUMENTO_TIPO == DOCUMENTO_TIPO) &&
                                 (string.IsNullOrEmpty(CREADO_POR) ? true : mov.CREADO_POR.Contains(CREADO_POR)) &&
                                 (default(DateTime) == FECHA_CREACION ? true : mov.FECHA_CREACION == FECHA_CREACION)
                                 select mov;
@@ -290,6 +290,39 @@ namespace COCASJOL.LOGIC.Reportes
             catch (Exception ex)
             {
                 log.Fatal("Error fatal al obtener solicitudes de prestamo aprobadas.", ex);
+                throw;
+            }
+        }
+
+        public List<reporte_detalle_de_aportaciones_por_socio> GetDetalleAportacionesPorSocio
+            (string SOCIOS_ID,
+            string DOCUMENTO_TIPO,
+            string FECHA,
+            DateTime FECHA_DESDE,
+            DateTime FECHA_HASTA,
+            string CREADO_POR,
+            DateTime FECHA_CREACION)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    var query = from mov in db.reporte_detalle_de_aportaciones_por_socio
+                                where
+                                (FECHA_DESDE == default(DateTime) ? true : mov.FECHA >= FECHA_DESDE) &&
+                                (FECHA_HASTA == default(DateTime) ? true : mov.FECHA <= FECHA_HASTA) &&
+                                (string.IsNullOrEmpty(SOCIOS_ID) ? true : mov.SOCIOS_ID == SOCIOS_ID) &&
+                                (string.IsNullOrEmpty(DOCUMENTO_TIPO) ? true : mov.DOCUMENTO_TIPO == DOCUMENTO_TIPO) &&
+                                (string.IsNullOrEmpty(CREADO_POR) ? true : mov.CREADO_POR.Contains(CREADO_POR)) &&
+                                (default(DateTime) == FECHA_CREACION ? true : mov.FECHA_CREACION == FECHA_CREACION)
+                                select mov;
+
+                    return query.ToList<reporte_detalle_de_aportaciones_por_socio>();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al obtener el reporte de movimientos de inventario de cafe de socios.", ex);
                 throw;
             }
         }

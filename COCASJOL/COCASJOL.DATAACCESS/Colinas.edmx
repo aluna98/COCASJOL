@@ -35,6 +35,35 @@
           <EntitySet Name="usuarios" EntityType="COLINASMODEL.Store.usuarios" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="variables_de_entorno" EntityType="COLINASMODEL.Store.variables_de_entorno" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="ventas_inventario_cafe" EntityType="COLINASMODEL.Store.ventas_inventario_cafe" store:Type="Tables" Schema="colinas" />
+          <EntitySet Name="reporte_detalle_de_aportaciones_por_socio" EntityType="COLINASMODEL.Store.reporte_detalle_de_aportaciones_por_socio" store:Type="Views" store:Schema="colinas" store:Name="reporte_detalle_de_aportaciones_por_socio">
+            <DefiningQuery>SELECT
+      `reporte_detalle_de_aportaciones_por_socio`.`TRANSACCION_NUMERO`, 
+      `reporte_detalle_de_aportaciones_por_socio`.`FECHA`, 
+      `reporte_detalle_de_aportaciones_por_socio`.`SOCIOS_ID`, 
+      `reporte_detalle_de_aportaciones_por_socio`.`SOCIOS_NOMBRE`, 
+      `reporte_detalle_de_aportaciones_por_socio`.`DOCUMENTO_TIPO`, 
+      `reporte_detalle_de_aportaciones_por_socio`.`DESCRIPCION`, 
+      `reporte_detalle_de_aportaciones_por_socio`.`ENTRADAS_APORTACIONES_ORDINARIA`, 
+      `reporte_detalle_de_aportaciones_por_socio`.`SALIDAS_APORTACIONES_ORDINARIA`, 
+      `reporte_detalle_de_aportaciones_por_socio`.`ENTRADAS_APORTACIONES_EXTRAORDINARIA`, 
+      `reporte_detalle_de_aportaciones_por_socio`.`SALIDAS_APORTACIONES_EXTRAORDINARIA`, 
+      `reporte_detalle_de_aportaciones_por_socio`.`ENTRADAS_APORTACIONES_CAPITALIZACION_RETENCION`, 
+      `reporte_detalle_de_aportaciones_por_socio`.`SALIDAS_APORTACIONES_CAPITALIZACION_RETENCION`, 
+      `reporte_detalle_de_aportaciones_por_socio`.`ENTRADAS_APORTACIONES_INTERESES_S_APORTACIONES`, 
+      `reporte_detalle_de_aportaciones_por_socio`.`SALIDAS_APORTACIONES_INTERESES_S_APORTACIONES`, 
+      `reporte_detalle_de_aportaciones_por_socio`.`ENTRADAS_APORTACIONES_EXCEDENTE_PERIODO`, 
+      `reporte_detalle_de_aportaciones_por_socio`.`SALIDAS_APORTACIONES_EXCEDENTE_PERIODO`, 
+      `reporte_detalle_de_aportaciones_por_socio`.`APORTACIONES_CANTIDAD`, 
+      `reporte_detalle_de_aportaciones_por_socio`.`APORTACIONES_ORDINARIA_SALDO`, 
+      `reporte_detalle_de_aportaciones_por_socio`.`APORTACIONES_EXTRAORDINARIA_SALDO`, 
+      `reporte_detalle_de_aportaciones_por_socio`.`APORTACIONES_CAPITALIZACION_RETENCION_SALDO`, 
+      `reporte_detalle_de_aportaciones_por_socio`.`APORTACIONES_INTERESES_S_APORTACIONES_SALDO`, 
+      `reporte_detalle_de_aportaciones_por_socio`.`APORTACIONES_EXCEDENTE_PERIODO_SALDO`, 
+      `reporte_detalle_de_aportaciones_por_socio`.`APORTACIONES_SALDO_TOTAL`, 
+      `reporte_detalle_de_aportaciones_por_socio`.`CREADO_POR`, 
+      `reporte_detalle_de_aportaciones_por_socio`.`FECHA_CREACION`
+      FROM `reporte_detalle_de_aportaciones_por_socio` AS `reporte_detalle_de_aportaciones_por_socio`</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="reporte_movimientos_de_inventario_de_cafe_de_cooperativa" EntityType="COLINASMODEL.Store.reporte_movimientos_de_inventario_de_cafe_de_cooperativa" store:Type="Views" store:Schema="colinas" store:Name="reporte_movimientos_de_inventario_de_cafe_de_cooperativa">
             <DefiningQuery>SELECT
       `reporte_movimientos_de_inventario_de_cafe_de_cooperativa`.`TRANSACCION_NUMERO`, 
@@ -695,11 +724,51 @@
           <Property Name="FECHA_MODIFICACION" Type="date" />
         </EntityType>
         <!--Errors Found During Generation:
+      warning 6002: The table/view 'def.colinas.reporte_detalle_de_aportaciones_por_socio' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="reporte_detalle_de_aportaciones_por_socio">
+          <Key>
+            <PropertyRef Name="TRANSACCION_NUMERO" />
+          </Key>
+          <Property Name="TRANSACCION_NUMERO" Type="int" Nullable="false" />
+          <Property Name="FECHA" Type="date" Nullable="false" />
+          <Property Name="SOCIOS_ID" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="SOCIOS_NOMBRE" Type="varchar" MaxLength="183" />
+          <Property Name="DOCUMENTO_TIPO" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="20" />
+          <Property Name="ENTRADAS_APORTACIONES_ORDINARIA" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="SALIDAS_APORTACIONES_ORDINARIA" Type="decimal" Precision="11" Scale="4" />
+          <Property Name="ENTRADAS_APORTACIONES_EXTRAORDINARIA" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="SALIDAS_APORTACIONES_EXTRAORDINARIA" Type="decimal" Precision="11" Scale="4" />
+          <Property Name="ENTRADAS_APORTACIONES_CAPITALIZACION_RETENCION" Type="decimal" Precision="11" Scale="2" />
+          <Property Name="SALIDAS_APORTACIONES_CAPITALIZACION_RETENCION" Type="decimal" Precision="11" Scale="4" />
+          <Property Name="ENTRADAS_APORTACIONES_INTERESES_S_APORTACIONES" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="SALIDAS_APORTACIONES_INTERESES_S_APORTACIONES" Type="decimal" Precision="11" Scale="4" />
+          <Property Name="ENTRADAS_APORTACIONES_EXCEDENTE_PERIODO" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="SALIDAS_APORTACIONES_EXCEDENTE_PERIODO" Type="decimal" Precision="11" Scale="4" />
+          <Property Name="APORTACIONES_CANTIDAD" Type="decimal" Nullable="false" Precision="11" Scale="4" />
+          <Property Name="APORTACIONES_ORDINARIA_SALDO" Type="decimal" Nullable="false" Precision="11" Scale="4" />
+          <Property Name="APORTACIONES_EXTRAORDINARIA_SALDO" Type="decimal" Nullable="false" Precision="11" Scale="4" />
+          <Property Name="APORTACIONES_CAPITALIZACION_RETENCION_SALDO" Type="decimal" Nullable="false" Precision="11" Scale="4" />
+          <Property Name="APORTACIONES_INTERESES_S_APORTACIONES_SALDO" Type="decimal" Nullable="false" Precision="11" Scale="4" />
+          <Property Name="APORTACIONES_EXCEDENTE_PERIODO_SALDO" Type="decimal" Nullable="false" Precision="11" Scale="4" />
+          <Property Name="APORTACIONES_SALDO_TOTAL" Type="decimal" Nullable="false" Precision="11" Scale="4" />
+          <Property Name="CREADO_POR" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
       warning 6002: The table/view 'def.colinas.reporte_movimientos_de_inventario_de_cafe_de_cooperativa' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="reporte_movimientos_de_inventario_de_cafe_de_cooperativa">
           <Key>
             <PropertyRef Name="TRANSACCION_NUMERO" />
+            
+            
+            
+            
+            
+            
+            
           </Key>
           <Property Name="TRANSACCION_NUMERO" Type="int" Nullable="false" />
           <Property Name="FECHA" Type="date" Nullable="false" />
@@ -1414,6 +1483,7 @@
           </FunctionImport>
           <EntitySet Name="reporte_movimientos_de_inventario_de_cafe_de_socios" EntityType="COLINASMODEL.reporte_movimientos_de_inventario_de_cafe_de_socios" />
           <EntitySet Name="reporte_movimientos_de_inventario_de_cafe_de_cooperativa" EntityType="COLINASMODEL.reporte_movimientos_de_inventario_de_cafe_de_cooperativa" />
+          <EntitySet Name="reporte_detalle_de_aportaciones_por_socio" EntityType="COLINASMODEL.reporte_detalle_de_aportaciones_por_socio" />
           </EntityContainer>
         <EntityType Name="codigo">
           <Key>
@@ -2319,6 +2389,36 @@
           <Property Type="String" Name="CREADO_POR" Nullable="false" />
           <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
         </EntityType>
+        <EntityType Name="reporte_detalle_de_aportaciones_por_socio">
+          <Key>
+            <PropertyRef Name="TRANSACCION_NUMERO" />
+          </Key>
+          <Property Type="Int32" Name="TRANSACCION_NUMERO" Nullable="false" />
+          <Property Type="DateTime" Name="FECHA" Nullable="false" />
+          <Property Type="String" Name="SOCIOS_ID" Nullable="false" />
+          <Property Type="String" Name="SOCIOS_NOMBRE" />
+          <Property Type="String" Name="DOCUMENTO_TIPO" Nullable="false" />
+          <Property Type="String" Name="DESCRIPCION" />
+          <Property Type="Decimal" Name="ENTRADAS_APORTACIONES_ORDINARIA" />
+          <Property Type="Decimal" Name="SALIDAS_APORTACIONES_ORDINARIA" />
+          <Property Type="Decimal" Name="ENTRADAS_APORTACIONES_EXTRAORDINARIA" />
+          <Property Type="Decimal" Name="SALIDAS_APORTACIONES_EXTRAORDINARIA" />
+          <Property Type="Decimal" Name="ENTRADAS_APORTACIONES_CAPITALIZACION_RETENCION" />
+          <Property Type="Decimal" Name="SALIDAS_APORTACIONES_CAPITALIZACION_RETENCION" />
+          <Property Type="Decimal" Name="ENTRADAS_APORTACIONES_INTERESES_S_APORTACIONES" />
+          <Property Type="Decimal" Name="SALIDAS_APORTACIONES_INTERESES_S_APORTACIONES" />
+          <Property Type="Decimal" Name="ENTRADAS_APORTACIONES_EXCEDENTE_PERIODO" />
+          <Property Type="Decimal" Name="SALIDAS_APORTACIONES_EXCEDENTE_PERIODO" />
+          <Property Type="Decimal" Name="APORTACIONES_CANTIDAD" Nullable="false" />
+          <Property Type="Decimal" Name="APORTACIONES_ORDINARIA_SALDO" Nullable="false" />
+          <Property Type="Decimal" Name="APORTACIONES_EXTRAORDINARIA_SALDO" Nullable="false" />
+          <Property Type="Decimal" Name="APORTACIONES_CAPITALIZACION_RETENCION_SALDO" Nullable="false" />
+          <Property Type="Decimal" Name="APORTACIONES_INTERESES_S_APORTACIONES_SALDO" Nullable="false" />
+          <Property Type="Decimal" Name="APORTACIONES_EXCEDENTE_PERIODO_SALDO" Nullable="false" />
+          <Property Type="Decimal" Name="APORTACIONES_SALDO_TOTAL" Nullable="false" />
+          <Property Type="String" Name="CREADO_POR" Nullable="false" />
+          <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2902,6 +3002,37 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="reporte_detalle_de_aportaciones_por_socio">
+            <EntityTypeMapping TypeName="COLINASMODEL.reporte_detalle_de_aportaciones_por_socio">
+              <MappingFragment StoreEntitySet="reporte_detalle_de_aportaciones_por_socio">
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
+                <ScalarProperty Name="APORTACIONES_SALDO_TOTAL" ColumnName="APORTACIONES_SALDO_TOTAL" />
+                <ScalarProperty Name="APORTACIONES_EXCEDENTE_PERIODO_SALDO" ColumnName="APORTACIONES_EXCEDENTE_PERIODO_SALDO" />
+                <ScalarProperty Name="APORTACIONES_INTERESES_S_APORTACIONES_SALDO" ColumnName="APORTACIONES_INTERESES_S_APORTACIONES_SALDO" />
+                <ScalarProperty Name="APORTACIONES_CAPITALIZACION_RETENCION_SALDO" ColumnName="APORTACIONES_CAPITALIZACION_RETENCION_SALDO" />
+                <ScalarProperty Name="APORTACIONES_EXTRAORDINARIA_SALDO" ColumnName="APORTACIONES_EXTRAORDINARIA_SALDO" />
+                <ScalarProperty Name="APORTACIONES_ORDINARIA_SALDO" ColumnName="APORTACIONES_ORDINARIA_SALDO" />
+                <ScalarProperty Name="APORTACIONES_CANTIDAD" ColumnName="APORTACIONES_CANTIDAD" />
+                <ScalarProperty Name="SALIDAS_APORTACIONES_EXCEDENTE_PERIODO" ColumnName="SALIDAS_APORTACIONES_EXCEDENTE_PERIODO" />
+                <ScalarProperty Name="ENTRADAS_APORTACIONES_EXCEDENTE_PERIODO" ColumnName="ENTRADAS_APORTACIONES_EXCEDENTE_PERIODO" />
+                <ScalarProperty Name="SALIDAS_APORTACIONES_INTERESES_S_APORTACIONES" ColumnName="SALIDAS_APORTACIONES_INTERESES_S_APORTACIONES" />
+                <ScalarProperty Name="ENTRADAS_APORTACIONES_INTERESES_S_APORTACIONES" ColumnName="ENTRADAS_APORTACIONES_INTERESES_S_APORTACIONES" />
+                <ScalarProperty Name="SALIDAS_APORTACIONES_CAPITALIZACION_RETENCION" ColumnName="SALIDAS_APORTACIONES_CAPITALIZACION_RETENCION" />
+                <ScalarProperty Name="ENTRADAS_APORTACIONES_CAPITALIZACION_RETENCION" ColumnName="ENTRADAS_APORTACIONES_CAPITALIZACION_RETENCION" />
+                <ScalarProperty Name="SALIDAS_APORTACIONES_EXTRAORDINARIA" ColumnName="SALIDAS_APORTACIONES_EXTRAORDINARIA" />
+                <ScalarProperty Name="ENTRADAS_APORTACIONES_EXTRAORDINARIA" ColumnName="ENTRADAS_APORTACIONES_EXTRAORDINARIA" />
+                <ScalarProperty Name="SALIDAS_APORTACIONES_ORDINARIA" ColumnName="SALIDAS_APORTACIONES_ORDINARIA" />
+                <ScalarProperty Name="ENTRADAS_APORTACIONES_ORDINARIA" ColumnName="ENTRADAS_APORTACIONES_ORDINARIA" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="DOCUMENTO_TIPO" ColumnName="DOCUMENTO_TIPO" />
+                <ScalarProperty Name="SOCIOS_NOMBRE" ColumnName="SOCIOS_NOMBRE" />
+                <ScalarProperty Name="SOCIOS_ID" ColumnName="SOCIOS_ID" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="TRANSACCION_NUMERO" ColumnName="TRANSACCION_NUMERO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -3009,12 +3140,12 @@
         <EntityTypeShape EntityType="COLINASMODEL.liquidacion" Width="1.5" PointX="13.875" PointY="6" Height="6.9801236979166674" />
         <AssociationConnector Association="COLINASMODEL.LIQUIDACIONES_CLASIFICACIONES_FK" >
           <ConnectorPoint PointX="2" PointY="15.408396809895834" />
-          <ConnectorPoint PointX="4.4401040104166674" PointY="15.408396809895832" />
-          <ConnectorPoint PointX="4.739583333333333" PointY="15.408396809895834" />
-          <ConnectorPoint PointX="4.928385338541668" PointY="15.408396809895834" />
-          <ConnectorPoint PointX="5.0950520052083341" PointY="15.408396809895834" />
-          <ConnectorPoint PointX="5.479166666666667" PointY="15.408396809895834" />
-          <ConnectorPoint PointX="5.645833333333333" PointY="15.408396809895834" />
+          <ConnectorPoint PointX="4.260416666666667" PointY="15.408396809895832" />
+          <ConnectorPoint PointX="4.5364558333333322" PointY="15.408396809895834" />
+          <ConnectorPoint PointX="4.6822916666666679" PointY="15.408396809895834" />
+          <ConnectorPoint PointX="4.8489583333333339" PointY="15.408396809895834" />
+          <ConnectorPoint PointX="5.166666666666667" PointY="15.408396809895834" />
+          <ConnectorPoint PointX="5.333333333333333" PointY="15.408396809895834" />
           <ConnectorPoint PointX="14.625" PointY="15.408396809895834" />
           <ConnectorPoint PointX="14.625" PointY="12.980123697916667" />
         </AssociationConnector>
@@ -3035,8 +3166,10 @@
           <ConnectorPoint PointX="2" PointY="12.600616861979166" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.FK_INVENTARIO_socios" >
-          <ConnectorPoint PointX="4.52343734375" PointY="12.951233723958334" />
-          <ConnectorPoint PointX="4.52343734375" PointY="20.692047526041669" />
+          <ConnectorPoint PointX="4.4531225" PointY="12.951233723958334" />
+          <ConnectorPoint PointX="4.4531225" PointY="20.692047526041669" />
+          <ConnectorPoint PointX="4.427083333333333" PointY="20.692047526041669" />
+          <ConnectorPoint PointX="4.260416666666667" PointY="20.692047526041669" />
           <ConnectorPoint PointX="4.125" PointY="20.692047526041669" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.LIQUIDACIONES_SOCIOS_FK" >
@@ -3048,8 +3181,8 @@
           <ConnectorPoint PointX="13.875" PointY="8.6736243576921517" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.FK_NOTA_DE_PESO_socios" >
-          <ConnectorPoint PointX="5.0117186718750011" PointY="12.951233723958334" />
-          <ConnectorPoint PointX="4.6992186718750011" PointY="22.641256510416667" />
+          <ConnectorPoint PointX="4.7656250000000009" PointY="12.951233723958334" />
+          <ConnectorPoint PointX="4.7656250000000009" PointY="22.641256510416667" />
           <ConnectorPoint PointX="5.375" PointY="22.641256510416667" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.PrestamosSocio_fk" >
@@ -3058,7 +3191,7 @@
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.RETIROS_SOCIOS_FK" >
           <ConnectorPoint PointX="4.8750000000000018" PointY="12.951233723958334" />
-          <ConnectorPoint PointX="5.5625" PointY="13.326233723958332" />
+          <ConnectorPoint PointX="5.25" PointY="13.326233723958332" />
           <ConnectorPoint PointX="5.25" PointY="16" />
           <ConnectorPoint PointX="10.375" PointY="16" />
           <ConnectorPoint PointX="10.75" PointY="16.375" />
@@ -3083,8 +3216,8 @@
           <ConnectorPoint PointX="2.875" PointY="23.320333214069663" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.AJUSTES_INV_SOCIOS_FK" >
-          <ConnectorPoint PointX="4.65625" PointY="12.951233723958334" />
-          <ConnectorPoint PointX="4.65625" PointY="23.25" />
+          <ConnectorPoint PointX="4.34375" PointY="12.951233723958334" />
+          <ConnectorPoint PointX="4.34375" PointY="23.25" />
         </AssociationConnector>
         <EntityTypeShape EntityType="COLINASMODEL.inventario_cafe" Width="1.5" PointX="2.75" PointY="15.5" Height="2.749492187499996" />
         <AssociationConnector Association="COLINASMODEL.INVENTARIO_CLASIFICACIONES_CAFE_FK" >
@@ -3099,6 +3232,7 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="COLINASMODEL.reporte_movimientos_de_inventario_de_cafe_de_socios" Width="1.5" PointX="19.375" PointY="0.5" Height="4.0956022135416674" />
         <EntityTypeShape EntityType="COLINASMODEL.reporte_movimientos_de_inventario_de_cafe_de_cooperativa" Width="1.5" PointX="21.5" PointY="0.5" Height="3.7109993489583246" />
+        <EntityTypeShape EntityType="COLINASMODEL.reporte_detalle_de_aportaciones_por_socio" Width="1.5" PointX="23.5" PointY="0.5" Height="5.8263151041666674" />
         </Diagram>
     </Diagrams>
   </Designer>

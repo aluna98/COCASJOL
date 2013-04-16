@@ -2885,17 +2885,6 @@ iif(Parameters!parGroupByFechaCreacion.Value, False, True))))))
     <Style />
   </Body>
   <ReportParameters>
-    <ReportParameter Name="parReportType">
-      <DataType>String</DataType>
-      <Nullable>true</Nullable>
-      <DefaultValue>
-        <Values>
-          <Value>="m"</Value>
-        </Values>
-      </DefaultValue>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
     <ReportParameter Name="parGroupBySocios">
       <DataType>Boolean</DataType>
       <Nullable>true</Nullable>

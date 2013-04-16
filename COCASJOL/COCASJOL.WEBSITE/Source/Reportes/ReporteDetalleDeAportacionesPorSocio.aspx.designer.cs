@@ -10,7 +10,7 @@
 namespace COCASJOL.WEBSITE.Source.Reportes {
     
     
-    public partial class ReporteMovimientosInventarioDeCafeDeSocios {
+    public partial class ReporteDetalleDeAportacionesPorSocio {
         
         /// <summary>
         /// Head1 control.
@@ -49,15 +49,6 @@ namespace COCASJOL.WEBSITE.Source.Reportes {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// ClasificacionesCafeDS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ClasificacionesCafeDS;
-        
-        /// <summary>
         /// SociosDS control.
         /// </summary>
         /// <remarks>
@@ -74,15 +65,6 @@ namespace COCASJOL.WEBSITE.Source.Reportes {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Store SocioSt;
-        
-        /// <summary>
-        /// ClasificacionesCafeSt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store ClasificacionesCafeSt;
         
         /// <summary>
         /// LoggedUserHdn control.
@@ -146,15 +128,6 @@ namespace COCASJOL.WEBSITE.Source.Reportes {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ComboBox f_SOCIOS_ID;
-        
-        /// <summary>
-        /// f_CLASIFICACIONES_CAFE_ID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox f_CLASIFICACIONES_CAFE_ID;
         
         /// <summary>
         /// f_DESCRIPCION control.
@@ -281,15 +254,6 @@ namespace COCASJOL.WEBSITE.Source.Reportes {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Checkbox g_SOCIOS_ID;
-        
-        /// <summary>
-        /// g_CLASIFICACIONES_CAFE_ID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Checkbox g_CLASIFICACIONES_CAFE_ID;
         
         /// <summary>
         /// g_DESCRIPCION control.

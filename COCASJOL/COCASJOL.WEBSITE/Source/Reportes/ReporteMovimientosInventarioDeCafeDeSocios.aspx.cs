@@ -72,7 +72,7 @@ namespace COCASJOL.WEBSITE.Source.Reportes
 
                 string rdlPath = "~/resources/rdlcs/ReporteMovimientosDeInventarioDeCafeDeSocios.rdlc";
 
-                this.CreateFileOutput("ReporteMovimientosInventarioDeCafeDeSociosDeSocios", formatoSalida, rdlPath, datasourceMovimientoInventarioCafeSocios, reportParamCollection);
+                this.CreateFileOutput("ReporteMovimientosInventarioDeCafeDeSocios", formatoSalida, rdlPath, datasourceMovimientoInventarioCafeSocios, reportParamCollection);
             }
             catch (Exception ex)
             {

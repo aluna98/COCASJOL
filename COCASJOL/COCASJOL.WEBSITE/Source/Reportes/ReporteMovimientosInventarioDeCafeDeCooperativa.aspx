@@ -10,23 +10,67 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>Reporte Movimientos de Inventario de Café de Cooperativa</title>
-    <script type="text/javascript" src="../../resources/js/reportes/reporteMovimientosInventarioDeCafeDeSocios.js" ></script> 
+    <script type="text/javascript">
+        var calendar = {
+            setFecha: function () {
+                var dateFrom = Ext.getCmp('f_DATE_FROM').getValue();
+                if (dateFrom != "")
+                    dateFrom = dateFrom.dateFormat('d/M/y');
+                else
+                    dateFrom = "";
+
+                var dateTo = Ext.getCmp('f_DATE_TO').getValue();
+                if (dateTo != "")
+                    dateTo = dateTo.dateFormat('d/M/y');
+                else
+                    dateTo = "";
+
+
+                var strDate = dateFrom + (dateFrom == "" || dateTo == "" ? "" : " - ") + dateTo;
+
+                Ext.getCmp('f_FECHA').setValue("", strDate);
+            },
+
+            clearFecha: function () {
+                this.resetDateFields(Ext.getCmp('f_DATE_FROM'), Ext.getCmp('f_DATE_TO'));
+                this.setFecha();
+            },
+
+            validateDateRange: function (field) {
+                var v = this.processValue(this.getRawValue()), field;
+
+                if (this.startDateField) {
+                    field = Ext.getCmp(this.startDateField);
+                    field.setMaxValue();
+                    this.dateRangeMax = null;
+                } else if (this.endDateField) {
+                    field = Ext.getCmp(this.endDateField);
+                    field.setMinValue();
+                    this.dateRangeMin = null;
+                }
+
+                field.validate();
+            },
+
+            resetDateFields: function (field1, field2) {
+                field1.dateRangeMin = null;
+                field2.dateRangeMax = null;
+                field1.setMaxValue();
+                field2.setMinValue();
+                field1.reset();
+                field2.reset();
+            }
+        };
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
         <ext:ResourceManager ID="ResourceManager1" runat="server"  DisableViewState="false" >
-            <Listeners>
-                <DocumentReady Handler="PageX.setReferences();" />
-            </Listeners>
         </ext:ResourceManager>
 
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-
-        <ext:KeyNav ID="KeyNav1" runat="server" Target="={document.body}" >
-            <Home Handler="PageX.navHome();" />
-        </ext:KeyNav>
 
         <asp:ObjectDataSource ID="ClasificacionesCafeDS" runat="server"
                 TypeName="COCASJOL.LOGIC.Inventario.ClasificacionDeCafeLogic"
@@ -80,8 +124,8 @@
 
                                                 <ext:ComboBox ID="f_DESCRIPCION" runat="server" FieldLabel="Descripción" LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="true" ForceSelection="true" TypeAhead="true" LabelWidth="150" >
                                                     <Items>
-                                                        <ext:ListItem Text="Deposito de Café" Value="ENTRADA" />
-                                                        <ext:ListItem Text="Hoja de Liquidación" Value="SALIDA" />
+                                                        <ext:ListItem Text="Compra de Café" Value="ENTRADA" />
+                                                        <ext:ListItem Text="Venta de Café" Value="SALIDA" />
                                                     </Items>
                                                     <Triggers>
                                                         <ext:FieldTrigger Icon="Clear"/>

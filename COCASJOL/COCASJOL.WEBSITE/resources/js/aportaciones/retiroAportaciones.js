@@ -166,10 +166,25 @@ var PageX = {
 
     addGetNombreDeSocio: function (sociosIdTxt, nombreTxt) {
         var value = sociosIdTxt.getValue();
-        var record = SocioSt.getById(value);
+        var record = AportacionesSt.getById(value);
 
-        AddForm.getForm().loadRecord(record);
-        AddForm.record = record;
+        if (record != null) {
+            //            AddForm.getForm().loadRecord(record);
+            //            AddForm.record = record;
+            AddAportacionOrdinariaSaldoTxt.setValue(record.data.APORTACIONES_ORDINARIA_SALDO);
+            AddAportacionExtraordinariaSaldoTxt.setValue(record.data.APORTACIONES_EXTRAORDINARIA_SALDO);
+            AddAportacionCapRetencionSaldoTxt.setValue(record.data.APORTACIONES_CAPITALIZACION_RETENCION_SALDO);
+            AddAportacionInteresesSAportacionesSaldoTxt.setValue(record.data.APORTACIONES_INTERESES_S_APORTACION_SALDO);
+            AddAportacionExcedentePeriodoSaldoTxt.setValue(record.data.APORTACIONES_EXCEDENTE_PERIODO_SALDO);
+            AddAportacionTotalSaldoTxt.setValue(record.data.APORTACIONES_SALDO_TOTAL);
+        } else {
+            AddAportacionOrdinariaSaldoTxt.setValue(0);
+            AddAportacionExtraordinariaSaldoTxt.setValue(0);
+            AddAportacionCapRetencionSaldoTxt.setValue(0);
+            AddAportacionInteresesSAportacionesSaldoTxt.setValue(0);
+            AddAportacionExcedentePeriodoSaldoTxt.setValue(0);
+            AddAportacionTotalSaldoTxt.setValue(0);
+        }
 
         this.getNombreDeSocio(AddSociosIdTxt, AddNombreTxt);
 

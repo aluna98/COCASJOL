@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReporteMovimientosInventarioDeCafeDeSocios.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Reportes.ReporteMovimientosInventarioDeCafeDeSocios" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReporteDetalleDeAportacionesPorSocio.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Reportes.ReporteDetalleDeAportacionesPorSocio" %>
 
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
     Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
@@ -9,7 +9,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>Reporte Movimientos de Inventario de Café de Socios</title>
+    <title>Reporte Detalle de Aportaciones por Socio</title>
     <script type="text/javascript">
         var calendar = {
             setFecha: function () {
@@ -72,11 +72,6 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
 
-        <asp:ObjectDataSource ID="ClasificacionesCafeDS" runat="server"
-                TypeName="COCASJOL.LOGIC.Inventario.ClasificacionDeCafeLogic"
-                SelectMethod="GetClasificacionesDeCafe">
-        </asp:ObjectDataSource>
-
         <asp:ObjectDataSource ID="SociosDS" runat="server"
                 TypeName="COCASJOL.LOGIC.Socios.SociosLogic"
                 SelectMethod="getSociosActivos" >
@@ -92,17 +87,6 @@
                         <ext:RecordField Name="SOCIOS_PRIMER_APELLIDO" />
                         <ext:RecordField Name="SOCIOS_SEGUNDO_APELLIDO" />
                         <ext:RecordField Name="PRODUCCION_UBICACION_FINCA" ServerMapping="socios_produccion.PRODUCCION_UBICACION_FINCA" />
-                    </Fields>
-                </ext:JsonReader>
-            </Reader>
-        </ext:Store>
-
-        <ext:Store ID="ClasificacionesCafeSt" runat="server" DataSourceID="ClasificacionesCafeDS" >
-            <Reader>
-                <ext:JsonReader IDProperty="CLASIFICACIONES_CAFE_ID">
-                    <Fields>
-                        <ext:RecordField Name="CLASIFICACIONES_CAFE_ID" />
-                        <ext:RecordField Name="CLASIFICACIONES_CAFE_NOMBRE" />
                     </Fields>
                 </ext:JsonReader>
             </Reader>
@@ -165,24 +149,6 @@
                                                     </Template>
                                                     <Triggers>
                                                         <ext:FieldTrigger Icon="Clear" />
-                                                    </Triggers>
-                                                    <Listeners>
-                                                        <TriggerClick Handler="this.clearValue();" />
-                                                    </Listeners>
-                                                </ext:ComboBox>
-
-                                                <ext:ComboBox
-                                                    ID="f_CLASIFICACIONES_CAFE_ID" FieldLabel="Clasificación de Café" LabelAlign="Right" AnchorHorizontal="100%" LabelWidth="150"
-                                                    runat="server"
-                                                    AllowBlank="true"
-                                                    ForceSelection="true"
-                                                    StoreID="ClasificacionesCafeSt"
-                                                    ValueField="CLASIFICACIONES_CAFE_ID" 
-                                                    DisplayField="CLASIFICACIONES_CAFE_NOMBRE"
-                                                    Mode="Local"
-                                                    TypeAhead="true">
-                                                    <Triggers>
-                                                        <ext:FieldTrigger Icon="Clear"/>
                                                     </Triggers>
                                                     <Listeners>
                                                         <TriggerClick Handler="this.clearValue();" />
@@ -265,7 +231,6 @@
                                         <ext:Panel ID="Panel1" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" PaddingSummary="0 0 5 5">
                                             <Items>
                                                 <ext:Checkbox runat="server" ID="g_SOCIOS_ID" LabelWidth="200" LabelAlign="Left" FieldLabel="Agrupar por Socio" MsgTarget="Side" ></ext:Checkbox>
-                                                <ext:Checkbox runat="server" ID="g_CLASIFICACIONES_CAFE_ID" LabelWidth="200" LabelAlign="Left" FieldLabel="Agrupar por Clasificación de Café" MsgTarget="Side" ></ext:Checkbox>
                                                 <ext:Checkbox runat="server" ID="g_DESCRIPCION" LabelWidth="200" LabelAlign="Left" FieldLabel="Agrupar por Descripción" MsgTarget="Side" ></ext:Checkbox>
                                                 <ext:Checkbox runat="server" ID="g_FECHA" LabelWidth="200" LabelAlign="Left" FieldLabel="Agrupar por Fecha" MsgTarget="Side" ></ext:Checkbox>
                                                 <ext:Checkbox runat="server" ID="g_CREADO_POR" LabelWidth="200" LabelAlign="Left" FieldLabel="Agrupar por Creador" MsgTarget="Side" ></ext:Checkbox>

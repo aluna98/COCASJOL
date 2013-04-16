@@ -76,42 +76,5 @@ namespace COCASJOL.WEBSITE.Source.Reportes
                 throw;
             }
         }
-
-        //protected void SolicitudesSt_Reload(object sender, StoreRefreshDataEventArgs e)
-        //{
-        //    try
-        //    {
-        //        SolicitudesLogic prestamo = new SolicitudesLogic();
-        //        var store1 = this.PrestamosGrid.GetStore();
-        //        List<solicitud_prestamo> Resultado; 
-        //        if (AddSociosIdTxt.Text != "")
-        //        {
-        //            if (EditCmbPrestamo.Text != "")
-        //                Resultado = prestamo.getViewPrestamosXSocioXPrestamo(AddSociosIdTxt.Text, Convert.ToInt32(EditCmbPrestamo.Text));
-        //            else
-        //                Resultado = prestamo.getViewPrestamosXSocio(AddSociosIdTxt.Text);
-        //        }
-        //        else
-        //        {
-        //            if (EditCmbPrestamo.Text != "")
-        //            {
-        //                Resultado = prestamo.getViewPrestamosXTipoPrestamo(Convert.ToInt32(EditCmbPrestamo.Text));
-        //            }
-        //            else
-        //            {
-        //                Resultado = prestamo.getViewPrestamosXSocio();
-        //            }
-        //        }
-        //        Decimal Monto = Decimal.Parse(Resultado.Select(c => c.SOLICITUDES_MONTO).Sum().ToString());
-        //        MontoTotal.Text = Monto.ToString();
-        //        store1.DataSource = Resultado;
-        //        store1.DataBind();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        log.Fatal("error fatal al cargar solicitudes de prestamos.", ex);
-        //        throw;
-        //    }
-        //}
     }
 }

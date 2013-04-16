@@ -144,9 +144,7 @@
     <Content Include="resources\js\logger\applicationLog.js" />
     <Content Include="resources\js\md5.js" />
     <Content Include="resources\js\prestamos\PrestamosAprobados.js" />
-    <Content Include="resources\js\reportes\reportePrestamos.js" />
     <Content Include="resources\js\prestamos\solicitudesDePrestamos.js" />
-    <Content Include="resources\js\reportes\reporteMovimientosInventarioDeCafeDeSocios.js" />
     <Content Include="resources\js\seguridad\roles.js" />
     <Content Include="resources\js\seguridad\usuarios.js" />
     <Content Include="resources\js\socios\socios.js" />
@@ -179,6 +177,7 @@
     <Content Include="Source\Prestamos\Prestamos.aspx" />
     <Content Include="Source\Prestamos\SolicitudesDePrestamos.aspx" />
     <Content Include="Source\Reportes\ImprimirSolicitudDePrestamo.aspx" />
+    <Content Include="Source\Reportes\ReporteDetalleDeAportacionesPorSocio.aspx" />
     <Content Include="Source\Reportes\ReporteMovimientosInventarioDeCafeDeCooperativa.aspx" />
     <Content Include="Source\Reportes\ReporteMovimientosInventarioDeCafeDeSocios.aspx" />
     <Content Include="Source\Reportes\ImprimirHojasDeLiquidacion.aspx" />
@@ -391,6 +390,13 @@
     <Compile Include="Source\Reportes\ImprimirSolicitudDePrestamo.aspx.designer.cs">
       <DependentUpon>ImprimirSolicitudDePrestamo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Source\Reportes\ReporteDetalleDeAportacionesPorSocio.aspx.cs">
+      <DependentUpon>ReporteDetalleDeAportacionesPorSocio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Reportes\ReporteDetalleDeAportacionesPorSocio.aspx.designer.cs">
+      <DependentUpon>ReporteDetalleDeAportacionesPorSocio.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Source\Reportes\ReporteMovimientosInventarioDeCafeDeCooperativa.aspx.cs">
       <DependentUpon>ReporteMovimientosInventarioDeCafeDeCooperativa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -479,6 +485,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="resources\bin\" />
+    <Folder Include="resources\js\reportes\" />
     <Folder Include="resources\uploads\" />
   </ItemGroup>
   <ItemGroup>
@@ -492,6 +499,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="resources\rdlcs\ReporteDetalleDeAportacionesPorSocio.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="resources\rdlcs\ReporteMovimientosDeInventarioDeCafeDeCooperativa.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>

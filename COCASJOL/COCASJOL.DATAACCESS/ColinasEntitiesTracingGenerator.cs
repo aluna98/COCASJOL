@@ -675,6 +675,22 @@ namespace COCASJOL.DATAACCESS
             }
         }
         private ObjectSet<reporte_movimientos_de_inventario_de_cafe_de_cooperativa> _reporte_movimientos_de_inventario_de_cafe_de_cooperativa;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<reporte_detalle_de_aportaciones_por_socio> reporte_detalle_de_aportaciones_por_socio
+        {
+            get
+            {
+                if ((_reporte_detalle_de_aportaciones_por_socio == null))
+                {
+                    _reporte_detalle_de_aportaciones_por_socio = base.CreateObjectSet<reporte_detalle_de_aportaciones_por_socio>("reporte_detalle_de_aportaciones_por_socio");
+                }
+                return _reporte_detalle_de_aportaciones_por_socio;
+            }
+        }
+        private ObjectSet<reporte_detalle_de_aportaciones_por_socio> _reporte_detalle_de_aportaciones_por_socio;
 
         #endregion
         #region AddTo Methods
@@ -933,6 +949,14 @@ namespace COCASJOL.DATAACCESS
         public void AddToreporte_movimientos_de_inventario_de_cafe_de_cooperativa(reporte_movimientos_de_inventario_de_cafe_de_cooperativa reporte_movimientos_de_inventario_de_cafe_de_cooperativa)
         {
             base.AddObject("reporte_movimientos_de_inventario_de_cafe_de_cooperativa", reporte_movimientos_de_inventario_de_cafe_de_cooperativa);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the reporte_detalle_de_aportaciones_por_socio EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToreporte_detalle_de_aportaciones_por_socio(reporte_detalle_de_aportaciones_por_socio reporte_detalle_de_aportaciones_por_socio)
+        {
+            base.AddObject("reporte_detalle_de_aportaciones_por_socio", reporte_detalle_de_aportaciones_por_socio);
         }
 
         #endregion
@@ -7380,6 +7404,661 @@ namespace COCASJOL.DATAACCESS
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="COLINASMODEL", Name="reporte_detalle_de_aportaciones_por_socio")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class reporte_detalle_de_aportaciones_por_socio : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new reporte_detalle_de_aportaciones_por_socio object.
+        /// </summary>
+        /// <param name="tRANSACCION_NUMERO">Initial value of the TRANSACCION_NUMERO property.</param>
+        /// <param name="fECHA">Initial value of the FECHA property.</param>
+        /// <param name="sOCIOS_ID">Initial value of the SOCIOS_ID property.</param>
+        /// <param name="dOCUMENTO_TIPO">Initial value of the DOCUMENTO_TIPO property.</param>
+        /// <param name="aPORTACIONES_CANTIDAD">Initial value of the APORTACIONES_CANTIDAD property.</param>
+        /// <param name="aPORTACIONES_ORDINARIA_SALDO">Initial value of the APORTACIONES_ORDINARIA_SALDO property.</param>
+        /// <param name="aPORTACIONES_EXTRAORDINARIA_SALDO">Initial value of the APORTACIONES_EXTRAORDINARIA_SALDO property.</param>
+        /// <param name="aPORTACIONES_CAPITALIZACION_RETENCION_SALDO">Initial value of the APORTACIONES_CAPITALIZACION_RETENCION_SALDO property.</param>
+        /// <param name="aPORTACIONES_INTERESES_S_APORTACIONES_SALDO">Initial value of the APORTACIONES_INTERESES_S_APORTACIONES_SALDO property.</param>
+        /// <param name="aPORTACIONES_EXCEDENTE_PERIODO_SALDO">Initial value of the APORTACIONES_EXCEDENTE_PERIODO_SALDO property.</param>
+        /// <param name="aPORTACIONES_SALDO_TOTAL">Initial value of the APORTACIONES_SALDO_TOTAL property.</param>
+        /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
+        /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
+        public static reporte_detalle_de_aportaciones_por_socio Createreporte_detalle_de_aportaciones_por_socio(global::System.Int32 tRANSACCION_NUMERO, global::System.DateTime fECHA, global::System.String sOCIOS_ID, global::System.String dOCUMENTO_TIPO, global::System.Decimal aPORTACIONES_CANTIDAD, global::System.Decimal aPORTACIONES_ORDINARIA_SALDO, global::System.Decimal aPORTACIONES_EXTRAORDINARIA_SALDO, global::System.Decimal aPORTACIONES_CAPITALIZACION_RETENCION_SALDO, global::System.Decimal aPORTACIONES_INTERESES_S_APORTACIONES_SALDO, global::System.Decimal aPORTACIONES_EXCEDENTE_PERIODO_SALDO, global::System.Decimal aPORTACIONES_SALDO_TOTAL, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
+        {
+            reporte_detalle_de_aportaciones_por_socio reporte_detalle_de_aportaciones_por_socio = new reporte_detalle_de_aportaciones_por_socio();
+            reporte_detalle_de_aportaciones_por_socio.TRANSACCION_NUMERO = tRANSACCION_NUMERO;
+            reporte_detalle_de_aportaciones_por_socio.FECHA = fECHA;
+            reporte_detalle_de_aportaciones_por_socio.SOCIOS_ID = sOCIOS_ID;
+            reporte_detalle_de_aportaciones_por_socio.DOCUMENTO_TIPO = dOCUMENTO_TIPO;
+            reporte_detalle_de_aportaciones_por_socio.APORTACIONES_CANTIDAD = aPORTACIONES_CANTIDAD;
+            reporte_detalle_de_aportaciones_por_socio.APORTACIONES_ORDINARIA_SALDO = aPORTACIONES_ORDINARIA_SALDO;
+            reporte_detalle_de_aportaciones_por_socio.APORTACIONES_EXTRAORDINARIA_SALDO = aPORTACIONES_EXTRAORDINARIA_SALDO;
+            reporte_detalle_de_aportaciones_por_socio.APORTACIONES_CAPITALIZACION_RETENCION_SALDO = aPORTACIONES_CAPITALIZACION_RETENCION_SALDO;
+            reporte_detalle_de_aportaciones_por_socio.APORTACIONES_INTERESES_S_APORTACIONES_SALDO = aPORTACIONES_INTERESES_S_APORTACIONES_SALDO;
+            reporte_detalle_de_aportaciones_por_socio.APORTACIONES_EXCEDENTE_PERIODO_SALDO = aPORTACIONES_EXCEDENTE_PERIODO_SALDO;
+            reporte_detalle_de_aportaciones_por_socio.APORTACIONES_SALDO_TOTAL = aPORTACIONES_SALDO_TOTAL;
+            reporte_detalle_de_aportaciones_por_socio.CREADO_POR = cREADO_POR;
+            reporte_detalle_de_aportaciones_por_socio.FECHA_CREACION = fECHA_CREACION;
+            return reporte_detalle_de_aportaciones_por_socio;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 TRANSACCION_NUMERO
+        {
+            get
+            {
+                return _TRANSACCION_NUMERO;
+            }
+            set
+            {
+                if (_TRANSACCION_NUMERO != value)
+                {
+                    OnTRANSACCION_NUMEROChanging(value);
+                    ReportPropertyChanging("TRANSACCION_NUMERO");
+                    _TRANSACCION_NUMERO = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("TRANSACCION_NUMERO");
+                    OnTRANSACCION_NUMEROChanged();
+                }
+            }
+        }
+        private global::System.Int32 _TRANSACCION_NUMERO;
+        partial void OnTRANSACCION_NUMEROChanging(global::System.Int32 value);
+        partial void OnTRANSACCION_NUMEROChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime FECHA
+        {
+            get
+            {
+                return _FECHA;
+            }
+            set
+            {
+                OnFECHAChanging(value);
+                ReportPropertyChanging("FECHA");
+                _FECHA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA");
+                OnFECHAChanged();
+            }
+        }
+        private global::System.DateTime _FECHA;
+        partial void OnFECHAChanging(global::System.DateTime value);
+        partial void OnFECHAChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String SOCIOS_ID
+        {
+            get
+            {
+                return _SOCIOS_ID;
+            }
+            set
+            {
+                OnSOCIOS_IDChanging(value);
+                ReportPropertyChanging("SOCIOS_ID");
+                _SOCIOS_ID = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("SOCIOS_ID");
+                OnSOCIOS_IDChanged();
+            }
+        }
+        private global::System.String _SOCIOS_ID;
+        partial void OnSOCIOS_IDChanging(global::System.String value);
+        partial void OnSOCIOS_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SOCIOS_NOMBRE
+        {
+            get
+            {
+                return _SOCIOS_NOMBRE;
+            }
+            set
+            {
+                OnSOCIOS_NOMBREChanging(value);
+                ReportPropertyChanging("SOCIOS_NOMBRE");
+                _SOCIOS_NOMBRE = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SOCIOS_NOMBRE");
+                OnSOCIOS_NOMBREChanged();
+            }
+        }
+        private global::System.String _SOCIOS_NOMBRE;
+        partial void OnSOCIOS_NOMBREChanging(global::System.String value);
+        partial void OnSOCIOS_NOMBREChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String DOCUMENTO_TIPO
+        {
+            get
+            {
+                return _DOCUMENTO_TIPO;
+            }
+            set
+            {
+                OnDOCUMENTO_TIPOChanging(value);
+                ReportPropertyChanging("DOCUMENTO_TIPO");
+                _DOCUMENTO_TIPO = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("DOCUMENTO_TIPO");
+                OnDOCUMENTO_TIPOChanged();
+            }
+        }
+        private global::System.String _DOCUMENTO_TIPO;
+        partial void OnDOCUMENTO_TIPOChanging(global::System.String value);
+        partial void OnDOCUMENTO_TIPOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String DESCRIPCION
+        {
+            get
+            {
+                return _DESCRIPCION;
+            }
+            set
+            {
+                OnDESCRIPCIONChanging(value);
+                ReportPropertyChanging("DESCRIPCION");
+                _DESCRIPCION = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("DESCRIPCION");
+                OnDESCRIPCIONChanged();
+            }
+        }
+        private global::System.String _DESCRIPCION;
+        partial void OnDESCRIPCIONChanging(global::System.String value);
+        partial void OnDESCRIPCIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> ENTRADAS_APORTACIONES_ORDINARIA
+        {
+            get
+            {
+                return _ENTRADAS_APORTACIONES_ORDINARIA;
+            }
+            set
+            {
+                OnENTRADAS_APORTACIONES_ORDINARIAChanging(value);
+                ReportPropertyChanging("ENTRADAS_APORTACIONES_ORDINARIA");
+                _ENTRADAS_APORTACIONES_ORDINARIA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ENTRADAS_APORTACIONES_ORDINARIA");
+                OnENTRADAS_APORTACIONES_ORDINARIAChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _ENTRADAS_APORTACIONES_ORDINARIA;
+        partial void OnENTRADAS_APORTACIONES_ORDINARIAChanging(Nullable<global::System.Decimal> value);
+        partial void OnENTRADAS_APORTACIONES_ORDINARIAChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> SALIDAS_APORTACIONES_ORDINARIA
+        {
+            get
+            {
+                return _SALIDAS_APORTACIONES_ORDINARIA;
+            }
+            set
+            {
+                OnSALIDAS_APORTACIONES_ORDINARIAChanging(value);
+                ReportPropertyChanging("SALIDAS_APORTACIONES_ORDINARIA");
+                _SALIDAS_APORTACIONES_ORDINARIA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SALIDAS_APORTACIONES_ORDINARIA");
+                OnSALIDAS_APORTACIONES_ORDINARIAChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _SALIDAS_APORTACIONES_ORDINARIA;
+        partial void OnSALIDAS_APORTACIONES_ORDINARIAChanging(Nullable<global::System.Decimal> value);
+        partial void OnSALIDAS_APORTACIONES_ORDINARIAChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> ENTRADAS_APORTACIONES_EXTRAORDINARIA
+        {
+            get
+            {
+                return _ENTRADAS_APORTACIONES_EXTRAORDINARIA;
+            }
+            set
+            {
+                OnENTRADAS_APORTACIONES_EXTRAORDINARIAChanging(value);
+                ReportPropertyChanging("ENTRADAS_APORTACIONES_EXTRAORDINARIA");
+                _ENTRADAS_APORTACIONES_EXTRAORDINARIA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ENTRADAS_APORTACIONES_EXTRAORDINARIA");
+                OnENTRADAS_APORTACIONES_EXTRAORDINARIAChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _ENTRADAS_APORTACIONES_EXTRAORDINARIA;
+        partial void OnENTRADAS_APORTACIONES_EXTRAORDINARIAChanging(Nullable<global::System.Decimal> value);
+        partial void OnENTRADAS_APORTACIONES_EXTRAORDINARIAChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> SALIDAS_APORTACIONES_EXTRAORDINARIA
+        {
+            get
+            {
+                return _SALIDAS_APORTACIONES_EXTRAORDINARIA;
+            }
+            set
+            {
+                OnSALIDAS_APORTACIONES_EXTRAORDINARIAChanging(value);
+                ReportPropertyChanging("SALIDAS_APORTACIONES_EXTRAORDINARIA");
+                _SALIDAS_APORTACIONES_EXTRAORDINARIA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SALIDAS_APORTACIONES_EXTRAORDINARIA");
+                OnSALIDAS_APORTACIONES_EXTRAORDINARIAChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _SALIDAS_APORTACIONES_EXTRAORDINARIA;
+        partial void OnSALIDAS_APORTACIONES_EXTRAORDINARIAChanging(Nullable<global::System.Decimal> value);
+        partial void OnSALIDAS_APORTACIONES_EXTRAORDINARIAChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> ENTRADAS_APORTACIONES_CAPITALIZACION_RETENCION
+        {
+            get
+            {
+                return _ENTRADAS_APORTACIONES_CAPITALIZACION_RETENCION;
+            }
+            set
+            {
+                OnENTRADAS_APORTACIONES_CAPITALIZACION_RETENCIONChanging(value);
+                ReportPropertyChanging("ENTRADAS_APORTACIONES_CAPITALIZACION_RETENCION");
+                _ENTRADAS_APORTACIONES_CAPITALIZACION_RETENCION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ENTRADAS_APORTACIONES_CAPITALIZACION_RETENCION");
+                OnENTRADAS_APORTACIONES_CAPITALIZACION_RETENCIONChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _ENTRADAS_APORTACIONES_CAPITALIZACION_RETENCION;
+        partial void OnENTRADAS_APORTACIONES_CAPITALIZACION_RETENCIONChanging(Nullable<global::System.Decimal> value);
+        partial void OnENTRADAS_APORTACIONES_CAPITALIZACION_RETENCIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> SALIDAS_APORTACIONES_CAPITALIZACION_RETENCION
+        {
+            get
+            {
+                return _SALIDAS_APORTACIONES_CAPITALIZACION_RETENCION;
+            }
+            set
+            {
+                OnSALIDAS_APORTACIONES_CAPITALIZACION_RETENCIONChanging(value);
+                ReportPropertyChanging("SALIDAS_APORTACIONES_CAPITALIZACION_RETENCION");
+                _SALIDAS_APORTACIONES_CAPITALIZACION_RETENCION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SALIDAS_APORTACIONES_CAPITALIZACION_RETENCION");
+                OnSALIDAS_APORTACIONES_CAPITALIZACION_RETENCIONChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _SALIDAS_APORTACIONES_CAPITALIZACION_RETENCION;
+        partial void OnSALIDAS_APORTACIONES_CAPITALIZACION_RETENCIONChanging(Nullable<global::System.Decimal> value);
+        partial void OnSALIDAS_APORTACIONES_CAPITALIZACION_RETENCIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> ENTRADAS_APORTACIONES_INTERESES_S_APORTACIONES
+        {
+            get
+            {
+                return _ENTRADAS_APORTACIONES_INTERESES_S_APORTACIONES;
+            }
+            set
+            {
+                OnENTRADAS_APORTACIONES_INTERESES_S_APORTACIONESChanging(value);
+                ReportPropertyChanging("ENTRADAS_APORTACIONES_INTERESES_S_APORTACIONES");
+                _ENTRADAS_APORTACIONES_INTERESES_S_APORTACIONES = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ENTRADAS_APORTACIONES_INTERESES_S_APORTACIONES");
+                OnENTRADAS_APORTACIONES_INTERESES_S_APORTACIONESChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _ENTRADAS_APORTACIONES_INTERESES_S_APORTACIONES;
+        partial void OnENTRADAS_APORTACIONES_INTERESES_S_APORTACIONESChanging(Nullable<global::System.Decimal> value);
+        partial void OnENTRADAS_APORTACIONES_INTERESES_S_APORTACIONESChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> SALIDAS_APORTACIONES_INTERESES_S_APORTACIONES
+        {
+            get
+            {
+                return _SALIDAS_APORTACIONES_INTERESES_S_APORTACIONES;
+            }
+            set
+            {
+                OnSALIDAS_APORTACIONES_INTERESES_S_APORTACIONESChanging(value);
+                ReportPropertyChanging("SALIDAS_APORTACIONES_INTERESES_S_APORTACIONES");
+                _SALIDAS_APORTACIONES_INTERESES_S_APORTACIONES = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SALIDAS_APORTACIONES_INTERESES_S_APORTACIONES");
+                OnSALIDAS_APORTACIONES_INTERESES_S_APORTACIONESChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _SALIDAS_APORTACIONES_INTERESES_S_APORTACIONES;
+        partial void OnSALIDAS_APORTACIONES_INTERESES_S_APORTACIONESChanging(Nullable<global::System.Decimal> value);
+        partial void OnSALIDAS_APORTACIONES_INTERESES_S_APORTACIONESChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> ENTRADAS_APORTACIONES_EXCEDENTE_PERIODO
+        {
+            get
+            {
+                return _ENTRADAS_APORTACIONES_EXCEDENTE_PERIODO;
+            }
+            set
+            {
+                OnENTRADAS_APORTACIONES_EXCEDENTE_PERIODOChanging(value);
+                ReportPropertyChanging("ENTRADAS_APORTACIONES_EXCEDENTE_PERIODO");
+                _ENTRADAS_APORTACIONES_EXCEDENTE_PERIODO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ENTRADAS_APORTACIONES_EXCEDENTE_PERIODO");
+                OnENTRADAS_APORTACIONES_EXCEDENTE_PERIODOChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _ENTRADAS_APORTACIONES_EXCEDENTE_PERIODO;
+        partial void OnENTRADAS_APORTACIONES_EXCEDENTE_PERIODOChanging(Nullable<global::System.Decimal> value);
+        partial void OnENTRADAS_APORTACIONES_EXCEDENTE_PERIODOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> SALIDAS_APORTACIONES_EXCEDENTE_PERIODO
+        {
+            get
+            {
+                return _SALIDAS_APORTACIONES_EXCEDENTE_PERIODO;
+            }
+            set
+            {
+                OnSALIDAS_APORTACIONES_EXCEDENTE_PERIODOChanging(value);
+                ReportPropertyChanging("SALIDAS_APORTACIONES_EXCEDENTE_PERIODO");
+                _SALIDAS_APORTACIONES_EXCEDENTE_PERIODO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SALIDAS_APORTACIONES_EXCEDENTE_PERIODO");
+                OnSALIDAS_APORTACIONES_EXCEDENTE_PERIODOChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _SALIDAS_APORTACIONES_EXCEDENTE_PERIODO;
+        partial void OnSALIDAS_APORTACIONES_EXCEDENTE_PERIODOChanging(Nullable<global::System.Decimal> value);
+        partial void OnSALIDAS_APORTACIONES_EXCEDENTE_PERIODOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal APORTACIONES_CANTIDAD
+        {
+            get
+            {
+                return _APORTACIONES_CANTIDAD;
+            }
+            set
+            {
+                OnAPORTACIONES_CANTIDADChanging(value);
+                ReportPropertyChanging("APORTACIONES_CANTIDAD");
+                _APORTACIONES_CANTIDAD = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("APORTACIONES_CANTIDAD");
+                OnAPORTACIONES_CANTIDADChanged();
+            }
+        }
+        private global::System.Decimal _APORTACIONES_CANTIDAD;
+        partial void OnAPORTACIONES_CANTIDADChanging(global::System.Decimal value);
+        partial void OnAPORTACIONES_CANTIDADChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal APORTACIONES_ORDINARIA_SALDO
+        {
+            get
+            {
+                return _APORTACIONES_ORDINARIA_SALDO;
+            }
+            set
+            {
+                OnAPORTACIONES_ORDINARIA_SALDOChanging(value);
+                ReportPropertyChanging("APORTACIONES_ORDINARIA_SALDO");
+                _APORTACIONES_ORDINARIA_SALDO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("APORTACIONES_ORDINARIA_SALDO");
+                OnAPORTACIONES_ORDINARIA_SALDOChanged();
+            }
+        }
+        private global::System.Decimal _APORTACIONES_ORDINARIA_SALDO;
+        partial void OnAPORTACIONES_ORDINARIA_SALDOChanging(global::System.Decimal value);
+        partial void OnAPORTACIONES_ORDINARIA_SALDOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal APORTACIONES_EXTRAORDINARIA_SALDO
+        {
+            get
+            {
+                return _APORTACIONES_EXTRAORDINARIA_SALDO;
+            }
+            set
+            {
+                OnAPORTACIONES_EXTRAORDINARIA_SALDOChanging(value);
+                ReportPropertyChanging("APORTACIONES_EXTRAORDINARIA_SALDO");
+                _APORTACIONES_EXTRAORDINARIA_SALDO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("APORTACIONES_EXTRAORDINARIA_SALDO");
+                OnAPORTACIONES_EXTRAORDINARIA_SALDOChanged();
+            }
+        }
+        private global::System.Decimal _APORTACIONES_EXTRAORDINARIA_SALDO;
+        partial void OnAPORTACIONES_EXTRAORDINARIA_SALDOChanging(global::System.Decimal value);
+        partial void OnAPORTACIONES_EXTRAORDINARIA_SALDOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal APORTACIONES_CAPITALIZACION_RETENCION_SALDO
+        {
+            get
+            {
+                return _APORTACIONES_CAPITALIZACION_RETENCION_SALDO;
+            }
+            set
+            {
+                OnAPORTACIONES_CAPITALIZACION_RETENCION_SALDOChanging(value);
+                ReportPropertyChanging("APORTACIONES_CAPITALIZACION_RETENCION_SALDO");
+                _APORTACIONES_CAPITALIZACION_RETENCION_SALDO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("APORTACIONES_CAPITALIZACION_RETENCION_SALDO");
+                OnAPORTACIONES_CAPITALIZACION_RETENCION_SALDOChanged();
+            }
+        }
+        private global::System.Decimal _APORTACIONES_CAPITALIZACION_RETENCION_SALDO;
+        partial void OnAPORTACIONES_CAPITALIZACION_RETENCION_SALDOChanging(global::System.Decimal value);
+        partial void OnAPORTACIONES_CAPITALIZACION_RETENCION_SALDOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal APORTACIONES_INTERESES_S_APORTACIONES_SALDO
+        {
+            get
+            {
+                return _APORTACIONES_INTERESES_S_APORTACIONES_SALDO;
+            }
+            set
+            {
+                OnAPORTACIONES_INTERESES_S_APORTACIONES_SALDOChanging(value);
+                ReportPropertyChanging("APORTACIONES_INTERESES_S_APORTACIONES_SALDO");
+                _APORTACIONES_INTERESES_S_APORTACIONES_SALDO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("APORTACIONES_INTERESES_S_APORTACIONES_SALDO");
+                OnAPORTACIONES_INTERESES_S_APORTACIONES_SALDOChanged();
+            }
+        }
+        private global::System.Decimal _APORTACIONES_INTERESES_S_APORTACIONES_SALDO;
+        partial void OnAPORTACIONES_INTERESES_S_APORTACIONES_SALDOChanging(global::System.Decimal value);
+        partial void OnAPORTACIONES_INTERESES_S_APORTACIONES_SALDOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal APORTACIONES_EXCEDENTE_PERIODO_SALDO
+        {
+            get
+            {
+                return _APORTACIONES_EXCEDENTE_PERIODO_SALDO;
+            }
+            set
+            {
+                OnAPORTACIONES_EXCEDENTE_PERIODO_SALDOChanging(value);
+                ReportPropertyChanging("APORTACIONES_EXCEDENTE_PERIODO_SALDO");
+                _APORTACIONES_EXCEDENTE_PERIODO_SALDO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("APORTACIONES_EXCEDENTE_PERIODO_SALDO");
+                OnAPORTACIONES_EXCEDENTE_PERIODO_SALDOChanged();
+            }
+        }
+        private global::System.Decimal _APORTACIONES_EXCEDENTE_PERIODO_SALDO;
+        partial void OnAPORTACIONES_EXCEDENTE_PERIODO_SALDOChanging(global::System.Decimal value);
+        partial void OnAPORTACIONES_EXCEDENTE_PERIODO_SALDOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal APORTACIONES_SALDO_TOTAL
+        {
+            get
+            {
+                return _APORTACIONES_SALDO_TOTAL;
+            }
+            set
+            {
+                OnAPORTACIONES_SALDO_TOTALChanging(value);
+                ReportPropertyChanging("APORTACIONES_SALDO_TOTAL");
+                _APORTACIONES_SALDO_TOTAL = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("APORTACIONES_SALDO_TOTAL");
+                OnAPORTACIONES_SALDO_TOTALChanged();
+            }
+        }
+        private global::System.Decimal _APORTACIONES_SALDO_TOTAL;
+        partial void OnAPORTACIONES_SALDO_TOTALChanging(global::System.Decimal value);
+        partial void OnAPORTACIONES_SALDO_TOTALChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CREADO_POR
+        {
+            get
+            {
+                return _CREADO_POR;
+            }
+            set
+            {
+                OnCREADO_PORChanging(value);
+                ReportPropertyChanging("CREADO_POR");
+                _CREADO_POR = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CREADO_POR");
+                OnCREADO_PORChanged();
+            }
+        }
+        private global::System.String _CREADO_POR;
+        partial void OnCREADO_PORChanging(global::System.String value);
+        partial void OnCREADO_PORChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime FECHA_CREACION
+        {
+            get
+            {
+                return _FECHA_CREACION;
+            }
+            set
+            {
+                OnFECHA_CREACIONChanging(value);
+                ReportPropertyChanging("FECHA_CREACION");
+                _FECHA_CREACION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_CREACION");
+                OnFECHA_CREACIONChanged();
+            }
+        }
+        private global::System.DateTime _FECHA_CREACION;
+        partial void OnFECHA_CREACIONChanging(global::System.DateTime value);
+        partial void OnFECHA_CREACIONChanged();
+
+        #endregion
+    
     }
     
     /// <summary>

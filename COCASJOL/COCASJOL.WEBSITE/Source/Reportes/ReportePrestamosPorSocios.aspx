@@ -7,7 +7,6 @@
 <head runat="server">
     <title>Reporte Prestamos por Socio</title>
     <link rel="Stylesheet" type="text/css" href="../../resources/css/ComboBox_Grid.css" />
-    <script type="text/javascript" src="../../resources/js/reportes/reportePrestamos.js" ></script>
  </head>
 <body>
     <form id="form1" runat="server">
