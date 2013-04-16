@@ -322,9 +322,41 @@ namespace COCASJOL.LOGIC.Reportes
             }
             catch (Exception ex)
             {
+                log.Fatal("Error fatal al obtener el reporte detalle aportaciones por socio.", ex);
+                throw;
+            }
+        }
+
+        public List<reporte_notas_de_peso> GetDetalleNotasDePeso
+            (int ESTADOS_NOTA_ID,
+            string SOCIOS_ID,
+            int CLASIFICACIONES_CAFE_ID,
+            string FECHA,
+            DateTime FECHA_DESDE,
+            DateTime FECHA_HASTA)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    var query = from np in db.reporte_notas_de_peso
+                                where
+                                (FECHA_DESDE == default(DateTime) ? true : np.NOTAS_FECHA >= FECHA_DESDE) &&
+                                (FECHA_HASTA == default(DateTime) ? true : np.NOTAS_FECHA <= FECHA_HASTA) &&
+                                (string.IsNullOrEmpty(SOCIOS_ID) ? true : np.SOCIOS_ID == SOCIOS_ID) &&
+                                (CLASIFICACIONES_CAFE_ID == 0 ? true : np.CLASIFICACIONES_CAFE_ID == CLASIFICACIONES_CAFE_ID) &&
+                                (ESTADOS_NOTA_ID == 0 ? true : np.ESTADOS_NOTA_ID == ESTADOS_NOTA_ID)
+                                select np;
+
+                    return query.ToList<reporte_notas_de_peso>();
+                }
+            }
+            catch (Exception ex)
+            {
                 log.Fatal("Error fatal al obtener el reporte de movimientos de inventario de cafe de socios.", ex);
                 throw;
             }
         }
+    
     }
 }

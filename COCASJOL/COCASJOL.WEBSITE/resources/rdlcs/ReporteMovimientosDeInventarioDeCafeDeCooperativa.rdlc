@@ -2419,7 +2419,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                 <GroupExpressions>
                   <GroupExpression>=
 iif(Parameters!parGroupByClasificacionCafe.Value = True, Fields!CLASIFICACIONES_CAFE_ID.Value, "") &amp;
-iif(Parameters!parGroupByDescripcion.Value = True, Fields!DESCRIPCION.Value, "") &amp;
+iif(Parameters!parGroupByDescripcion.Value = True, Fields!DOCUMENTO_TIPO.Value, "") &amp;
 iif(Parameters!parGroupByFecha.Value = True, Fields!FECHA.Value, "") &amp;
 iif(Parameters!parGroupByCreadoPor.Value = True, Fields!CREADO_POR.Value, "") &amp;
 iif(Parameters!parGroupByFechaCreacion.Value = True, Fields!FECHA_CREACION.Value, "")</GroupExpression>

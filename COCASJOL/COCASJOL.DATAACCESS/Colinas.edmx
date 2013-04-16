@@ -102,6 +102,36 @@
       `reporte_movimientos_de_inventario_de_cafe_de_socios`.`FECHA_CREACION`
       FROM `reporte_movimientos_de_inventario_de_cafe_de_socios` AS `reporte_movimientos_de_inventario_de_cafe_de_socios`</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="reporte_notas_de_peso" EntityType="COLINASMODEL.Store.reporte_notas_de_peso" store:Type="Views" store:Schema="colinas" store:Name="reporte_notas_de_peso">
+            <DefiningQuery>SELECT
+      `reporte_notas_de_peso`.`NOTAS_ID`, 
+      `reporte_notas_de_peso`.`NOTAS_FECHA`, 
+      `reporte_notas_de_peso`.`ESTADOS_NOTA_ID`, 
+      `reporte_notas_de_peso`.`ESTADOS_NOTA_NOMBRE`, 
+      `reporte_notas_de_peso`.`CLASIFICACIONES_CAFE_ID`, 
+      `reporte_notas_de_peso`.`CLASIFICACIONES_CAFE_NOMBRE`, 
+      `reporte_notas_de_peso`.`SOCIOS_ID`, 
+      `reporte_notas_de_peso`.`SOCIOS_NOMBRE`, 
+      `reporte_notas_de_peso`.`NOTAS_TRANSPORTE_COOPERATIVA`, 
+      `reporte_notas_de_peso`.`NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA`, 
+      `reporte_notas_de_peso`.`NOTAS_PORCENTAJE_DEFECTO`, 
+      `reporte_notas_de_peso`.`NOTAS_PESO_DEFECTO`, 
+      `reporte_notas_de_peso`.`NOTAS_PORCENTAJE_HUMEDAD`, 
+      `reporte_notas_de_peso`.`NOTAS_PESO_HUMEDAD`, 
+      `reporte_notas_de_peso`.`NOTAS_PESO_SUMA`, 
+      `reporte_notas_de_peso`.`NOTAS_PESO_TARA`, 
+      `reporte_notas_de_peso`.`NOTAS_PESO_DESCUENTO`, 
+      `reporte_notas_de_peso`.`NOTAS_PESO_TOTAL_RECIBIDO`, 
+      `reporte_notas_de_peso`.`NOTAS_PESO_TOTAL_RECIBIDO_TEXTO`, 
+      `reporte_notas_de_peso`.`NOTAS_SACOS_RETENIDOS`, 
+      `reporte_notas_de_peso`.`DETALLES_CANTIDAD_SACOS`, 
+      `reporte_notas_de_peso`.`DETALLES_PESO`, 
+      `reporte_notas_de_peso`.`CREADO_POR`, 
+      `reporte_notas_de_peso`.`FECHA_CREACION`, 
+      `reporte_notas_de_peso`.`MODIFICADO_POR`, 
+      `reporte_notas_de_peso`.`FECHA_MODIFICACION`
+      FROM `reporte_notas_de_peso` AS `reporte_notas_de_peso`</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="reporte_total_aportaciones_por_socio" EntityType="COLINASMODEL.Store.reporte_total_aportaciones_por_socio" store:Type="Views" store:Schema="colinas" store:Name="reporte_total_aportaciones_por_socio">
             <DefiningQuery>SELECT
       `reporte_total_aportaciones_por_socio`.`TRANSACCION_NUMERO`, 
@@ -729,6 +759,18 @@
         <EntityType Name="reporte_detalle_de_aportaciones_por_socio">
           <Key>
             <PropertyRef Name="TRANSACCION_NUMERO" />
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
           </Key>
           <Property Name="TRANSACCION_NUMERO" Type="int" Nullable="false" />
           <Property Name="FECHA" Type="date" Nullable="false" />
@@ -816,6 +858,41 @@
           <Property Name="INVENTARIO_SALIDAS_SALDO" Type="decimal" Nullable="false" Precision="11" Scale="4" />
           <Property Name="CREADO_POR" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'def.colinas.reporte_notas_de_peso' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="reporte_notas_de_peso">
+          <Key>
+            <PropertyRef Name="NOTAS_ID" />
+            <PropertyRef Name="NOTAS_PESO_TARA" />
+          </Key>
+          <Property Name="NOTAS_ID" Type="int" Nullable="false" />
+          <Property Name="NOTAS_FECHA" Type="date" Nullable="false" />
+          <Property Name="ESTADOS_NOTA_ID" Type="int" Nullable="false" />
+          <Property Name="ESTADOS_NOTA_NOMBRE" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="CLASIFICACIONES_CAFE_ID" Type="int" Nullable="false" />
+          <Property Name="CLASIFICACIONES_CAFE_NOMBRE" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="SOCIOS_ID" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="SOCIOS_NOMBRE" Type="varchar" MaxLength="183" />
+          <Property Name="NOTAS_TRANSPORTE_COOPERATIVA" Type="bit" Nullable="false" />
+          <Property Name="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA" Type="decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="NOTAS_PORCENTAJE_DEFECTO" Type="decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="NOTAS_PESO_DEFECTO" Type="decimal" Nullable="false" Precision="12" Scale="4" />
+          <Property Name="NOTAS_PORCENTAJE_HUMEDAD" Type="decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="NOTAS_PESO_HUMEDAD" Type="decimal" Nullable="false" Precision="12" Scale="4" />
+          <Property Name="NOTAS_PESO_SUMA" Type="decimal" Nullable="false" Precision="12" Scale="4" />
+          <Property Name="NOTAS_PESO_TARA" Type="decimal" Nullable="false" Precision="12" Scale="4" />
+          <Property Name="NOTAS_PESO_DESCUENTO" Type="decimal" Nullable="false" Precision="12" Scale="4" />
+          <Property Name="NOTAS_PESO_TOTAL_RECIBIDO" Type="decimal" Nullable="false" Precision="12" Scale="4" />
+          <Property Name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO" Type="decimal" Nullable="false" Precision="12" Scale="4" />
+          <Property Name="NOTAS_SACOS_RETENIDOS" Type="int" Nullable="false" />
+          <Property Name="DETALLES_CANTIDAD_SACOS" Type="int" Nullable="false" />
+          <Property Name="DETALLES_PESO" Type="decimal" Nullable="false" Scale="4" />
+          <Property Name="CREADO_POR" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
+          <Property Name="MODIFICADO_POR" Type="varchar" MaxLength="45" />
+          <Property Name="FECHA_MODIFICACION" Type="date" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'def.colinas.reporte_total_aportaciones_por_socio' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -1484,6 +1561,7 @@
           <EntitySet Name="reporte_movimientos_de_inventario_de_cafe_de_socios" EntityType="COLINASMODEL.reporte_movimientos_de_inventario_de_cafe_de_socios" />
           <EntitySet Name="reporte_movimientos_de_inventario_de_cafe_de_cooperativa" EntityType="COLINASMODEL.reporte_movimientos_de_inventario_de_cafe_de_cooperativa" />
           <EntitySet Name="reporte_detalle_de_aportaciones_por_socio" EntityType="COLINASMODEL.reporte_detalle_de_aportaciones_por_socio" />
+          <EntitySet Name="reporte_notas_de_peso" EntityType="COLINASMODEL.reporte_notas_de_peso" />
           </EntityContainer>
         <EntityType Name="codigo">
           <Key>
@@ -2419,6 +2497,38 @@
           <Property Type="String" Name="CREADO_POR" Nullable="false" />
           <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
         </EntityType>
+        <EntityType Name="reporte_notas_de_peso">
+          <Key>
+            <PropertyRef Name="NOTAS_ID" />
+            <PropertyRef Name="NOTAS_PESO_TARA" />
+          </Key>
+          <Property Type="Int32" Name="NOTAS_ID" Nullable="false" />
+          <Property Type="DateTime" Name="NOTAS_FECHA" Nullable="false" />
+          <Property Type="Int32" Name="ESTADOS_NOTA_ID" Nullable="false" />
+          <Property Type="String" Name="ESTADOS_NOTA_NOMBRE" Nullable="false" />
+          <Property Type="Int32" Name="CLASIFICACIONES_CAFE_ID" Nullable="false" />
+          <Property Type="String" Name="CLASIFICACIONES_CAFE_NOMBRE" Nullable="false" />
+          <Property Type="String" Name="SOCIOS_ID" Nullable="false" />
+          <Property Type="String" Name="SOCIOS_NOMBRE" />
+          <Property Type="Boolean" Name="NOTAS_TRANSPORTE_COOPERATIVA" Nullable="false" />
+          <Property Type="Decimal" Name="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA" Nullable="false" />
+          <Property Type="Decimal" Name="NOTAS_PORCENTAJE_DEFECTO" Nullable="false" />
+          <Property Type="Decimal" Name="NOTAS_PESO_DEFECTO" Nullable="false" />
+          <Property Type="Decimal" Name="NOTAS_PORCENTAJE_HUMEDAD" Nullable="false" />
+          <Property Type="Decimal" Name="NOTAS_PESO_HUMEDAD" Nullable="false" />
+          <Property Type="Decimal" Name="NOTAS_PESO_SUMA" Nullable="false" />
+          <Property Name="NOTAS_PESO_TARA" Nullable="false" Type="Decimal" />
+          <Property Type="Decimal" Name="NOTAS_PESO_DESCUENTO" Nullable="false" />
+          <Property Type="Decimal" Name="NOTAS_PESO_TOTAL_RECIBIDO" Nullable="false" />
+          <Property Type="Decimal" Name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO" Nullable="false" />
+          <Property Type="Int32" Name="NOTAS_SACOS_RETENIDOS" Nullable="false" />
+          <Property Type="Int32" Name="DETALLES_CANTIDAD_SACOS" Nullable="false" />
+          <Property Type="Decimal" Name="DETALLES_PESO" Nullable="false" />
+          <Property Type="String" Name="CREADO_POR" Nullable="false" />
+          <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
+          <Property Type="String" Name="MODIFICADO_POR" />
+          <Property Type="DateTime" Name="FECHA_MODIFICACION" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3033,6 +3143,38 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="reporte_notas_de_peso">
+            <EntityTypeMapping TypeName="COLINASMODEL.reporte_notas_de_peso">
+              <MappingFragment StoreEntitySet="reporte_notas_de_peso">
+                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
+                <ScalarProperty Name="MODIFICADO_POR" ColumnName="MODIFICADO_POR" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
+                <ScalarProperty Name="DETALLES_PESO" ColumnName="DETALLES_PESO" />
+                <ScalarProperty Name="DETALLES_CANTIDAD_SACOS" ColumnName="DETALLES_CANTIDAD_SACOS" />
+                <ScalarProperty Name="NOTAS_SACOS_RETENIDOS" ColumnName="NOTAS_SACOS_RETENIDOS" />
+                <ScalarProperty Name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO" ColumnName="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO" />
+                <ScalarProperty Name="NOTAS_PESO_TOTAL_RECIBIDO" ColumnName="NOTAS_PESO_TOTAL_RECIBIDO" />
+                <ScalarProperty Name="NOTAS_PESO_DESCUENTO" ColumnName="NOTAS_PESO_DESCUENTO" />
+                <ScalarProperty Name="NOTAS_PESO_TARA" ColumnName="NOTAS_PESO_TARA" />
+                <ScalarProperty Name="NOTAS_PESO_SUMA" ColumnName="NOTAS_PESO_SUMA" />
+                <ScalarProperty Name="NOTAS_PESO_HUMEDAD" ColumnName="NOTAS_PESO_HUMEDAD" />
+                <ScalarProperty Name="NOTAS_PORCENTAJE_HUMEDAD" ColumnName="NOTAS_PORCENTAJE_HUMEDAD" />
+                <ScalarProperty Name="NOTAS_PESO_DEFECTO" ColumnName="NOTAS_PESO_DEFECTO" />
+                <ScalarProperty Name="NOTAS_PORCENTAJE_DEFECTO" ColumnName="NOTAS_PORCENTAJE_DEFECTO" />
+                <ScalarProperty Name="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA" ColumnName="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA" />
+                <ScalarProperty Name="NOTAS_TRANSPORTE_COOPERATIVA" ColumnName="NOTAS_TRANSPORTE_COOPERATIVA" />
+                <ScalarProperty Name="SOCIOS_NOMBRE" ColumnName="SOCIOS_NOMBRE" />
+                <ScalarProperty Name="SOCIOS_ID" ColumnName="SOCIOS_ID" />
+                <ScalarProperty Name="CLASIFICACIONES_CAFE_NOMBRE" ColumnName="CLASIFICACIONES_CAFE_NOMBRE" />
+                <ScalarProperty Name="CLASIFICACIONES_CAFE_ID" ColumnName="CLASIFICACIONES_CAFE_ID" />
+                <ScalarProperty Name="ESTADOS_NOTA_NOMBRE" ColumnName="ESTADOS_NOTA_NOMBRE" />
+                <ScalarProperty Name="ESTADOS_NOTA_ID" ColumnName="ESTADOS_NOTA_ID" />
+                <ScalarProperty Name="NOTAS_FECHA" ColumnName="NOTAS_FECHA" />
+                <ScalarProperty Name="NOTAS_ID" ColumnName="NOTAS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -3140,10 +3282,10 @@
         <EntityTypeShape EntityType="COLINASMODEL.liquidacion" Width="1.5" PointX="13.875" PointY="6" Height="6.9801236979166674" />
         <AssociationConnector Association="COLINASMODEL.LIQUIDACIONES_CLASIFICACIONES_FK" >
           <ConnectorPoint PointX="2" PointY="15.408396809895834" />
-          <ConnectorPoint PointX="4.260416666666667" PointY="15.408396809895832" />
-          <ConnectorPoint PointX="4.5364558333333322" PointY="15.408396809895834" />
-          <ConnectorPoint PointX="4.6822916666666679" PointY="15.408396809895834" />
-          <ConnectorPoint PointX="4.8489583333333339" PointY="15.408396809895834" />
+          <ConnectorPoint PointX="4.260416666666667" PointY="15.408396809895834" />
+          <ConnectorPoint PointX="4.427083333333333" PointY="15.408396809895834" />
+          <ConnectorPoint PointX="4.471354166666667" PointY="15.408396809895832" />
+          <ConnectorPoint PointX="4.798177083333333" PointY="15.408396809895834" />
           <ConnectorPoint PointX="5.166666666666667" PointY="15.408396809895834" />
           <ConnectorPoint PointX="5.333333333333333" PointY="15.408396809895834" />
           <ConnectorPoint PointX="14.625" PointY="15.408396809895834" />
@@ -3166,8 +3308,8 @@
           <ConnectorPoint PointX="2" PointY="12.600616861979166" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.FK_INVENTARIO_socios" >
-          <ConnectorPoint PointX="4.4531225" PointY="12.951233723958334" />
-          <ConnectorPoint PointX="4.4531225" PointY="20.692047526041669" />
+          <ConnectorPoint PointX="4.5546875" PointY="12.951233723958334" />
+          <ConnectorPoint PointX="4.5546875" PointY="20.692047526041669" />
           <ConnectorPoint PointX="4.427083333333333" PointY="20.692047526041669" />
           <ConnectorPoint PointX="4.260416666666667" PointY="20.692047526041669" />
           <ConnectorPoint PointX="4.125" PointY="20.692047526041669" />
@@ -3181,8 +3323,8 @@
           <ConnectorPoint PointX="13.875" PointY="8.6736243576921517" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.FK_NOTA_DE_PESO_socios" >
-          <ConnectorPoint PointX="4.7656250000000009" PointY="12.951233723958334" />
-          <ConnectorPoint PointX="4.7656250000000009" PointY="22.641256510416667" />
+          <ConnectorPoint PointX="4.7148437500000009" PointY="12.951233723958334" />
+          <ConnectorPoint PointX="4.7148437500000009" PointY="22.641256510416667" />
           <ConnectorPoint PointX="5.375" PointY="22.641256510416667" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.PrestamosSocio_fk" >
@@ -3233,6 +3375,7 @@
         <EntityTypeShape EntityType="COLINASMODEL.reporte_movimientos_de_inventario_de_cafe_de_socios" Width="1.5" PointX="19.375" PointY="0.5" Height="4.0956022135416674" />
         <EntityTypeShape EntityType="COLINASMODEL.reporte_movimientos_de_inventario_de_cafe_de_cooperativa" Width="1.5" PointX="21.5" PointY="0.5" Height="3.7109993489583246" />
         <EntityTypeShape EntityType="COLINASMODEL.reporte_detalle_de_aportaciones_por_socio" Width="1.5" PointX="23.5" PointY="0.5" Height="5.8263151041666674" />
+        <EntityTypeShape EntityType="COLINASMODEL.reporte_notas_de_peso" Width="1.5" PointX="25.625" PointY="0.5" Height="6.0186165364583246" />
         </Diagram>
     </Diagrams>
   </Designer>

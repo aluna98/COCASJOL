@@ -691,6 +691,22 @@ namespace COCASJOL.DATAACCESS
             }
         }
         private ObjectSet<reporte_detalle_de_aportaciones_por_socio> _reporte_detalle_de_aportaciones_por_socio;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<reporte_notas_de_peso> reporte_notas_de_peso
+        {
+            get
+            {
+                if ((_reporte_notas_de_peso == null))
+                {
+                    _reporte_notas_de_peso = base.CreateObjectSet<reporte_notas_de_peso>("reporte_notas_de_peso");
+                }
+                return _reporte_notas_de_peso;
+            }
+        }
+        private ObjectSet<reporte_notas_de_peso> _reporte_notas_de_peso;
 
         #endregion
         #region AddTo Methods
@@ -957,6 +973,14 @@ namespace COCASJOL.DATAACCESS
         public void AddToreporte_detalle_de_aportaciones_por_socio(reporte_detalle_de_aportaciones_por_socio reporte_detalle_de_aportaciones_por_socio)
         {
             base.AddObject("reporte_detalle_de_aportaciones_por_socio", reporte_detalle_de_aportaciones_por_socio);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the reporte_notas_de_peso EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToreporte_notas_de_peso(reporte_notas_de_peso reporte_notas_de_peso)
+        {
+            base.AddObject("reporte_notas_de_peso", reporte_notas_de_peso);
         }
 
         #endregion
@@ -8868,6 +8892,708 @@ namespace COCASJOL.DATAACCESS
         private global::System.DateTime _FECHA_CREACION;
         partial void OnFECHA_CREACIONChanging(global::System.DateTime value);
         partial void OnFECHA_CREACIONChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="COLINASMODEL", Name="reporte_notas_de_peso")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class reporte_notas_de_peso : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new reporte_notas_de_peso object.
+        /// </summary>
+        /// <param name="nOTAS_ID">Initial value of the NOTAS_ID property.</param>
+        /// <param name="nOTAS_FECHA">Initial value of the NOTAS_FECHA property.</param>
+        /// <param name="eSTADOS_NOTA_ID">Initial value of the ESTADOS_NOTA_ID property.</param>
+        /// <param name="eSTADOS_NOTA_NOMBRE">Initial value of the ESTADOS_NOTA_NOMBRE property.</param>
+        /// <param name="cLASIFICACIONES_CAFE_ID">Initial value of the CLASIFICACIONES_CAFE_ID property.</param>
+        /// <param name="cLASIFICACIONES_CAFE_NOMBRE">Initial value of the CLASIFICACIONES_CAFE_NOMBRE property.</param>
+        /// <param name="sOCIOS_ID">Initial value of the SOCIOS_ID property.</param>
+        /// <param name="nOTAS_TRANSPORTE_COOPERATIVA">Initial value of the NOTAS_TRANSPORTE_COOPERATIVA property.</param>
+        /// <param name="nOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA">Initial value of the NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA property.</param>
+        /// <param name="nOTAS_PORCENTAJE_DEFECTO">Initial value of the NOTAS_PORCENTAJE_DEFECTO property.</param>
+        /// <param name="nOTAS_PESO_DEFECTO">Initial value of the NOTAS_PESO_DEFECTO property.</param>
+        /// <param name="nOTAS_PORCENTAJE_HUMEDAD">Initial value of the NOTAS_PORCENTAJE_HUMEDAD property.</param>
+        /// <param name="nOTAS_PESO_HUMEDAD">Initial value of the NOTAS_PESO_HUMEDAD property.</param>
+        /// <param name="nOTAS_PESO_SUMA">Initial value of the NOTAS_PESO_SUMA property.</param>
+        /// <param name="nOTAS_PESO_TARA">Initial value of the NOTAS_PESO_TARA property.</param>
+        /// <param name="nOTAS_PESO_DESCUENTO">Initial value of the NOTAS_PESO_DESCUENTO property.</param>
+        /// <param name="nOTAS_PESO_TOTAL_RECIBIDO">Initial value of the NOTAS_PESO_TOTAL_RECIBIDO property.</param>
+        /// <param name="nOTAS_PESO_TOTAL_RECIBIDO_TEXTO">Initial value of the NOTAS_PESO_TOTAL_RECIBIDO_TEXTO property.</param>
+        /// <param name="nOTAS_SACOS_RETENIDOS">Initial value of the NOTAS_SACOS_RETENIDOS property.</param>
+        /// <param name="dETALLES_CANTIDAD_SACOS">Initial value of the DETALLES_CANTIDAD_SACOS property.</param>
+        /// <param name="dETALLES_PESO">Initial value of the DETALLES_PESO property.</param>
+        /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
+        /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
+        public static reporte_notas_de_peso Createreporte_notas_de_peso(global::System.Int32 nOTAS_ID, global::System.DateTime nOTAS_FECHA, global::System.Int32 eSTADOS_NOTA_ID, global::System.String eSTADOS_NOTA_NOMBRE, global::System.Int32 cLASIFICACIONES_CAFE_ID, global::System.String cLASIFICACIONES_CAFE_NOMBRE, global::System.String sOCIOS_ID, global::System.Boolean nOTAS_TRANSPORTE_COOPERATIVA, global::System.Decimal nOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA, global::System.Decimal nOTAS_PORCENTAJE_DEFECTO, global::System.Decimal nOTAS_PESO_DEFECTO, global::System.Decimal nOTAS_PORCENTAJE_HUMEDAD, global::System.Decimal nOTAS_PESO_HUMEDAD, global::System.Decimal nOTAS_PESO_SUMA, global::System.Decimal nOTAS_PESO_TARA, global::System.Decimal nOTAS_PESO_DESCUENTO, global::System.Decimal nOTAS_PESO_TOTAL_RECIBIDO, global::System.Decimal nOTAS_PESO_TOTAL_RECIBIDO_TEXTO, global::System.Int32 nOTAS_SACOS_RETENIDOS, global::System.Int32 dETALLES_CANTIDAD_SACOS, global::System.Decimal dETALLES_PESO, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
+        {
+            reporte_notas_de_peso reporte_notas_de_peso = new reporte_notas_de_peso();
+            reporte_notas_de_peso.NOTAS_ID = nOTAS_ID;
+            reporte_notas_de_peso.NOTAS_FECHA = nOTAS_FECHA;
+            reporte_notas_de_peso.ESTADOS_NOTA_ID = eSTADOS_NOTA_ID;
+            reporte_notas_de_peso.ESTADOS_NOTA_NOMBRE = eSTADOS_NOTA_NOMBRE;
+            reporte_notas_de_peso.CLASIFICACIONES_CAFE_ID = cLASIFICACIONES_CAFE_ID;
+            reporte_notas_de_peso.CLASIFICACIONES_CAFE_NOMBRE = cLASIFICACIONES_CAFE_NOMBRE;
+            reporte_notas_de_peso.SOCIOS_ID = sOCIOS_ID;
+            reporte_notas_de_peso.NOTAS_TRANSPORTE_COOPERATIVA = nOTAS_TRANSPORTE_COOPERATIVA;
+            reporte_notas_de_peso.NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA = nOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA;
+            reporte_notas_de_peso.NOTAS_PORCENTAJE_DEFECTO = nOTAS_PORCENTAJE_DEFECTO;
+            reporte_notas_de_peso.NOTAS_PESO_DEFECTO = nOTAS_PESO_DEFECTO;
+            reporte_notas_de_peso.NOTAS_PORCENTAJE_HUMEDAD = nOTAS_PORCENTAJE_HUMEDAD;
+            reporte_notas_de_peso.NOTAS_PESO_HUMEDAD = nOTAS_PESO_HUMEDAD;
+            reporte_notas_de_peso.NOTAS_PESO_SUMA = nOTAS_PESO_SUMA;
+            reporte_notas_de_peso.NOTAS_PESO_TARA = nOTAS_PESO_TARA;
+            reporte_notas_de_peso.NOTAS_PESO_DESCUENTO = nOTAS_PESO_DESCUENTO;
+            reporte_notas_de_peso.NOTAS_PESO_TOTAL_RECIBIDO = nOTAS_PESO_TOTAL_RECIBIDO;
+            reporte_notas_de_peso.NOTAS_PESO_TOTAL_RECIBIDO_TEXTO = nOTAS_PESO_TOTAL_RECIBIDO_TEXTO;
+            reporte_notas_de_peso.NOTAS_SACOS_RETENIDOS = nOTAS_SACOS_RETENIDOS;
+            reporte_notas_de_peso.DETALLES_CANTIDAD_SACOS = dETALLES_CANTIDAD_SACOS;
+            reporte_notas_de_peso.DETALLES_PESO = dETALLES_PESO;
+            reporte_notas_de_peso.CREADO_POR = cREADO_POR;
+            reporte_notas_de_peso.FECHA_CREACION = fECHA_CREACION;
+            return reporte_notas_de_peso;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 NOTAS_ID
+        {
+            get
+            {
+                return _NOTAS_ID;
+            }
+            set
+            {
+                if (_NOTAS_ID != value)
+                {
+                    OnNOTAS_IDChanging(value);
+                    ReportPropertyChanging("NOTAS_ID");
+                    _NOTAS_ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("NOTAS_ID");
+                    OnNOTAS_IDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _NOTAS_ID;
+        partial void OnNOTAS_IDChanging(global::System.Int32 value);
+        partial void OnNOTAS_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime NOTAS_FECHA
+        {
+            get
+            {
+                return _NOTAS_FECHA;
+            }
+            set
+            {
+                OnNOTAS_FECHAChanging(value);
+                ReportPropertyChanging("NOTAS_FECHA");
+                _NOTAS_FECHA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NOTAS_FECHA");
+                OnNOTAS_FECHAChanged();
+            }
+        }
+        private global::System.DateTime _NOTAS_FECHA;
+        partial void OnNOTAS_FECHAChanging(global::System.DateTime value);
+        partial void OnNOTAS_FECHAChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ESTADOS_NOTA_ID
+        {
+            get
+            {
+                return _ESTADOS_NOTA_ID;
+            }
+            set
+            {
+                OnESTADOS_NOTA_IDChanging(value);
+                ReportPropertyChanging("ESTADOS_NOTA_ID");
+                _ESTADOS_NOTA_ID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ESTADOS_NOTA_ID");
+                OnESTADOS_NOTA_IDChanged();
+            }
+        }
+        private global::System.Int32 _ESTADOS_NOTA_ID;
+        partial void OnESTADOS_NOTA_IDChanging(global::System.Int32 value);
+        partial void OnESTADOS_NOTA_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ESTADOS_NOTA_NOMBRE
+        {
+            get
+            {
+                return _ESTADOS_NOTA_NOMBRE;
+            }
+            set
+            {
+                OnESTADOS_NOTA_NOMBREChanging(value);
+                ReportPropertyChanging("ESTADOS_NOTA_NOMBRE");
+                _ESTADOS_NOTA_NOMBRE = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("ESTADOS_NOTA_NOMBRE");
+                OnESTADOS_NOTA_NOMBREChanged();
+            }
+        }
+        private global::System.String _ESTADOS_NOTA_NOMBRE;
+        partial void OnESTADOS_NOTA_NOMBREChanging(global::System.String value);
+        partial void OnESTADOS_NOTA_NOMBREChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 CLASIFICACIONES_CAFE_ID
+        {
+            get
+            {
+                return _CLASIFICACIONES_CAFE_ID;
+            }
+            set
+            {
+                OnCLASIFICACIONES_CAFE_IDChanging(value);
+                ReportPropertyChanging("CLASIFICACIONES_CAFE_ID");
+                _CLASIFICACIONES_CAFE_ID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CLASIFICACIONES_CAFE_ID");
+                OnCLASIFICACIONES_CAFE_IDChanged();
+            }
+        }
+        private global::System.Int32 _CLASIFICACIONES_CAFE_ID;
+        partial void OnCLASIFICACIONES_CAFE_IDChanging(global::System.Int32 value);
+        partial void OnCLASIFICACIONES_CAFE_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CLASIFICACIONES_CAFE_NOMBRE
+        {
+            get
+            {
+                return _CLASIFICACIONES_CAFE_NOMBRE;
+            }
+            set
+            {
+                OnCLASIFICACIONES_CAFE_NOMBREChanging(value);
+                ReportPropertyChanging("CLASIFICACIONES_CAFE_NOMBRE");
+                _CLASIFICACIONES_CAFE_NOMBRE = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CLASIFICACIONES_CAFE_NOMBRE");
+                OnCLASIFICACIONES_CAFE_NOMBREChanged();
+            }
+        }
+        private global::System.String _CLASIFICACIONES_CAFE_NOMBRE;
+        partial void OnCLASIFICACIONES_CAFE_NOMBREChanging(global::System.String value);
+        partial void OnCLASIFICACIONES_CAFE_NOMBREChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String SOCIOS_ID
+        {
+            get
+            {
+                return _SOCIOS_ID;
+            }
+            set
+            {
+                OnSOCIOS_IDChanging(value);
+                ReportPropertyChanging("SOCIOS_ID");
+                _SOCIOS_ID = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("SOCIOS_ID");
+                OnSOCIOS_IDChanged();
+            }
+        }
+        private global::System.String _SOCIOS_ID;
+        partial void OnSOCIOS_IDChanging(global::System.String value);
+        partial void OnSOCIOS_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SOCIOS_NOMBRE
+        {
+            get
+            {
+                return _SOCIOS_NOMBRE;
+            }
+            set
+            {
+                OnSOCIOS_NOMBREChanging(value);
+                ReportPropertyChanging("SOCIOS_NOMBRE");
+                _SOCIOS_NOMBRE = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SOCIOS_NOMBRE");
+                OnSOCIOS_NOMBREChanged();
+            }
+        }
+        private global::System.String _SOCIOS_NOMBRE;
+        partial void OnSOCIOS_NOMBREChanging(global::System.String value);
+        partial void OnSOCIOS_NOMBREChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean NOTAS_TRANSPORTE_COOPERATIVA
+        {
+            get
+            {
+                return _NOTAS_TRANSPORTE_COOPERATIVA;
+            }
+            set
+            {
+                OnNOTAS_TRANSPORTE_COOPERATIVAChanging(value);
+                ReportPropertyChanging("NOTAS_TRANSPORTE_COOPERATIVA");
+                _NOTAS_TRANSPORTE_COOPERATIVA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NOTAS_TRANSPORTE_COOPERATIVA");
+                OnNOTAS_TRANSPORTE_COOPERATIVAChanged();
+            }
+        }
+        private global::System.Boolean _NOTAS_TRANSPORTE_COOPERATIVA;
+        partial void OnNOTAS_TRANSPORTE_COOPERATIVAChanging(global::System.Boolean value);
+        partial void OnNOTAS_TRANSPORTE_COOPERATIVAChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA
+        {
+            get
+            {
+                return _NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA;
+            }
+            set
+            {
+                OnNOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVAChanging(value);
+                ReportPropertyChanging("NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA");
+                _NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA");
+                OnNOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVAChanged();
+            }
+        }
+        private global::System.Decimal _NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA;
+        partial void OnNOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVAChanging(global::System.Decimal value);
+        partial void OnNOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVAChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal NOTAS_PORCENTAJE_DEFECTO
+        {
+            get
+            {
+                return _NOTAS_PORCENTAJE_DEFECTO;
+            }
+            set
+            {
+                OnNOTAS_PORCENTAJE_DEFECTOChanging(value);
+                ReportPropertyChanging("NOTAS_PORCENTAJE_DEFECTO");
+                _NOTAS_PORCENTAJE_DEFECTO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NOTAS_PORCENTAJE_DEFECTO");
+                OnNOTAS_PORCENTAJE_DEFECTOChanged();
+            }
+        }
+        private global::System.Decimal _NOTAS_PORCENTAJE_DEFECTO;
+        partial void OnNOTAS_PORCENTAJE_DEFECTOChanging(global::System.Decimal value);
+        partial void OnNOTAS_PORCENTAJE_DEFECTOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal NOTAS_PESO_DEFECTO
+        {
+            get
+            {
+                return _NOTAS_PESO_DEFECTO;
+            }
+            set
+            {
+                OnNOTAS_PESO_DEFECTOChanging(value);
+                ReportPropertyChanging("NOTAS_PESO_DEFECTO");
+                _NOTAS_PESO_DEFECTO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NOTAS_PESO_DEFECTO");
+                OnNOTAS_PESO_DEFECTOChanged();
+            }
+        }
+        private global::System.Decimal _NOTAS_PESO_DEFECTO;
+        partial void OnNOTAS_PESO_DEFECTOChanging(global::System.Decimal value);
+        partial void OnNOTAS_PESO_DEFECTOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal NOTAS_PORCENTAJE_HUMEDAD
+        {
+            get
+            {
+                return _NOTAS_PORCENTAJE_HUMEDAD;
+            }
+            set
+            {
+                OnNOTAS_PORCENTAJE_HUMEDADChanging(value);
+                ReportPropertyChanging("NOTAS_PORCENTAJE_HUMEDAD");
+                _NOTAS_PORCENTAJE_HUMEDAD = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NOTAS_PORCENTAJE_HUMEDAD");
+                OnNOTAS_PORCENTAJE_HUMEDADChanged();
+            }
+        }
+        private global::System.Decimal _NOTAS_PORCENTAJE_HUMEDAD;
+        partial void OnNOTAS_PORCENTAJE_HUMEDADChanging(global::System.Decimal value);
+        partial void OnNOTAS_PORCENTAJE_HUMEDADChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal NOTAS_PESO_HUMEDAD
+        {
+            get
+            {
+                return _NOTAS_PESO_HUMEDAD;
+            }
+            set
+            {
+                OnNOTAS_PESO_HUMEDADChanging(value);
+                ReportPropertyChanging("NOTAS_PESO_HUMEDAD");
+                _NOTAS_PESO_HUMEDAD = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NOTAS_PESO_HUMEDAD");
+                OnNOTAS_PESO_HUMEDADChanged();
+            }
+        }
+        private global::System.Decimal _NOTAS_PESO_HUMEDAD;
+        partial void OnNOTAS_PESO_HUMEDADChanging(global::System.Decimal value);
+        partial void OnNOTAS_PESO_HUMEDADChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal NOTAS_PESO_SUMA
+        {
+            get
+            {
+                return _NOTAS_PESO_SUMA;
+            }
+            set
+            {
+                OnNOTAS_PESO_SUMAChanging(value);
+                ReportPropertyChanging("NOTAS_PESO_SUMA");
+                _NOTAS_PESO_SUMA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NOTAS_PESO_SUMA");
+                OnNOTAS_PESO_SUMAChanged();
+            }
+        }
+        private global::System.Decimal _NOTAS_PESO_SUMA;
+        partial void OnNOTAS_PESO_SUMAChanging(global::System.Decimal value);
+        partial void OnNOTAS_PESO_SUMAChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal NOTAS_PESO_TARA
+        {
+            get
+            {
+                return _NOTAS_PESO_TARA;
+            }
+            set
+            {
+                if (_NOTAS_PESO_TARA != value)
+                {
+                    OnNOTAS_PESO_TARAChanging(value);
+                    ReportPropertyChanging("NOTAS_PESO_TARA");
+                    _NOTAS_PESO_TARA = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("NOTAS_PESO_TARA");
+                    OnNOTAS_PESO_TARAChanged();
+                }
+            }
+        }
+        private global::System.Decimal _NOTAS_PESO_TARA;
+        partial void OnNOTAS_PESO_TARAChanging(global::System.Decimal value);
+        partial void OnNOTAS_PESO_TARAChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal NOTAS_PESO_DESCUENTO
+        {
+            get
+            {
+                return _NOTAS_PESO_DESCUENTO;
+            }
+            set
+            {
+                OnNOTAS_PESO_DESCUENTOChanging(value);
+                ReportPropertyChanging("NOTAS_PESO_DESCUENTO");
+                _NOTAS_PESO_DESCUENTO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NOTAS_PESO_DESCUENTO");
+                OnNOTAS_PESO_DESCUENTOChanged();
+            }
+        }
+        private global::System.Decimal _NOTAS_PESO_DESCUENTO;
+        partial void OnNOTAS_PESO_DESCUENTOChanging(global::System.Decimal value);
+        partial void OnNOTAS_PESO_DESCUENTOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal NOTAS_PESO_TOTAL_RECIBIDO
+        {
+            get
+            {
+                return _NOTAS_PESO_TOTAL_RECIBIDO;
+            }
+            set
+            {
+                OnNOTAS_PESO_TOTAL_RECIBIDOChanging(value);
+                ReportPropertyChanging("NOTAS_PESO_TOTAL_RECIBIDO");
+                _NOTAS_PESO_TOTAL_RECIBIDO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NOTAS_PESO_TOTAL_RECIBIDO");
+                OnNOTAS_PESO_TOTAL_RECIBIDOChanged();
+            }
+        }
+        private global::System.Decimal _NOTAS_PESO_TOTAL_RECIBIDO;
+        partial void OnNOTAS_PESO_TOTAL_RECIBIDOChanging(global::System.Decimal value);
+        partial void OnNOTAS_PESO_TOTAL_RECIBIDOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal NOTAS_PESO_TOTAL_RECIBIDO_TEXTO
+        {
+            get
+            {
+                return _NOTAS_PESO_TOTAL_RECIBIDO_TEXTO;
+            }
+            set
+            {
+                OnNOTAS_PESO_TOTAL_RECIBIDO_TEXTOChanging(value);
+                ReportPropertyChanging("NOTAS_PESO_TOTAL_RECIBIDO_TEXTO");
+                _NOTAS_PESO_TOTAL_RECIBIDO_TEXTO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NOTAS_PESO_TOTAL_RECIBIDO_TEXTO");
+                OnNOTAS_PESO_TOTAL_RECIBIDO_TEXTOChanged();
+            }
+        }
+        private global::System.Decimal _NOTAS_PESO_TOTAL_RECIBIDO_TEXTO;
+        partial void OnNOTAS_PESO_TOTAL_RECIBIDO_TEXTOChanging(global::System.Decimal value);
+        partial void OnNOTAS_PESO_TOTAL_RECIBIDO_TEXTOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 NOTAS_SACOS_RETENIDOS
+        {
+            get
+            {
+                return _NOTAS_SACOS_RETENIDOS;
+            }
+            set
+            {
+                OnNOTAS_SACOS_RETENIDOSChanging(value);
+                ReportPropertyChanging("NOTAS_SACOS_RETENIDOS");
+                _NOTAS_SACOS_RETENIDOS = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NOTAS_SACOS_RETENIDOS");
+                OnNOTAS_SACOS_RETENIDOSChanged();
+            }
+        }
+        private global::System.Int32 _NOTAS_SACOS_RETENIDOS;
+        partial void OnNOTAS_SACOS_RETENIDOSChanging(global::System.Int32 value);
+        partial void OnNOTAS_SACOS_RETENIDOSChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 DETALLES_CANTIDAD_SACOS
+        {
+            get
+            {
+                return _DETALLES_CANTIDAD_SACOS;
+            }
+            set
+            {
+                OnDETALLES_CANTIDAD_SACOSChanging(value);
+                ReportPropertyChanging("DETALLES_CANTIDAD_SACOS");
+                _DETALLES_CANTIDAD_SACOS = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DETALLES_CANTIDAD_SACOS");
+                OnDETALLES_CANTIDAD_SACOSChanged();
+            }
+        }
+        private global::System.Int32 _DETALLES_CANTIDAD_SACOS;
+        partial void OnDETALLES_CANTIDAD_SACOSChanging(global::System.Int32 value);
+        partial void OnDETALLES_CANTIDAD_SACOSChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal DETALLES_PESO
+        {
+            get
+            {
+                return _DETALLES_PESO;
+            }
+            set
+            {
+                OnDETALLES_PESOChanging(value);
+                ReportPropertyChanging("DETALLES_PESO");
+                _DETALLES_PESO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DETALLES_PESO");
+                OnDETALLES_PESOChanged();
+            }
+        }
+        private global::System.Decimal _DETALLES_PESO;
+        partial void OnDETALLES_PESOChanging(global::System.Decimal value);
+        partial void OnDETALLES_PESOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CREADO_POR
+        {
+            get
+            {
+                return _CREADO_POR;
+            }
+            set
+            {
+                OnCREADO_PORChanging(value);
+                ReportPropertyChanging("CREADO_POR");
+                _CREADO_POR = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CREADO_POR");
+                OnCREADO_PORChanged();
+            }
+        }
+        private global::System.String _CREADO_POR;
+        partial void OnCREADO_PORChanging(global::System.String value);
+        partial void OnCREADO_PORChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime FECHA_CREACION
+        {
+            get
+            {
+                return _FECHA_CREACION;
+            }
+            set
+            {
+                OnFECHA_CREACIONChanging(value);
+                ReportPropertyChanging("FECHA_CREACION");
+                _FECHA_CREACION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_CREACION");
+                OnFECHA_CREACIONChanged();
+            }
+        }
+        private global::System.DateTime _FECHA_CREACION;
+        partial void OnFECHA_CREACIONChanging(global::System.DateTime value);
+        partial void OnFECHA_CREACIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MODIFICADO_POR
+        {
+            get
+            {
+                return _MODIFICADO_POR;
+            }
+            set
+            {
+                OnMODIFICADO_PORChanging(value);
+                ReportPropertyChanging("MODIFICADO_POR");
+                _MODIFICADO_POR = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MODIFICADO_POR");
+                OnMODIFICADO_PORChanged();
+            }
+        }
+        private global::System.String _MODIFICADO_POR;
+        partial void OnMODIFICADO_PORChanging(global::System.String value);
+        partial void OnMODIFICADO_PORChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> FECHA_MODIFICACION
+        {
+            get
+            {
+                return _FECHA_MODIFICACION;
+            }
+            set
+            {
+                OnFECHA_MODIFICACIONChanging(value);
+                ReportPropertyChanging("FECHA_MODIFICACION");
+                _FECHA_MODIFICACION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_MODIFICACION");
+                OnFECHA_MODIFICACIONChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _FECHA_MODIFICACION;
+        partial void OnFECHA_MODIFICACIONChanging(Nullable<global::System.DateTime> value);
+        partial void OnFECHA_MODIFICACIONChanged();
 
         #endregion
     

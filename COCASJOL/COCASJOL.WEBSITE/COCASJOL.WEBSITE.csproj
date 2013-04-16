@@ -178,6 +178,7 @@
     <Content Include="Source\Prestamos\SolicitudesDePrestamos.aspx" />
     <Content Include="Source\Reportes\ImprimirSolicitudDePrestamo.aspx" />
     <Content Include="Source\Reportes\ReporteDetalleDeAportacionesPorSocio.aspx" />
+    <Content Include="Source\Reportes\ReporteDetalleDeNotasDePeso.aspx" />
     <Content Include="Source\Reportes\ReporteMovimientosInventarioDeCafeDeCooperativa.aspx" />
     <Content Include="Source\Reportes\ReporteMovimientosInventarioDeCafeDeSocios.aspx" />
     <Content Include="Source\Reportes\ImprimirHojasDeLiquidacion.aspx" />
@@ -397,6 +398,13 @@
     <Compile Include="Source\Reportes\ReporteDetalleDeAportacionesPorSocio.aspx.designer.cs">
       <DependentUpon>ReporteDetalleDeAportacionesPorSocio.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Source\Reportes\ReporteDetalleDeNotasDePeso.aspx.cs">
+      <DependentUpon>ReporteDetalleDeNotasDePeso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Reportes\ReporteDetalleDeNotasDePeso.aspx.designer.cs">
+      <DependentUpon>ReporteDetalleDeNotasDePeso.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Source\Reportes\ReporteMovimientosInventarioDeCafeDeCooperativa.aspx.cs">
       <DependentUpon>ReporteMovimientosInventarioDeCafeDeCooperativa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -506,6 +514,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\rdlcs\ReporteMovimientosDeInventarioDeCafeDeSocios.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\rdlcs\ReporteNotasDePeso.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\rdlcs\ReportePrestamosPorSocios.rdlc">
