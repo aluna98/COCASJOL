@@ -10,7 +10,7 @@
 namespace COCASJOL.WEBSITE.Source.Reportes {
     
     
-    public partial class ReporteDetalleDeNotasDePeso {
+    public partial class ReporteHojasDeLiquidacion {
         
         /// <summary>
         /// Head1 control.
@@ -49,15 +49,6 @@ namespace COCASJOL.WEBSITE.Source.Reportes {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// EstadosNotaDePesoDS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource EstadosNotaDePesoDS;
-        
-        /// <summary>
         /// ClasificacionesCafeDS control.
         /// </summary>
         /// <remarks>
@@ -74,15 +65,6 @@ namespace COCASJOL.WEBSITE.Source.Reportes {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource SociosDS;
-        
-        /// <summary>
-        /// EstadosNotaDePesoSt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store EstadosNotaDePesoSt;
         
         /// <summary>
         /// SocioSt control.
@@ -155,15 +137,6 @@ namespace COCASJOL.WEBSITE.Source.Reportes {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Panel Panel4;
-        
-        /// <summary>
-        /// f_ESTADOS_NOTA_ID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox f_ESTADOS_NOTA_ID;
         
         /// <summary>
         /// f_SOCIOS_ID control.
@@ -265,15 +238,6 @@ namespace COCASJOL.WEBSITE.Source.Reportes {
         protected global::Ext.Net.Panel Panel1;
         
         /// <summary>
-        /// g_ESTADOS_NOTA_ID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Checkbox g_ESTADOS_NOTA_ID;
-        
-        /// <summary>
         /// g_SOCIOS_ID control.
         /// </summary>
         /// <remarks>
@@ -299,15 +263,6 @@ namespace COCASJOL.WEBSITE.Source.Reportes {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Checkbox g_FECHA;
-        
-        /// <summary>
-        /// g_NOTAS_ID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Checkbox g_NOTAS_ID;
         
         /// <summary>
         /// f_SALIDA_FORMATO control.

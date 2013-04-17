@@ -353,7 +353,36 @@ namespace COCASJOL.LOGIC.Reportes
             }
             catch (Exception ex)
             {
-                log.Fatal("Error fatal al obtener el reporte de movimientos de inventario de cafe de socios.", ex);
+                log.Fatal("Error fatal al obtener el reporte detalle de notas de peso.", ex);
+                throw;
+            }
+        }
+
+        public List<reporte_hojas_de_liquidacion> GetDetalleHojasDeLiquidacion
+            (string SOCIOS_ID,
+            int CLASIFICACIONES_CAFE_ID,
+            string FECHA,
+            DateTime FECHA_DESDE,
+            DateTime FECHA_HASTA)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    var query = from hl in db.reporte_hojas_de_liquidacion
+                                where
+                                (FECHA_DESDE == default(DateTime) ? true : hl.LIQUIDACIONES_FECHA >= FECHA_DESDE) &&
+                                (FECHA_HASTA == default(DateTime) ? true : hl.LIQUIDACIONES_FECHA <= FECHA_HASTA) &&
+                                (string.IsNullOrEmpty(SOCIOS_ID) ? true : hl.SOCIOS_ID == SOCIOS_ID) &&
+                                (CLASIFICACIONES_CAFE_ID == 0 ? true : hl.CLASIFICACIONES_CAFE_ID == CLASIFICACIONES_CAFE_ID)
+                                select hl;
+
+                    return query.ToList<reporte_hojas_de_liquidacion>();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al obtener el reporte detalle de hojas de liquidacion.", ex);
                 throw;
             }
         }

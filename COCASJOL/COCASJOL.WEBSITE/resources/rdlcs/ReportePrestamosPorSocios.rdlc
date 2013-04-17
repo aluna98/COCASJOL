@@ -1615,7 +1615,7 @@ iif(Parameters!parGroupByPrestamo.Value = True, " - Tipo de Prestamo: " &amp; Fi
                               <Style />
                             </TextRun>
                             <TextRun>
-                              <Value> Total</Value>
+                              <Value> SubTotal</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1634,6 +1634,7 @@ iif(Parameters!parGroupByPrestamo.Value = True, " - Tipo de Prestamo: " &amp; Fi
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -1801,7 +1802,9 @@ iif(Parameters!parGroupByPrestamo.Value = True, " - Tipo de Prestamo: " &amp; Fi
                           <TextRuns>
                             <TextRun>
                               <Value />
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -1831,7 +1834,9 @@ iif(Parameters!parGroupByPrestamo.Value = True, " - Tipo de Prestamo: " &amp; Fi
                           <TextRuns>
                             <TextRun>
                               <Value />
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -1861,7 +1866,9 @@ iif(Parameters!parGroupByPrestamo.Value = True, " - Tipo de Prestamo: " &amp; Fi
                           <TextRuns>
                             <TextRun>
                               <Value />
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -1891,7 +1898,9 @@ iif(Parameters!parGroupByPrestamo.Value = True, " - Tipo de Prestamo: " &amp; Fi
                           <TextRuns>
                             <TextRun>
                               <Value />
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -1921,7 +1930,9 @@ iif(Parameters!parGroupByPrestamo.Value = True, " - Tipo de Prestamo: " &amp; Fi
                           <TextRuns>
                             <TextRun>
                               <Value>=Sum(Fields!SOLICITUDES_MONTO.Value)</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -1930,7 +1941,9 @@ iif(Parameters!parGroupByPrestamo.Value = True, " - Tipo de Prestamo: " &amp; Fi
                           <TextRuns>
                             <TextRun>
                               <Value>Total</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -1960,7 +1973,9 @@ iif(Parameters!parGroupByPrestamo.Value = True, " - Tipo de Prestamo: " &amp; Fi
                           <TextRuns>
                             <TextRun>
                               <Value />
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -1990,7 +2005,9 @@ iif(Parameters!parGroupByPrestamo.Value = True, " - Tipo de Prestamo: " &amp; Fi
                           <TextRuns>
                             <TextRun>
                               <Value />
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -2020,7 +2037,9 @@ iif(Parameters!parGroupByPrestamo.Value = True, " - Tipo de Prestamo: " &amp; Fi
                           <TextRuns>
                             <TextRun>
                               <Value />
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -2050,7 +2069,9 @@ iif(Parameters!parGroupByPrestamo.Value = True, " - Tipo de Prestamo: " &amp; Fi
                           <TextRuns>
                             <TextRun>
                               <Value />
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -2080,7 +2101,9 @@ iif(Parameters!parGroupByPrestamo.Value = True, " - Tipo de Prestamo: " &amp; Fi
                           <TextRuns>
                             <TextRun>
                               <Value />
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />

@@ -53,19 +53,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Colinas.Designer.cs">
-      <DependentUpon>Colinas.edmx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Colinas.edmx</DependentUpon>
     </Compile>
     <Compile Include="Colinas.Views.cs">
-      <DependentUpon>Colinas.Views.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Colinas.Views.tt</DependentUpon>
     </Compile>
     <Compile Include="ColinasEntitiesTracingGenerator.cs">
-      <DependentUpon>ColinasEntitiesTracingGenerator.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>ColinasEntitiesTracingGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

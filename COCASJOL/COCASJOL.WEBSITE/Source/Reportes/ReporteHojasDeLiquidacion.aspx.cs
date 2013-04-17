@@ -18,9 +18,9 @@ using Microsoft.Reporting.WebForms;
 
 namespace COCASJOL.WEBSITE.Source.Reportes
 {
-    public partial class ReporteDetalleDeNotasDePeso : COCASJOL.LOGIC.Web.COCASJOLREPORT
+    public partial class ReporteHojasDeLiquidacion : COCASJOL.LOGIC.Web.COCASJOLREPORT
     {
-        private static ILog log = LogManager.GetLogger(typeof(ReporteDetalleDeNotasDePeso).Name);
+        private static ILog log = LogManager.GetLogger(typeof(ReporteHojasDeLiquidacion).Name);
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -36,7 +36,7 @@ namespace COCASJOL.WEBSITE.Source.Reportes
             }
             catch (Exception ex)
             {
-                log.Fatal("Error fatal al cargar reporte detalle de notas de peso.", ex);
+                log.Fatal("Error fatal al cargar reporte de hojas de liquidacion.", ex);
                 throw;
             }
         }
@@ -48,29 +48,26 @@ namespace COCASJOL.WEBSITE.Source.Reportes
             {
                 ReporteLogic reporteLogic = new ReporteLogic();
 
-                List<reporte_notas_de_peso> ReporteDetalleDeNotasDePesoLst = reporteLogic.GetDetalleNotasDePeso
-                    (string.IsNullOrEmpty(this.f_ESTADOS_NOTA_ID.Text) ? 0 : Convert.ToInt32(this.f_ESTADOS_NOTA_ID.Text),
-                    this.f_SOCIOS_ID.Text,
+                List<reporte_hojas_de_liquidacion> ReporteDetalleDeHojasDeLiquidacionLst = reporteLogic.GetDetalleHojasDeLiquidacion
+                    (this.f_SOCIOS_ID.Text,
                     string.IsNullOrEmpty(this.f_CLASIFICACIONES_CAFE_ID.Text) ? 0 : Convert.ToInt32(this.f_CLASIFICACIONES_CAFE_ID.Text),
                     this.f_FECHA.Text,
                     this.f_DATE_FROM.SelectedDate,
                     this.f_DATE_TO.SelectedDate);
 
-                ReportDataSource datasourceDetalleDeNotasDePeso = new ReportDataSource("NotasDePesoDetalleDataSet", ReporteDetalleDeNotasDePesoLst);
+                ReportDataSource datasourceDetalleDeHojasDeLiquidacion = new ReportDataSource("HojaDeLiquidacionDataSet", ReporteDetalleDeHojasDeLiquidacionLst);
 
                 ReportParameterCollection reportParamCollection = new ReportParameterCollection();
                 reportParamCollection.Add(new ReportParameter("parGroupBySocios", this.g_SOCIOS_ID.Checked.ToString()));
                 reportParamCollection.Add(new ReportParameter("parGroupByClasificacionCafe", this.g_CLASIFICACIONES_CAFE_ID.Checked.ToString()));
-                reportParamCollection.Add(new ReportParameter("parGroupByEstado", this.g_ESTADOS_NOTA_ID.Checked.ToString()));
                 reportParamCollection.Add(new ReportParameter("parGroupByFecha", this.g_FECHA.Checked.ToString()));
-                reportParamCollection.Add(new ReportParameter("parGroupByNotas", this.g_NOTAS_ID.Checked.ToString()));
                 reportParamCollection.Add(new ReportParameter("parMostrarQuintales", this.p_QUINTALES.Checked.ToString()));
 
                 formatoSalida = this.f_SALIDA_FORMATO.Text;
 
-                string rdlPath = "~/resources/rdlcs/ReporteNotasDePeso.rdlc";
+                string rdlPath = "~/resources/rdlcs/ReporteHojasDeLiquidacion.rdlc";
 
-                this.CreateFileOutput("ReporteDetalleDeNotasDePeso", formatoSalida, rdlPath, datasourceDetalleDeNotasDePeso, reportParamCollection);
+                this.CreateFileOutput("ReporteDeHojasDeLiquidacion", formatoSalida, rdlPath, datasourceDetalleDeHojasDeLiquidacion, reportParamCollection);
             }
             catch (Exception ex)
             {

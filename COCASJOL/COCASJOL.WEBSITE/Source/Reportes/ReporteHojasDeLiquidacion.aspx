@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReporteMovimientosInventarioDeCafeDeCooperativa.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Reportes.ReporteMovimientosInventarioDeCafeDeCooperativa" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReporteHojasDeLiquidacion.aspx.cs" Inherits="COCASJOL.WEBSITE.Source.Reportes.ReporteHojasDeLiquidacion" %>
 
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
     Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
@@ -9,7 +9,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>Reporte Movimientos de Inventario de Café de Cooperativa</title>
+    <title>Reporte Detalle de Notas de Peso</title>
     <script type="text/javascript">
         var calendar = {
             setFecha: function () {
@@ -77,6 +77,26 @@
                 SelectMethod="GetClasificacionesDeCafe">
         </asp:ObjectDataSource>
 
+        <asp:ObjectDataSource ID="SociosDS" runat="server"
+                TypeName="COCASJOL.LOGIC.Socios.SociosLogic"
+                SelectMethod="getSociosActivos" >
+        </asp:ObjectDataSource>
+
+        <ext:Store ID="SocioSt" runat="server" DataSourceID="SociosDS">
+            <Reader>
+                <ext:JsonReader IDProperty="SOCIOS_ID">
+                    <Fields>
+                        <ext:RecordField Name="SOCIOS_ID" />
+                        <ext:RecordField Name="SOCIOS_PRIMER_NOMBRE" />
+                        <ext:RecordField Name="SOCIOS_SEGUNDO_NOMBRE" />
+                        <ext:RecordField Name="SOCIOS_PRIMER_APELLIDO" />
+                        <ext:RecordField Name="SOCIOS_SEGUNDO_APELLIDO" />
+                        <ext:RecordField Name="PRODUCCION_UBICACION_FINCA" ServerMapping="socios_produccion.PRODUCCION_UBICACION_FINCA" />
+                    </Fields>
+                </ext:JsonReader>
+            </Reader>
+        </ext:Store>
+
         <ext:Store ID="ClasificacionesCafeSt" runat="server" DataSourceID="ClasificacionesCafeDS" >
             <Reader>
                 <ext:JsonReader IDProperty="CLASIFICACIONES_CAFE_ID">
@@ -104,6 +124,53 @@
                                     <Items>
                                         <ext:Panel ID="Panel4" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                             <Items>
+                                                <ext:ComboBox  runat="server" ID="f_SOCIOS_ID" FieldLabel="Código de Socio" LabelAlign="Right" AnchorHorizontal="100%" LabelWidth="150"
+                                                    AllowBlank="true"
+                                                    TypeAhead="true"
+                                                    EmptyText="Seleccione un Socio"
+                                                    ForceSelection="true" 
+                                                    StoreID="SocioSt"
+                                                    Mode="Local" 
+                                                    DisplayField="SOCIOS_ID"
+                                                    ValueField="SOCIOS_ID"
+                                                    MinChars="2"
+                                                    ListWidth="450" 
+                                                    PageSize="10" 
+                                                    ItemSelector="tr.list-item" >
+                                                    <Template ID="Template2" runat="server" Width="200">
+                                                        <Html>
+					                                        <tpl for=".">
+						                                        <tpl if="[xindex] == 1">
+							                                        <table class="cbStates-list">
+								                                        <tr>
+								        	                                <th>ID</th>
+								        	                                <th>PRIMER NOMBRE</th>
+                                                                            <th>SEGUNDO NOMBRE</th>
+                                                                            <th>PRIMER APELLIDO</th>
+                                                                            <th>SEGUNDO APELLIDO</th>
+								                                        </tr>
+						                                        </tpl>
+						                                        <tr class="list-item">
+							                                        <td style="padding:3px 0px;">{SOCIOS_ID}</td>
+							                                        <td>{SOCIOS_PRIMER_NOMBRE}</td>
+                                                                    <td>{SOCIOS_SEGUNDO_NOMBRE}</td>
+                                                                    <td>{SOCIOS_PRIMER_APELLIDO}</td>
+                                                                    <td>{SOCIOS_SEGUNDO_APELLIDO}</td>
+						                                        </tr>
+						                                        <tpl if="[xcount-xindex]==0">
+							                                        </table>
+						                                        </tpl>
+					                                        </tpl>
+				                                        </Html>
+                                                    </Template>
+                                                    <Triggers>
+                                                        <ext:FieldTrigger Icon="Clear" />
+                                                    </Triggers>
+                                                    <Listeners>
+                                                        <TriggerClick Handler="this.clearValue();" />
+                                                    </Listeners>
+                                                </ext:ComboBox>
+
                                                 <ext:ComboBox
                                                     ID="f_CLASIFICACIONES_CAFE_ID" FieldLabel="Clasificación de Café" LabelAlign="Right" AnchorHorizontal="100%" LabelWidth="150"
                                                     runat="server"
@@ -114,19 +181,6 @@
                                                     DisplayField="CLASIFICACIONES_CAFE_NOMBRE"
                                                     Mode="Local"
                                                     TypeAhead="true">
-                                                    <Triggers>
-                                                        <ext:FieldTrigger Icon="Clear"/>
-                                                    </Triggers>
-                                                    <Listeners>
-                                                        <TriggerClick Handler="this.clearValue();" />
-                                                    </Listeners>
-                                                </ext:ComboBox>
-
-                                                <ext:ComboBox ID="f_DESCRIPCION" runat="server" FieldLabel="Descripción" LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="true" ForceSelection="true" TypeAhead="true" LabelWidth="150" >
-                                                    <Items>
-                                                        <ext:ListItem Text="Compra de Café" Value="ENTRADA" />
-                                                        <ext:ListItem Text="Venta de Café" Value="SALIDA" />
-                                                    </Items>
                                                     <Triggers>
                                                         <ext:FieldTrigger Icon="Clear"/>
                                                     </Triggers>
@@ -182,19 +236,13 @@
                                                         </ext:FormPanel>
                                                         </Component>
                                                 </ext:DropDownField>
-                                                
-                                                <ext:TextField ID="f_CREADO_POR" runat="server" FieldLabel="Creado Por" LabelAlign="Right" AnchorHorizontal="100%" LabelWidth="150" ></ext:TextField>
-                                                
-                                                <ext:DateField ID="f_FECHA_CREACION" runat="server" FieldLabel="Fecha de Creación" LabelAlign="Right" AnchorHorizontal="100%" LabelWidth="150" ></ext:DateField>
                                             </Items>
                                         </ext:Panel>
                                         <ext:Panel ID="Panel1" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" PaddingSummary="0 0 5 5">
                                             <Items>
+                                                <ext:Checkbox runat="server" ID="g_SOCIOS_ID" LabelWidth="200" LabelAlign="Left" FieldLabel="Agrupar por Socio" MsgTarget="Side" ></ext:Checkbox>
                                                 <ext:Checkbox runat="server" ID="g_CLASIFICACIONES_CAFE_ID" LabelWidth="200" LabelAlign="Left" FieldLabel="Agrupar por Clasificación de Café" MsgTarget="Side" ></ext:Checkbox>
-                                                <ext:Checkbox runat="server" ID="g_DESCRIPCION" LabelWidth="200" LabelAlign="Left" FieldLabel="Agrupar por Descripción" MsgTarget="Side" ></ext:Checkbox>
                                                 <ext:Checkbox runat="server" ID="g_FECHA" LabelWidth="200" LabelAlign="Left" FieldLabel="Agrupar por Fecha" MsgTarget="Side" ></ext:Checkbox>
-                                                <ext:Checkbox runat="server" ID="g_CREADO_POR" LabelWidth="200" LabelAlign="Left" FieldLabel="Agrupar por Creador" MsgTarget="Side" ></ext:Checkbox>
-                                                <ext:Checkbox runat="server" ID="g_FECHA_CREACION" LabelWidth="200" LabelAlign="Left" FieldLabel="Agrupar por Fecha de Creación" MsgTarget="Side" ></ext:Checkbox>
                                             </Items>
                                         </ext:Panel>
                                     </Items>

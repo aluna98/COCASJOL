@@ -64,6 +64,39 @@
       `reporte_detalle_de_aportaciones_por_socio`.`FECHA_CREACION`
       FROM `reporte_detalle_de_aportaciones_por_socio` AS `reporte_detalle_de_aportaciones_por_socio`</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="reporte_hojas_de_liquidacion" EntityType="COLINASMODEL.Store.reporte_hojas_de_liquidacion" store:Type="Views" store:Schema="colinas" store:Name="reporte_hojas_de_liquidacion">
+            <DefiningQuery>SELECT
+      `reporte_hojas_de_liquidacion`.`LIQUIDACIONES_ID`, 
+      `reporte_hojas_de_liquidacion`.`LIQUIDACIONES_FECHA`, 
+      `reporte_hojas_de_liquidacion`.`CLASIFICACIONES_CAFE_ID`, 
+      `reporte_hojas_de_liquidacion`.`CLASIFICACIONES_CAFE_NOMBRE`, 
+      `reporte_hojas_de_liquidacion`.`SOCIOS_ID`, 
+      `reporte_hojas_de_liquidacion`.`SOCIOS_NOMBRE`, 
+      `reporte_hojas_de_liquidacion`.`LIQUIDACIONES_TOTAL_LIBRAS`, 
+      `reporte_hojas_de_liquidacion`.`LIQUIDACIONES_PRECIO_LIBRAS`, 
+      `reporte_hojas_de_liquidacion`.`LIQUIDACIONES_VALOR_TOTAL`, 
+      `reporte_hojas_de_liquidacion`.`LIQUIDACIONES_D_CUOTA_INGRESO`, 
+      `reporte_hojas_de_liquidacion`.`LIQUIDACIONES_D_GASTOS_ADMIN`, 
+      `reporte_hojas_de_liquidacion`.`LIQUIDACIONES_D_APORTACION_ORDINARIO`, 
+      `reporte_hojas_de_liquidacion`.`LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA`, 
+      `reporte_hojas_de_liquidacion`.`LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD`, 
+      `reporte_hojas_de_liquidacion`.`LIQUIDACIONES_D_INTERESES_S_APORTACIONES`, 
+      `reporte_hojas_de_liquidacion`.`LIQUIDACIONES_D_EXCEDENTE_PERIODO`, 
+      `reporte_hojas_de_liquidacion`.`LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO`, 
+      `reporte_hojas_de_liquidacion`.`LIQUIDACIONES_D_FIDUCIARIO`, 
+      `reporte_hojas_de_liquidacion`.`LIQUIDACIONES_D_PRENDARIO`, 
+      `reporte_hojas_de_liquidacion`.`LIQUIDACIONES_D_CUENTAS_X_COBRAR`, 
+      `reporte_hojas_de_liquidacion`.`LIQUIDACIONES_D_INTERESES_X_COBRAR`, 
+      `reporte_hojas_de_liquidacion`.`LIQUIDACIONES_D_OTRAS_DEDUCCIONES`, 
+      `reporte_hojas_de_liquidacion`.`LIQUIDACIONES_D_TOTAL_DEDUCCIONES`, 
+      `reporte_hojas_de_liquidacion`.`LIQUIDACIONES_D_AF_SOCIO`, 
+      `reporte_hojas_de_liquidacion`.`LIQUIDACIONES_D_TOTAL`, 
+      `reporte_hojas_de_liquidacion`.`CREADO_POR`, 
+      `reporte_hojas_de_liquidacion`.`FECHA_CREACION`, 
+      `reporte_hojas_de_liquidacion`.`MODIFICADO_POR`, 
+      `reporte_hojas_de_liquidacion`.`FECHA_MODIFICACION`
+      FROM `reporte_hojas_de_liquidacion` AS `reporte_hojas_de_liquidacion`</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="reporte_movimientos_de_inventario_de_cafe_de_cooperativa" EntityType="COLINASMODEL.Store.reporte_movimientos_de_inventario_de_cafe_de_cooperativa" store:Type="Views" store:Schema="colinas" store:Name="reporte_movimientos_de_inventario_de_cafe_de_cooperativa">
             <DefiningQuery>SELECT
       `reporte_movimientos_de_inventario_de_cafe_de_cooperativa`.`TRANSACCION_NUMERO`, 
@@ -114,6 +147,7 @@
       `reporte_notas_de_peso`.`SOCIOS_NOMBRE`, 
       `reporte_notas_de_peso`.`NOTAS_TRANSPORTE_COOPERATIVA`, 
       `reporte_notas_de_peso`.`NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA`, 
+      `reporte_notas_de_peso`.`NOTAS_PESO_TRANSPORTE_COOPERATIVA`, 
       `reporte_notas_de_peso`.`NOTAS_PORCENTAJE_DEFECTO`, 
       `reporte_notas_de_peso`.`NOTAS_PESO_DEFECTO`, 
       `reporte_notas_de_peso`.`NOTAS_PORCENTAJE_HUMEDAD`, 
@@ -799,11 +833,63 @@
           <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+      warning 6002: The table/view 'def.colinas.reporte_hojas_de_liquidacion' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="reporte_hojas_de_liquidacion">
+          <Key>
+            <PropertyRef Name="LIQUIDACIONES_ID" />
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+          </Key>
+          <Property Name="LIQUIDACIONES_ID" Type="int" Nullable="false" />
+          <Property Name="LIQUIDACIONES_FECHA" Type="date" Nullable="false" />
+          <Property Name="CLASIFICACIONES_CAFE_ID" Type="int" Nullable="false" />
+          <Property Name="CLASIFICACIONES_CAFE_NOMBRE" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="SOCIOS_ID" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="SOCIOS_NOMBRE" Type="varchar" MaxLength="183" />
+          <Property Name="LIQUIDACIONES_TOTAL_LIBRAS" Type="decimal" Nullable="false" Precision="12" Scale="4" />
+          <Property Name="LIQUIDACIONES_PRECIO_LIBRAS" Type="decimal" Nullable="false" Precision="8" Scale="4" />
+          <Property Name="LIQUIDACIONES_VALOR_TOTAL" Type="decimal" Nullable="false" Precision="11" Scale="2" />
+          <Property Name="LIQUIDACIONES_D_CUOTA_INGRESO" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="LIQUIDACIONES_D_GASTOS_ADMIN" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="LIQUIDACIONES_D_APORTACION_ORDINARIO" Type="decimal" Nullable="false" Precision="6" Scale="2" />
+          <Property Name="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA" Type="decimal" Nullable="false" Precision="6" Scale="2" />
+          <Property Name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD" Type="decimal" Nullable="false" Precision="11" Scale="2" />
+          <Property Name="LIQUIDACIONES_D_INTERESES_S_APORTACIONES" Type="decimal" Nullable="false" Precision="6" Scale="2" />
+          <Property Name="LIQUIDACIONES_D_EXCEDENTE_PERIODO" Type="decimal" Nullable="false" Precision="6" Scale="2" />
+          <Property Name="LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO" Type="decimal" Precision="11" Scale="2" />
+          <Property Name="LIQUIDACIONES_D_FIDUCIARIO" Type="decimal" Precision="11" Scale="2" />
+          <Property Name="LIQUIDACIONES_D_PRENDARIO" Type="decimal" Precision="11" Scale="2" />
+          <Property Name="LIQUIDACIONES_D_CUENTAS_X_COBRAR" Type="decimal" Precision="11" Scale="2" />
+          <Property Name="LIQUIDACIONES_D_INTERESES_X_COBRAR" Type="decimal" Precision="11" Scale="2" />
+          <Property Name="LIQUIDACIONES_D_OTRAS_DEDUCCIONES" Type="decimal" Precision="11" Scale="2" />
+          <Property Name="LIQUIDACIONES_D_TOTAL_DEDUCCIONES" Type="decimal" Precision="11" Scale="2" />
+          <Property Name="LIQUIDACIONES_D_AF_SOCIO" Type="decimal" Precision="11" Scale="2" />
+          <Property Name="LIQUIDACIONES_D_TOTAL" Type="decimal" Precision="11" Scale="2" />
+          <Property Name="CREADO_POR" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
+          <Property Name="MODIFICADO_POR" Type="varchar" MaxLength="45" />
+          <Property Name="FECHA_MODIFICACION" Type="date" />
+        </EntityType>
+        <!--Errors Found During Generation:
       warning 6002: The table/view 'def.colinas.reporte_movimientos_de_inventario_de_cafe_de_cooperativa' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="reporte_movimientos_de_inventario_de_cafe_de_cooperativa">
           <Key>
             <PropertyRef Name="TRANSACCION_NUMERO" />
+            
             
             
             
@@ -818,11 +904,11 @@
           <Property Name="CLASIFICACIONES_CAFE_NOMBRE" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="DOCUMENTO_TIPO" Type="varchar" Nullable="false" MaxLength="10" />
           <Property Name="DESCRIPCION" Type="varchar" MaxLength="14" />
-          <Property Name="ENTRADAS_CANTIDAD" Type="decimal" Precision="16" Scale="8" />
-          <Property Name="SALIDAS_CANTIDAD" Type="decimal" Precision="14" Scale="8" />
+          <Property Name="ENTRADAS_CANTIDAD" Type="decimal" Precision="12" Scale="4" />
+          <Property Name="SALIDAS_CANTIDAD" Type="decimal" Scale="4" />
           <Property Name="SALIDAS_COSTO" Type="decimal" Precision="11" Scale="2" />
           <Property Name="SALIDAS_MONTO" Type="decimal" Precision="11" Scale="2" />
-          <Property Name="INVENTARIO_ENTRADAS_CANTIDAD" Type="decimal" Precision="14" Scale="8" />
+          <Property Name="INVENTARIO_ENTRADAS_CANTIDAD" Type="decimal" Nullable="false" Scale="4" />
           <Property Name="INVENTARIO_SALIDAS_SALDO" Type="decimal" Nullable="false" Precision="11" Scale="4" />
           <Property Name="CREADO_POR" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
@@ -833,14 +919,6 @@
         <EntityType Name="reporte_movimientos_de_inventario_de_cafe_de_socios">
           <Key>
             <PropertyRef Name="TRANSACCION_NUMERO" />
-            
-            
-            
-            
-            
-            
-            
-            
           </Key>
           <Property Name="TRANSACCION_NUMERO" Type="int" Nullable="false" />
           <Property Name="FECHA" Type="date" Nullable="false" />
@@ -850,11 +928,11 @@
           <Property Name="CLASIFICACIONES_CAFE_NOMBRE" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="DOCUMENTO_TIPO" Type="varchar" Nullable="false" MaxLength="10" />
           <Property Name="DESCRIPCION" Type="varchar" MaxLength="20" />
-          <Property Name="ENTRADAS_CANTIDAD" Type="decimal" Precision="16" Scale="8" />
-          <Property Name="SALIDAS_CANTIDAD" Type="decimal" Precision="16" Scale="8" />
+          <Property Name="ENTRADAS_CANTIDAD" Type="decimal" Precision="12" Scale="4" />
+          <Property Name="SALIDAS_CANTIDAD" Type="decimal" Precision="12" Scale="4" />
           <Property Name="SALIDAS_COSTO" Type="decimal" Precision="13" Scale="4" />
           <Property Name="SALIDAS_MONTO" Type="decimal" Precision="11" Scale="2" />
-          <Property Name="INVENTARIO_ENTRADAS_CANTIDAD" Type="decimal" Precision="14" Scale="8" />
+          <Property Name="INVENTARIO_ENTRADAS_CANTIDAD" Type="decimal" Nullable="false" Scale="4" />
           <Property Name="INVENTARIO_SALIDAS_SALDO" Type="decimal" Nullable="false" Precision="11" Scale="4" />
           <Property Name="CREADO_POR" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
@@ -865,7 +943,29 @@
         <EntityType Name="reporte_notas_de_peso">
           <Key>
             <PropertyRef Name="NOTAS_ID" />
-            <PropertyRef Name="NOTAS_PESO_TARA" />
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
           </Key>
           <Property Name="NOTAS_ID" Type="int" Nullable="false" />
           <Property Name="NOTAS_FECHA" Type="date" Nullable="false" />
@@ -877,6 +977,7 @@
           <Property Name="SOCIOS_NOMBRE" Type="varchar" MaxLength="183" />
           <Property Name="NOTAS_TRANSPORTE_COOPERATIVA" Type="bit" Nullable="false" />
           <Property Name="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA" Type="decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="NOTAS_PESO_TRANSPORTE_COOPERATIVA" Type="decimal" Nullable="false" Precision="12" Scale="4" />
           <Property Name="NOTAS_PORCENTAJE_DEFECTO" Type="decimal" Nullable="false" Precision="5" Scale="2" />
           <Property Name="NOTAS_PESO_DEFECTO" Type="decimal" Nullable="false" Precision="12" Scale="4" />
           <Property Name="NOTAS_PORCENTAJE_HUMEDAD" Type="decimal" Nullable="false" Precision="5" Scale="2" />
@@ -885,7 +986,7 @@
           <Property Name="NOTAS_PESO_TARA" Type="decimal" Nullable="false" Precision="12" Scale="4" />
           <Property Name="NOTAS_PESO_DESCUENTO" Type="decimal" Nullable="false" Precision="12" Scale="4" />
           <Property Name="NOTAS_PESO_TOTAL_RECIBIDO" Type="decimal" Nullable="false" Precision="12" Scale="4" />
-          <Property Name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO" Type="decimal" Nullable="false" Precision="12" Scale="4" />
+          <Property Name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="NOTAS_SACOS_RETENIDOS" Type="int" Nullable="false" />
           <Property Name="DETALLES_CANTIDAD_SACOS" Type="int" Nullable="false" />
           <Property Name="DETALLES_PESO" Type="decimal" Nullable="false" Scale="4" />
@@ -1558,10 +1659,11 @@
             <Parameter Name="dFechaDesde" Mode="In" Type="DateTime" />
             <Parameter Name="dFechaHasta" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <EntitySet Name="reporte_movimientos_de_inventario_de_cafe_de_socios" EntityType="COLINASMODEL.reporte_movimientos_de_inventario_de_cafe_de_socios" />
-          <EntitySet Name="reporte_movimientos_de_inventario_de_cafe_de_cooperativa" EntityType="COLINASMODEL.reporte_movimientos_de_inventario_de_cafe_de_cooperativa" />
           <EntitySet Name="reporte_detalle_de_aportaciones_por_socio" EntityType="COLINASMODEL.reporte_detalle_de_aportaciones_por_socio" />
+          <EntitySet Name="reporte_hojas_de_liquidacion" EntityType="COLINASMODEL.reporte_hojas_de_liquidacion" />
           <EntitySet Name="reporte_notas_de_peso" EntityType="COLINASMODEL.reporte_notas_de_peso" />
+          <EntitySet Name="reporte_movimientos_de_inventario_de_cafe_de_cooperativa" EntityType="COLINASMODEL.reporte_movimientos_de_inventario_de_cafe_de_cooperativa" />
+          <EntitySet Name="reporte_movimientos_de_inventario_de_cafe_de_socios" EntityType="COLINASMODEL.reporte_movimientos_de_inventario_de_cafe_de_socios" />
           </EntityContainer>
         <EntityType Name="codigo">
           <Key>
@@ -2427,46 +2529,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="reporte_movimientos_de_inventario_de_cafe_de_socios">
-          <Key>
-            <PropertyRef Name="TRANSACCION_NUMERO" />
-          </Key>
-          <Property Type="Int32" Name="TRANSACCION_NUMERO" Nullable="false" />
-          <Property Type="DateTime" Name="FECHA" Nullable="false" />
-          <Property Type="String" Name="SOCIOS_ID" Nullable="false" />
-          <Property Type="String" Name="SOCIOS_NOMBRE" />
-          <Property Type="Int32" Name="CLASIFICACIONES_CAFE_ID" Nullable="false" />
-          <Property Type="String" Name="CLASIFICACIONES_CAFE_NOMBRE" Nullable="false" />
-          <Property Type="String" Name="DOCUMENTO_TIPO" Nullable="false" />
-          <Property Type="String" Name="DESCRIPCION" />
-          <Property Type="Decimal" Name="ENTRADAS_CANTIDAD" />
-          <Property Type="Decimal" Name="SALIDAS_CANTIDAD" />
-          <Property Type="Decimal" Name="SALIDAS_COSTO" />
-          <Property Type="Decimal" Name="SALIDAS_MONTO" />
-          <Property Type="Decimal" Name="INVENTARIO_ENTRADAS_CANTIDAD" />
-          <Property Type="Decimal" Name="INVENTARIO_SALIDAS_SALDO" Nullable="false" />
-          <Property Type="String" Name="CREADO_POR" Nullable="false" />
-          <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
-        </EntityType>
-        <EntityType Name="reporte_movimientos_de_inventario_de_cafe_de_cooperativa">
-          <Key>
-            <PropertyRef Name="TRANSACCION_NUMERO" />
-          </Key>
-          <Property Type="Int32" Name="TRANSACCION_NUMERO" Nullable="false" />
-          <Property Type="DateTime" Name="FECHA" Nullable="false" />
-          <Property Type="Int32" Name="CLASIFICACIONES_CAFE_ID" Nullable="false" />
-          <Property Type="String" Name="CLASIFICACIONES_CAFE_NOMBRE" Nullable="false" />
-          <Property Type="String" Name="DOCUMENTO_TIPO" Nullable="false" />
-          <Property Type="String" Name="DESCRIPCION" />
-          <Property Type="Decimal" Name="ENTRADAS_CANTIDAD" />
-          <Property Type="Decimal" Name="SALIDAS_CANTIDAD" />
-          <Property Type="Decimal" Name="SALIDAS_COSTO" />
-          <Property Type="Decimal" Name="SALIDAS_MONTO" />
-          <Property Type="Decimal" Name="INVENTARIO_ENTRADAS_CANTIDAD" />
-          <Property Type="Decimal" Name="INVENTARIO_SALIDAS_SALDO" Nullable="false" />
-          <Property Type="String" Name="CREADO_POR" Nullable="false" />
-          <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
-        </EntityType>
         <EntityType Name="reporte_detalle_de_aportaciones_por_socio">
           <Key>
             <PropertyRef Name="TRANSACCION_NUMERO" />
@@ -2497,10 +2559,43 @@
           <Property Type="String" Name="CREADO_POR" Nullable="false" />
           <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
         </EntityType>
+        <EntityType Name="reporte_hojas_de_liquidacion">
+          <Key>
+            <PropertyRef Name="LIQUIDACIONES_ID" />
+          </Key>
+          <Property Type="Int32" Name="LIQUIDACIONES_ID" Nullable="false" />
+          <Property Type="DateTime" Name="LIQUIDACIONES_FECHA" Nullable="false" />
+          <Property Type="Int32" Name="CLASIFICACIONES_CAFE_ID" Nullable="false" />
+          <Property Type="String" Name="CLASIFICACIONES_CAFE_NOMBRE" Nullable="false" />
+          <Property Type="String" Name="SOCIOS_ID" Nullable="false" />
+          <Property Type="String" Name="SOCIOS_NOMBRE" />
+          <Property Type="Decimal" Name="LIQUIDACIONES_TOTAL_LIBRAS" Nullable="false" />
+          <Property Type="Decimal" Name="LIQUIDACIONES_PRECIO_LIBRAS" Nullable="false" />
+          <Property Type="Decimal" Name="LIQUIDACIONES_VALOR_TOTAL" Nullable="false" />
+          <Property Type="Decimal" Name="LIQUIDACIONES_D_CUOTA_INGRESO" />
+          <Property Type="Decimal" Name="LIQUIDACIONES_D_GASTOS_ADMIN" />
+          <Property Type="Decimal" Name="LIQUIDACIONES_D_APORTACION_ORDINARIO" Nullable="false" />
+          <Property Type="Decimal" Name="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA" Nullable="false" />
+          <Property Type="Decimal" Name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD" Nullable="false" />
+          <Property Type="Decimal" Name="LIQUIDACIONES_D_INTERESES_S_APORTACIONES" Nullable="false" />
+          <Property Type="Decimal" Name="LIQUIDACIONES_D_EXCEDENTE_PERIODO" Nullable="false" />
+          <Property Type="Decimal" Name="LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO" />
+          <Property Type="Decimal" Name="LIQUIDACIONES_D_FIDUCIARIO" />
+          <Property Type="Decimal" Name="LIQUIDACIONES_D_PRENDARIO" />
+          <Property Type="Decimal" Name="LIQUIDACIONES_D_CUENTAS_X_COBRAR" />
+          <Property Type="Decimal" Name="LIQUIDACIONES_D_INTERESES_X_COBRAR" />
+          <Property Type="Decimal" Name="LIQUIDACIONES_D_OTRAS_DEDUCCIONES" />
+          <Property Type="Decimal" Name="LIQUIDACIONES_D_TOTAL_DEDUCCIONES" />
+          <Property Type="Decimal" Name="LIQUIDACIONES_D_AF_SOCIO" />
+          <Property Type="Decimal" Name="LIQUIDACIONES_D_TOTAL" />
+          <Property Type="String" Name="CREADO_POR" Nullable="false" />
+          <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
+          <Property Type="String" Name="MODIFICADO_POR" />
+          <Property Type="DateTime" Name="FECHA_MODIFICACION" />
+        </EntityType>
         <EntityType Name="reporte_notas_de_peso">
           <Key>
             <PropertyRef Name="NOTAS_ID" />
-            <PropertyRef Name="NOTAS_PESO_TARA" />
           </Key>
           <Property Type="Int32" Name="NOTAS_ID" Nullable="false" />
           <Property Type="DateTime" Name="NOTAS_FECHA" Nullable="false" />
@@ -2512,15 +2607,16 @@
           <Property Type="String" Name="SOCIOS_NOMBRE" />
           <Property Type="Boolean" Name="NOTAS_TRANSPORTE_COOPERATIVA" Nullable="false" />
           <Property Type="Decimal" Name="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA" Nullable="false" />
+          <Property Type="Decimal" Name="NOTAS_PESO_TRANSPORTE_COOPERATIVA" Nullable="false" />
           <Property Type="Decimal" Name="NOTAS_PORCENTAJE_DEFECTO" Nullable="false" />
           <Property Type="Decimal" Name="NOTAS_PESO_DEFECTO" Nullable="false" />
           <Property Type="Decimal" Name="NOTAS_PORCENTAJE_HUMEDAD" Nullable="false" />
           <Property Type="Decimal" Name="NOTAS_PESO_HUMEDAD" Nullable="false" />
           <Property Type="Decimal" Name="NOTAS_PESO_SUMA" Nullable="false" />
-          <Property Name="NOTAS_PESO_TARA" Nullable="false" Type="Decimal" />
+          <Property Type="Decimal" Name="NOTAS_PESO_TARA" Nullable="false" />
           <Property Type="Decimal" Name="NOTAS_PESO_DESCUENTO" Nullable="false" />
           <Property Type="Decimal" Name="NOTAS_PESO_TOTAL_RECIBIDO" Nullable="false" />
-          <Property Type="Decimal" Name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO" Nullable="false" />
+          <Property Type="String" Name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO" Nullable="false" />
           <Property Type="Int32" Name="NOTAS_SACOS_RETENIDOS" Nullable="false" />
           <Property Type="Int32" Name="DETALLES_CANTIDAD_SACOS" Nullable="false" />
           <Property Type="Decimal" Name="DETALLES_PESO" Nullable="false" />
@@ -2528,6 +2624,46 @@
           <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
           <Property Type="String" Name="MODIFICADO_POR" />
           <Property Type="DateTime" Name="FECHA_MODIFICACION" />
+        </EntityType>
+        <EntityType Name="reporte_movimientos_de_inventario_de_cafe_de_cooperativa">
+          <Key>
+            <PropertyRef Name="TRANSACCION_NUMERO" />
+          </Key>
+          <Property Type="Int32" Name="TRANSACCION_NUMERO" Nullable="false" />
+          <Property Type="DateTime" Name="FECHA" Nullable="false" />
+          <Property Type="Int32" Name="CLASIFICACIONES_CAFE_ID" Nullable="false" />
+          <Property Type="String" Name="CLASIFICACIONES_CAFE_NOMBRE" Nullable="false" />
+          <Property Type="String" Name="DOCUMENTO_TIPO" Nullable="false" />
+          <Property Type="String" Name="DESCRIPCION" />
+          <Property Type="Decimal" Name="ENTRADAS_CANTIDAD" />
+          <Property Type="Decimal" Name="SALIDAS_CANTIDAD" />
+          <Property Type="Decimal" Name="SALIDAS_COSTO" />
+          <Property Type="Decimal" Name="SALIDAS_MONTO" />
+          <Property Type="Decimal" Name="INVENTARIO_ENTRADAS_CANTIDAD" Nullable="false" />
+          <Property Type="Decimal" Name="INVENTARIO_SALIDAS_SALDO" Nullable="false" />
+          <Property Type="String" Name="CREADO_POR" Nullable="false" />
+          <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
+        </EntityType>
+        <EntityType Name="reporte_movimientos_de_inventario_de_cafe_de_socios">
+          <Key>
+            <PropertyRef Name="TRANSACCION_NUMERO" />
+          </Key>
+          <Property Type="Int32" Name="TRANSACCION_NUMERO" Nullable="false" />
+          <Property Type="DateTime" Name="FECHA" Nullable="false" />
+          <Property Type="String" Name="SOCIOS_ID" Nullable="false" />
+          <Property Type="String" Name="SOCIOS_NOMBRE" />
+          <Property Type="Int32" Name="CLASIFICACIONES_CAFE_ID" Nullable="false" />
+          <Property Type="String" Name="CLASIFICACIONES_CAFE_NOMBRE" Nullable="false" />
+          <Property Type="String" Name="DOCUMENTO_TIPO" Nullable="false" />
+          <Property Type="String" Name="DESCRIPCION" />
+          <Property Type="Decimal" Name="ENTRADAS_CANTIDAD" />
+          <Property Type="Decimal" Name="SALIDAS_CANTIDAD" />
+          <Property Type="Decimal" Name="SALIDAS_COSTO" />
+          <Property Type="Decimal" Name="SALIDAS_MONTO" />
+          <Property Type="Decimal" Name="INVENTARIO_ENTRADAS_CANTIDAD" Nullable="false" />
+          <Property Type="Decimal" Name="INVENTARIO_SALIDAS_SALDO" Nullable="false" />
+          <Property Type="String" Name="CREADO_POR" Nullable="false" />
+          <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -3070,48 +3206,6 @@
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="GetSumatoriaAjustesDeInventarioDeCafeDeSocios" FunctionName="COLINASMODEL.Store.GetSumatoriaAjustesDeInventarioDeCafeDeSocios" />
           <FunctionImportMapping FunctionImportName="GetSumatoriaVentasDeInventarioDeCafe" FunctionName="COLINASMODEL.Store.GetSumatoriaVentasDeInventarioDeCafe" />
-          <EntitySetMapping Name="reporte_movimientos_de_inventario_de_cafe_de_socios">
-            <EntityTypeMapping TypeName="COLINASMODEL.reporte_movimientos_de_inventario_de_cafe_de_socios">
-              <MappingFragment StoreEntitySet="reporte_movimientos_de_inventario_de_cafe_de_socios">
-                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
-                <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
-                <ScalarProperty Name="INVENTARIO_SALIDAS_SALDO" ColumnName="INVENTARIO_SALIDAS_SALDO" />
-                <ScalarProperty Name="INVENTARIO_ENTRADAS_CANTIDAD" ColumnName="INVENTARIO_ENTRADAS_CANTIDAD" />
-                <ScalarProperty Name="SALIDAS_MONTO" ColumnName="SALIDAS_MONTO" />
-                <ScalarProperty Name="SALIDAS_COSTO" ColumnName="SALIDAS_COSTO" />
-                <ScalarProperty Name="SALIDAS_CANTIDAD" ColumnName="SALIDAS_CANTIDAD" />
-                <ScalarProperty Name="ENTRADAS_CANTIDAD" ColumnName="ENTRADAS_CANTIDAD" />
-                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
-                <ScalarProperty Name="DOCUMENTO_TIPO" ColumnName="DOCUMENTO_TIPO" />
-                <ScalarProperty Name="CLASIFICACIONES_CAFE_NOMBRE" ColumnName="CLASIFICACIONES_CAFE_NOMBRE" />
-                <ScalarProperty Name="CLASIFICACIONES_CAFE_ID" ColumnName="CLASIFICACIONES_CAFE_ID" />
-                <ScalarProperty Name="SOCIOS_NOMBRE" ColumnName="SOCIOS_NOMBRE" />
-                <ScalarProperty Name="SOCIOS_ID" ColumnName="SOCIOS_ID" />
-                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
-                <ScalarProperty Name="TRANSACCION_NUMERO" ColumnName="TRANSACCION_NUMERO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="reporte_movimientos_de_inventario_de_cafe_de_cooperativa">
-            <EntityTypeMapping TypeName="COLINASMODEL.reporte_movimientos_de_inventario_de_cafe_de_cooperativa">
-              <MappingFragment StoreEntitySet="reporte_movimientos_de_inventario_de_cafe_de_cooperativa">
-                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
-                <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
-                <ScalarProperty Name="INVENTARIO_SALIDAS_SALDO" ColumnName="INVENTARIO_SALIDAS_SALDO" />
-                <ScalarProperty Name="INVENTARIO_ENTRADAS_CANTIDAD" ColumnName="INVENTARIO_ENTRADAS_CANTIDAD" />
-                <ScalarProperty Name="SALIDAS_MONTO" ColumnName="SALIDAS_MONTO" />
-                <ScalarProperty Name="SALIDAS_COSTO" ColumnName="SALIDAS_COSTO" />
-                <ScalarProperty Name="SALIDAS_CANTIDAD" ColumnName="SALIDAS_CANTIDAD" />
-                <ScalarProperty Name="ENTRADAS_CANTIDAD" ColumnName="ENTRADAS_CANTIDAD" />
-                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
-                <ScalarProperty Name="DOCUMENTO_TIPO" ColumnName="DOCUMENTO_TIPO" />
-                <ScalarProperty Name="CLASIFICACIONES_CAFE_NOMBRE" ColumnName="CLASIFICACIONES_CAFE_NOMBRE" />
-                <ScalarProperty Name="CLASIFICACIONES_CAFE_ID" ColumnName="CLASIFICACIONES_CAFE_ID" />
-                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
-                <ScalarProperty Name="TRANSACCION_NUMERO" ColumnName="TRANSACCION_NUMERO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="reporte_detalle_de_aportaciones_por_socio">
             <EntityTypeMapping TypeName="COLINASMODEL.reporte_detalle_de_aportaciones_por_socio">
               <MappingFragment StoreEntitySet="reporte_detalle_de_aportaciones_por_socio">
@@ -3143,6 +3237,41 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="reporte_hojas_de_liquidacion">
+            <EntityTypeMapping TypeName="COLINASMODEL.reporte_hojas_de_liquidacion">
+              <MappingFragment StoreEntitySet="reporte_hojas_de_liquidacion">
+                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
+                <ScalarProperty Name="MODIFICADO_POR" ColumnName="MODIFICADO_POR" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
+                <ScalarProperty Name="LIQUIDACIONES_D_TOTAL" ColumnName="LIQUIDACIONES_D_TOTAL" />
+                <ScalarProperty Name="LIQUIDACIONES_D_AF_SOCIO" ColumnName="LIQUIDACIONES_D_AF_SOCIO" />
+                <ScalarProperty Name="LIQUIDACIONES_D_TOTAL_DEDUCCIONES" ColumnName="LIQUIDACIONES_D_TOTAL_DEDUCCIONES" />
+                <ScalarProperty Name="LIQUIDACIONES_D_OTRAS_DEDUCCIONES" ColumnName="LIQUIDACIONES_D_OTRAS_DEDUCCIONES" />
+                <ScalarProperty Name="LIQUIDACIONES_D_INTERESES_X_COBRAR" ColumnName="LIQUIDACIONES_D_INTERESES_X_COBRAR" />
+                <ScalarProperty Name="LIQUIDACIONES_D_CUENTAS_X_COBRAR" ColumnName="LIQUIDACIONES_D_CUENTAS_X_COBRAR" />
+                <ScalarProperty Name="LIQUIDACIONES_D_PRENDARIO" ColumnName="LIQUIDACIONES_D_PRENDARIO" />
+                <ScalarProperty Name="LIQUIDACIONES_D_FIDUCIARIO" ColumnName="LIQUIDACIONES_D_FIDUCIARIO" />
+                <ScalarProperty Name="LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO" ColumnName="LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO" />
+                <ScalarProperty Name="LIQUIDACIONES_D_EXCEDENTE_PERIODO" ColumnName="LIQUIDACIONES_D_EXCEDENTE_PERIODO" />
+                <ScalarProperty Name="LIQUIDACIONES_D_INTERESES_S_APORTACIONES" ColumnName="LIQUIDACIONES_D_INTERESES_S_APORTACIONES" />
+                <ScalarProperty Name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD" ColumnName="LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD" />
+                <ScalarProperty Name="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA" ColumnName="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA" />
+                <ScalarProperty Name="LIQUIDACIONES_D_APORTACION_ORDINARIO" ColumnName="LIQUIDACIONES_D_APORTACION_ORDINARIO" />
+                <ScalarProperty Name="LIQUIDACIONES_D_GASTOS_ADMIN" ColumnName="LIQUIDACIONES_D_GASTOS_ADMIN" />
+                <ScalarProperty Name="LIQUIDACIONES_D_CUOTA_INGRESO" ColumnName="LIQUIDACIONES_D_CUOTA_INGRESO" />
+                <ScalarProperty Name="LIQUIDACIONES_VALOR_TOTAL" ColumnName="LIQUIDACIONES_VALOR_TOTAL" />
+                <ScalarProperty Name="LIQUIDACIONES_PRECIO_LIBRAS" ColumnName="LIQUIDACIONES_PRECIO_LIBRAS" />
+                <ScalarProperty Name="LIQUIDACIONES_TOTAL_LIBRAS" ColumnName="LIQUIDACIONES_TOTAL_LIBRAS" />
+                <ScalarProperty Name="SOCIOS_NOMBRE" ColumnName="SOCIOS_NOMBRE" />
+                <ScalarProperty Name="SOCIOS_ID" ColumnName="SOCIOS_ID" />
+                <ScalarProperty Name="CLASIFICACIONES_CAFE_NOMBRE" ColumnName="CLASIFICACIONES_CAFE_NOMBRE" />
+                <ScalarProperty Name="CLASIFICACIONES_CAFE_ID" ColumnName="CLASIFICACIONES_CAFE_ID" />
+                <ScalarProperty Name="LIQUIDACIONES_FECHA" ColumnName="LIQUIDACIONES_FECHA" />
+                <ScalarProperty Name="LIQUIDACIONES_ID" ColumnName="LIQUIDACIONES_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="reporte_notas_de_peso">
             <EntityTypeMapping TypeName="COLINASMODEL.reporte_notas_de_peso">
               <MappingFragment StoreEntitySet="reporte_notas_de_peso">
@@ -3162,6 +3291,7 @@
                 <ScalarProperty Name="NOTAS_PORCENTAJE_HUMEDAD" ColumnName="NOTAS_PORCENTAJE_HUMEDAD" />
                 <ScalarProperty Name="NOTAS_PESO_DEFECTO" ColumnName="NOTAS_PESO_DEFECTO" />
                 <ScalarProperty Name="NOTAS_PORCENTAJE_DEFECTO" ColumnName="NOTAS_PORCENTAJE_DEFECTO" />
+                <ScalarProperty Name="NOTAS_PESO_TRANSPORTE_COOPERATIVA" ColumnName="NOTAS_PESO_TRANSPORTE_COOPERATIVA" />
                 <ScalarProperty Name="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA" ColumnName="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA" />
                 <ScalarProperty Name="NOTAS_TRANSPORTE_COOPERATIVA" ColumnName="NOTAS_TRANSPORTE_COOPERATIVA" />
                 <ScalarProperty Name="SOCIOS_NOMBRE" ColumnName="SOCIOS_NOMBRE" />
@@ -3172,6 +3302,48 @@
                 <ScalarProperty Name="ESTADOS_NOTA_ID" ColumnName="ESTADOS_NOTA_ID" />
                 <ScalarProperty Name="NOTAS_FECHA" ColumnName="NOTAS_FECHA" />
                 <ScalarProperty Name="NOTAS_ID" ColumnName="NOTAS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reporte_movimientos_de_inventario_de_cafe_de_cooperativa">
+            <EntityTypeMapping TypeName="COLINASMODEL.reporte_movimientos_de_inventario_de_cafe_de_cooperativa">
+              <MappingFragment StoreEntitySet="reporte_movimientos_de_inventario_de_cafe_de_cooperativa">
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
+                <ScalarProperty Name="INVENTARIO_SALIDAS_SALDO" ColumnName="INVENTARIO_SALIDAS_SALDO" />
+                <ScalarProperty Name="INVENTARIO_ENTRADAS_CANTIDAD" ColumnName="INVENTARIO_ENTRADAS_CANTIDAD" />
+                <ScalarProperty Name="SALIDAS_MONTO" ColumnName="SALIDAS_MONTO" />
+                <ScalarProperty Name="SALIDAS_COSTO" ColumnName="SALIDAS_COSTO" />
+                <ScalarProperty Name="SALIDAS_CANTIDAD" ColumnName="SALIDAS_CANTIDAD" />
+                <ScalarProperty Name="ENTRADAS_CANTIDAD" ColumnName="ENTRADAS_CANTIDAD" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="DOCUMENTO_TIPO" ColumnName="DOCUMENTO_TIPO" />
+                <ScalarProperty Name="CLASIFICACIONES_CAFE_NOMBRE" ColumnName="CLASIFICACIONES_CAFE_NOMBRE" />
+                <ScalarProperty Name="CLASIFICACIONES_CAFE_ID" ColumnName="CLASIFICACIONES_CAFE_ID" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="TRANSACCION_NUMERO" ColumnName="TRANSACCION_NUMERO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reporte_movimientos_de_inventario_de_cafe_de_socios">
+            <EntityTypeMapping TypeName="COLINASMODEL.reporte_movimientos_de_inventario_de_cafe_de_socios">
+              <MappingFragment StoreEntitySet="reporte_movimientos_de_inventario_de_cafe_de_socios">
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
+                <ScalarProperty Name="INVENTARIO_SALIDAS_SALDO" ColumnName="INVENTARIO_SALIDAS_SALDO" />
+                <ScalarProperty Name="INVENTARIO_ENTRADAS_CANTIDAD" ColumnName="INVENTARIO_ENTRADAS_CANTIDAD" />
+                <ScalarProperty Name="SALIDAS_MONTO" ColumnName="SALIDAS_MONTO" />
+                <ScalarProperty Name="SALIDAS_COSTO" ColumnName="SALIDAS_COSTO" />
+                <ScalarProperty Name="SALIDAS_CANTIDAD" ColumnName="SALIDAS_CANTIDAD" />
+                <ScalarProperty Name="ENTRADAS_CANTIDAD" ColumnName="ENTRADAS_CANTIDAD" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="DOCUMENTO_TIPO" ColumnName="DOCUMENTO_TIPO" />
+                <ScalarProperty Name="CLASIFICACIONES_CAFE_NOMBRE" ColumnName="CLASIFICACIONES_CAFE_NOMBRE" />
+                <ScalarProperty Name="CLASIFICACIONES_CAFE_ID" ColumnName="CLASIFICACIONES_CAFE_ID" />
+                <ScalarProperty Name="SOCIOS_NOMBRE" ColumnName="SOCIOS_NOMBRE" />
+                <ScalarProperty Name="SOCIOS_ID" ColumnName="SOCIOS_ID" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="TRANSACCION_NUMERO" ColumnName="TRANSACCION_NUMERO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3284,8 +3456,10 @@
           <ConnectorPoint PointX="2" PointY="15.408396809895834" />
           <ConnectorPoint PointX="4.260416666666667" PointY="15.408396809895834" />
           <ConnectorPoint PointX="4.427083333333333" PointY="15.408396809895834" />
-          <ConnectorPoint PointX="4.471354166666667" PointY="15.408396809895832" />
-          <ConnectorPoint PointX="4.798177083333333" PointY="15.408396809895834" />
+          <ConnectorPoint PointX="4.438028971354167" PointY="15.408396809895834" />
+          <ConnectorPoint PointX="4.604695638020833" PointY="15.408396809895834" />
+          <ConnectorPoint PointX="4.6148478190104179" PointY="15.408396809895834" />
+          <ConnectorPoint PointX="4.7815144856770839" PointY="15.408396809895834" />
           <ConnectorPoint PointX="5.166666666666667" PointY="15.408396809895834" />
           <ConnectorPoint PointX="5.333333333333333" PointY="15.408396809895834" />
           <ConnectorPoint PointX="14.625" PointY="15.408396809895834" />
@@ -3308,8 +3482,8 @@
           <ConnectorPoint PointX="2" PointY="12.600616861979166" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.FK_INVENTARIO_socios" >
-          <ConnectorPoint PointX="4.5546875" PointY="12.951233723958334" />
-          <ConnectorPoint PointX="4.5546875" PointY="20.692047526041669" />
+          <ConnectorPoint PointX="4.5213623046875" PointY="12.951233723958334" />
+          <ConnectorPoint PointX="4.5213623046875" PointY="20.692047526041669" />
           <ConnectorPoint PointX="4.427083333333333" PointY="20.692047526041669" />
           <ConnectorPoint PointX="4.260416666666667" PointY="20.692047526041669" />
           <ConnectorPoint PointX="4.125" PointY="20.692047526041669" />
@@ -3323,8 +3497,8 @@
           <ConnectorPoint PointX="13.875" PointY="8.6736243576921517" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.FK_NOTA_DE_PESO_socios" >
-          <ConnectorPoint PointX="4.7148437500000009" PointY="12.951233723958334" />
-          <ConnectorPoint PointX="4.7148437500000009" PointY="22.641256510416667" />
+          <ConnectorPoint PointX="4.6981811523437509" PointY="12.951233723958334" />
+          <ConnectorPoint PointX="4.6981811523437509" PointY="22.641256510416667" />
           <ConnectorPoint PointX="5.375" PointY="22.641256510416667" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.PrestamosSocio_fk" >
@@ -3372,10 +3546,11 @@
           <ConnectorPoint PointX="1.064782338645538" PointY="18.835999348958335" />
           <ConnectorPoint PointX="1.064782338645538" PointY="23.5" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="COLINASMODEL.reporte_movimientos_de_inventario_de_cafe_de_socios" Width="1.5" PointX="19.375" PointY="0.5" Height="4.0956022135416674" />
-        <EntityTypeShape EntityType="COLINASMODEL.reporte_movimientos_de_inventario_de_cafe_de_cooperativa" Width="1.5" PointX="21.5" PointY="0.5" Height="3.7109993489583246" />
         <EntityTypeShape EntityType="COLINASMODEL.reporte_detalle_de_aportaciones_por_socio" Width="1.5" PointX="23.5" PointY="0.5" Height="5.8263151041666674" />
-        <EntityTypeShape EntityType="COLINASMODEL.reporte_notas_de_peso" Width="1.5" PointX="25.625" PointY="0.5" Height="6.0186165364583246" />
+        <EntityTypeShape EntityType="COLINASMODEL.reporte_hojas_de_liquidacion" Width="1.5" PointX="27.75" PointY="0.5" Height="6.5955208333333246" />
+        <EntityTypeShape EntityType="COLINASMODEL.reporte_notas_de_peso" Width="1.5" PointX="25.875" PointY="0.5" Height="6.21091796875001" />
+        <EntityTypeShape EntityType="COLINASMODEL.reporte_movimientos_de_inventario_de_cafe_de_cooperativa" Width="1.5" PointX="19.5" PointY="9" Height="3.7109993489583246" />
+        <EntityTypeShape EntityType="COLINASMODEL.reporte_movimientos_de_inventario_de_cafe_de_socios" Width="1.5" PointX="21.625" PointY="9" Height="4.0956022135416674" />
         </Diagram>
     </Diagrams>
   </Designer>

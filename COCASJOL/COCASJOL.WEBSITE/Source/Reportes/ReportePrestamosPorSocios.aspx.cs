@@ -39,7 +39,7 @@ namespace COCASJOL.WEBSITE.Source.Reportes
             }
             catch (Exception ex)
             {
-                log.Fatal("Error fatal al cargar pagina de solicitudes de prestamos.", ex);
+                log.Fatal("Error fatal al cargar reporte prestamos por socio.", ex);
                 throw;
             }
         }

@@ -65,6 +65,7 @@ namespace COCASJOL.WEBSITE.Source.Reportes
                 reportParamCollection.Add(new ReportParameter("parGroupByFecha", this.g_FECHA.Checked.ToString()));
                 reportParamCollection.Add(new ReportParameter("parGroupByCreadoPor", this.g_CREADO_POR.Checked.ToString()));
                 reportParamCollection.Add(new ReportParameter("parGroupByFechaCreacion", this.g_FECHA_CREACION.Checked.ToString()));
+                reportParamCollection.Add(new ReportParameter("parMostrarQuintales", this.p_QUINTALES.Checked.ToString()));
 
                 formatoSalida = this.f_SALIDA_FORMATO.Text;
 

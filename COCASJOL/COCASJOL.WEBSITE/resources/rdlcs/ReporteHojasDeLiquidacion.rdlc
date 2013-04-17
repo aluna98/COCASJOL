@@ -10,23 +10,15 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="NotasDePesoDetalleDataSet">
+    <DataSet Name="HojaDeLiquidacionDataSet">
       <Fields>
-        <Field Name="NOTAS_ID">
-          <DataField>NOTAS_ID</DataField>
+        <Field Name="LIQUIDACIONES_ID">
+          <DataField>LIQUIDACIONES_ID</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="NOTAS_FECHA">
-          <DataField>NOTAS_FECHA</DataField>
+        <Field Name="LIQUIDACIONES_FECHA">
+          <DataField>LIQUIDACIONES_FECHA</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="ESTADOS_NOTA_ID">
-          <DataField>ESTADOS_NOTA_ID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="ESTADOS_NOTA_NOMBRE">
-          <DataField>ESTADOS_NOTA_NOMBRE</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="CLASIFICACIONES_CAFE_ID">
           <DataField>CLASIFICACIONES_CAFE_ID</DataField>
@@ -44,65 +36,81 @@
           <DataField>SOCIOS_NOMBRE</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="NOTAS_TRANSPORTE_COOPERATIVA">
-          <DataField>NOTAS_TRANSPORTE_COOPERATIVA</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
-        <Field Name="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA">
-          <DataField>NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA</DataField>
+        <Field Name="LIQUIDACIONES_TOTAL_LIBRAS">
+          <DataField>LIQUIDACIONES_TOTAL_LIBRAS</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="NOTAS_PESO_TRANSPORTE_COOPERATIVA">
-          <DataField>NOTAS_PESO_TRANSPORTE_COOPERATIVA</DataField>
+        <Field Name="LIQUIDACIONES_PRECIO_LIBRAS">
+          <DataField>LIQUIDACIONES_PRECIO_LIBRAS</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="NOTAS_PORCENTAJE_DEFECTO">
-          <DataField>NOTAS_PORCENTAJE_DEFECTO</DataField>
+        <Field Name="LIQUIDACIONES_VALOR_TOTAL">
+          <DataField>LIQUIDACIONES_VALOR_TOTAL</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="NOTAS_PESO_DEFECTO">
-          <DataField>NOTAS_PESO_DEFECTO</DataField>
+        <Field Name="LIQUIDACIONES_D_CUOTA_INGRESO">
+          <DataField>LIQUIDACIONES_D_CUOTA_INGRESO</DataField>
+          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+        </Field>
+        <Field Name="LIQUIDACIONES_D_GASTOS_ADMIN">
+          <DataField>LIQUIDACIONES_D_GASTOS_ADMIN</DataField>
+          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+        </Field>
+        <Field Name="LIQUIDACIONES_D_APORTACION_ORDINARIO">
+          <DataField>LIQUIDACIONES_D_APORTACION_ORDINARIO</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="NOTAS_PORCENTAJE_HUMEDAD">
-          <DataField>NOTAS_PORCENTAJE_HUMEDAD</DataField>
+        <Field Name="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA">
+          <DataField>LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="NOTAS_PESO_HUMEDAD">
-          <DataField>NOTAS_PESO_HUMEDAD</DataField>
+        <Field Name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD">
+          <DataField>LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="NOTAS_PESO_SUMA">
-          <DataField>NOTAS_PESO_SUMA</DataField>
+        <Field Name="LIQUIDACIONES_D_INTERESES_S_APORTACIONES">
+          <DataField>LIQUIDACIONES_D_INTERESES_S_APORTACIONES</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="NOTAS_PESO_TARA">
-          <DataField>NOTAS_PESO_TARA</DataField>
+        <Field Name="LIQUIDACIONES_D_EXCEDENTE_PERIODO">
+          <DataField>LIQUIDACIONES_D_EXCEDENTE_PERIODO</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="NOTAS_PESO_DESCUENTO">
-          <DataField>NOTAS_PESO_DESCUENTO</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
+        <Field Name="LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO">
+          <DataField>LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO</DataField>
+          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
-        <Field Name="NOTAS_PESO_TOTAL_RECIBIDO">
-          <DataField>NOTAS_PESO_TOTAL_RECIBIDO</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
+        <Field Name="LIQUIDACIONES_D_FIDUCIARIO">
+          <DataField>LIQUIDACIONES_D_FIDUCIARIO</DataField>
+          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
-        <Field Name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO">
-          <DataField>NOTAS_PESO_TOTAL_RECIBIDO_TEXTO</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="LIQUIDACIONES_D_PRENDARIO">
+          <DataField>LIQUIDACIONES_D_PRENDARIO</DataField>
+          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
-        <Field Name="NOTAS_SACOS_RETENIDOS">
-          <DataField>NOTAS_SACOS_RETENIDOS</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+        <Field Name="LIQUIDACIONES_D_CUENTAS_X_COBRAR">
+          <DataField>LIQUIDACIONES_D_CUENTAS_X_COBRAR</DataField>
+          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
-        <Field Name="DETALLES_CANTIDAD_SACOS">
-          <DataField>DETALLES_CANTIDAD_SACOS</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+        <Field Name="LIQUIDACIONES_D_INTERESES_X_COBRAR">
+          <DataField>LIQUIDACIONES_D_INTERESES_X_COBRAR</DataField>
+          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
-        <Field Name="DETALLES_PESO">
-          <DataField>DETALLES_PESO</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
+        <Field Name="LIQUIDACIONES_D_OTRAS_DEDUCCIONES">
+          <DataField>LIQUIDACIONES_D_OTRAS_DEDUCCIONES</DataField>
+          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+        </Field>
+        <Field Name="LIQUIDACIONES_D_TOTAL_DEDUCCIONES">
+          <DataField>LIQUIDACIONES_D_TOTAL_DEDUCCIONES</DataField>
+          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+        </Field>
+        <Field Name="LIQUIDACIONES_D_AF_SOCIO">
+          <DataField>LIQUIDACIONES_D_AF_SOCIO</DataField>
+          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+        </Field>
+        <Field Name="LIQUIDACIONES_D_TOTAL">
+          <DataField>LIQUIDACIONES_D_TOTAL</DataField>
+          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
         <Field Name="CREADO_POR">
           <DataField>CREADO_POR</DataField>
@@ -136,15 +144,15 @@
       <rd:DataSetInfo>
         <rd:DataSetName>COCASJOL.LOGIC.Reportes</rd:DataSetName>
         <rd:TableName>ReporteLogic</rd:TableName>
-        <rd:ObjectDataSourceSelectMethod>GetDetalleNotasDePeso</rd:ObjectDataSourceSelectMethod>
-        <rd:ObjectDataSourceSelectMethodSignature>System.Collections.Generic.List`1[COCASJOL.DATAACCESS.reporte_notas_de_peso] GetDetalleNotasDePeso(Int32, System.String, Int32, System.String, System.DateTime, System.DateTime)</rd:ObjectDataSourceSelectMethodSignature>
+        <rd:ObjectDataSourceSelectMethod>GetDetalleHojasDeLiquidacion</rd:ObjectDataSourceSelectMethod>
+        <rd:ObjectDataSourceSelectMethodSignature>System.Collections.Generic.List`1[COCASJOL.DATAACCESS.reporte_hojas_de_liquidacion] GetDetalleHojasDeLiquidacion(System.String, Int32, System.String, System.DateTime, System.DateTime)</rd:ObjectDataSourceSelectMethodSignature>
         <rd:ObjectDataSourceType>COCASJOL.LOGIC.Reportes.ReporteLogic, COCASJOL.LOGIC, Version=1.0.4854.42701, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
   <Body>
     <ReportItems>
-      <Tablix Name="tableNotasDePesoDetalle">
+      <Tablix Name="tableHojasDeLiquidacion">
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
@@ -163,7 +171,7 @@
               <Width>1.09006in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.09006in</Width>
+              <Width>1in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.01863in</Width>
@@ -175,40 +183,49 @@
               <Width>1in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.01863in</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>1.01863in</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>1.01863in</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>1.01863in</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>1.01863in</Width>
+              <Width>1in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.01863in</Width>
+              <Width>1in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.01863in</Width>
+              <Width>1in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.01863in</Width>
+              <Width>1in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.01863in</Width>
+              <Width>1in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.01863in</Width>
+              <Width>1in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.01863in</Width>
+              <Width>1in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.09006in</Width>
@@ -316,35 +333,6 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox106">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox106</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
                     <Textbox Name="Textbox107">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -389,64 +377,6 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox108</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox50">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox50</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox58">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox58</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -548,7 +478,7 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox82">
+                    <Textbox Name="Textbox168">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -562,7 +492,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox82</rd:DefaultName>
+                      <rd:DefaultName>Textbox168</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -577,7 +507,7 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox88">
+                    <Textbox Name="Textbox162">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -591,7 +521,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox88</rd:DefaultName>
+                      <rd:DefaultName>Textbox162</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -606,7 +536,7 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox95">
+                    <Textbox Name="Textbox154">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -620,7 +550,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox95</rd:DefaultName>
+                      <rd:DefaultName>Textbox154</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -635,7 +565,7 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox43">
+                    <Textbox Name="Textbox142">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -649,7 +579,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox43</rd:DefaultName>
+                      <rd:DefaultName>Textbox142</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -664,7 +594,7 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox101">
+                    <Textbox Name="Textbox136">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -678,7 +608,36 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox101</rd:DefaultName>
+                      <rd:DefaultName>Textbox136</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox130">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox130</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -722,7 +681,7 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox132">
+                    <Textbox Name="Textbox118">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -736,7 +695,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox132</rd:DefaultName>
+                      <rd:DefaultName>Textbox118</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -751,7 +710,7 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox138">
+                    <Textbox Name="Textbox110">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -765,7 +724,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox138</rd:DefaultName>
+                      <rd:DefaultName>Textbox110</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -780,7 +739,7 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox2">
+                    <Textbox Name="Textbox100">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -794,7 +753,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox2</rd:DefaultName>
+                      <rd:DefaultName>Textbox100</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -809,7 +768,7 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox36">
+                    <Textbox Name="Textbox94">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -823,7 +782,152 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox36</rd:DefaultName>
+                      <rd:DefaultName>Textbox94</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox87">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox87</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox79">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox79</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox174">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox174</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox71">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox71</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox180">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox180</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -966,7 +1070,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Detalle de Notas de Peso</Value>
+                              <Value>Hojas de Liquidación</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                                 <TextDecoration>Underline</TextDecoration>
@@ -989,9 +1093,12 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <ColSpan>25</ColSpan>
+                    <ColSpan>28</ColSpan>
                   </CellContents>
                 </TablixCell>
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
                 <TablixCell />
                 <TablixCell />
                 <TablixCell />
@@ -1113,36 +1220,6 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox30">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>ESTADOS NOTA NOMBRE</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox30</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
                     <Textbox Name="Textbox16">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -1180,7 +1257,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Código de Nota</Value>
+                              <Value>Hoja de Liquidacion #</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1203,66 +1280,6 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox54">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Transporte de Cooperativa</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox54</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox60">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>% Transporte de Cooperativa</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox60</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
                     <Textbox Name="Textbox31">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -1270,7 +1287,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>="Descuento de Peso por Transporte de Cooperativa" &amp; iif(Parameters!parMostrarQuintales.Value = True, " (QQ)", " (lb)")</Value>
+                              <Value>="Total Peso" &amp; iif(Parameters!parMostrarQuintales.Value = True, " (QQ)", " (lb)")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1300,7 +1317,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>% Defecto</Value>
+                              <Value>Precio por Libra (Lps)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1330,7 +1347,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= "Descuento de Peso por Defectos" &amp; iif(Parameters!parMostrarQuintales.Value = True, " (QQ)", " (lb)")</Value>
+                              <Value>Valor Total (Lps)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1353,21 +1370,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox84">
+                    <Textbox Name="Textbox170">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>% Humedad</Value>
+                              <Value>Cuota de Ingreso (Lps)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox84</rd:DefaultName>
+                      <rd:DefaultName>Textbox170</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1383,21 +1400,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox90">
+                    <Textbox Name="Textbox164">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>="Descuento de Peso por Humedad" &amp; iif(Parameters!parMostrarQuintales.Value = True, " (QQ)", " (lb)")</Value>
+                              <Value>Gastos de Administración (Lps)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox90</rd:DefaultName>
+                      <rd:DefaultName>Textbox164</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1413,21 +1430,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox97">
+                    <Textbox Name="Textbox158">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>="Peso Bruto" &amp; iif(Parameters!parMostrarQuintales.Value = True, " (QQ)", " (lb)")</Value>
+                              <Value>Aportación Ordinaria (Lps)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox97</rd:DefaultName>
+                      <rd:DefaultName>Textbox158</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1443,21 +1460,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox53">
+                    <Textbox Name="Textbox145">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Cantidad de Sacos Retenidos</Value>
+                              <Value>Aportación Extraordinaria (Lps)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox53</rd:DefaultName>
+                      <rd:DefaultName>Textbox145</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1473,21 +1490,51 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox103">
+                    <Textbox Name="Textbox138">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>="Descuento de Tara" &amp; iif(Parameters!parMostrarQuintales.Value = True, " (QQ)", " (lb)")</Value>
+                              <Value>Capitalización por Retención (Lps)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox103</rd:DefaultName>
+                      <rd:DefaultName>Textbox138</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox132">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Intereses sobre Aportaciones (Lps)</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox132</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1510,7 +1557,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>="Total Descuento" &amp; iif(Parameters!parMostrarQuintales.Value = True, " (QQ)", " (lb)")</Value>
+                              <Value>Excedente de Período (Lps)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1533,21 +1580,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox134">
+                    <Textbox Name="Textbox120">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>="Total Recibido" &amp; iif(Parameters!parMostrarQuintales.Value = True, " (QQ)", " (lb)")</Value>
+                              <Value>Prestamo Hipotecario (Lps)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox134</rd:DefaultName>
+                      <rd:DefaultName>Textbox120</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1563,21 +1610,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox140">
+                    <Textbox Name="Textbox112">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Total Recibido en Letras</Value>
+                              <Value>Prestamo Fiduciario (Lps)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox140</rd:DefaultName>
+                      <rd:DefaultName>Textbox112</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1593,21 +1640,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox4">
+                    <Textbox Name="Textbox102">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Sacos Cantidad</Value>
+                              <Value>Prestamo Prendario (Lps)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox4</rd:DefaultName>
+                      <rd:DefaultName>Textbox102</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1623,21 +1670,171 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox40">
+                    <Textbox Name="Textbox96">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>="Sacos Peso" &amp; iif(Parameters!parMostrarQuintales.Value = True, " (QQ)", " (lb)")</Value>
+                              <Value>Cuentas por Cobrar (Lps)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox40</rd:DefaultName>
+                      <rd:DefaultName>Textbox96</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox89">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Intereses por Cobrar (Lps)</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox89</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox83">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Otras Deducciones (Lps)</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox83</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox176">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Total Deducciones (Lps)</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox176</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox73">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>A Favor de Socio (Lps)</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox73</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox182">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Total (Lps)</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox182</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1788,8 +1985,7 @@
                               <Value>=
 iif(Parameters!parGroupBySocios.Value = True, "- Socio: " &amp; Fields!SOCIOS_ID.Value &amp; " - " &amp; Fields!SOCIOS_NOMBRE.Value, "") &amp;
 iif(Parameters!parGroupByClasificacionCafe.Value = True, " - Clasificación de Café: " &amp; Fields!CLASIFICACIONES_CAFE_NOMBRE.Value, "") &amp;
-iif(Parameters!parGroupByEstado.Value = True, " - Estado: " &amp; Fields!ESTADOS_NOTA_NOMBRE.Value, "") &amp;
-iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FECHA.Value, "")</Value>
+iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACIONES_FECHA.Value, "")</Value>
                               <Style>
                                 <Color>SeaGreen</Color>
                               </Style>
@@ -1810,9 +2006,12 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <ColSpan>25</ColSpan>
+                    <ColSpan>28</ColSpan>
                   </CellContents>
                 </TablixCell>
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
                 <TablixCell />
                 <TablixCell />
                 <TablixCell />
@@ -1934,36 +2133,6 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="ESTADOS_NOTA_NOMBRE">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!ESTADOS_NOTA_NOMBRE.Value</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>ESTADOS_NOTA_NOMBRE</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
                     <Textbox Name="FECHA">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -1971,7 +2140,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!NOTAS_FECHA.Value.ToShortDateString()</Value>
+                              <Value>=Fields!LIQUIDACIONES_FECHA.Value.ToShortDateString()</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -2001,7 +2170,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!NOTAS_ID.Value</Value>
+                              <Value>=Fields!LIQUIDACIONES_ID.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -2024,66 +2193,6 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="NOTAS_TRANSPORTE_COOPERATIVA">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=IIF(Fields!NOTAS_TRANSPORTE_COOPERATIVA.Value, "Si", "No")</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>NOTAS_TRANSPORTE_COOPERATIVA</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA.Value</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
                     <Textbox Name="NOTAS_PESO_TRANSPORTE_COOPERATIVA">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -2091,7 +2200,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Fields!NOTAS_PESO_TRANSPORTE_COOPERATIVA.Value / 100, Fields!NOTAS_PESO_TRANSPORTE_COOPERATIVA.Value)</Value>
+                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Fields!LIQUIDACIONES_TOTAL_LIBRAS.Value / 100, Fields!LIQUIDACIONES_TOTAL_LIBRAS.Value)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -2114,21 +2223,21 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="NOTAS_PORCENTAJE_DEFECTO">
+                    <Textbox Name="LIQUIDACIONES_PRECIO_LIBRAS">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!NOTAS_PORCENTAJE_DEFECTO.Value</Value>
+                              <Value>=Fields!LIQUIDACIONES_PRECIO_LIBRAS.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>NOTAS_PORCENTAJE_DEFECTO</rd:DefaultName>
+                      <rd:DefaultName>LIQUIDACIONES_PRECIO_LIBRAS</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -2144,21 +2253,21 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="NOTAS_PESO_DEFECTO">
+                    <Textbox Name="LIQUIDACIONES_VALOR_TOTAL">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Fields!NOTAS_PESO_DEFECTO.Value / 100, Fields!NOTAS_PESO_DEFECTO.Value)</Value>
+                              <Value>=Fields!LIQUIDACIONES_VALOR_TOTAL.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>NOTAS_PESO_DEFECTO</rd:DefaultName>
+                      <rd:DefaultName>LIQUIDACIONES_VALOR_TOTAL</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -2174,21 +2283,21 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="NOTAS_PORCENTAJE_HUMEDAD">
+                    <Textbox Name="LIQUIDACIONES_D_CUOTA_INGRESO">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!NOTAS_PORCENTAJE_HUMEDAD.Value</Value>
+                              <Value>=Fields!LIQUIDACIONES_D_CUOTA_INGRESO.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>NOTAS_PORCENTAJE_HUMEDAD</rd:DefaultName>
+                      <rd:DefaultName>LIQUIDACIONES_D_CUOTA_INGRESO</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -2204,21 +2313,21 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="NOTAS_PESO_HUMEDAD">
+                    <Textbox Name="LIQUIDACIONES_D_GASTOS_ADMIN">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Fields!NOTAS_PESO_HUMEDAD.Value / 100, Fields!NOTAS_PESO_HUMEDAD.Value)</Value>
+                              <Value>=Fields!LIQUIDACIONES_D_GASTOS_ADMIN.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>NOTAS_PESO_HUMEDAD</rd:DefaultName>
+                      <rd:DefaultName>LIQUIDACIONES_D_GASTOS_ADMIN</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -2234,21 +2343,21 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="NOTAS_PESO_SUMA">
+                    <Textbox Name="LIQUIDACIONES_D_APORTACION_ORDINARIO">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Fields!NOTAS_PESO_SUMA.Value / 100, Fields!NOTAS_PESO_SUMA.Value)</Value>
+                              <Value>=Fields!LIQUIDACIONES_D_APORTACION_ORDINARIO.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>NOTAS_PESO_SUMA</rd:DefaultName>
+                      <rd:DefaultName>LIQUIDACIONES_D_APORTACION_ORDINARIO</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -2264,21 +2373,21 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="NOTAS_SACOS_RETENIDOS">
+                    <Textbox Name="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!NOTAS_SACOS_RETENIDOS.Value</Value>
+                              <Value>=Fields!LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>NOTAS_SACOS_RETENIDOS</rd:DefaultName>
+                      <rd:DefaultName>LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -2294,21 +2403,21 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="NOTAS_PESO_TARA">
+                    <Textbox Name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Fields!NOTAS_PESO_TARA.Value / 100, Fields!NOTAS_PESO_TARA.Value)</Value>
+                              <Value>=Fields!LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>NOTAS_PESO_TARA</rd:DefaultName>
+                      <rd:DefaultName>LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -2324,21 +2433,21 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="NOTAS_PESO_DESCUENTO">
+                    <Textbox Name="LIQUIDACIONES_D_INTERESES_S_APORTACIONES">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Fields!NOTAS_PESO_DESCUENTO.Value / 100, Fields!NOTAS_PESO_DESCUENTO.Value)</Value>
+                              <Value>=Fields!LIQUIDACIONES_D_INTERESES_S_APORTACIONES.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>NOTAS_PESO_DESCUENTO</rd:DefaultName>
+                      <rd:DefaultName>LIQUIDACIONES_D_INTERESES_S_APORTACIONES</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -2354,21 +2463,21 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="NOTAS_PESO_TOTAL_RECIBIDO">
+                    <Textbox Name="LIQUIDACIONES_D_EXCEDENTE_PERIODO">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Fields!NOTAS_PESO_TOTAL_RECIBIDO.Value / 100, Fields!NOTAS_PESO_TOTAL_RECIBIDO.Value)</Value>
+                              <Value>=Fields!LIQUIDACIONES_D_EXCEDENTE_PERIODO.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>NOTAS_PESO_TOTAL_RECIBIDO</rd:DefaultName>
+                      <rd:DefaultName>LIQUIDACIONES_D_EXCEDENTE_PERIODO</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -2384,21 +2493,21 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO">
+                    <Textbox Name="LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!NOTAS_PESO_TOTAL_RECIBIDO_TEXTO.Value</Value>
+                              <Value>=Fields!LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>NOTAS_PESO_TOTAL_RECIBIDO_TEXTO</rd:DefaultName>
+                      <rd:DefaultName>LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -2414,21 +2523,21 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="DETALLES_CANTIDAD_SACOS">
+                    <Textbox Name="LIQUIDACIONES_D_FIDUCIARIO">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!DETALLES_CANTIDAD_SACOS.Value</Value>
+                              <Value>=Fields!LIQUIDACIONES_D_FIDUCIARIO.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>DETALLES_CANTIDAD_SACOS</rd:DefaultName>
+                      <rd:DefaultName>LIQUIDACIONES_D_FIDUCIARIO</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -2444,21 +2553,201 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="DETALLES_PESO">
+                    <Textbox Name="LIQUIDACIONES_D_PRENDARIO">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Fields!DETALLES_PESO.Value / 100, Fields!DETALLES_PESO.Value)</Value>
+                              <Value>=Fields!LIQUIDACIONES_D_PRENDARIO.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>DETALLES_PESO</rd:DefaultName>
+                      <rd:DefaultName>LIQUIDACIONES_D_PRENDARIO</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="LIQUIDACIONES_D_CUENTAS_X_COBRAR">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!LIQUIDACIONES_D_CUENTAS_X_COBRAR.Value</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>LIQUIDACIONES_D_CUENTAS_X_COBRAR</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="LIQUIDACIONES_D_INTERESES_X_COBRAR">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!LIQUIDACIONES_D_INTERESES_X_COBRAR.Value</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>LIQUIDACIONES_D_INTERESES_X_COBRAR</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="LIQUIDACIONES_D_OTRAS_DEDUCCIONES">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!LIQUIDACIONES_D_OTRAS_DEDUCCIONES.Value</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>LIQUIDACIONES_D_OTRAS_DEDUCCIONES</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="LIQUIDACIONES_D_TOTAL_DEDUCCIONES">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!LIQUIDACIONES_D_TOTAL_DEDUCCIONES.Value</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>LIQUIDACIONES_D_TOTAL_DEDUCCIONES</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="LIQUIDACIONES_D_AF_SOCIO">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!LIQUIDACIONES_D_AF_SOCIO.Value</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>LIQUIDACIONES_D_AF_SOCIO</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="LIQUIDACIONES_D_TOTAL">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!LIQUIDACIONES_D_TOTAL.Value</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>LIQUIDACIONES_D_TOTAL</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -2689,36 +2978,6 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox33">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox33</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
                     <Textbox Name="Textbox19">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -2756,74 +3015,22 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
-                              <Style />
+                              <Value>=Count(Fields!LIQUIDACIONES_ID.Value)</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value>Hojas</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox14</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox56">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox56</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox62">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox62</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -2846,8 +3053,16 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
-                              <Style />
+                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Sum(Fields!LIQUIDACIONES_TOTAL_LIBRAS.Value) / 100, Sum(Fields!LIQUIDACIONES_TOTAL_LIBRAS.Value))</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> SubTotal</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -2876,8 +3091,16 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
-                              <Style />
+                              <Value>=Avg(Fields!LIQUIDACIONES_PRECIO_LIBRAS.Value)</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value>Promedio</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -2906,8 +3129,16 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
-                              <Style />
+                              <Value>= Sum(Fields!LIQUIDACIONES_VALOR_TOTAL.Value)</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> SubTotal</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -2929,265 +3160,29 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox86">
+                    <Textbox Name="Textbox172">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox86</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox93">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox93</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox99">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox99</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox59">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox59</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox110">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox110</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox130">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox130</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox136">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox136</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox142">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox142</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox7">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Sum(Fields!DETALLES_CANTIDAD_SACOS.Value)</Value>
-                              <Style />
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_CUOTA_INGRESO.Value)</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
                             </TextRun>
                             <TextRun>
                               <Value> SubTotal</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox7</rd:DefaultName>
+                      <rd:DefaultName>Textbox172</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -3203,25 +3198,561 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox44">
+                    <Textbox Name="Textbox166">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!DETALLES_PESO.Value)</Value>
-                              <Style />
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_GASTOS_ADMIN.Value)</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
                             </TextRun>
                             <TextRun>
                               <Value> SubTotal</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox44</rd:DefaultName>
+                      <rd:DefaultName>Textbox166</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox160">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_APORTACION_ORDINARIO.Value)</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> SubTotal</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox160</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox148">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA.Value)</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> SubTotal</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox148</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox140">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD.Value)</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> SubTotal</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox140</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox134">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_INTERESES_S_APORTACIONES.Value)</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> SubTotal</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox134</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox128">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_EXCEDENTE_PERIODO.Value)</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> SubTotal</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox128</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox122">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO.Value)</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> SubTotal</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox122</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox114">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_FIDUCIARIO.Value)</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> SubTotal</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox114</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox106">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_PRENDARIO.Value)</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> SubTotal</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox106</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox98">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_CUENTAS_X_COBRAR.Value)</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> SubTotal</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox98</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox92">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_INTERESES_X_COBRAR.Value)</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> SubTotal</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox92</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox85">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_OTRAS_DEDUCCIONES.Value)</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> SubTotal</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox85</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox178">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_TOTAL_DEDUCCIONES.Value)</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> SubTotal</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox178</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox75">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>= Avg(Fields!LIQUIDACIONES_D_AF_SOCIO.Value)</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> Promedio</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox75</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox184">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_TOTAL.Value)</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> SubTotal</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox184</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -3458,38 +3989,6 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox34">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox34</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
                     <Textbox Name="Textbox29">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -3529,13 +4028,13 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Count(Fields!NOTAS_ID.Value)</Value>
+                              <Value>=Count(Fields!LIQUIDACIONES_ID.Value)</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                             <TextRun>
-                              <Value> Notas</Value>
+                              <Value>Hojas</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -3560,76 +4059,6 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox57">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox57</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox63">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Avg(Fields!NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA.Value)</Value>
-                              <Style>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
-                            </TextRun>
-                            <TextRun>
-                              <Value> % Promedio Total</Value>
-                              <Style>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox63</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
                     <Textbox Name="Textbox42">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -3637,7 +4066,13 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Sum(Fields!LIQUIDACIONES_TOTAL_LIBRAS.Value) / 100, Sum(Fields!LIQUIDACIONES_TOTAL_LIBRAS.Value))</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> Total</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -3669,13 +4104,13 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!NOTAS_PORCENTAJE_DEFECTO.Value)</Value>
+                              <Value>=Avg(Fields!LIQUIDACIONES_PRECIO_LIBRAS.Value)</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                             <TextRun>
-                              <Value> % Promedio Total</Value>
+                              <Value> Promedio Total</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -3707,7 +4142,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Sum(Fields!NOTAS_PESO_DEFECTO.Value) / 100, Sum(Fields!NOTAS_PESO_DEFECTO.Value))</Value>
+                              <Value>= Sum(Fields!LIQUIDACIONES_VALOR_TOTAL.Value)</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -3738,52 +4173,14 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox87">
+                    <Textbox Name="Textbox173">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!NOTAS_PORCENTAJE_HUMEDAD.Value)</Value>
-                              <Style>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
-                            </TextRun>
-                            <TextRun>
-                              <Value> % Promedio Total</Value>
-                              <Style>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox87</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox94">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Sum(Fields!NOTAS_PESO_HUMEDAD.Value) / 100, Sum(Fields!NOTAS_PESO_HUMEDAD.Value))</Value>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_CUOTA_INGRESO.Value)</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -3798,7 +4195,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox94</rd:DefaultName>
+                      <rd:DefaultName>Textbox173</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -3814,14 +4211,14 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox100">
+                    <Textbox Name="Textbox167">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Sum(Fields!NOTAS_PESO_SUMA.Value) / 100, Sum(Fields!NOTAS_PESO_SUMA.Value))</Value>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_GASTOS_ADMIN.Value)</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -3836,7 +4233,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox100</rd:DefaultName>
+                      <rd:DefaultName>Textbox167</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -3852,46 +4249,14 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox61">
+                    <Textbox Name="Textbox161">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
-                              <Style>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox61</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox111">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Sum(Fields!NOTAS_PESO_TARA.Value) / 100, Sum(Fields!NOTAS_PESO_TARA.Value))</Value>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_APORTACION_ORDINARIO.Value)</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -3906,7 +4271,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox111</rd:DefaultName>
+                      <rd:DefaultName>Textbox161</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -3922,14 +4287,14 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox131">
+                    <Textbox Name="Textbox152">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Sum(Fields!NOTAS_PESO_DESCUENTO.Value) / 100, Sum(Fields!NOTAS_PESO_DESCUENTO.Value))</Value>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA.Value)</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -3944,7 +4309,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox131</rd:DefaultName>
+                      <rd:DefaultName>Textbox152</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -3960,14 +4325,14 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox137">
+                    <Textbox Name="Textbox141">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Sum(Fields!NOTAS_PESO_TOTAL_RECIBIDO.Value) / 100, Sum(Fields!NOTAS_PESO_TOTAL_RECIBIDO.Value))</Value>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD.Value)</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -3982,7 +4347,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox137</rd:DefaultName>
+                      <rd:DefaultName>Textbox141</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -3998,14 +4363,20 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox143">
+                    <Textbox Name="Textbox135">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_INTERESES_S_APORTACIONES.Value)</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> Total</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -4014,7 +4385,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox143</rd:DefaultName>
+                      <rd:DefaultName>Textbox135</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -4030,14 +4401,20 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox8">
+                    <Textbox Name="Textbox129">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!DETALLES_CANTIDAD_SACOS.Value)</Value>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_EXCEDENTE_PERIODO.Value)</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> Total</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -4046,7 +4423,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox8</rd:DefaultName>
+                      <rd:DefaultName>Textbox129</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -4062,14 +4439,20 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox47">
+                    <Textbox Name="Textbox123">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Sum(Fields!DETALLES_PESO.Value) / 100, Sum(Fields!DETALLES_PESO.Value))</Value>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO.Value)</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> Total</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -4078,7 +4461,311 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox47</rd:DefaultName>
+                      <rd:DefaultName>Textbox123</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox117">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_FIDUCIARIO.Value)</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> Total</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox117</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox109">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_PRENDARIO.Value)</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> Total</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox109</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox99">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_CUENTAS_X_COBRAR.Value)</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> Total</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox99</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox93">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_INTERESES_X_COBRAR.Value)</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> Total</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox93</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox86">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_OTRAS_DEDUCCIONES.Value)</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> Total</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox86</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox179">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_TOTAL_DEDUCCIONES.Value)</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> Total</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox179</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox77">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>= Avg(Fields!LIQUIDACIONES_D_AF_SOCIO.Value)</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> Promedio Total</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox77</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox185">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>= Sum(Fields!LIQUIDACIONES_D_TOTAL.Value)</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> Total</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox185</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -4228,99 +4915,42 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
           <TablixMembers>
             <TablixMember>
               <Visibility>
-                <Hidden>=Parameters!parGroupBySocios.Value or Parameters!parGroupByNotas.Value</Hidden>
+                <Hidden>=Parameters!parGroupBySocios.Value</Hidden>
               </Visibility>
             </TablixMember>
             <TablixMember>
               <Visibility>
-                <Hidden>=Parameters!parGroupBySocios.Value or Parameters!parGroupByNotas.Value</Hidden>
+                <Hidden>=Parameters!parGroupBySocios.Value</Hidden>
               </Visibility>
             </TablixMember>
             <TablixMember>
               <Visibility>
-                <Hidden>= Parameters!parGroupByClasificacionCafe.Value or Parameters!parGroupByNotas.Value</Hidden>
+                <Hidden>= Parameters!parGroupByClasificacionCafe.Value</Hidden>
               </Visibility>
             </TablixMember>
             <TablixMember>
               <Visibility>
-                <Hidden>= Parameters!parGroupByEstado.Value or Parameters!parGroupByNotas.Value</Hidden>
+                <Hidden>= Parameters!parGroupByFecha.Value</Hidden>
               </Visibility>
             </TablixMember>
-            <TablixMember>
-              <Visibility>
-                <Hidden>= Parameters!parGroupByFecha.Value or Parameters!parGroupByNotas.Value</Hidden>
-              </Visibility>
-            </TablixMember>
-            <TablixMember>
-              <Visibility>
-                <Hidden>= Parameters!parGroupByNotas.Value</Hidden>
-              </Visibility>
-            </TablixMember>
-            <TablixMember>
-              <Visibility>
-                <Hidden>=Parameters!parGroupByNotas.Value</Hidden>
-              </Visibility>
-            </TablixMember>
-            <TablixMember>
-              <Visibility>
-                <Hidden>=Parameters!parGroupByNotas.Value</Hidden>
-              </Visibility>
-            </TablixMember>
-            <TablixMember>
-              <Visibility>
-                <Hidden>=Parameters!parGroupByNotas.Value</Hidden>
-              </Visibility>
-            </TablixMember>
-            <TablixMember>
-              <Visibility>
-                <Hidden>=Parameters!parGroupByNotas.Value</Hidden>
-              </Visibility>
-            </TablixMember>
-            <TablixMember>
-              <Visibility>
-                <Hidden>=Parameters!parGroupByNotas.Value</Hidden>
-              </Visibility>
-            </TablixMember>
-            <TablixMember>
-              <Visibility>
-                <Hidden>=Parameters!parGroupByNotas.Value</Hidden>
-              </Visibility>
-            </TablixMember>
-            <TablixMember>
-              <Visibility>
-                <Hidden>=Parameters!parGroupByNotas.Value</Hidden>
-              </Visibility>
-            </TablixMember>
-            <TablixMember>
-              <Visibility>
-                <Hidden>=Parameters!parGroupByNotas.Value</Hidden>
-              </Visibility>
-            </TablixMember>
-            <TablixMember>
-              <Visibility>
-                <Hidden>=Parameters!parGroupByNotas.Value</Hidden>
-              </Visibility>
-            </TablixMember>
-            <TablixMember>
-              <Visibility>
-                <Hidden>=Parameters!parGroupByNotas.Value</Hidden>
-              </Visibility>
-            </TablixMember>
-            <TablixMember>
-              <Visibility>
-                <Hidden>=Parameters!parGroupByNotas.Value</Hidden>
-              </Visibility>
-            </TablixMember>
-            <TablixMember>
-              <Visibility>
-                <Hidden>=Parameters!parGroupByNotas.Value</Hidden>
-              </Visibility>
-            </TablixMember>
-            <TablixMember>
-              <Visibility>
-                <Hidden>=Parameters!parGroupByNotas.Value</Hidden>
-              </Visibility>
-            </TablixMember>
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
             <TablixMember />
             <TablixMember />
             <TablixMember />
@@ -4331,126 +4961,9 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
           <TablixMembers>
-            <TablixMember>
-              <TablixHeader>
-                <Size>4in</Size>
-                <CellContents>
-                  <Textbox Name="Textbox3">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value />
-                            <Style />
-                          </TextRun>
-                        </TextRuns>
-                        <Style />
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>Textbox3</rd:DefaultName>
-                    <Visibility>
-                      <Hidden>=iif(Parameters!parGroupByNotas.Value, False, true)</Hidden>
-                    </Visibility>
-                    <Style>
-                      <Border>
-                        <Style>None</Style>
-                      </Border>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                </CellContents>
-              </TablixHeader>
-              <TablixMembers>
-                <TablixMember />
-              </TablixMembers>
-            </TablixMember>
-            <TablixMember>
-              <TablixHeader>
-                <Size>4in</Size>
-                <CellContents>
-                  <Textbox Name="Textbox6">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value />
-                            <Style>
-                              <FontWeight>Bold</FontWeight>
-                              <TextDecoration>Underline</TextDecoration>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style>
-                          <TextAlign>Center</TextAlign>
-                        </Style>
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>Textbox6</rd:DefaultName>
-                    <Visibility>
-                      <Hidden>=iif(Parameters!parGroupByNotas.Value, False, true)</Hidden>
-                    </Visibility>
-                    <Style>
-                      <Border>
-                        <Style>None</Style>
-                      </Border>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                </CellContents>
-              </TablixHeader>
-              <TablixMembers>
-                <TablixMember />
-              </TablixMembers>
-            </TablixMember>
-            <TablixMember>
-              <TablixHeader>
-                <Size>4in</Size>
-                <CellContents>
-                  <Textbox Name="Textbox9">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>Nota de Peso</Value>
-                            <Style />
-                          </TextRun>
-                        </TextRuns>
-                        <Style />
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>Textbox9</rd:DefaultName>
-                    <Visibility>
-                      <Hidden>=iif(Parameters!parGroupByNotas.Value, False, true)</Hidden>
-                    </Visibility>
-                    <Style>
-                      <Border>
-                        <Color>LightGrey</Color>
-                        <Style>Solid</Style>
-                      </Border>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                </CellContents>
-              </TablixHeader>
-              <TablixMembers>
-                <TablixMember />
-              </TablixMembers>
-            </TablixMember>
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
             <TablixMember>
               <Group Name="detalleNotasDePeso_GroupType">
                 <GroupExpressions>
@@ -4458,8 +4971,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
 
 iif(Parameters!parGroupBySocios.Value = True, Fields!SOCIOS_ID.Value, "") &amp;
 iif(Parameters!parGroupByClasificacionCafe.Value = True, Fields!CLASIFICACIONES_CAFE_ID.Value, "") &amp;
-iif(Parameters!parGroupByEstado.Value = True, Fields!ESTADOS_NOTA_ID.Value, "") &amp;
-iif(Parameters!parGroupByFecha.Value = True, Fields!NOTAS_FECHA.Value, "")</GroupExpression>
+iif(Parameters!parGroupByFecha.Value = True, Fields!LIQUIDACIONES_FECHA.Value, "")</GroupExpression>
                 </GroupExpressions>
               </Group>
               <SortExpressions>
@@ -4468,230 +4980,45 @@ iif(Parameters!parGroupByFecha.Value = True, Fields!NOTAS_FECHA.Value, "")</Grou
 
 iif(Parameters!parGroupBySocios.Value = True, Fields!SOCIOS_ID.Value, "") &amp;
 iif(Parameters!parGroupByClasificacionCafe.Value = True, Fields!CLASIFICACIONES_CAFE_NOMBRE.Value, "") &amp;
-iif(Parameters!parGroupByEstado.Value = True, Fields!ESTADOS_NOTA_NOMBRE.Value, "") &amp;
-iif(Parameters!parGroupByFecha.Value = True, Fields!NOTAS_FECHA.Value, "")</Value>
+iif(Parameters!parGroupByFecha.Value = True, Fields!LIQUIDACIONES_FECHA.Value, "")</Value>
                 </SortExpression>
               </SortExpressions>
               <TablixMembers>
                 <TablixMember>
-                  <TablixHeader>
-                    <Size>4in</Size>
-                    <CellContents>
-                      <Textbox Name="Textbox10">
-                        <CanGrow>true</CanGrow>
-                        <KeepTogether>true</KeepTogether>
-                        <Paragraphs>
-                          <Paragraph>
-                            <TextRuns>
-                              <TextRun>
-                                <Value />
-                                <Style>
-                                  <Color>SeaGreen</Color>
-                                </Style>
-                              </TextRun>
-                            </TextRuns>
-                            <Style />
-                          </Paragraph>
-                        </Paragraphs>
-                        <rd:DefaultName>Textbox10</rd:DefaultName>
-                        <Visibility>
-                          <Hidden>=iif(Parameters!parGroupByNotas.Value, False, true)</Hidden>
-                        </Visibility>
-                        <Style>
-                          <Border>
-                            <Color>LightGrey</Color>
-                            <Style>Solid</Style>
-                          </Border>
-                          <PaddingLeft>2pt</PaddingLeft>
-                          <PaddingRight>2pt</PaddingRight>
-                          <PaddingTop>2pt</PaddingTop>
-                          <PaddingBottom>2pt</PaddingBottom>
-                        </Style>
-                      </Textbox>
-                    </CellContents>
-                  </TablixHeader>
-                  <TablixMembers>
-                    <TablixMember>
-                      <Visibility>
-                        <Hidden>
-                      =
-                      iif(Parameters!parGroupByNotas.Value, False,
-                      iif(Parameters!parGroupBySocios.Value, False,
-                      iif(Parameters!parGroupByClasificacionCafe.Value, False,
-                      iif(Parameters!parGroupByEstado.Value, False,
-                      iif(Parameters!parGroupByFecha.Value, False, True)))))
-                    </Hidden>
-                      </Visibility>
-                    </TablixMember>
-                  </TablixMembers>
-                  <KeepWithGroup>After</KeepWithGroup>
+                  <Visibility>
+                    <Hidden>
+                          =
+                          iif(Parameters!parGroupBySocios.Value, False,
+                          iif(Parameters!parGroupByClasificacionCafe.Value, False,
+                          iif(Parameters!parGroupByFecha.Value, False, True)))
+                        </Hidden>
+                  </Visibility>
                 </TablixMember>
                 <TablixMember>
-                  <Group Name="NotasDePesoGroup">
-                    <GroupExpressions>
-                      <GroupExpression>=iif(Parameters!parGroupByNotas.Value = True, Fields!NOTAS_ID.Value, "")</GroupExpression>
-                    </GroupExpressions>
-                  </Group>
-                  <SortExpressions>
-                    <SortExpression>
-                      <Value>=iif(Parameters!parGroupByNotas.Value = True, Fields!NOTAS_ID.Value, "")</Value>
-                    </SortExpression>
-                  </SortExpressions>
-                  <TablixHeader>
-                    <Size>4in</Size>
-                    <CellContents>
-                      <Textbox Name="NotaDePesoGroupTextBox">
-                        <CanGrow>true</CanGrow>
-                        <KeepTogether>true</KeepTogether>
-                        <Paragraphs>
-                          <Paragraph>
-                            <TextRuns>
-                              <TextRun>
-                                <Value>=
-iif(Parameters!parGroupByNotas.Value = True,
-" - Nota #: " &amp; Fields!NOTAS_ID.Value &amp;
-iif(Parameters!parGroupByEstado.Value = True, "", " - Estado: " &amp; Fields!ESTADOS_NOTA_NOMBRE.Value) &amp;
-iif(Parameters!parGroupByClasificacionCafe.Value = True, "", " - Clasificación de Café: " &amp; Fields!CLASIFICACIONES_CAFE_NOMBRE.Value) &amp;
-iif(Parameters!parGroupBySocios.Value = True, "", " - Socio: " &amp; Fields!SOCIOS_ID.Value &amp; " - " &amp; Fields!SOCIOS_NOMBRE.Value) &amp;
-iif(Parameters!parGroupByFecha.Value = True, "", " - Fecha: " &amp; Fields!NOTAS_FECHA.Value) &amp;
-" - Peso Bruto: " &amp; iif(Parameters!parMostrarQuintales.Value = True, Fields!NOTAS_PESO_SUMA.Value / 100 &amp; " QQ", Fields!NOTAS_PESO_SUMA.Value &amp; " lb") &amp;
-" - Tara: " &amp; iif(Parameters!parMostrarQuintales.Value = True, Fields!NOTAS_PESO_TARA.Value / 100 &amp; " QQ", Fields!NOTAS_PESO_TARA.Value &amp; " lb") &amp;
-" - Descuento: " &amp; iif(Parameters!parMostrarQuintales.Value = True, Fields!NOTAS_PESO_DESCUENTO.Value / 100 &amp; " QQ", Fields!NOTAS_PESO_DESCUENTO.Value &amp; " lb") &amp;
-" - Total: " &amp; iif(Parameters!parMostrarQuintales.Value = True, Fields!NOTAS_PESO_TOTAL_RECIBIDO.Value / 100 &amp; " QQ", Fields!NOTAS_PESO_TOTAL_RECIBIDO.Value &amp; " lb"), "")</Value>
-                                <Style>
-                                  <FontWeight>Bold</FontWeight>
-                                  <Color>SeaGreen</Color>
-                                </Style>
-                              </TextRun>
-                            </TextRuns>
-                            <Style />
-                          </Paragraph>
-                        </Paragraphs>
-                        <Visibility>
-                          <Hidden>=iif(Parameters!parGroupByNotas.Value, False, true)</Hidden>
-                        </Visibility>
-                        <Style>
-                          <Border>
-                            <Color>LightGrey</Color>
-                            <Style>Solid</Style>
-                          </Border>
-                          <PaddingLeft>2pt</PaddingLeft>
-                          <PaddingRight>2pt</PaddingRight>
-                          <PaddingTop>2pt</PaddingTop>
-                          <PaddingBottom>2pt</PaddingBottom>
-                        </Style>
-                      </Textbox>
-                    </CellContents>
-                  </TablixHeader>
-                  <TablixMembers>
-                    <TablixMember>
-                      <Group Name="detalleNotasDePeso_Details_Group" />
-                      <DataElementName>Detail_Collection</DataElementName>
-                      <DataElementOutput>Output</DataElementOutput>
-                      <KeepTogether>true</KeepTogether>
-                    </TablixMember>
-                  </TablixMembers>
+                  <Group Name="hojasDeLiquidacion_Details_Group" />
+                  <DataElementName>Detail_Collection</DataElementName>
+                  <DataElementOutput>Output</DataElementOutput>
+                  <KeepTogether>true</KeepTogether>
                 </TablixMember>
                 <TablixMember>
-                  <TablixHeader>
-                    <Size>4in</Size>
-                    <CellContents>
-                      <Textbox Name="Textbox13">
-                        <CanGrow>true</CanGrow>
-                        <KeepTogether>true</KeepTogether>
-                        <Paragraphs>
-                          <Paragraph>
-                            <TextRuns>
-                              <TextRun>
-                                <Value />
-                                <Style />
-                              </TextRun>
-                            </TextRuns>
-                            <Style />
-                          </Paragraph>
-                        </Paragraphs>
-                        <rd:DefaultName>Textbox13</rd:DefaultName>
-                        <Visibility>
-                          <Hidden>=iif(Parameters!parGroupByNotas.Value, False, true)</Hidden>
-                        </Visibility>
-                        <Style>
-                          <Border>
-                            <Color>LightGrey</Color>
-                            <Style>Solid</Style>
-                          </Border>
-                          <PaddingLeft>2pt</PaddingLeft>
-                          <PaddingRight>2pt</PaddingRight>
-                          <PaddingTop>2pt</PaddingTop>
-                          <PaddingBottom>2pt</PaddingBottom>
-                        </Style>
-                      </Textbox>
-                    </CellContents>
-                  </TablixHeader>
-                  <TablixMembers>
-                    <TablixMember>
-                      <Visibility>
-                        <Hidden>
-                      =
-                      iif(Parameters!parGroupByNotas.Value, False,
-                      iif(Parameters!parGroupBySocios.Value, False,
-                      iif(Parameters!parGroupByClasificacionCafe.Value, False,
-                      iif(Parameters!parGroupByEstado.Value, False,
-                      iif(Parameters!parGroupByFecha.Value, False, True)))))
-                    </Hidden>
-                      </Visibility>
-                    </TablixMember>
-                  </TablixMembers>
-                  <KeepWithGroup>Before</KeepWithGroup>
+                  <Visibility>
+                    <Hidden>
+                          =
+                          iif(Parameters!parGroupBySocios.Value, False,
+                          iif(Parameters!parGroupByClasificacionCafe.Value, False,
+                          iif(Parameters!parGroupByEstado.Value, False,
+                          iif(Parameters!parGroupByFecha.Value, False, True))))
+                        </Hidden>
+                  </Visibility>
                 </TablixMember>
               </TablixMembers>
             </TablixMember>
-            <TablixMember>
-              <TablixHeader>
-                <Size>4in</Size>
-                <CellContents>
-                  <Textbox Name="Textbox17">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value />
-                            <Style>
-                              <FontWeight>Bold</FontWeight>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style />
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>Textbox17</rd:DefaultName>
-                    <Visibility>
-                      <Hidden>=iif(Parameters!parGroupByNotas.Value, False, true)</Hidden>
-                    </Visibility>
-                    <Style>
-                      <Border>
-                        <Color>LightGrey</Color>
-                        <Style>Solid</Style>
-                      </Border>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                </CellContents>
-              </TablixHeader>
-              <TablixMembers>
-                <TablixMember />
-              </TablixMembers>
-              <KeepWithGroup>Before</KeepWithGroup>
-            </TablixMember>
+            <TablixMember />
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>NotasDePesoDetalleDataSet</DataSetName>
+        <DataSetName>HojaDeLiquidacionDataSet</DataSetName>
         <Height>1.75in</Height>
-        <Width>30in</Width>
+        <Width>28.70494in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -4743,16 +5070,6 @@ iif(Parameters!parGroupByFecha.Value = True, "", " - Fecha: " &amp; Fields!NOTAS
       </DefaultValue>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="parGroupByNotas">
-      <DataType>Boolean</DataType>
-      <Nullable>true</Nullable>
-      <DefaultValue>
-        <Values>
-          <Value>= False</Value>
-        </Values>
-      </DefaultValue>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
     <ReportParameter Name="parMostrarQuintales">
       <DataType>Boolean</DataType>
       <Nullable>true</Nullable>
@@ -4764,7 +5081,7 @@ iif(Parameters!parGroupByFecha.Value = True, "", " - Fecha: " &amp; Fields!NOTAS
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
-  <Width>30in</Width>
+  <Width>32.70494in</Width>
   <Page>
     <PageWidth>32in</PageWidth>
     <InteractiveHeight>0in</InteractiveHeight>

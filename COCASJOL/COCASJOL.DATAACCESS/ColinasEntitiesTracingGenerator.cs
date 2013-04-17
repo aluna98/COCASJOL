@@ -647,18 +647,50 @@ namespace COCASJOL.DATAACCESS
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<reporte_movimientos_de_inventario_de_cafe_de_socios> reporte_movimientos_de_inventario_de_cafe_de_socios
+        public ObjectSet<reporte_detalle_de_aportaciones_por_socio> reporte_detalle_de_aportaciones_por_socio
         {
             get
             {
-                if ((_reporte_movimientos_de_inventario_de_cafe_de_socios == null))
+                if ((_reporte_detalle_de_aportaciones_por_socio == null))
                 {
-                    _reporte_movimientos_de_inventario_de_cafe_de_socios = base.CreateObjectSet<reporte_movimientos_de_inventario_de_cafe_de_socios>("reporte_movimientos_de_inventario_de_cafe_de_socios");
+                    _reporte_detalle_de_aportaciones_por_socio = base.CreateObjectSet<reporte_detalle_de_aportaciones_por_socio>("reporte_detalle_de_aportaciones_por_socio");
                 }
-                return _reporte_movimientos_de_inventario_de_cafe_de_socios;
+                return _reporte_detalle_de_aportaciones_por_socio;
             }
         }
-        private ObjectSet<reporte_movimientos_de_inventario_de_cafe_de_socios> _reporte_movimientos_de_inventario_de_cafe_de_socios;
+        private ObjectSet<reporte_detalle_de_aportaciones_por_socio> _reporte_detalle_de_aportaciones_por_socio;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<reporte_hojas_de_liquidacion> reporte_hojas_de_liquidacion
+        {
+            get
+            {
+                if ((_reporte_hojas_de_liquidacion == null))
+                {
+                    _reporte_hojas_de_liquidacion = base.CreateObjectSet<reporte_hojas_de_liquidacion>("reporte_hojas_de_liquidacion");
+                }
+                return _reporte_hojas_de_liquidacion;
+            }
+        }
+        private ObjectSet<reporte_hojas_de_liquidacion> _reporte_hojas_de_liquidacion;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<reporte_notas_de_peso> reporte_notas_de_peso
+        {
+            get
+            {
+                if ((_reporte_notas_de_peso == null))
+                {
+                    _reporte_notas_de_peso = base.CreateObjectSet<reporte_notas_de_peso>("reporte_notas_de_peso");
+                }
+                return _reporte_notas_de_peso;
+            }
+        }
+        private ObjectSet<reporte_notas_de_peso> _reporte_notas_de_peso;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -679,34 +711,18 @@ namespace COCASJOL.DATAACCESS
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<reporte_detalle_de_aportaciones_por_socio> reporte_detalle_de_aportaciones_por_socio
+        public ObjectSet<reporte_movimientos_de_inventario_de_cafe_de_socios> reporte_movimientos_de_inventario_de_cafe_de_socios
         {
             get
             {
-                if ((_reporte_detalle_de_aportaciones_por_socio == null))
+                if ((_reporte_movimientos_de_inventario_de_cafe_de_socios == null))
                 {
-                    _reporte_detalle_de_aportaciones_por_socio = base.CreateObjectSet<reporte_detalle_de_aportaciones_por_socio>("reporte_detalle_de_aportaciones_por_socio");
+                    _reporte_movimientos_de_inventario_de_cafe_de_socios = base.CreateObjectSet<reporte_movimientos_de_inventario_de_cafe_de_socios>("reporte_movimientos_de_inventario_de_cafe_de_socios");
                 }
-                return _reporte_detalle_de_aportaciones_por_socio;
+                return _reporte_movimientos_de_inventario_de_cafe_de_socios;
             }
         }
-        private ObjectSet<reporte_detalle_de_aportaciones_por_socio> _reporte_detalle_de_aportaciones_por_socio;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<reporte_notas_de_peso> reporte_notas_de_peso
-        {
-            get
-            {
-                if ((_reporte_notas_de_peso == null))
-                {
-                    _reporte_notas_de_peso = base.CreateObjectSet<reporte_notas_de_peso>("reporte_notas_de_peso");
-                }
-                return _reporte_notas_de_peso;
-            }
-        }
-        private ObjectSet<reporte_notas_de_peso> _reporte_notas_de_peso;
+        private ObjectSet<reporte_movimientos_de_inventario_de_cafe_de_socios> _reporte_movimientos_de_inventario_de_cafe_de_socios;
 
         #endregion
         #region AddTo Methods
@@ -952,11 +968,27 @@ namespace COCASJOL.DATAACCESS
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the reporte_movimientos_de_inventario_de_cafe_de_socios EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the reporte_detalle_de_aportaciones_por_socio EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToreporte_movimientos_de_inventario_de_cafe_de_socios(reporte_movimientos_de_inventario_de_cafe_de_socios reporte_movimientos_de_inventario_de_cafe_de_socios)
+        public void AddToreporte_detalle_de_aportaciones_por_socio(reporte_detalle_de_aportaciones_por_socio reporte_detalle_de_aportaciones_por_socio)
         {
-            base.AddObject("reporte_movimientos_de_inventario_de_cafe_de_socios", reporte_movimientos_de_inventario_de_cafe_de_socios);
+            base.AddObject("reporte_detalle_de_aportaciones_por_socio", reporte_detalle_de_aportaciones_por_socio);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the reporte_hojas_de_liquidacion EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToreporte_hojas_de_liquidacion(reporte_hojas_de_liquidacion reporte_hojas_de_liquidacion)
+        {
+            base.AddObject("reporte_hojas_de_liquidacion", reporte_hojas_de_liquidacion);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the reporte_notas_de_peso EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToreporte_notas_de_peso(reporte_notas_de_peso reporte_notas_de_peso)
+        {
+            base.AddObject("reporte_notas_de_peso", reporte_notas_de_peso);
         }
     
         /// <summary>
@@ -968,19 +1000,11 @@ namespace COCASJOL.DATAACCESS
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the reporte_detalle_de_aportaciones_por_socio EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the reporte_movimientos_de_inventario_de_cafe_de_socios EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToreporte_detalle_de_aportaciones_por_socio(reporte_detalle_de_aportaciones_por_socio reporte_detalle_de_aportaciones_por_socio)
+        public void AddToreporte_movimientos_de_inventario_de_cafe_de_socios(reporte_movimientos_de_inventario_de_cafe_de_socios reporte_movimientos_de_inventario_de_cafe_de_socios)
         {
-            base.AddObject("reporte_detalle_de_aportaciones_por_socio", reporte_detalle_de_aportaciones_por_socio);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the reporte_notas_de_peso EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToreporte_notas_de_peso(reporte_notas_de_peso reporte_notas_de_peso)
-        {
-            base.AddObject("reporte_notas_de_peso", reporte_notas_de_peso);
+            base.AddObject("reporte_movimientos_de_inventario_de_cafe_de_socios", reporte_movimientos_de_inventario_de_cafe_de_socios);
         }
 
         #endregion
@@ -8088,6 +8112,761 @@ namespace COCASJOL.DATAACCESS
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="COLINASMODEL", Name="reporte_hojas_de_liquidacion")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class reporte_hojas_de_liquidacion : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new reporte_hojas_de_liquidacion object.
+        /// </summary>
+        /// <param name="lIQUIDACIONES_ID">Initial value of the LIQUIDACIONES_ID property.</param>
+        /// <param name="lIQUIDACIONES_FECHA">Initial value of the LIQUIDACIONES_FECHA property.</param>
+        /// <param name="cLASIFICACIONES_CAFE_ID">Initial value of the CLASIFICACIONES_CAFE_ID property.</param>
+        /// <param name="cLASIFICACIONES_CAFE_NOMBRE">Initial value of the CLASIFICACIONES_CAFE_NOMBRE property.</param>
+        /// <param name="sOCIOS_ID">Initial value of the SOCIOS_ID property.</param>
+        /// <param name="lIQUIDACIONES_TOTAL_LIBRAS">Initial value of the LIQUIDACIONES_TOTAL_LIBRAS property.</param>
+        /// <param name="lIQUIDACIONES_PRECIO_LIBRAS">Initial value of the LIQUIDACIONES_PRECIO_LIBRAS property.</param>
+        /// <param name="lIQUIDACIONES_VALOR_TOTAL">Initial value of the LIQUIDACIONES_VALOR_TOTAL property.</param>
+        /// <param name="lIQUIDACIONES_D_APORTACION_ORDINARIO">Initial value of the LIQUIDACIONES_D_APORTACION_ORDINARIO property.</param>
+        /// <param name="lIQUIDACIONES_D_APORTACION_EXTRAORDINARIA">Initial value of the LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA property.</param>
+        /// <param name="lIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD">Initial value of the LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD property.</param>
+        /// <param name="lIQUIDACIONES_D_INTERESES_S_APORTACIONES">Initial value of the LIQUIDACIONES_D_INTERESES_S_APORTACIONES property.</param>
+        /// <param name="lIQUIDACIONES_D_EXCEDENTE_PERIODO">Initial value of the LIQUIDACIONES_D_EXCEDENTE_PERIODO property.</param>
+        /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
+        /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
+        public static reporte_hojas_de_liquidacion Createreporte_hojas_de_liquidacion(global::System.Int32 lIQUIDACIONES_ID, global::System.DateTime lIQUIDACIONES_FECHA, global::System.Int32 cLASIFICACIONES_CAFE_ID, global::System.String cLASIFICACIONES_CAFE_NOMBRE, global::System.String sOCIOS_ID, global::System.Decimal lIQUIDACIONES_TOTAL_LIBRAS, global::System.Decimal lIQUIDACIONES_PRECIO_LIBRAS, global::System.Decimal lIQUIDACIONES_VALOR_TOTAL, global::System.Decimal lIQUIDACIONES_D_APORTACION_ORDINARIO, global::System.Decimal lIQUIDACIONES_D_APORTACION_EXTRAORDINARIA, global::System.Decimal lIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD, global::System.Decimal lIQUIDACIONES_D_INTERESES_S_APORTACIONES, global::System.Decimal lIQUIDACIONES_D_EXCEDENTE_PERIODO, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
+        {
+            reporte_hojas_de_liquidacion reporte_hojas_de_liquidacion = new reporte_hojas_de_liquidacion();
+            reporte_hojas_de_liquidacion.LIQUIDACIONES_ID = lIQUIDACIONES_ID;
+            reporte_hojas_de_liquidacion.LIQUIDACIONES_FECHA = lIQUIDACIONES_FECHA;
+            reporte_hojas_de_liquidacion.CLASIFICACIONES_CAFE_ID = cLASIFICACIONES_CAFE_ID;
+            reporte_hojas_de_liquidacion.CLASIFICACIONES_CAFE_NOMBRE = cLASIFICACIONES_CAFE_NOMBRE;
+            reporte_hojas_de_liquidacion.SOCIOS_ID = sOCIOS_ID;
+            reporte_hojas_de_liquidacion.LIQUIDACIONES_TOTAL_LIBRAS = lIQUIDACIONES_TOTAL_LIBRAS;
+            reporte_hojas_de_liquidacion.LIQUIDACIONES_PRECIO_LIBRAS = lIQUIDACIONES_PRECIO_LIBRAS;
+            reporte_hojas_de_liquidacion.LIQUIDACIONES_VALOR_TOTAL = lIQUIDACIONES_VALOR_TOTAL;
+            reporte_hojas_de_liquidacion.LIQUIDACIONES_D_APORTACION_ORDINARIO = lIQUIDACIONES_D_APORTACION_ORDINARIO;
+            reporte_hojas_de_liquidacion.LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA = lIQUIDACIONES_D_APORTACION_EXTRAORDINARIA;
+            reporte_hojas_de_liquidacion.LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD = lIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD;
+            reporte_hojas_de_liquidacion.LIQUIDACIONES_D_INTERESES_S_APORTACIONES = lIQUIDACIONES_D_INTERESES_S_APORTACIONES;
+            reporte_hojas_de_liquidacion.LIQUIDACIONES_D_EXCEDENTE_PERIODO = lIQUIDACIONES_D_EXCEDENTE_PERIODO;
+            reporte_hojas_de_liquidacion.CREADO_POR = cREADO_POR;
+            reporte_hojas_de_liquidacion.FECHA_CREACION = fECHA_CREACION;
+            return reporte_hojas_de_liquidacion;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 LIQUIDACIONES_ID
+        {
+            get
+            {
+                return _LIQUIDACIONES_ID;
+            }
+            set
+            {
+                if (_LIQUIDACIONES_ID != value)
+                {
+                    OnLIQUIDACIONES_IDChanging(value);
+                    ReportPropertyChanging("LIQUIDACIONES_ID");
+                    _LIQUIDACIONES_ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("LIQUIDACIONES_ID");
+                    OnLIQUIDACIONES_IDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _LIQUIDACIONES_ID;
+        partial void OnLIQUIDACIONES_IDChanging(global::System.Int32 value);
+        partial void OnLIQUIDACIONES_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime LIQUIDACIONES_FECHA
+        {
+            get
+            {
+                return _LIQUIDACIONES_FECHA;
+            }
+            set
+            {
+                OnLIQUIDACIONES_FECHAChanging(value);
+                ReportPropertyChanging("LIQUIDACIONES_FECHA");
+                _LIQUIDACIONES_FECHA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LIQUIDACIONES_FECHA");
+                OnLIQUIDACIONES_FECHAChanged();
+            }
+        }
+        private global::System.DateTime _LIQUIDACIONES_FECHA;
+        partial void OnLIQUIDACIONES_FECHAChanging(global::System.DateTime value);
+        partial void OnLIQUIDACIONES_FECHAChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 CLASIFICACIONES_CAFE_ID
+        {
+            get
+            {
+                return _CLASIFICACIONES_CAFE_ID;
+            }
+            set
+            {
+                OnCLASIFICACIONES_CAFE_IDChanging(value);
+                ReportPropertyChanging("CLASIFICACIONES_CAFE_ID");
+                _CLASIFICACIONES_CAFE_ID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CLASIFICACIONES_CAFE_ID");
+                OnCLASIFICACIONES_CAFE_IDChanged();
+            }
+        }
+        private global::System.Int32 _CLASIFICACIONES_CAFE_ID;
+        partial void OnCLASIFICACIONES_CAFE_IDChanging(global::System.Int32 value);
+        partial void OnCLASIFICACIONES_CAFE_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CLASIFICACIONES_CAFE_NOMBRE
+        {
+            get
+            {
+                return _CLASIFICACIONES_CAFE_NOMBRE;
+            }
+            set
+            {
+                OnCLASIFICACIONES_CAFE_NOMBREChanging(value);
+                ReportPropertyChanging("CLASIFICACIONES_CAFE_NOMBRE");
+                _CLASIFICACIONES_CAFE_NOMBRE = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CLASIFICACIONES_CAFE_NOMBRE");
+                OnCLASIFICACIONES_CAFE_NOMBREChanged();
+            }
+        }
+        private global::System.String _CLASIFICACIONES_CAFE_NOMBRE;
+        partial void OnCLASIFICACIONES_CAFE_NOMBREChanging(global::System.String value);
+        partial void OnCLASIFICACIONES_CAFE_NOMBREChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String SOCIOS_ID
+        {
+            get
+            {
+                return _SOCIOS_ID;
+            }
+            set
+            {
+                OnSOCIOS_IDChanging(value);
+                ReportPropertyChanging("SOCIOS_ID");
+                _SOCIOS_ID = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("SOCIOS_ID");
+                OnSOCIOS_IDChanged();
+            }
+        }
+        private global::System.String _SOCIOS_ID;
+        partial void OnSOCIOS_IDChanging(global::System.String value);
+        partial void OnSOCIOS_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SOCIOS_NOMBRE
+        {
+            get
+            {
+                return _SOCIOS_NOMBRE;
+            }
+            set
+            {
+                OnSOCIOS_NOMBREChanging(value);
+                ReportPropertyChanging("SOCIOS_NOMBRE");
+                _SOCIOS_NOMBRE = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SOCIOS_NOMBRE");
+                OnSOCIOS_NOMBREChanged();
+            }
+        }
+        private global::System.String _SOCIOS_NOMBRE;
+        partial void OnSOCIOS_NOMBREChanging(global::System.String value);
+        partial void OnSOCIOS_NOMBREChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal LIQUIDACIONES_TOTAL_LIBRAS
+        {
+            get
+            {
+                return _LIQUIDACIONES_TOTAL_LIBRAS;
+            }
+            set
+            {
+                OnLIQUIDACIONES_TOTAL_LIBRASChanging(value);
+                ReportPropertyChanging("LIQUIDACIONES_TOTAL_LIBRAS");
+                _LIQUIDACIONES_TOTAL_LIBRAS = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LIQUIDACIONES_TOTAL_LIBRAS");
+                OnLIQUIDACIONES_TOTAL_LIBRASChanged();
+            }
+        }
+        private global::System.Decimal _LIQUIDACIONES_TOTAL_LIBRAS;
+        partial void OnLIQUIDACIONES_TOTAL_LIBRASChanging(global::System.Decimal value);
+        partial void OnLIQUIDACIONES_TOTAL_LIBRASChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal LIQUIDACIONES_PRECIO_LIBRAS
+        {
+            get
+            {
+                return _LIQUIDACIONES_PRECIO_LIBRAS;
+            }
+            set
+            {
+                OnLIQUIDACIONES_PRECIO_LIBRASChanging(value);
+                ReportPropertyChanging("LIQUIDACIONES_PRECIO_LIBRAS");
+                _LIQUIDACIONES_PRECIO_LIBRAS = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LIQUIDACIONES_PRECIO_LIBRAS");
+                OnLIQUIDACIONES_PRECIO_LIBRASChanged();
+            }
+        }
+        private global::System.Decimal _LIQUIDACIONES_PRECIO_LIBRAS;
+        partial void OnLIQUIDACIONES_PRECIO_LIBRASChanging(global::System.Decimal value);
+        partial void OnLIQUIDACIONES_PRECIO_LIBRASChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal LIQUIDACIONES_VALOR_TOTAL
+        {
+            get
+            {
+                return _LIQUIDACIONES_VALOR_TOTAL;
+            }
+            set
+            {
+                OnLIQUIDACIONES_VALOR_TOTALChanging(value);
+                ReportPropertyChanging("LIQUIDACIONES_VALOR_TOTAL");
+                _LIQUIDACIONES_VALOR_TOTAL = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LIQUIDACIONES_VALOR_TOTAL");
+                OnLIQUIDACIONES_VALOR_TOTALChanged();
+            }
+        }
+        private global::System.Decimal _LIQUIDACIONES_VALOR_TOTAL;
+        partial void OnLIQUIDACIONES_VALOR_TOTALChanging(global::System.Decimal value);
+        partial void OnLIQUIDACIONES_VALOR_TOTALChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> LIQUIDACIONES_D_CUOTA_INGRESO
+        {
+            get
+            {
+                return _LIQUIDACIONES_D_CUOTA_INGRESO;
+            }
+            set
+            {
+                OnLIQUIDACIONES_D_CUOTA_INGRESOChanging(value);
+                ReportPropertyChanging("LIQUIDACIONES_D_CUOTA_INGRESO");
+                _LIQUIDACIONES_D_CUOTA_INGRESO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LIQUIDACIONES_D_CUOTA_INGRESO");
+                OnLIQUIDACIONES_D_CUOTA_INGRESOChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _LIQUIDACIONES_D_CUOTA_INGRESO;
+        partial void OnLIQUIDACIONES_D_CUOTA_INGRESOChanging(Nullable<global::System.Decimal> value);
+        partial void OnLIQUIDACIONES_D_CUOTA_INGRESOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> LIQUIDACIONES_D_GASTOS_ADMIN
+        {
+            get
+            {
+                return _LIQUIDACIONES_D_GASTOS_ADMIN;
+            }
+            set
+            {
+                OnLIQUIDACIONES_D_GASTOS_ADMINChanging(value);
+                ReportPropertyChanging("LIQUIDACIONES_D_GASTOS_ADMIN");
+                _LIQUIDACIONES_D_GASTOS_ADMIN = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LIQUIDACIONES_D_GASTOS_ADMIN");
+                OnLIQUIDACIONES_D_GASTOS_ADMINChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _LIQUIDACIONES_D_GASTOS_ADMIN;
+        partial void OnLIQUIDACIONES_D_GASTOS_ADMINChanging(Nullable<global::System.Decimal> value);
+        partial void OnLIQUIDACIONES_D_GASTOS_ADMINChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal LIQUIDACIONES_D_APORTACION_ORDINARIO
+        {
+            get
+            {
+                return _LIQUIDACIONES_D_APORTACION_ORDINARIO;
+            }
+            set
+            {
+                OnLIQUIDACIONES_D_APORTACION_ORDINARIOChanging(value);
+                ReportPropertyChanging("LIQUIDACIONES_D_APORTACION_ORDINARIO");
+                _LIQUIDACIONES_D_APORTACION_ORDINARIO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LIQUIDACIONES_D_APORTACION_ORDINARIO");
+                OnLIQUIDACIONES_D_APORTACION_ORDINARIOChanged();
+            }
+        }
+        private global::System.Decimal _LIQUIDACIONES_D_APORTACION_ORDINARIO;
+        partial void OnLIQUIDACIONES_D_APORTACION_ORDINARIOChanging(global::System.Decimal value);
+        partial void OnLIQUIDACIONES_D_APORTACION_ORDINARIOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA
+        {
+            get
+            {
+                return _LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA;
+            }
+            set
+            {
+                OnLIQUIDACIONES_D_APORTACION_EXTRAORDINARIAChanging(value);
+                ReportPropertyChanging("LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA");
+                _LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA");
+                OnLIQUIDACIONES_D_APORTACION_EXTRAORDINARIAChanged();
+            }
+        }
+        private global::System.Decimal _LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA;
+        partial void OnLIQUIDACIONES_D_APORTACION_EXTRAORDINARIAChanging(global::System.Decimal value);
+        partial void OnLIQUIDACIONES_D_APORTACION_EXTRAORDINARIAChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD
+        {
+            get
+            {
+                return _LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD;
+            }
+            set
+            {
+                OnLIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDADChanging(value);
+                ReportPropertyChanging("LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD");
+                _LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD");
+                OnLIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDADChanged();
+            }
+        }
+        private global::System.Decimal _LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD;
+        partial void OnLIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDADChanging(global::System.Decimal value);
+        partial void OnLIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDADChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal LIQUIDACIONES_D_INTERESES_S_APORTACIONES
+        {
+            get
+            {
+                return _LIQUIDACIONES_D_INTERESES_S_APORTACIONES;
+            }
+            set
+            {
+                OnLIQUIDACIONES_D_INTERESES_S_APORTACIONESChanging(value);
+                ReportPropertyChanging("LIQUIDACIONES_D_INTERESES_S_APORTACIONES");
+                _LIQUIDACIONES_D_INTERESES_S_APORTACIONES = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LIQUIDACIONES_D_INTERESES_S_APORTACIONES");
+                OnLIQUIDACIONES_D_INTERESES_S_APORTACIONESChanged();
+            }
+        }
+        private global::System.Decimal _LIQUIDACIONES_D_INTERESES_S_APORTACIONES;
+        partial void OnLIQUIDACIONES_D_INTERESES_S_APORTACIONESChanging(global::System.Decimal value);
+        partial void OnLIQUIDACIONES_D_INTERESES_S_APORTACIONESChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal LIQUIDACIONES_D_EXCEDENTE_PERIODO
+        {
+            get
+            {
+                return _LIQUIDACIONES_D_EXCEDENTE_PERIODO;
+            }
+            set
+            {
+                OnLIQUIDACIONES_D_EXCEDENTE_PERIODOChanging(value);
+                ReportPropertyChanging("LIQUIDACIONES_D_EXCEDENTE_PERIODO");
+                _LIQUIDACIONES_D_EXCEDENTE_PERIODO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LIQUIDACIONES_D_EXCEDENTE_PERIODO");
+                OnLIQUIDACIONES_D_EXCEDENTE_PERIODOChanged();
+            }
+        }
+        private global::System.Decimal _LIQUIDACIONES_D_EXCEDENTE_PERIODO;
+        partial void OnLIQUIDACIONES_D_EXCEDENTE_PERIODOChanging(global::System.Decimal value);
+        partial void OnLIQUIDACIONES_D_EXCEDENTE_PERIODOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO
+        {
+            get
+            {
+                return _LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO;
+            }
+            set
+            {
+                OnLIQUIDACIONES_D_PRESTAMO_HIPOTECARIOChanging(value);
+                ReportPropertyChanging("LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO");
+                _LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO");
+                OnLIQUIDACIONES_D_PRESTAMO_HIPOTECARIOChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO;
+        partial void OnLIQUIDACIONES_D_PRESTAMO_HIPOTECARIOChanging(Nullable<global::System.Decimal> value);
+        partial void OnLIQUIDACIONES_D_PRESTAMO_HIPOTECARIOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> LIQUIDACIONES_D_FIDUCIARIO
+        {
+            get
+            {
+                return _LIQUIDACIONES_D_FIDUCIARIO;
+            }
+            set
+            {
+                OnLIQUIDACIONES_D_FIDUCIARIOChanging(value);
+                ReportPropertyChanging("LIQUIDACIONES_D_FIDUCIARIO");
+                _LIQUIDACIONES_D_FIDUCIARIO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LIQUIDACIONES_D_FIDUCIARIO");
+                OnLIQUIDACIONES_D_FIDUCIARIOChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _LIQUIDACIONES_D_FIDUCIARIO;
+        partial void OnLIQUIDACIONES_D_FIDUCIARIOChanging(Nullable<global::System.Decimal> value);
+        partial void OnLIQUIDACIONES_D_FIDUCIARIOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> LIQUIDACIONES_D_PRENDARIO
+        {
+            get
+            {
+                return _LIQUIDACIONES_D_PRENDARIO;
+            }
+            set
+            {
+                OnLIQUIDACIONES_D_PRENDARIOChanging(value);
+                ReportPropertyChanging("LIQUIDACIONES_D_PRENDARIO");
+                _LIQUIDACIONES_D_PRENDARIO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LIQUIDACIONES_D_PRENDARIO");
+                OnLIQUIDACIONES_D_PRENDARIOChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _LIQUIDACIONES_D_PRENDARIO;
+        partial void OnLIQUIDACIONES_D_PRENDARIOChanging(Nullable<global::System.Decimal> value);
+        partial void OnLIQUIDACIONES_D_PRENDARIOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> LIQUIDACIONES_D_CUENTAS_X_COBRAR
+        {
+            get
+            {
+                return _LIQUIDACIONES_D_CUENTAS_X_COBRAR;
+            }
+            set
+            {
+                OnLIQUIDACIONES_D_CUENTAS_X_COBRARChanging(value);
+                ReportPropertyChanging("LIQUIDACIONES_D_CUENTAS_X_COBRAR");
+                _LIQUIDACIONES_D_CUENTAS_X_COBRAR = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LIQUIDACIONES_D_CUENTAS_X_COBRAR");
+                OnLIQUIDACIONES_D_CUENTAS_X_COBRARChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _LIQUIDACIONES_D_CUENTAS_X_COBRAR;
+        partial void OnLIQUIDACIONES_D_CUENTAS_X_COBRARChanging(Nullable<global::System.Decimal> value);
+        partial void OnLIQUIDACIONES_D_CUENTAS_X_COBRARChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> LIQUIDACIONES_D_INTERESES_X_COBRAR
+        {
+            get
+            {
+                return _LIQUIDACIONES_D_INTERESES_X_COBRAR;
+            }
+            set
+            {
+                OnLIQUIDACIONES_D_INTERESES_X_COBRARChanging(value);
+                ReportPropertyChanging("LIQUIDACIONES_D_INTERESES_X_COBRAR");
+                _LIQUIDACIONES_D_INTERESES_X_COBRAR = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LIQUIDACIONES_D_INTERESES_X_COBRAR");
+                OnLIQUIDACIONES_D_INTERESES_X_COBRARChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _LIQUIDACIONES_D_INTERESES_X_COBRAR;
+        partial void OnLIQUIDACIONES_D_INTERESES_X_COBRARChanging(Nullable<global::System.Decimal> value);
+        partial void OnLIQUIDACIONES_D_INTERESES_X_COBRARChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> LIQUIDACIONES_D_OTRAS_DEDUCCIONES
+        {
+            get
+            {
+                return _LIQUIDACIONES_D_OTRAS_DEDUCCIONES;
+            }
+            set
+            {
+                OnLIQUIDACIONES_D_OTRAS_DEDUCCIONESChanging(value);
+                ReportPropertyChanging("LIQUIDACIONES_D_OTRAS_DEDUCCIONES");
+                _LIQUIDACIONES_D_OTRAS_DEDUCCIONES = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LIQUIDACIONES_D_OTRAS_DEDUCCIONES");
+                OnLIQUIDACIONES_D_OTRAS_DEDUCCIONESChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _LIQUIDACIONES_D_OTRAS_DEDUCCIONES;
+        partial void OnLIQUIDACIONES_D_OTRAS_DEDUCCIONESChanging(Nullable<global::System.Decimal> value);
+        partial void OnLIQUIDACIONES_D_OTRAS_DEDUCCIONESChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> LIQUIDACIONES_D_TOTAL_DEDUCCIONES
+        {
+            get
+            {
+                return _LIQUIDACIONES_D_TOTAL_DEDUCCIONES;
+            }
+            set
+            {
+                OnLIQUIDACIONES_D_TOTAL_DEDUCCIONESChanging(value);
+                ReportPropertyChanging("LIQUIDACIONES_D_TOTAL_DEDUCCIONES");
+                _LIQUIDACIONES_D_TOTAL_DEDUCCIONES = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LIQUIDACIONES_D_TOTAL_DEDUCCIONES");
+                OnLIQUIDACIONES_D_TOTAL_DEDUCCIONESChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _LIQUIDACIONES_D_TOTAL_DEDUCCIONES;
+        partial void OnLIQUIDACIONES_D_TOTAL_DEDUCCIONESChanging(Nullable<global::System.Decimal> value);
+        partial void OnLIQUIDACIONES_D_TOTAL_DEDUCCIONESChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> LIQUIDACIONES_D_AF_SOCIO
+        {
+            get
+            {
+                return _LIQUIDACIONES_D_AF_SOCIO;
+            }
+            set
+            {
+                OnLIQUIDACIONES_D_AF_SOCIOChanging(value);
+                ReportPropertyChanging("LIQUIDACIONES_D_AF_SOCIO");
+                _LIQUIDACIONES_D_AF_SOCIO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LIQUIDACIONES_D_AF_SOCIO");
+                OnLIQUIDACIONES_D_AF_SOCIOChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _LIQUIDACIONES_D_AF_SOCIO;
+        partial void OnLIQUIDACIONES_D_AF_SOCIOChanging(Nullable<global::System.Decimal> value);
+        partial void OnLIQUIDACIONES_D_AF_SOCIOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> LIQUIDACIONES_D_TOTAL
+        {
+            get
+            {
+                return _LIQUIDACIONES_D_TOTAL;
+            }
+            set
+            {
+                OnLIQUIDACIONES_D_TOTALChanging(value);
+                ReportPropertyChanging("LIQUIDACIONES_D_TOTAL");
+                _LIQUIDACIONES_D_TOTAL = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LIQUIDACIONES_D_TOTAL");
+                OnLIQUIDACIONES_D_TOTALChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _LIQUIDACIONES_D_TOTAL;
+        partial void OnLIQUIDACIONES_D_TOTALChanging(Nullable<global::System.Decimal> value);
+        partial void OnLIQUIDACIONES_D_TOTALChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CREADO_POR
+        {
+            get
+            {
+                return _CREADO_POR;
+            }
+            set
+            {
+                OnCREADO_PORChanging(value);
+                ReportPropertyChanging("CREADO_POR");
+                _CREADO_POR = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CREADO_POR");
+                OnCREADO_PORChanged();
+            }
+        }
+        private global::System.String _CREADO_POR;
+        partial void OnCREADO_PORChanging(global::System.String value);
+        partial void OnCREADO_PORChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime FECHA_CREACION
+        {
+            get
+            {
+                return _FECHA_CREACION;
+            }
+            set
+            {
+                OnFECHA_CREACIONChanging(value);
+                ReportPropertyChanging("FECHA_CREACION");
+                _FECHA_CREACION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_CREACION");
+                OnFECHA_CREACIONChanged();
+            }
+        }
+        private global::System.DateTime _FECHA_CREACION;
+        partial void OnFECHA_CREACIONChanging(global::System.DateTime value);
+        partial void OnFECHA_CREACIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MODIFICADO_POR
+        {
+            get
+            {
+                return _MODIFICADO_POR;
+            }
+            set
+            {
+                OnMODIFICADO_PORChanging(value);
+                ReportPropertyChanging("MODIFICADO_POR");
+                _MODIFICADO_POR = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MODIFICADO_POR");
+                OnMODIFICADO_PORChanged();
+            }
+        }
+        private global::System.String _MODIFICADO_POR;
+        partial void OnMODIFICADO_PORChanging(global::System.String value);
+        partial void OnMODIFICADO_PORChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> FECHA_MODIFICACION
+        {
+            get
+            {
+                return _FECHA_MODIFICACION;
+            }
+            set
+            {
+                OnFECHA_MODIFICACIONChanging(value);
+                ReportPropertyChanging("FECHA_MODIFICACION");
+                _FECHA_MODIFICACION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_MODIFICACION");
+                OnFECHA_MODIFICACIONChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _FECHA_MODIFICACION;
+        partial void OnFECHA_MODIFICACIONChanging(Nullable<global::System.DateTime> value);
+        partial void OnFECHA_MODIFICACIONChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="COLINASMODEL", Name="reporte_movimientos_de_inventario_de_cafe_de_cooperativa")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -8103,10 +8882,11 @@ namespace COCASJOL.DATAACCESS
         /// <param name="cLASIFICACIONES_CAFE_ID">Initial value of the CLASIFICACIONES_CAFE_ID property.</param>
         /// <param name="cLASIFICACIONES_CAFE_NOMBRE">Initial value of the CLASIFICACIONES_CAFE_NOMBRE property.</param>
         /// <param name="dOCUMENTO_TIPO">Initial value of the DOCUMENTO_TIPO property.</param>
+        /// <param name="iNVENTARIO_ENTRADAS_CANTIDAD">Initial value of the INVENTARIO_ENTRADAS_CANTIDAD property.</param>
         /// <param name="iNVENTARIO_SALIDAS_SALDO">Initial value of the INVENTARIO_SALIDAS_SALDO property.</param>
         /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
         /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
-        public static reporte_movimientos_de_inventario_de_cafe_de_cooperativa Createreporte_movimientos_de_inventario_de_cafe_de_cooperativa(global::System.Int32 tRANSACCION_NUMERO, global::System.DateTime fECHA, global::System.Int32 cLASIFICACIONES_CAFE_ID, global::System.String cLASIFICACIONES_CAFE_NOMBRE, global::System.String dOCUMENTO_TIPO, global::System.Decimal iNVENTARIO_SALIDAS_SALDO, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
+        public static reporte_movimientos_de_inventario_de_cafe_de_cooperativa Createreporte_movimientos_de_inventario_de_cafe_de_cooperativa(global::System.Int32 tRANSACCION_NUMERO, global::System.DateTime fECHA, global::System.Int32 cLASIFICACIONES_CAFE_ID, global::System.String cLASIFICACIONES_CAFE_NOMBRE, global::System.String dOCUMENTO_TIPO, global::System.Decimal iNVENTARIO_ENTRADAS_CANTIDAD, global::System.Decimal iNVENTARIO_SALIDAS_SALDO, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
         {
             reporte_movimientos_de_inventario_de_cafe_de_cooperativa reporte_movimientos_de_inventario_de_cafe_de_cooperativa = new reporte_movimientos_de_inventario_de_cafe_de_cooperativa();
             reporte_movimientos_de_inventario_de_cafe_de_cooperativa.TRANSACCION_NUMERO = tRANSACCION_NUMERO;
@@ -8114,6 +8894,7 @@ namespace COCASJOL.DATAACCESS
             reporte_movimientos_de_inventario_de_cafe_de_cooperativa.CLASIFICACIONES_CAFE_ID = cLASIFICACIONES_CAFE_ID;
             reporte_movimientos_de_inventario_de_cafe_de_cooperativa.CLASIFICACIONES_CAFE_NOMBRE = cLASIFICACIONES_CAFE_NOMBRE;
             reporte_movimientos_de_inventario_de_cafe_de_cooperativa.DOCUMENTO_TIPO = dOCUMENTO_TIPO;
+            reporte_movimientos_de_inventario_de_cafe_de_cooperativa.INVENTARIO_ENTRADAS_CANTIDAD = iNVENTARIO_ENTRADAS_CANTIDAD;
             reporte_movimientos_de_inventario_de_cafe_de_cooperativa.INVENTARIO_SALIDAS_SALDO = iNVENTARIO_SALIDAS_SALDO;
             reporte_movimientos_de_inventario_de_cafe_de_cooperativa.CREADO_POR = cREADO_POR;
             reporte_movimientos_de_inventario_de_cafe_de_cooperativa.FECHA_CREACION = fECHA_CREACION;
@@ -8369,9 +9150,9 @@ namespace COCASJOL.DATAACCESS
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> INVENTARIO_ENTRADAS_CANTIDAD
+        public global::System.Decimal INVENTARIO_ENTRADAS_CANTIDAD
         {
             get
             {
@@ -8386,8 +9167,8 @@ namespace COCASJOL.DATAACCESS
                 OnINVENTARIO_ENTRADAS_CANTIDADChanged();
             }
         }
-        private Nullable<global::System.Decimal> _INVENTARIO_ENTRADAS_CANTIDAD;
-        partial void OnINVENTARIO_ENTRADAS_CANTIDADChanging(Nullable<global::System.Decimal> value);
+        private global::System.Decimal _INVENTARIO_ENTRADAS_CANTIDAD;
+        partial void OnINVENTARIO_ENTRADAS_CANTIDADChanging(global::System.Decimal value);
         partial void OnINVENTARIO_ENTRADAS_CANTIDADChanged();
     
         /// <summary>
@@ -8485,10 +9266,11 @@ namespace COCASJOL.DATAACCESS
         /// <param name="cLASIFICACIONES_CAFE_ID">Initial value of the CLASIFICACIONES_CAFE_ID property.</param>
         /// <param name="cLASIFICACIONES_CAFE_NOMBRE">Initial value of the CLASIFICACIONES_CAFE_NOMBRE property.</param>
         /// <param name="dOCUMENTO_TIPO">Initial value of the DOCUMENTO_TIPO property.</param>
+        /// <param name="iNVENTARIO_ENTRADAS_CANTIDAD">Initial value of the INVENTARIO_ENTRADAS_CANTIDAD property.</param>
         /// <param name="iNVENTARIO_SALIDAS_SALDO">Initial value of the INVENTARIO_SALIDAS_SALDO property.</param>
         /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
         /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
-        public static reporte_movimientos_de_inventario_de_cafe_de_socios Createreporte_movimientos_de_inventario_de_cafe_de_socios(global::System.Int32 tRANSACCION_NUMERO, global::System.DateTime fECHA, global::System.String sOCIOS_ID, global::System.Int32 cLASIFICACIONES_CAFE_ID, global::System.String cLASIFICACIONES_CAFE_NOMBRE, global::System.String dOCUMENTO_TIPO, global::System.Decimal iNVENTARIO_SALIDAS_SALDO, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
+        public static reporte_movimientos_de_inventario_de_cafe_de_socios Createreporte_movimientos_de_inventario_de_cafe_de_socios(global::System.Int32 tRANSACCION_NUMERO, global::System.DateTime fECHA, global::System.String sOCIOS_ID, global::System.Int32 cLASIFICACIONES_CAFE_ID, global::System.String cLASIFICACIONES_CAFE_NOMBRE, global::System.String dOCUMENTO_TIPO, global::System.Decimal iNVENTARIO_ENTRADAS_CANTIDAD, global::System.Decimal iNVENTARIO_SALIDAS_SALDO, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
         {
             reporte_movimientos_de_inventario_de_cafe_de_socios reporte_movimientos_de_inventario_de_cafe_de_socios = new reporte_movimientos_de_inventario_de_cafe_de_socios();
             reporte_movimientos_de_inventario_de_cafe_de_socios.TRANSACCION_NUMERO = tRANSACCION_NUMERO;
@@ -8497,6 +9279,7 @@ namespace COCASJOL.DATAACCESS
             reporte_movimientos_de_inventario_de_cafe_de_socios.CLASIFICACIONES_CAFE_ID = cLASIFICACIONES_CAFE_ID;
             reporte_movimientos_de_inventario_de_cafe_de_socios.CLASIFICACIONES_CAFE_NOMBRE = cLASIFICACIONES_CAFE_NOMBRE;
             reporte_movimientos_de_inventario_de_cafe_de_socios.DOCUMENTO_TIPO = dOCUMENTO_TIPO;
+            reporte_movimientos_de_inventario_de_cafe_de_socios.INVENTARIO_ENTRADAS_CANTIDAD = iNVENTARIO_ENTRADAS_CANTIDAD;
             reporte_movimientos_de_inventario_de_cafe_de_socios.INVENTARIO_SALIDAS_SALDO = iNVENTARIO_SALIDAS_SALDO;
             reporte_movimientos_de_inventario_de_cafe_de_socios.CREADO_POR = cREADO_POR;
             reporte_movimientos_de_inventario_de_cafe_de_socios.FECHA_CREACION = fECHA_CREACION;
@@ -8800,9 +9583,9 @@ namespace COCASJOL.DATAACCESS
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> INVENTARIO_ENTRADAS_CANTIDAD
+        public global::System.Decimal INVENTARIO_ENTRADAS_CANTIDAD
         {
             get
             {
@@ -8817,8 +9600,8 @@ namespace COCASJOL.DATAACCESS
                 OnINVENTARIO_ENTRADAS_CANTIDADChanged();
             }
         }
-        private Nullable<global::System.Decimal> _INVENTARIO_ENTRADAS_CANTIDAD;
-        partial void OnINVENTARIO_ENTRADAS_CANTIDADChanging(Nullable<global::System.Decimal> value);
+        private global::System.Decimal _INVENTARIO_ENTRADAS_CANTIDAD;
+        partial void OnINVENTARIO_ENTRADAS_CANTIDADChanging(global::System.Decimal value);
         partial void OnINVENTARIO_ENTRADAS_CANTIDADChanged();
     
         /// <summary>
@@ -8919,6 +9702,7 @@ namespace COCASJOL.DATAACCESS
         /// <param name="sOCIOS_ID">Initial value of the SOCIOS_ID property.</param>
         /// <param name="nOTAS_TRANSPORTE_COOPERATIVA">Initial value of the NOTAS_TRANSPORTE_COOPERATIVA property.</param>
         /// <param name="nOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA">Initial value of the NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA property.</param>
+        /// <param name="nOTAS_PESO_TRANSPORTE_COOPERATIVA">Initial value of the NOTAS_PESO_TRANSPORTE_COOPERATIVA property.</param>
         /// <param name="nOTAS_PORCENTAJE_DEFECTO">Initial value of the NOTAS_PORCENTAJE_DEFECTO property.</param>
         /// <param name="nOTAS_PESO_DEFECTO">Initial value of the NOTAS_PESO_DEFECTO property.</param>
         /// <param name="nOTAS_PORCENTAJE_HUMEDAD">Initial value of the NOTAS_PORCENTAJE_HUMEDAD property.</param>
@@ -8933,7 +9717,7 @@ namespace COCASJOL.DATAACCESS
         /// <param name="dETALLES_PESO">Initial value of the DETALLES_PESO property.</param>
         /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
         /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
-        public static reporte_notas_de_peso Createreporte_notas_de_peso(global::System.Int32 nOTAS_ID, global::System.DateTime nOTAS_FECHA, global::System.Int32 eSTADOS_NOTA_ID, global::System.String eSTADOS_NOTA_NOMBRE, global::System.Int32 cLASIFICACIONES_CAFE_ID, global::System.String cLASIFICACIONES_CAFE_NOMBRE, global::System.String sOCIOS_ID, global::System.Boolean nOTAS_TRANSPORTE_COOPERATIVA, global::System.Decimal nOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA, global::System.Decimal nOTAS_PORCENTAJE_DEFECTO, global::System.Decimal nOTAS_PESO_DEFECTO, global::System.Decimal nOTAS_PORCENTAJE_HUMEDAD, global::System.Decimal nOTAS_PESO_HUMEDAD, global::System.Decimal nOTAS_PESO_SUMA, global::System.Decimal nOTAS_PESO_TARA, global::System.Decimal nOTAS_PESO_DESCUENTO, global::System.Decimal nOTAS_PESO_TOTAL_RECIBIDO, global::System.Decimal nOTAS_PESO_TOTAL_RECIBIDO_TEXTO, global::System.Int32 nOTAS_SACOS_RETENIDOS, global::System.Int32 dETALLES_CANTIDAD_SACOS, global::System.Decimal dETALLES_PESO, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
+        public static reporte_notas_de_peso Createreporte_notas_de_peso(global::System.Int32 nOTAS_ID, global::System.DateTime nOTAS_FECHA, global::System.Int32 eSTADOS_NOTA_ID, global::System.String eSTADOS_NOTA_NOMBRE, global::System.Int32 cLASIFICACIONES_CAFE_ID, global::System.String cLASIFICACIONES_CAFE_NOMBRE, global::System.String sOCIOS_ID, global::System.Boolean nOTAS_TRANSPORTE_COOPERATIVA, global::System.Decimal nOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA, global::System.Decimal nOTAS_PESO_TRANSPORTE_COOPERATIVA, global::System.Decimal nOTAS_PORCENTAJE_DEFECTO, global::System.Decimal nOTAS_PESO_DEFECTO, global::System.Decimal nOTAS_PORCENTAJE_HUMEDAD, global::System.Decimal nOTAS_PESO_HUMEDAD, global::System.Decimal nOTAS_PESO_SUMA, global::System.Decimal nOTAS_PESO_TARA, global::System.Decimal nOTAS_PESO_DESCUENTO, global::System.Decimal nOTAS_PESO_TOTAL_RECIBIDO, global::System.String nOTAS_PESO_TOTAL_RECIBIDO_TEXTO, global::System.Int32 nOTAS_SACOS_RETENIDOS, global::System.Int32 dETALLES_CANTIDAD_SACOS, global::System.Decimal dETALLES_PESO, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
         {
             reporte_notas_de_peso reporte_notas_de_peso = new reporte_notas_de_peso();
             reporte_notas_de_peso.NOTAS_ID = nOTAS_ID;
@@ -8945,6 +9729,7 @@ namespace COCASJOL.DATAACCESS
             reporte_notas_de_peso.SOCIOS_ID = sOCIOS_ID;
             reporte_notas_de_peso.NOTAS_TRANSPORTE_COOPERATIVA = nOTAS_TRANSPORTE_COOPERATIVA;
             reporte_notas_de_peso.NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA = nOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA;
+            reporte_notas_de_peso.NOTAS_PESO_TRANSPORTE_COOPERATIVA = nOTAS_PESO_TRANSPORTE_COOPERATIVA;
             reporte_notas_de_peso.NOTAS_PORCENTAJE_DEFECTO = nOTAS_PORCENTAJE_DEFECTO;
             reporte_notas_de_peso.NOTAS_PESO_DEFECTO = nOTAS_PESO_DEFECTO;
             reporte_notas_de_peso.NOTAS_PORCENTAJE_HUMEDAD = nOTAS_PORCENTAJE_HUMEDAD;
@@ -9213,6 +9998,30 @@ namespace COCASJOL.DATAACCESS
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
+        public global::System.Decimal NOTAS_PESO_TRANSPORTE_COOPERATIVA
+        {
+            get
+            {
+                return _NOTAS_PESO_TRANSPORTE_COOPERATIVA;
+            }
+            set
+            {
+                OnNOTAS_PESO_TRANSPORTE_COOPERATIVAChanging(value);
+                ReportPropertyChanging("NOTAS_PESO_TRANSPORTE_COOPERATIVA");
+                _NOTAS_PESO_TRANSPORTE_COOPERATIVA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NOTAS_PESO_TRANSPORTE_COOPERATIVA");
+                OnNOTAS_PESO_TRANSPORTE_COOPERATIVAChanged();
+            }
+        }
+        private global::System.Decimal _NOTAS_PESO_TRANSPORTE_COOPERATIVA;
+        partial void OnNOTAS_PESO_TRANSPORTE_COOPERATIVAChanging(global::System.Decimal value);
+        partial void OnNOTAS_PESO_TRANSPORTE_COOPERATIVAChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
         public global::System.Decimal NOTAS_PORCENTAJE_DEFECTO
         {
             get
@@ -9331,7 +10140,7 @@ namespace COCASJOL.DATAACCESS
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Decimal NOTAS_PESO_TARA
         {
@@ -9341,14 +10150,11 @@ namespace COCASJOL.DATAACCESS
             }
             set
             {
-                if (_NOTAS_PESO_TARA != value)
-                {
-                    OnNOTAS_PESO_TARAChanging(value);
-                    ReportPropertyChanging("NOTAS_PESO_TARA");
-                    _NOTAS_PESO_TARA = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("NOTAS_PESO_TARA");
-                    OnNOTAS_PESO_TARAChanged();
-                }
+                OnNOTAS_PESO_TARAChanging(value);
+                ReportPropertyChanging("NOTAS_PESO_TARA");
+                _NOTAS_PESO_TARA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NOTAS_PESO_TARA");
+                OnNOTAS_PESO_TARAChanged();
             }
         }
         private global::System.Decimal _NOTAS_PESO_TARA;
@@ -9408,7 +10214,7 @@ namespace COCASJOL.DATAACCESS
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Decimal NOTAS_PESO_TOTAL_RECIBIDO_TEXTO
+        public global::System.String NOTAS_PESO_TOTAL_RECIBIDO_TEXTO
         {
             get
             {
@@ -9418,13 +10224,13 @@ namespace COCASJOL.DATAACCESS
             {
                 OnNOTAS_PESO_TOTAL_RECIBIDO_TEXTOChanging(value);
                 ReportPropertyChanging("NOTAS_PESO_TOTAL_RECIBIDO_TEXTO");
-                _NOTAS_PESO_TOTAL_RECIBIDO_TEXTO = StructuralObject.SetValidValue(value);
+                _NOTAS_PESO_TOTAL_RECIBIDO_TEXTO = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("NOTAS_PESO_TOTAL_RECIBIDO_TEXTO");
                 OnNOTAS_PESO_TOTAL_RECIBIDO_TEXTOChanged();
             }
         }
-        private global::System.Decimal _NOTAS_PESO_TOTAL_RECIBIDO_TEXTO;
-        partial void OnNOTAS_PESO_TOTAL_RECIBIDO_TEXTOChanging(global::System.Decimal value);
+        private global::System.String _NOTAS_PESO_TOTAL_RECIBIDO_TEXTO;
+        partial void OnNOTAS_PESO_TOTAL_RECIBIDO_TEXTOChanging(global::System.String value);
         partial void OnNOTAS_PESO_TOTAL_RECIBIDO_TEXTOChanged();
     
         /// <summary>

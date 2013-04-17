@@ -229,15 +229,6 @@ namespace COCASJOL.WEBSITE.Source.Reportes {
         protected global::Ext.Net.DateField f_FECHA_CREACION;
         
         /// <summary>
-        /// f_SALIDA_FORMATO control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox f_SALIDA_FORMATO;
-        
-        /// <summary>
         /// Panel1 control.
         /// </summary>
         /// <remarks>
@@ -290,6 +281,24 @@ namespace COCASJOL.WEBSITE.Source.Reportes {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Checkbox g_FECHA_CREACION;
+        
+        /// <summary>
+        /// f_SALIDA_FORMATO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox f_SALIDA_FORMATO;
+        
+        /// <summary>
+        /// p_QUINTALES control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox p_QUINTALES;
         
         /// <summary>
         /// Button3 control.

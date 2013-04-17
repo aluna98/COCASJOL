@@ -253,13 +253,6 @@
                                                 <ext:TextField ID="f_CREADO_POR" runat="server" FieldLabel="Creado Por" LabelAlign="Right" AnchorHorizontal="100%" LabelWidth="150" ></ext:TextField>
                                                 
                                                 <ext:DateField ID="f_FECHA_CREACION" runat="server" FieldLabel="Fecha de Creación" LabelAlign="Right" AnchorHorizontal="100%" LabelWidth="150" ></ext:DateField>
-                                                
-                                                <ext:ComboBox ID="f_SALIDA_FORMATO" runat="server" FieldLabel="Formato de Salida" LabelAlign="Right" AnchorHorizontal="100%" ForceSelection="true" Text="PDF" LabelWidth="150">
-                                                    <Items>
-                                                        <ext:ListItem Text="PDF" Value="PDF" />
-                                                        <ext:ListItem Text="Excel" Value="EXCEL" />
-                                                    </Items>
-                                                </ext:ComboBox>
                                             </Items>
                                         </ext:Panel>
                                         <ext:Panel ID="Panel1" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" PaddingSummary="0 0 5 5">
@@ -276,6 +269,13 @@
                                 </ext:Panel>
                             </Items>
                         </ext:FieldSet>
+                        <ext:ComboBox ID="f_SALIDA_FORMATO" runat="server" LabelWidth="250" FieldLabel="Formato de Salida" AnchorHorizontal="100%" ForceSelection="true" Text="PDF">
+                            <Items>
+                                <ext:ListItem Text="PDF" Value="PDF" />
+                                <ext:ListItem Text="Excel" Value="EXCEL" />
+                            </Items>
+                        </ext:ComboBox>
+                        <ext:Checkbox runat="server" ID="p_QUINTALES" LabelWidth="250" LabelAlign="Left" FieldLabel="Mostrar peso en Quintales (QQ)" MsgTarget="Side" Checked="true" ></ext:Checkbox>
                     </Items>
                     <Buttons>
                         <ext:Button ID="Button3" runat="server" Icon="ControlPlay" Text="Ejecutar" >

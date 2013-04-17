@@ -933,7 +933,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Cantidad de Entrada</Value>
+                              <Value>="Cantidad de Entrada" &amp; iif(Parameters!parMostrarQuintales.Value = True, " (QQ)", " (lb)")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -963,7 +963,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Cantidad de Salida</Value>
+                              <Value>="Cantidad de Salida" &amp; iif(Parameters!parMostrarQuintales.Value = True, " (QQ)", " (lb)")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -993,7 +993,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Costo de Salida</Value>
+                              <Value>Costo de Salida (Lps)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1023,7 +1023,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Monto de Salida</Value>
+                              <Value>Monto de Salida (Lps)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1053,7 +1053,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Cantidad  en Inventario</Value>
+                              <Value>="Cantidad  en Inventario" &amp; iif(Parameters!parMostrarQuintales.Value = True, " (QQ)", " (lb)")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1083,7 +1083,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Saldo de Salidas</Value>
+                              <Value>Saldo de Salidas (Lps)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1352,7 +1352,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!ENTRADAS_CANTIDAD.Value</Value>
+                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Fields!ENTRADAS_CANTIDAD.Value / 100, Fields!ENTRADAS_CANTIDAD.Value )</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1382,7 +1382,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!SALIDAS_CANTIDAD.Value</Value>
+                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Fields!SALIDAS_CANTIDAD.Value / 100, Fields!SALIDAS_CANTIDAD.Value)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1472,7 +1472,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!INVENTARIO_ENTRADAS_CANTIDAD.Value</Value>
+                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Fields!INVENTARIO_ENTRADAS_CANTIDAD.Value / 100, Fields!INVENTARIO_ENTRADAS_CANTIDAD.Value)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1721,7 +1721,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!ENTRADAS_CANTIDAD.Value)</Value>
+                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Sum(Fields!ENTRADAS_CANTIDAD.Value) / 100,Sum(Fields!ENTRADAS_CANTIDAD.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -1755,7 +1755,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!SALIDAS_CANTIDAD.Value)</Value>
+                              <Value>=iif(Parameters!parMostrarQuintales.Value = True,  Sum(Fields!SALIDAS_CANTIDAD.Value) / 100, Sum(Fields!SALIDAS_CANTIDAD.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -1857,7 +1857,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!INVENTARIO_ENTRADAS_CANTIDAD.Value)</Value>
+                              <Value>=Avg(iif(Parameters!parMostrarQuintales.Value = True, Fields!INVENTARIO_ENTRADAS_CANTIDAD.Value / 100, Fields!INVENTARIO_ENTRADAS_CANTIDAD.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -1991,7 +1991,9 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                           <TextRuns>
                             <TextRun>
                               <Value />
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -2021,7 +2023,9 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                           <TextRuns>
                             <TextRun>
                               <Value />
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -2051,7 +2055,9 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                           <TextRuns>
                             <TextRun>
                               <Value />
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -2081,11 +2087,15 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                           <TextRuns>
                             <TextRun>
                               <Value>= Max(Fields!TRANSACCION_NUMERO.Value)</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                             <TextRun>
                               <Value> Transacciones</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -2114,12 +2124,16 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!ENTRADAS_CANTIDAD.Value)</Value>
-                              <Style />
+                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Sum(Fields!ENTRADAS_CANTIDAD.Value) / 100,Sum(Fields!ENTRADAS_CANTIDAD.Value))</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                             <TextRun>
                               <Value> Total</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -2148,12 +2162,16 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!SALIDAS_CANTIDAD.Value)</Value>
-                              <Style />
+                              <Value>=iif(Parameters!parMostrarQuintales.Value = True,  Sum(Fields!SALIDAS_CANTIDAD.Value) / 100, Sum(Fields!SALIDAS_CANTIDAD.Value))</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                             <TextRun>
                               <Value> Total</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -2183,11 +2201,15 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                           <TextRuns>
                             <TextRun>
                               <Value>=Avg(Fields!SALIDAS_COSTO.Value)</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                             <TextRun>
                               <Value> Promedio</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -2217,11 +2239,15 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                           <TextRuns>
                             <TextRun>
                               <Value>=Sum(Fields!SALIDAS_MONTO.Value)</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                             <TextRun>
                               <Value> Total</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -2250,12 +2276,16 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!INVENTARIO_ENTRADAS_CANTIDAD.Value)</Value>
-                              <Style />
+                              <Value>=Avg(iif(Parameters!parMostrarQuintales.Value = True, Fields!INVENTARIO_ENTRADAS_CANTIDAD.Value / 100, Fields!INVENTARIO_ENTRADAS_CANTIDAD.Value))</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                             <TextRun>
                               <Value> Promedio</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -2285,11 +2315,15 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                           <TextRuns>
                             <TextRun>
                               <Value>=Sum(Fields!INVENTARIO_SALIDAS_SALDO.Value)</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                             <TextRun>
                               <Value> Total</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -2319,7 +2353,9 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                           <TextRuns>
                             <TextRun>
                               <Value />
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -2349,7 +2385,9 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                           <TextRuns>
                             <TextRun>
                               <Value />
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -2533,6 +2571,16 @@ iif(Parameters!parGroupByFechaCreacion.Value, False, True)))))
       <DefaultValue>
         <Values>
           <Value>= False</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="parMostrarQuintales">
+      <DataType>Boolean</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>= True</Value>
         </Values>
       </DefaultValue>
       <Prompt>ReportParameter1</Prompt>

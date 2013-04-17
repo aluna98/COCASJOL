@@ -67,6 +67,7 @@ namespace COCASJOL.WEBSITE.Source.Reportes
                 reportParamCollection.Add(new ReportParameter("parGroupByFecha", this.g_FECHA.Checked.ToString()));
                 reportParamCollection.Add(new ReportParameter("parGroupByCreadoPor", this.g_CREADO_POR.Checked.ToString()));
                 reportParamCollection.Add(new ReportParameter("parGroupByFechaCreacion", this.g_FECHA_CREACION.Checked.ToString()));
+                reportParamCollection.Add(new ReportParameter("parMostrarQuintales", this.p_QUINTALES.Checked.ToString()));
 
                 formatoSalida = this.f_SALIDA_FORMATO.Text;
 
@@ -80,41 +81,5 @@ namespace COCASJOL.WEBSITE.Source.Reportes
                 throw;
             }
         }
-
-        //private void CreateFileOutput(string fileName, string format, string RDL_Path, ReportDataSource RptDatasource, ReportParameterCollection RptParams)
-        //{
-        //    try
-        //    {
-        //        // Variables
-        //        Warning[] warnings;
-        //        string[] streamIds;
-        //        string mimeType = string.Empty;
-        //        string encoding = string.Empty;
-        //        string extension = string.Empty;
-
-
-        //        // Setup the report viewer object and get the array of bytes
-        //        ReportViewer viewer = new ReportViewer();
-        //        viewer.ProcessingMode = ProcessingMode.Local;
-        //        viewer.LocalReport.ReportPath = Server.MapPath(RDL_Path);
-        //        viewer.LocalReport.SetParameters(RptParams);
-        //        viewer.LocalReport.DataSources.Add(RptDatasource);
-
-        //        byte[] bytes = viewer.LocalReport.Render(format, null, out mimeType, out encoding, out extension, out streamIds, out warnings);
-
-        //        // Now that you have all the bytes representing the PDF report, buffer it and send it to the client.
-        //        Response.Buffer = true;
-        //        Response.Clear();
-        //        Response.ContentType = mimeType;
-        //        Response.AddHeader("content-disposition", "attachment; filename=" + fileName + "." + extension);
-        //        Response.BinaryWrite(bytes); // create the file
-        //        Response.Flush(); // send it to the client to download
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        log.Fatal("Error fatal al obtener reporte.", ex);
-        //        throw;
-        //    }
-        //}
     }
 }
