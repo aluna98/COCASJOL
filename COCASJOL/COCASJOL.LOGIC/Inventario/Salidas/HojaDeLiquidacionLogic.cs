@@ -14,14 +14,27 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Inventario.Salidas
 {
+    /// <summary>
+    /// Clase con logica de Hoja de Liquidación
+    /// </summary>
     public class HojaDeLiquidacionLogic
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(HojaDeLiquidacionLogic).Name);
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public HojaDeLiquidacionLogic() { }
 
         #region Select
 
+        /// <summary>
+        /// Obtiene todas las hojas de liquidación.
+        /// </summary>
+        /// <returns>Lista de hojas de liquidación.</returns>
         public List<liquidacion> GetHojasDeLiquidacion()
         {
             try
@@ -44,6 +57,42 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
             }
         }
 
+        /// <summary>
+        /// Obtiene todas las hojas de liquidación.
+        /// </summary>
+        /// <param name="LIQUIDACIONES_ID"></param>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="LIQUIDACIONES_FECHA"></param>
+        /// <param name="FECHA_DESDE"></param>
+        /// <param name="FECHA_HASTA"></param>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <param name="CLASIFICACIONES_CAFE_NOMBRE"></param>
+        /// <param name="LIQUIDACIONES_TOTAL_LIBRAS"></param>
+        /// <param name="LIQUIDACIONES_PRECIO_LIBRAS"></param>
+        /// <param name="LIQUIDACIONES_VALOR_TOTAL"></param>
+        /// <param name="LIQUIDACIONES_D_CUOTA_INGRESO"></param>
+        /// <param name="LIQUIDACIONES_D_GASTOS_ADMIN"></param>
+        /// <param name="LIQUIDACIONES_D_APORTACION_ORDINARIO"></param>
+        /// <param name="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA"></param>
+        /// <param name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION"></param>
+        /// <param name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD"></param>
+        /// <param name="LIQUIDACIONES_D_INTERESES_S_APORTACIONES"></param>
+        /// <param name="LIQUIDACIONES_D_EXCEDENTE_PERIODO"></param>
+        /// <param name="LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO"></param>
+        /// <param name="LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO"></param>
+        /// <param name="LIQUIDACIONES_D_PRESTAMO_PRENDARIO"></param>
+        /// <param name="LIQUIDACIONES_D_CUENTAS_X_COBRAR"></param>
+        /// <param name="LIQUIDACIONES_D_INTERESES_X_COBRAR"></param>
+        /// <param name="LIQUIDACIONES_D_OTRAS_DEDUCCIONES"></param>
+        /// <param name="LIQUIDACIONES_D_TOTAL_DEDUCCIONES"></param>
+        /// <param name="LIQUIDACIONES_D_AF_SOCIO"></param>
+        /// <param name="LIQUIDACIONES_D_TOTAL"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="FECHA_MODIFICACION"></param>
+        /// <param name="SOCIOS_APORTACION_EXTRAORD_COOP_COUNT"></param>
+        /// <returns>Lista de hojas de liquidación.</returns>
         public List<liquidacion> GetHojasDeLiquidacion
             (    int LIQUIDACIONES_ID,
               string SOCIOS_ID,
@@ -151,6 +200,41 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
          * --------Modificar Inventario de Café--------
          * --------Modificar Aportaciones de Socio--------
          */
+        /// <summary>
+        /// Inserta la hoja de liquidación.
+        /// </summary>
+        /// <param name="LIQUIDACIONES_ID"></param>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="LIQUIDACIONES_FECHA"></param>
+        /// <param name="FECHA_DESDE"></param>
+        /// <param name="FECHA_HASTA"></param>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <param name="CLASIFICACIONES_CAFE_NOMBRE"></param>
+        /// <param name="LIQUIDACIONES_TOTAL_LIBRAS"></param>
+        /// <param name="LIQUIDACIONES_PRECIO_LIBRAS"></param>
+        /// <param name="LIQUIDACIONES_VALOR_TOTAL"></param>
+        /// <param name="LIQUIDACIONES_D_CUOTA_INGRESO"></param>
+        /// <param name="LIQUIDACIONES_D_GASTOS_ADMIN"></param>
+        /// <param name="LIQUIDACIONES_D_APORTACION_ORDINARIO"></param>
+        /// <param name="LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA"></param>
+        /// <param name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION"></param>
+        /// <param name="LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD"></param>
+        /// <param name="LIQUIDACIONES_D_INTERESES_S_APORTACIONES"></param>
+        /// <param name="LIQUIDACIONES_D_EXCEDENTE_PERIODO"></param>
+        /// <param name="LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO"></param>
+        /// <param name="LIQUIDACIONES_D_PRESTAMO_FIDUCIARIO"></param>
+        /// <param name="LIQUIDACIONES_D_PRESTAMO_PRENDARIO"></param>
+        /// <param name="LIQUIDACIONES_D_CUENTAS_X_COBRAR"></param>
+        /// <param name="LIQUIDACIONES_D_INTERESES_X_COBRAR"></param>
+        /// <param name="LIQUIDACIONES_D_OTRAS_DEDUCCIONES"></param>
+        /// <param name="LIQUIDACIONES_D_TOTAL_DEDUCCIONES"></param>
+        /// <param name="LIQUIDACIONES_D_AF_SOCIO"></param>
+        /// <param name="LIQUIDACIONES_D_TOTAL"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="FECHA_MODIFICACION"></param>
+        /// <param name="SOCIOS_APORTACION_EXTRAORD_COOP_COUNT"></param>
         public void InsertarHojaDeLiquidacion
             (    int LIQUIDACIONES_ID,
               string SOCIOS_ID,

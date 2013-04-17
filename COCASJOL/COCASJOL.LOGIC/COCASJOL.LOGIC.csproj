@@ -72,7 +72,7 @@
     </Compile>
     <Compile Include="Inventario\Salidas\AjusteInventarioDeCafeDeSocioLogic.cs" />
     <Compile Include="Inventario\Salidas\VentaInventarioDeCafeLogic.cs" />
-    <Compile Include="Prestamos\PrestamosLogic.cs" />
+    <Compile Include="Prestamos\TiposPrestamoLogic.cs" />
     <Compile Include="Prestamos\SolicitudesLogic.cs" />
     <Compile Include="Reportes\ConsolidadoDeInventarioDeCafeLogic.cs" />
     <Compile Include="Reportes\ReporteLogic.cs" />
@@ -101,6 +101,7 @@
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="LOGIC_ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

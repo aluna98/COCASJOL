@@ -13,14 +13,28 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Utiles
 {
+    /// <summary>
+    /// Clase con logica de Plantillas de Notificaciones
+    /// </summary>
     public class PlantillaLogic
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(PlantillaLogic).Name);
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public PlantillaLogic() { }
 
         #region Select
 
+        /// <summary>
+        /// Obtener llaves de formato.
+        /// </summary>
+        /// <param name="PLANTILLAS_LLAVE"></param>
+        /// <returns>Lista de llaves de formato.</returns>
         public List<object> GetFormatKeys(string PLANTILLAS_LLAVE)
         {
             try
@@ -69,6 +83,10 @@ namespace COCASJOL.LOGIC.Utiles
             }
         }
 
+        /// <summary>
+        /// Obtiene todas las plantillas de notificaciones.
+        /// </summary>
+        /// <returns>Listas plantillas de notificaciones.</returns>
         public List<plantilla_notificacion> GetPlantillas()
         {
             try
@@ -85,6 +103,18 @@ namespace COCASJOL.LOGIC.Utiles
             }
         }
 
+        /// <summary>
+        /// Obtiene todas las plantillas de notificaciones.
+        /// </summary>
+        /// <param name="PLANTILLAS_LLAVE"></param>
+        /// <param name="PLANTILLAS_NOMBRE"></param>
+        /// <param name="PLANTILLAS_ASUNTO"></param>
+        /// <param name="PLANTILLAS_MENSAJE"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="FECHA_MODIFICACION"></param>
+        /// <returns>Listas plantillas de notificaciones.</returns>
         public List<plantilla_notificacion> GetPlantillas
             ( string PLANTILLAS_LLAVE, 
               string PLANTILLAS_NOMBRE, 
@@ -121,6 +151,11 @@ namespace COCASJOL.LOGIC.Utiles
             }
         }
 
+        /// <summary>
+        /// Obtiene plantilla de notificación espcífica.
+        /// </summary>
+        /// <param name="PLANTILLAS_LLAVE"></param>
+        /// <returns>Plantilla de notificación.</returns>
         public plantilla_notificacion GetPlantilla(string PLANTILLAS_LLAVE)
         {
             try
@@ -145,6 +180,17 @@ namespace COCASJOL.LOGIC.Utiles
 
         #region Update
 
+        /// <summary>
+        /// Actualiza la plantilla de notificación.
+        /// </summary>
+        /// <param name="PLANTILLAS_LLAVE"></param>
+        /// <param name="PLANTILLAS_NOMBRE"></param>
+        /// <param name="PLANTILLAS_ASUNTO"></param>
+        /// <param name="PLANTILLAS_MENSAJE"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="FECHA_MODIFICACION"></param>
         public void ActualizarPlantilla
             ( string PLANTILLAS_LLAVE,
               string PLANTILLAS_NOMBRE,

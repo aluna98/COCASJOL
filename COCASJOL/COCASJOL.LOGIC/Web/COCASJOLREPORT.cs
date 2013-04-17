@@ -14,25 +14,29 @@ using Microsoft.Reporting.WebForms;
 
 namespace COCASJOL.LOGIC.Web
 {
+    /// <summary>
+    /// Clase base de paginas reporte COCASJOLREPORT
+    /// </summary>
     public class COCASJOLREPORT: COCASJOLBASE
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(COCASJOLREPORT).Name);
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public COCASJOLREPORT() { }
 
-        protected virtual void Report_Execution(object sender, DirectEventArgs e)
-        {
-            try
-            {
-                throw new NotImplementedException();
-            }
-            catch (Exception ex)
-            {
-                log.Fatal("Error fatal al ejecutar reporte. Metodo sin implementar.", ex);
-                throw;
-            }
-        }
-
+        /// <summary>
+        /// Crea un archivo de reporte para enviar al usuario.
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="format"></param>
+        /// <param name="RDL_Path"></param>
+        /// <param name="RptDatasource"></param>
+        /// <param name="RptParams"></param>
         protected void CreateFileOutput(string fileName, string format, string RDL_Path, ReportDataSource RptDatasource, ReportParameterCollection RptParams)
         {
             try

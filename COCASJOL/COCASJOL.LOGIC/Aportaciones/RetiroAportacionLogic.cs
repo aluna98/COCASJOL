@@ -13,14 +13,27 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Aportaciones
 {
+    /// <summary>
+    /// Clase con logica de Retiro de Aportaciones de Socios
+    /// </summary>
     public class RetiroAportacionLogic
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(RetiroAportacionLogic).Name);
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public RetiroAportacionLogic() { }
 
         #region Select
 
+        /// <summary>
+        /// Obtiene todos los retiros de aportaciones por socio.
+        /// </summary>
+        /// <returns>Lista de retiros de aportaciones por Socio.</returns>
         public List<retiro_aportaciones> GetRetirosDeAportaciones()
         {
             try
@@ -40,6 +53,25 @@ namespace COCASJOL.LOGIC.Aportaciones
             }
         }
 
+        /// <summary>
+        /// Obtiene todos los retiros de aportaciones por socio.
+        /// </summary>
+        /// <param name="RETIROS_AP_ID"></param>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="RETIROS_AP_FECHA"></param>
+        /// <param name="FECHA_DESDE"></param>
+        /// <param name="FECHA_HASTA"></param>
+        /// <param name="RETIROS_AP_ORDINARIA"></param>
+        /// <param name="RETIROS_AP_EXTRAORDINARIA"></param>
+        /// <param name="RETIROS_AP_CAPITALIZACION_RETENCION"></param>
+        /// <param name="RETIROS_AP_INTERESES_S_APORTACION"></param>
+        /// <param name="RETIROS_AP_EXCEDENTE_PERIODO"></param>
+        /// <param name="RETIROS_AP_TOTAL_RETIRADO"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="FECHA_MODIFICACION"></param>
+        /// <returns>Lista de retiros de aportaciones por Socio.</returns>
         public List<retiro_aportaciones> GetRetirosDeAportaciones
             (int RETIROS_AP_ID,
             string SOCIOS_ID,
@@ -90,6 +122,20 @@ namespace COCASJOL.LOGIC.Aportaciones
 
         #region Insert
 
+        /// <summary>
+        /// Inserta el retiro de aportacion.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="RETIROS_AP_FECHA"></param>
+        /// <param name="RETIROS_AP_ORDINARIA"></param>
+        /// <param name="RETIROS_AP_EXTRAORDINARIA"></param>
+        /// <param name="RETIROS_AP_CAPITALIZACION_RETENCION"></param>
+        /// <param name="RETIROS_AP_INTERESES_S_APORTACION"></param>
+        /// <param name="RETIROS_AP_EXCEDENTE_PERIODO"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="FECHA_MODIFICACION"></param>
         public void InsertarRetiroDeAportaciones
             (string SOCIOS_ID,
             DateTime RETIROS_AP_FECHA,

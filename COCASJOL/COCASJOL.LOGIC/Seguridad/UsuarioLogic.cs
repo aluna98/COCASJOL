@@ -12,14 +12,27 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Seguridad
 {
+    /// <summary>
+    /// Clase con logica de Usuario
+    /// </summary>
     public class UsuarioLogic
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(UsuarioLogic).Name);
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public UsuarioLogic() { }
 
         #region Select
 
+        /// <summary>
+        /// Obtiene todos los usuarios.
+        /// </summary>
+        /// <returns>Lista de usuarios.</returns>
         public List<usuario> GetUsuarios()
         {
             try
@@ -38,6 +51,23 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        /// <summary>
+        /// Obtiene todos los usuarios.
+        /// </summary>
+        /// <param name="USR_USERNAME"></param>
+        /// <param name="USR_NOMBRE"></param>
+        /// <param name="USR_SEGUNDO_NOMBRE"></param>
+        /// <param name="USR_APELLIDO"></param>
+        /// <param name="USR_SEGUNDO_APELLIDO"></param>
+        /// <param name="USR_CEDULA"></param>
+        /// <param name="USR_CORREO"></param>
+        /// <param name="USR_PUESTO"></param>
+        /// <param name="USR_PASSWORD"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="FECHA_MODIFICACION"></param>
+        /// <returns>Lista de usuarios.</returns>
         public List<usuario> GetUsuarios
             (string USR_USERNAME,
             string USR_NOMBRE,
@@ -87,6 +117,13 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        /// <summary>
+        /// Obtiene los roles de usuario.
+        /// </summary>
+        /// <param name="USR_USERNAME"></param>
+        /// <param name="ROL_ID"></param>
+        /// <param name="ROL_NOMBRE"></param>
+        /// <returns>Roles de usuario.</returns>
         public List<rol> GetRoles(string USR_USERNAME, int ROL_ID, string ROL_NOMBRE)
         {
             try
@@ -120,6 +157,13 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        /// <summary>
+        /// Obtiene los roles no de usuario.
+        /// </summary>
+        /// <param name="USR_USERNAME"></param>
+        /// <param name="ROL_ID"></param>
+        /// <param name="ROL_NOMBRE"></param>
+        /// <returns>Roles no de usuario.</returns>
         public List<rol> GetRolesNoDeUsuario(string USR_USERNAME, int ROL_ID, string ROL_NOMBRE)
         {
             try
@@ -146,6 +190,11 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        /// <summary>
+        /// Obtiene el usuario específico.
+        /// </summary>
+        /// <param name="USR_USERNAME"></param>
+        /// <returns>Usuario.</returns>
         public usuario GetUsuario(string USR_USERNAME)
         {
             try
@@ -170,6 +219,11 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        /// <summary>
+        /// Obtiene los privilegios de usuario.
+        /// </summary>
+        /// <param name="USR_USERNAME"></param>
+        /// <returns>Lista de privilegios de usuario.</returns>
         public List<privilegio> GetPrivilegiosDeUsuario(string USR_USERNAME)
         {
             try
@@ -198,6 +252,11 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
         
+        /// <summary>
+        /// Obtiene los privilegios no de usuario.
+        /// </summary>
+        /// <param name="USR_USERNAME"></param>
+        /// <returns>Lista de privilegios no de usuario.</returns>
         public List<privilegio> GetPrivilegiosNoDeUsuario(string USR_USERNAME)
         {
             try
@@ -222,6 +281,22 @@ namespace COCASJOL.LOGIC.Seguridad
 
         #region Insert
 
+        /// <summary>
+        /// Inserta el usuario.
+        /// </summary>
+        /// <param name="USR_USERNAME"></param>
+        /// <param name="USR_NOMBRE"></param>
+        /// <param name="USR_SEGUNDO_NOMBRE"></param>
+        /// <param name="USR_APELLIDO"></param>
+        /// <param name="USR_SEGUNDO_APELLIDO"></param>
+        /// <param name="USR_CEDULA"></param>
+        /// <param name="USR_CORREO"></param>
+        /// <param name="USR_PUESTO"></param>
+        /// <param name="USR_PASSWORD"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="FECHA_MODIFICACION"></param>
         public void InsertarUsuario
             (string USR_USERNAME,
             string USR_NOMBRE,
@@ -267,6 +342,12 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        /// <summary>
+        /// Inserta roles a usuario.
+        /// </summary>
+        /// <param name="USR_USERNAME"></param>
+        /// <param name="roles"></param>
+        /// <param name="MODIFICADO_POR"></param>
         public void InsertarRoles(string USR_USERNAME, List<int> roles, string MODIFICADO_POR)
         {
             try
@@ -304,6 +385,22 @@ namespace COCASJOL.LOGIC.Seguridad
 
         #region Update
 
+        /// <summary>
+        /// Actualiza el usuario.
+        /// </summary>
+        /// <param name="USR_USERNAME"></param>
+        /// <param name="USR_NOMBRE"></param>
+        /// <param name="USR_SEGUNDO_NOMBRE"></param>
+        /// <param name="USR_APELLIDO"></param>
+        /// <param name="USR_SEGUNDO_APELLIDO"></param>
+        /// <param name="USR_CEDULA"></param>
+        /// <param name="USR_CORREO"></param>
+        /// <param name="USR_PUESTO"></param>
+        /// <param name="USR_PASSWORD"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="FECHA_MODIFICACION"></param>
         public void ActualizarUsuario
             (string USR_USERNAME,
             string USR_NOMBRE,
@@ -376,6 +473,16 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        /// <summary>
+        /// Actualiza el usuario.
+        /// </summary>
+        /// <param name="USR_USERNAME"></param>
+        /// <param name="USR_NOMBRE"></param>
+        /// <param name="USR_SEGUNDO_NOMBRE"></param>
+        /// <param name="USR_APELLIDO"></param>
+        /// <param name="USR_SEGUNDO_APELLIDO"></param>
+        /// <param name="USR_CORREO"></param>
+        /// <param name="MODIFICADO_POR"></param>
         public void ActualizarUsuario
             (string USR_USERNAME,
             string USR_NOMBRE,
@@ -417,6 +524,10 @@ namespace COCASJOL.LOGIC.Seguridad
 
         #region Delete
 
+        /// <summary>
+        /// Eliminar el usuario.
+        /// </summary>
+        /// <param name="USR_USERNAME"></param>
         public void EliminarUsuario(string USR_USERNAME)
         {
             try
@@ -441,6 +552,12 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        /// <summary>
+        /// Eliminar roles de usuario.
+        /// </summary>
+        /// <param name="USR_USERNAME"></param>
+        /// <param name="roles"></param>
+        /// <param name="MODIFICADO_POR"></param>
         public void EliminarRoles(string USR_USERNAME, List<int> roles, string MODIFICADO_POR)
         {
             try
@@ -478,6 +595,12 @@ namespace COCASJOL.LOGIC.Seguridad
 
         #region Methods
 
+        /// <summary>
+        /// Autentica usuario y password.
+        /// </summary>
+        /// <param name="USR_USERNAME"></param>
+        /// <param name="USR_PASSWORD"></param>
+        /// <returns>True si el usuario y password son correctos. False lo contrario.</returns>
         public bool Autenticar(string USR_USERNAME, string USR_PASSWORD)
         {
             try
@@ -506,6 +629,11 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        /// <summary>
+        /// Verfica si existe el usuario.
+        /// </summary>
+        /// <param name="USR_USERNAME"></param>
+        /// <returns>True el usuario si existe. False el usuario no existe.</returns>
         public bool UsuarioExiste(string USR_USERNAME)
         {
             try
@@ -530,6 +658,12 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        /// <summary>
+        /// Verifica si ya existe el numero de cedula, en otros usuarios.
+        /// </summary>
+        /// <param name="USR_USERNAME"></param>
+        /// <param name="USR_CEDULA"></param>
+        /// <returns>True si ya existe la cedula. False no existe.</returns>
         public bool CedulaExiste(string USR_USERNAME, string USR_CEDULA)
         {
             try
@@ -554,6 +688,11 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        /// <summary>
+        /// Verifica si ya existe el numero de cedula.
+        /// </summary>
+        /// <param name="USR_CEDULA"></param>
+        /// <returns>True si ya existe la cedula. False no existe.</returns>
         public bool CedulaExiste(string USR_CEDULA)
         {
             try

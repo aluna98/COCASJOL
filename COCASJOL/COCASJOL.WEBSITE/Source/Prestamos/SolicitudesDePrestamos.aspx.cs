@@ -57,7 +57,7 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
         {
            try
             {
-                PrestamosLogic prestamo = new PrestamosLogic();
+                TiposPrestamoLogic prestamo = new TiposPrestamoLogic();
                 int interes = prestamo.Intereses(Convert.ToInt32(AddTipoDeProdIdCmb.Value));
                 AddInteresTxt.Text = Convert.ToString(interes);
             }

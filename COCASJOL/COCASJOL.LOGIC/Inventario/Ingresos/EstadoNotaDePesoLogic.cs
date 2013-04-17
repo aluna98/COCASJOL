@@ -12,14 +12,27 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Inventario.Ingresos
 {
+    /// <summary>
+    /// Clase con logica de Estado de Nota de Peso
+    /// </summary>
     public class EstadoNotaDePesoLogic
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(EstadoNotaDePesoLogic).Name);
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public EstadoNotaDePesoLogic() { }
 
         #region Select
 
+        /// <summary>
+        /// Obtiene todos los estados de nota de peso.
+        /// </summary>
+        /// <returns>Lista de estados de nota de peso.</returns>
         public List<estado_nota_de_peso> GetEstadosNotaDePeso()
         {
             try
@@ -38,6 +51,11 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
+        /// <summary>
+        /// Obtiene todos los estados de nota de peso sin asignar.
+        /// </summary>
+        /// <param name="ESTADOS_NOTA_ID"></param>
+        /// <returns>Lista de estados de nota de peso sin asignar.</returns>
         public List<estado_nota_de_peso> GetEstadosNotaDePesoSinAsignar(int ESTADOS_NOTA_ID)
         {
             try
@@ -58,6 +76,20 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
+        /// <summary>
+        /// Obtiene todos los estados de nota de peso.
+        /// </summary>
+        /// <param name="ESTADOS_NOTA_ID"></param>
+        /// <param name="ESTADOS_NOTA_SIGUIENTE"></param>
+        /// <param name="ESTADOS_NOTA_SIGUIENTE_NOMBRE"></param>
+        /// <param name="ESTADOS_NOTA_LLAVE"></param>
+        /// <param name="ESTADOS_NOTA_NOMBRE"></param>
+        /// <param name="ESTADOS_NOTA_DESCRIPCION"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="FECHA_MODIFICACION"></param>
+        /// <returns>Lista de estados de nota de peso.</returns>
         public List<estado_nota_de_peso> GetEstadosNotaDePeso
             (int ESTADOS_NOTA_ID,
             Int32? ESTADOS_NOTA_SIGUIENTE,
@@ -99,6 +131,11 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
+        /// <summary>
+        /// Obtiene todos los estados de nota de peso para notas en area de pesaje.
+        /// </summary>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <returns>Lista de estados de nota de peso.</returns>
         public List<estado_nota_de_peso> GetEstadosNotaDePesoEnPesaje(int CLASIFICACIONES_CAFE_ID)
         {
             try
@@ -124,6 +161,11 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
+        /// <summary>
+        /// Obtiene el estado de nota de peso específico.
+        /// </summary>
+        /// <param name="ESTADOS_NOTA_ID"></param>
+        /// <returns>Estado de nota de peso especificado.</returns>
         public estado_nota_de_peso GetEstadoNotaDePeso(int ESTADOS_NOTA_ID)
         {
             try
@@ -146,6 +188,11 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
         
+        /// <summary>
+        /// Obtiene el estado de nota de peso específico.
+        /// </summary>
+        /// <param name="ESTADOS_NOTA_LLAVE"></param>
+        /// <returns>Estado de nota de peso especificado.</returns>
         public estado_nota_de_peso GetEstadoNotaDePeso(string ESTADOS_NOTA_LLAVE)
         {
             try
@@ -170,45 +217,21 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
         #endregion
 
-        #region Insert
-
-        public void InsertarEstadoNotaDePeso
-            (int ESTADOS_NOTA_ID,
-            string ESTADOS_NOTA_NOMBRE,
-            string ESTADOS_NOTA_DESCRIPCION,
-            string CREADO_POR,
-            DateTime FECHA_CREACION,
-            string MODIFICADO_POR,
-            DateTime FECHA_MODIFICACION)
-        {
-            try
-            {
-                using (var db = new colinasEntities())
-                {
-                    estado_nota_de_peso noteStatus = new estado_nota_de_peso();
-
-                    noteStatus.ESTADOS_NOTA_NOMBRE = ESTADOS_NOTA_NOMBRE;
-                    noteStatus.ESTADOS_NOTA_DESCRIPCION = ESTADOS_NOTA_DESCRIPCION;
-                    noteStatus.CREADO_POR = CREADO_POR;
-                    noteStatus.FECHA_CREACION = DateTime.Today;
-                    noteStatus.MODIFICADO_POR = CREADO_POR;
-                    noteStatus.FECHA_MODIFICACION = noteStatus.FECHA_CREACION;
-
-                    db.estados_nota_de_peso.AddObject(noteStatus);
-                    db.SaveChanges();
-                }
-            }
-            catch (Exception ex)
-            {
-                log.Fatal("Error fatal al insertar estado de nota de peso.", ex);
-                throw;
-            }
-        }
-
-        #endregion
-
         #region Update
 
+        /// <summary>
+        /// Actualiza estado de nota de peso.
+        /// </summary>
+        /// <param name="ESTADOS_NOTA_ID"></param>
+        /// <param name="ESTADOS_NOTA_SIGUIENTE"></param>
+        /// <param name="ESTADOS_NOTA_SIGUIENTE_NOMBRE"></param>
+        /// <param name="ESTADOS_NOTA_LLAVE"></param>
+        /// <param name="ESTADOS_NOTA_NOMBRE"></param>
+        /// <param name="ESTADOS_NOTA_DESCRIPCION"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="FECHA_MODIFICACION"></param>
         public void ActualizarEstadoNotaDePeso
             (int ESTADOS_NOTA_ID,
             int? ESTADOS_NOTA_SIGUIENTE,
@@ -249,37 +272,13 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
         #endregion
 
-        #region Delete
+        #region Methods
 
-        public void EliminarEstadoNotaDePeso(int ESTADOS_NOTA_ID)
-        {
-            try
-            {
-                using (var db = new colinasEntities())
-                {
-
-                    EntityKey k = new EntityKey("colinasEntities.estados_nota_de_peso", "ESTADOS_NOTA_ID", ESTADOS_NOTA_ID);
-
-                    var esn = db.GetObjectByKey(k);
-
-                    estado_nota_de_peso noteStatus = (estado_nota_de_peso)esn;
-
-                    db.DeleteObject(noteStatus);
-
-                    db.SaveChanges();
-                }
-            }
-            catch (Exception ex)
-            {
-                log.Fatal("Error fatal al eliminar estado de nota de peso.", ex);
-                throw;
-            }
-        }
-
-        #endregion
-
-        #region METHODS
-
+        /// <summary>
+        /// Obtiene el código de estado de nota de peso.
+        /// </summary>
+        /// <param name="ESTADOS_NOTA_LLAVE"></param>
+        /// <returns>Código de estado de nota de peso.</returns>
         public int GetIdEstadoNotaDePeso(string ESTADOS_NOTA_LLAVE)
         {
             try

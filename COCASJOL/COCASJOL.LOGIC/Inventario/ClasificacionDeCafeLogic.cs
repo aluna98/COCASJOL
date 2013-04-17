@@ -12,14 +12,27 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Inventario
 {
+    /// <summary>
+    /// Clase con logica de Clasificación de Café
+    /// </summary>
     public class ClasificacionDeCafeLogic
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(ClasificacionDeCafeLogic).Name);
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public ClasificacionDeCafeLogic() { }
 
         #region Select 
 
+        /// <summary>
+        /// Obtiene todas las clasificaciones de café.
+        /// </summary>
+        /// <returns>Lista de todas las clasificaciones de café.</returns>
         public List<clasificacion_cafe> GetClasificacionesDeCafe()
         {
             try
@@ -38,6 +51,18 @@ namespace COCASJOL.LOGIC.Inventario
             }
         }
 
+        /// <summary>
+        /// Obtiene todas las clasificaciones de café.
+        /// </summary>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <param name="CLASIFICACIONES_CAFE_NOMBRE"></param>
+        /// <param name="CLASIFICACIONES_CAFE_DESCRIPCION"></param>
+        /// <param name="CLASIFICACIONES_CAFE_CATACION"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="FECHA_MODIFICACION"></param>
+        /// <returns>Lista de todas las clasificaciones de café.</returns>
         public List<clasificacion_cafe> GetClasificacionesDeCafe
             (int CLASIFICACIONES_CAFE_ID,
             string CLASIFICACIONES_CAFE_NOMBRE,
@@ -79,6 +104,17 @@ namespace COCASJOL.LOGIC.Inventario
 
         #region Insert
 
+        /// <summary>
+        /// Inserta la clasificación de café.
+        /// </summary>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <param name="CLASIFICACIONES_CAFE_NOMBRE"></param>
+        /// <param name="CLASIFICACIONES_CAFE_DESCRIPCION"></param>
+        /// <param name="CLASIFICACIONES_CAFE_CATACION"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="FECHA_MODIFICACION"></param>
         public void InsertarClasificacionDeCafe
             (int CLASIFICACIONES_CAFE_ID,
             string CLASIFICACIONES_CAFE_NOMBRE,
@@ -118,6 +154,17 @@ namespace COCASJOL.LOGIC.Inventario
 
         #region Update
 
+        /// <summary>
+        /// Actualiza la clasificación de café.
+        /// </summary>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <param name="CLASIFICACIONES_CAFE_NOMBRE"></param>
+        /// <param name="CLASIFICACIONES_CAFE_DESCRIPCION"></param>
+        /// <param name="CLASIFICACIONES_CAFE_CATACION"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="FECHA_MODIFICACION"></param>
         public void ActualizarClasificacionDeCafe
             (int CLASIFICACIONES_CAFE_ID,
             string CLASIFICACIONES_CAFE_NOMBRE,
@@ -158,6 +205,10 @@ namespace COCASJOL.LOGIC.Inventario
 
         #region Delete
 
+        /// <summary>
+        /// Elimina la clasificación de café.
+        /// </summary>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
         public void EliminarClasificacionDeCafe(int CLASIFICACIONES_CAFE_ID)
         {
             try
@@ -187,6 +238,11 @@ namespace COCASJOL.LOGIC.Inventario
 
         #region Methods
 
+        /// <summary>
+        /// Devuelve si la clasificación de café especificada debe pasar por catación
+        /// </summary>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <returns>Verdaro si debe pasar a catación o falso si no es necesario.</returns>
         public bool ClasificacionDeCafePasaPorCatacion(int CLASIFICACIONES_CAFE_ID)
         {
             try

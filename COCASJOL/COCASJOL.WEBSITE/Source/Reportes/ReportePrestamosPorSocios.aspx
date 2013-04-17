@@ -35,7 +35,7 @@
         </ext:Store>
 
         <asp:ObjectDataSource ID="TiposPrestamoDS" runat="server"
-                TypeName="COCASJOL.LOGIC.Prestamos.PrestamosLogic"
+                TypeName="COCASJOL.LOGIC.Prestamos.TiposPrestamoLogic"
                 SelectMethod="getData">
         </asp:ObjectDataSource>
 

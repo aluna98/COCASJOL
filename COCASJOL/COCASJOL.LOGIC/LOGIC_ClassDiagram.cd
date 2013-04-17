@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="COCASJOL.LOGIC.Aportaciones.AportacionLogic">
+    <Position X="0.5" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>EAAAkAAAAAAAAAAAAgAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Aportaciones\AportacionLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Aportaciones.RetiroAportacionLogic">
+    <Position X="0.5" Y="3" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAECAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Aportaciones\RetiroAportacionLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Configuracion.ConfiguracionDeSistemaLogic">
+    <Position X="2.75" Y="5.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAgCJAEAQABJEhYQAAESFMAAEQAQAEAAAAEAAIwEAA=</HashCode>
+      <FileName>Configuracion\ConfiguracionDeSistemaLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Entorno.VariablesDeEntornoLogic">
+    <Position X="6.75" Y="3.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAACAAAAAAAAAAAAEAgAAAAAAA=</HashCode>
+      <FileName>Entorno\VariablesDeEntornoLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Inventario.ClasificacionDeCafeLogic">
+    <Position X="4.25" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEQAACgAAAAAAAAAABAAgAAAAAAA=</HashCode>
+      <FileName>Inventario\ClasificacionDeCafeLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Inventario.InventarioDeCafeLogic">
+    <Position X="8" Y="0.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AABAAgAAQAAgAAgAAAAACAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Inventario\InventarioDeCafeLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Inventario.Ingresos.EstadoNotaDePesoLogic">
+    <Position X="12.5" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAABAACAAAIAUAAAAAAQAAAAAgAAA=</HashCode>
+      <FileName>Inventario\Ingresos\EstadoNotaDePesoLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Inventario.Ingresos.NotaDePesoLogic">
+    <Position X="16.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAGAAAAAAAAAAAICAAAAAQAQAAACAAAAAAIAAA=</HashCode>
+      <FileName>Inventario\Ingresos\NotaDePesoLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Inventario.Ingresos.NotaDePesoEnPesajeLogic">
+    <Position X="13.25" Y="4.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAICAAAAAQAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Inventario\Ingresos\NotaDePesoEnPesajeLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Inventario.Ingresos.NotaDePesoEnAdministracionLogic">
+    <Position X="19.25" Y="5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAACAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Inventario\Ingresos\NotaDePesoEnAdministracionLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Inventario.Ingresos.NotaDePesoEnCatacionLogic">
+    <Position X="16.75" Y="5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAGAAAAAAAAAAAACAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Inventario\Ingresos\NotaDePesoEnCatacionLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Inventario.Salidas.AjusteInventarioDeCafeDeSocioLogic">
+    <Position X="19.25" Y="0.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAABACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Inventario\Salidas\AjusteInventarioDeCafeDeSocioLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Inventario.Salidas.HojaDeLiquidacionLogic">
+    <Position X="23.5" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAACAAEAAAAA=</HashCode>
+      <FileName>Inventario\Salidas\HojaDeLiquidacionLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Inventario.Salidas.VentaInventarioDeCafeLogic">
+    <Position X="24" Y="2.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAQAAAAAAQAA=</HashCode>
+      <FileName>Inventario\Salidas\VentaInventarioDeCafeLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Prestamos.TiposPrestamoLogic">
+    <Position X="27.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQEAAAAAAAABAAQAAACAAAAAAAAAAAAAAAIAAgAAA=</HashCode>
+      <FileName>Prestamos\TiposPrestamoLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Prestamos.SolicitudesLogic">
+    <Position X="29.5" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AQARACgMASAAUgCACAIACgJBAACAAAAAlQADAAAEAAA=</HashCode>
+      <FileName>Prestamos\SolicitudesLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Reportes.ReporteConsolidadoDeCafeDeSocios">
+    <Position X="35.25" Y="2.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>EBAAAAQAAAAAAAAICAAAAAAAAQAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Reportes\ConsolidadoDeInventarioDeCafeLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Reportes.ReporteConsolidadoDeCafe">
+    <Position X="32.75" Y="2.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>EBAAAAQAAAAAAAAACgAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Reportes\ConsolidadoDeInventarioDeCafeLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Reportes.ConsolidadoDeInventarioDeCafeLogic">
+    <Position X="33.75" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAABABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Reportes\ConsolidadoDeInventarioDeCafeLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Reportes.ReporteLogic">
+    <Position X="34.5" Y="6.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAEgAAAAAQABAAACAAAAAMAAQAAEACAAAEEAEA=</HashCode>
+      <FileName>Reportes\ReporteLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Seguridad.CriptografiaTDES">
+    <Position X="39" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAACgAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Seguridad\CriptografiaTDES.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Seguridad.PrivilegioLogic">
+    <Position X="39" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAACAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Seguridad\PrivilegioLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Seguridad.RolLogic">
+    <Position X="41.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gIBAAAAEAAAAAAAAAAAAiKAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Seguridad\RolLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Seguridad.UsuarioLogic">
+    <Position X="44" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAgAAAIDAAABAAjCAAAAgAMAAAAAAAQBAgAAA=</HashCode>
+      <FileName>Seguridad\UsuarioLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Socios.SociosLogic">
+    <Position X="47" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAQCAAUgAACJAAAQACBCEAgBIAJACAAgAQAAAAgEAA=</HashCode>
+      <FileName>Socios\SociosLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Utiles.EmailLogic">
+    <Position X="51" Y="3" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AQAAIAAAAACAAQAAAAAICAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Utiles\EmailLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Utiles.ImportarExcelLogic">
+    <Position X="51" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAACAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utiles\ImportarExcelLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Utiles.NotificacionLogic">
+    <Position X="55" Y="2.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAEAAAAEAAAAAASEBAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Utiles\NotificacionLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Utiles.Numalet">
+    <Position X="58" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>JBBADCAAEBAAAAxAhAAQCAIIAACGBIAAIYBAAgABBOA=</HashCode>
+      <FileName>Utiles\Numalet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Utiles.PlantillaLogic">
+    <Position X="60.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAUAAAAAAACAAAAAEAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Utiles\PlantillaLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Web.COCASJOLBASE">
+    <Position X="63.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AEBAAAAAIACAAAAAAAEACAQAQAAAAAAAAAQABAIAQgA=</HashCode>
+      <FileName>Web\COCASJOLBASE.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COCASJOL.LOGIC.Web.COCASJOLREPORT">
+    <Position X="63.25" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAIAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Web\COCASJOLREPORT.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="COCASJOL.LOGIC.Utiles.EstadosNotificacion">
+    <Position X="55" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAACAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utiles\NotificacionLogic.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

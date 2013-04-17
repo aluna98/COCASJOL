@@ -12,14 +12,27 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Seguridad
 {
+    /// <summary>
+    /// Clase con logica de Privilegio
+    /// </summary>
     public class PrivilegioLogic
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(PrivilegioLogic).Name);
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public PrivilegioLogic() { }
 
         #region Select
 
+        /// <summary>
+        /// Obtiene todos los privilegios.
+        /// </summary>
+        /// <returns>Lista de Privilegios.</returns>
         public List<privilegio> GetPrivilegios()
         {
             try
@@ -38,6 +51,18 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        /// <summary>
+        /// Obtiene todos los privilegios.
+        /// </summary>
+        /// <param name="PRIV_ID"></param>
+        /// <param name="PRIV_NOMBRE"></param>
+        /// <param name="PRIV_DESCRIPCION"></param>
+        /// <param name="PRIV_LLAVE"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="FECHA_MODIFICACION"></param>
+        /// <returns>Lista de Privilegios.</returns>
         public List<privilegio> GetPrivilegios
             (int PRIV_ID,
             string PRIV_NOMBRE,
@@ -77,6 +102,11 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        /// <summary>
+        /// Obtiene los usuarios con privilegio específico.
+        /// </summary>
+        /// <param name="PRIV_LLAVE"></param>
+        /// <returns>Lista de usuarios con privilegio específico.</returns>
         public List<usuario> GetUsuariosWithPrivilege(string PRIV_LLAVE)
         {
             try

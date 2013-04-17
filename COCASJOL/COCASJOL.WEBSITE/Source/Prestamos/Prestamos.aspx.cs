@@ -48,7 +48,7 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
         {
             try
             {
-                PrestamosLogic prestamo = new PrestamosLogic();
+                TiposPrestamoLogic prestamo = new TiposPrestamoLogic();
                 var store1 = this.PrestamosGridP.GetStore();
                 store1.DataSource = prestamo.getData();
                 store1.DataBind();
@@ -64,7 +64,7 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
         {
             try
             {
-                PrestamosLogic prestamo = new PrestamosLogic();
+                TiposPrestamoLogic prestamo = new TiposPrestamoLogic();
                 int maximo = Convert.ToInt32(e.ExtraParams["PRESTAMOS_CANT_MAXIMA"]);
                 int intereses = Convert.ToInt32(e.ExtraParams["PRESTAMOS_INTERES"]);
                 int id = Convert.ToInt32(e.ExtraParams["PRESTAMOS_ID"]);
@@ -83,7 +83,7 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
         {
             try
             {
-                PrestamosLogic logica = new PrestamosLogic();
+                TiposPrestamoLogic logica = new TiposPrestamoLogic();
                 if (!logica.ExistePrestamo(e.ExtraParams["PRESTAMO_NOMBRE"]))
                 {
                     X.Msg.Alert("Prestamos", "ERROR: El nombre del prestamo ya existe.").Show();
@@ -109,7 +109,7 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
         {
             try
             {
-                PrestamosLogic logica = new PrestamosLogic();
+                TiposPrestamoLogic logica = new TiposPrestamoLogic();
                 RowSelectionModel sm = PrestamosGridP.SelectionModel.Primary as RowSelectionModel;
                 int id = Convert.ToInt32(sm.SelectedRow.RecordID);
                 logica.EliminarPrestamo(id);

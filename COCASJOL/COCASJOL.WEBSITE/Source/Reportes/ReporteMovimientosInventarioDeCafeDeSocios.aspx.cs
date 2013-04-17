@@ -41,7 +41,7 @@ namespace COCASJOL.WEBSITE.Source.Reportes
             }
         }
 
-        protected override void Report_Execution(object sender, DirectEventArgs e)
+        protected void Report_Execution(object sender, DirectEventArgs e)
         {
             string formatoSalida = "";
             try

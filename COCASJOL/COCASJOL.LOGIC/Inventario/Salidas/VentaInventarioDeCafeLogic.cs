@@ -13,14 +13,27 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Inventario.Salidas
 {
+    /// <summary>
+    /// Clase con logica de Venta de Inventario de Café
+    /// </summary>
     public class VentaInventarioDeCafeLogic
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(VentaInventarioDeCafeLogic).Name);
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public VentaInventarioDeCafeLogic() { }
 
         #region Select
 
+        /// <summary>
+        /// Obtiene todas las ventas de inventario de café de cooperativa.
+        /// </summary>
+        /// <returns>Lista de ventas de inventario de café de cooperativa.</returns>
         public List<venta_inventario_cafe> GetVentasDeInventarioDeCafe()
         {
             try
@@ -37,6 +50,23 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
             }
         }
 
+        /// <summary>
+        /// Obtiene todas las ventas de inventario de café de cooperativa.
+        /// </summary>
+        /// <param name="VENTAS_INV_CAFE_ID"></param>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <param name="CLASIFICACIONES_CAFE_NOMBRE"></param>
+        /// <param name="VENTAS_INV_CAFE_FECHA"></param>
+        /// <param name="FECHA_DESDE"></param>
+        /// <param name="FECHA_HASTA"></param>
+        /// <param name="VENTAS_INV_CAFE_CANTIDAD_LIBRAS"></param>
+        /// <param name="VENTAS_INV_CAFE_PRECIO_LIBRAS"></param>
+        /// <param name="VENTAS_INV_CAFE_SALDO_TOTAL"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="FECHA_MODIFICACION"></param>
+        /// <returns>Lista de ventas de inventario de café de cooperativa.</returns>
         public List<venta_inventario_cafe> GetVentasDeInventarioDeCafe
             (int VENTAS_INV_CAFE_ID,
             int CLASIFICACIONES_CAFE_ID,
@@ -88,6 +118,22 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
 
         #region Insert
 
+        /// <summary>
+        /// Insertar venta de inventario de café de cooperativa
+        /// </summary>
+        /// <param name="VENTAS_INV_CAFE_ID"></param>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <param name="CLASIFICACIONES_CAFE_NOMBRE"></param>
+        /// <param name="VENTAS_INV_CAFE_FECHA"></param>
+        /// <param name="FECHA_DESDE"></param>
+        /// <param name="FECHA_HASTA"></param>
+        /// <param name="VENTAS_INV_CAFE_CANTIDAD_LIBRAS"></param>
+        /// <param name="VENTAS_INV_CAFE_PRECIO_LIBRAS"></param>
+        /// <param name="VENTAS_INV_CAFE_SALDO_TOTAL"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="FECHA_MODIFICACION"></param>
         public void InsertarVentaDeInventarioDeCafe
             (int VENTAS_INV_CAFE_ID,
             int CLASIFICACIONES_CAFE_ID,

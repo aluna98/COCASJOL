@@ -14,15 +14,34 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Inventario.Ingresos
 {
+    /// <summary>
+    /// Clase con logica de Nota de Peso en Área de Administración
+    /// </summary>
     public class NotaDePesoEnAdministracionLogic : NotaDePesoLogic
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(NotaDePesoEnAdministracionLogic).Name);
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public NotaDePesoEnAdministracionLogic() : base("") { }
+
+        /// <summary>
+        /// Constructor. Pasa de parámetro el estado al que se inicializará la nota de peso.
+        /// </summary>
         public NotaDePesoEnAdministracionLogic(string ESTADOS_LLAVE) : base(ESTADOS_LLAVE) { }
 
         #region Update
 
+        /// <summary>
+        /// Actualiza la nota de peso.
+        /// </summary>
+        /// <param name="NOTAS_ID"></param>
+        /// <param name="ESTADOS_NOTA_ID"></param>
+        /// <param name="MODIFICADO_POR"></param>
         public void ActualizarNotaDePeso(int NOTAS_ID, int ESTADOS_NOTA_ID, string MODIFICADO_POR)
         {
             try
@@ -65,6 +84,12 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
         #region Registrar
 
+        /// <summary>
+        /// Registra la nota de peso.
+        /// </summary>
+        /// <param name="NOTAS_ID"></param>
+        /// <param name="ESTADO_ID"></param>
+        /// <param name="MODIFICADO_POR"></param>
         public void RegistrarNotaDePeso(int NOTAS_ID, int ESTADO_ID, string MODIFICADO_POR)
         {
             try

@@ -13,14 +13,27 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Entorno
 {
+    /// <summary>
+    /// Clase con logica de Variables de Entorno
+    /// </summary>
     public class VariablesDeEntornoLogic
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(VariablesDeEntornoLogic).Name);
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public VariablesDeEntornoLogic() { }
 
         #region Select
 
+        /// <summary>
+        /// Obtiene todas las variables de entorno.
+        /// </summary>
+        /// <returns>Lista de variables de entorno.</returns>
         public List<variable_de_entorno> GetVariablesDeEntorno()
         {
             try
@@ -39,6 +52,18 @@ namespace COCASJOL.LOGIC.Entorno
             }
         }
 
+        /// <summary>
+        /// Obtiene todas las variables de entorno.
+        /// </summary>
+        /// <param name="VARIABLES_LLAVE"></param>
+        /// <param name="VARIABLES_NOMBRE"></param>
+        /// <param name="VARIABLES_DESCRIPCION"></param>
+        /// <param name="VARIABLES_VALOR"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="FECHA_MODIFICACION"></param>
+        /// <returns>Lista de variables de entorno.</returns>
         public List<variable_de_entorno> GetVariablesDeEntorno
             (string VARIABLES_LLAVE,
             string VARIABLES_NOMBRE,
@@ -65,6 +90,11 @@ namespace COCASJOL.LOGIC.Entorno
             }
         }
 
+        /// <summary>
+        /// Obtiene variable de entorno específica.
+        /// </summary>
+        /// <param name="VARIABLES_LLAVE"></param>
+        /// <returns>Variable de entorno.</returns>
         public variable_de_entorno GetVariableDeEntorno(string VARIABLES_LLAVE)
         {
             try
@@ -93,6 +123,11 @@ namespace COCASJOL.LOGIC.Entorno
 
         #region Update
 
+        /// <summary>
+        /// Actualiza todas las variables de entorno.
+        /// </summary>
+        /// <param name="VariablesDeEntorno"></param>
+        /// <param name="MODIFICADO_POR"></param>
         public void ActualizarVariablesDeEntorno(Dictionary<string, string>[] VariablesDeEntorno, string MODIFICADO_POR)
         {
             try

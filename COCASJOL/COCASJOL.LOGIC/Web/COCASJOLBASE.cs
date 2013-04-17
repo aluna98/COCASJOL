@@ -18,20 +18,46 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Web
 {
+    /// <summary>
+    /// Clase base de paginas COCASJOLBASE
+    /// </summary>
     public class COCASJOLBASE : System.Web.UI.Page
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(COCASJOLBASE).Name);
 
+        /// <summary>
+        /// Nombre de página web actual.
+        /// </summary>
         private string pagename;
+        /// <summary>
+        /// XML de configuración de privilegios con pantallas.
+        /// </summary>
         private XmlDocument docPrivilegios;
+        /// <summary>
+        /// XML de configuración de variables de entorno con pantallas.
+        /// </summary>
         private XmlDocument docEntorno;
+        /// <summary>
+        /// XML de configuración de sistema con pantallas.
+        /// </summary>
         public XmlDocument docConfiguracion;
+
+
         private static object lockObj = new object();
         private static object lockObj2 = new object();
         private static object lockObj3 = new object();
 
+        /// <summary>
+        /// Variables de Entorno de página actual.
+        /// </summary>
         public Dictionary<string, string> Variables = null;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public COCASJOLBASE()
         {
             try
@@ -104,6 +130,11 @@ namespace COCASJOL.LOGIC.Web
             }
         }
 
+        /// <summary>
+        /// Metodo para inicializion de página web. Obtiene las variables de entorno para la página, verifica el estado de la sesión actual y valida las credenciales (privilegios).
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void COCASJOLBASE_Init(object sender, EventArgs e)
         {
             try
@@ -138,6 +169,11 @@ namespace COCASJOL.LOGIC.Web
             }
         }
 
+        /// <summary>
+        /// Manejo de errores de aplicación.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void COCASJOL_Error(object sender, EventArgs e)
         {
             Exception ex = base.Server.GetLastError();
@@ -149,6 +185,9 @@ namespace COCASJOL.LOGIC.Web
             log.Fatal(errorMessage.ToString(), ex);
         }
 
+        /// <summary>
+        /// Valida las credenciales del usuario actual.
+        /// </summary>
         protected void ValidarCredenciales()
         {
             try
@@ -194,6 +233,10 @@ namespace COCASJOL.LOGIC.Web
             }
         }
 
+        /// <summary>
+        /// Obtiene las variables de entorno.
+        /// </summary>
+        /// <returns>Diccionario de variables de entorno.</returns>
         public Dictionary<string, string> GetVariables()
         {
 
@@ -231,6 +274,11 @@ namespace COCASJOL.LOGIC.Web
             }
         }
 
+        /// <summary>
+        /// Valida las variables de entorno. Verifica que las variables de entorno de la página actual tengan tipos valores validos.
+        /// </summary>
+        /// <param name="Variables"></param>
+        /// <returns>True se logro validar correctamente los valores y tipos de variables de entorno. False en caso contrario.</returns>
         public bool ValidarVariables(Dictionary<string, string> Variables)
         {
             try
@@ -305,6 +353,11 @@ namespace COCASJOL.LOGIC.Web
             }
         }
 
+        /// <summary>
+        /// Muestra una notificación en pantalla.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="message"></param>
         protected virtual void ShowPinnedNotification(string title, string message)
         {
             try

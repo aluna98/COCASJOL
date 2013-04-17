@@ -12,14 +12,27 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Inventario
 {
+    /// <summary>
+    /// Clase con logica de Inventario de Café de Socios y Cooperativa.
+    /// </summary>
     public class InventarioDeCafeLogic
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(InventarioDeCafeLogic).Name);
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public InventarioDeCafeLogic() { }
          
         #region Select
 
+        /// <summary>
+        /// Obtiene todos los totales de inventario de café por socio.
+        /// </summary>
+        /// <returns>Lista de totales de inventario de café por socio.</returns>
         public List<reporte_total_inventario_de_cafe_por_socio> GetInventarioDeCafeDeSocios()
         {
             try
@@ -36,6 +49,17 @@ namespace COCASJOL.LOGIC.Inventario
             }
         }
 
+        /// <summary>
+        /// Obtiene todos los totales de inventario de café por socio.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="SOCIOS_NOMBRE_COMPLETO"></param>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <param name="INVENTARIO_ENTRADAS_CANTIDAD"></param>
+        /// <param name="INVENTARIO_SALIDAS_SALDO"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <returns>Lista de totales de inventario de café por socio.</returns>
         public List<reporte_total_inventario_de_cafe_por_socio> GetInventarioDeCafeDeSocios
             (string SOCIOS_ID,
             string SOCIOS_NOMBRE_COMPLETO,
@@ -70,6 +94,12 @@ namespace COCASJOL.LOGIC.Inventario
             }
         }
 
+        /// <summary>
+        /// Obtiene totales de inventario de café para socio específico.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <returns>Totales de inventario de café para socio específico.</returns>
         public reporte_total_inventario_de_cafe_por_socio GetReporteTotalInventarioDeCafeDeSocio(string SOCIOS_ID, int CLASIFICACIONES_CAFE_ID)
         {
             try
@@ -102,6 +132,12 @@ namespace COCASJOL.LOGIC.Inventario
             }
         }
 
+        /// <summary>
+        /// Obtiene total de inventario de café para socio específico.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <returns>Total de inventario de café para socio específico.</returns>
         public decimal GetInventarioDeCafeDeSocio(string SOCIOS_ID, int CLASIFICACIONES_CAFE_ID)
         {
             try
@@ -133,8 +169,12 @@ namespace COCASJOL.LOGIC.Inventario
             }
         }
 
-        //Inventario Cooperativa
 
+        /*                       Inventario Cooperativa                    */
+        /// <summary>
+        /// Obtiene todos los totales de inventario de café de Cooperativa.
+        /// </summary>
+        /// <returns>Lista de totales de inventario de café de Cooperativa.</returns>
         public List<reporte_total_inventario_de_cafe> GetInventarioDeCafe()
         {
             try
@@ -151,6 +191,15 @@ namespace COCASJOL.LOGIC.Inventario
             }
         }
 
+        /// <summary>
+        /// Obtiene todos los totales de inventario de café de Cooperativa.
+        /// </summary>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <param name="INVENTARIO_ENTRADAS_CANTIDAD"></param>
+        /// <param name="INVENTARIO_SALIDAS_SALDO"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <returns>Lista de totales de inventario de café de Cooperativa.</returns>
         public List<reporte_total_inventario_de_cafe> GetInventarioDeCafe
             (int CLASIFICACIONES_CAFE_ID,
             decimal INVENTARIO_ENTRADAS_CANTIDAD,
@@ -181,6 +230,11 @@ namespace COCASJOL.LOGIC.Inventario
             }
         }
 
+        /// <summary>
+        /// Obtiene totales de inventario de café de cooperativa.
+        /// </summary>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <returns>Totales de inventario de café de cooperativa.</returns>
         public reporte_total_inventario_de_cafe GetReporteTotalInventarioDeCafe(int CLASIFICACIONES_CAFE_ID)
         {
             try
@@ -208,6 +262,11 @@ namespace COCASJOL.LOGIC.Inventario
             }
         }
 
+        /// <summary>
+        /// Obtiene total de inventario de café de cooperativa.
+        /// </summary>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <returns>Total de inventario de café de cooperativa.</returns>
         public decimal GetInventarioDeCafe(int CLASIFICACIONES_CAFE_ID)
         {
             try
@@ -238,7 +297,15 @@ namespace COCASJOL.LOGIC.Inventario
 
         #region Insert
 
-        //Notas de Peso
+        /*                                      Inventario de Socios                                   */
+
+
+        /// <summary>
+        /// Insertar transacción de la nota de peso en la tabla de inventario de café de socios como entrada (Deposito).
+        /// </summary>
+        /// <param name="NotaDePeso"></param>
+        /// <param name="db"></param>
+        /// <returns>El numero de transacción asignado a la nota de peso registrada.</returns>
         public int InsertarTransaccionInventarioDeCafeDeSocio(nota_de_peso NotaDePeso, colinasEntities db)
         {
             try
@@ -274,7 +341,11 @@ namespace COCASJOL.LOGIC.Inventario
             }
         }
 
-        //Hojas de Liquidacion
+        /// <summary>
+        /// Insertar transacción de la hoja de liquidación en la tabla de inventario de café de socios como salida (Liquidación).
+        /// </summary>
+        /// <param name="HojaDeLiquidacion"></param>
+        /// <param name="db"></param>
         public void InsertarTransaccionInventarioDeCafeDeSocio(liquidacion HojaDeLiquidacion, colinasEntities db)
         {
             try
@@ -310,7 +381,11 @@ namespace COCASJOL.LOGIC.Inventario
             }
         }
 
-        //Ajuste de Inventario de Cafe
+        /// <summary>
+        /// Insertar transacción de la nota de peso en la tabla de inventario de café de socios como ajuste (Ajuste de Inventario).
+        /// </summary>
+        /// <param name="AjusteDeInventarioDeCafe"></param>
+        /// <param name="db"></param>
         public void InsertarTransaccionInventarioDeCafeDeSocio(ajuste_inventario_cafe_x_socio AjusteDeInventarioDeCafe, colinasEntities db)
         {
             try
@@ -345,7 +420,13 @@ namespace COCASJOL.LOGIC.Inventario
         }
 
 
-        //Hoja de Liquidacion (Inventario de Cooperativa)
+        /*                                      Inventario de Cooperativa                              */
+
+        /// <summary>
+        /// Insertar transacción de la hoja de liquidación en la tabla de inventario de café de la cooperativa como entrada (Compra).
+        /// </summary>
+        /// <param name="HojaDeLiquidacion"></param>
+        /// <param name="db"></param>
         public void InsertarTransaccionInventarioDeCafe(liquidacion HojaDeLiquidacion, colinasEntities db)
         {
             try
@@ -377,7 +458,11 @@ namespace COCASJOL.LOGIC.Inventario
             }
         }
 
-        //Venta de Inventario de Café (Inventario de Cooperativa)
+        /// <summary>
+        /// Insertar transacción de la venta de inventario de café en la tabla de inventario de café de la cooperativa como salida (Venta).
+        /// </summary>
+        /// <param name="VentaDeInventario"></param>
+        /// <param name="db"></param>
         public void InsertarTransaccionInventarioDeCafe(venta_inventario_cafe VentaDeInventario, colinasEntities db)
         {
             try

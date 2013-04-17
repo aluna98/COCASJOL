@@ -12,13 +12,26 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Prestamos
 {
-    public class PrestamosLogic
+    /// <summary>
+    /// Clase con logica de Tipos de Prestamo
+    /// </summary>
+    public class TiposPrestamoLogic
     {
-        private static ILog log = LogManager.GetLogger(typeof(PrestamosLogic).Name);
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
+        private static ILog log = LogManager.GetLogger(typeof(TiposPrestamoLogic).Name);
 
-        public PrestamosLogic() { }
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public TiposPrestamoLogic() { }
 
         #region select
+        /// <summary>
+        /// Obtiene todos los tipos de prestamo.
+        /// </summary>
+        /// <returns>Lista de tipos de prestamo.</returns>
         public List<prestamo> getData()
         {
             try
@@ -39,6 +52,16 @@ namespace COCASJOL.LOGIC.Prestamos
         #endregion
 
         #region update
+
+        /// <summary>
+        /// Actualiza el tipo de prestamo.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="nombre"></param>
+        /// <param name="descripcion"></param>
+        /// <param name="cantmax"></param>
+        /// <param name="interes"></param>
+        /// <param name="modificadopor"></param>
         public void ActualizarPrestamos(int id, string nombre, string descripcion, int cantmax, int interes, string modificadopor)
         {
             try
@@ -65,6 +88,16 @@ namespace COCASJOL.LOGIC.Prestamos
         #endregion
 
         #region insert
+
+        /// <summary>
+        /// Inserta el tipo de prestamo.
+        /// </summary>
+        /// <param name="prestamoid"></param>
+        /// <param name="nombre"></param>
+        /// <param name="descrip"></param>
+        /// <param name="max"></param>
+        /// <param name="interes"></param>
+        /// <param name="creadopor"></param>
         public void InsertarPrestamo(int prestamoid, string nombre, string descrip, int max, int interes, string creadopor)
         {
             try
@@ -94,6 +127,11 @@ namespace COCASJOL.LOGIC.Prestamos
         #endregion
 
         #region delete
+
+        /// <summary>
+        /// Eliminar el tipo de prestamo.
+        /// </summary>
+        /// <param name="prestamoid"></param>
         public void EliminarPrestamo(int prestamoid)
         {
             try
@@ -123,6 +161,11 @@ namespace COCASJOL.LOGIC.Prestamos
 
         #region Metodos
 
+        /// <summary>
+        /// Verifica si existe el tipo de prestamo.
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <returns>True si existe el tipo de prestamo, False si es lo contrario.</returns>
         public bool ExistePrestamo(string nombre)
         {
             try
@@ -148,6 +191,11 @@ namespace COCASJOL.LOGIC.Prestamos
             }
         }
 
+        /// <summary>
+        /// Obtiene el porcentaje de intereses asignado al tipo de prestamo.
+        /// </summary>
+        /// <param name="prestamo"></param>
+        /// <returns>Porcentaje de intereses asignado al tipo de prestamo.</returns>
         public int Intereses(int prestamo)
         {
             try

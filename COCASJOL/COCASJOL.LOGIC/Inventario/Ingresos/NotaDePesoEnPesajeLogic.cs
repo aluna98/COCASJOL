@@ -16,14 +16,27 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Inventario.Ingresos
 {
+    /// <summary>
+    /// Clase con logica de Nota de Peso en Área de Pesaje
+    /// </summary>
     public class NotaDePesoEnPesajeLogic : NotaDePesoLogic
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(NotaDePesoEnPesajeLogic).Name);
 
+        /// <summary>
+        /// Constructor. Inicializa código de estado en area de pesaje.
+        /// </summary>
         public NotaDePesoEnPesajeLogic() : base("PESAJE") { }
 
         #region Select
 
+        /// <summary>
+        /// Obtiene los estados de la nota de peso. overrided.
+        /// </summary>
+        /// <returns>Lista estados de la nota de peso.</returns>
         public override List<estado_nota_de_peso> GetEstadosNotaDePeso()
         {
             try
@@ -39,7 +52,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                                      select enp;
 
                     estado_nota_de_peso padre = queryPadre.First();
-                    List<estado_nota_de_peso> estadolist = GetHijos(padre);
+                    List<estado_nota_de_peso> estadolist = GetEstadosSiguiente(padre);
 
                     return estadolist;
                 }
@@ -74,7 +87,23 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
          *                    Total = (Peso Bruto) - Tara - Descuento
          * 
          */
-
+        /// <summary>
+        /// Inserta la nota de peso I. Esta fase recalcula los montos y totales para guardar la nota de peso.
+        /// </summary>
+        /// <param name="ESTADOS_NOTA_ID"></param>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <param name="NOTAS_FECHA"></param>
+        /// <param name="NOTAS_TRANSPORTE_COOPERATIVA"></param>
+        /// <param name="NOTAS_PORCENTAJE_DEFECTO"></param>
+        /// <param name="NOTAS_PORCENTAJE_HUMEDAD"></param>
+        /// <param name="NOTAS_PESO_SUMA"></param>
+        /// <param name="NOTAS_PESO_TARA"></param>
+        /// <param name="NOTAS_SACOS_RETENIDOS"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="Detalles"></param>
+        /// <param name="NOTA_PORCENTAJEHUMEDADMIN"></param>
+        /// <param name="NOTA_TRANSPORTECOOP"></param>
         public override void InsertarNotaDePeso
             (int ESTADOS_NOTA_ID,
             string SOCIOS_ID,
@@ -184,7 +213,29 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
          *  notificar a usuarios
          *
          */
-
+        /// <summary>
+        /// Inserta la nota de peso II. Esta fase guarda la nota de peso y envía las respectivas notificaciones.
+        /// </summary>
+        /// <param name="ESTADOS_NOTA_ID"></param>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <param name="NOTAS_FECHA"></param>
+        /// <param name="NOTAS_TRANSPORTE_COOPERATIVA"></param>
+        /// <param name="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA"></param>
+        /// <param name="NOTAS_PORCENTAJE_DEFECTO"></param>
+        /// <param name="NOTAS_PORCENTAJE_HUMEDAD"></param>
+        /// <param name="NOTAS_PESO_TRANSPORTE_COOPERATIVA"></param>
+        /// <param name="NOTAS_PESO_DEFECTO"></param>
+        /// <param name="NOTAS_PESO_HUMEDAD"></param>
+        /// <param name="NOTAS_PESO_DESCUENTO"></param>
+        /// <param name="NOTAS_PESO_SUMA"></param>
+        /// <param name="NOTAS_PESO_TARA"></param>
+        /// <param name="NOTAS_PESO_TOTAL_RECIBIDO"></param>
+        /// <param name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO"></param>
+        /// <param name="NOTAS_SACOS_RETENIDOS"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <param name="Detalles"></param>
         private void InsertarNotaDePeso
             (int ESTADOS_NOTA_ID,
             string SOCIOS_ID,
@@ -291,6 +342,24 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
          * 
          */
 
+        /// <summary>
+        /// Actualiza la nota de peso I. Esta fase recalcula los montos y totales para guardar la nota de peso.
+        /// </summary>
+        /// <param name="NOTAS_ID"></param>
+        /// <param name="ESTADOS_NOTA_ID"></param>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <param name="NOTAS_FECHA"></param>
+        /// <param name="NOTAS_TRANSPORTE_COOPERATIVA"></param>
+        /// <param name="NOTAS_PORCENTAJE_DEFECTO"></param>
+        /// <param name="NOTAS_PORCENTAJE_HUMEDAD"></param>
+        /// <param name="NOTAS_PESO_SUMA"></param>
+        /// <param name="NOTAS_PESO_TARA"></param>
+        /// <param name="NOTAS_SACOS_RETENIDOS"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="Detalles"></param>
+        /// <param name="NOTA_PORCENTAJEHUMEDADMIN"></param>
+        /// <param name="NOTA_TRANSPORTECOOP"></param>
         public override void ActualizarNotaDePeso
             (int NOTAS_ID,
             int ESTADOS_NOTA_ID,
@@ -401,6 +470,30 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
          *
          */
 
+        /// <summary>
+        /// Actualiza la nota de peso II. Esta fase guarda la nota de peso y envía las respectivas notificaciones.
+        /// </summary>
+        /// <param name="NOTAS_ID"></param>
+        /// <param name="ESTADOS_NOTA_ID"></param>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <param name="NOTAS_FECHA"></param>
+        /// <param name="NOTAS_TRANSPORTE_COOPERATIVA"></param>
+        /// <param name="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA"></param>
+        /// <param name="NOTAS_PORCENTAJE_DEFECTO"></param>
+        /// <param name="NOTAS_PORCENTAJE_HUMEDAD"></param>
+        /// <param name="NOTAS_PESO_TRANSPORTE_COOPERATIVA"></param>
+        /// <param name="NOTAS_PESO_DEFECTO"></param>
+        /// <param name="NOTAS_PESO_HUMEDAD"></param>
+        /// <param name="NOTAS_PESO_DESCUENTO"></param>
+        /// <param name="NOTAS_PESO_SUMA"></param>
+        /// <param name="NOTAS_PESO_TARA"></param>
+        /// <param name="NOTAS_PESO_TOTAL_RECIBIDO"></param>
+        /// <param name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO"></param>
+        /// <param name="NOTAS_SACOS_RETENIDOS"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="FECHA_MODIFICACION"></param>
+        /// <param name="Detalles"></param>
         private void ActualizarNotaDePeso
             (int NOTAS_ID,
             int ESTADOS_NOTA_ID,
@@ -489,6 +582,10 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
         #region Delete
 
+        /// <summary>
+        /// Elimina la nota de peso.
+        /// </summary>
+        /// <param name="NOTAS_ID"></param>
         public void EliminarNotaDePeso(int NOTAS_ID)
         {
             try

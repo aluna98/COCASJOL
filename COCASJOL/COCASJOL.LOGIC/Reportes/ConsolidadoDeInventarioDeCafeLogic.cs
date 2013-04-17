@@ -12,30 +12,63 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Reportes
 {
+    /// <summary>
+    /// Clase con logica de Reporte Consolidado de Inventario de Café de Socios
+    /// </summary>
     public class ReporteConsolidadoDeCafeDeSocios
     {
-        private decimal _TotalIngresado, _TotalAjustado, _TotalComprado, _TotalDeposito;
+        /// <summary>
+        /// Total Ingresado.
+        /// </summary>
+        private decimal _TotalIngresado;
+        /// <summary>
+        /// Total Ajustado.
+        /// </summary>
+        private decimal _TotalAjustado;
+        /// <summary>
+        /// Total Comprado.
+        /// </summary>
+        private decimal _TotalComprado;
+        /// <summary>
+        /// Total Deposito.
+        /// </summary>
+        private decimal _TotalDeposito;
 
+        /// <summary>
+        /// Get. Total Ingresado.
+        /// </summary>
         public decimal TotalIngresado
         {
             get { return this._TotalIngresado; }
         }
-
+        /// <summary>
+        /// Get. Total Comprado.
+        /// </summary>
         public decimal TotalComprado
         {
             get { return this._TotalComprado; }
         }
-
+        /// <summary>
+        /// Get. Total Ajustado.
+        /// </summary>
         public decimal TotalAjustado
         {
             get { return this._TotalAjustado; }
         }
-
+        /// <summary>
+        /// Get. Total Deposito.
+        /// </summary>
         public decimal TotalDeposito
         {
             get { return this._TotalDeposito; }
         }
 
+        /// <summary>
+        /// Constructor. Inicializa los miembros y calcula el total deposito.
+        /// </summary>
+        /// <param name="Total_Ingresado"></param>
+        /// <param name="Total_Ajustado"></param>
+        /// <param name="Total_Comprado"></param>
         public ReporteConsolidadoDeCafeDeSocios(decimal Total_Ingresado, decimal Total_Ajustado, decimal Total_Comprado)
         {
             this._TotalIngresado = Total_Ingresado / 100;// QQ
@@ -46,25 +79,51 @@ namespace COCASJOL.LOGIC.Reportes
         }
     }
 
+    /// <summary>
+    /// Clase con logica de Reporte Consolidado de Inventario de Café de Cooperativa
+    /// </summary>
     public class ReporteConsolidadoDeCafe
     {
-        private decimal _TotalComprado, _TotalVendido, _TotalDeposito;
+        /// <summary>
+        /// Total Comprado
+        /// </summary>
+        private decimal _TotalComprado;
+        /// <summary>
+        /// Total Vendido
+        /// </summary>
+        private decimal _TotalVendido;
+        /// <summary>
+        /// Total Deposito
+        /// </summary>
+        private decimal _TotalDeposito;
 
+        /// <summary>
+        /// Get. Total Comprado
+        /// </summary>
         public decimal TotalComprado
         {
             get { return this._TotalComprado; }
         }
-
+        /// <summary>
+        /// Get. Total Vendido
+        /// </summary>
         public decimal TotalVendido
         {
             get { return this._TotalVendido; }
         }
-
+        /// <summary>
+        /// Get. Total Depósito
+        /// </summary>
         public decimal TotalDeposito
         {
             get { return this._TotalDeposito; }
         }
 
+        /// <summary>
+        /// Constructor. Inicializa los miembros y calcula el total deposito.
+        /// </summary>
+        /// <param name="Total_Comprado"></param>
+        /// <param name="Total_Vendido"></param>
         public ReporteConsolidadoDeCafe(decimal Total_Comprado, decimal Total_Vendido)
         {
             this._TotalComprado = Total_Comprado / 100;// QQ
@@ -74,14 +133,26 @@ namespace COCASJOL.LOGIC.Reportes
         }
     }
 
+    /// <summary>
+    /// Clase con logica de Reporte Consolidado de Inventario de Café
+    /// </summary>
     public class ConsolidadoDeInventarioDeCafeLogic
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(ConsolidadoDeInventarioDeCafeLogic).Name);
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public ConsolidadoDeInventarioDeCafeLogic() { }
 
         #region Select
-
+        /// <summary>
+        /// Obtiene Reporte Consolidado de Inventario de Café de Socios.
+        /// </summary>
+        /// <returns>Reporte Consolidado de Inventario de Café de Socios.</returns>
         public ReporteConsolidadoDeCafeDeSocios GetReporteCafeDeSocios()
         {
             try
@@ -112,6 +183,14 @@ namespace COCASJOL.LOGIC.Reportes
             }
         }
 
+        /// <summary>
+        /// Obtiene Reporte Consolidado de Inventario de Café de Socios.
+        /// </summary>
+        /// <param name="MesInicial"></param>
+        /// <param name="MesFinal"></param>
+        /// <param name="DiaInicial"></param>
+        /// <param name="DiaFinal"></param>
+        /// <returns>Reporte Consolidado de Inventario de Café de Socios.</returns>
         public ReporteConsolidadoDeCafeDeSocios GetReporteCafeDeSocios(int MesInicial, int MesFinal, int DiaInicial, int DiaFinal)
         {
             try
@@ -130,6 +209,12 @@ namespace COCASJOL.LOGIC.Reportes
             }
         }
 
+        /// <summary>
+        /// Obtiene Reporte Consolidado de Inventario de Café de Socios.
+        /// </summary>
+        /// <param name="dFECHA_DESDE"></param>
+        /// <param name="dFECHA_HASTA"></param>
+        /// <returns>Reporte Consolidado de Inventario de Café de Socios.</returns>
         public ReporteConsolidadoDeCafeDeSocios GetReporteCafeDeSocios(DateTime? dFECHA_DESDE, DateTime? dFECHA_HASTA)
         {
             try
@@ -154,6 +239,10 @@ namespace COCASJOL.LOGIC.Reportes
             }
         }
 
+        /// <summary>
+        /// Obtiene Reporte Consolidado de Inventario de Café de Cooperativa.
+        /// </summary>
+        /// <returns>Reporte Consolidado de Inventario de Café de Cooperativa.</returns>
         public ReporteConsolidadoDeCafe GetReporteCafeCooperativa()
         {
             try
@@ -179,6 +268,14 @@ namespace COCASJOL.LOGIC.Reportes
             }
         }
 
+        /// <summary>
+        /// Obtiene Reporte Consolidado de Inventario de Café de Cooperativa.
+        /// </summary>
+        /// <param name="MesInicial"></param>
+        /// <param name="MesFinal"></param>
+        /// <param name="DiaInicial"></param>
+        /// <param name="DiaFinal"></param>
+        /// <returns>Reporte Consolidado de Inventario de Café de Cooperativa.</returns>
         public ReporteConsolidadoDeCafe GetReporteCafeCooperativa(int MesInicial, int MesFinal, int DiaInicial, int DiaFinal)
         {
             try
@@ -197,6 +294,12 @@ namespace COCASJOL.LOGIC.Reportes
             }
         }
 
+        /// <summary>
+        /// Obtiene Reporte Consolidado de Inventario de Café de Cooperativa.
+        /// </summary>
+        /// <param name="dFECHA_DESDE"></param>
+        /// <param name="dFECHA_HASTA"></param>
+        /// <returns>Reporte Consolidado de Inventario de Café de Cooperativa.</returns>
         public ReporteConsolidadoDeCafe GetReporteCafeCooperativa(DateTime? dFECHA_DESDE, DateTime? dFECHA_HASTA)
         {
             try

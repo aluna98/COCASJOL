@@ -15,14 +15,27 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Inventario.Ingresos
 {
+    /// <summary>
+    /// Clase con logica de Nota de Peso en Área de Catación
+    /// </summary>
     public class NotaDePesoEnCatacionLogic : NotaDePesoLogic
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(NotaDePesoEnCatacionLogic).Name);
 
+        /// <summary>
+        /// Constructor. Inicializa código de estado en area de catación.
+        /// </summary>
         public NotaDePesoEnCatacionLogic() : base("CATACION") { }
 
         #region Select
 
+        /// <summary>
+        /// Obtiene todas las notas de peso de socios activos. (overrided)
+        /// </summary>
+        /// <returns>Lista de notas de peso de socios activos.</returns>
         public override List<nota_de_peso> GetNotasDePeso()
         {
             try
@@ -46,6 +59,10 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
+        /// <summary>
+        /// Obtiene los estados de la nota de peso. overrided.
+        /// </summary>
+        /// <returns>Lista estados de la nota de peso.</returns>
         public override List<estado_nota_de_peso> GetEstadosNotaDePeso()
         {
             try
@@ -60,7 +77,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                     estado_nota_de_peso padre = queryPadre.First();
 
-                    List<estado_nota_de_peso> estadolist = GetHijos(padre);
+                    List<estado_nota_de_peso> estadolist = GetEstadosSiguiente(padre);
 
                     return estadolist;
                 }
@@ -90,7 +107,24 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
          *          notificar a usuarios
          * 
          */
-
+        /// <summary>
+        /// Actualiza la nota de peso (overrided). Guarda la nota de peso y envía las respectivas notificaciones.
+        /// </summary>
+        /// <param name="NOTAS_ID"></param>
+        /// <param name="ESTADOS_NOTA_ID"></param>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <param name="NOTAS_FECHA"></param>
+        /// <param name="NOTAS_TRANSPORTE_COOPERATIVA"></param>
+        /// <param name="NOTAS_PORCENTAJE_DEFECTO"></param>
+        /// <param name="NOTAS_PORCENTAJE_HUMEDAD"></param>
+        /// <param name="NOTAS_PESO_SUMA"></param>
+        /// <param name="NOTAS_PESO_TARA"></param>
+        /// <param name="NOTAS_SACOS_RETENIDOS"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="Detalles"></param>
+        /// <param name="NOTA_PORCENTAJEHUMEDADMIN"></param>
+        /// <param name="NOTA_TRANSPORTECOOP"></param>
         public override void ActualizarNotaDePeso
             (int NOTAS_ID,
             int ESTADOS_NOTA_ID,

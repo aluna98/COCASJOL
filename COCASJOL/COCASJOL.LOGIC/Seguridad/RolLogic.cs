@@ -12,14 +12,27 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Seguridad
 {
+    /// <summary>
+    /// Clase con logica de Rol
+    /// </summary>
     public class RolLogic
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(RolLogic).Name);
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public RolLogic() { }
          
         #region Select
 
+        /// <summary>
+        /// Obtiene todos los roles.
+        /// </summary>
+        /// <returns>Lista de roles.</returns>
         public List<rol> GetRoles()
         {
             try
@@ -38,6 +51,17 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        /// <summary>
+        /// Obtiene todos los roles.
+        /// </summary>
+        /// <param name="ROL_ID"></param>
+        /// <param name="ROL_NOMBRE"></param>
+        /// <param name="ROL_DESCRIPCION"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="FECHA_MODIFICACION"></param>
+        /// <returns>Lista de roles.</returns>
         public List<rol> GetRoles
             (int ROL_ID,
             string ROL_NOMBRE,
@@ -75,6 +99,11 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        /// <summary>
+        /// Obtiene el rol específico.
+        /// </summary>
+        /// <param name="ROL_ID"></param>
+        /// <returns>Rol.</returns>
         public rol GetRol(int ROL_ID)
         {
             try
@@ -98,6 +127,14 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        /// <summary>
+        /// Obtiene privilegios de rol.
+        /// </summary>
+        /// <param name="ROL_ID"></param>
+        /// <param name="PRIV_ID"></param>
+        /// <param name="PRIV_NOMBRE"></param>
+        /// <param name="PRIV_LLAVE"></param>
+        /// <returns>Lista de privilegios de rol.</returns>
         public List<privilegio> GetPrivilegios(int ROL_ID, int PRIV_ID, string PRIV_NOMBRE, string PRIV_LLAVE)
         {
             try
@@ -127,6 +164,14 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        /// <summary>
+        /// Obtiene privilegios no de rol.
+        /// </summary>
+        /// <param name="ROL_ID"></param>
+        /// <param name="PRIV_ID"></param>
+        /// <param name="PRIV_NOMBRE"></param>
+        /// <param name="PRIV_LLAVE"></param>
+        /// <returns>Lista de privilegios no de rol.</returns>
         public List<privilegio> GetPrivilegiosNoDeRol(int ROL_ID, int PRIV_ID, string PRIV_NOMBRE, string PRIV_LLAVE)
         {
             try
@@ -155,7 +200,16 @@ namespace COCASJOL.LOGIC.Seguridad
         #endregion
 
         #region Insert
-
+        /// <summary>
+        /// Inserta el rol.
+        /// </summary>
+        /// <param name="ROL_ID"></param>
+        /// <param name="ROL_NOMBRE"></param>
+        /// <param name="ROL_DESCRIPCION"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="FECHA_MODIFICACION"></param>
         public void InsertarRol
             (int ROL_ID,
             string ROL_NOMBRE,
@@ -189,6 +243,12 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        /// <summary>
+        /// Inserta privilegios al rol.
+        /// </summary>
+        /// <param name="ROL_ID"></param>
+        /// <param name="lprivilegios"></param>
+        /// <param name="MODIFICADO_POR"></param>
         public void InsertarPrivilegios(int ROL_ID, List<int> lprivilegios, string MODIFICADO_POR)
         {
             try
@@ -226,6 +286,16 @@ namespace COCASJOL.LOGIC.Seguridad
 
         #region Update
 
+        /// <summary>
+        /// Actualiza el rol.
+        /// </summary>
+        /// <param name="ROL_ID"></param>
+        /// <param name="ROL_NOMBRE"></param>
+        /// <param name="ROL_DESCRIPCION"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="FECHA_MODIFICACION"></param>
         public void ActualizarRol
             (int ROL_ID,
             string ROL_NOMBRE,
@@ -267,6 +337,10 @@ namespace COCASJOL.LOGIC.Seguridad
 
         #region Delete
 
+        /// <summary>
+        /// Eliminar el rol.
+        /// </summary>
+        /// <param name="ROL_ID"></param>
         public void EliminarRol(int ROL_ID)
         {
             try
@@ -292,6 +366,12 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        /// <summary>
+        /// Eliminar privilegios de rol.
+        /// </summary>
+        /// <param name="ROL_ID"></param>
+        /// <param name="lprivilegios"></param>
+        /// <param name="MODIFICADO_POR"></param>
         public void EliminarPrivilegios(int ROL_ID, List<int> lprivilegios, string MODIFICADO_POR)
         {
             try

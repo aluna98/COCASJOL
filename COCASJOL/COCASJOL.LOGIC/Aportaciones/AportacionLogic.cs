@@ -13,14 +13,27 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Aportaciones
 {
+    /// <summary>
+    /// Clase con logica de Aportación de Socios
+    /// </summary>
     public class AportacionLogic
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(AportacionLogic).Name);
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public AportacionLogic() { }
 
         #region Select
 
+        /// <summary>
+        /// Obtiene todas las aportaciones por socio.
+        /// </summary>
+        /// <returns>Lista de resumen aportaciones por socio.</returns>
         public List<reporte_total_aportaciones_por_socio> GetAportaciones()
         {
             try
@@ -42,6 +55,20 @@ namespace COCASJOL.LOGIC.Aportaciones
             }
         }
 
+        /// <summary>
+        /// Obtiene todas las aportaciones por socio.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="SOCIOS_NOMBRE_COMPLETO"></param>
+        /// <param name="APORTACIONES_ORDINARIA_SALDO"></param>
+        /// <param name="APORTACIONES_EXTRAORDINARIA_SALDO"></param>
+        /// <param name="APORTACIONES_CAPITALIZACION_RETENCION_SALDO"></param>
+        /// <param name="APORTACIONES_INTERESES_S_APORTACION_SALDO"></param>
+        /// <param name="APORTACIONES_EXCEDENTE_PERIODO_SALDO"></param>
+        /// <param name="APORTACIONES_SALDO_TOTAL"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <returns>Lista de resumen aportaciones por socio.</returns>
         public List<reporte_total_aportaciones_por_socio> GetAportaciones
             ( string SOCIOS_ID,
               string SOCIOS_NOMBRE_COMPLETO,
@@ -80,6 +107,11 @@ namespace COCASJOL.LOGIC.Aportaciones
             }
         }
 
+        /// <summary>
+        /// Obtiene todas las aportaciones de un socio especifíco.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <returns>Resumen aportaciones para el socio especificado.</returns>
         public reporte_total_aportaciones_por_socio GetAportacionesXSocio(string SOCIOS_ID)
         {
             try
@@ -106,6 +138,11 @@ namespace COCASJOL.LOGIC.Aportaciones
     
         #region insert
 
+        /// <summary>
+        /// Inserta la transacción de la hoja de liquidacion en la tabla de aportaciones como entrada (ahorro).
+        /// </summary>
+        /// <param name="HojaDeLiquidacion"></param>
+        /// <param name="db"></param>
         public void InsertarTransaccionAportacionesDeSocio(liquidacion HojaDeLiquidacion,colinasEntities db)
         {
             try
@@ -157,6 +194,11 @@ namespace COCASJOL.LOGIC.Aportaciones
             }
         }
 
+        /// <summary>
+        /// Inserta la transacción del retiro aportación en la tabla de aportaciones como salida (retiro).
+        /// </summary>
+        /// <param name="RetiroDeAportaciones"></param>
+        /// <param name="db"></param>
         public void InsertarTransaccionAportacionesDeSocio(retiro_aportaciones RetiroDeAportaciones, colinasEntities db)
         {
             try
@@ -206,6 +248,11 @@ namespace COCASJOL.LOGIC.Aportaciones
 
         #region Metodos
 
+        /// <summary>
+        /// Obtiene el saldo total de aportaciones para un socio específico.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <returns>El saldo total de aportaciones para el socio especificado.</returns>
         public decimal GetSaldoTotalAportacionesXSocio(string SOCIOS_ID)
         {
             try

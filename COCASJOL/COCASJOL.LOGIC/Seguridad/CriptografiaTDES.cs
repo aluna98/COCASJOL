@@ -8,12 +8,26 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Seguridad
 {
+    /// <summary>
+    /// Clase con logica de Criptografia TripleDES
+    /// </summary>
     public class CriptografiaTDES
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(CriptografiaTDES).Name);
 
+        /// <summary>
+        /// Proveedor de Servicio de encriptacion TripleDES.
+        /// </summary>
         private TripleDESCryptoServiceProvider cryptoProvider;
 
+        /// <summary>
+        /// Constructor. Inicializa la llave y el vector de inicialización para encriptar.
+        /// </summary>
+        /// <param name="Key"></param>
+        /// <param name="VectorKey"></param>
         public CriptografiaTDES(string Key, string VectorKey)
         {
             try
@@ -30,6 +44,11 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        /// <summary>
+        /// Encriptar texto.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns>Texto encriptado.</returns>
         public string EncondeString(string key)
         {
             try
@@ -61,6 +80,11 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        /// <summary>
+        /// Desencriptar texto.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns>Texto desencriptado.</returns>
         public string DecodeString(string key)
         {
             try

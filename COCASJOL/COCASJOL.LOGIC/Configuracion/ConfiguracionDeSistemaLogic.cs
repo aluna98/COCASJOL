@@ -12,38 +12,96 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Configuracion
 {
+    /// <summary>
+    /// Clase con logica de Configuración de Sistema
+    /// </summary>
     public class ConfiguracionDeSistemaLogic
     {
         #region Private Members
 
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(ConfiguracionDeSistemaLogic).Name);
+
+        /// <summary>
+        /// Vector de inicialización para encriptación TripleDES.
+        /// </summary>
         private string vector = "***PDG**";
+        /// <summary>
+        /// Llave de encriptación para algoritmo TripleDES.
+        /// </summary>
         private string key = "********!!PDG1!!********";
 
+        /// <summary>
+        /// XML con información de configuración de sistema.
+        /// </summary>
         private XmlDocument Configuracion;
 
+        /// <summary>
+        /// Maximizar Ventanas al Inicio.
+        /// </summary>
         private bool ventana_Maximizar;
+        /// <summary>
+        /// Cargar Datos en Ventanas al Inicio.
+        /// </summary>
         private bool ventana_CargarDatos;
 
+        /// <summary>
+        /// Fecha de Inicio de Periódo.
+        /// </summary>
         private DateTime consolidado_InicioPeriodo;
+        /// <summary>
+        /// Fecha de Final de Periódo.
+        /// </summary>
         private DateTime consolidado_FinalPeriodo;
 
+        /// <summary>
+        /// Dirección de Correo Local.
+        /// </summary>
         private string correo_CorreoLocal;
+        /// <summary>
+        /// Usar Password para Correo Local.
+        /// </summary>
         private bool correo_UsarPassword;
+        /// <summary>
+        /// Password Desencryptado.
+        /// </summary>
         private string correo_Password;
+        /// <summary>
+        /// Dirección de Servidor de Correos SMTP.
+        /// </summary>
         private string correo_SMTP;
+        /// <summary>
+        /// Puerto a Utilizar para Enviar Correos.
+        /// </summary>
         private int correo_Puerto;
+        /// <summary>
+        /// Usar SSL para Envío de Correos.
+        /// </summary>
         private bool correo_UsarSSL;
 
+        /// <summary>
+        /// Ultimo Usuario que Modificó Registro.
+        /// </summary>
         private string auditoria_username;
+        /// <summary>
+        /// Ultima Fecha de Modificación.
+        /// </summary>
         private DateTime auditoria_date;
 
+        /// <summary>
+        /// Indica si la importacion de Socios esta Disponíble.
+        /// </summary>
         private bool socios_importacion;
 
         #endregion
 
         #region Public Properties
 
+        /// <summary>
+        /// Get or Set. Maximizar Ventanas al Inicio.
+        /// </summary>
         public bool VentanasMaximizar
         {
             get
@@ -56,7 +114,9 @@ namespace COCASJOL.LOGIC.Configuracion
                 this.ventana_Maximizar = value;
             }
         }
-
+        /// <summary>
+        /// Get or Set. Cargar Datos en Ventanas al Inicio.
+        /// </summary>
         public bool VentanasCargarDatos
         {
             get
@@ -69,7 +129,9 @@ namespace COCASJOL.LOGIC.Configuracion
             }
         }
 
-
+        /// <summary>
+        /// Get or Set. Fecha de Inicio de Periódo.
+        /// </summary>
         public DateTime ConsolidadoInventarioInicioPeriodo
         {
             get
@@ -81,7 +143,9 @@ namespace COCASJOL.LOGIC.Configuracion
                 this.consolidado_InicioPeriodo = value;
             }
         }
-
+        /// <summary>
+        /// Get or Set. Fecha de Final de Periódo.
+        /// </summary>
         public DateTime ConsolidadoInventarioFinalPeriodo
         {
             get
@@ -94,7 +158,9 @@ namespace COCASJOL.LOGIC.Configuracion
             }
         }
 
-        
+        /// <summary>
+        /// Get or Set. Dirección de Correo Local.
+        /// </summary>
         public string CorreoCorreoLocal
         {
             get
@@ -106,7 +172,9 @@ namespace COCASJOL.LOGIC.Configuracion
                 this.correo_CorreoLocal = value;
             }
         }
-
+        /// <summary>
+        /// Get or Set. Usar Password para Correo Local.
+        /// </summary>
         public bool CorreoUsarPassword
         {
             get
@@ -118,7 +186,9 @@ namespace COCASJOL.LOGIC.Configuracion
                 this.correo_UsarPassword = value;
             }
         }
-
+        /// <summary>
+        /// Get or Set. Password Desencryptado.
+        /// </summary>
         public string CorreoPassword
         {
             get
@@ -130,7 +200,9 @@ namespace COCASJOL.LOGIC.Configuracion
                 this.correo_Password = value;
             }
         }
-
+        /// <summary>
+        /// Get or Set. Dirección de Servidor de Correos SMTP.
+        /// </summary>
         public string CorreoSMTP
         {
             get
@@ -142,7 +214,9 @@ namespace COCASJOL.LOGIC.Configuracion
                 this.correo_SMTP = value;
             }
         }
-
+        /// <summary>
+        /// Get or Set. Puerto a Utilizar para Enviar Correos.
+        /// </summary>
         public int CorreoPuerto
         {
             get
@@ -154,7 +228,9 @@ namespace COCASJOL.LOGIC.Configuracion
                 this.correo_Puerto = value;
             }
         }
-
+        /// <summary>
+        /// Get or Set. Usar SSL para Envío de Correos.
+        /// </summary>
         public bool CorreoUsarSSL
         {
             get
@@ -167,7 +243,9 @@ namespace COCASJOL.LOGIC.Configuracion
             }
         }
 
-
+        /// <summary>
+        /// Get or Set. Ultimo Usuario que Modificó Registro.
+        /// </summary>
         public string AuditoriaUserName
         {
             get
@@ -179,7 +257,9 @@ namespace COCASJOL.LOGIC.Configuracion
                 this.auditoria_username = value;
             }
         }
-
+        /// <summary>
+        /// Get or Set. Ultima Fecha de Modificación.
+        /// </summary>
         public DateTime AuditoriaDate
         {
             get
@@ -192,7 +272,9 @@ namespace COCASJOL.LOGIC.Configuracion
             }
         }
 
-
+        /// <summary>
+        /// Get or Set. Indica si la importacion de Socios esta Disponíble.
+        /// </summary>
         public bool SociosImportacion
         {
             get
@@ -209,9 +291,14 @@ namespace COCASJOL.LOGIC.Configuracion
 
 
         #region Constructors
-
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static object lockObj = new object();
 
+        /// <summary>
+        /// Constructor. Lee archivo XML de Configuración de Sistema en Cache de Aplicación. Inicializa miembros con información de Configuracion de Sistema.
+        /// </summary>
         public ConfiguracionDeSistemaLogic()
         {
             try
@@ -246,6 +333,10 @@ namespace COCASJOL.LOGIC.Configuracion
             }
         }
 
+        /// <summary>
+        /// Constructor. Inicializa miembros con información de Configuracion de Sistema.
+        /// </summary>
+        /// <param name="SysConfig"></param>
         public ConfiguracionDeSistemaLogic(XmlDocument SysConfig)
         {
             try
@@ -264,6 +355,11 @@ namespace COCASJOL.LOGIC.Configuracion
 
         #region Methods
 
+        /// <summary>
+        /// Encriptar Texto usando TripleDES
+        /// </summary>
+        /// <param name="plainText"></param>
+        /// <returns>Texto Encriptado</returns>
         private string encryptTDES(string plainText)
         {
             try
@@ -277,7 +373,11 @@ namespace COCASJOL.LOGIC.Configuracion
                 throw;
             }
         }
-
+        /// <summary>
+        /// Desencriptar Texto usando TripleDES
+        /// </summary>
+        /// <param name="cypherText"></param>
+        /// <returns>Texto Desencriptado</returns>
         private string dencryptTDES(string cypherText)
         {
             try
@@ -292,6 +392,9 @@ namespace COCASJOL.LOGIC.Configuracion
             }
         }
 
+        /// <summary>
+        /// Cargar miembros privados con informacion de XML privado.
+        /// </summary>
         private void LoadMembers()
         {
             try
@@ -340,6 +443,9 @@ namespace COCASJOL.LOGIC.Configuracion
             }
         }
 
+        /// <summary>
+        /// Guardar miembros privados actualizando informacion de XML privado.
+        /// </summary>
         public void SaveMembers()
         {
             try

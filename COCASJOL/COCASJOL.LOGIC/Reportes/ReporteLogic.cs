@@ -12,12 +12,26 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Reportes
 {
+    /// <summary>
+    /// Clase con logica de Reportes
+    /// </summary>
     public class ReporteLogic
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(ReporteLogic).Name);
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public ReporteLogic() { }
 
+        /// <summary>
+        /// Obtiene notas de peso.
+        /// </summary>
+        /// <param name="NOTAS_ID"></param>
+        /// <returns>Lista de notas de peso.</returns>
         public List<nota_de_peso> GetNotasDePeso(int NOTAS_ID = 0)
         {
             try
@@ -38,6 +52,11 @@ namespace COCASJOL.LOGIC.Reportes
             }
         }
 
+        /// <summary>
+        /// Obtiene los detalles de notas de peso.
+        /// </summary>
+        /// <param name="NOTAS_ID"></param>
+        /// <returns>Lista de detalles de notas de peso.</returns>
         public List<nota_detalle> GetNotasDetalle(int NOTAS_ID = 0)
         {
             try
@@ -60,6 +79,11 @@ namespace COCASJOL.LOGIC.Reportes
             }
         }
 
+        /// <summary>
+        /// Obtiene hojas de liquidación.
+        /// </summary>
+        /// <param name="LIQUIDACIONES_ID"></param>
+        /// <returns>Lista de hojas de liquidación.</returns>
         public List<liquidacion> GetHojasDeLiquidacion(int LIQUIDACIONES_ID = 0)
         {
             try
@@ -80,6 +104,11 @@ namespace COCASJOL.LOGIC.Reportes
             }
         }
 
+        /// <summary>
+        /// Obtiene socios.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <returns>Lista de socios.</returns>
         public List<socio> GetSocios(string SOCIOS_ID = "")
         {
             try
@@ -100,6 +129,11 @@ namespace COCASJOL.LOGIC.Reportes
             }
         }
 
+        /// <summary>
+        /// Obtiene beneficiarios de socio.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <returns>Lista de beneficiarios de socio.</returns>
         public List<beneficiario_x_socio> GetBeneficiariosDeSocio(string SOCIOS_ID = "")
         {
             try
@@ -122,6 +156,12 @@ namespace COCASJOL.LOGIC.Reportes
             }
         }
 
+        /// <summary>
+        /// Obtiene solicitudes de prestamo.
+        /// </summary>
+        /// <param name="SOLICITUDES_ID"></param>
+        /// <param name="SOCIOS_ID"></param>
+        /// <returns>Lista de solicitudes de prestamo.</returns>
         public List<solicitud_prestamo> GetSolicitudesDePrestamo(int SOLICITUDES_ID = 0 , string SOCIOS_ID = "")
         {
             try
@@ -144,6 +184,12 @@ namespace COCASJOL.LOGIC.Reportes
             }
         }
 
+        /// <summary>
+        /// Obtiene referencias de solicitudes de prestamo.
+        /// </summary>
+        /// <param name="SOLICITUDES_ID"></param>
+        /// <param name="REFERENCIAS_TIPO"></param>
+        /// <returns>Lista de referencias de solicitudes de prestamo.</returns>
         public List<referencia_x_solicitud> GetReferenciasXSolicitud(int SOLICITUDES_ID = 0, string REFERENCIAS_TIPO = "")
         {
             try
@@ -175,6 +221,11 @@ namespace COCASJOL.LOGIC.Reportes
             }
         }
 
+        /// <summary>
+        /// Obtiene avales de solicitudes de prestamo.
+        /// </summary>
+        /// <param name="SOLICITUDES_ID"></param>
+        /// <returns>Lista de avales de solicitudes de prestamo.</returns>
         public List<aval_x_solicitud> GetAvalesXSolicitud(int SOLICITUDES_ID = 0)
         {
             try
@@ -203,6 +254,18 @@ namespace COCASJOL.LOGIC.Reportes
             }
         }
 
+        /// <summary>
+        /// Obtiene el reporte movimientos de inventario de café de socios.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <param name="DOCUMENTO_TIPO"></param>
+        /// <param name="FECHA"></param>
+        /// <param name="FECHA_DESDE"></param>
+        /// <param name="FECHA_HASTA"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <returns>Reporte movimientos de inventario de café de socios</returns>
         public List<reporte_movimientos_de_inventario_de_cafe_de_socios> GetMovimientosInventarioDeCafeDeSocios
             (string SOCIOS_ID,
             int CLASIFICACIONES_CAFE_ID,
@@ -238,6 +301,17 @@ namespace COCASJOL.LOGIC.Reportes
             }
         }
 
+        /// <summary>
+        /// Obtiene el reporte movimientos de inventario de café de cooperativa.
+        /// </summary>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <param name="DOCUMENTO_TIPO"></param>
+        /// <param name="FECHA"></param>
+        /// <param name="FECHA_DESDE"></param>
+        /// <param name="FECHA_HASTA"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <returns>Reporte movimientos de inventario de café de cooperativa.</returns>
         public List<reporte_movimientos_de_inventario_de_cafe_de_cooperativa> GetMovimientosInventarioDeCafeDeCooperativa
             (int CLASIFICACIONES_CAFE_ID,
             string DOCUMENTO_TIPO,
@@ -271,6 +345,12 @@ namespace COCASJOL.LOGIC.Reportes
             }
         }
 
+        /// <summary>
+        /// Obtiene las solicitudes de prestamo por socio.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="PRESTAMOS_ID"></param>
+        /// <returns>Solicitudes de prestamo por socio.</returns>
         public List<solicitud_prestamo> GetPrestamosXSocio(string SOCIOS_ID, int PRESTAMOS_ID)
         {
             try
@@ -294,6 +374,17 @@ namespace COCASJOL.LOGIC.Reportes
             }
         }
 
+        /// <summary>
+        /// Obtiene el reporte detalle de aportaciones por socio.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="DOCUMENTO_TIPO"></param>
+        /// <param name="FECHA"></param>
+        /// <param name="FECHA_DESDE"></param>
+        /// <param name="FECHA_HASTA"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <returns>Reporte detalle de aportaciones por socio.</returns>
         public List<reporte_detalle_de_aportaciones_por_socio> GetDetalleAportacionesPorSocio
             (string SOCIOS_ID,
             string DOCUMENTO_TIPO,
@@ -327,6 +418,16 @@ namespace COCASJOL.LOGIC.Reportes
             }
         }
 
+        /// <summary>
+        /// Obtiene reporte de notas de peso.
+        /// </summary>
+        /// <param name="ESTADOS_NOTA_ID"></param>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <param name="FECHA"></param>
+        /// <param name="FECHA_DESDE"></param>
+        /// <param name="FECHA_HASTA"></param>
+        /// <returns>Reporte de notas de peso.</returns>
         public List<reporte_notas_de_peso> GetDetalleNotasDePeso
             (int ESTADOS_NOTA_ID,
             string SOCIOS_ID,
@@ -358,6 +459,15 @@ namespace COCASJOL.LOGIC.Reportes
             }
         }
 
+        /// <summary>
+        /// Obtiene el reporte hojas de liquidación
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <param name="FECHA"></param>
+        /// <param name="FECHA_DESDE"></param>
+        /// <param name="FECHA_HASTA"></param>
+        /// <returns>Reporte hojas de liquidación</returns>
         public List<reporte_hojas_de_liquidacion> GetDetalleHojasDeLiquidacion
             (string SOCIOS_ID,
             int CLASIFICACIONES_CAFE_ID,

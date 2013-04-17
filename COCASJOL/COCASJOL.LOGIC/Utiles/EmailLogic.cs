@@ -17,10 +17,22 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Utiles
 {
+    /// <summary>
+    /// Clase con logica de Notificaciones por Correo
+    /// </summary>
     public class EmailLogic
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(EmailLogic).Name);
 
+        /// <summary>
+        /// Envia correo de usuario nuevo.
+        /// </summary>
+        /// <param name="USR_USERNAME"></param>
+        /// <param name="USR_PASSWORD"></param>
+        /// <param name="Configuracion"></param>
         public static void EnviarCorreoUsuarioNuevo(string USR_USERNAME, string USR_PASSWORD, XmlDocument Configuracion)
         {
             try
@@ -57,6 +69,12 @@ namespace COCASJOL.LOGIC.Utiles
             }
         }
 
+        /// <summary>
+        /// Envia correo a usuario de password nuevo
+        /// </summary>
+        /// <param name="USR_USERNAME"></param>
+        /// <param name="USR_PASSWORD"></param>
+        /// <param name="Configuracion"></param>
         public static void EnviarCorreoUsuarioPasswordNuevo(string USR_USERNAME, string USR_PASSWORD, XmlDocument Configuracion)
         {
             try
@@ -93,6 +111,12 @@ namespace COCASJOL.LOGIC.Utiles
             }
         }
 
+        /// <summary>
+        /// Envia correo de rol nuevo
+        /// </summary>
+        /// <param name="USR_USERNAME"></param>
+        /// <param name="ROL_ID"></param>
+        /// <param name="Configuracion"></param>
         public static void EnviarCorreoRolNuevo(string USR_USERNAME, int ROL_ID, XmlDocument Configuracion)
         {
             try
@@ -146,6 +170,12 @@ namespace COCASJOL.LOGIC.Utiles
             }
         }
 
+        /// <summary>
+        /// Envia correos de privilegios nuevos
+        /// </summary>
+        /// <param name="ROL_ID"></param>
+        /// <param name="PRIVS_ID"></param>
+        /// <param name="Configuracion"></param>
         public static void EnviarCorreosPrivilegiosNuevos(int ROL_ID, List<string> PRIVS_ID, XmlDocument Configuracion)
         {
             try
@@ -209,6 +239,13 @@ namespace COCASJOL.LOGIC.Utiles
             }
         }
 
+        /// <summary>
+        /// Envia Correo
+        /// </summary>
+        /// <param name="mailto"></param>
+        /// <param name="subject"></param>
+        /// <param name="message"></param>
+        /// <param name="Configuracion"></param>
         private static void EnviarCorreo(string mailto, string subject, string message, XmlDocument Configuracion)
         {
             try
@@ -238,6 +275,14 @@ namespace COCASJOL.LOGIC.Utiles
             }
         }
 
+        /// <summary>
+        /// Envia correo usando server SMTP sin password.
+        /// </summary>
+        /// <param name="to"></param>
+        /// <param name="from"></param>
+        /// <param name="message"></param>
+        /// <param name="subject"></param>
+        /// <param name="server"></param>
         private static void sendMail(string to, string from, string message, string subject, string server)
         {
             try
@@ -259,6 +304,17 @@ namespace COCASJOL.LOGIC.Utiles
             }
         }
 
+        /// <summary>
+        /// Envia correo usando server SMTP con password.
+        /// </summary>
+        /// <param name="to"></param>
+        /// <param name="from"></param>
+        /// <param name="fromPassword"></param>
+        /// <param name="message"></param>
+        /// <param name="subject"></param>
+        /// <param name="server"></param>
+        /// <param name="port"></param>
+        /// <param name="enableSSL"></param>
         private static void sendMail(string to, string from, string fromPassword, string message, string subject, string server, int port, bool enableSSL)
         {
             try

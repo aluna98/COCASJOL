@@ -13,14 +13,30 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Inventario.Ingresos
 {
+    /// <summary>
+    /// Clase con logica de Nota de Peso
+    /// </summary>
     public class NotaDePesoLogic
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(NotaDePesoLogic).Name);
 
+        /// <summary>
+        /// Código de estado de la nota de peso.
+        /// </summary>
         public int ESTADOS_NOTA_ID;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public NotaDePesoLogic() { }
 
+        /// <summary>
+        /// Constructor. Inicializa el código de estado de la nota de peso.
+        /// </summary>
+        /// <param name="ESTADOS_NOTA_LLAVE"></param>
         public NotaDePesoLogic(string ESTADOS_NOTA_LLAVE)
         {
             try
@@ -38,6 +54,10 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
         #region Select
 
+        /// <summary>
+        /// Obtiene todas las notas de peso de socios activos.
+        /// </summary>
+        /// <returns>Lista de notas de peso de socios activos.</returns>
         public virtual List<nota_de_peso> GetNotasDePeso()
         {
             try
@@ -60,6 +80,11 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
+        /// <summary>
+        /// Obtiene los detalles de nota de peso específica.
+        /// </summary>
+        /// <param name="NOTAS_ID"></param>
+        /// <returns>Lista de detalles de nota de peso específica.</returns>
         public List<nota_detalle> GetDetalleNotaDePeso(int NOTAS_ID)
         {
             try
@@ -82,6 +107,37 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
+        /// <summary>
+        /// Obtiene todas las notas de peso de socios activos.
+        /// </summary>
+        /// <param name="NOTAS_ID"></param>
+        /// <param name="ESTADOS_NOTA_ID"></param>
+        /// <param name="ESTADOS_NOTA_NOMBRE"></param>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <param name="CLASIFICACIONES_CAFE_NOMBRE"></param>
+        /// <param name="NOTAS_FECHA"></param>
+        /// <param name="FECHA_DESDE"></param>
+        /// <param name="FECHA_HASTA"></param>
+        /// <param name="NOTAS_TRANSPORTE_COOPERATIVA"></param>
+        /// <param name="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA"></param>
+        /// <param name="NOTAS_PORCENTAJE_DEFECTO"></param>
+        /// <param name="NOTAS_PORCENTAJE_HUMEDAD"></param>
+        /// <param name="NOTAS_PESO_TRANSPORTE_COOPERATIVA"></param>
+        /// <param name="NOTAS_PESO_DEFECTO"></param>
+        /// <param name="NOTAS_PESO_HUMEDAD"></param>
+        /// <param name="NOTAS_PESO_DESCUENTO"></param>
+        /// <param name="NOTAS_PESO_SUMA"></param>
+        /// <param name="NOTAS_PESO_TARA"></param>
+        /// <param name="NOTAS_PESO_TOTAL_RECIBIDO"></param>
+        /// <param name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO"></param>
+        /// <param name="NOTAS_SACOS_RETENIDOS"></param>
+        /// <param name="TRANSACCION_NUMERO"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="FECHA_CREACION"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="FECHA_MODIFICACION"></param>
+        /// <returns>Lista de notas de peso de socios activos.</returns>
         public virtual List<nota_de_peso> GetNotasDePeso
             (    int NOTAS_ID,
                  int ESTADOS_NOTA_ID,
@@ -159,6 +215,10 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
+        /// <summary>
+        /// Obtiene los estados de la nota de peso.
+        /// </summary>
+        /// <returns>Lista estados de la nota de peso.</returns>
         public virtual List<estado_nota_de_peso> GetEstadosNotaDePeso()
         {
             try
@@ -173,7 +233,12 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
-        protected List<estado_nota_de_peso> GetHijos(estado_nota_de_peso padre)
+        /// <summary>
+        /// Obtiene los estados de nota de peso siguientes.
+        /// </summary>
+        /// <param name="padre"></param>
+        /// <returns>Lista de estados de nota de peso siguientes.</returns>
+        protected List<estado_nota_de_peso> GetEstadosSiguiente(estado_nota_de_peso padre)
         {
             try
             {
@@ -203,6 +268,23 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
         #region Insert
 
+        /// <summary>
+        /// Inserta la nota de peso. (Sin Implementar, devuelve excepción. No se debería llamar este metodo.)
+        /// </summary>
+        /// <param name="ESTADOS_NOTA_ID"></param>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <param name="NOTAS_FECHA"></param>
+        /// <param name="NOTAS_TRANSPORTE_COOPERATIVA"></param>
+        /// <param name="NOTAS_PORCENTAJE_DEFECTO"></param>
+        /// <param name="NOTAS_PORCENTAJE_HUMEDAD"></param>
+        /// <param name="NOTAS_PESO_SUMA"></param>
+        /// <param name="NOTAS_PESO_TARA"></param>
+        /// <param name="NOTAS_SACOS_RETENIDOS"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="Detalles"></param>
+        /// <param name="NOTA_PORCENTAJEHUMEDADMIN"></param>
+        /// <param name="NOTA_TRANSPORTECOOP"></param>
         public virtual void InsertarNotaDePeso
             (int ESTADOS_NOTA_ID,
             string SOCIOS_ID,
@@ -234,6 +316,24 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
         #region Update
 
+        /// <summary>
+        /// Actualiza la nota de peso. (Sin Implementar, devuelve excepción. No se debería llamar este metodo.)
+        /// </summary>
+        /// <param name="NOTAS_ID"></param>
+        /// <param name="ESTADOS_NOTA_ID"></param>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <param name="NOTAS_FECHA"></param>
+        /// <param name="NOTAS_TRANSPORTE_COOPERATIVA"></param>
+        /// <param name="NOTAS_PORCENTAJE_DEFECTO"></param>
+        /// <param name="NOTAS_PORCENTAJE_HUMEDAD"></param>
+        /// <param name="NOTAS_PESO_SUMA"></param>
+        /// <param name="NOTAS_PESO_TARA"></param>
+        /// <param name="NOTAS_SACOS_RETENIDOS"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="Detalles"></param>
+        /// <param name="NOTA_PORCENTAJEHUMEDADMIN"></param>
+        /// <param name="NOTA_TRANSPORTECOOP"></param>
         public virtual void ActualizarNotaDePeso
             (int NOTAS_ID,
             int ESTADOS_NOTA_ID,
@@ -266,6 +366,13 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
         #region Methods
 
+        /// <summary>
+        /// Notifica usuarios sobre cambio de estado de nota de peso.
+        /// </summary>
+        /// <param name="PLANTILLAS_LLAVE"></param>
+        /// <param name="PRIVS_LLAVE"></param>
+        /// <param name="note"></param>
+        /// <param name="db"></param>
         protected void NotificarUsuarios(string PLANTILLAS_LLAVE, string PRIVS_LLAVE, nota_de_peso note, colinasEntities db)
         {
             try

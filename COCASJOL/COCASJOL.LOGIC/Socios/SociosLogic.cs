@@ -14,32 +14,51 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Socios
 {
+    /// <summary>
+    /// Clase con logica de Socios
+    /// </summary>
     public class SociosLogic
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(SociosLogic).Name);
 
-        public SociosLogic() { } 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public SociosLogic() { }
 
         #region Select
-            public List<socio> getData()
+
+        /// <summary>
+        /// Obtiene todos los socios.
+        /// </summary>
+        /// <returns>Lista de socios.</returns>
+        public List<socio> getData()
+        {
+            try
             {
-                try
+                using (var db = new colinasEntities())
                 {
-                    using (var db = new colinasEntities())
-                    {
                     var query = from s in db.socios.Include("socios_generales").Include("socios_produccion").Include("beneficiario_x_socio")
-                                    select s;
-                        return query.ToList<socio>();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    log.Fatal("Error fatal al obtener socios.", ex);
-                    throw;
+                                select s;
+                    return query.ToList<socio>();
                 }
             }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al obtener socios.", ex);
+                throw;
+            }
+        }
 
-            public List<beneficiario_x_socio> getBenefxSocio(string socioid)
+        /// <summary>
+        /// Obtiene los beneficiarios de socio.
+        /// </summary>
+        /// <param name="socioid"></param>
+        /// <returns>Lista de beneficiarios de socio.</returns>
+        public List<beneficiario_x_socio> getBenefxSocio(string socioid)
         {
             try
             {
@@ -61,27 +80,42 @@ namespace COCASJOL.LOGIC.Socios
             }
         }
 
-            public List<socio> getSociosActivos()
+        /// <summary>
+        /// Obtiene todos los socios activos.
+        /// </summary>
+        /// <returns>Lista de socios activos.</returns>
+        public List<socio> getSociosActivos()
+        {
+            try
             {
-                try
+                using (var db = new colinasEntities())
                 {
-                    using (var db = new colinasEntities())
-                    {
-                        var query = from s in db.socios.Include("socios_generales").Include("socios_produccion").Include("beneficiario_x_socio")
-                                    where s.SOCIOS_ESTATUS >= 1
-                                    select s;
-                        return query.ToList<socio>();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    log.Fatal("Error fatal al obtener socios activos.", ex);
-                    throw;
+                    var query = from s in db.socios.Include("socios_generales").Include("socios_produccion").Include("beneficiario_x_socio")
+                                where s.SOCIOS_ESTATUS >= 1
+                                select s;
+                    return query.ToList<socio>();
                 }
             }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al obtener socios activos.", ex);
+                throw;
+            }
+        }
         #endregion
 
         #region Update
+
+        /// <summary>
+        /// Actualiza el beneficiario de socio.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="BENEFICIARIO_IDENTIFICACION"></param>
+        /// <param name="BENEFICIARIO_NOMBRE"></param>
+        /// <param name="BENEFICIARIO_PARENTEZCO"></param>
+        /// <param name="BENEFICIARIO_NACIMIENTO"></param>
+        /// <param name="BENEFICIARIO_LUGAR_NACIMIENTO"></param>
+        /// <param name="BENEFICIARIO_PORCENTAJE"></param>
         public void ActualizarBeneficiario(
             string SOCIOS_ID,
             string BENEFICIARIO_IDENTIFICACION,
@@ -91,38 +125,77 @@ namespace COCASJOL.LOGIC.Socios
             string BENEFICIARIO_LUGAR_NACIMIENTO,
             string BENEFICIARIO_PORCENTAJE)
         {
-                try
+            try
+            {
+                using (var db = new colinasEntities())
                 {
-                    using (var db = new colinasEntities())
+                    List<beneficiario_x_socio> Lista;
+                    var query = from nuevo in db.beneficiario_x_socio
+                                where nuevo.SOCIOS_ID == SOCIOS_ID && nuevo.BENEFICIARIO_IDENTIFICACION == BENEFICIARIO_IDENTIFICACION
+                                select nuevo;
+                    Lista = query.ToList<beneficiario_x_socio>();
+                    if (Lista.Count > 0)
                     {
-                        List<beneficiario_x_socio> Lista;
-                        var query = from nuevo in db.beneficiario_x_socio
-                                    where nuevo.SOCIOS_ID == SOCIOS_ID && nuevo.BENEFICIARIO_IDENTIFICACION == BENEFICIARIO_IDENTIFICACION
-                                    select nuevo;
-                        Lista = query.ToList<beneficiario_x_socio>();
-                        if (Lista.Count > 0)
-                        {
-                            beneficiario_x_socio beneficiario = query.First();
-                            beneficiario.SOCIOS_ID = SOCIOS_ID;
-                            beneficiario.BENEFICIARIO_IDENTIFICACION = BENEFICIARIO_IDENTIFICACION;
-                            beneficiario.BENEFICIARIO_LUGAR_NACIMIENTO = BENEFICIARIO_LUGAR_NACIMIENTO;
-                            beneficiario.BENEFICIARIO_NACIMIENTO = DateTime.Parse(BENEFICIARIO_NACIMIENTO);
-                            beneficiario.BENEFICIARIO_NOMBRE = BENEFICIARIO_NOMBRE;
-                            beneficiario.BENEFICIARIO_PORCENTAJE = Convert.ToInt32(BENEFICIARIO_PORCENTAJE);
-                            beneficiario.BENEFICIARIO_PARENTEZCO = BENEFICIARIO_PARENTEZCO;
-                            db.SaveChanges();
-                        }
+                        beneficiario_x_socio beneficiario = query.First();
+                        beneficiario.SOCIOS_ID = SOCIOS_ID;
+                        beneficiario.BENEFICIARIO_IDENTIFICACION = BENEFICIARIO_IDENTIFICACION;
+                        beneficiario.BENEFICIARIO_LUGAR_NACIMIENTO = BENEFICIARIO_LUGAR_NACIMIENTO;
+                        beneficiario.BENEFICIARIO_NACIMIENTO = DateTime.Parse(BENEFICIARIO_NACIMIENTO);
+                        beneficiario.BENEFICIARIO_NOMBRE = BENEFICIARIO_NOMBRE;
+                        beneficiario.BENEFICIARIO_PORCENTAJE = Convert.ToInt32(BENEFICIARIO_PORCENTAJE);
+                        beneficiario.BENEFICIARIO_PARENTEZCO = BENEFICIARIO_PARENTEZCO;
+                        db.SaveChanges();
                     }
                 }
-                catch (Exception ex)
-                {
-                    log.Fatal("Error fatal al actualizar beneficiario de socio.", ex);
-                    throw;
-                }
-           
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al actualizar beneficiario de socio.", ex);
+                throw;
+            }
+
 
         }
 
+        /// <summary>
+        /// Actualiza el socio.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="SOCIOS_PRIMER_NOMBRE"></param>
+        /// <param name="SOCIOS_SEGUNDO_NOMBRE"></param>
+        /// <param name="SOCIOS_PRIMER_APELLIDO"></param>
+        /// <param name="SOCIOS_SEGUNDO_APELLIDO"></param>
+        /// <param name="SOCIOS_RESIDENCIA"></param>
+        /// <param name="SOCIOS_ESTADO_CIVIL"></param>
+        /// <param name="SOCIOS_LUGAR_DE_NACIMIENTO"></param>
+        /// <param name="SOCIOS_FECHA_DE_NACIMIENTO"></param>
+        /// <param name="SOCIOS_NIVEL_EDUCATIVO"></param>
+        /// <param name="SOCIOS_IDENTIDAD"></param>
+        /// <param name="SOCIOS_PROFESION"></param>
+        /// <param name="SOCIOS_RTN"></param>
+        /// <param name="SOCIOS_TELEFONO"></param>
+        /// <param name="SOCIOS_LUGAR_DE_EMISION"></param>
+        /// <param name="SOCIOS_FECHA_DE_EMISION"></param>
+        /// <param name="GENERAL_CARNET_IHCAFE"></param>
+        /// <param name="GENERAL_ORGANIZACION_SECUNDARIA"></param>
+        /// <param name="GENERAL_NUMERO_CARNET"></param>
+        /// <param name="GENERAL_EMPRESA_LABORA"></param>
+        /// <param name="GENERAL_EMPRESA_CARGO"></param>
+        /// <param name="GENERAL_EMPRESA_DIRECCION"></param>
+        /// <param name="GENERAL_EMPRESA_TELEFONO"></param>
+        /// <param name="GENERAL_SEGURO"></param>
+        /// <param name="GENERAL_FECHA_ACEPTACION"></param>
+        /// <param name="PRODUCCION_UBICACION_FINCA"></param>
+        /// <param name="PRODUCCION_AREA"></param>
+        /// <param name="PRODUCCION_VARIEDAD"></param>
+        /// <param name="PRODUCCION_ALTURA"></param>
+        /// <param name="PRODUCCION_DISTANCIA"></param>
+        /// <param name="PRODUCCION_ANUAL"></param>
+        /// <param name="PRODUCCION_BENEFICIO_PROPIO"></param>
+        /// <param name="PRODUCCION_ANALISIS_SUELO"></param>
+        /// <param name="PRODUCCION_TIPO_INSUMOS"></param>
+        /// <param name="PRODUCCION_MANZANAS_CULTIVADAS"></param>
+        /// <param name="MODIFICADO_POR"></param>
         public void ActualizarSocio(
             string SOCIOS_ID,
             string SOCIOS_PRIMER_NOMBRE,
@@ -142,10 +215,10 @@ namespace COCASJOL.LOGIC.Socios
             string SOCIOS_FECHA_DE_EMISION,
             string GENERAL_CARNET_IHCAFE,
             string GENERAL_ORGANIZACION_SECUNDARIA,
-            string  GENERAL_NUMERO_CARNET,
+            string GENERAL_NUMERO_CARNET,
             string GENERAL_EMPRESA_LABORA,
             string GENERAL_EMPRESA_CARGO,
-            string GENERAL_EMPRESA_DIRECCION, 
+            string GENERAL_EMPRESA_DIRECCION,
             string GENERAL_EMPRESA_TELEFONO,
             string GENERAL_SEGURO,
             string GENERAL_FECHA_ACEPTACION,
@@ -226,6 +299,45 @@ namespace COCASJOL.LOGIC.Socios
 
         #region insert
 
+        /// <summary>
+        /// Insertar el socio.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="SOCIOS_PRIMER_NOMBRE"></param>
+        /// <param name="SOCIOS_SEGUNDO_NOMBRE"></param>
+        /// <param name="SOCIOS_PRIMER_APELLIDO"></param>
+        /// <param name="SOCIOS_SEGUNDO_APELLIDO"></param>
+        /// <param name="SOCIOS_RESIDENCIA"></param>
+        /// <param name="SOCIOS_ESTADO_CIVIL"></param>
+        /// <param name="SOCIOS_LUGAR_DE_NACIMIENTO"></param>
+        /// <param name="SOCIOS_FECHA_DE_NACIMIENTO"></param>
+        /// <param name="SOCIOS_NIVEL_EDUCATIVO"></param>
+        /// <param name="SOCIOS_IDENTIDAD"></param>
+        /// <param name="SOCIOS_PROFESION"></param>
+        /// <param name="SOCIOS_RTN"></param>
+        /// <param name="SOCIOS_TELEFONO"></param>
+        /// <param name="SOCIOS_LUGAR_DE_EMISION"></param>
+        /// <param name="SOCIOS_FECHA_DE_EMISION"></param>
+        /// <param name="GENERAL_CARNET_IHCAFE"></param>
+        /// <param name="GENERAL_ORGANIZACION_SECUNDARIA"></param>
+        /// <param name="GENERAL_NUMERO_CARNET"></param>
+        /// <param name="GENERAL_EMPRESA_LABORA"></param>
+        /// <param name="GENERAL_EMPRESA_CARGO"></param>
+        /// <param name="GENERAL_EMPRESA_DIRECCION"></param>
+        /// <param name="GENERAL_EMPRESA_TELEFONO"></param>
+        /// <param name="GENERAL_SEGURO"></param>
+        /// <param name="GENERAL_FECHA_ACEPTACION"></param>
+        /// <param name="PRODUCCION_UBICACION_FINCA"></param>
+        /// <param name="PRODUCCION_AREA"></param>
+        /// <param name="PRODUCCION_VARIEDAD"></param>
+        /// <param name="PRODUCCION_ALTURA"></param>
+        /// <param name="PRODUCCION_DISTANCIA"></param>
+        /// <param name="PRODUCCION_ANUAL"></param>
+        /// <param name="PRODUCCION_BENEFICIO_PROPIO"></param>
+        /// <param name="PRODUCCION_ANALISIS_SUELO"></param>
+        /// <param name="PRODUCCION_TIPO_INSUMOS"></param>
+        /// <param name="PRODUCCION_MANZANAS_CULTIVADAS"></param>
+        /// <param name="CREADO_POR"></param>
         public void InsertarSocio(
             string SOCIOS_ID,
             string SOCIOS_PRIMER_NOMBRE,
@@ -351,6 +463,16 @@ namespace COCASJOL.LOGIC.Socios
             }
         }
 
+        /// <summary>
+        /// Insertar el beneficiario de socio.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="BENEFICIARIO_IDENTIFICACION"></param>
+        /// <param name="BENEFICIARIO_NOMBRE"></param>
+        /// <param name="BENEFICIARIO_PARENTEZCO"></param>
+        /// <param name="BENEFICIARIO_NACIMIENTO"></param>
+        /// <param name="BENEFICIARIO_LUGAR_NACIMIENTO"></param>
+        /// <param name="BENEFICIARIO_PORCENTAJE"></param>
         public void InsertarBeneficiario
             (string SOCIOS_ID,
             string BENEFICIARIO_IDENTIFICACION,
@@ -373,7 +495,7 @@ namespace COCASJOL.LOGIC.Socios
                     benef.BENEFICIARIO_LUGAR_NACIMIENTO = BENEFICIARIO_LUGAR_NACIMIENTO;
                     benef.BENEFICIARIO_PORCENTAJE = Convert.ToInt32(float.Parse(BENEFICIARIO_PORCENTAJE));
                     db.beneficiario_x_socio.AddObject(benef);
-                    db.SaveChanges(); 
+                    db.SaveChanges();
                 }
             }
             catch (Exception ex)
@@ -387,6 +509,10 @@ namespace COCASJOL.LOGIC.Socios
 
         #region Delete
 
+        /// <summary>
+        /// Elimina el socio.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
         public void EliminarSocio(string SOCIOS_ID)
         {
             try
@@ -401,7 +527,7 @@ namespace COCASJOL.LOGIC.Socios
 
                     db.DeleteObject(socio);
 
-                    db.SaveChanges(); 
+                    db.SaveChanges();
                 }
             }
             catch (Exception ex)
@@ -411,6 +537,11 @@ namespace COCASJOL.LOGIC.Socios
             }
         }
 
+        /// <summary>
+        /// Elimina el beneficiario.
+        /// </summary>
+        /// <param name="SOCIO_ID"></param>
+        /// <param name="BENEFICIARIO_ID"></param>
         public void EliminarBeneficiario(string SOCIO_ID, string BENEFICIARIO_ID)
         {
             try
@@ -423,7 +554,7 @@ namespace COCASJOL.LOGIC.Socios
 
                     beneficiario_x_socio beneficiario = query.First();
                     db.DeleteObject(beneficiario);
-                    db.SaveChanges(); 
+                    db.SaveChanges();
                 }
             }
             catch (Exception ex)
@@ -436,6 +567,11 @@ namespace COCASJOL.LOGIC.Socios
         #endregion
 
         #region Disable
+
+        /// <summary>
+        /// Desactiva el socio.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
         public void DeshabilitarSocio(string SOCIOS_ID)
         {
             try
@@ -448,7 +584,7 @@ namespace COCASJOL.LOGIC.Socios
 
                     socio socio = query.First();
                     socio.SOCIOS_ESTATUS = 0;
-                    db.SaveChanges(); 
+                    db.SaveChanges();
                 }
             }
             catch (Exception ex)
@@ -460,6 +596,11 @@ namespace COCASJOL.LOGIC.Socios
         #endregion
 
         #region Enable
+
+        /// <summary>
+        /// Habilita el socio.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
         public void HabilitarSocio(string SOCIOS_ID)
         {
             try
@@ -472,7 +613,7 @@ namespace COCASJOL.LOGIC.Socios
 
                     socio socio = query.First();
                     socio.SOCIOS_ESTATUS = 1;
-                    db.SaveChanges(); 
+                    db.SaveChanges();
                 }
             }
             catch (Exception ex)
@@ -485,6 +626,12 @@ namespace COCASJOL.LOGIC.Socios
 
         #region Metodos
 
+        /// <summary>
+        /// Verfica si el socio ya existe como beneficiario para otro socio.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="BENEFICIARIO_ID"></param>
+        /// <returns>True es benficiario de otro socio. False no es beneficiario.</returns>
         public bool BuscarId(string SOCIOS_ID, string BENEFICIARIO_ID)
         {
             try
@@ -504,7 +651,7 @@ namespace COCASJOL.LOGIC.Socios
                     else
                     {
                         return false;
-                    } 
+                    }
                 }
             }
             catch (Exception ex)
@@ -514,6 +661,12 @@ namespace COCASJOL.LOGIC.Socios
             }
         }
 
+        /// <summary>
+        /// Valida si ya se asigno el cien por ciento a los beneficiarios del socio.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="PORCENTAJE"></param>
+        /// <returns>True si todavia esta por debajo del cien por ciento. False se sobrepaso del porcentaje valido.</returns>
         public bool CienPorciento(string SOCIOS_ID, int PORCENTAJE)
         {
             try
@@ -537,7 +690,7 @@ namespace COCASJOL.LOGIC.Socios
                     else
                     {
                         return true;
-                    } 
+                    }
                 }
             }
             catch (Exception ex)
@@ -547,6 +700,11 @@ namespace COCASJOL.LOGIC.Socios
             }
         }
 
+        /// <summary>
+        /// Verifica si ya se asigno el porcentaje a los benficiarios del socio.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <returns>True no se ha asignado el porcentaje a los beneficiarios. False ya se asigno el cien por ciento.</returns>
         public bool Igual100(string SOCIOS_ID)
         {
             try
@@ -570,7 +728,7 @@ namespace COCASJOL.LOGIC.Socios
                     else
                     {
                         return true;
-                    } 
+                    }
                 }
             }
             catch (Exception ex)
@@ -580,6 +738,11 @@ namespace COCASJOL.LOGIC.Socios
             }
         }
 
+        /// <summary>
+        /// Obtiene la antiguedad del socio en letras.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <returns>Antiguedad del socio en letras.</returns>
         public string Antiguedad(string SOCIOS_ID)
         {
             try
@@ -637,7 +800,7 @@ namespace COCASJOL.LOGIC.Socios
                             tiempo = Convert.ToString(dias) + "dias";
                         }
                     }
-                    return tiempo; 
+                    return tiempo;
                 }
             }
             catch (Exception ex)
@@ -647,6 +810,11 @@ namespace COCASJOL.LOGIC.Socios
             }
         }
 
+        /// <summary>
+        /// Verifica si el socio es nuevo.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <returns>True es nuevo. False ya pago las deducciones de ingreso.</returns>
         public static bool EsNuevo(string SOCIOS_ID)
         {
             try
@@ -672,6 +840,11 @@ namespace COCASJOL.LOGIC.Socios
             }
         }
 
+        /// <summary>
+        /// Verifica si debe pagar aportacion ordinaria.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <returns>True debe pagar aportacion ordinaria. False ya pago la aportación ordinaria anual.</returns>
         public static bool DebePagarAportacionOrdinaria(string SOCIOS_ID)
         {
             try
@@ -697,6 +870,11 @@ namespace COCASJOL.LOGIC.Socios
             }
         }
 
+        /// <summary>
+        /// Verifica si debe pagar aportacion extraordinaria.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <returns>True debe pagar aportacion extraordinaria. False ya pago la aportación extraordinaria anual.</returns>
         public static bool DebePagarAportacionExtraordinaria(string SOCIOS_ID)
         {
             try
@@ -722,6 +900,11 @@ namespace COCASJOL.LOGIC.Socios
             }
         }
 
+        /// <summary>
+        /// Desactiva el flag de pago de gastos de ingreso.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="db"></param>
         public static void PagarGastoDeIngreso(string SOCIOS_ID, colinasEntities db)
         {
             try
@@ -746,6 +929,11 @@ namespace COCASJOL.LOGIC.Socios
             }
         }
 
+        /// <summary>
+        /// Desactiva el flag de pago de aportacion ordinaria.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="db"></param>
         public static void PagarAportacionOrdinaria(string SOCIOS_ID, colinasEntities db)
         {
             try
@@ -767,6 +955,13 @@ namespace COCASJOL.LOGIC.Socios
             }
         }
 
+        /// <summary>
+        /// Desactiva el flag de pago de aportacion extraordinaria.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="SOCIOS_APORTACION_EXTRAORD_COOP_COUNT"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
         public static bool PagarAportacionExtraordinaria(string SOCIOS_ID, int SOCIOS_APORTACION_EXTRAORD_COOP_COUNT, colinasEntities db)
         {
             try
@@ -800,6 +995,11 @@ namespace COCASJOL.LOGIC.Socios
             }
         }
 
+        /// <summary>
+        /// Desactiva el flag de pago de aportacion intereses sobre aportaciones.
+        /// </summary>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="db"></param>
         public static void PagarAportacionInteresesSobreAportaciones(string SOCIOS_ID, colinasEntities db)
         {
             try
@@ -821,6 +1021,11 @@ namespace COCASJOL.LOGIC.Socios
             }
         }
 
+        /// <summary>
+        /// Inserta el socio en BD DBISAM.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="nombre"></param>
         public static void InsertSociosDBISAM(string id, string nombre)
         {
             OdbcTransaction transaction = null;

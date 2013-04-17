@@ -31,8 +31,7 @@
         <asp:ObjectDataSource ID="EstadosNotaDS" runat="server"
                 TypeName="COCASJOL.LOGIC.Inventario.Ingresos.EstadoNotaDePesoLogic"
                 SelectMethod="GetEstadosNotaDePeso"
-                UpdateMethod="ActualizarEstadoNotaDePeso"
-                DeleteMethod="EliminarEstadoNotaDePeso" onselecting="EstadosNotaDS_Selecting" >
+                UpdateMethod="ActualizarEstadoNotaDePeso" onselecting="EstadosNotaDS_Selecting" >
                 <SelectParameters>
                     <asp:ControlParameter Name="ESTADOS_NOTA_ID"               Type="Int32"    ControlID="f_ESTADOS_NOTA_ID"          PropertyName="Text" />
                     <asp:ControlParameter Name="ESTADOS_NOTA_SIGUIENTE"        Type="Int32"    ControlID="f_ESTADOS_NOTA_SIGUIENTE"   PropertyName="Text" />

@@ -13,14 +13,32 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Utiles
 {
+    /// <summary>
+    /// Clase con logica de Importar Excel
+    /// </summary>
     public class ImportarExcelLogic
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(ImportarExcelLogic).Name);
 
+        /// <summary>
+        /// Datos de Excel
+        /// </summary>
         private DataTable excelDt;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public ImportarExcelLogic() { }
 
+        /// <summary>
+        /// Importa los datos de socios desde una hoja de Excel.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <returns>Mensaje de error de importación.</returns>
         public string SociosCargarDatos(string path, string CREADO_POR)
         {
             int x = 2;
