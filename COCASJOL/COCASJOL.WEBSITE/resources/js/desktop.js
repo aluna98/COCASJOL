@@ -242,6 +242,14 @@ var WindowX = {
         DesktopX.createDynamicWindow(app, 'cartfull', 'Ventas de Inventario de Café', 'Inventario/Salidas/VentasInventarioDeCafe.aspx');
     },
 
+    reporteHojasDeLiquidacion: function (app) {
+        DesktopX.createDynamicWindow(app, 'reporteHojasDeLiquidacion16', 'Reporte de Hojas de Liquidación', 'Reportes/ReporteHojasDeLiquidacion.aspx', 600, 300);
+    },
+
+    reporteDetalleDeNotasDePeso: function (app) {
+        DesktopX.createDynamicWindow(app, 'reporteDetalleNotasDePeso16', 'Reporte Detalle de Notas de Peso', 'Reportes/ReporteDetalleDeNotasDePeso.aspx', 600, 300);
+    },
+
     reporteMovimientosInventarioDeCafeDeSocios: function (app) {
         DesktopX.createDynamicWindow(app, 'reporteMovimientosInventarioDeCafeDeSocios16', 'Reporte de Movimientos de Inventario de Café de Socios', 'Reportes/ReporteMovimientosInventarioDeCafeDeSocios.aspx', 600, 300);
     },
@@ -256,6 +264,10 @@ var WindowX = {
 
     retiroDeAportaciones: function (app) {
         DesktopX.createDynamicWindow(app, 'retiroAportaciones16', 'Retiro de Aportaciones', 'Aportaciones/RetiroDeAportaciones.aspx', 1000, 600);
+    },
+
+    reporteDetalleDeAportacionesPorSocio: function (app) {
+        DesktopX.createDynamicWindow(app, 'reporteDetalleAportacionesPorSocio16', 'Reporte Detalle de Aportaciones por Socio', 'Reportes/ReporteDetalleDeAportacionesPorSocio.aspx', 600, 300);
     },
 
     prestamos: function (app) {
@@ -322,6 +334,10 @@ var ShorcutClickHandler = function (app, id) {
         WindowX.inventarioDeCafe(app);
     } else if (id == 'scHojasDeLiquidacion') {
         WindowX.hojasDeLiquidacion(app);
+    } else if (id == 'scReporteDeHojasDeLiquidacion') {
+        WindowX.reporteHojasDeLiquidacion(app);
+    } else if (id == 'scReporteDetalleDeNotasDePeso') {
+        WindowX.reporteDetalleDeNotasDePeso(app);
     } else if (id == 'scAjustesDeInventarioDeCafeDeSocios') {
         WindowX.ajustesDeInventarioDeCafeDeSocios(app);
     } else if (id == 'scVentasDeInventarioDeCafe') {
@@ -334,6 +350,8 @@ var ShorcutClickHandler = function (app, id) {
         WindowX.aportacionesPorSocio(app);
     } else if (id == 'scRetiroDeAportaciones') {
         WindowX.retiroDeAportaciones(app);
+    } else if (id == 'scReporteDetalleDeAportacionesPorSocio') {
+        WindowX.reporteDetalleDeAportacionesPorSocio(app);
     } else if (id == 'scPrestamos') {
         WindowX.prestamos(app);
     } else if (id == 'scSolicitudesDePrestamo') {

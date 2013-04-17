@@ -156,88 +156,88 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.09006in</Width>
+              <Width>1.13631in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.09006in</Width>
+              <Width>1.13631in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.09006in</Width>
+              <Width>1.13631in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.09006in</Width>
+              <Width>1.13631in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.09006in</Width>
+              <Width>1.13631in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.04625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.01863in</Width>
+              <Width>1.06488in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.01863in</Width>
+              <Width>1.06488in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.04625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.04625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.04625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.04625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.04625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.04625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.04625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.04625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.04625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.04625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.04625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.04625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.04625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.04625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.04625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.04625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.09006in</Width>
+              <Width>1.13631in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.09006in</Width>
+              <Width>1.13631in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.01863in</Width>
+              <Width>1.06488in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.01863in</Width>
+              <Width>1.06488in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -5018,7 +5018,7 @@ iif(Parameters!parGroupByFecha.Value = True, Fields!LIQUIDACIONES_FECHA.Value, "
         </TablixRowHierarchy>
         <DataSetName>HojaDeLiquidacionDataSet</DataSetName>
         <Height>1.75in</Height>
-        <Width>28.70494in</Width>
+        <Width>30in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -5081,9 +5081,9 @@ iif(Parameters!parGroupByFecha.Value = True, Fields!LIQUIDACIONES_FECHA.Value, "
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
-  <Width>32.70494in</Width>
+  <Width>30in</Width>
   <Page>
-    <PageWidth>32in</PageWidth>
+    <PageWidth>30in</PageWidth>
     <InteractiveHeight>0in</InteractiveHeight>
     <InteractiveWidth>0in</InteractiveWidth>
     <LeftMargin>1in</LeftMargin>

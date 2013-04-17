@@ -111,6 +111,28 @@
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/cart_full.png", sizingMethod="center");
 }
 
+.icon-reporteHojasDeLiquidacion
+{
+    background-image: url(../images/report_script.png) !important;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/report_script.png", sizingMethod="center");
+}
+
+.icon-reporteHojasDeLiquidacion16
+{
+    background-image: url("../images/report_script16x16.png") !important;
+}
+
+.icon-reporteDetalleNotasDePeso
+{
+    background-image: url(../images/report_page_white.png) !important;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/report_page_white.png", sizingMethod="center");
+}
+
+.icon-reporteDetalleNotasDePeso16
+{
+    background-image: url("../images/report_page_white16x16.png") !important;
+}
+
 .icon-reporteMovimientosInventarioDeCafeDeSocios
 {
     background-image: url(../images/report_brick.png) !important;
@@ -153,6 +175,17 @@
 {
     background-image: url(../images/coins_in_hand.png) !important;
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/coins_in_hand.png", sizingMethod="center");
+}
+
+.icon-reporteDetalleAportacionesPorSocio
+{
+    background-image: url(../images/report_coins.png) !important;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/report_coins.png", sizingMethod="center");
+}
+
+.icon-reporteDetalleAportacionesPorSocio16
+{
+    background-image: url("../images/report_coins16x16.png") !important;
 }
 
 .icon-solicitudesDePrestamo

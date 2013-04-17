@@ -526,6 +526,33 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.MenuItem ReporteMovimientosInventarioDeCafeDeCooperativaMenuItem;
         
         /// <summary>
+        /// ReporteHojasDeLiquidacionMenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem ReporteHojasDeLiquidacionMenuItem;
+        
+        /// <summary>
+        /// ReporteDetalleDeNotasDePesoMenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem ReporteDetalleDeNotasDePesoMenuItem;
+        
+        /// <summary>
+        /// ReporteDetalleDeAportacionesPorSocioMenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem ReporteDetalleDeAportacionesPorSocioMenuItem;
+        
+        /// <summary>
         /// ReportePrestamosPorSociosMenuItem control.
         /// </summary>
         /// <remarks>
@@ -1055,6 +1082,33 @@ namespace COCASJOL.WEBSITE {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ToolTip scReportePrestamosPorSociosTooltip;
+        
+        /// <summary>
+        /// scReporteDeHojasDeLiquidacionTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scReporteDeHojasDeLiquidacionTooltip;
+        
+        /// <summary>
+        /// scReporteDetalleDeNotasDePesoTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scReporteDetalleDeNotasDePesoTooltip;
+        
+        /// <summary>
+        /// scReporteDetalleDeAportacionesPorSocioTooltip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip scReporteDetalleDeAportacionesPorSocioTooltip;
         
         /// <summary>
         /// UsuarioActualCtl control.

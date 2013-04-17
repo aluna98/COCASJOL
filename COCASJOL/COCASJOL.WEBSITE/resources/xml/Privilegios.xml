@@ -143,6 +143,30 @@
   </privilege>
 
   <privilege>
+    <key>REPRT_NOTASDEPESO</key>
+    <page>ReporteDetalleDeNotasDePeso</page>
+    <module>ReporteDetalleNotasDePesoModule</module>
+    <shortcut>scReporteDetalleDeNotasDePeso</shortcut>
+    <menuitem>ReporteDetalleDeNotasDePesoMenuItem</menuitem>
+  </privilege>
+
+  <privilege>
+    <key>REPRT_HOJASLIQUIDACION</key>
+    <page>ReporteHojasDeLiquidacion</page>
+    <module>ReporteHojasDeLiquidacionModule</module>
+    <shortcut>scReporteDeHojasDeLiquidacion</shortcut>
+    <menuitem>ReporteHojasDeLiquidacionMenuItem</menuitem>
+  </privilege>
+
+  <privilege>
+    <key>REPRT_APORTACIONSOCIO</key>
+    <page>ReporteDetalleDeAportacionesPorSocio</page>
+    <module>ReporteDetalleAportacionesPorSocioModule</module>
+    <shortcut>scReporteDetalleDeAportacionesPorSocio</shortcut>
+    <menuitem>ReporteDetalleDeAportacionesPorSocioMenuItem</menuitem>
+  </privilege>
+
+  <privilege>
     <key>REPRT_PRESTAMOSPORSOCIOS</key>
     <page>ReportePrestamosPorSocios</page>
     <module>ReportePrestamosPorSociosModule</module>

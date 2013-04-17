@@ -345,6 +345,27 @@
                         </Listeners>
                     </Launcher>
                 </ext:DesktopModule>
+                <ext:DesktopModule ModuleID="ReporteHojasDeLiquidacionModule">
+                    <Launcher ID="ReporteHojasDeLiquidacionLauncher" runat="server" Text="Reporte de Hojas de Liquidación" IconCls="icon-reporteHojasDeLiquidacion16" >
+                        <Listeners>
+                            <Click Handler="WindowX.reporteHojasDeLiquidacion(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
+                <ext:DesktopModule ModuleID="ReporteDetalleNotasDePesoModule">
+                    <Launcher ID="ReporteDetalleNotasDePesoLauncher" runat="server" Text="Reporte Detalle de Notas de Peso" IconCls="icon-reporteDetalleNotasDePeso16" >
+                        <Listeners>
+                            <Click Handler="WindowX.reporteDetalleDeNotasDePeso(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
+                <ext:DesktopModule ModuleID="ReporteDetalleAportacionesPorSocioModule">
+                    <Launcher ID="ReporteDetalleAportacionesPorSocioLauncher" runat="server" Text="Reporte Detalle de Aportaciones por Socio" IconCls="icon-reporteDetalleAportacionesPorSocio16" >
+                        <Listeners>
+                            <Click Handler="WindowX.reporteDetalleDeAportacionesPorSocio(#{MyDesktop});" />
+                        </Listeners>
+                    </Launcher>
+                </ext:DesktopModule>
                 <ext:DesktopModule ModuleID="ReportePrestamosPorSociosModule">
                     <Launcher ID="ReportePrestamosPorSociosLauncher" runat="server" Text="Reporte de Prestamos por Socios" IconCls="icon-reportePrestamosPorSocios16" >
                         <Listeners>
@@ -412,6 +433,9 @@
                 <ext:DesktopShortcut ShortcutID="scPrestamosAprobados"                              Text="Solicitudes de Prestamo Aprobado"                            IconCls="shortcut-icon icon-prestamosAprobados" />
                 <ext:DesktopShortcut ShortcutID="scReporteMovimientosInventarioDeCafeDeSocios"      Text="Reporte de Movimientos de Inventario de Café de Socios"      IconCls="shortcut-icon icon-reporteMovimientosInventarioDeCafeDeSocios" />
                 <ext:DesktopShortcut ShortcutID="scReporteMovimientosInventarioDeCafeDeCooperativa" Text="Reporte de Movimientos de Inventario de Café de Coopetativa" IconCls="shortcut-icon icon-reporteMovimientosInventarioDeCafeDeCooperativa" />
+                <ext:DesktopShortcut ShortcutID="scReporteDeHojasDeLiquidacion"                     Text="Reporte de Hojas de Liquidación"                             IconCls="shortcut-icon icon-reporteHojasDeLiquidacion" />
+                <ext:DesktopShortcut ShortcutID="scReporteDetalleDeNotasDePeso"                     Text="Reporte Detalle de Notas de Peso"                            IconCls="shortcut-icon icon-reporteDetalleNotasDePeso" />
+                <ext:DesktopShortcut ShortcutID="scReporteDetalleDeAportacionesPorSocio"            Text="Reporte Detalle de Aportaciones por Socio"                   IconCls="shortcut-icon icon-reporteDetalleAportacionesPorSocio" />
                 <ext:DesktopShortcut ShortcutID="scReportePrestamosPorSocios"                       Text="Reporte de Prestamos por Socios"                             IconCls="shortcut-icon icon-reportePrestamosPorSocios" />
             </Shortcuts>
 
@@ -651,6 +675,23 @@
                                             <click Handler="WindowX.reporteMovimientosInventarioDeCafeDeCooperativa(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
+                                    
+                                    <ext:MenuItem ID="ReporteHojasDeLiquidacionMenuItem" Text="Reporte de Hojas de Liquidación" IconCls="icon-reporteHojasDeLiquidacion16" >
+                                        <Listeners>
+                                            <click Handler="WindowX.reporteHojasDeLiquidacion(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                    <ext:MenuItem ID="ReporteDetalleDeNotasDePesoMenuItem" Text="Reporte Detalle de Notas de Peso" IconCls="icon-reporteDetalleNotasDePeso16" >
+                                        <Listeners>
+                                            <click Handler="WindowX.reporteDetalleDeNotasDePeso(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+                                    <ext:MenuItem ID="ReporteDetalleDeAportacionesPorSocioMenuItem" Text="Reporte Detalle de Aportaciones por Socio" IconCls="icon-reporteDetalleAportacionesPorSocio16" >
+                                        <Listeners>
+                                            <click Handler="WindowX.reporteDetalleDeAportacionesPorSocio(#{MyDesktop});" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+
                                     <ext:MenuItem ID="ReportePrestamosPorSociosMenuItem" Text="Reporte de Prestamos por Socios" IconCls="icon-reportePrestamosPorSocios16" >
                                         <Listeners>
                                             <click Handler="WindowX.reportePrestamosPorSocios(#{MyDesktop});" />
@@ -940,6 +981,9 @@
         <ext:ToolTip runat="server" ID="scReporteMovimientosInventarioDeCafeDeSociosTooltip"      Html="Reporte de Movimientos de Inventario de Café de Socios"      Target="scReporteMovimientosInventarioDeCafeDeSocios-shortcut"      ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scReporteMovimientosInventarioDeCafeDeCooperativaTooltip" Html="Reporte de Movimientos de Inventario de Café de Cooperativa" Target="scReporteMovimientosInventarioDeCafeDeCooperativa-shortcut" ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scReportePrestamosPorSociosTooltip"                       Html="Reporte de Prestamos por Socios"                             Target="scReportePrestamosPorSocios-shortcut"                       ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scReporteDeHojasDeLiquidacionTooltip"                     Html="Reporte de Hojas de Liquidación"                             Target="scReporteDeHojasDeLiquidacion-shortcut"                     ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scReporteDetalleDeNotasDePesoTooltip"                     Html="Reporte Detalle de Notas de Peso"                            Target="scReporteDetalleDeNotasDePeso-shortcut"                     ></ext:ToolTip>
+        <ext:ToolTip runat="server" ID="scReporteDetalleDeAportacionesPorSocioTooltip"            Html="Reporte Detalle de Aportaciones por Socio"                   Target="scReporteDetalleDeAportacionesPorSocio-shortcut"            ></ext:ToolTip>
 
         <%--shortcuts' tooltips--%>
 

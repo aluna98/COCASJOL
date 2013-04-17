@@ -1700,7 +1700,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Entradas  Aportación Ordinaria</Value>
+                              <Value>Ahorro Aportación Ordinaria</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1730,7 +1730,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Entradas Aportación Extraordinaria</Value>
+                              <Value>Ahorro Aportación Extraordinaria</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1760,7 +1760,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Entradas  Capitalización por Retención</Value>
+                              <Value>Ahorro  Capitalización por Retención</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1790,7 +1790,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Entradas Intereses  sobre Aportaciones</Value>
+                              <Value>Ahorro Intereses  sobre Aportaciones</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1820,7 +1820,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Entradas Excedente Período</Value>
+                              <Value>Ahorro Excedente Período</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1850,7 +1850,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Salidas  Aportación Ordinaria</Value>
+                              <Value>Retiro Aportación Ordinaria</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1880,7 +1880,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Salidas Aportación Extraordinaria</Value>
+                              <Value>Retiro Aportación Extraordinaria</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1910,7 +1910,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Salidas  Capitalización por Retención</Value>
+                              <Value>Retiro  Capitalización por Retención</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1940,7 +1940,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Salidas Intereses  sobre Aportaciones</Value>
+                              <Value>Retiro Intereses  sobre Aportaciones</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1970,7 +1970,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Salidas Excedente Período</Value>
+                              <Value>Retiro Excedente Período</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -2302,7 +2302,6 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                       </Style>
                     </Textbox>
                     <ColSpan>24</ColSpan>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -4770,7 +4769,7 @@ iif(Parameters!parGroupByFechaCreacion.Value, False, True)))))
         </TablixRowHierarchy>
         <DataSetName>DetalleAportacionesPorSocioDataSet</DataSetName>
         <Height>1.75in</Height>
-        <Width>24in</Width>
+        <Width>24.00006in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -4832,7 +4831,7 @@ iif(Parameters!parGroupByFechaCreacion.Value, False, True)))))
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
-  <Width>24in</Width>
+  <Width>24.00006in</Width>
   <Page>
     <PageWidth>26in</PageWidth>
     <LeftMargin>1in</LeftMargin>
