@@ -175,6 +175,24 @@ namespace COCASJOL.WEBSITE.Source.Aportaciones {
         protected global::Ext.Net.ToolbarFill ToolbarFill1;
         
         /// <summary>
+        /// Export_PDFBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Export_PDFBtn;
+        
+        /// <summary>
+        /// Export_ExcelBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Export_ExcelBtn;
+        
+        /// <summary>
         /// AuditoriaBtn control.
         /// </summary>
         /// <remarks>

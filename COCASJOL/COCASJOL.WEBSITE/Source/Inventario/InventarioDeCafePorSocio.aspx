@@ -145,6 +145,16 @@
                                             </Listeners>
                                         </ext:Button>
                                         <ext:ToolbarFill ID="ToolbarFill1" runat="server" />
+                                        <ext:Button ID="Export_PDFBtn" runat="server" Text="Exportar PDF" Icon="PageWhiteAcrobat">
+                                            <DirectEvents>
+                                                <Click OnEvent="Export_PDFBtn_Click" IsUpload="true"></Click>
+                                            </DirectEvents>
+                                        </ext:Button>
+                                        <ext:Button ID="Export_ExcelBtn" runat="server" Text="Exportar Excel" Icon="PageExcel">
+                                            <DirectEvents>
+                                                <Click OnEvent="Export_ExcelBtn_Click" IsUpload="true"></Click>
+                                            </DirectEvents>
+                                        </ext:Button>
                                         <ext:Button ID="AuditoriaBtn" runat="server" Text="Auditoria" Icon="Cog">
                                             <Listeners>
                                                 <Click Handler="PageX.showAudit();" />

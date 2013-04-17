@@ -541,6 +541,9 @@
     <EmbeddedResource Include="resources\rdlcs\ReportePrestamosPorSocios.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="resources\rdlcs\ReportResumenAportacionesPorSocio.rdlc" />
+    <EmbeddedResource Include="resources\rdlcs\ReportResumenInventarioDeCafeDeCooperativa.rdlc" />
+    <EmbeddedResource Include="resources\rdlcs\ReportResumenInventarioDeCafeDeSocios.rdlc" />
     <EmbeddedResource Include="resources\rdlcs\Socios.rdlc" />
     <EmbeddedResource Include="resources\rdlcs\solicitudesDeIngresoDeSocio\BeneficiariosPorSocio.rdlc" />
     <EmbeddedResource Include="resources\rdlcs\HojasDeLiquidacion.rdlc">
