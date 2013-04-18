@@ -85,6 +85,7 @@
                         <ext:RecordField Name="SOCIOS_PRIMER_APELLIDO" />
                         <ext:RecordField Name="SOCIOS_SEGUNDO_APELLIDO" />
                         <ext:RecordField Name="PRODUCCION_UBICACION_FINCA" ServerMapping="socios_produccion.PRODUCCION_UBICACION_FINCA" />
+                        <ext:RecordField Name="CLASIFICACIONES_CAFE_ID" ServerMapping="socios_produccion.CLASIFICACIONES_CAFE_ID" />
                     </Fields>
                 </ext:JsonReader>
             </Reader>
@@ -383,7 +384,7 @@
             InitCenter="true"
             ConstrainHeader="true" Layout="FitLayout" >
             <Listeners>
-                <Show Handler="#{AddEstadosNotaSt}.reload(); #{AddFechaNotaTxt}.setValue(new Date()); #{AddFechaNotaTxt}.focus(false,200);" />
+                <Show Handler="#{AddEstadosNotaSt}.reload(); #{AddFechaNotaTxt}.setValue(new Date()); #{AddFechaNotaTxt}.focus(false,200); #{SocioSt}.reload();" />
                 <Hide Handler="#{AddNotaDetalleSt}.removeAll(); #{AgregarNotasFormP}.getForm().reset();" />
             </Listeners>
             <Items>
@@ -445,8 +446,8 @@
                                                                     </Triggers>
                                                                     <Listeners>
                                                                         <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
-                                                                        <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide(); Ext.getCmp('AddNombreTxt').reset(); Ext.getCmp('AddDireccionFincaTxt').reset(); }" />
-                                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddDireccionFincaTxt'));" />
+                                                                        <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide(); Ext.getCmp('AddNombreTxt').reset(); Ext.getCmp('AddDireccionFincaTxt').reset();  }" />
+                                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddDireccionFincaTxt')); PageX.getClasificacionDeCafeDeSocio(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddClasificacionCafeCmb')); #{AddEstadosNotaSt}.reload();" />
                                                                     </Listeners>
                                                                 </ext:ComboBox>
                                                             </Items>
@@ -823,6 +824,7 @@
             InitCenter="true"
             ConstrainHeader="true" Layout="FitLayout" >
             <Listeners>
+                <Show Handler="#{SocioSt}.reload();" />
                 <Hide Handler="#{EditNotaDetalleSt}.removeAll(); #{EditarNotasFormP}.getForm().reset();" />
             </Listeners>
             <Items>
@@ -890,7 +892,7 @@
                                                                     <Listeners>
                                                                         <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
                                                                         <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide(); Ext.getCmp('EditNombreTxt').reset(); Ext.getCmp('EditDireccionFincaTxt').reset(); }" />
-                                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditDireccionFincaTxt'));" />
+                                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditDireccionFincaTxt')); PageX.getClasificacionDeCafeDeSocio(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditClasificacionCafeCmb')); #{EditEstadosNotaSt}.reload();" />
                                                                     </Listeners>
                                                                 </ext:ComboBox>
                                                             </Items>

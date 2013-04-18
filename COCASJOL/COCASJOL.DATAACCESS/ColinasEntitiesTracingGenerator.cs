@@ -46,12 +46,13 @@ using System.Data;
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "PrestamosSocio_fk", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.DATAACCESS.socio), "prestamo_x_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.DATAACCESS.prestamo_x_socio), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "RETIROS_SOCIOS_FK", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.DATAACCESS.socio), "retiro_aportaciones", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.DATAACCESS.retiro_aportaciones), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "SOCIO_ID_FK", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.DATAACCESS.socio), "socio_general", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.DATAACCESS.socio_general), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "SOCIOS_ID_FK2", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.DATAACCESS.socio), "socio_produccion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.DATAACCESS.socio_produccion), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "Solicitudesxsociofk", "socios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.DATAACCESS.socio), "solicitud_prestamo", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.DATAACCESS.solicitud_prestamo), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "AJUSTES_INV_CLASIFICACIONES_FK", "clasificacion_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.DATAACCESS.clasificacion_cafe), "ajustes_inventario_cafe_x_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.DATAACCESS.ajuste_inventario_cafe_x_socio), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "AJUSTES_INV_SOCIOS_FK", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.DATAACCESS.socio), "ajustes_inventario_cafe_x_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.DATAACCESS.ajuste_inventario_cafe_x_socio), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "INVENTARIO_CLASIFICACIONES_CAFE_FK", "clasificacion_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.DATAACCESS.clasificacion_cafe), "inventario_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.DATAACCESS.inventario_cafe), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "VENTAS_INV_CLASIFICACIONES_FK", "clasificacion_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.DATAACCESS.clasificacion_cafe), "ventas_inventario_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.DATAACCESS.venta_inventario_cafe), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "CLASIFICACIONES_CAFE_SOCIOS_PROD", "clasificacion_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.DATAACCESS.clasificacion_cafe), "socios_produccion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.DATAACCESS.socio_produccion), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "SOCIOS_ID_FK2", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.DATAACCESS.socio), "socios_produccion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.DATAACCESS.socio_produccion), true)]
 
 #endregion
 
@@ -471,22 +472,6 @@ namespace COCASJOL.DATAACCESS
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<socio_produccion> socios_produccion
-        {
-            get
-            {
-                if ((_socios_produccion == null))
-                {
-                    _socios_produccion = base.CreateObjectSet<socio_produccion>("socios_produccion");
-                }
-                return _socios_produccion;
-            }
-        }
-        private ObjectSet<socio_produccion> _socios_produccion;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<solicitud_prestamo> solicitudes_prestamos
         {
             get
@@ -723,6 +708,22 @@ namespace COCASJOL.DATAACCESS
             }
         }
         private ObjectSet<reporte_movimientos_de_inventario_de_cafe_de_socios> _reporte_movimientos_de_inventario_de_cafe_de_socios;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<socio_produccion> socios_produccion
+        {
+            get
+            {
+                if ((_socios_produccion == null))
+                {
+                    _socios_produccion = base.CreateObjectSet<socio_produccion>("socios_produccion");
+                }
+                return _socios_produccion;
+            }
+        }
+        private ObjectSet<socio_produccion> _socios_produccion;
 
         #endregion
         #region AddTo Methods
@@ -880,14 +881,6 @@ namespace COCASJOL.DATAACCESS
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the socios_produccion EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTosocios_produccion(socio_produccion socio_produccion)
-        {
-            base.AddObject("socios_produccion", socio_produccion);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the solicitudes_prestamos EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddTosolicitudes_prestamos(solicitud_prestamo solicitud_prestamo)
@@ -1005,6 +998,14 @@ namespace COCASJOL.DATAACCESS
         public void AddToreporte_movimientos_de_inventario_de_cafe_de_socios(reporte_movimientos_de_inventario_de_cafe_de_socios reporte_movimientos_de_inventario_de_cafe_de_socios)
         {
             base.AddObject("reporte_movimientos_de_inventario_de_cafe_de_socios", reporte_movimientos_de_inventario_de_cafe_de_socios);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the socios_produccion EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTosocios_produccion(socio_produccion socio_produccion)
+        {
+            base.AddObject("socios_produccion", socio_produccion);
         }
 
         #endregion
@@ -2987,6 +2988,28 @@ namespace COCASJOL.DATAACCESS
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<venta_inventario_cafe>("COLINASMODEL.VENTAS_INV_CLASIFICACIONES_FK", "ventas_inventario_cafe", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "CLASIFICACIONES_CAFE_SOCIOS_PROD", "socios_produccion")]
+        public EntityCollection<socio_produccion> socios_produccion
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<socio_produccion>("COLINASMODEL.CLASIFICACIONES_CAFE_SOCIOS_PROD", "socios_produccion");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<socio_produccion>("COLINASMODEL.CLASIFICACIONES_CAFE_SOCIOS_PROD", "socios_produccion", value);
                 }
             }
         }
@@ -12756,44 +12779,6 @@ namespace COCASJOL.DATAACCESS
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "SOCIOS_ID_FK2", "socio_produccion")]
-        public socio_produccion socios_produccion
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio_produccion>("COLINASMODEL.SOCIOS_ID_FK2", "socio_produccion").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio_produccion>("COLINASMODEL.SOCIOS_ID_FK2", "socio_produccion").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<socio_produccion> socios_produccionReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio_produccion>("COLINASMODEL.SOCIOS_ID_FK2", "socio_produccion");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<socio_produccion>("COLINASMODEL.SOCIOS_ID_FK2", "socio_produccion", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "Solicitudesxsociofk", "solicitud_prestamo")]
         public EntityCollection<solicitud_prestamo> solicitudes_prestamos
         {
@@ -12828,6 +12813,44 @@ namespace COCASJOL.DATAACCESS
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ajuste_inventario_cafe_x_socio>("COLINASMODEL.AJUSTES_INV_SOCIOS_FK", "ajustes_inventario_cafe_x_socio", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "SOCIOS_ID_FK2", "socios_produccion")]
+        public socio_produccion socios_produccion
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio_produccion>("COLINASMODEL.SOCIOS_ID_FK2", "socios_produccion").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio_produccion>("COLINASMODEL.SOCIOS_ID_FK2", "socios_produccion").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<socio_produccion> socios_produccionReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio_produccion>("COLINASMODEL.SOCIOS_ID_FK2", "socios_produccion");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<socio_produccion>("COLINASMODEL.SOCIOS_ID_FK2", "socios_produccion", value);
                 }
             }
         }
@@ -13207,6 +13230,30 @@ namespace COCASJOL.DATAACCESS
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CLASIFICACIONES_CAFE_ID
+        {
+            get
+            {
+                return _CLASIFICACIONES_CAFE_ID;
+            }
+            set
+            {
+                OnCLASIFICACIONES_CAFE_IDChanging(value);
+                ReportPropertyChanging("CLASIFICACIONES_CAFE_ID");
+                _CLASIFICACIONES_CAFE_ID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CLASIFICACIONES_CAFE_ID");
+                OnCLASIFICACIONES_CAFE_IDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CLASIFICACIONES_CAFE_ID;
+        partial void OnCLASIFICACIONES_CAFE_IDChanging(Nullable<global::System.Int32> value);
+        partial void OnCLASIFICACIONES_CAFE_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public global::System.String PRODUCCION_UBICACION_FINCA
         {
             get
@@ -13452,16 +13499,54 @@ namespace COCASJOL.DATAACCESS
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "SOCIOS_ID_FK2", "socios")]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "CLASIFICACIONES_CAFE_SOCIOS_PROD", "clasificacion_cafe")]
+        public clasificacion_cafe clasificaciones_cafe
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<clasificacion_cafe>("COLINASMODEL.CLASIFICACIONES_CAFE_SOCIOS_PROD", "clasificacion_cafe").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<clasificacion_cafe>("COLINASMODEL.CLASIFICACIONES_CAFE_SOCIOS_PROD", "clasificacion_cafe").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<clasificacion_cafe> clasificaciones_cafeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<clasificacion_cafe>("COLINASMODEL.CLASIFICACIONES_CAFE_SOCIOS_PROD", "clasificacion_cafe");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<clasificacion_cafe>("COLINASMODEL.CLASIFICACIONES_CAFE_SOCIOS_PROD", "clasificacion_cafe", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "SOCIOS_ID_FK2", "socio")]
         public socio socios
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.SOCIOS_ID_FK2", "socios").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.SOCIOS_ID_FK2", "socio").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.SOCIOS_ID_FK2", "socios").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.SOCIOS_ID_FK2", "socio").Value = value;
             }
         }
         /// <summary>
@@ -13473,13 +13558,13 @@ namespace COCASJOL.DATAACCESS
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.SOCIOS_ID_FK2", "socios");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<socio>("COLINASMODEL.SOCIOS_ID_FK2", "socio");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<socio>("COLINASMODEL.SOCIOS_ID_FK2", "socios", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<socio>("COLINASMODEL.SOCIOS_ID_FK2", "socio", value);
                 }
             }
         }

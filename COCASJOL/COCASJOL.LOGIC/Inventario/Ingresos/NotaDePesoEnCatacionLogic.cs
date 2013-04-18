@@ -96,11 +96,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
         /*
          *                  -----Flujo-----
          * 
-         * --------Modificar Inventario de Café--------
-         * verificar si hubo cambio de clasificación
-         *      --------Modificar Inventario de Café Anterior--------
-         *      intentar obtener inventario de café anterior y modificarlo
-         *      
+         * modificar Inventario de Café    
          *      cambiar clasificacion de café a la clasificación actual
          *      verificar si hubo cambio de estado
          *          cambiar estado a nuevo estado
@@ -154,14 +150,10 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                         nota_de_peso note = (nota_de_peso)n;
 
-                        /* --------Modificar Inventario de Café-------- */
-                        // verificar si hubo cambio de clasificación
-                        if (note.CLASIFICACIONES_CAFE_ID != CLASIFICACIONES_CAFE_ID)
-                        {
-                            /* --------Modificar Inventario de Café Actual-------- */
-                            // cambiar clasificacion de café a la clasificación actual
-                            note.CLASIFICACIONES_CAFE_ID = CLASIFICACIONES_CAFE_ID;
-                        }
+                        /* --------Modificar Inventario de Café Actual-------- */
+                        // cambiar clasificacion de café a la clasificación actual
+                        note.CLASIFICACIONES_CAFE_ID = CLASIFICACIONES_CAFE_ID;
+                        note.socios.socios_produccion.CLASIFICACIONES_CAFE_ID = note.CLASIFICACIONES_CAFE_ID; 
 
                         // verificar si hubo cambio de estado
                         if (ESTADOS_NOTA_ID != this.ESTADOS_NOTA_ID)

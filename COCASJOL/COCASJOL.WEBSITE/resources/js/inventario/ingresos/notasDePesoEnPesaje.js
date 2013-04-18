@@ -256,6 +256,13 @@ var PageX = {
         direccionFincaTxt.setValue(record.data.PRODUCCION_UBICACION_FINCA);
     },
 
+    getClasificacionDeCafeDeSocio: function (sociosIdTxt, clasificacionCafeTxt) {
+        var comboBox = sociosIdTxt, value = comboBox.getValue();
+        record = comboBox.findRecord(comboBox.valueField, value), index = comboBox.getStore().indexOf(record);
+
+        clasificacionCafeTxt.setValue(record.data.CLASIFICACIONES_CAFE_ID);
+    },
+
     clearFilter: function () {
         f_NOTAS_ID.reset();
         f_SOCIOS_ID.reset();
