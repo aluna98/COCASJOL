@@ -508,7 +508,7 @@
                                                                     <ColumnModel>
                                                                         <Columns>
                                                                             <ext:Column DataIndex="DETALLES_CANTIDAD_SACOS" Header="Sacos" MenuDisabled="true" Sortable="false" Hideable="false"></ext:Column>
-                                                                            <ext:Column DataIndex="DETALLES_PESO" Header="Peso Bruto" MenuDisabled="true" Sortable="false" Hideable="false"></ext:Column>
+                                                                            <ext:Column DataIndex="DETALLES_PESO" Header="Peso Bruto (lb)" MenuDisabled="true" Sortable="false" Hideable="false"></ext:Column>
                                                                         </Columns>
                                                                     </ColumnModel>
                                                                     <View>
@@ -537,8 +537,8 @@
                                                 </ext:Panel>
                                                 <ext:Panel ID="Panel17" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
                                                     <Items>
-                                                        <ext:NumberField runat="server" ID="EditSumaPesoBrutoTxt"  DataIndex="NOTAS_PESO_SUMA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Suma"      AllowBlank="false" Text="0" ReadOnly="true" MsgTarget="Side"></ext:NumberField>
-                                                        <ext:NumberField runat="server" ID="EditTaraTxt"           DataIndex="NOTAS_PESO_TARA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tara"      AllowBlank="false" MsgTarget="Side" ReadOnly="true">
+                                                        <ext:NumberField runat="server" ID="EditSumaPesoBrutoTxt"  DataIndex="NOTAS_PESO_SUMA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Suma (lb)"      AllowBlank="false" Text="0" ReadOnly="true" MsgTarget="Side"></ext:NumberField>
+                                                        <ext:NumberField runat="server" ID="EditTaraTxt"           DataIndex="NOTAS_PESO_TARA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tara (lb)"      AllowBlank="false" MsgTarget="Side" ReadOnly="true">
                                                             <ToolTips>
                                                                 <ext:ToolTip ID="ToolTip3" runat="server" Html="La cantidad de peso de tara es de solo lectura." Title="Tara" Width="200" TrackMouse="true" />
                                                             </ToolTips>

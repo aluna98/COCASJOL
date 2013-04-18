@@ -126,7 +126,7 @@
                                     <ext:Column DataIndex="SOCIOS_ID"                    Header="Id de Socio" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="SOCIOS_NOMBRE_COMPLETO"       Header="Nombre Completo de Socio" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="CLASIFICACIONES_CAFE_NOMBRE"  Header="Clasificación de Café" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="INVENTARIO_ENTRADAS_CANTIDAD" Header="Cantidad" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="INVENTARIO_ENTRADAS_CANTIDAD" Header="Cantidad Total (lb)" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="INVENTARIO_SALIDAS_SALDO"     Header="Saldo de Salidas" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="SOCIOS_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
                                         <Renderer Handler="return '';" />
@@ -295,7 +295,7 @@
                                                 <ext:ToolTip runat="server" Title="Tipo de Café" Html="El tipo de café es de solo lectura." Width="200" TrackMouse="true" />
                                             </ToolTips>
                                         </ext:TextField>
-                                        <ext:NumberField runat="server" ID="EditInventarioCantidadTxt" DataIndex="INVENTARIO_ENTRADAS_CANTIDAD" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cantidad" AllowBlank="false" ReadOnly="true" MsgTarget="Side">
+                                        <ext:NumberField runat="server" ID="EditInventarioCantidadTxt" DataIndex="INVENTARIO_ENTRADAS_CANTIDAD" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Cantidad Total (lb)" AllowBlank="false" ReadOnly="true" MsgTarget="Side">
                                             <ToolTips>
                                                 <ext:ToolTip runat="server" Title="Cantidad" Html="La cantidad de inventario es de solo lectura." Width="200" TrackMouse="true" />
                                             </ToolTips>

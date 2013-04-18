@@ -553,7 +553,7 @@
                                                                     <ColumnModel>
                                                                         <Columns>
                                                                             <ext:Column DataIndex="DETALLES_CANTIDAD_SACOS" Header="Sacos" MenuDisabled="true" Sortable="false" Hideable="false"></ext:Column>
-                                                                            <ext:Column DataIndex="DETALLES_PESO" Header="Peso Bruto" MenuDisabled="true" Sortable="false" Hideable="false"></ext:Column>
+                                                                            <ext:Column DataIndex="DETALLES_PESO" Header="Peso Bruto (lb)" MenuDisabled="true" Sortable="false" Hideable="false"></ext:Column>
                                                                         </Columns>
                                                                     </ColumnModel>
                                                                     <View>
@@ -606,8 +606,8 @@
                                                 </ext:Panel>
                                                 <ext:Panel ID="Panel9" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
                                                     <Items>
-                                                        <ext:NumberField runat="server" ID="AddSumaPesoBrutoTxt"  DataIndex="NOTAS_PESO_SUMA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Suma" AllowBlank="false" MsgTarget="Side" Text="0" ReadOnly="true" ></ext:NumberField>
-                                                        <ext:NumberField runat="server" ID="AddTaraTxt"           DataIndex="NOTAS_PESO_TARA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tara" AllowBlank="false" MsgTarget="Side" ></ext:NumberField>
+                                                        <ext:NumberField runat="server" ID="AddSumaPesoBrutoTxt"  DataIndex="NOTAS_PESO_SUMA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Suma (lb)" AllowBlank="false" MsgTarget="Side" Text="0" ReadOnly="true" ></ext:NumberField>
+                                                        <ext:NumberField runat="server" ID="AddTaraTxt"           DataIndex="NOTAS_PESO_TARA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tara (lb)" AllowBlank="false" MsgTarget="Side" ></ext:NumberField>
                                                     </Items>
                                                 </ext:Panel>
                                             </Items>
@@ -666,7 +666,7 @@
                                 <KeyUp Handler="AddDetailX.keyUpEventAddCalculateDefect(this, e);"/>
                             </Listeners>
                         </ext:NumberField>
-                        <ext:NumberField ID="AddCalculateBadSampleTxt" runat="server" MsgTarget="Side" AllowBlank="false" FieldLabel="peso de Gramos Malos"  Width="260" EnableKeyEvents="true" >
+                        <ext:NumberField ID="AddCalculateBadSampleTxt" runat="server" MsgTarget="Side" AllowBlank="false" FieldLabel="Peso de Gramos Malos"  Width="260" EnableKeyEvents="true" >
                             <Listeners>
                                 <KeyUp Handler="AddDetailX.keyUpEventAddCalculateDefect(this, e);"/>
                             </Listeners>
@@ -716,7 +716,7 @@
                                 <KeyUp Handler="AddDetailX.keyUpEventAddDetail(this, e);"/>
                             </Listeners>
                         </ext:NumberField>
-                        <ext:NumberField ID="AddDetailAddWeigthTxt" runat="server" DataIndex="DETALLES_PESO" MsgTarget="Side" AllowBlank="false" FieldLabel="Peso Bruto"  Width="260" EnableKeyEvents="true" >
+                        <ext:NumberField ID="AddDetailAddWeigthTxt" runat="server" DataIndex="DETALLES_PESO" MsgTarget="Side" AllowBlank="false" FieldLabel="Peso Bruto (lb)"  Width="260" EnableKeyEvents="true" >
                             <Listeners>
                                 <KeyUp Handler="AddDetailX.keyUpEventAddDetail(this, e);"/>
                             </Listeners>
@@ -767,7 +767,7 @@
                                 <KeyUp Handler="AddDetailX.keyUpEventEditDetail(this, e);" />
                             </Listeners>
                         </ext:NumberField>
-                        <ext:NumberField ID="AddDetailEditWeigthTxt" runat="server" DataIndex="DETALLES_PESO" MsgTarget="Side" AllowBlank="false" FieldLabel="Peso Bruto"  Width="260" EnableKeyEvents="true" >
+                        <ext:NumberField ID="AddDetailEditWeigthTxt" runat="server" DataIndex="DETALLES_PESO" MsgTarget="Side" AllowBlank="false" FieldLabel="Peso Bruto (lb)"  Width="260" EnableKeyEvents="true" >
                             <Listeners>
                                 <KeyUp Handler="AddDetailX.keyUpEventEditDetail(this, e);" />
                             </Listeners>
@@ -999,7 +999,7 @@
                                                                     <ColumnModel>
                                                                         <Columns>
                                                                             <ext:Column DataIndex="DETALLES_CANTIDAD_SACOS" Header="Sacos" MenuDisabled="true" Sortable="false" Hideable="false"></ext:Column>
-                                                                            <ext:Column DataIndex="DETALLES_PESO" Header="Peso Bruto" MenuDisabled="true" Sortable="false" Hideable="false"></ext:Column>
+                                                                            <ext:Column DataIndex="DETALLES_PESO" Header="Peso Bruto (lb)" MenuDisabled="true" Sortable="false" Hideable="false"></ext:Column>
                                                                         </Columns>
                                                                     </ColumnModel>
                                                                     <View>
@@ -1052,8 +1052,8 @@
                                                 </ext:Panel>
                                                 <ext:Panel ID="Panel17" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
                                                     <Items>
-                                                        <ext:NumberField runat="server" ID="EditSumaPesoBrutoTxt"  DataIndex="NOTAS_PESO_SUMA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Suma"      AllowBlank="false" Text="0" ReadOnly="true" MsgTarget="Side"></ext:NumberField>
-                                                        <ext:NumberField runat="server" ID="EditTaraTxt"           DataIndex="NOTAS_PESO_TARA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tara"      AllowBlank="false" MsgTarget="Side" ></ext:NumberField>
+                                                        <ext:NumberField runat="server" ID="EditSumaPesoBrutoTxt"  DataIndex="NOTAS_PESO_SUMA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Suma (lb)"      AllowBlank="false" Text="0" ReadOnly="true" MsgTarget="Side"></ext:NumberField>
+                                                        <ext:NumberField runat="server" ID="EditTaraTxt"           DataIndex="NOTAS_PESO_TARA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tara (lb)"      AllowBlank="false" MsgTarget="Side" ></ext:NumberField>
                                                     </Items>
                                                 </ext:Panel>
                                             </Items>
@@ -1122,7 +1122,7 @@
                                 <KeyUp Handler="EditDetailX.keyUpEventEditCalculateDefect(this, e);"/>
                             </Listeners>
                         </ext:NumberField>
-                        <ext:NumberField ID="EditCalculateBadSampleTxt" runat="server" MsgTarget="Side" AllowBlank="false" FieldLabel="peso de Gramos Malos"  Width="260" EnableKeyEvents="true" >
+                        <ext:NumberField ID="EditCalculateBadSampleTxt" runat="server" MsgTarget="Side" AllowBlank="false" FieldLabel="Peso de Gramos Malos"  Width="260" EnableKeyEvents="true" >
                             <Listeners>
                                 <KeyUp Handler="EditDetailX.keyUpEventEditCalculateDefect(this, e);"/>
                             </Listeners>
@@ -1172,7 +1172,7 @@
                                 <KeyUp Handler="EditDetailX.keyUpEventAddDetail(this, e);"/>
                             </Listeners>
                         </ext:NumberField>
-                        <ext:NumberField ID="EditDetailAddWeigthTxt" runat="server" DataIndex="DETALLES_PESO" MsgTarget="Side" AllowBlank="false" FieldLabel="Peso Bruto"  Width="260" EnableKeyEvents="true" >
+                        <ext:NumberField ID="EditDetailAddWeigthTxt" runat="server" DataIndex="DETALLES_PESO" MsgTarget="Side" AllowBlank="false" FieldLabel="Peso Bruto (lb)"  Width="260" EnableKeyEvents="true" >
                             <Listeners>
                                 <KeyUp Handler="EditDetailX.keyUpEventAddDetail(this, e);"/>
                             </Listeners>
@@ -1223,7 +1223,7 @@
                                 <KeyUp Handler="EditDetailX.keyUpEventEditDetail(this, e);" />
                             </Listeners>
                         </ext:NumberField>
-                        <ext:NumberField ID="EditDetailEditWeigthTxt" runat="server" DataIndex="DETALLES_PESO" MsgTarget="Side" AllowBlank="false" FieldLabel="Peso Bruto"  Width="260" EnableKeyEvents="true" >
+                        <ext:NumberField ID="EditDetailEditWeigthTxt" runat="server" DataIndex="DETALLES_PESO" MsgTarget="Side" AllowBlank="false" FieldLabel="Peso Bruto (lb)"  Width="260" EnableKeyEvents="true" >
                             <Listeners>
                                 <KeyUp Handler="EditDetailX.keyUpEventEditDetail(this, e);" />
                             </Listeners>

@@ -447,6 +447,12 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        /// <summary>
+        /// Actualiza la clave de usuario.
+        /// </summary>
+        /// <param name="USR_USERNAME"></param>
+        /// <param name="USR_PASSWORD"></param>
+        /// <param name="MODIFICADO_POR"></param>
         public void ActualizarClave(string USR_USERNAME, string USR_PASSWORD, string MODIFICADO_POR)
         {
             try

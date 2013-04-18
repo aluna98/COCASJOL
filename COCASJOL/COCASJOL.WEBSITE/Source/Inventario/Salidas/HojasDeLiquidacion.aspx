@@ -483,7 +483,7 @@
                                                                         <Select Handler="this.triggers[0].show(); PageX.getInventarioFueraDeCatacion();" />
                                                                     </Listeners>
                                                                 </ext:ComboBox>
-                                                                <ext:NumberField runat="server" ID="AddInventarioCafeTxt" LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="false" MsgTarget="Side" FieldLabel="Inventario de Café Disponible (Lbs)" ReadOnly="true" Text="0" AllowNegative="false" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="AddInventarioCafeTxt" LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="false" MsgTarget="Side" FieldLabel="Inventario de Café Disponible (lb)" ReadOnly="true" Text="0" AllowNegative="false" ></ext:NumberField>
                                                             </Items>
                                                         </ext:Panel>
                                                     </Items>
@@ -510,7 +510,7 @@
                                                     <Items>
                                                         <ext:FieldSet ID="AddCalculosFS" runat="server" Title="Calculo de Valor del Producto" Padding="5" LabelWidth="200" >
                                                             <Items>
-                                                                <ext:NumberField runat="server" ID="AddTotalLibrasTxt"   DataIndex="LIQUIDACIONES_TOTAL_LIBRAS"  LabelAlign="Right" Text="0" AnchorHorizontal="100%" AllowBlank="false" MsgTarget="Side" FieldLabel="Total Lbs. Netas" IsRemoteValidation="true" >
+                                                                <ext:NumberField runat="server" ID="AddTotalLibrasTxt"   DataIndex="LIQUIDACIONES_TOTAL_LIBRAS"  LabelAlign="Right" Text="0" AnchorHorizontal="100%" AllowBlank="false" MsgTarget="Side" FieldLabel="Total Libras Netas" IsRemoteValidation="true" >
                                                                     <RemoteValidation OnValidation="AddTotalLibrasTxt_Blur" ValidationEvent="blur" />
                                                                     <Listeners>
                                                                         <Change Handler="PageX.AddCalculosTotalProducto();" />
@@ -714,7 +714,6 @@
                                                                         <ext:ToolTip ID="ToolTip1" runat="server" Html="La clasificación de café es de solo lectura." Title="Clasificación de Café" Width="200" TrackMouse="true" />
                                                                     </ToolTips>
                                                                 </ext:TextField>
-                                                                <%--<ext:NumberField runat="server" ID="EditInventarioCafeTxt" LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="false" MsgTarget="Side" FieldLabel="Inventario de Café Disponible (Lbs)" ReadOnly="true" Text="0" AllowNegative="false" ></ext:NumberField>--%>
                                                             </Items>
                                                         </ext:Panel>
                                                     </Items>
@@ -741,7 +740,7 @@
                                                     <Items>
                                                         <ext:FieldSet ID="EditCalculosFS" runat="server" Title="Calculo de Valor del Producto" Padding="5" LabelWidth="200" >
                                                             <Items>
-                                                                <ext:NumberField runat="server" ID="EditTotalLibrasTxt"   DataIndex="LIQUIDACIONES_TOTAL_LIBRAS" LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="false" MsgTarget="Side" FieldLabel="Total Lbs. Netas" ></ext:NumberField>
+                                                                <ext:NumberField runat="server" ID="EditTotalLibrasTxt"   DataIndex="LIQUIDACIONES_TOTAL_LIBRAS" LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="false" MsgTarget="Side" FieldLabel="Total Libras Netas" ></ext:NumberField>
                                                                 <ext:NumberField runat="server" ID="EditPrecioLibraTxt"   DataIndex="LIQUIDACIONES_PRECIO_LIBRAS" LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="false" MsgTarget="Side" FieldLabel="Precio por Libra" ></ext:NumberField>
                                                                 <ext:NumberField runat="server" ID="EditTotalProductoTxt" DataIndex="LIQUIDACIONES_VALOR_TOTAL" LabelAlign="Right" AnchorHorizontal="100%" AllowBlank="false" MsgTarget="Side" FieldLabel="Valor Total del Producto" ReadOnly="true" ></ext:NumberField>
                                                             </Items>

@@ -347,7 +347,7 @@
 
                                         <ext:FieldSet runat="server" ID="AddVentasFS" Title="Inventario de Café" Padding="5" LabelWidth="200" >
                                             <Items>
-                                                <ext:NumberField runat="server" ID="AddInventarioDeCafeCantidadTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Disponible (Lbs)" AllowBlank="false" MsgTarget="Side" ReadOnly="true" >
+                                                <ext:NumberField runat="server" ID="AddInventarioDeCafeCantidadTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Disponible (lb)" AllowBlank="false" MsgTarget="Side" ReadOnly="true" >
                                                     <ToolTips>
                                                         <ext:ToolTip ID="ToolTip13" runat="server" Title="Cantidad Disponible" Html="La cantidad disponible de inventario de café es de solo lectura." Width="200" TrackMouse="true" />
                                                     </ToolTips>
@@ -357,7 +357,7 @@
 
                                         <ext:FieldSet runat="server" ID="AddRetiroFS" Title="Venta" Padding="5" >
                                             <Items>
-                                                <ext:NumberField runat="server" ID="AddCantidadLibrasTxt" FieldLabel="Total Lbs. Netas" Text="0" DataIndex="VENTAS_INV_CAFE_CANTIDAD_LIBRAS" AnchorHorizontal="90%" AllowBlank="false" MsgTarget="Side" >
+                                                <ext:NumberField runat="server" ID="AddCantidadLibrasTxt" FieldLabel="Total Libras Netas" Text="0" DataIndex="VENTAS_INV_CAFE_CANTIDAD_LIBRAS" AnchorHorizontal="90%" AllowBlank="false" MsgTarget="Side" >
                                                     <Listeners>
                                                         <Change Handler="PageX.validarCantidadVenta(#{AddCantidadLibrasTxt} ,#{AddPrecioLibrasTxt}, #{AddInventarioDeCafeCantidadTxt}, #{AddTotalSaldoTxt}); PageX.loadTotalRetiro();" />
                                                     </Listeners>
@@ -434,9 +434,9 @@
 
                                         <ext:FieldSet runat="server" ID="EditRetiroFS" Title="Venta" Padding="5" >
                                             <Items>
-                                                <ext:NumberField runat="server" ID="EditCantidadLibrasTxt" FieldLabel="Total Lbs. Netas" Text="0" DataIndex="VENTAS_INV_CAFE_CANTIDAD_LIBRAS" AnchorHorizontal="90%" AllowBlank="false" MsgTarget="Side" ReadOnly="true" >
+                                                <ext:NumberField runat="server" ID="EditCantidadLibrasTxt" FieldLabel="Total Libras Netas" Text="0" DataIndex="VENTAS_INV_CAFE_CANTIDAD_LIBRAS" AnchorHorizontal="90%" AllowBlank="false" MsgTarget="Side" ReadOnly="true" >
                                                     <ToolTips>
-                                                        <ext:ToolTip ID="ToolTip5" runat="server" Title="Total Lbs. Netas" Html="Solo lectura." Width="200" TrackMouse="true" />
+                                                        <ext:ToolTip ID="ToolTip5" runat="server" Title="Total Libras Netas" Html="Solo lectura." Width="200" TrackMouse="true" />
                                                     </ToolTips>
                                                 </ext:NumberField>
                                                 <ext:NumberField runat="server" ID="EditPrecioLibrasTxt" FieldLabel="Precio por Libra" Text="0" DataIndex="VENTAS_INV_CAFE_PRECIO_LIBRAS" AnchorHorizontal="90%" AllowBlank="false" MsgTarget="Side" ReadOnly="true" >

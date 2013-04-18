@@ -12,21 +12,46 @@ using log4net;
 
 namespace COCASJOL.LOGIC.Utiles
 {
+    /// <summary>
+    /// Estados de Notificación
+    /// </summary>
     public enum EstadosNotificacion
     {
+        /// <summary>
+        /// Estado Creada. Se muestran durante la sesión.
+        /// </summary>
         Creado = 0,
+        /// <summary>
+        /// Estado Notificando. Se muestran al inicio de sesión.
+        /// </summary>
         Notificado = 1,
+        /// <summary>
+        /// Estado Leído. Las notificaciones ya no se muestran en el escritorio.
+        /// </summary>
         Leido = 2
     }
 
+    /// <summary>
+    /// Clase con logica de Notificación
+    /// </summary>
     public class NotificacionLogic
     {
+        /// <summary>
+        /// Bitacora de Aplicacion. Log4net
+        /// </summary>
         private static ILog log = LogManager.GetLogger(typeof(NotificacionLogic).Name);
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public NotificacionLogic() { }
 
         #region Select
 
+        /// <summary>
+        /// Obtiene todas las notificaciones.
+        /// </summary>
+        /// <returns>Lista de notificaciones.</returns>
         public List<notificacion> GetNotificaciones()
         {
             try
@@ -43,6 +68,11 @@ namespace COCASJOL.LOGIC.Utiles
             }
         }
 
+        /// <summary>
+        /// Obtiene todas las notificaciones de usuario.
+        /// </summary>
+        /// <param name="USR_USERNAME"></param>
+        /// <returns>Lista de notificaciones.</returns>
         public List<notificacion> GetNotificacionesDeUsuario(string USR_USERNAME)
         {
             try
@@ -69,6 +99,12 @@ namespace COCASJOL.LOGIC.Utiles
 
         #region Insert
 
+        /// <summary>
+        /// Inserta la notificación.
+        /// </summary>
+        /// <param name="USR_USERNAME"></param>
+        /// <param name="TITLE"></param>
+        /// <param name="MENSAJE"></param>
         public void InsertarNotificacion(string USR_USERNAME, string TITLE, string MENSAJE)
         {
             try
@@ -99,6 +135,11 @@ namespace COCASJOL.LOGIC.Utiles
 
         #region Update
 
+        /// <summary>
+        /// Actualiza la notificación.
+        /// </summary>
+        /// <param name="NOTIFICACION_ID"></param>
+        /// <param name="NOTIFICACION_ESTADO"></param>
         public void ActualizarNotificacion(int NOTIFICACION_ID, EstadosNotificacion NOTIFICACION_ESTADO)
         {
             try
@@ -131,6 +172,10 @@ namespace COCASJOL.LOGIC.Utiles
 
         #region Delete
 
+        /// <summary>
+        /// Elimina todas las notificaciones del usuario.
+        /// </summary>
+        /// <param name="USR_USERNAME"></param>
         public void EliminarNotificacionesDeUsuario(string USR_USERNAME)
         {
             try
@@ -160,6 +205,9 @@ namespace COCASJOL.LOGIC.Utiles
             }
         }
 
+        /// <summary>
+        /// Elimina todas las notifiaciones leidas.
+        /// </summary>
         public void EliminarNotificacionesLeidas()
         {
             try
@@ -187,6 +235,14 @@ namespace COCASJOL.LOGIC.Utiles
 
         #endregion
 
+        /// <summary>
+        /// Notifica a todos los usuarios con privilegio específico.
+        /// </summary>
+        /// <param name="PRIVS_LLAVE"></param>
+        /// <param name="estado"></param>
+        /// <param name="titulo"></param>
+        /// <param name="mensaje"></param>
+        /// <param name="mensajeParams"></param>
         public void NotifyUsers(string PRIVS_LLAVE, EstadosNotificacion estado, string titulo, string mensaje, params object[] mensajeParams)
         {
             try

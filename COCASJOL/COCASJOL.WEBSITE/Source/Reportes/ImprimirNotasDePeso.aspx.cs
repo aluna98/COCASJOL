@@ -38,12 +38,6 @@ namespace COCASJOL.WEBSITE.Source.Reportes
             }
         }
 
-        protected void ObjectDataSource2_OnSelecting(object sender, ObjectDataSourceSelectingEventArgs e)
-        {
-            if (!this.IsPostBack)
-                e.Cancel = true;
-        }
-
         protected void ReportViewer1_SubreportProcessing(object sender, SubreportProcessingEventArgs e)
         {
             try

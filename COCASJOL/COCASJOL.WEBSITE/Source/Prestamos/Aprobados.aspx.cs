@@ -21,7 +21,7 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
 {
     public partial class Aprobados : COCASJOLBASE
     {
-		private static ILog log = LogManager.GetLogger(typeof(SolicitudesDePrestamos).Name);
+        private static ILog log = LogManager.GetLogger(typeof(Aprobados).Name);
 
         string Socioid;
         int Solicitudid;

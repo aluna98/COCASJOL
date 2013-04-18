@@ -516,7 +516,7 @@
                                                                         <ext:ToolTip ID="ToolTip1" runat="server" Html="El porcentaje de Transporte es de solo lectura." Title="Porcentaje de Transporte" Width="200" TrackMouse="true" />
                                                                     </ToolTips>
                                                                 </ext:TextField>
-                                                                <ext:NumberField runat="server" ID="EditDescuentoTransporteTxt" DataIndex="NOTAS_PESO_TRANSPORTE_COOPERATIVA" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Descuento por Transporte" AllowBlank="false" MsgTarget="Side" ReadOnly="true">
+                                                                <ext:NumberField runat="server" ID="EditDescuentoTransporteTxt" DataIndex="NOTAS_PESO_TRANSPORTE_COOPERATIVA" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Descuento por Transporte (lb)" AllowBlank="false" MsgTarget="Side" ReadOnly="true">
                                                                     <ToolTips>
                                                                         <ext:ToolTip ID="ToolTip10" runat="server" Html="La cantidad de descuento por transporte es de solo lectura." Title="Descuento por Transporte" Width="200" TrackMouse="true" />
                                                                     </ToolTips>
@@ -526,7 +526,7 @@
                                                                         <ext:ToolTip ID="ToolTip6" runat="server" Html="El porcentaje de humedad es de solo lectura." Title="Porcentaje de Humedad" Width="200" TrackMouse="true" />
                                                                     </ToolTips>
                                                                 </ext:TextField>
-                                                                <ext:NumberField runat="server" ID="EditDescuentoHumedadTxt" DataIndex="NOTAS_PESO_HUMEDAD" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Descuento por Humedad" AllowBlank="false" MsgTarget="Side" ReadOnly="true">
+                                                                <ext:NumberField runat="server" ID="EditDescuentoHumedadTxt" DataIndex="NOTAS_PESO_HUMEDAD" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Descuento por Humedad (lb)" AllowBlank="false" MsgTarget="Side" ReadOnly="true">
                                                                     <ToolTips>
                                                                         <ext:ToolTip runat="server" Html="La cantidad de descuento por humedad es de solo lectura." Title="Descuento por Humedad" Width="200" TrackMouse="true" />
                                                                     </ToolTips>
@@ -536,7 +536,7 @@
                                                                         <ext:ToolTip ID="ToolTip7" runat="server" Html="El porcentaje de defecto es de solo lectura." Title="Porcentaje de Defecto" Width="200" TrackMouse="true" />
                                                                     </ToolTips>
                                                                 </ext:TextField>
-                                                                <ext:NumberField runat="server" ID="EditDescuentoDefectoTxt" DataIndex="NOTAS_PESO_DEFECTO" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Descuento por Defecto" AllowBlank="false" MsgTarget="Side" ReadOnly="true">
+                                                                <ext:NumberField runat="server" ID="EditDescuentoDefectoTxt" DataIndex="NOTAS_PESO_DEFECTO" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Descuento por Defecto (lb)" AllowBlank="false" MsgTarget="Side" ReadOnly="true">
                                                                     <ToolTips>
                                                                         <ext:ToolTip runat="server" Html="La cantidad de descuento por defecto es de solo lectura." Title="Descuento por Defecto" Width="200" TrackMouse="true" />
                                                                     </ToolTips>
@@ -555,7 +555,7 @@
                                                                     <ColumnModel>
                                                                         <Columns>
                                                                             <ext:Column DataIndex="DETALLES_CANTIDAD_SACOS" Header="Sacos" MenuDisabled="true" Sortable="false" Hideable="false"></ext:Column>
-                                                                            <ext:Column DataIndex="DETALLES_PESO" Header="Peso Bruto" MenuDisabled="true" Sortable="false" Hideable="false"></ext:Column>
+                                                                            <ext:Column DataIndex="DETALLES_PESO" Header="Peso Bruto (lb)" MenuDisabled="true" Sortable="false" Hideable="false"></ext:Column>
                                                                         </Columns>
                                                                     </ColumnModel>
                                                                     <View>
@@ -594,19 +594,19 @@
                                                 </ext:Panel>
                                                 <ext:Panel ID="Panel17" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" >
                                                     <Items>
-                                                        <ext:NumberField runat="server" ID="EditSumaPesoBrutoTxt"  DataIndex="NOTAS_PESO_SUMA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Suma"      AllowBlank="false" Text="0" ReadOnly="true" MsgTarget="Side"></ext:NumberField>
-                                                        <ext:NumberField runat="server" ID="EditTaraTxt"           DataIndex="NOTAS_PESO_TARA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tara"      AllowBlank="false" MsgTarget="Side" ReadOnly="true">
+                                                        <ext:NumberField runat="server" ID="EditSumaPesoBrutoTxt"  DataIndex="NOTAS_PESO_SUMA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Suma (lb)"      AllowBlank="false" Text="0" ReadOnly="true" MsgTarget="Side"></ext:NumberField>
+                                                        <ext:NumberField runat="server" ID="EditTaraTxt"           DataIndex="NOTAS_PESO_TARA"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Tara (lb)"      AllowBlank="false" MsgTarget="Side" ReadOnly="true">
                                                             <ToolTips>
                                                                 <ext:ToolTip ID="ToolTip4" runat="server" Html="La cantidad de peso de tara es de solo lectura."
                                                                     Title="Tara" Width="200" TrackMouse="true" />
                                                             </ToolTips>
                                                         </ext:NumberField>
-                                                        <ext:NumberField runat="server" ID="EditDescuentoTxt"      DataIndex="NOTAS_PESO_DESCUENTO"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descuento" AllowBlank="false" ReadOnly="true" >
+                                                        <ext:NumberField runat="server" ID="EditDescuentoTxt"      DataIndex="NOTAS_PESO_DESCUENTO"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descuento (lb)" AllowBlank="false" ReadOnly="true" >
                                                             <ToolTips>
                                                                 <ext:ToolTip ID="ToolTip8" runat="server" Html="La cantidad de descuento de peso es de solo lectura." Title="Descuento" Width="200" TrackMouse="true" />
                                                             </ToolTips>
                                                         </ext:NumberField>
-                                                        <ext:NumberField runat="server" ID="EditTotalRecibidoTxt"  DataIndex="NOTAS_PESO_TOTAL_RECIBIDO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Total"     AllowBlank="false" ReadOnly="true" >
+                                                        <ext:NumberField runat="server" ID="EditTotalRecibidoTxt"  DataIndex="NOTAS_PESO_TOTAL_RECIBIDO" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Total (lb)"     AllowBlank="false" ReadOnly="true" >
                                                             <ToolTips>
                                                                 <ext:ToolTip ID="ToolTip9" runat="server" Html="La cantidad total de peso recibido es de solo lectura." Title="Total Recibido" Width="200" TrackMouse="true" />
                                                             </ToolTips>
