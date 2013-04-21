@@ -183,7 +183,7 @@ namespace COCASJOL.LOGIC.Utiles
             }
             catch (Exception ex)
             {
-                log.Fatal("Error fatal al importar socio.", ex);
+                log.Error("Error al importar socio.", ex);
                 return String.Format("Error en la linea {0}", x);
             }
         }

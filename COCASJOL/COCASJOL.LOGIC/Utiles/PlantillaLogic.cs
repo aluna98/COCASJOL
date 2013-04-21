@@ -47,10 +47,16 @@ namespace COCASJOL.LOGIC.Utiles
                     Formatkeys = new List<object> 
                     {
                         new {Text = "{NOMBRE}", Value = count++},
-                        new {Text = "{USUARIO}", Value = count++}
+                        new {Text = "{USUARIO}", Value = count++},
+                        new { Text = "{CONTRASEÑA}", Value = count++ }
                     };
-
-                    Formatkeys.Add(new { Text = "{CONTRASEÑA}", Value = count++ });
+                }
+                else if (PLANTILLAS_LLAVE == "PASSWORDNUEVO")
+                {
+                    Formatkeys = new List<object>
+                    {
+                        new { Text = "{CONTRASEÑA}", Value = count++ }
+                    };
                 }
                 else if (PLANTILLAS_LLAVE == "ROLNUEVO")
                 {

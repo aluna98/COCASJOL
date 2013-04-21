@@ -5,22 +5,22 @@
   </socios>
   <ventanas>
     <MaximizarAlCargar>True</MaximizarAlCargar>
-    <CargarDatosAlInicio>False</CargarDatosAlInicio>
+    <CargarDatosAlInicio>True</CargarDatosAlInicio>
   </ventanas>
   <consolidadoInventario>
     <InicioPeriodo>9/1/2013</InicioPeriodo>
-    <FinalPeriodo>9/30/2013</FinalPeriodo>
+    <FinalPeriodo>10/1/2013</FinalPeriodo>
   </consolidadoInventario>
   <correo>
-    <correoLocal>lol@lolix.edu</correoLocal>
+    <correoLocal>lol@trolol.com</correoLocal>
     <usarPassword>True</usarPassword>
-    <password>0IPLoYhiUUw=</password>
+    <password>E23Y/Mizq476OgjLp04DyA==</password>
     <smtp>smtp.gmail.com</smtp>
     <puerto>587</puerto>
     <usarSSL>True</usarSSL>
   </correo>
   <auditoria>
     <username>DEVELOPER</username>
-    <date>4/12/2013</date>
+    <date>04/21/2013</date>
   </auditoria>
 </configuracion>

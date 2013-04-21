@@ -38,7 +38,7 @@
 
         <ext:Menu runat="server" ID="cmenu">
             <Items>
-            <ext:MenuItem Text="Configuración" Icon="Wrench">
+            <ext:MenuItem Text="Opciones" Icon="Wrench">
                 <Listeners>
                     <Click Handler="WindowX.settings();" />
                 </Listeners>
@@ -49,12 +49,12 @@
                     <Click Handler="DesktopX.cascadeWindows(#{MyDesktop});" />
                 </Listeners>
             </ext:MenuItem>
-            <ext:MenuItem Text="Ventanas en grupo Horizontal" Icon="ApplicationTileHorizontal">
+            <ext:MenuItem Text="Ventanas en Grupo Horizontal" Icon="ApplicationTileHorizontal">
                 <Listeners>
                     <Click Handler="DesktopX.tileFitWindows(#{MyDesktop}, true);" />
                 </Listeners>
             </ext:MenuItem>
-            <ext:MenuItem Text="Ventanas en grupo Vertical" Icon="ApplicationTileVertical">
+            <ext:MenuItem Text="Ventanas en Grupo Vertical" Icon="ApplicationTileVertical">
                 <Listeners>
                     <Click Handler="DesktopX.tileFitWindows(#{MyDesktop}, false);" />
                 </Listeners>
@@ -123,12 +123,12 @@
                             <Items>
                                 <ext:Panel ID="Panel5" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" Padding="1">
                                     <Items>
-                                        <ext:DateField runat="server" ID="ConsolidadoFechaInicialTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Desde" AllowBlank="false" MsgTarget="Side" ReadOnly="true" ></ext:DateField>
+                                        <ext:DateField runat="server" ID="ConsolidadoFechaInicialTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Desde" AllowBlank="true" MsgTarget="Side" ReadOnly="true" ></ext:DateField>
                                     </Items>
                                 </ext:Panel>
                                 <ext:Panel ID="Panel6" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" Padding="1">
                                     <Items>
-                                        <ext:DateField runat="server" ID="ConsolidadoFechaFinalTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Hasta" AllowBlank="false" MsgTarget="Side" ReadOnly="true" ></ext:DateField>
+                                        <ext:DateField runat="server" ID="ConsolidadoFechaFinalTxt" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Hasta" AllowBlank="true" MsgTarget="Side" ReadOnly="true" ></ext:DateField>
                                     </Items>
                                 </ext:Panel>
                             </Items>
@@ -384,7 +384,7 @@
                     </Launcher>
                 </ext:DesktopModule>
                 <ext:DesktopModule ModuleID="SettingsModule" WindowID="SettingsWin" >
-                    <Launcher ID="SettingsLauncher" runat="server" Text="Configuración" Icon="Wrench" />
+                    <Launcher ID="SettingsLauncher" runat="server" Text="Opeciones" Icon="Wrench" />
                 </ext:DesktopModule>
                 <ext:DesktopModule ModuleID="NotificacioModule" WindowID="NotificationsWin" >
                     <Launcher ID="NotificacioLauncher" runat="server" Text="Notificaciones" Icon="Mail" />
@@ -441,7 +441,7 @@
 
             <StartMenu Height="550" Width="500" ToolsWidth="127" Title="Start Menu" Icon="UserSuit">
                 <ToolItems>
-                    <ext:MenuItem Text="Configuración" Icon="Wrench">
+                    <ext:MenuItem Text="Opciones" Icon="Wrench">
                         <Listeners>
                             <Click Handler="WindowX.settings();" />
                         </Listeners>
@@ -712,7 +712,7 @@
         <ext:DesktopWindow
             ID="SettingsWin"
             runat="server"
-            Title="Configuración"
+            Title="Opciones"
             Width="300"
             Maximizable="false"
             BodyBorder="false"

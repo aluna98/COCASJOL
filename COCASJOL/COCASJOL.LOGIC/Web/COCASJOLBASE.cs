@@ -353,6 +353,80 @@ namespace COCASJOL.LOGIC.Web
             }
         }
 
+        public bool ValidarTodasVariables(Dictionary<string, string> Variables)
+        {
+            try
+            {
+                XmlNodeList pagesNode = docEntorno.SelectNodes("paginas/pagina");
+
+                foreach (XmlNode pageNode in pagesNode)
+                {
+                    XmlNodeList variablesNode = pageNode.SelectNodes("variables/variable");
+
+                    foreach (XmlNode variableNode in variablesNode)
+                    {
+                        XmlNode keyNode = variableNode.SelectSingleNode("key");
+                        XmlNode typeNode = variableNode.SelectSingleNode("type");
+
+                        string key = keyNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
+                        string type = typeNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
+
+                        string VARIABLES_VALOR;
+                        if (!Variables.TryGetValue(key, out VARIABLES_VALOR))
+                        {
+                            ShowPinnedNotification("Variables de Entorno", "La variable de entorno \"" + key + "\" no existe.");
+                            return false;
+                        }
+
+
+                        if (type == "decimal")
+                        {
+                            decimal decResult;
+                            if (!decimal.TryParse(VARIABLES_VALOR, out decResult))
+                            {
+                                ShowPinnedNotification("Variables de Entorno", "El tipo de la variable de entorno \"" + key + "\" es incorrecto. Debe ser un numero decimal.");
+                                return false;
+                            }
+                        }
+                        else if (type == "int")
+                        {
+                            int nResult;
+                            if (!int.TryParse(VARIABLES_VALOR, out nResult))
+                            {
+                                ShowPinnedNotification("Variables de Entorno", "El tipo de la variable de entorno \"" + key + "\" es incorrecto. Debe ser un numero entero.");
+                                return false;
+                            }
+                        }
+                        else if (type == "bool")
+                        {
+                            bool bResult;
+                            if (!bool.TryParse(VARIABLES_VALOR, out bResult))
+                            {
+                                ShowPinnedNotification("Variables de Entorno", "El tipo de la variable de entorno \"" + key + "\" es incorrecto. Debe ser un valor booleano(0-1).");
+                                return false;
+                            }
+                        }
+                        else if (type == "string" || type == "char")
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            ShowPinnedNotification("Variables de Entorno", "El tipo de la variable de entorno \"" + key + "\" es incorrecto.");
+                            return false;
+                        }
+                    }
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al validar variables de entorno.", ex);
+                throw;
+            }
+        }
+
         /// <summary>
         /// Muestra una notificación en pantalla.
         /// </summary>

@@ -46,8 +46,8 @@ namespace COCASJOL.WEBSITE.Source.Configuracion
                 this.EditVentanasMaximizarChk.Checked = configLogic.VentanasMaximizar;
                 this.EditVentanasCargarDatosChk.Checked = configLogic.VentanasCargarDatos;
 
-                this.EditConsolidadoFechaInicialTxt.Text = configLogic.ConsolidadoInventarioInicioPeriodo.ToShortDateString();
-                this.EditConsolidadoFechaFinalTxt.Text = configLogic.ConsolidadoInventarioFinalPeriodo.ToShortDateString();
+                this.EditConsolidadoFechaInicialTxt.Value = configLogic.ConsolidadoInventarioInicioPeriodo;
+                this.EditConsolidadoFechaFinalTxt.Value = configLogic.ConsolidadoInventarioFinalPeriodo;
 
                 this.EditCorreoLocalTxt.Text = configLogic.CorreoCorreoLocal;
                 this.EditCorreoUsarPasswordChk.Checked = configLogic.CorreoUsarPassword;
@@ -57,7 +57,7 @@ namespace COCASJOL.WEBSITE.Source.Configuracion
                 this.EditCorreoUsarSSLChk.Checked = configLogic.CorreoUsarSSL;
 
                 this.AuditUserName.Text = configLogic.AuditoriaUserName;
-                this.AuditDate.Text = configLogic.AuditoriaDate.ToShortDateString();
+                this.AuditDate.Value = configLogic.AuditoriaDate;
             }
             catch (Exception ex)
             {

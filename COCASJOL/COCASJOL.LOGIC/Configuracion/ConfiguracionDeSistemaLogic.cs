@@ -423,8 +423,21 @@ namespace COCASJOL.LOGIC.Configuracion
                 bool.TryParse(strMaximizar, out this.ventana_Maximizar);
                 bool.TryParse(strCargarDatos, out this.ventana_CargarDatos);
 
-                DateTime.TryParse(strConsolidadoInicio, out this.consolidado_InicioPeriodo);
-                DateTime.TryParse(strConsolidadoFinal, out this.consolidado_FinalPeriodo);
+
+                string[] init_date = strConsolidadoInicio.Split('/');
+                int init_month = Convert.ToInt32(init_date[0]);
+                int init_day = Convert.ToInt32(init_date[1]);
+                int init_year = Convert.ToInt32(init_date[2]);
+                this.consolidado_InicioPeriodo = new DateTime(init_year, init_month, init_day);
+
+                string[] final_date = strConsolidadoFinal.Split('/');
+                int final_month = Convert.ToInt32(final_date[0]);
+                int final_day = Convert.ToInt32(final_date[1]);
+                int final_year = Convert.ToInt32(final_date[2]);
+                this.consolidado_FinalPeriodo = new DateTime(final_year, final_month, final_day);
+
+                //DateTime.TryParse(strConsolidadoInicio, out this.consolidado_InicioPeriodo);
+                //DateTime.TryParse(strConsolidadoFinal, out this.consolidado_FinalPeriodo);
 
                 this.correo_CorreoLocal = strCorreoLocal;
                 bool.TryParse(strCorreoUsarPassword, out this.correo_UsarPassword);
@@ -434,7 +447,13 @@ namespace COCASJOL.LOGIC.Configuracion
                 bool.TryParse(strCorreoUsarSSL, out this.correo_UsarSSL);
 
                 this.auditoria_username = strAuditoriaUsername;
-                DateTime.TryParse(strAuditoriaDate, out this.auditoria_date);
+
+                string[] audit_date = strAuditoriaDate.Split('/');
+                int audit_month = Convert.ToInt32(audit_date[0]);
+                int audit_day = Convert.ToInt32(audit_date[1]);
+                int audit_year = Convert.ToInt32(audit_date[2]);
+                this.auditoria_date = new DateTime(audit_year, audit_month, audit_day);
+                //DateTime.TryParse(strAuditoriaDate, out this.auditoria_date);
             }
             catch (Exception ex)
             {
@@ -454,8 +473,8 @@ namespace COCASJOL.LOGIC.Configuracion
 
                 Configuracion.SelectSingleNode("configuracion/socios/importacionInicial").InnerText = this.socios_importacion.ToString();
 
-                Configuracion.SelectSingleNode("configuracion/ventanas/MaximizarAlCargar").InnerText = this.ventana_Maximizar.ToString();
-                Configuracion.SelectSingleNode("configuracion/ventanas/CargarDatosAlInicio").InnerText = this.ventana_CargarDatos.ToString();
+                Configuracion.SelectSingleNode("configuracion/ventanas/MaximizarAlCargar").InnerText = string.Format("{0:MM/dd/yyyy}", this.ventana_Maximizar);
+                Configuracion.SelectSingleNode("configuracion/ventanas/CargarDatosAlInicio").InnerText = string.Format("{0:MM/dd/yyyy}", this.ventana_CargarDatos);
 
                 Configuracion.SelectSingleNode("configuracion/consolidadoInventario/InicioPeriodo").InnerText = this.consolidado_InicioPeriodo.ToShortDateString();
                 Configuracion.SelectSingleNode("configuracion/consolidadoInventario/FinalPeriodo").InnerText = this.consolidado_FinalPeriodo.ToShortDateString();
@@ -468,7 +487,7 @@ namespace COCASJOL.LOGIC.Configuracion
                 Configuracion.SelectSingleNode("configuracion/correo/usarSSL").InnerText = this.correo_UsarSSL.ToString();
 
                 Configuracion.SelectSingleNode("configuracion/auditoria/username").InnerText = this.auditoria_username;
-                Configuracion.SelectSingleNode("configuracion/auditoria/date").InnerText = this.auditoria_date.ToShortDateString();
+                Configuracion.SelectSingleNode("configuracion/auditoria/date").InnerText = string.Format("{0:MM/dd/yyyy}",this.auditoria_date);
 
                 string SavePath = System.Configuration.ConfigurationManager.AppSettings.Get("configuracionDeSistemaXML");
 

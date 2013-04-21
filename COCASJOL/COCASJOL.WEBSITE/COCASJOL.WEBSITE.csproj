@@ -507,7 +507,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="resources\bin\" />
     <Folder Include="resources\js\reportes\" />
     <Folder Include="resources\uploads\" />
@@ -559,6 +558,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="resources\xml\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App_Data\log4net.db" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

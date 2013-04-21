@@ -262,6 +262,7 @@ namespace COCASJOL.LOGIC.Utiles
                         notification.USR_USERNAME = usr.USR_USERNAME;
                         notification.NOTIFICACION_TITLE = titulo; //"Notas de Peso en Catación";
                         notification.NOTIFICACION_MENSAJE = mensajeFormateado ;  //"Ya tiene disponible la nota de peso #" + note.NOTAS_ID + ".";
+                        notification.NOTIFICACION_FECHA = DateTime.Now;
 
                         db.notificaciones.AddObject(notification);
                     }

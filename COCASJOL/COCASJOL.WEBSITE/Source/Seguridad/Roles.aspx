@@ -339,9 +339,9 @@
                                                     </Store>
                                                     <ColumnModel>
                                                         <Columns>
-                                                            <ext:Column DataIndex="PRIV_ID" Header="Id" Sortable="true"></ext:Column>
-                                                            <ext:Column DataIndex="PRIV_LLAVE" Header="Llave" Sortable="true"></ext:Column>
-                                                            <ext:Column DataIndex="PRIV_NOMBRE" Header="Nombre" Sortable="true"></ext:Column>
+                                                            <ext:Column DataIndex="PRIV_ID" Header="Id" Width="40" Sortable="true"></ext:Column>
+                                                            <ext:Column DataIndex="PRIV_LLAVE" Header="Llave" Width="230" Sortable="true"></ext:Column>
+                                                            <ext:Column DataIndex="PRIV_NOMBRE" Header="Nombre" Width="270" Sortable="true"></ext:Column>
 
                                                             <ext:Column DataIndex="PRIV_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
                                                                 <Renderer Handler="return '';" />
@@ -349,7 +349,7 @@
                                                         </Columns>
                                                     </ColumnModel>
                                                     <View>
-                                                        <ext:GridView ID="GridView2" runat="server" AutoFill="false" ForceFit="false" >
+                                                        <ext:GridView ID="GridView2" runat="server" >
                                                             <HeaderRows>
                                                                 <ext:HeaderRow>
                                                                     <Columns>
@@ -496,9 +496,9 @@
                                     </Store>
                                     <ColumnModel ID="ColumnModel2">
                                         <Columns>
-                                            <ext:Column DataIndex="PRIV_ID" Header="Id" Sortable="true"></ext:Column>
-                                            <ext:Column DataIndex="PRIV_LLAVE" Header="Llave" Sortable="true"></ext:Column>
-                                            <ext:Column DataIndex="PRIV_NOMBRE" Header="Nombre" Sortable="true"></ext:Column>
+                                            <ext:Column DataIndex="PRIV_ID" Header="Id" Width="40" Sortable="true"></ext:Column>
+                                            <ext:Column DataIndex="PRIV_LLAVE" Header="Llave" Width="230" Sortable="true"></ext:Column>
+                                            <ext:Column DataIndex="PRIV_NOMBRE" Header="Nombre" Width="270" Sortable="true"></ext:Column>
 
                                             <ext:Column DataIndex="PRIV_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
                                                 <Renderer Handler="return '';" />
@@ -506,7 +506,7 @@
                                         </Columns>
                                     </ColumnModel>
                                     <View>
-                                        <ext:GridView ID="GridView3" runat="server" AutoFill="false" ForceFit="false">
+                                        <ext:GridView ID="GridView3" runat="server" >
                                             <HeaderRows>
                                                 <ext:HeaderRow>
                                                     <Columns>

@@ -47,8 +47,25 @@ namespace COCASJOL.WEBSITE.Source.Entorno
 
                 var VariablesDeEntorno = Ext.Net.JSON.Deserialize<Dictionary<string, string>[]>(paramsVars);
 
-                VariablesDeEntornoLogic varenvlogic = new VariablesDeEntornoLogic();
-                varenvlogic.ActualizarVariablesDeEntorno(VariablesDeEntorno, loggeduser);
+                Dictionary<string, string> variables = new Dictionary<string, string>();
+
+                foreach (Dictionary<string, string> validarVars in VariablesDeEntorno)
+                {
+                    variables.Add(validarVars["VARIABLES_LLAVE"], validarVars["VARIABLES_VALOR"]);
+                }
+
+                if (this.ValidarTodasVariables(variables))
+                {
+
+                    VariablesDeEntornoLogic varenvlogic = new VariablesDeEntornoLogic();
+                    varenvlogic.ActualizarVariablesDeEntorno(VariablesDeEntorno, loggeduser);
+                }
+                else
+                {
+                    Ext.Net.ResourceManager.AjaxSuccess = false;
+                    Ext.Net.ResourceManager.AjaxErrorMessage = "Ocurrio un error al validar las variables.";
+                }
+
             }
             catch (Exception ex)
             {

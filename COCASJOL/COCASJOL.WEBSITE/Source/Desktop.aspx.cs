@@ -359,7 +359,7 @@ namespace COCASJOL.WEBSITE
                     {
                         new Tool
                         {
-                            Type = ToolType.Save, Handler = "DesktopX.markAsReadNotification('" + NOTIFICACION_ID.ToString() + "');"
+                            Type = ToolType.Save, Handler = "DesktopX.markAsReadNotification('" + NOTIFICACION_ID.ToString() + "');", Qtip="Guardar como leída."
                         }
                     }
                 });

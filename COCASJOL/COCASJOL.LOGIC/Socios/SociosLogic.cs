@@ -102,6 +102,26 @@ namespace COCASJOL.LOGIC.Socios
                 throw;
             }
         }
+
+        public List<socio> getSociosInactivos()
+        {
+            try
+            {
+                using (var db= new colinasEntities())
+                {
+                    var query = from s in db.socios.Include("socios_generales").Include("socios_produccion").Include("beneficiario_x_socio")
+                                where s.SOCIOS_ESTATUS < 1
+                                select s;
+                    return query.ToList<socio>();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al obtener socios inactivos.", ex);
+                throw;
+            }
+        }
+
         #endregion
 
         #region Update
