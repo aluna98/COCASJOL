@@ -51,6 +51,7 @@ namespace COCASJOL.LOGIC.Web
 
                 // Setup the report viewer object and get the array of bytes
                 ReportViewer viewer = new ReportViewer();
+                viewer.SizeToReportContent = true;
                 viewer.ProcessingMode = ProcessingMode.Local;
                 viewer.LocalReport.ReportPath = Server.MapPath(RDL_Path);
                 viewer.LocalReport.SetParameters(RptParams);

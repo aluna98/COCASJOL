@@ -168,6 +168,44 @@ namespace COCASJOL.LOGIC.Utiles
                                 socioImportado.FECHA_MODIFICACION = socioImportado.FECHA_CREACION;
 
                                 db.socios.AddObject(socioImportado);
+
+
+                                string letras = "";
+                                string numero = "";
+
+                                foreach(char c in socioImportado.SOCIOS_ID)
+                                {
+                                    if (char.IsLetter(c))
+                                        letras += c;
+                                    else
+                                        numero += c;
+                                }
+
+                                var codigoQuery = from c in db.codigo
+                                                  where c.CODIGO_LETRA == letras
+                                                  select c;
+
+                                codigo cod = codigoQuery.FirstOrDefault();
+
+                                if (cod != null)
+                                {
+
+                                    int codNum = 0;
+
+                                    if (int.TryParse(numero, out codNum))
+                                    {
+                                        if (cod.CODIGO_NUMERO < codNum)
+                                        {
+                                            cod.CODIGO_NUMERO = codNum + 1;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        message = "Error en codigo de socio.";
+                                        throw new Exception(message);
+                                    }
+
+                                }
                             }
 
                             db.SaveChanges();

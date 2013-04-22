@@ -193,11 +193,11 @@ namespace COCASJOL.LOGIC.Configuracion
         {
             get
             {
-                return this.correo_Password;
+                return string.IsNullOrEmpty(this.correo_Password) ? "" : this.dencryptTDES(this.correo_Password);
             }
             set
             {
-                this.correo_Password = value;
+                this.correo_Password = string.IsNullOrEmpty(value) ? "" : this.encryptTDES(value);
             }
         }
         /// <summary>
@@ -441,7 +441,7 @@ namespace COCASJOL.LOGIC.Configuracion
 
                 this.correo_CorreoLocal = strCorreoLocal;
                 bool.TryParse(strCorreoUsarPassword, out this.correo_UsarPassword);
-                this.correo_Password = string.IsNullOrEmpty(strCorreoPassword) ? "" : this.dencryptTDES(strCorreoPassword);
+                this.correo_Password = strCorreoPassword;
                 this.correo_SMTP = strCorreoSMTP;
                 int.TryParse(strCorreoPuerto, out this.correo_Puerto);
                 bool.TryParse(strCorreoUsarSSL, out this.correo_UsarSSL);
@@ -469,8 +469,6 @@ namespace COCASJOL.LOGIC.Configuracion
         {
             try
             {
-                string passwrd = string.IsNullOrEmpty(this.correo_Password) ? "" : this.encryptTDES(this.correo_Password);
-
                 Configuracion.SelectSingleNode("configuracion/socios/importacionInicial").InnerText = this.socios_importacion.ToString();
 
                 Configuracion.SelectSingleNode("configuracion/ventanas/MaximizarAlCargar").InnerText = string.Format("{0:MM/dd/yyyy}", this.ventana_Maximizar);
@@ -481,7 +479,7 @@ namespace COCASJOL.LOGIC.Configuracion
 
                 Configuracion.SelectSingleNode("configuracion/correo/correoLocal").InnerText = this.correo_CorreoLocal;
                 Configuracion.SelectSingleNode("configuracion/correo/usarPassword").InnerText = this.correo_UsarPassword.ToString();
-                Configuracion.SelectSingleNode("configuracion/correo/password").InnerText = passwrd;
+                Configuracion.SelectSingleNode("configuracion/correo/password").InnerText = this.correo_Password;
                 Configuracion.SelectSingleNode("configuracion/correo/smtp").InnerText = this.correo_SMTP;
                 Configuracion.SelectSingleNode("configuracion/correo/puerto").InnerText = this.correo_Puerto.ToString();
                 Configuracion.SelectSingleNode("configuracion/correo/usarSSL").InnerText = this.correo_UsarSSL.ToString();

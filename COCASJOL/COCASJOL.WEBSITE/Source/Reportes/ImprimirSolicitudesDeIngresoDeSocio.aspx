@@ -32,8 +32,7 @@
                 ShowBackButton="False" ShowCredentialPrompts="False" 
                 ShowDocumentMapButton="False" ShowFindControls="False" 
                 ShowPageNavigationControls="False" ShowParameterPrompts="False" 
-                ShowPromptAreaButton="False" SizeToReportContent="True" 
-                AsyncRendering="False">
+                ShowPromptAreaButton="False" SizeToReportContent="True" >
                 <LocalReport ReportPath="resources\rdlcs\solicitudesDeIngresoDeSocio\SolicitudDeIngresoDeSocio.rdlc" OnSubreportProcessing="ReportViewer1_SubreportProcessing" >
                     <DataSources>
                         <rsweb:ReportDataSource DataSourceId="ObjectDataSource1" Name="SociosDataSet" />

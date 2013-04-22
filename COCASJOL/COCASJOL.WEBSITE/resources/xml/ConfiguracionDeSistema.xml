@@ -4,8 +4,8 @@
     <importacionInicial>True</importacionInicial>
   </socios>
   <ventanas>
-    <MaximizarAlCargar>True</MaximizarAlCargar>
-    <CargarDatosAlInicio>True</CargarDatosAlInicio>
+    <MaximizarAlCargar>False</MaximizarAlCargar>
+    <CargarDatosAlInicio>False</CargarDatosAlInicio>
   </ventanas>
   <consolidadoInventario>
     <InicioPeriodo>9/1/2013</InicioPeriodo>
@@ -20,7 +20,7 @@
     <usarSSL>True</usarSSL>
   </correo>
   <auditoria>
-    <username>DEVELOPER</username>
+    <username>sysadmin</username>
     <date>04/21/2013</date>
   </auditoria>
 </configuracion>

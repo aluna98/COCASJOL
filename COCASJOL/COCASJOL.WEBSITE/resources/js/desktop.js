@@ -275,11 +275,11 @@ var WindowX = {
     },
 
     solicitudesDePrestamo: function (app) {
-        DesktopX.createDynamicWindow(app, 'pagewhitetext', 'Solicitudes de Prestamo', 'Prestamos/SolicitudesDePrestamos.aspx');
+        DesktopX.createDynamicWindow(app, 'pagewhitetext', 'Solicitudes de Prestamo', 'Prestamos/SolicitudesDePrestamos.aspx', 1000, 600);
     },
 
     prestamosAprobados: function (app) {
-        DesktopX.createDynamicWindow(app, 'prestamosAprobados16', 'Solicitudes de Prestamo Aprobado', 'Prestamos/Aprobados.aspx');
+        DesktopX.createDynamicWindow(app, 'prestamosAprobados16', 'Solicitudes de Prestamo Aprobado', 'Prestamos/Aprobados.aspx', 1000, 600);
     },
 
     reportePrestamosPorSocios: function (app) {

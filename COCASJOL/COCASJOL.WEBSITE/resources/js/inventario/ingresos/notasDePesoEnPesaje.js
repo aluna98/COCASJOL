@@ -328,9 +328,9 @@ var AddDetailAddCalculateDefectForm = null;
 var AlertSelMsgTitle = "Atención";
 var AlertSelMsg = "Debe seleccionar 1 elemento";
 
-var ConfirmMsgTitle = "Datos de Peso";
-var ConfirmUpdate = "Seguro desea modificar los datos de peos?";
-var ConfirmDelete = "Seguro desea eliminar los datos de peso?";
+var ConfirmMsgTitle1 = "Datos de Peso";
+var ConfirmUpdate1 = "Seguro desea modificar los datos de peos?";
+var ConfirmDelete1 = "Seguro desea eliminar los datos de peso?";
 
 var AddDetailX = {
     _index: 0,
@@ -435,7 +435,7 @@ var AddDetailX = {
             return;
         }
 
-        Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
+        Ext.Msg.confirm(ConfirmMsgTitle1, ConfirmUpdate1, function (btn, text) {
             if (btn == 'yes') {
                 AddDetailEditForm.getForm().updateRecord(AddDetailEditForm.record);
                 Ext.getCmp('AddDetailEditBagTxt').focus(false, 200);
@@ -445,7 +445,7 @@ var AddDetailX = {
 
     remove: function () {
         if (AddDetailGrid.getSelectionModel().hasSelection()) {
-            Ext.Msg.confirm(ConfirmMsgTitle, ConfirmDelete, function (btn, text) {
+            Ext.Msg.confirm(ConfirmMsgTitle1, ConfirmDelete1, function (btn, text) {
                 if (btn == 'yes') {
                     var record = AddDetailGrid.getSelectionModel().getSelected();
                     AddDetailGrid.deleteRecord(record);
@@ -521,9 +521,9 @@ var EditDetailEditCalculateDefectForm = null;
 var AlertSelMsgTitle = "Atención";
 var AlertSelMsg = "Debe seleccionar 1 elemento";
 
-var ConfirmMsgTitle = "Datos de Peso";
-var ConfirmUpdate = "Seguro desea modificar los datos de peso?";
-var ConfirmDelete = "Seguro desea eliminar los datos de peso?";
+var ConfirmMsgTitle2 = "Datos de Peso";
+var ConfirmUpdate2 = "Seguro desea modificar los datos de peso?";
+var ConfirmDelete2 = "Seguro desea eliminar los datos de peso?";
 
 var EditDetailX = {
     _index: 0,
@@ -628,7 +628,7 @@ var EditDetailX = {
             return;
         }
 
-        Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
+        Ext.Msg.confirm(ConfirmMsgTitle2, ConfirmUpdate2, function (btn, text) {
             if (btn == 'yes') {
                 EditDetailEditForm.getForm().updateRecord(EditDetailEditForm.record);
                 Ext.getCmp('EditDetailEditBagTxt').focus(false, 200);
@@ -638,7 +638,7 @@ var EditDetailX = {
 
     remove: function () {
         if (EditDetailGrid.getSelectionModel().hasSelection()) {
-            Ext.Msg.confirm(ConfirmMsgTitle, ConfirmDelete, function (btn, text) {
+            Ext.Msg.confirm(ConfirmMsgTitle2, ConfirmDelete2, function (btn, text) {
                 if (btn == 'yes') {
                     var record = EditDetailGrid.getSelectionModel().getSelected();
                     EditDetailGrid.deleteRecord(record);
