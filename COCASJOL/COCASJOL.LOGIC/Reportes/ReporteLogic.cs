@@ -168,7 +168,7 @@ namespace COCASJOL.LOGIC.Reportes
             {
                 using (var db = new colinasEntities())
                 {
-                    var query = from sp in db.solicitudes_prestamos.Include("prestamos").Include("socios")
+                    var query = from sp in db.solicitudes_prestamos.Include("prestamos").Include("socios").Include("socios.socios_generales").Include("socios.socios_produccion")
                                 where
                                 (SOLICITUDES_ID == 0 ? true : sp.SOLICITUDES_ID.Equals(SOLICITUDES_ID)) &&
                                 (string.IsNullOrEmpty(SOCIOS_ID) ? true : sp.SOCIOS_ID == SOCIOS_ID)
@@ -232,15 +232,14 @@ namespace COCASJOL.LOGIC.Reportes
             {
                 using (var db = new colinasEntities())
                 {
+                    var query = from s in db.solicitudes_prestamos.Include("avales_x_solicitud").Include("avales_x_solicitud.socios").Include("avales_x_solicitud.socios.socios_generales").Include("avales_x_solicitud.socios.socios_produccion")
+                                where s.SOLICITUDES_ID == SOLICITUDES_ID
+                                select s;
 
-                    EntityKey k = new EntityKey("colinasEntities.solicitudes_prestamos", "SOLICITUDES_ID", SOLICITUDES_ID);
+                    solicitud_prestamo solicitud = query.FirstOrDefault();
 
-                    Object solic = null;
-
-                    if (db.TryGetObjectByKey(k, out solic))
+                    if (solicitud != null)
                     {
-                        solicitud_prestamo solicitud = (solicitud_prestamo)solic;
-
                         return solicitud.avales_x_solicitud.ToList<aval_x_solicitud>();
                     }
                     else

@@ -264,7 +264,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>=Fields!SOLICITUDES_PLAZO.Value</Value>
+                <Value>=Fields!SOLICITUDES_PLAZO.Value.ToShortDateString()</Value>
                 <Style>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>Underline</TextDecoration>

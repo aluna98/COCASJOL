@@ -168,7 +168,7 @@
                                                 <Click Handler="PageX.add();" />
                                             </Listeners>
                                         </ext:Button>
-                                        <ext:Button ID="EditarBtn" runat="server" Text="Editar" Icon="Coins">
+                                        <ext:Button ID="EditarBtn" runat="server" Text="Ver" Icon="Coins">
                                             <Listeners>
                                                 <Click Handler="PageX.edit();" />
                                             </Listeners>

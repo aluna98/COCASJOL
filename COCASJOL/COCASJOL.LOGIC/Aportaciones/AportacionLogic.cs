@@ -41,8 +41,6 @@ namespace COCASJOL.LOGIC.Aportaciones
                 using (var db = new colinasEntities())
                 {
                     var query = from a in db.reporte_total_aportaciones_por_socio
-                                join s in db.socios on a.SOCIOS_ID equals s.SOCIOS_ID
-                                where s.SOCIOS_ESTATUS >= 1
                                 select a;
 
                     return query.OrderBy(a => a.SOCIOS_ID).ToList<reporte_total_aportaciones_por_socio>();
@@ -89,7 +87,6 @@ namespace COCASJOL.LOGIC.Aportaciones
                                 join s in db.socios 
                                 on ap.SOCIOS_ID equals s.SOCIOS_ID
                                 where
-                                (s.SOCIOS_ESTATUS >= 1) &&
                                 (string.IsNullOrEmpty(SOCIOS_ID) ? true : ap.SOCIOS_ID.Contains(SOCIOS_ID)) &&
                                 (string.IsNullOrEmpty(SOCIOS_NOMBRE_COMPLETO) ? true : ap.SOCIOS_NOMBRE_COMPLETO.Contains(SOCIOS_NOMBRE_COMPLETO)) &&
                                 (APORTACIONES_SALDO_TOTAL == -1 ? true : ap.APORTACIONES_SALDO_TOTAL.Equals(APORTACIONES_SALDO_TOTAL)) &&

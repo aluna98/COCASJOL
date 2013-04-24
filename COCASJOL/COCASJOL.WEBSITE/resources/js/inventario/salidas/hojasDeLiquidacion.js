@@ -65,6 +65,7 @@ var AlertSelMsgTitle = "Atención";
 var AlertSelMsg = "Debe seleccionar 1 elemento";
 
 var ConfirmMsgTitle = "Hoja de Liquidación";
+var ConfirmInsert = "Seguro desea realizar la liquidación de café? Nota: Una vez que se realice la acción no se podran deshacer los cambios.";
 var ConfirmUpdate = "Seguro desea modificar la hoja de liquidación?";
 var ConfirmDelete = "Seguro desea eliminar la hoja de liquidación?";
 
@@ -132,10 +133,14 @@ var PageX = {
     },
 
     insert: function () {
-        var fields = AddForm.getForm().getFieldValues(false, "dataIndex");
+        Ext.Msg.confirm(ConfirmMsgTitle, ConfirmInsert, function (btn, text) {
+            if (btn == 'yes') {
+                var fields = AddForm.getForm().getFieldValues(false, "dataIndex");
 
-        Grid.insertRecord(0, fields, false);
-        AddForm.getForm().reset();
+                Grid.insertRecord(0, fields, false);
+                AddForm.getForm().reset();
+            }
+        });
     },
 
     getIndex: function () {

@@ -76,6 +76,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario
                 ReportDataSource datasourceInventarioCafeSocios = new ReportDataSource("ResumenDeInventarioDeCafeDeSociosDataSet", ReporteInventarioDeCafeDeSociosLst);
 
                 ReportParameterCollection reportParamCollection = new ReportParameterCollection();
+                reportParamCollection.Add(new ReportParameter("parMostrarQuintales", this.p_QUINTALES.Checked.ToString()));
 
                 formatoSalida = "PDF";
 
@@ -109,6 +110,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario
                 ReportDataSource datasourceInventarioCafeSocios = new ReportDataSource("ResumenDeInventarioDeCafeDeSociosDataSet", ReporteInventarioDeCafeDeSociosLst);
 
                 ReportParameterCollection reportParamCollection = new ReportParameterCollection();
+                reportParamCollection.Add(new ReportParameter("parMostrarQuintales", this.p_QUINTALES.Checked.ToString()));
 
                 formatoSalida = "EXCEL";
 

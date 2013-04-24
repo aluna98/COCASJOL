@@ -126,7 +126,9 @@
                                     <ext:Column DataIndex="SOCIOS_ID"                    Header="Id de Socio" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="SOCIOS_NOMBRE_COMPLETO"       Header="Nombre Completo de Socio" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="CLASIFICACIONES_CAFE_NOMBRE"  Header="Clasificación de Café" Sortable="true"></ext:Column>
-                                    <ext:Column DataIndex="INVENTARIO_ENTRADAS_CANTIDAD" Header="Cantidad Total (lb)" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="INVENTARIO_ENTRADAS_CANTIDAD" Header="Cantidad Total" Sortable="true">
+                                        <Renderer Handler="if (#{p_QUINTALES}.checked == true) return value / 100; else return value;" />
+                                    </ext:Column>
                                     <ext:Column DataIndex="INVENTARIO_SALIDAS_SALDO"     Header="Saldo de Salidas" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="SOCIOS_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
                                         <Renderer Handler="return '';" />
@@ -144,6 +146,7 @@
                                                 <Click Handler="PageX.edit();" />
                                             </Listeners>
                                         </ext:Button>
+                                        <ext:Checkbox runat="server" ID="p_QUINTALES" LabelAlign="Right" FieldLabel="Mostrar en Quintales" ></ext:Checkbox>
                                         <ext:ToolbarFill ID="ToolbarFill1" runat="server" />
                                         <ext:Button ID="Export_PDFBtn" runat="server" Text="Exportar PDF" Icon="PageWhiteAcrobat">
                                             <DirectEvents>

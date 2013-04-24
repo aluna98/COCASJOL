@@ -47,7 +47,7 @@
 
         <asp:ObjectDataSource ID="SociosDS" runat="server"
                 TypeName="COCASJOL.LOGIC.Socios.SociosLogic"
-                SelectMethod="getSociosActivos" >
+                SelectMethod="getData" >
         </asp:ObjectDataSource>
 
         <ext:Store ID="SocioSt" runat="server" DataSourceID="SociosDS">
@@ -132,7 +132,7 @@
                             <TopBar>
                                 <ext:Toolbar ID="Toolbar1" runat="server">
                                     <Items>
-                                        <ext:Button ID="EditarBtn" runat="server" Text="Editar" Icon="Coins">
+                                        <ext:Button ID="EditarBtn" runat="server" Text="Ver" Icon="Coins">
                                             <Listeners>
                                                 <Click Handler="PageX.edit();" />
                                             </Listeners>

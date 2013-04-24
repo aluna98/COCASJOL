@@ -95,7 +95,6 @@ namespace COCASJOL.LOGIC.Aportaciones
                 {
                     var query = from rp in db.retiros_aportaciones.Include("socios")
                                 where
-                                (rp.socios.SOCIOS_ESTATUS >= 1) &&
                                 (string.IsNullOrEmpty(SOCIOS_ID) ? true : rp.SOCIOS_ID.Contains(SOCIOS_ID)) &&
 
                                 (default(DateTime) == FECHA_DESDE ? true : rp.RETIROS_AP_FECHA >= FECHA_DESDE) &&

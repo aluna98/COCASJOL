@@ -330,7 +330,7 @@ var SolicitudX = {
 
     print: function () {
         var solicitud_id = EditIdSolicitud.getValue();
-        window.open('../../Reportes/ImprimirSolicitudDePrestamo.aspx?SOLICITUDES_ID=' + solicitud_id, "_blank", "resizable=yes, scrollbars=yes, top=10, left=10");
+        window.open('../Reportes/ImprimirSolicitudDePrestamo.aspx?SOLICITUDES_ID=' + solicitud_id, "_blank", "resizable=yes, scrollbars=yes, top=10, left=10");
     }
 };
 
