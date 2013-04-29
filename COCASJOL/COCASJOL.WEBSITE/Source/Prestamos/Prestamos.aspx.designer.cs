@@ -13,15 +13,6 @@ namespace COCASJOL.WEBSITE.Source.Prestamos {
     public partial class Prestamos {
         
         /// <summary>
-        /// XScript1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.XScript XScript1;
-        
-        /// <summary>
         /// form1 control.
         /// </summary>
         /// <remarks>
@@ -38,6 +29,15 @@ namespace COCASJOL.WEBSITE.Source.Prestamos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ResourceManager ResourceManager1;
+        
+        /// <summary>
+        /// KeyNav1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.KeyNav KeyNav1;
         
         /// <summary>
         /// LoggedUserHdn control.

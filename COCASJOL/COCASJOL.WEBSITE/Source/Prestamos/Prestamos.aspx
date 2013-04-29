@@ -5,220 +5,24 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Prestamos</title>
-    <script type="text/javascript">
-        var Grid = null;
-        var EditWindow = null;
-        var EditForm = null;
-        var AddWindow = null;
-        var AddForm = null;
-        var ConfirmMsgTitle = "Prestamos"; 
-        var ConfirmEdit = "Seguro desea modificar la informacion  del prestamo?";
-        var Confirmacion = "Se ha finalizado correctamente";
-        var ConfirmDelete = "Esta seguro que desea eliminar el prestamo?";
-
-        var PrestamoX = {
-            _index: 0,
-
-            setReferences: function () {
-                Grid = PrestamosGridP;
-                EditWindow = EditarPrestamosWin;
-                EditForm = EditarPrestamoFormP;
-                AddWindow = AgregarPrestamosWin;
-                AddForm = AgregarPrestamoFormP;
-            },
-
-            getRecord: function () {
-                var registro = Grid.getStore().getAt(this.getIndex());
-
-                if (registro != null) {
-                    return registro;
-                }
-            },
-
-            getIndex: function () {
-                return this._index;
-            },
-
-            setIndex: function (index) {
-                if (index > -1 && index < Grid.getStore().getCount()) {
-                    this._index = index;
-                }
-            },
-
-            next: function () {
-                this.edit2(this.getIndex() + 1);
-            },
-
-            previous: function () {
-                this.edit2(this.getIndex() - 1);
-            },
-
-            open: function () {
-                rec = this.getRecord();
-                if (rec != null) {
-                    EditWindow.show();
-                    EditForm.getForm().loadRecord(rec);
-                    EditForm.record = rec;
-                }
-            },
-
-            update: function () {
-                if (EditForm.record == null) {
-                    return;
-                }
-
-                Ext.Msg.confirm(ConfirmMsgTitle, ConfirmEdit, function (btn, text) {
-                    if (btn == 'yes') {
-                        EditForm.getForm().updateRecord(EditForm.record);
-                    }
-                });
-            },
-
-            edit: function () {
-                if (Grid.getSelectionModel().hasSelection()) {
-                    var record = Grid.getSelectionModel().getSelected();
-                    var index = Grid.store.indexOf(record);
-                    this.setIndex(index);
-                    this.open();
-                } else {
-                    var msg = Ext.Msg;
-                    Ext.Msg.alert('Atención', 'Seleccione al menos 1 elemento');
-                }
-            },
-
-            edit2: function (index) {
-                this.setIndex(index);
-                this.open();
-            },
-
-            add: function () {
-                AddWindow.show();
-            },
-
-            insert: function () {
-                var fields = AddForm.getForm().getFieldValues(false, "");
-                Grid.insertRecord(0, fields, false);
-            },
-
-            remove: function () {
-                if (Grid.getSelectionModel().hasSelection()) {
-                    Ext.Msg.confirm(ConfirmMsgTitle, ConfirmDelete, function (btn, text) {
-                        if (btn == 'yes') {
-                            var record = Grid.getSelectionModel().getSelected();
-                            Grid.deleteRecord(record);
-                        }
-                    });
-                } else {
-                    var msg = Ext.Msg;
-                    Ext.Msg.alert('Atención', 'Seleccione al menos 1 elemento');
-                }
-            }
-        };
-    </script>
-    <ext:XScript ID="XScript1" runat="server">
-        <script type="text/javascript">
-            var applyFilter = function (field) {                
-                var store = #{PrestamosGridP}.getStore();
-                store.suspendEvents();
-                store.filterBy(getRecordFilter());                                
-                store.resumeEvents();
-                #{PrestamosGridP}.getView().refresh(false);
-            };
-             
-            var clearFilter = function () {
-                #{FilterPrestamoId}.reset();
-                #{FilterPrestamoNombre}.reset();
-                #{FilterPrestamoDescrip}.reset();
-                #{FilterPrestamoCantMax}.reset();
-                #{FilterPrestamosInteres}.reset();
-
-                #{PrestamosSt}.clearFilter();
-            }
- 
-            var filterString = function (value, dataIndex, record) {
-                var val = record.get(dataIndex);
-                
-                if (typeof val != "string") {
-                    return value.length == 0;
-                }
-                
-                return val.toLowerCase().indexOf(value.toLowerCase()) > -1;
-            };
- 
-            var filterDate = function (value, dataIndex, record) {
-                var val = record.get(dataIndex).clearTime(true).getTime();
- 
-                if (!Ext.isEmpty(value, false) && val != value.clearTime(true).getTime()) {
-                    return false;
-                }
-                return true;
-            };
- 
-            var filterNumber = function (value, dataIndex, record) {
-                var val = record.get(dataIndex);
- 
-                if (!Ext.isEmpty(value, false) && val != value) {
-                    return false;
-                }
-                
-                return true;
-            };
- 
-            var getRecordFilter = function () {
-                var f = [];
-
-                f.push({
-                    filter: function (record) {                         
-                        return filterString(#{FilterPrestamoId}.getValue(), "PRESTAMOS_ID", record);
-                    }
-                });
- 
-                f.push({
-                    filter: function (record) {                         
-                        return filterString(#{FilterPrestamoNombre}.getValue(), "PRESTAMOS_NOMBRE", record);
-                    }
-                });
-               
-                f.push({
-                    filter: function (record) {                         
-                        return filterString(#{FilterPrestamoDescrip}.getValue(), "PRESTAMOS_DESCRIPCION", record);
-                    }
-                });
-                 
-                f.push({
-                    filter: function (record) {                      
-                        return filterNumber(#{FilterPrestamoCantMax}.getValue(), "PRESTAMOS_CANT_MAXIMA", record);
-                    }
-                });
-                 
-                f.push({
-                    filter: function (record) {                         
-                        return filterNumber(#{FilterPrestamosInteres}.getValue(), "PRESTAMOS_INTERES", record);
-                    }
-                });
- 
-                var len = f.length;
-                 
-                return function (record) {
-                    for (var i = 0; i < len; i++) {
-                        if (!f[i].filter(record)) {
-                            return false;
-                        }
-                    }
-                    return true;
-                };
-            };
-        </script>
-    </ext:XScript>
+    <title>Tipo de Prestamo</title>
+    <script type="text/javascript" src="../../resources/js/prestamos/tipoPrestamo.js" ></script>
 </head>
 <body>
     <form id="form1" runat="server">
         <ext:ResourceManager ID="ResourceManager1" runat="server">
             <Listeners>
-                <DocumentReady Handler="PrestamoX.setReferences()" />
+                <DocumentReady Handler="PageX.setReferences()" />
             </Listeners>
         </ext:ResourceManager>
+
+        <ext:KeyNav ID="KeyNav1" runat="server" Target="={document.body}" >
+            <Home Handler="PageX.navHome();" />
+            <PageUp Handler="PageX.navPrev();" />
+            <PageDown Handler="PageX.navNext();" />
+            <End Handler="PageX.navEnd();" />
+        </ext:KeyNav>
+
         <ext:Hidden ID="LoggedUserHdn" runat="server" >
         </ext:Hidden>
         <div>
@@ -227,6 +31,18 @@
                     <ext:Panel ID="panel1" runat="server" Frame="false" Header="false" Title="Prestamos" Icon="Money" Layout="FitLayout">
                         <Items>
                             <ext:GridPanel ID="PrestamosGridP" runat="server" Height="300" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
+                                <KeyMap>
+                                    <ext:KeyBinding Ctrl="true" >
+                                        <Keys>
+                                            <ext:Key Code="INSERT" />
+                                            <ext:Key Code="ENTER" />
+                                            <ext:Key Code="DELETE" />
+                                        </Keys>
+                                        <Listeners>
+                                            <Event Handler="PageX.gridKeyUpEvent(this, e);" />
+                                        </Listeners>
+                                    </ext:KeyBinding>
+                                </KeyMap>
                                 <Store>
                                     <ext:Store ID="PrestamosSt" runat="server" SkipIdForNewRecords="false" AutoSave="false" WarningOnDirty="false" OnRefreshData="PrestamosSt_Reload">
                                         <Reader>
@@ -275,17 +91,17 @@
                                         <Items>
                                             <ext:Button ID="AddBtn" runat="server" Text="Agregar" Icon="Add">
                                                 <Listeners>
-                                                    <Click Handler="PrestamoX.add()" />
+                                                    <Click Handler="PageX.add()" />
                                                 </Listeners>
                                             </ext:Button>
                                             <ext:Button ID="EditBtn" runat="server" Text="Editar" Icon="ApplicationEdit">
                                                 <Listeners>
-                                                    <Click Handler="PrestamoX.edit()" />
+                                                    <Click Handler="PageX.edit()" />
                                                 </Listeners>
                                             </ext:Button>
                                             <ext:Button ID="DeleteBtn" runat="server" Text="Eliminar" Icon="Delete">
                                                 <Listeners>
-                                                    <Click Handler="PrestamoX.remove()" />
+                                                    <Click Handler="PageX.remove()" />
                                                 </Listeners>
                                             </ext:Button>
                                         </Items>                                    
@@ -376,18 +192,14 @@
                                     </Columns>
                                 </ColumnModel>
                                 <SelectionModel>
-                                    <ext:RowSelectionModel ID="rowselectionmodel" runat="server" SingleSelect="true">
-                                        <%--<Listeners>
-                                            <RowSelect Handler="#{PrestamosSt}.reload();" />
-                                        </Listeners>--%>
-                                    </ext:RowSelectionModel>
+                                    <ext:RowSelectionModel ID="rowselectionmodel" runat="server" SingleSelect="true"></ext:RowSelectionModel>
                                 </SelectionModel>
                                 <BottomBar>
                                     <ext:PagingToolbar ID="pagingtoolbar" StoreID="PrestamosSt" runat="server" PageSize="5" DisplayInfo="true" DisplayMsg="Prestamos {0} - {1} de {2}" EmptyMsg="No hay prestamos para mostrar" />
                                 </BottomBar>
                                 <LoadMask ShowMask="true" />
                                 <Listeners>
-                                    <RowDblClick Handler="PrestamoX.edit()" />
+                                    <RowDblClick Handler="PageX.edit()" />
                                 </Listeners>
                             </ext:GridPanel>
                         </Items>
@@ -439,17 +251,17 @@
                             <Buttons>
                                 <ext:Button ID="EditPreviousBtn" runat="server" Text="Anterior" Icon="PreviousGreen">
                                     <Listeners>
-                                        <Click Handler="PrestamoX.previous()" />
+                                        <Click Handler="PageX.previous()" />
                                     </Listeners>
                                 </ext:Button>
                                 <ext:Button ID="EditNextBtn" runat="server" Text="Siguiente" Icon="NextGreen">
                                     <Listeners>
-                                        <Click Handler="PrestamoX.next()" />
+                                        <Click Handler="PageX.next()" />
                                     </Listeners>
                                 </ext:Button>
                                 <ext:Button ID="EditSaveBtn" runat="server" Text="Guardar" Icon="Disk" FormBind="true">
                                     <Listeners>
-                                        <Click Handler="PrestamoX.update()" />
+                                        <Click Handler="PageX.update()" />
                                     </Listeners>
                                 </ext:Button>
                             </Buttons>
@@ -500,7 +312,7 @@
                             <Buttons>
                                 <ext:Button ID="Button3" runat="server" Text="Guardar" Icon="Disk" FormBind="true">
                                     <Listeners>
-                                        <Click Handler="PrestamoX.insert()" />
+                                        <Click Handler="PageX.insert()" />
                                     </Listeners>
                                 </ext:Button>
                             </Buttons>

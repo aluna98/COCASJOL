@@ -61,6 +61,17 @@
                 <ext:Panel ID="panel1" runat="server" Frame="false" Header="false" Title="Solicitudes" Icon="Money" Layout="FitLayout">
                     <Items>
                         <ext:GridPanel ID="SolicitudesGriP" runat="server" Height="300" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
+                            <KeyMap>
+                                <ext:KeyBinding Ctrl="true" >
+                                    <Keys>
+                                        <ext:Key Code="INSERT" />
+                                        <ext:Key Code="ENTER" />
+                                    </Keys>
+                                    <Listeners>
+                                        <Event Handler="SolicitudX.gridKeyUpEvent(this, e);" />
+                                    </Listeners>
+                                </ext:KeyBinding>
+                            </KeyMap>
                             <Store>
                                 <ext:Store ID="SolicitudesSt" runat="server" SkipIdForNewRecords="false" AutoSave="false" WarningOnDirty="false" OnRefreshData="SolicitudesSt_Reload">
                                     <Reader>

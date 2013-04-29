@@ -102,9 +102,9 @@ var SolicitudX = {
     },
 
     removeAval: function () {
-        if (EditAvalForm.record == null) {
-            return;
-        }
+        //if (EditAvalForm.record == null) {
+          //  return;
+        //}
         if (GridAval.getSelectionModel().hasSelection()) {
             Ext.Msg.confirm(ConfirmMsgTitleAval, ConfirmDeleteAval, function (btn, text) {
                 if (btn == 'yes') {
@@ -303,6 +303,22 @@ var SolicitudX = {
         if (index > -1 && index < GridRef.getStore().getCount()) {
             this._indexRef = index;
         }
+    },
+
+    gridKeyUpEvent: function (sender, e) {
+        var k = e.getKey();
+
+        switch (k) {
+            case 45: //INSERT
+                this.add();
+                break;
+            case 13: //ENTER
+                this.edit();
+                break;
+            default:
+                break;
+        }
+
     },
 
     navHome: function () {

@@ -183,6 +183,19 @@ var SolicitudX = {
         }
     },
 
+    gridKeyUpEvent: function (sender, e) {
+        var k = e.getKey();
+
+        switch (k) {
+            case 13: //ENTER
+                this.edit();
+                break;
+            default:
+                break;
+        }
+
+    },
+
     navHome: function () {
         if (Grid.getStore().getTotalCount() == 0)
             Grid.getStore().reload();

@@ -153,6 +153,7 @@
     <Content Include="resources\js\md5.js" />
     <Content Include="resources\js\prestamos\PrestamosAprobados.js" />
     <Content Include="resources\js\prestamos\solicitudesDePrestamos.js" />
+    <Content Include="resources\js\prestamos\tipoPrestamo.js" />
     <Content Include="resources\js\seguridad\roles.js" />
     <Content Include="resources\js\seguridad\usuarios.js" />
     <Content Include="resources\js\socios\socios.js" />

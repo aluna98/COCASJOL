@@ -257,12 +257,12 @@ namespace COCASJOL.LOGIC.Aportaciones
                 using (var db = new colinasEntities())
                 {
                     var query = from ap in db.reporte_total_aportaciones_por_socio
-                                join s in db.socios
-                                on ap.SOCIOS_ID equals s.SOCIOS_ID
                                 where ap.SOCIOS_ID == SOCIOS_ID
                                 select ap;
 
-                    return query.First<reporte_total_aportaciones_por_socio>().APORTACIONES_SALDO_TOTAL;
+                    reporte_total_aportaciones_por_socio totalAportaciones = query.FirstOrDefault<reporte_total_aportaciones_por_socio>();
+
+                    return totalAportaciones == null ? 0 : totalAportaciones.APORTACIONES_SALDO_TOTAL;
                 }
             }
             catch (Exception ex)
