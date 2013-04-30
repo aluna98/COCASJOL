@@ -95,12 +95,12 @@ namespace COCASJOL.LOGIC.Entorno
         /// </summary>
         /// <param name="VARIABLES_LLAVE"></param>
         /// <returns>Variable de entorno.</returns>
-        public variable_de_entorno GetVariableDeEntorno(string VARIABLES_LLAVE)
+        public variable_de_entorno GetVariableDeEntorno(string VARIABLES_LLAVE, colinasEntities db)
         {
             try
             {
-                using (var db = new colinasEntities())
-                {
+                //using (var db = new colinasEntities())
+                //{
                     db.variables_de_entorno.MergeOption = MergeOption.NoTracking;
 
                     EntityKey k = new EntityKey("colinasEntities.variables_de_entorno", "VARIABLES_LLAVE", VARIABLES_LLAVE);
@@ -110,7 +110,7 @@ namespace COCASJOL.LOGIC.Entorno
                     variable_de_entorno environmentVariable = (variable_de_entorno)env;
 
                     return environmentVariable;
-                }
+                //}
             }
             catch (Exception ex)
             {

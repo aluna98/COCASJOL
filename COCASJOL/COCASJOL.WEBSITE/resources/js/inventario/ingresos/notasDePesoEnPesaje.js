@@ -189,6 +189,7 @@ var PageX = {
                     success: function () {
                         GridStore.reload();
                         Ext.Msg.alert('Editar Nota de Peso', 'Nota de peso actualizada exitosamente.');
+                        EditWindow.hide();
                     },
                     eventMask: {
                         showMask: true, target: 'customtarget', customTarget: EditForm
@@ -329,7 +330,7 @@ var AlertSelMsgTitle = "Atención";
 var AlertSelMsg = "Debe seleccionar 1 elemento";
 
 var ConfirmMsgTitle1 = "Datos de Peso";
-var ConfirmUpdate1 = "Seguro desea modificar los datos de peos?";
+var ConfirmUpdate1 = "Seguro desea modificar los datos de peso?";
 var ConfirmDelete1 = "Seguro desea eliminar los datos de peso?";
 
 var AddDetailX = {

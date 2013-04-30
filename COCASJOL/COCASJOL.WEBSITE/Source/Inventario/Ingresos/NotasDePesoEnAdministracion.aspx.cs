@@ -111,13 +111,14 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
 
                 NotaDePesoEnAdministracionLogic notadepesologic = new NotaDePesoEnAdministracionLogic();
 
-                notadepesologic.RegistrarNotaDePeso
+                int transactnum = notadepesologic.RegistrarNotaDePeso
                     (Convert.ToInt32(this.EditNotaIdTxt.Text),
                     Convert.ToInt32(this.EditEstadoNotaCmb.Text),
                     loggedUser);
 
                 this.EditRegistrarBtn.Hidden = true;
                 this.EditGuardarBtn.Hidden = true;
+                this.EditTransaccionNumTxt.Text = transactnum.ToString();
             }
             catch (Exception ex)
             {

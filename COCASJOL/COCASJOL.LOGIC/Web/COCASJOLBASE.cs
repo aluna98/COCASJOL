@@ -249,20 +249,23 @@ namespace COCASJOL.LOGIC.Web
 
                 VariablesDeEntornoLogic variablesLogic = new VariablesDeEntornoLogic();
 
-                foreach (XmlNode pageNode in pagesNode)
+                using (var db = new colinasEntities())
                 {
-                    XmlNodeList variablesNode = pageNode.SelectNodes("variables/variable");
-
-                    foreach (XmlNode variableNode in variablesNode)
+                    foreach (XmlNode pageNode in pagesNode)
                     {
-                        XmlNode keyNode = variableNode.SelectSingleNode("key");
+                        XmlNodeList variablesNode = pageNode.SelectNodes("variables/variable");
 
-                        string key = keyNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
+                        foreach (XmlNode variableNode in variablesNode)
+                        {
+                            XmlNode keyNode = variableNode.SelectSingleNode("key");
 
-                        variable_de_entorno varenv = variablesLogic.GetVariableDeEntorno(key);
+                            string key = keyNode.InnerText.Replace("\t", "").Replace("\r\n", "").Replace("\n", "").Trim();
 
-                        variablesDictionary[key] = varenv.VARIABLES_VALOR;
-                    }
+                            variable_de_entorno varenv = variablesLogic.GetVariableDeEntorno(key, db);
+
+                            variablesDictionary[key] = varenv.VARIABLES_VALOR;
+                        }
+                    } 
                 }
 
                 return variablesDictionary;

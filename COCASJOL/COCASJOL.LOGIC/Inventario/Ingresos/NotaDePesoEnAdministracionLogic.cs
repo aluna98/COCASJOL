@@ -90,10 +90,11 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
         /// <param name="NOTAS_ID"></param>
         /// <param name="ESTADO_ID"></param>
         /// <param name="MODIFICADO_POR"></param>
-        public void RegistrarNotaDePeso(int NOTAS_ID, int ESTADO_ID, string MODIFICADO_POR)
+        public int RegistrarNotaDePeso(int NOTAS_ID, int ESTADO_ID, string MODIFICADO_POR)
         {
             try
             {
+                int transactionNum = -1;
                 using (var db = new colinasEntities())
                 {
                     using (var scope1 = new TransactionScope())
@@ -113,11 +114,14 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                             InventarioDeCafeLogic inventariodecafelogic = new InventarioDeCafeLogic();
                             note.TRANSACCION_NUMERO = inventariodecafelogic.InsertarTransaccionInventarioDeCafeDeSocio(note, db);
                             db.SaveChanges();
+                            transactionNum = note.TRANSACCION_NUMERO == null ? transactionNum : Convert.ToInt32(note.TRANSACCION_NUMERO);
                         }
 
                         scope1.Complete();
                     }
                 }
+
+                return transactionNum;
             }
             catch (Exception ex)
             {

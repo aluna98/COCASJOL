@@ -447,7 +447,7 @@
                                                                     <Listeners>
                                                                         <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
                                                                         <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide(); Ext.getCmp('AddNombreTxt').reset(); Ext.getCmp('AddDireccionFincaTxt').reset();  }" />
-                                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddDireccionFincaTxt')); PageX.getClasificacionDeCafeDeSocio(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddClasificacionCafeCmb')); #{AddEstadosNotaSt}.reload();" />
+                                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddDireccionFincaTxt')); PageX.getClasificacionDeCafeDeSocio(Ext.getCmp('AddSociosIdTxt'), Ext.getCmp('AddClasificacionCafeCmb')); #{AddEstadosNotaSt}.reload(); #{AddEstadoNotaCmb}.clear();" />
                                                                     </Listeners>
                                                                 </ext:ComboBox>
                                                             </Items>
@@ -485,7 +485,7 @@
                                                                     <Listeners>
                                                                         <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
                                                                         <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
-                                                                        <Select Handler="this.triggers[0].show(); #{AddEstadosNotaSt}.reload();" />
+                                                                        <Select Handler="this.triggers[0].show(); #{AddEstadosNotaSt}.reload(); #{AddEstadoNotaCmb}.clear();" />
                                                                     </Listeners>
                                                                 </ext:ComboBox>
                                                             </Items>
@@ -892,7 +892,7 @@
                                                                     <Listeners>
                                                                         <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
                                                                         <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide(); Ext.getCmp('EditNombreTxt').reset(); Ext.getCmp('EditDireccionFincaTxt').reset(); }" />
-                                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditDireccionFincaTxt')); PageX.getClasificacionDeCafeDeSocio(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditClasificacionCafeCmb')); #{EditEstadosNotaSt}.reload();" />
+                                                                        <Select Handler="this.triggers[0].show(); PageX.getNombreDeSocio(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditNombreTxt')); PageX.getDireccionDeFinca(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditDireccionFincaTxt')); PageX.getClasificacionDeCafeDeSocio(Ext.getCmp('EditSociosIdTxt'), Ext.getCmp('EditClasificacionCafeCmb')); #{EditEstadosNotaSt}.reload(); #{EditEstadoNotaCmb}.clear();" />
                                                                     </Listeners>
                                                                 </ext:ComboBox>
                                                             </Items>
@@ -930,7 +930,7 @@
                                                                     <Listeners>
                                                                         <BeforeQuery Handler="this.triggers[0][ this.getRawValue().toString().length == 0 ? 'hide' : 'show']();" />
                                                                         <TriggerClick Handler="if (index == 0) { this.focus().clearValue(); trigger.hide();}" />
-                                                                        <Select Handler="this.triggers[0].show(); #{EditEstadosNotaSt}.reload();" />
+                                                                        <Select Handler="this.triggers[0].show(); #{EditEstadosNotaSt}.reload(); #{EditEstadoNotaCmb}.clear();" />
                                                                     </Listeners>
                                                                 </ext:ComboBox>
                                                             </Items>
