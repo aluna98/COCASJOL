@@ -78,7 +78,7 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
 				string estado = logica.getEstado(id);
 				if (estado != "RECHAZADA")
 				{
-					X.Msg.Confirm("Message", "Desea aprobar la solicitud?", new MessageBoxButtonsConfig
+					X.Msg.Confirm("Solicitud de Prestamo", "Desea aprobar la solicitud?", new MessageBoxButtonsConfig
 					{
 						Yes = new MessageBoxButtonConfig
 						{
@@ -480,7 +480,7 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
                     EditLuz.Checked ? 1 : 0, EditCasa.Checked ? 1 : 0, EditBeneficio.Checked ? 1 : 0, EditOtrosTxt.Text,
                     EditCalifCmb.Text, LoggedUserHdn.Text);
                 EditarSolicitudWin.Hide();
-                X.Msg.Alert("Solicitudes de Prestamos", "La solicitud se ha modificado satisfactoriamente.").Show();
+                X.Msg.Alert("Solicitud de Prestamo", "La solicitud se ha modificado satisfactoriamente.").Show();
                 
             }
             catch (Exception ex)
@@ -548,7 +548,7 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
                     promact, norte, sur, oeste, este, vehiculo, agua, luz, casa, beneficio,
                     otros, calificacion, LoggedUserHdn.Text);
                 NuevaSolicitudWin.Hide();
-                X.Msg.Alert("Solicitudes de Prestamos", "La solicitud se ha creado satisfactoriamente.").Show();
+                X.Msg.Alert("Solicitud de Prestamo", "La solicitud se ha creado satisfactoriamente.").Show();
                 
             }
             catch (Exception ex)
@@ -617,6 +617,7 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
 					confirm = false;
 				}
 				SolicitudesSt_Reload(null, null);
+                X.Msg.Alert("Solicitud de Prestamo", "Prestamo Aprobado Exitosamente.").Show();
 			}
 			catch(Exception ex)
             {

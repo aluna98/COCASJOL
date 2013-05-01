@@ -8,8 +8,8 @@
     <CargarDatosAlInicio>False</CargarDatosAlInicio>
   </ventanas>
   <consolidadoInventario>
-    <InicioPeriodo>9/1/2013</InicioPeriodo>
-    <FinalPeriodo>10/1/2013</FinalPeriodo>
+    <InicioPeriodo>10/2/2013</InicioPeriodo>
+    <FinalPeriodo>10/31/2013</FinalPeriodo>
   </consolidadoInventario>
   <correo>
     <correoLocal>lol@trolol.com</correoLocal>
@@ -20,7 +20,7 @@
     <usarSSL>True</usarSSL>
   </correo>
   <auditoria>
-    <username>sysadmin</username>
-    <date>04/21/2013</date>
+    <username>DEVELOPER</username>
+    <date>05/01/2013</date>
   </auditoria>
 </configuracion>

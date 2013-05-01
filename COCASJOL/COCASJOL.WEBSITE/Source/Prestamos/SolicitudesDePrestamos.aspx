@@ -369,7 +369,7 @@
                                                                     </ext:JsonReader>
                                                                 </Reader>
                                                                 <Listeners>
-                                                                    <LoadException Handler="Ext.Msg.alert('Ha ocurrido un problema cargando los beneficiarios!', e.message || response.statusText);" />
+                                                                    <LoadException Handler="Ext.Msg.alert('Referencias','Ha ocurrido un problema cargando los beneficiarios!', e.message || response.statusText);" />
                                                                 </Listeners>
                                                             </ext:Store>
                                                         </Store>
@@ -445,7 +445,7 @@
                                                                     </ext:JsonReader>
                                                                 </Reader>
                                                                 <Listeners>
-                                                                    <LoadException Handler="Ext.Msg.alert('Ha ocurrido un problema cargando los Avales de la solicitud!', e.message || response.statusText);" />
+                                                                    <LoadException Handler="Ext.Msg.alert('Avales','Ha ocurrido un problema cargando los Avales de la solicitud!', e.message || response.statusText);" />
                                                                 </Listeners>
                                                             </ext:Store>
                                                         </Store>

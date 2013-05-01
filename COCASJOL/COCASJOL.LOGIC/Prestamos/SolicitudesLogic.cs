@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.Objects;
 
 using COCASJOL.DATAACCESS;
+using COCASJOL.LOGIC.Utiles;
 
 using log4net;
 
@@ -765,6 +766,17 @@ namespace COCASJOL.LOGIC.Prestamos
                     solicitud_prestamo solicitud = query.First();
                     solicitud.SOLICITUD_ESTADO = "APROBADA";
                     db.SaveChanges();
+
+                    string[] solicitudid = { solicitud.SOLICITUDES_ID.ToString() };
+
+                    string PLANTILLAS_LLAVE = "PRESTAMOAPROBADO";
+                    string PRIVS_LLAVE = "MANT_" + PLANTILLAS_LLAVE;
+
+                    PlantillaLogic plantillalogic = new PlantillaLogic();
+                    plantilla_notificacion pl = plantillalogic.GetPlantilla(PLANTILLAS_LLAVE);
+
+                    NotificacionLogic notificacionlogic = new NotificacionLogic();
+                    notificacionlogic.NotifyUsers(PRIVS_LLAVE, EstadosNotificacion.Creado, pl.PLANTILLAS_ASUNTO, pl.PLANTILLAS_MENSAJE, solicitudid);
                 }
             }
             catch (Exception ex)

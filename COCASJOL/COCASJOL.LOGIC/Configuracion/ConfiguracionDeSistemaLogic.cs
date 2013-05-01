@@ -95,6 +95,8 @@ namespace COCASJOL.LOGIC.Configuracion
         /// </summary>
         private bool socios_importacion;
 
+        private bool notifyDateChange = false;
+
         #endregion
 
         #region Public Properties
@@ -140,6 +142,9 @@ namespace COCASJOL.LOGIC.Configuracion
             }
             set
             {
+                if (this.consolidado_InicioPeriodo.ToShortDateString() != ((DateTime)value).ToShortDateString())
+                    this.notifyDateChange = true;
+
                 this.consolidado_InicioPeriodo = value;
             }
         }
@@ -154,6 +159,9 @@ namespace COCASJOL.LOGIC.Configuracion
             }
             set
             {
+                if (this.consolidado_InicioPeriodo.ToShortDateString() != ((DateTime)value).ToShortDateString())
+                    this.notifyDateChange = true;
+
                 this.consolidado_FinalPeriodo = value;
             }
         }
@@ -292,7 +300,7 @@ namespace COCASJOL.LOGIC.Configuracion
 
         #region Constructors
         /// <summary>
-        /// Bitacora de Aplicacion. Log4net
+        /// lock para sincronización
         /// </summary>
         private static object lockObj = new object();
 
@@ -436,8 +444,6 @@ namespace COCASJOL.LOGIC.Configuracion
                 int final_year = Convert.ToInt32(final_date[2]);
                 this.consolidado_FinalPeriodo = new DateTime(final_year, final_month, final_day);
 
-                //DateTime.TryParse(strConsolidadoInicio, out this.consolidado_InicioPeriodo);
-                //DateTime.TryParse(strConsolidadoFinal, out this.consolidado_FinalPeriodo);
 
                 this.correo_CorreoLocal = strCorreoLocal;
                 bool.TryParse(strCorreoUsarPassword, out this.correo_UsarPassword);
@@ -453,7 +459,6 @@ namespace COCASJOL.LOGIC.Configuracion
                 int audit_day = Convert.ToInt32(audit_date[1]);
                 int audit_year = Convert.ToInt32(audit_date[2]);
                 this.auditoria_date = new DateTime(audit_year, audit_month, audit_day);
-                //DateTime.TryParse(strAuditoriaDate, out this.auditoria_date);
             }
             catch (Exception ex)
             {
@@ -490,6 +495,19 @@ namespace COCASJOL.LOGIC.Configuracion
                 string SavePath = System.Configuration.ConfigurationManager.AppSettings.Get("configuracionDeSistemaXML");
 
                 Configuracion.Save(HttpContext.Current.Server.MapPath(SavePath));
+
+
+                if (this.notifyDateChange == true)
+                {
+                    Utiles.PlantillaLogic plantillalogic = new Utiles.PlantillaLogic();
+                    COCASJOL.DATAACCESS.plantilla_notificacion pl = plantillalogic.GetPlantilla("CAMBIOFECHASCONSOLIDADO");
+                    Utiles.NotificacionLogic notificacionlogic = new Utiles.NotificacionLogic();
+
+                    pl.PLANTILLAS_MENSAJE = pl.PLANTILLAS_MENSAJE.Replace("{INICIO}", this.consolidado_InicioPeriodo.ToShortDateString());
+                    pl.PLANTILLAS_MENSAJE = pl.PLANTILLAS_MENSAJE.Replace("{FIN}", this.consolidado_FinalPeriodo.ToShortDateString());
+
+                    notificacionlogic.NotifyUsers("", Utiles.EstadosNotificacion.Creado, pl.PLANTILLAS_ASUNTO, pl.PLANTILLAS_MENSAJE, " ");
+                }
             }
             catch (Exception ex)
             {

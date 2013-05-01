@@ -77,6 +77,7 @@ var PageX = {
             EditForm.getForm().loadRecord(rec);
             EditForm.record = rec;
             FormatKeysSt.reload();
+            EditInsertFormatKey.clearValue();
         }
     },
 

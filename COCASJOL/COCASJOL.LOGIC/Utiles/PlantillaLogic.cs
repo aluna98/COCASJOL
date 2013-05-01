@@ -46,8 +46,8 @@ namespace COCASJOL.LOGIC.Utiles
                 {
                     Formatkeys = new List<object> 
                     {
-                        new {Text = "{NOMBRE}", Value = count++},
-                        new {Text = "{USUARIO}", Value = count++},
+                        new { Text = "{NOMBRE}", Value = count++ },
+                        new { Text = "{USUARIO}", Value = count++ },
                         new { Text = "{CONTRASEÑA}", Value = count++ }
                     };
                 }
@@ -62,8 +62,8 @@ namespace COCASJOL.LOGIC.Utiles
                 {
                     Formatkeys = new List<object> 
                     {
-                        new {Text = "{NOMBRE}", Value = count++},
-                        new {Text = "{USUARIO}", Value = count++}
+                        new { Text = "{NOMBRE}", Value = count++ },
+                        new { Text = "{USUARIO}", Value = count++ }
                     };
 
                     Formatkeys.Add(new { Text = "{ROL}", Value = count++ });
@@ -73,11 +73,26 @@ namespace COCASJOL.LOGIC.Utiles
                 {
                     Formatkeys = new List<object> 
                     {
-                        new {Text = "{NOMBRE}", Value = count++},
-                        new {Text = "{USUARIO}", Value = count++}
+                        new { Text = "{NOMBRE}", Value = count++ },
+                        new { Text = "{USUARIO}", Value = count++ }
                     };
 
                     Formatkeys.Add(new { Text = "{PRIVILEGIO}", Value = count++ });
+                }
+                else if (PLANTILLAS_LLAVE == "CAMBIOFECHASCONSOLIDADO")
+                {
+                    Formatkeys = new List<object>
+                    {
+                        new { Text = "{INICIO}", Value = count++ },
+                        new { Text = "{FIN}", Value = count++ }
+                    };
+                }
+                else
+                {
+                    Formatkeys = new List<object>
+                    {
+                        new {Text = "{0}", Value = count++}
+                    };
                 }
 
                 return Formatkeys;

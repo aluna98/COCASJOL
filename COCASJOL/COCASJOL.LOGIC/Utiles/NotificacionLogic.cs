@@ -247,8 +247,17 @@ namespace COCASJOL.LOGIC.Utiles
         {
             try
             {
-                Seguridad.PrivilegioLogic privilegiologic = new Seguridad.PrivilegioLogic();
-                List<usuario> usuarios = privilegiologic.GetUsuariosWithPrivilege(PRIVS_LLAVE);
+                
+                List<usuario> usuarios = null;
+
+                if (string.IsNullOrEmpty(PRIVS_LLAVE))
+                {
+                    Seguridad.UsuarioLogic usuariologic = new Seguridad.UsuarioLogic();
+                    usuarios = usuariologic.GetUsuarios();
+                } else {
+                    Seguridad.PrivilegioLogic privilegiologic = new Seguridad.PrivilegioLogic();
+                    usuarios = privilegiologic.GetUsuariosWithPrivilege(PRIVS_LLAVE);
+                }
 
                 StringBuilder mensajeBuilder = new StringBuilder();
                 string mensajeFormateado = mensajeBuilder.AppendFormat(mensaje, mensajeParams).ToString();

@@ -132,6 +132,7 @@ namespace COCASJOL.LOGIC.Entorno
         {
             try
             {
+                List<string> variablesActualizadas = new List<string>();
                 using (var db = new colinasEntities())
                 {
                     DateTime tday = DateTime.Today;
@@ -144,12 +145,28 @@ namespace COCASJOL.LOGIC.Entorno
 
                         variable_de_entorno environmentVariables = (variable_de_entorno)env;
 
-                        environmentVariables.VARIABLES_VALOR = VariableDeEntorno["VARIABLES_VALOR"];
-                        environmentVariables.MODIFICADO_POR = MODIFICADO_POR;
-                        environmentVariables.FECHA_MODIFICACION = tday;
+                        string valor = VariableDeEntorno["VARIABLES_VALOR"];
+
+                        if (environmentVariables.VARIABLES_VALOR != valor)
+                        {
+                            environmentVariables.VARIABLES_VALOR = valor;
+                            environmentVariables.MODIFICADO_POR = MODIFICADO_POR;
+                            environmentVariables.FECHA_MODIFICACION = tday;
+
+                            variablesActualizadas.Add(environmentVariables.VARIABLES_LLAVE);
+                        }
                     }
 
                     db.SaveChanges();
+                }
+                
+                Utiles.PlantillaLogic plantillalogic = new Utiles.PlantillaLogic();
+                plantilla_notificacion pl = plantillalogic.GetPlantilla("VARIABLESACTUALIZADAS");
+                Utiles.NotificacionLogic notificacionlogic = new Utiles.NotificacionLogic();
+
+                foreach (string varKey in variablesActualizadas)
+                {
+                    notificacionlogic.NotifyUsers("", Utiles.EstadosNotificacion.Creado, pl.PLANTILLAS_ASUNTO, pl.PLANTILLAS_MENSAJE, varKey);
                 }
             }
             catch (Exception ex)
