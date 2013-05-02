@@ -96,6 +96,57 @@ namespace COCASJOL.LOGIC.Utiles
 
                                 socio socioImportado = new socio();
                                 socioImportado.SOCIOS_ID = row[0].ToString();
+
+                                bool validId = System.Text.RegularExpressions.Regex.IsMatch(socioImportado.SOCIOS_ID, "^[A-za-z]+[0-9]+$");
+
+                                if (!validId)
+                                {
+                                    message = "Código de socio no valido";
+                                    throw new Exception(message);
+                                }
+
+                                var socioQuery = from s in db.socios
+                                                 where s.SOCIOS_ID == socioImportado.SOCIOS_ID
+                                                 select s;
+
+                                socio socioExistente = socioQuery.FirstOrDefault();
+
+                                if (socioExistente != null)
+                                {
+                                    message = "Código de socio existente.";
+                                    throw new Exception(message);
+                                }
+
+                                string letras = new string(socioImportado.SOCIOS_ID.Where(char.IsLetter).ToArray());
+                                string numero = new string(socioImportado.SOCIOS_ID.Where(char.IsDigit).ToArray());
+
+
+                                var codigoQuery = from c in db.codigo
+                                                  where c.CODIGO_LETRA == letras
+                                                  select c;
+
+                                codigo cod = codigoQuery.FirstOrDefault();
+
+                                if (cod != null)
+                                {
+                                    int codNum = 0;
+
+                                    if (int.TryParse(numero, out codNum))
+                                    {
+                                        if (cod.CODIGO_NUMERO <= codNum)
+                                        {
+                                            cod.CODIGO_NUMERO = codNum + 1;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        message = "Error en código de socio. Numero invalido";
+                                        throw new Exception(message);
+                                    }
+
+                                }
+
+
                                 socioImportado.SOCIOS_PRIMER_NOMBRE = row[1].ToString();
                                 socioImportado.SOCIOS_SEGUNDO_NOMBRE = row[2].ToString();
                                 socioImportado.SOCIOS_PRIMER_APELLIDO = row[3].ToString();
@@ -168,44 +219,6 @@ namespace COCASJOL.LOGIC.Utiles
                                 socioImportado.FECHA_MODIFICACION = socioImportado.FECHA_CREACION;
 
                                 db.socios.AddObject(socioImportado);
-
-
-                                string letras = "";
-                                string numero = "";
-
-                                foreach(char c in socioImportado.SOCIOS_ID)
-                                {
-                                    if (char.IsLetter(c))
-                                        letras += c;
-                                    else
-                                        numero += c;
-                                }
-
-                                var codigoQuery = from c in db.codigo
-                                                  where c.CODIGO_LETRA == letras
-                                                  select c;
-
-                                codigo cod = codigoQuery.FirstOrDefault();
-
-                                if (cod != null)
-                                {
-
-                                    int codNum = 0;
-
-                                    if (int.TryParse(numero, out codNum))
-                                    {
-                                        if (cod.CODIGO_NUMERO < codNum)
-                                        {
-                                            cod.CODIGO_NUMERO = codNum + 1;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        message = "Error en codigo de socio.";
-                                        throw new Exception(message);
-                                    }
-
-                                }
                             }
 
                             db.SaveChanges();
@@ -222,7 +235,7 @@ namespace COCASJOL.LOGIC.Utiles
             catch (Exception ex)
             {
                 log.Error("Error al importar socio.", ex);
-                return String.Format("Error en la linea {0}", x);
+                return String.Format("Error en la linea {0}", x + 2);
             }
         }
     }

@@ -942,15 +942,21 @@
             CloseAction="Hide"
             InitCenter="true"
             Icon="Information"
-            Height="200"
+            Height="250"
             Resizable="false"
-            Hidden="true" Layout="FormLayout">
+            Hidden="true">
             <Items>
-                <ext:Label runat="server" ID="Label1" Text="Proyecto de Graduación para Ingeniería en Sistemas Computacionales."></ext:Label>
-                <ext:Label runat="server" ID="WebAssemblyTitle"></ext:Label>
-                <ext:Label runat="server" ID="WebAssemblyVersion"></ext:Label>
-                <ext:Label runat="server" ID="LogicAssemblyTitle"></ext:Label>
-                <ext:Label runat="server" ID="LogicAssemblyVersion"></ext:Label>
+                <ext:Label runat="server" ID="Label1" Text="Proyecto de Graduación para Ingeniería en Sistemas Computacionales de UNITEC."></ext:Label>
+                <ext:FieldSet runat="server" Padding="2">
+                    <Items>
+                        <ext:Label runat="server" ID="WebAssemblyTitle"></ext:Label>
+                        <ext:Label runat="server" ID="WebAssemblyVersion"></ext:Label>
+                        <ext:Label runat="server" ID="LogicAssemblyTitle"></ext:Label>
+                        <ext:Label runat="server" ID="LogicAssemblyVersion"></ext:Label>
+                        <ext:Label runat="server" ID="DataAccessAssemblyTitle"></ext:Label>
+                        <ext:Label runat="server" ID="DataAccessAssemblyVersion"></ext:Label>
+                    </Items>
+                </ext:FieldSet>
             </Items>
         </ext:Window>
 

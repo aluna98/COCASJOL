@@ -23,6 +23,7 @@ var ConfirmUpdate = "Seguro que desea editar la Solicitud?";
 var ConfirmAvalUpdate = "Seguro desea editar el aval?";
 var ConfirmDelete = "Seguro desea rechazar la Solicitud?";
 var ConfirmDeleteAval = "Seguro desea eliminar el aval de la solicitud?";
+var ConfirmDeleteRef = "Seguro desea eliminar la referencia de la solicitud?";
 var ConfirmAprobbe = "Seguro desea aprobar la Solicitud?";
 var Confirmacion = "Se ha finalizado correctamente";
 
@@ -81,11 +82,8 @@ var SolicitudX = {
     },
 
     removeRef: function () {
-        if (EditRefForm.record == null) {
-            return;
-        }
         if (GridRef.getSelectionModel().hasSelection()) {
-            Ext.Msg.confirm(ConfirmMsgTitleRef, ConfirmDelete, function (btn, text) {
+            Ext.Msg.confirm(ConfirmMsgTitleRef, ConfirmDeleteRef, function (btn, text) {
                 if (btn == 'yes') {
                     var record = GridRef.getSelectionModel().getSelected();
                     if (rec != null) {
@@ -102,9 +100,6 @@ var SolicitudX = {
     },
 
     removeAval: function () {
-        //if (EditAvalForm.record == null) {
-          //  return;
-        //}
         if (GridAval.getSelectionModel().hasSelection()) {
             Ext.Msg.confirm(ConfirmMsgTitleAval, ConfirmDeleteAval, function (btn, text) {
                 if (btn == 'yes') {

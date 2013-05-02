@@ -168,7 +168,7 @@ namespace COCASJOL.LOGIC.Reportes
             {
                 using (var db = new colinasEntities())
                 {
-                    var query = from sp in db.solicitudes_prestamos.Include("prestamos").Include("socios").Include("socios.socios_generales").Include("socios.socios_produccion")
+                    var query = from sp in db.solicitudes_prestamos.Include("prestamos").Include("socios").Include("socios.socios_generales").Include("socios.socios_produccion").Include("socios.aportaciones_socio")
                                 where
                                 (SOLICITUDES_ID == 0 ? true : sp.SOLICITUDES_ID.Equals(SOLICITUDES_ID)) &&
                                 (string.IsNullOrEmpty(SOCIOS_ID) ? true : sp.SOCIOS_ID == SOCIOS_ID)

@@ -720,6 +720,40 @@ namespace COCASJOL.LOGIC.Socios
             }
         }
 
+        public bool EditCienPorciento(string SOCIOS_ID, string BENEFICIARIO_ID, int PORCENTAJE)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    List<beneficiario_x_socio> lista;
+                    var query = from nuevo in db.beneficiario_x_socio
+                                where nuevo.SOCIOS_ID == SOCIOS_ID &&
+                                nuevo.BENEFICIARIO_IDENTIFICACION != BENEFICIARIO_ID
+                                select nuevo;
+                    lista = query.ToList<beneficiario_x_socio>();
+                    int total = PORCENTAJE;
+                    foreach (beneficiario_x_socio ben in lista)
+                    {
+                        total += ben.BENEFICIARIO_PORCENTAJE.Value;
+                    }
+                    if (total > 100)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al validar porcentaje de beneficiario de socio.", ex);
+                throw;
+            }
+        }
+
         /// <summary>
         /// Verifica si ya se asigno el porcentaje a los benficiarios del socio.
         /// </summary>

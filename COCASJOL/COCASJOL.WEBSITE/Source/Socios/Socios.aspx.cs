@@ -235,7 +235,7 @@ namespace COCASJOL.WEBSITE.Socios
             try
             {
                 SociosLogic socios = new SociosLogic();
-                if (socios.CienPorciento(this.EditsocioIdTxt.Text, Convert.ToInt32(this.AddBenefPorcentaje.Text)))
+                if (socios.EditCienPorciento(this.EditsocioIdTxt.Text, this.EditBenefId.Text, Convert.ToInt32(this.EditBenefPorcentaje.Text)))
                 {
                     socios.ActualizarBeneficiario(this.EditsocioIdTxt.Text, this.EditBenefId.Text,
                         this.EditBenefNombre.Text, this.EditBenefParentezco.Text, this.EditBenefNacimiento.Text,

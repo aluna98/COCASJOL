@@ -247,15 +247,15 @@ var WindowX = {
     },
 
     reporteDetalleDeNotasDePeso: function (app) {
-        DesktopX.createDynamicWindow(app, 'reporteDetalleNotasDePeso16', 'Reporte Detalle de Notas de Peso', 'Reportes/ReporteDetalleDeNotasDePeso.aspx', 600, 300);
+        DesktopX.createDynamicWindow(app, 'reporteDetalleNotasDePeso16', 'Reporte Detalle de Notas de Peso', 'Reportes/ReporteDetalleDeNotasDePeso.aspx', 600, 400);
     },
 
     reporteMovimientosInventarioDeCafeDeSocios: function (app) {
-        DesktopX.createDynamicWindow(app, 'reporteMovimientosInventarioDeCafeDeSocios16', 'Reporte de Movimientos de Inventario de Café de Socios', 'Reportes/ReporteMovimientosInventarioDeCafeDeSocios.aspx', 600, 300);
+        DesktopX.createDynamicWindow(app, 'reporteMovimientosInventarioDeCafeDeSocios16', 'Reporte de Movimientos de Inventario de Café de Socios', 'Reportes/ReporteMovimientosInventarioDeCafeDeSocios.aspx', 600, 400);
     },
 
     reporteMovimientosInventarioDeCafeDeCooperativa: function (app) {
-        DesktopX.createDynamicWindow(app, 'reporteMovimientosInventarioDeCafeDeCooperativa16', 'Reporte de Movimientos de Inventario de Café de Cooperativa', 'Reportes/ReporteMovimientosInventarioDeCafeDeCooperativa.aspx', 600, 300);
+        DesktopX.createDynamicWindow(app, 'reporteMovimientosInventarioDeCafeDeCooperativa16', 'Reporte de Movimientos de Inventario de Café de Cooperativa', 'Reportes/ReporteMovimientosInventarioDeCafeDeCooperativa.aspx', 600, 400);
     },
 
     aportacionesPorSocio: function (app) {

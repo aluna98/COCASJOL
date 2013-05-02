@@ -859,6 +859,24 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.Label LogicAssemblyVersion;
         
         /// <summary>
+        /// DataAccessAssemblyTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label DataAccessAssemblyTitle;
+        
+        /// <summary>
+        /// DataAccessAssemblyVersion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label DataAccessAssemblyVersion;
+        
+        /// <summary>
         /// scUsuariosTooltip control.
         /// </summary>
         /// <remarks>

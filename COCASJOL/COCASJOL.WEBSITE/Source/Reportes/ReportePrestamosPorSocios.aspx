@@ -141,7 +141,7 @@
                                         <ext:Panel ID="Panel1" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5" PaddingSummary="0 0 5 5">
                                             <Items>
                                                 <ext:Checkbox runat="server" ID="g_SOCIOS_ID" LabelWidth="200" LabelAlign="Left" FieldLabel="Agrupar por Socio" MsgTarget="Side" ></ext:Checkbox>
-                                                <ext:Checkbox runat="server" ID="g_PRESTAMOS_ID" LabelWidth="200" LabelAlign="Left" FieldLabel="Agrupar por Clasificación de Café" MsgTarget="Side" ></ext:Checkbox>
+                                                <ext:Checkbox runat="server" ID="g_PRESTAMOS_ID" LabelWidth="200" LabelAlign="Left" FieldLabel="Agrupar por Tipo de Prestamo" MsgTarget="Side" ></ext:Checkbox>
                                             </Items>
                                         </ext:Panel>
                                     </Items>

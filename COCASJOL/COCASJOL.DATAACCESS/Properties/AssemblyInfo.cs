@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("COCASJOL.DATAACCESS")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Data Access")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("UNITEC")]
 [assembly: AssemblyProduct("COCASJOL.DATAACCESS")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]

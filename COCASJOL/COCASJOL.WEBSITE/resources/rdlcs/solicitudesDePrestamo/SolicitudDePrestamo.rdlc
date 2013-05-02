@@ -1643,7 +1643,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>CANTIDAD DE APORTACIONES</Value>
+                <Value>CANTIDAD DE APORTACIONES </Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>

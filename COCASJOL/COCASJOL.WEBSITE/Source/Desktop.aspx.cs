@@ -79,6 +79,9 @@ namespace COCASJOL.WEBSITE
 
                     this.LogicAssemblyTitle.Text = this.LAssemblyTitle;
                     this.LogicAssemblyVersion.Text = this.LAssemblyVersion;
+
+                    this.DataAccessAssemblyTitle.Text = this.DalAssemblyTitle;
+                    this.DataAccessAssemblyVersion.Text = this.DalAssemblyVersion;
                 }
 
                 string loggedUser = Session["username"] as string;
@@ -472,6 +475,47 @@ namespace COCASJOL.WEBSITE
                 catch (Exception ex)
                 {
                     log.Fatal("Error fatal al obtener informacion de assembly de logica de aplicacion.", ex);
+                    throw;
+                }
+            }
+        }
+
+        public string DalAssemblyTitle
+        {
+            get
+            {
+                try
+                {
+                    object[] attributes = Assembly.LoadFrom(Server.MapPath("~/bin/COCASJOL.DATAACCESS.dll")).GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
+                    if (attributes.Length > 0)
+                    {
+                        AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0];
+                        if (titleAttribute.Title != "")
+                        {
+                            return titleAttribute.Title;
+                        }
+                    }
+                    return System.IO.Path.GetFileNameWithoutExtension(Assembly.LoadFrom(Server.MapPath("~/bin/COCASJOL.DATAACCESS.dll")).CodeBase);
+                }
+                catch (Exception ex)
+                {
+                    log.Fatal("Error fatal al obtener informacion de assembly de data access de aplicacion.", ex);
+                    throw;
+                }
+            }
+        }
+
+        public string DalAssemblyVersion
+        {
+            get
+            {
+                try
+                {
+                    return Assembly.LoadFrom(Server.MapPath("~/bin/COCASJOL.DATAACCESS.dll")).GetName().Version.ToString();
+                }
+                catch (Exception ex)
+                {
+                    log.Fatal("Error fatal al obtener informacion de assembly de data access de aplicacion.", ex);
                     throw;
                 }
             }
