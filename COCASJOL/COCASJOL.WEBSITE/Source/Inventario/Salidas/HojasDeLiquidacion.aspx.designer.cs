@@ -76,6 +76,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         protected global::System.Web.UI.WebControls.ObjectDataSource SociosDS;
         
         /// <summary>
+        /// AllSociosDS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource AllSociosDS;
+        
+        /// <summary>
         /// ClasificacionesCafeDS control.
         /// </summary>
         /// <remarks>
@@ -92,6 +101,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Salidas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Store SocioSt;
+        
+        /// <summary>
+        /// AllSocioSt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store AllSocioSt;
         
         /// <summary>
         /// ClasificacionesCafeSt control.

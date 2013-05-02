@@ -27,7 +27,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
         /// <summary>
         /// Constructor.
         /// </summary>
-        public NotaDePesoEnAdministracionLogic() : base("") { }
+        public NotaDePesoEnAdministracionLogic() : base("", true) { }
 
         /// <summary>
         /// Constructor. Pasa de parámetro el estado al que se inicializará la nota de peso.

@@ -67,7 +67,7 @@
 
         <asp:ObjectDataSource ID="SociosDS" runat="server"
                 TypeName="COCASJOL.LOGIC.Socios.SociosLogic"
-                SelectMethod="getSociosActivos" >
+                SelectMethod="getData" >
         </asp:ObjectDataSource>
 
         <asp:ObjectDataSource ID="ClasificacionesCafeDS" runat="server"

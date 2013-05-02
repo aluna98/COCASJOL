@@ -159,7 +159,7 @@ namespace COCASJOL.LOGIC.Configuracion
             }
             set
             {
-                if (this.consolidado_InicioPeriodo.ToShortDateString() != ((DateTime)value).ToShortDateString())
+                if (this.consolidado_FinalPeriodo.ToShortDateString() != ((DateTime)value).ToShortDateString())
                     this.notifyDateChange = true;
 
                 this.consolidado_FinalPeriodo = value;

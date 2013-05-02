@@ -44,7 +44,7 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                     db.liquidaciones.MergeOption = MergeOption.NoTracking;
 
                     var query = from l in db.liquidaciones.Include("socios").Include("clasificaciones_cafe")
-                                where l.socios.SOCIOS_ESTATUS >= 1
+                                //where l.socios.SOCIOS_ESTATUS >= 1
                                 select l;
 
                     return query.OrderBy(h => h.SOCIOS_ID).ToList<liquidacion>();
@@ -134,7 +134,7 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                     db.liquidaciones.MergeOption = MergeOption.NoTracking;
 
                     var prequery = from l in db.liquidaciones.Include("socios").Include("clasificaciones_cafe")
-                                   where l.socios.SOCIOS_ESTATUS >= 1
+                                   //where l.socios.SOCIOS_ESTATUS >= 1
                                    select l;
 
                     var query = from hojaliq in prequery

@@ -1120,7 +1120,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>ESTADOS NOTA NOMBRE</Value>
+                              <Value>Estado (Área)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1139,6 +1139,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -4691,7 +4692,7 @@ iif(Parameters!parGroupByFecha.Value = True, "", " - Fecha: " &amp; Fields!NOTAS
         </TablixRowHierarchy>
         <DataSetName>NotasDePesoDetalleDataSet</DataSetName>
         <Height>1.75in</Height>
-        <Width>30in</Width>
+        <Width>29.99992in</Width>
         <Style>
           <Border>
             <Style>None</Style>

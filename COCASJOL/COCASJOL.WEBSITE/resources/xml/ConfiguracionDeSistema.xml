@@ -12,15 +12,15 @@
     <FinalPeriodo>10/31/2013</FinalPeriodo>
   </consolidadoInventario>
   <correo>
-    <correoLocal>lol@trolol.com</correoLocal>
+    <correoLocal>trolol@gmail.com</correoLocal>
     <usarPassword>True</usarPassword>
-    <password>E23Y/Mizq476OgjLp04DyA==</password>
+    <password>g1f7Bg7EOdtZsc1XBNdGpQ==</password>
     <smtp>smtp.gmail.com</smtp>
     <puerto>587</puerto>
     <usarSSL>True</usarSSL>
   </correo>
   <auditoria>
     <username>DEVELOPER</username>
-    <date>05/01/2013</date>
+    <date>05/02/2013</date>
   </auditoria>
 </configuracion>

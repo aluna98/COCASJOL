@@ -254,7 +254,7 @@ var PageX = {
 
     getNombreDeSocioEdit: function (sociosIdTxt, nombreTxt) {
         var comboBox = sociosIdTxt, value = comboBox.getValue();
-        record = SocioSt.getById(value);
+        record = AllSocioSt.getById(value);
 
         var nombreCompleto = record.data.SOCIOS_PRIMER_NOMBRE +
                                      (record.data.SOCIOS_SEGUNDO_NOMBRE != '' ? (' ' + record.data.SOCIOS_SEGUNDO_NOMBRE) : '') +
@@ -273,7 +273,7 @@ var PageX = {
 
     getDireccionDeFincaEdit: function (sociosIdTxt, direccionFincaTxt) {
         var comboBox = sociosIdTxt, value = comboBox.getValue();
-        record = SocioSt.getById(value);
+        record = AllSocioSt.getById(value);
 
         direccionFincaTxt.setValue(record.data.PRODUCCION_UBICACION_FINCA);
     },

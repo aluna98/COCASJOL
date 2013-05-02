@@ -111,12 +111,32 @@
                 SelectMethod="getSociosActivos" >
         </asp:ObjectDataSource>
 
+        <asp:ObjectDataSource ID="AllSociosDS" runat="server"
+                TypeName="COCASJOL.LOGIC.Socios.SociosLogic"
+                SelectMethod="getData" >
+        </asp:ObjectDataSource>
+
         <asp:ObjectDataSource ID="ClasificacionesCafeDS" runat="server"
                 TypeName="COCASJOL.LOGIC.Inventario.ClasificacionDeCafeLogic"
                 SelectMethod="GetClasificacionesDeCafe" >
         </asp:ObjectDataSource>
 
         <ext:Store ID="SocioSt" runat="server" DataSourceID="SociosDS">
+            <Reader>
+                <ext:JsonReader IDProperty="SOCIOS_ID">
+                    <Fields>
+                        <ext:RecordField Name="SOCIOS_ID" />
+                        <ext:RecordField Name="SOCIOS_PRIMER_NOMBRE" />
+                        <ext:RecordField Name="SOCIOS_SEGUNDO_NOMBRE" />
+                        <ext:RecordField Name="SOCIOS_PRIMER_APELLIDO" />
+                        <ext:RecordField Name="SOCIOS_SEGUNDO_APELLIDO" />
+                        <ext:RecordField Name="PRODUCCION_UBICACION_FINCA" ServerMapping="socios_produccion.PRODUCCION_UBICACION_FINCA" />
+                    </Fields>
+                </ext:JsonReader>
+            </Reader>
+        </ext:Store>
+
+        <ext:Store ID="AllSocioSt" runat="server" DataSourceID="AllSociosDS">
             <Reader>
                 <ext:JsonReader IDProperty="SOCIOS_ID">
                     <Fields>

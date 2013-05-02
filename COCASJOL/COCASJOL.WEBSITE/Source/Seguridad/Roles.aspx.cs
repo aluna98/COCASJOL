@@ -70,7 +70,7 @@ namespace COCASJOL.WEBSITE.Source.Seguridad
 
                 RolLogic rollogic = new RolLogic();
                 int priv_id = string.IsNullOrEmpty(this.f_PRIV_ID.Text) ? 0 : Convert.ToInt32(this.f_PRIV_ID.Text);
-                this.PrivilegiosDeRolSt.DataSource = rollogic.GetPrivilegios(rol_id, priv_id, this.f_ROL_NOMBRE.Text, this.f_PRIV_LLAVE.Text);
+                this.PrivilegiosDeRolSt.DataSource = rollogic.GetPrivilegios(rol_id, priv_id, this.f_PRIV_NOMBRE.Text, this.f_PRIV_LLAVE.Text);
                 this.PrivilegiosDeRolSt.DataBind();
             }
             catch (Exception ex)

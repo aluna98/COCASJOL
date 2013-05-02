@@ -28,6 +28,8 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
         /// </summary>
         public int ESTADOS_NOTA_ID;
 
+        private bool ALL_SOCIOS = false;
+
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -52,6 +54,22 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
+        public NotaDePesoLogic(string ESTADOS_NOTA_LLAVE, bool SHOW_ALL_SOCIOS)
+        {
+            try
+            {
+                EstadoNotaDePesoLogic estadologic = new EstadoNotaDePesoLogic();
+                estado_nota_de_peso esn = estadologic.GetEstadoNotaDePeso(ESTADOS_NOTA_LLAVE);
+                this.ESTADOS_NOTA_ID = esn == null ? 0 : esn.ESTADOS_NOTA_ID;
+                this.ALL_SOCIOS = SHOW_ALL_SOCIOS;
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al construir NotaDePesoLogic.", ex);
+                throw;
+            }
+        }
+
         #region Select
 
         /// <summary>
@@ -67,7 +85,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     db.notas_de_peso.MergeOption = MergeOption.NoTracking;
 
                     var query = from n in db.notas_de_peso.Include("notas_de_peso").Include("socios").Include("clasificaciones_cafe")
-                                where n.socios.SOCIOS_ESTATUS >= 1
+                                where ALL_SOCIOS == true ? true : n.socios.SOCIOS_ESTATUS >= 1
                                 select n;
 
                     return query.OrderBy(n => n.SOCIOS_ID).ToList<nota_de_peso>();
@@ -174,7 +192,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     db.notas_de_peso.MergeOption = MergeOption.NoTracking;
 
                     var queryEnPesaje = from notasPesoPesaje in db.notas_de_peso.Include("socios").Include("clasificaciones_cafe").Include("estados_nota_de_peso")
-                                        where notasPesoPesaje.socios.SOCIOS_ESTATUS >= 1 &&
+                                        where ALL_SOCIOS == true ? true : notasPesoPesaje.socios.SOCIOS_ESTATUS >= 1 &&
                                         (this.ESTADOS_NOTA_ID.Equals(0) ? true : notasPesoPesaje.ESTADOS_NOTA_ID == this.ESTADOS_NOTA_ID)
                                         select notasPesoPesaje;
 
