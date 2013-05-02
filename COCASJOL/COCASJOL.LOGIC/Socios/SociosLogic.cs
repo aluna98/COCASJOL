@@ -1083,18 +1083,38 @@ namespace COCASJOL.LOGIC.Socios
         public static void InsertSociosDBISAM(string id, string nombre)
         {
             OdbcTransaction transaction = null;
+            string errorMsg = "";
 
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["A2DBISAM"].ConnectionString;
+            string connectionString = "";
 
             bool activo = true;
             int zero = 0;
 
-            string parameterChar = System.Configuration.ConfigurationManager.AppSettings["A2DBISAM_ParameterChar"];
-            string queryStringCliente = System.Configuration.ConfigurationManager.AppSettings["A2DBISAM_InsertarCliente"];
-            string queryStringProveedor = System.Configuration.ConfigurationManager.AppSettings["A2DBISAM_InsertarProveedor"];
+            string parameterChar = "";
+            string queryStringCliente = "";
+            string queryStringProveedor = "";
 
-            string queryCliente = string.Format(queryStringCliente, parameterChar);
-            string queryProveedor = string.Format(queryStringProveedor, parameterChar);
+            string queryCliente = "";
+            string queryProveedor = "";
+
+
+            try
+            {
+                connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["A2DBISAM"].ConnectionString;
+
+                parameterChar = System.Configuration.ConfigurationManager.AppSettings["A2DBISAM_ParameterChar"];
+                queryStringCliente = System.Configuration.ConfigurationManager.AppSettings["A2DBISAM_InsertarCliente"];
+                queryStringProveedor = System.Configuration.ConfigurationManager.AppSettings["A2DBISAM_InsertarProveedor"];
+
+                queryCliente = string.Format(queryStringCliente, parameterChar);
+                queryProveedor = string.Format(queryStringProveedor, parameterChar);
+            }
+            catch (Exception ex)
+            {
+                errorMsg = string.Format("Error al preparar conexion con DBISAM. ConnectionString: {0} - SQLInsertCliente: {1} - SQLInsertProveedor: {2}", connectionString, queryCliente, queryProveedor);
+                log.Error(errorMsg, ex);
+                return;
+            }
 
             try
             {
@@ -1133,9 +1153,10 @@ namespace COCASJOL.LOGIC.Socios
             }
             catch (Exception ex)
             {
-                transaction.Rollback();
+                if (transaction != null)
+                    transaction.Rollback();
 
-                string errorMsg = string.Format("Error al obtener socios desde DBISAM. ConnectionString: {0} - SQLInsertCliente: {1} - SQLInsertProveedor: {2}", connectionString, queryCliente, queryProveedor);
+                errorMsg = string.Format("Error al obtener socios desde DBISAM. ConnectionString: {0} - SQLInsertCliente: {1} - SQLInsertProveedor: {2}", connectionString, queryCliente, queryProveedor);
                 log.Error(errorMsg, ex);
             }
         }

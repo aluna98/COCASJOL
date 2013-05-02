@@ -356,7 +356,7 @@
                             <BottomBar>
                                 <ext:PagingToolbar ID="PagingToolbar1" StoreID="SociosSt"
                                     runat="server"
-                                    PageSize="5"
+                                    PageSize="10"
                                     DisplayInfo="true"
                                     DisplayMsg="Displaying socios {0} - {1} of {2}"
                                     EmptyMsg="No hay socios para mostrar"/>
@@ -537,6 +537,9 @@
                                                     <BottomBar>
                                                         <ext:PagingToolbar ID="PaginacionBeneficiarios" runat="server" PageSize="5" StoreID="StoreBeneficiarios" />
                                                     </BottomBar>
+                                                    <Listeners>
+                                                        <RowDblClick Handler="PageX.editben();" />
+                                                    </Listeners>
                                                     <LoadMask ShowMask="true" />
                                                     <SaveMask ShowMask="true" />
                                                 </ext:GridPanel>
