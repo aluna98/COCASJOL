@@ -520,39 +520,39 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="resources\rdlcs\HojasDeLiquidacion.rdlc">
+    <Content Include="resources\rdlcs\HojasDeLiquidacion.rdlc">
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="resources\rdlcs\notasDePeso\NotaDetalles.rdlc" />
-    <EmbeddedResource Include="resources\rdlcs\notasDePeso\NotasDePeso.rdlc" />
-    <EmbeddedResource Include="resources\rdlcs\ReporteDetalleDeAportacionesPorSocio.rdlc">
+    </Content>
+    <Content Include="resources\rdlcs\notasDePeso\NotaDetalles.rdlc" />
+    <Content Include="resources\rdlcs\notasDePeso\NotasDePeso.rdlc" />
+    <Content Include="resources\rdlcs\ReporteDetalleDeAportacionesPorSocio.rdlc">
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="resources\rdlcs\ReporteHojasDeLiquidacion.rdlc">
+    </Content>
+    <Content Include="resources\rdlcs\ReporteHojasDeLiquidacion.rdlc">
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="resources\rdlcs\ReporteMovimientosDeInventarioDeCafeDeCooperativa.rdlc">
+    </Content>
+    <Content Include="resources\rdlcs\ReporteMovimientosDeInventarioDeCafeDeCooperativa.rdlc">
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="resources\rdlcs\ReporteMovimientosDeInventarioDeCafeDeSocios.rdlc">
+    </Content>
+    <Content Include="resources\rdlcs\ReporteMovimientosDeInventarioDeCafeDeSocios.rdlc">
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="resources\rdlcs\ReporteNotasDePeso.rdlc">
+    </Content>
+    <Content Include="resources\rdlcs\ReporteNotasDePeso.rdlc">
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="resources\rdlcs\ReportePrestamosPorSocios.rdlc">
+    </Content>
+    <Content Include="resources\rdlcs\ReportePrestamosPorSocios.rdlc">
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="resources\rdlcs\ReportResumenAportacionesPorSocio.rdlc" />
-    <EmbeddedResource Include="resources\rdlcs\ReportResumenInventarioDeCafeDeCooperativa.rdlc" />
-    <EmbeddedResource Include="resources\rdlcs\ReportResumenInventarioDeCafeDeSocios.rdlc" />
-    <EmbeddedResource Include="resources\rdlcs\Socios.rdlc" />
-    <EmbeddedResource Include="resources\rdlcs\solicitudesDeIngresoDeSocio\BeneficiariosPorSocio.rdlc" />
-    <EmbeddedResource Include="resources\rdlcs\solicitudesDeIngresoDeSocio\SolicitudDeIngresoDeSocio.rdlc" />
-    <EmbeddedResource Include="resources\rdlcs\solicitudesDePrestamo\Avales.rdlc" />
-    <EmbeddedResource Include="resources\rdlcs\solicitudesDePrestamo\ReferenciasComerciales.rdlc" />
-    <EmbeddedResource Include="resources\rdlcs\solicitudesDePrestamo\ReferenciasPersonales.rdlc" />
-    <EmbeddedResource Include="resources\rdlcs\solicitudesDePrestamo\SolicitudDePrestamo.rdlc" />
+    </Content>
+    <Content Include="resources\rdlcs\ReportResumenAportacionesPorSocio.rdlc" />
+    <Content Include="resources\rdlcs\ReportResumenInventarioDeCafeDeCooperativa.rdlc" />
+    <Content Include="resources\rdlcs\ReportResumenInventarioDeCafeDeSocios.rdlc" />
+    <Content Include="resources\rdlcs\Socios.rdlc" />
+    <Content Include="resources\rdlcs\solicitudesDeIngresoDeSocio\BeneficiariosPorSocio.rdlc" />
+    <Content Include="resources\rdlcs\solicitudesDeIngresoDeSocio\SolicitudDeIngresoDeSocio.rdlc" />
+    <Content Include="resources\rdlcs\solicitudesDePrestamo\Avales.rdlc" />
+    <Content Include="resources\rdlcs\solicitudesDePrestamo\ReferenciasComerciales.rdlc" />
+    <Content Include="resources\rdlcs\solicitudesDePrestamo\ReferenciasPersonales.rdlc" />
+    <Content Include="resources\rdlcs\solicitudesDePrestamo\SolicitudDePrestamo.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\COCASJOL.DATAACCESS\COCASJOL.DATAACCESS.csproj">
