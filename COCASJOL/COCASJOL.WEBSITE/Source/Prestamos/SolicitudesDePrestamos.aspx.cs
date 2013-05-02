@@ -469,10 +469,10 @@ namespace COCASJOL.WEBSITE.Source.Prestamos
                 decimal monto = Decimal.Parse(EditMontoTxt.Value.ToString());
                 int interes = Convert.ToInt32(EditInteres.Value.ToString());
                 decimal promedio3 = 0;
-                if(EditPromedio != null)
+                if(!string.IsNullOrEmpty(EditPromedio.Text))
                     promedio3 = Decimal.Parse(EditPromedio.Text);
                 decimal promact = 0;
-                if(EditProd != null)
+                if(!string.IsNullOrEmpty(EditProd.Text))
                     promact = Decimal.Parse(EditProd.Text);
                 logica.EditarSolicitud(id, monto, interes, EditPlazo.Text, EditPagoTxt.Text, 
                     EditDestinoTxt.Text, EditCargoTxt.Text, promedio3, promact, EditNorteTxt.Text, EditSurTxt.Text,
