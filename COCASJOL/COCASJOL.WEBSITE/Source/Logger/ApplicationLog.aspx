@@ -175,7 +175,7 @@
                                                                                         <KeyUp Fn="calendar.validateDateRange" />
                                                                                     </Listeners>
                                                                                 </ext:DateField>
-                                                                                <ext:TimeField ID="ff_time_from" runat="server" Flex="1" Width="80" CausesValidation="false" />
+                                                                                <ext:TimeField ID="ff_time_from" runat="server" Flex="1" Width="80" CausesValidation="false" Hidden="true" />
                                                                             </Items>
                                                                         </ext:CompositeField>
                                                                         <ext:CompositeField ID="CompositeField2" runat="server" FieldLabel="Hasta" LabelWidth="50">
@@ -188,7 +188,7 @@
                                                                                         <KeyUp Fn="calendar.validateDateRange" />
                                                                                     </Listeners>
                                                                                 </ext:DateField>
-                                                                                <ext:TimeField ID="ff_time_to" runat="server" Width="80" />
+                                                                                <ext:TimeField ID="ff_time_to" runat="server" Flex="1" Width="80" CausesValidation="false" Hidden="true" />
                                                                             </Items>
                                                                         </ext:CompositeField>
                                                                     </Items>

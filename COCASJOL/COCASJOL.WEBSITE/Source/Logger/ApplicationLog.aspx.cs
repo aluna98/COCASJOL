@@ -131,7 +131,7 @@ namespace COCASJOL.WEBSITE.Source.Logger
                 {
                     sqlBuilder.Append(" AND date between @dateFrom AND @dateTo");
                     command.Parameters.Add(new SQLiteParameter { ParameterName = "@dateFrom", Value = from, DbType = DbType.DateTime, Direction = ParameterDirection.Input });
-                    command.Parameters.Add(new SQLiteParameter { ParameterName = "@dateTo", Value = from, DbType = DbType.DateTime, Direction = ParameterDirection.Input });
+                    command.Parameters.Add(new SQLiteParameter { ParameterName = "@dateTo", Value = to, DbType = DbType.DateTime, Direction = ParameterDirection.Input });
                 }
                 else if (dateFrom != "" && dateTo == "")
                 {
@@ -141,7 +141,7 @@ namespace COCASJOL.WEBSITE.Source.Logger
                 else if (dateFrom == "" && dateTo != "")
                 {
                     sqlBuilder.Append(" AND date =< @dateTo");
-                    command.Parameters.Add(new SQLiteParameter { ParameterName = "@dateTo", Value = from, DbType = DbType.DateTime, Direction = ParameterDirection.Input });
+                    command.Parameters.Add(new SQLiteParameter { ParameterName = "@dateTo", Value = to, DbType = DbType.DateTime, Direction = ParameterDirection.Input });
                 }
             }
             catch (Exception ex)
