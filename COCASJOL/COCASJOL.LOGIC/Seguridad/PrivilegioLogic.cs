@@ -129,6 +129,31 @@ namespace COCASJOL.LOGIC.Seguridad
             }
         }
 
+        public bool PrivilegioExiste(string PRIV_LLAVE)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    db.privilegios.MergeOption = MergeOption.NoTracking;
+
+                    var query = from p in db.privilegios
+                                where p.PRIV_LLAVE == PRIV_LLAVE
+                                select p;
+
+                    if (query.Count() > 0)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al intentar verificar privilegio.", ex);
+                throw;
+            }
+        }
+
         #endregion
     }
 }

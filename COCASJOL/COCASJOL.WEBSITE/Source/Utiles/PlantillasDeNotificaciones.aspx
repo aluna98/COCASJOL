@@ -222,9 +222,9 @@
                     <Items>
                         <ext:Panel ID="Panel12" runat="server" Title="Plantilla" Layout="FormLayout" Padding="5" Resizable="false">
                             <Items>
-                                <ext:TextField runat="server" ID="EditLlaveTxt"            DataIndex="PLANTILLAS_LLAVE"  LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Id de Producto" AllowBlank="false" ReadOnly="true">
+                                <ext:TextField runat="server" ID="EditLlaveTxt"            DataIndex="PLANTILLAS_LLAVE"  LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Llave de Plantilla" AllowBlank="false" ReadOnly="true">
                                     <ToolTips>
-                                        <ext:ToolTip ID="ToolTip1" runat="server" Title="Id de Producto" Html="El Id de Producto es de solo lectura." Width="200" TrackMouse="true" />
+                                        <ext:ToolTip ID="ToolTip1" runat="server" Title="LLave de Plantilla" Html="La llave de Plantilla es de solo lectura." Width="200" TrackMouse="true" />
                                     </ToolTips>
                                 </ext:TextField>
                                 <ext:TextField runat="server"   ID="EditNombreTxt"        DataIndex="PLANTILLAS_NOMBRE"  LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" ></ext:TextField>

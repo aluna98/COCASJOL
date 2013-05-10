@@ -3,6 +3,8 @@
 
 var Grid = null;
 var GridStore = null;
+var AddWindow = null;
+var AddForm = null;
 var EditWindow = null;
 var EditForm = null;
 
@@ -19,9 +21,35 @@ var PageX = {
     setReferences: function () {
         Grid = EstadosNotaGridP;
         GridStore = EstadosNotaSt;
-
+        AddWindow = AgregarEstadosNotaWin;
+        AddForm = AgregarEstadosNotaFormP;
         EditWindow = EditarEstadosNotaWin;
         EditForm = EditarEstadosNotaFormP;
+        FormatKeysSt.reload();
+    },
+
+    add: function () {
+        AddWindow.show();
+        Ext.net.DirectMethods.AddEstadosNotaPadreSt_Refresh();
+    },
+
+    insert: function () {
+        var fields = AddForm.getForm().getFieldValues(false, "dataIndex");
+
+        Ext.net.DirectMethods.AddGuardarBtn_Click(
+        {
+            success: function () {
+                GridStore.reload();
+                Ext.Msg.alert('Estados de Nota de Peso', 'Estado agregado exitosamente.');
+            },
+            eventMask: {
+                showMask: true, target: 'customtarget', customTarget: AddWindow
+            },
+            failure: function () {
+                Ext.Msg.alert('Estados de Nota de Peso', 'Error al agregar estado.');
+            }
+        });
+        AddForm.getForm().reset();
     },
 
     getIndex: function () {
@@ -74,11 +102,7 @@ var PageX = {
             EditWindow.show();
             EditForm.getForm().loadRecord(rec);
             EditForm.record = rec;
-            EstadosNotaPadreSt.reload({
-                callback: function (r, options, success) {
-                    EditPadreIdCmb.setValue(EditPadreIdCmb.getValue());
-                }
-            });
+            Ext.net.DirectMethods.EditEstadosNotaPadreSt_Refresh();
         }
     },
 
@@ -89,9 +113,47 @@ var PageX = {
 
         Ext.Msg.confirm(ConfirmMsgTitle, ConfirmUpdate, function (btn, text) {
             if (btn == 'yes') {
-                EditForm.getForm().updateRecord(EditForm.record);
+                Ext.net.DirectMethods.EditGuardarBtn_Click(
+                {
+                    success: function () {
+                        GridStore.reload();
+                        Ext.Msg.alert('Estados de Nota de Peso', 'Estado actualizado exitosamente.');
+                    },
+                    eventMask: {
+                        showMask: true, target: 'customtarget', customTarget: EditWindow
+                    },
+                    failure: function () {
+                        Ext.Msg.alert('Estados de Nota de Peso', 'Error al actualizar estado.');
+                    }
+                })
             }
         });
+    },
+
+    remove: function () {
+        if (Grid.getSelectionModel().hasSelection()) {
+            Ext.Msg.confirm(ConfirmMsgTitle, ConfirmDelete, function (btn, text) {
+                if (btn == 'yes') {
+                    var record = Grid.getSelectionModel().getSelected();
+                    Ext.net.DirectMethods.EliminarBtn_Click(record.data.ESTADOS_NOTA_ID,
+                    {
+                        success: function () {
+                            GridStore.reload();
+                            Ext.Msg.alert('Estados de Nota de Peso', 'Estado eliminado exitosamente.');
+                        },
+                        eventMask: {
+                            showMask: true, target: 'customtarget', customTarget: Grid
+                        },
+                        failure: function () {
+                            Ext.Msg.alert('Estados de Nota de Peso', 'Error al eliminar estado.');
+                        }
+                    });
+                }
+            });
+        } else {
+            var msg = Ext.Msg;
+            Ext.Msg.alert(AlertSelMsgTitle, AlertSelMsg);
+        }
     },
 
     keyUpEvent: function (sender, e) {

@@ -12,6 +12,7 @@
           <EntitySet Name="beneficiario_x_socio" EntityType="COLINASMODEL.Store.beneficiario_x_socio" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="clasificaciones_cafe" EntityType="COLINASMODEL.Store.clasificaciones_cafe" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="codigo" EntityType="COLINASMODEL.Store.codigo" store:Type="Tables" Schema="colinas" />
+          <EntitySet Name="estados_detalles" EntityType="COLINASMODEL.Store.estados_detalles" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="estados_nota_de_peso" EntityType="COLINASMODEL.Store.estados_nota_de_peso" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="inventario_cafe" EntityType="COLINASMODEL.Store.inventario_cafe" store:Type="Tables" Schema="colinas" />
           <EntitySet Name="inventario_cafe_de_socio" EntityType="COLINASMODEL.Store.inventario_cafe_de_socio" store:Type="Tables" Schema="colinas" />
@@ -229,6 +230,10 @@
             <End Role="clasificaciones_cafe" EntitySet="clasificaciones_cafe" />
             <End Role="socios_produccion" EntitySet="socios_produccion" />
           </AssociationSet>
+          <AssociationSet Name="DETALLES_ESTADOS_NOTA_FK" Association="COLINASMODEL.Store.DETALLES_ESTADOS_NOTA_FK">
+            <End Role="estados_nota_de_peso" EntitySet="estados_nota_de_peso" />
+            <End Role="estados_detalles" EntitySet="estados_detalles" />
+          </AssociationSet>
           <AssociationSet Name="ESTADOS_NOTA_PADRE_FK" Association="COLINASMODEL.Store.ESTADOS_NOTA_PADRE_FK">
             <End Role="estados_nota_de_peso" EntitySet="estados_nota_de_peso" />
             <End Role="estados_nota_de_peso1" EntitySet="estados_nota_de_peso" />
@@ -410,6 +415,24 @@
           <Property Name="CODIGO_LETRA" Type="char" Nullable="false" MaxLength="1" />
           <Property Name="CODIGO_NUMERO" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="estados_detalles">
+          <Key>
+            <PropertyRef Name="ESTADOS_NOTA_ID" />
+          </Key>
+          <Property Name="ESTADOS_NOTA_ID" Type="int" Nullable="false" />
+          <Property Name="ESTADOS_DETALLE_ENABLE_FECHA" Type="bit" Nullable="false" />
+          <Property Name="ESTADOS_DETALLE_ENABLE_ESTADO" Type="bit" Nullable="false" />
+          <Property Name="ESTADOS_DETALLE_ENABLE_SOCIO_ID" Type="bit" Nullable="false" />
+          <Property Name="ESTADOS_DETALLE_CLASIFICACION_CAFE" Type="bit" Nullable="false" />
+          <Property Name="ESTADOS_DETALLE_SHOW_INFO_SOCIO" Type="bit" Nullable="false" />
+          <Property Name="ESTADOS_DETALLE_ENABLE_FORMA_ENTREGA" Type="bit" Nullable="false" />
+          <Property Name="ESTADOS_DETALLE_ENABLE_DETALLE" Type="bit" Nullable="false" />
+          <Property Name="ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS" Type="bit" Nullable="false" />
+          <Property Name="ESTADOS_DETALLE_SHOW_DESCUENTOS" Type="bit" Nullable="false" />
+          <Property Name="ESTADOS_DETALLE_SHOW_TOTAL" Type="bit" Nullable="false" />
+          <Property Name="ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN" Type="bit" Nullable="false" />
+          <Property Name="ESTADOS_DETALLE_ENABLE_IMPRIMIR_BTN" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="estados_nota_de_peso">
           <Key>
             <PropertyRef Name="ESTADOS_NOTA_ID" />
@@ -419,6 +442,7 @@
           <Property Name="ESTADOS_NOTA_LLAVE" Type="varchar" Nullable="false" MaxLength="25" />
           <Property Name="ESTADOS_NOTA_NOMBRE" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="ESTADOS_NOTA_DESCRIPCION" Type="varchar" MaxLength="100" />
+          <Property Name="ESTADOS_NOTA_ES_CATACION" Type="bit" Nullable="false" />
           <Property Name="CREADO_POR" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
           <Property Name="MODIFICADO_POR" Type="varchar" MaxLength="45" />
@@ -530,8 +554,8 @@
           </Key>
           <Property Name="NOTIFICACION_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="USR_USERNAME" Type="varchar" Nullable="false" MaxLength="45" />
-          <Property Name="NOTIFICACION_TITLE" Type="varchar" Nullable="false" MaxLength="45" />
-          <Property Name="NOTIFICACION_MENSAJE" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="NOTIFICACION_TITLE" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="NOTIFICACION_MENSAJE" Type="varchar" Nullable="false" />
           <Property Name="NOTIFICACION_ESTADO" Type="int" Nullable="false" />
           <Property Name="NOTIFICACION_FECHA" Type="datetime" />
         </EntityType>
@@ -1158,6 +1182,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="DETALLES_ESTADOS_NOTA_FK">
+          <End Role="estados_nota_de_peso" Type="COLINASMODEL.Store.estados_nota_de_peso" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="estados_detalles" Type="COLINASMODEL.Store.estados_detalles" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="estados_nota_de_peso">
+              <PropertyRef Name="ESTADOS_NOTA_ID" />
+            </Principal>
+            <Dependent Role="estados_detalles">
+              <PropertyRef Name="ESTADOS_NOTA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="ESTADOS_NOTA_PADRE_FK">
           <End Role="estados_nota_de_peso" Type="COLINASMODEL.Store.estados_nota_de_peso" Multiplicity="0..1" />
           <End Role="estados_nota_de_peso1" Type="COLINASMODEL.Store.estados_nota_de_peso" Multiplicity="*" />
@@ -1569,15 +1607,6 @@
             <End Role="notas_de_peso" EntitySet="notas_de_peso" />
             <End Role="nota_detalle" EntitySet="notas_detalles" />
           </AssociationSet>
-          <EntitySet Name="estados_nota_de_peso" EntityType="COLINASMODEL.estado_nota_de_peso" />
-          <AssociationSet Name="ESTADOS_NOTA_PADRE_FK" Association="COLINASMODEL.ESTADOS_NOTA_PADRE_FK">
-            <End Role="estados_nota_de_peso" EntitySet="estados_nota_de_peso" />
-            <End Role="estados_nota_de_peso1" EntitySet="estados_nota_de_peso" />
-          </AssociationSet>
-          <AssociationSet Name="notas_de_peso_estado_fk" Association="COLINASMODEL.notas_de_peso_estado_fk">
-            <End Role="estados_nota_de_peso" EntitySet="estados_nota_de_peso" />
-            <End Role="nota_de_peso" EntitySet="notas_de_peso" />
-          </AssociationSet>
           <FunctionImport Name="GetEstadosDeNotaDePesoSinAsignar" EntitySet="estados_nota_de_peso" ReturnType="Collection(COLINASMODEL.estado_nota_de_peso)">
           <Parameter Name="nESTADOS_NOTA_ID" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1693,6 +1722,20 @@
           <AssociationSet Name="SOCIOS_ID_FK2" Association="COLINASMODEL.SOCIOS_ID_FK2">
             <End Role="socio" EntitySet="socios" />
             <End Role="socios_produccion" EntitySet="socios_produccion" />
+          </AssociationSet>
+          <EntitySet Name="estados_nota_de_peso" EntityType="COLINASMODEL.estado_nota_de_peso" />
+          <AssociationSet Name="ESTADOS_NOTA_PADRE_FK" Association="COLINASMODEL.ESTADOS_NOTA_PADRE_FK">
+            <End Role="estados_nota_de_peso" EntitySet="estados_nota_de_peso" />
+            <End Role="estados_nota_de_peso1" EntitySet="estados_nota_de_peso" />
+          </AssociationSet>
+          <AssociationSet Name="notas_de_peso_estado_fk" Association="COLINASMODEL.notas_de_peso_estado_fk">
+            <End Role="estados_nota_de_peso" EntitySet="estados_nota_de_peso" />
+            <End Role="nota_de_peso" EntitySet="notas_de_peso" />
+          </AssociationSet>
+          <EntitySet Name="estados_detalles" EntityType="COLINASMODEL.estado_detalle" />
+          <AssociationSet Name="DETALLES_ESTADOS_NOTA_FK" Association="COLINASMODEL.DETALLES_ESTADOS_NOTA_FK">
+            <End Role="estado_nota_de_peso" EntitySet="estados_nota_de_peso" />
+            <End Role="estados_detalles" EntitySet="estados_detalles" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="codigo">
@@ -2002,8 +2045,8 @@
           <Property Type="DateTime" Name="FECHA_MODIFICACION" />
           <NavigationProperty Name="clasificaciones_cafe" Relationship="COLINASMODEL.notas_de_peso_clasificacion_cafe_fk" FromRole="notas_de_peso" ToRole="clasificacion_cafe" />
           <NavigationProperty Name="notas_detalles" Relationship="COLINASMODEL.FK_NOTA_DETALLE_NOTA_PESO" FromRole="notas_de_peso" ToRole="nota_detalle" />
-          <NavigationProperty Name="estados_nota_de_peso" Relationship="COLINASMODEL.notas_de_peso_estado_fk" FromRole="nota_de_peso" ToRole="estados_nota_de_peso" />
           <NavigationProperty Name="socios" Relationship="COLINASMODEL.FK_NOTA_DE_PESO_socios" FromRole="nota_de_peso" ToRole="socios" />
+          <NavigationProperty Name="estados_nota_de_peso" Relationship="COLINASMODEL.notas_de_peso_estado_fk" FromRole="nota_de_peso" ToRole="estados_nota_de_peso" />
         </EntityType>
         <Association Name="notas_de_peso_clasificacion_cafe_fk">
           <End Type="COLINASMODEL.clasificacion_cafe" Role="clasificacion_cafe" Multiplicity="1" />
@@ -2026,47 +2069,6 @@
             </Principal>
             <Dependent Role="nota_detalle">
               <PropertyRef Name="NOTAS_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="estado_nota_de_peso">
-          <Key>
-            <PropertyRef Name="ESTADOS_NOTA_ID" />
-          </Key>
-          <Property Type="Int32" Name="ESTADOS_NOTA_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="ESTADOS_NOTA_SIGUIENTE" />
-          <Property Type="String" Name="ESTADOS_NOTA_LLAVE" Nullable="false" />
-          <Property Type="String" Name="ESTADOS_NOTA_NOMBRE" Nullable="false" />
-          <Property Type="String" Name="ESTADOS_NOTA_DESCRIPCION" />
-          <Property Type="String" Name="CREADO_POR" Nullable="false" />
-          <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
-          <Property Type="String" Name="MODIFICADO_POR" />
-          <Property Type="DateTime" Name="FECHA_MODIFICACION" />
-          <NavigationProperty Name="estados_nota_de_peso_siguientes" Relationship="COLINASMODEL.ESTADOS_NOTA_PADRE_FK" FromRole="estados_nota_de_peso" ToRole="estados_nota_de_peso1" />
-          <NavigationProperty Name="estados_nota_de_peso_siguiente" Relationship="COLINASMODEL.ESTADOS_NOTA_PADRE_FK" FromRole="estados_nota_de_peso1" ToRole="estados_nota_de_peso" />
-          <NavigationProperty Name="notas_de_peso" Relationship="COLINASMODEL.notas_de_peso_estado_fk" FromRole="estados_nota_de_peso" ToRole="nota_de_peso" />
-        </EntityType>
-        <Association Name="ESTADOS_NOTA_PADRE_FK">
-          <End Type="COLINASMODEL.estado_nota_de_peso" Role="estados_nota_de_peso" Multiplicity="0..1" />
-          <End Type="COLINASMODEL.estado_nota_de_peso" Role="estados_nota_de_peso1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="estados_nota_de_peso">
-              <PropertyRef Name="ESTADOS_NOTA_ID" />
-            </Principal>
-            <Dependent Role="estados_nota_de_peso1">
-              <PropertyRef Name="ESTADOS_NOTA_SIGUIENTE" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="notas_de_peso_estado_fk">
-          <End Type="COLINASMODEL.estado_nota_de_peso" Role="estados_nota_de_peso" Multiplicity="1" />
-          <End Type="COLINASMODEL.nota_de_peso" Role="nota_de_peso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="estados_nota_de_peso">
-              <PropertyRef Name="ESTADOS_NOTA_ID" />
-            </Principal>
-            <Dependent Role="nota_de_peso">
-              <PropertyRef Name="ESTADOS_NOTA_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2710,6 +2712,80 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="estado_nota_de_peso">
+          <Key>
+            <PropertyRef Name="ESTADOS_NOTA_ID" />
+          </Key>
+          <Property Type="Int32" Name="ESTADOS_NOTA_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ESTADOS_NOTA_SIGUIENTE" />
+          <Property Type="String" Name="ESTADOS_NOTA_LLAVE" Nullable="false" />
+          <Property Type="String" Name="ESTADOS_NOTA_NOMBRE" Nullable="false" />
+          <Property Type="String" Name="ESTADOS_NOTA_DESCRIPCION" />
+          <Property Type="Boolean" Name="ESTADOS_NOTA_ES_CATACION" Nullable="false" />
+          <Property Type="String" Name="CREADO_POR" Nullable="false" />
+          <Property Type="DateTime" Name="FECHA_CREACION" Nullable="false" />
+          <Property Type="String" Name="MODIFICADO_POR" />
+          <Property Type="DateTime" Name="FECHA_MODIFICACION" />
+          <NavigationProperty Name="estados_nota_de_peso_siguientes" Relationship="COLINASMODEL.ESTADOS_NOTA_PADRE_FK" FromRole="estados_nota_de_peso" ToRole="estados_nota_de_peso1" />
+          <NavigationProperty Name="estados_nota_de_peso_siguiente" Relationship="COLINASMODEL.ESTADOS_NOTA_PADRE_FK" FromRole="estados_nota_de_peso1" ToRole="estados_nota_de_peso" />
+          <NavigationProperty Name="notas_de_peso" Relationship="COLINASMODEL.notas_de_peso_estado_fk" FromRole="estados_nota_de_peso" ToRole="nota_de_peso" />
+          <NavigationProperty Name="estados_detalles" Relationship="COLINASMODEL.DETALLES_ESTADOS_NOTA_FK" FromRole="estado_nota_de_peso" ToRole="estados_detalles" />
+        </EntityType>
+        <Association Name="ESTADOS_NOTA_PADRE_FK">
+          <End Type="COLINASMODEL.estado_nota_de_peso" Role="estados_nota_de_peso" Multiplicity="0..1" />
+          <End Type="COLINASMODEL.estado_nota_de_peso" Role="estados_nota_de_peso1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estados_nota_de_peso">
+              <PropertyRef Name="ESTADOS_NOTA_ID" />
+            </Principal>
+            <Dependent Role="estados_nota_de_peso1">
+              <PropertyRef Name="ESTADOS_NOTA_SIGUIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="notas_de_peso_estado_fk">
+          <End Type="COLINASMODEL.estado_nota_de_peso" Role="estados_nota_de_peso" Multiplicity="1" />
+          <End Type="COLINASMODEL.nota_de_peso" Role="nota_de_peso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estados_nota_de_peso">
+              <PropertyRef Name="ESTADOS_NOTA_ID" />
+            </Principal>
+            <Dependent Role="nota_de_peso">
+              <PropertyRef Name="ESTADOS_NOTA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="estado_detalle">
+          <Key>
+            <PropertyRef Name="ESTADOS_NOTA_ID" />
+          </Key>
+          <Property Type="Int32" Name="ESTADOS_NOTA_ID" Nullable="false" />
+          <Property Type="Boolean" Name="ESTADOS_DETALLE_ENABLE_FECHA" Nullable="false" />
+          <Property Type="Boolean" Name="ESTADOS_DETALLE_ENABLE_ESTADO" Nullable="false" />
+          <Property Type="Boolean" Name="ESTADOS_DETALLE_ENABLE_SOCIO_ID" Nullable="false" />
+          <Property Type="Boolean" Name="ESTADOS_DETALLE_CLASIFICACION_CAFE" Nullable="false" />
+          <Property Type="Boolean" Name="ESTADOS_DETALLE_SHOW_INFO_SOCIO" Nullable="false" />
+          <Property Type="Boolean" Name="ESTADOS_DETALLE_ENABLE_FORMA_ENTREGA" Nullable="false" />
+          <Property Type="Boolean" Name="ESTADOS_DETALLE_ENABLE_DETALLE" Nullable="false" />
+          <Property Type="Boolean" Name="ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS" Nullable="false" />
+          <Property Type="Boolean" Name="ESTADOS_DETALLE_SHOW_DESCUENTOS" Nullable="false" />
+          <Property Type="Boolean" Name="ESTADOS_DETALLE_SHOW_TOTAL" Nullable="false" />
+          <Property Type="Boolean" Name="ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN" Nullable="false" />
+          <Property Type="Boolean" Name="ESTADOS_DETALLE_ENABLE_IMPRIMIR_BTN" Nullable="false" />
+          <NavigationProperty Name="estados_nota_de_peso" Relationship="COLINASMODEL.DETALLES_ESTADOS_NOTA_FK" FromRole="estados_detalles" ToRole="estado_nota_de_peso" />
+        </EntityType>
+        <Association Name="DETALLES_ESTADOS_NOTA_FK">
+          <End Type="COLINASMODEL.estado_nota_de_peso" Role="estado_nota_de_peso" Multiplicity="1" />
+          <End Type="COLINASMODEL.estado_detalle" Role="estados_detalles" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="estado_nota_de_peso">
+              <PropertyRef Name="ESTADOS_NOTA_ID" />
+            </Principal>
+            <Dependent Role="estados_detalles">
+              <PropertyRef Name="ESTADOS_NOTA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2983,21 +3059,6 @@
                 <ScalarProperty Name="SOCIOS_ID" ColumnName="SOCIOS_ID" />
                 <ScalarProperty Name="ESTADOS_NOTA_ID" ColumnName="ESTADOS_NOTA_ID" />
                 <ScalarProperty Name="NOTAS_ID" ColumnName="NOTAS_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="estados_nota_de_peso">
-            <EntityTypeMapping TypeName="COLINASMODEL.estado_nota_de_peso">
-              <MappingFragment StoreEntitySet="estados_nota_de_peso">
-                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
-                <ScalarProperty Name="MODIFICADO_POR" ColumnName="MODIFICADO_POR" />
-                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
-                <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
-                <ScalarProperty Name="ESTADOS_NOTA_DESCRIPCION" ColumnName="ESTADOS_NOTA_DESCRIPCION" />
-                <ScalarProperty Name="ESTADOS_NOTA_NOMBRE" ColumnName="ESTADOS_NOTA_NOMBRE" />
-                <ScalarProperty Name="ESTADOS_NOTA_LLAVE" ColumnName="ESTADOS_NOTA_LLAVE" />
-                <ScalarProperty Name="ESTADOS_NOTA_SIGUIENTE" ColumnName="ESTADOS_NOTA_SIGUIENTE" />
-                <ScalarProperty Name="ESTADOS_NOTA_ID" ColumnName="ESTADOS_NOTA_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3393,6 +3454,41 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="estados_nota_de_peso">
+            <EntityTypeMapping TypeName="COLINASMODEL.estado_nota_de_peso">
+              <MappingFragment StoreEntitySet="estados_nota_de_peso">
+                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
+                <ScalarProperty Name="MODIFICADO_POR" ColumnName="MODIFICADO_POR" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
+                <ScalarProperty Name="ESTADOS_NOTA_ES_CATACION" ColumnName="ESTADOS_NOTA_ES_CATACION" />
+                <ScalarProperty Name="ESTADOS_NOTA_DESCRIPCION" ColumnName="ESTADOS_NOTA_DESCRIPCION" />
+                <ScalarProperty Name="ESTADOS_NOTA_NOMBRE" ColumnName="ESTADOS_NOTA_NOMBRE" />
+                <ScalarProperty Name="ESTADOS_NOTA_LLAVE" ColumnName="ESTADOS_NOTA_LLAVE" />
+                <ScalarProperty Name="ESTADOS_NOTA_SIGUIENTE" ColumnName="ESTADOS_NOTA_SIGUIENTE" />
+                <ScalarProperty Name="ESTADOS_NOTA_ID" ColumnName="ESTADOS_NOTA_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estados_detalles">
+            <EntityTypeMapping TypeName="COLINASMODEL.estado_detalle">
+              <MappingFragment StoreEntitySet="estados_detalles">
+                <ScalarProperty Name="ESTADOS_DETALLE_ENABLE_IMPRIMIR_BTN" ColumnName="ESTADOS_DETALLE_ENABLE_IMPRIMIR_BTN" />
+                <ScalarProperty Name="ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN" ColumnName="ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN" />
+                <ScalarProperty Name="ESTADOS_DETALLE_SHOW_TOTAL" ColumnName="ESTADOS_DETALLE_SHOW_TOTAL" />
+                <ScalarProperty Name="ESTADOS_DETALLE_SHOW_DESCUENTOS" ColumnName="ESTADOS_DETALLE_SHOW_DESCUENTOS" />
+                <ScalarProperty Name="ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS" ColumnName="ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS" />
+                <ScalarProperty Name="ESTADOS_DETALLE_ENABLE_DETALLE" ColumnName="ESTADOS_DETALLE_ENABLE_DETALLE" />
+                <ScalarProperty Name="ESTADOS_DETALLE_ENABLE_FORMA_ENTREGA" ColumnName="ESTADOS_DETALLE_ENABLE_FORMA_ENTREGA" />
+                <ScalarProperty Name="ESTADOS_DETALLE_SHOW_INFO_SOCIO" ColumnName="ESTADOS_DETALLE_SHOW_INFO_SOCIO" />
+                <ScalarProperty Name="ESTADOS_DETALLE_CLASIFICACION_CAFE" ColumnName="ESTADOS_DETALLE_CLASIFICACION_CAFE" />
+                <ScalarProperty Name="ESTADOS_DETALLE_ENABLE_SOCIO_ID" ColumnName="ESTADOS_DETALLE_ENABLE_SOCIO_ID" />
+                <ScalarProperty Name="ESTADOS_DETALLE_ENABLE_ESTADO" ColumnName="ESTADOS_DETALLE_ENABLE_ESTADO" />
+                <ScalarProperty Name="ESTADOS_DETALLE_ENABLE_FECHA" ColumnName="ESTADOS_DETALLE_ENABLE_FECHA" />
+                <ScalarProperty Name="ESTADOS_NOTA_ID" ColumnName="ESTADOS_NOTA_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -3449,35 +3545,29 @@
         <EntityTypeShape EntityType="COLINASMODEL.inventario_cafe_de_socio" Width="2.625" PointX="7.5" PointY="15.125" Height="3.1340950520833388" />
         <AssociationConnector Association="COLINASMODEL.inventario_clasificacion_cafe_fk" ManuallyRouted="true" >
           <ConnectorPoint PointX="3.25" PointY="19.031558438669357" />
+          <ConnectorPoint PointX="7.0838119604029277" PointY="19.031558438669357" />
+          <ConnectorPoint PointX="7.2504786270695938" PointY="19.031558438669357" />
           <ConnectorPoint PointX="7.322916666666667" PointY="19.031558438669357" />
-          <ConnectorPoint PointX="7.489583333333333" PointY="19.031558438669357" />
-          <ConnectorPoint PointX="8.7751378232143988" PointY="19.031558438669357" />
+          <ConnectorPoint PointX="7.3345649088222489" PointY="19.038463275232665" />
+          <ConnectorPoint PointX="7.4779350911777511" PointY="19.123450148272731" />
+          <ConnectorPoint PointX="7.489583333333333" PointY="19.130354984836035" />
+          <ConnectorPoint PointX="8.7751378232143988" PointY="19.130354984836035" />
           <ConnectorPoint PointX="8.7751378232143988" PointY="18.259095052083339" />
         </AssociationConnector>
         <EntityTypeShape EntityType="COLINASMODEL.reporte_total_inventario_de_cafe_por_socio" Width="3" PointX="26" PointY="11.875" Height="2.7494921875000102" />
         <EntityTypeShape EntityType="COLINASMODEL.nota_de_peso" Width="3.5" PointX="7.375" PointY="20.625" Height="6.210917968749996" />
         <AssociationConnector Association="COLINASMODEL.notas_de_peso_clasificacion_cafe_fk" >
-          <ConnectorPoint PointX="3.25" PointY="19.812597873569089" />
-          <ConnectorPoint PointX="7.322916666666667" PointY="19.812597873569089" />
-          <ConnectorPoint PointX="7.489583333333333" PointY="19.812597873569089" />
-          <ConnectorPoint PointX="10.625" PointY="19.812597873569089" />
-          <ConnectorPoint PointX="10.625" PointY="20.625" />
+          <ConnectorPoint PointX="3.25" PointY="19.798349634345051" />
+          <ConnectorPoint PointX="7.322916666666667" PointY="19.798349634345051" />
+          <ConnectorPoint PointX="7.489583333333333" PointY="19.798349634345051" />
+          <ConnectorPoint PointX="10.53125" PointY="19.798349634345051" />
+          <ConnectorPoint PointX="10.53125" PointY="20.625" />
         </AssociationConnector>
         <AssociationConnector Association="COLINASMODEL.FK_NOTA_DETALLE_NOTA_PESO" >
           <ConnectorPoint PointX="10.875" PointY="23.615143229166669" />
+          <ConnectorPoint PointX="11.885416666666666" PointY="23.615143229166669" />
+          <ConnectorPoint PointX="12.052083333333334" PointY="23.615143229166669" />
           <ConnectorPoint PointX="12.625" PointY="23.615143229166669" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="COLINASMODEL.estado_nota_de_peso" Width="2.375" PointX="11.625" PointY="15.125" Height="3.3263964843750085" />
-        <AssociationConnector Association="COLINASMODEL.ESTADOS_NOTA_PADRE_FK" >
-          <ConnectorPoint PointX="12.467211538461539" PointY="18.45139648437501" />
-          <ConnectorPoint PointX="12.467211538461539" PointY="18.70139648437501" />
-          <ConnectorPoint PointX="13.174230769230769" PointY="18.70139648437501" />
-          <ConnectorPoint PointX="13.174230769230769" PointY="18.45139648437501" />
-        </AssociationConnector>
-        <AssociationConnector Association="COLINASMODEL.notas_de_peso_estado_fk" >
-          <ConnectorPoint PointX="12.01485326923077" PointY="18.45139648437501" />
-          <ConnectorPoint PointX="12.01485326923077" PointY="22.135295997498964" />
-          <ConnectorPoint PointX="10.875" PointY="22.135295997498964" />
         </AssociationConnector>
         <EntityTypeShape EntityType="COLINASMODEL.aval_x_solicitud" Width="1.875" PointX="20.625" PointY="14.625" Height="2.7494921875000102" />
         <EntityTypeShape EntityType="COLINASMODEL.solicitud_prestamo" Width="2.375" PointX="21.375" PointY="4.625" Height="6.9801236979166674" />
@@ -3502,13 +3592,15 @@
         <EntityTypeShape EntityType="COLINASMODEL.aportacion_socio" Width="3.625" PointX="9" PointY="10.125" Height="3.7109993489583317" IsExpanded="true" />
         <EntityTypeShape EntityType="COLINASMODEL.liquidacion" Width="4" PointX="16.75" PointY="6.625" Height="6.9801236979166674" />
         <AssociationConnector Association="COLINASMODEL.LIQUIDACIONES_CLASIFICACIONES_FK" >
-          <ConnectorPoint PointX="3.25" PointY="19.44560723022245" />
-          <ConnectorPoint PointX="7.322916666666667" PointY="19.44560723022245" />
-          <ConnectorPoint PointX="7.489583333333333" PointY="19.44560723022245" />
-          <ConnectorPoint PointX="11.931519935897436" PointY="19.44560723022245" />
-          <ConnectorPoint PointX="12.098186602564104" PointY="19.44560723022245" />
-          <ConnectorPoint PointX="18.65625" PointY="19.44560723022245" />
-          <ConnectorPoint PointX="18.65625" PointY="13.605123697916667" />
+          <ConnectorPoint PointX="3.25" PointY="20.211677317172519" />
+          <ConnectorPoint PointX="7.322916666666667" PointY="20.211677317172519" />
+          <ConnectorPoint PointX="7.489583333333333" PointY="20.211677317172519" />
+          <ConnectorPoint PointX="10.447916666666666" PointY="20.211677317172519" />
+          <ConnectorPoint PointX="10.614583333333334" PointY="20.211677317172519" />
+          <ConnectorPoint PointX="11.885416666666666" PointY="20.211677317172519" />
+          <ConnectorPoint PointX="12.052083333333334" PointY="20.211677317172519" />
+          <ConnectorPoint PointX="19.8125" PointY="20.211677317172519" />
+          <ConnectorPoint PointX="19.8125" PointY="13.605123697916667" />
         </AssociationConnector>
         <EntityTypeShape EntityType="COLINASMODEL.reporte_total_aportaciones_por_socio" Width="3.625" PointX="34.625" PointY="11.75" Height="3.1340950520833246" />
         <EntityTypeShape EntityType="COLINASMODEL.retiro_aportaciones" Width="3" PointX="13" PointY="10.125" Height="3.7109993489583246" />
@@ -3521,6 +3613,8 @@
           <ConnectorPoint PointX="8.125" PointY="14.249161111000026" />
           <ConnectorPoint PointX="18.572916666666668" PointY="14.249161111000026" />
           <ConnectorPoint PointX="18.739583333333332" PointY="14.249161111000026" />
+          <ConnectorPoint PointX="19.729166666666668" PointY="14.249161111000026" />
+          <ConnectorPoint PointX="19.895833333333332" PointY="14.249161111000026" />
           <ConnectorPoint PointX="21.0625" PointY="14.249161111000026" />
           <ConnectorPoint PointX="21.0625" PointY="14.625" />
         </AssociationConnector>
@@ -3558,9 +3652,13 @@
         <AssociationConnector Association="COLINASMODEL.Solicitudesxsociofk" >
           <ConnectorPoint PointX="8.125" PointY="13.972788923500037" />
           <ConnectorPoint PointX="14.416666666666666" PointY="13.972788923500037" />
+          <ConnectorPoint PointX="14.416666666666666" PointY="13.972788923500037" />
+          <ConnectorPoint PointX="14.583333333333334" PointY="13.972788923500037" />
           <ConnectorPoint PointX="14.583333333333334" PointY="13.972788923500037" />
           <ConnectorPoint PointX="18.572916666666668" PointY="13.972788923500037" />
           <ConnectorPoint PointX="18.739583333333332" PointY="13.972788923500037" />
+          <ConnectorPoint PointX="19.729166666666668" PointY="13.972788923500037" />
+          <ConnectorPoint PointX="19.895833333333332" PointY="13.972788923500037" />
           <ConnectorPoint PointX="21.607097432931987" PointY="13.972788923500037" />
           <ConnectorPoint PointX="21.773764099598651" PointY="13.972788923500037" />
           <ConnectorPoint PointX="23.267424912572416" PointY="13.972788923500037" />
@@ -3603,6 +3701,23 @@
         <AssociationConnector Association="COLINASMODEL.SOCIOS_ID_FK2" >
           <ConnectorPoint PointX="4.875" PointY="11.105499674479169" />
           <ConnectorPoint PointX="3.375" PointY="11.105499674479169" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="COLINASMODEL.estado_nota_de_peso" Width="2.375" PointX="11.375" PointY="15" Height="3.7109993489583246" />
+        <AssociationConnector Association="COLINASMODEL.ESTADOS_NOTA_PADRE_FK" >
+          <ConnectorPoint PointX="12.217211538461539" PointY="15" />
+          <ConnectorPoint PointX="12.217211538461539" PointY="14.75" />
+          <ConnectorPoint PointX="12.924230769230769" PointY="14.75" />
+          <ConnectorPoint PointX="12.924230769230769" PointY="15" />
+        </AssociationConnector>
+        <AssociationConnector Association="COLINASMODEL.notas_de_peso_estado_fk" >
+          <ConnectorPoint PointX="11.96875" PointY="18.710999348958335" />
+          <ConnectorPoint PointX="11.96875" PointY="25.751852213541671" />
+          <ConnectorPoint PointX="10.875" PointY="25.751852213541671" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="COLINASMODEL.estado_detalle" Width="3.25" PointX="14.5" PointY="15" Height="3.7109993489583246" />
+        <AssociationConnector Association="COLINASMODEL.DETALLES_ESTADOS_NOTA_FK" >
+          <ConnectorPoint PointX="13.75" PointY="16.855499674479162" />
+          <ConnectorPoint PointX="14.5" PointY="16.855499674479162" />
         </AssociationConnector>
         </Diagram>
     </Diagrams>

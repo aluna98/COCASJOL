@@ -653,8 +653,8 @@ namespace COCASJOL.LOGIC.Seguridad
 
                     if (db.TryGetObjectByKey(k, out u))
                         return true;
-
-                    return false;
+                    else
+                        return false;
                 }
             }
             catch (Exception ex)

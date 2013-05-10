@@ -247,5 +247,33 @@ namespace COCASJOL.LOGIC.Utiles
         }
 
         #endregion
+
+        #region Metodos
+
+        public bool PlantillaDeNotifiacionExiste(string PLANTILLAS_LLAVE)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    db.plantillas_notificaciones.MergeOption = MergeOption.NoTracking;
+
+                    Object p = null;
+                    EntityKey k = new EntityKey("colinasEntities.plantillas_notificaciones", "PLANTILLAS_LLAVE", PLANTILLAS_LLAVE);
+
+                    if (db.TryGetObjectByKey(k, out p))
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al intentar verificar privilegio.", ex);
+                throw;
+            }
+        }
+
+        #endregion
     }
 }

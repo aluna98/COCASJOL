@@ -31,8 +31,6 @@ using System.Data;
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "inventario_clasificacion_cafe_fk", "clasificacion_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.DATAACCESS.clasificacion_cafe), "inventario_cafe_de_socio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.DATAACCESS.inventario_cafe_de_socio), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "notas_de_peso_clasificacion_cafe_fk", "clasificacion_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.DATAACCESS.clasificacion_cafe), "notas_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.DATAACCESS.nota_de_peso), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "FK_NOTA_DETALLE_NOTA_PESO", "notas_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.DATAACCESS.nota_de_peso), "nota_detalle", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.DATAACCESS.nota_detalle), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "ESTADOS_NOTA_PADRE_FK", "estados_nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.DATAACCESS.estado_nota_de_peso), "estados_nota_de_peso1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.DATAACCESS.estado_nota_de_peso), true)]
-[assembly: EdmRelationshipAttribute("COLINASMODEL", "notas_de_peso_estado_fk", "estados_nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.DATAACCESS.estado_nota_de_peso), "nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.DATAACCESS.nota_de_peso), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "Avales_solicitud_fk", "solicitudes_prestamos", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.DATAACCESS.solicitud_prestamo), "aval_x_solicitud", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.DATAACCESS.aval_x_solicitud), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "SolicitudesPrestamofk", "prestamo", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.DATAACCESS.prestamo), "solicitudes_prestamos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.DATAACCESS.solicitud_prestamo), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "Solicitudfk", "solicitudes_prestamos", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.DATAACCESS.solicitud_prestamo), "referencia_x_solicitud", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.DATAACCESS.referencia_x_solicitud), true)]
@@ -53,6 +51,9 @@ using System.Data;
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "VENTAS_INV_CLASIFICACIONES_FK", "clasificacion_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.DATAACCESS.clasificacion_cafe), "ventas_inventario_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.DATAACCESS.venta_inventario_cafe), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "CLASIFICACIONES_CAFE_SOCIOS_PROD", "clasificacion_cafe", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.DATAACCESS.clasificacion_cafe), "socios_produccion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.DATAACCESS.socio_produccion), true)]
 [assembly: EdmRelationshipAttribute("COLINASMODEL", "SOCIOS_ID_FK2", "socio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.DATAACCESS.socio), "socios_produccion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.DATAACCESS.socio_produccion), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "ESTADOS_NOTA_PADRE_FK", "estados_nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.DATAACCESS.estado_nota_de_peso), "estados_nota_de_peso1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.DATAACCESS.estado_nota_de_peso), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "notas_de_peso_estado_fk", "estados_nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.DATAACCESS.estado_nota_de_peso), "nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COCASJOL.DATAACCESS.nota_de_peso), true)]
+[assembly: EdmRelationshipAttribute("COLINASMODEL", "DETALLES_ESTADOS_NOTA_FK", "estado_nota_de_peso", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COCASJOL.DATAACCESS.estado_nota_de_peso), "estados_detalles", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COCASJOL.DATAACCESS.estado_detalle), true)]
 
 #endregion
 
@@ -440,22 +441,6 @@ namespace COCASJOL.DATAACCESS
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<estado_nota_de_peso> estados_nota_de_peso
-        {
-            get
-            {
-                if ((_estados_nota_de_peso == null))
-                {
-                    _estados_nota_de_peso = base.CreateObjectSet<estado_nota_de_peso>("estados_nota_de_peso");
-                }
-                return _estados_nota_de_peso;
-            }
-        }
-        private ObjectSet<estado_nota_de_peso> _estados_nota_de_peso;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<aval_x_solicitud> avales_x_solicitud
         {
             get
@@ -724,6 +709,38 @@ namespace COCASJOL.DATAACCESS
             }
         }
         private ObjectSet<socio_produccion> _socios_produccion;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<estado_nota_de_peso> estados_nota_de_peso
+        {
+            get
+            {
+                if ((_estados_nota_de_peso == null))
+                {
+                    _estados_nota_de_peso = base.CreateObjectSet<estado_nota_de_peso>("estados_nota_de_peso");
+                }
+                return _estados_nota_de_peso;
+            }
+        }
+        private ObjectSet<estado_nota_de_peso> _estados_nota_de_peso;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<estado_detalle> estados_detalles
+        {
+            get
+            {
+                if ((_estados_detalles == null))
+                {
+                    _estados_detalles = base.CreateObjectSet<estado_detalle>("estados_detalles");
+                }
+                return _estados_detalles;
+            }
+        }
+        private ObjectSet<estado_detalle> _estados_detalles;
 
         #endregion
         #region AddTo Methods
@@ -865,14 +882,6 @@ namespace COCASJOL.DATAACCESS
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the estados_nota_de_peso EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToestados_nota_de_peso(estado_nota_de_peso estado_nota_de_peso)
-        {
-            base.AddObject("estados_nota_de_peso", estado_nota_de_peso);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the avales_x_solicitud EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToavales_x_solicitud(aval_x_solicitud aval_x_solicitud)
@@ -1006,6 +1015,22 @@ namespace COCASJOL.DATAACCESS
         public void AddTosocios_produccion(socio_produccion socio_produccion)
         {
             base.AddObject("socios_produccion", socio_produccion);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the estados_nota_de_peso EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToestados_nota_de_peso(estado_nota_de_peso estado_nota_de_peso)
+        {
+            base.AddObject("estados_nota_de_peso", estado_nota_de_peso);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the estados_detalles EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToestados_detalles(estado_detalle estado_detalle)
+        {
+            base.AddObject("estados_detalles", estado_detalle);
         }
 
         #endregion
@@ -3101,6 +3126,414 @@ namespace COCASJOL.DATAACCESS
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="COLINASMODEL", Name="estado_detalle")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class estado_detalle : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new estado_detalle object.
+        /// </summary>
+        /// <param name="eSTADOS_NOTA_ID">Initial value of the ESTADOS_NOTA_ID property.</param>
+        /// <param name="eSTADOS_DETALLE_ENABLE_FECHA">Initial value of the ESTADOS_DETALLE_ENABLE_FECHA property.</param>
+        /// <param name="eSTADOS_DETALLE_ENABLE_ESTADO">Initial value of the ESTADOS_DETALLE_ENABLE_ESTADO property.</param>
+        /// <param name="eSTADOS_DETALLE_ENABLE_SOCIO_ID">Initial value of the ESTADOS_DETALLE_ENABLE_SOCIO_ID property.</param>
+        /// <param name="eSTADOS_DETALLE_CLASIFICACION_CAFE">Initial value of the ESTADOS_DETALLE_CLASIFICACION_CAFE property.</param>
+        /// <param name="eSTADOS_DETALLE_SHOW_INFO_SOCIO">Initial value of the ESTADOS_DETALLE_SHOW_INFO_SOCIO property.</param>
+        /// <param name="eSTADOS_DETALLE_ENABLE_FORMA_ENTREGA">Initial value of the ESTADOS_DETALLE_ENABLE_FORMA_ENTREGA property.</param>
+        /// <param name="eSTADOS_DETALLE_ENABLE_DETALLE">Initial value of the ESTADOS_DETALLE_ENABLE_DETALLE property.</param>
+        /// <param name="eSTADOS_DETALLE_ENABLE_SACOS_RETENIDOS">Initial value of the ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS property.</param>
+        /// <param name="eSTADOS_DETALLE_SHOW_DESCUENTOS">Initial value of the ESTADOS_DETALLE_SHOW_DESCUENTOS property.</param>
+        /// <param name="eSTADOS_DETALLE_SHOW_TOTAL">Initial value of the ESTADOS_DETALLE_SHOW_TOTAL property.</param>
+        /// <param name="eSTADOS_DETALLE_ENABLE_REGISTRAR_BTN">Initial value of the ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN property.</param>
+        /// <param name="eSTADOS_DETALLE_ENABLE_IMPRIMIR_BTN">Initial value of the ESTADOS_DETALLE_ENABLE_IMPRIMIR_BTN property.</param>
+        public static estado_detalle Createestado_detalle(global::System.Int32 eSTADOS_NOTA_ID, global::System.Boolean eSTADOS_DETALLE_ENABLE_FECHA, global::System.Boolean eSTADOS_DETALLE_ENABLE_ESTADO, global::System.Boolean eSTADOS_DETALLE_ENABLE_SOCIO_ID, global::System.Boolean eSTADOS_DETALLE_CLASIFICACION_CAFE, global::System.Boolean eSTADOS_DETALLE_SHOW_INFO_SOCIO, global::System.Boolean eSTADOS_DETALLE_ENABLE_FORMA_ENTREGA, global::System.Boolean eSTADOS_DETALLE_ENABLE_DETALLE, global::System.Boolean eSTADOS_DETALLE_ENABLE_SACOS_RETENIDOS, global::System.Boolean eSTADOS_DETALLE_SHOW_DESCUENTOS, global::System.Boolean eSTADOS_DETALLE_SHOW_TOTAL, global::System.Boolean eSTADOS_DETALLE_ENABLE_REGISTRAR_BTN, global::System.Boolean eSTADOS_DETALLE_ENABLE_IMPRIMIR_BTN)
+        {
+            estado_detalle estado_detalle = new estado_detalle();
+            estado_detalle.ESTADOS_NOTA_ID = eSTADOS_NOTA_ID;
+            estado_detalle.ESTADOS_DETALLE_ENABLE_FECHA = eSTADOS_DETALLE_ENABLE_FECHA;
+            estado_detalle.ESTADOS_DETALLE_ENABLE_ESTADO = eSTADOS_DETALLE_ENABLE_ESTADO;
+            estado_detalle.ESTADOS_DETALLE_ENABLE_SOCIO_ID = eSTADOS_DETALLE_ENABLE_SOCIO_ID;
+            estado_detalle.ESTADOS_DETALLE_CLASIFICACION_CAFE = eSTADOS_DETALLE_CLASIFICACION_CAFE;
+            estado_detalle.ESTADOS_DETALLE_SHOW_INFO_SOCIO = eSTADOS_DETALLE_SHOW_INFO_SOCIO;
+            estado_detalle.ESTADOS_DETALLE_ENABLE_FORMA_ENTREGA = eSTADOS_DETALLE_ENABLE_FORMA_ENTREGA;
+            estado_detalle.ESTADOS_DETALLE_ENABLE_DETALLE = eSTADOS_DETALLE_ENABLE_DETALLE;
+            estado_detalle.ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS = eSTADOS_DETALLE_ENABLE_SACOS_RETENIDOS;
+            estado_detalle.ESTADOS_DETALLE_SHOW_DESCUENTOS = eSTADOS_DETALLE_SHOW_DESCUENTOS;
+            estado_detalle.ESTADOS_DETALLE_SHOW_TOTAL = eSTADOS_DETALLE_SHOW_TOTAL;
+            estado_detalle.ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN = eSTADOS_DETALLE_ENABLE_REGISTRAR_BTN;
+            estado_detalle.ESTADOS_DETALLE_ENABLE_IMPRIMIR_BTN = eSTADOS_DETALLE_ENABLE_IMPRIMIR_BTN;
+            return estado_detalle;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ESTADOS_NOTA_ID
+        {
+            get
+            {
+                return _ESTADOS_NOTA_ID;
+            }
+            set
+            {
+                if (_ESTADOS_NOTA_ID != value)
+                {
+                    OnESTADOS_NOTA_IDChanging(value);
+                    ReportPropertyChanging("ESTADOS_NOTA_ID");
+                    _ESTADOS_NOTA_ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ESTADOS_NOTA_ID");
+                    OnESTADOS_NOTA_IDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ESTADOS_NOTA_ID;
+        partial void OnESTADOS_NOTA_IDChanging(global::System.Int32 value);
+        partial void OnESTADOS_NOTA_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean ESTADOS_DETALLE_ENABLE_FECHA
+        {
+            get
+            {
+                return _ESTADOS_DETALLE_ENABLE_FECHA;
+            }
+            set
+            {
+                OnESTADOS_DETALLE_ENABLE_FECHAChanging(value);
+                ReportPropertyChanging("ESTADOS_DETALLE_ENABLE_FECHA");
+                _ESTADOS_DETALLE_ENABLE_FECHA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ESTADOS_DETALLE_ENABLE_FECHA");
+                OnESTADOS_DETALLE_ENABLE_FECHAChanged();
+            }
+        }
+        private global::System.Boolean _ESTADOS_DETALLE_ENABLE_FECHA;
+        partial void OnESTADOS_DETALLE_ENABLE_FECHAChanging(global::System.Boolean value);
+        partial void OnESTADOS_DETALLE_ENABLE_FECHAChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean ESTADOS_DETALLE_ENABLE_ESTADO
+        {
+            get
+            {
+                return _ESTADOS_DETALLE_ENABLE_ESTADO;
+            }
+            set
+            {
+                OnESTADOS_DETALLE_ENABLE_ESTADOChanging(value);
+                ReportPropertyChanging("ESTADOS_DETALLE_ENABLE_ESTADO");
+                _ESTADOS_DETALLE_ENABLE_ESTADO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ESTADOS_DETALLE_ENABLE_ESTADO");
+                OnESTADOS_DETALLE_ENABLE_ESTADOChanged();
+            }
+        }
+        private global::System.Boolean _ESTADOS_DETALLE_ENABLE_ESTADO;
+        partial void OnESTADOS_DETALLE_ENABLE_ESTADOChanging(global::System.Boolean value);
+        partial void OnESTADOS_DETALLE_ENABLE_ESTADOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean ESTADOS_DETALLE_ENABLE_SOCIO_ID
+        {
+            get
+            {
+                return _ESTADOS_DETALLE_ENABLE_SOCIO_ID;
+            }
+            set
+            {
+                OnESTADOS_DETALLE_ENABLE_SOCIO_IDChanging(value);
+                ReportPropertyChanging("ESTADOS_DETALLE_ENABLE_SOCIO_ID");
+                _ESTADOS_DETALLE_ENABLE_SOCIO_ID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ESTADOS_DETALLE_ENABLE_SOCIO_ID");
+                OnESTADOS_DETALLE_ENABLE_SOCIO_IDChanged();
+            }
+        }
+        private global::System.Boolean _ESTADOS_DETALLE_ENABLE_SOCIO_ID;
+        partial void OnESTADOS_DETALLE_ENABLE_SOCIO_IDChanging(global::System.Boolean value);
+        partial void OnESTADOS_DETALLE_ENABLE_SOCIO_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean ESTADOS_DETALLE_CLASIFICACION_CAFE
+        {
+            get
+            {
+                return _ESTADOS_DETALLE_CLASIFICACION_CAFE;
+            }
+            set
+            {
+                OnESTADOS_DETALLE_CLASIFICACION_CAFEChanging(value);
+                ReportPropertyChanging("ESTADOS_DETALLE_CLASIFICACION_CAFE");
+                _ESTADOS_DETALLE_CLASIFICACION_CAFE = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ESTADOS_DETALLE_CLASIFICACION_CAFE");
+                OnESTADOS_DETALLE_CLASIFICACION_CAFEChanged();
+            }
+        }
+        private global::System.Boolean _ESTADOS_DETALLE_CLASIFICACION_CAFE;
+        partial void OnESTADOS_DETALLE_CLASIFICACION_CAFEChanging(global::System.Boolean value);
+        partial void OnESTADOS_DETALLE_CLASIFICACION_CAFEChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean ESTADOS_DETALLE_SHOW_INFO_SOCIO
+        {
+            get
+            {
+                return _ESTADOS_DETALLE_SHOW_INFO_SOCIO;
+            }
+            set
+            {
+                OnESTADOS_DETALLE_SHOW_INFO_SOCIOChanging(value);
+                ReportPropertyChanging("ESTADOS_DETALLE_SHOW_INFO_SOCIO");
+                _ESTADOS_DETALLE_SHOW_INFO_SOCIO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ESTADOS_DETALLE_SHOW_INFO_SOCIO");
+                OnESTADOS_DETALLE_SHOW_INFO_SOCIOChanged();
+            }
+        }
+        private global::System.Boolean _ESTADOS_DETALLE_SHOW_INFO_SOCIO;
+        partial void OnESTADOS_DETALLE_SHOW_INFO_SOCIOChanging(global::System.Boolean value);
+        partial void OnESTADOS_DETALLE_SHOW_INFO_SOCIOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean ESTADOS_DETALLE_ENABLE_FORMA_ENTREGA
+        {
+            get
+            {
+                return _ESTADOS_DETALLE_ENABLE_FORMA_ENTREGA;
+            }
+            set
+            {
+                OnESTADOS_DETALLE_ENABLE_FORMA_ENTREGAChanging(value);
+                ReportPropertyChanging("ESTADOS_DETALLE_ENABLE_FORMA_ENTREGA");
+                _ESTADOS_DETALLE_ENABLE_FORMA_ENTREGA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ESTADOS_DETALLE_ENABLE_FORMA_ENTREGA");
+                OnESTADOS_DETALLE_ENABLE_FORMA_ENTREGAChanged();
+            }
+        }
+        private global::System.Boolean _ESTADOS_DETALLE_ENABLE_FORMA_ENTREGA;
+        partial void OnESTADOS_DETALLE_ENABLE_FORMA_ENTREGAChanging(global::System.Boolean value);
+        partial void OnESTADOS_DETALLE_ENABLE_FORMA_ENTREGAChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean ESTADOS_DETALLE_ENABLE_DETALLE
+        {
+            get
+            {
+                return _ESTADOS_DETALLE_ENABLE_DETALLE;
+            }
+            set
+            {
+                OnESTADOS_DETALLE_ENABLE_DETALLEChanging(value);
+                ReportPropertyChanging("ESTADOS_DETALLE_ENABLE_DETALLE");
+                _ESTADOS_DETALLE_ENABLE_DETALLE = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ESTADOS_DETALLE_ENABLE_DETALLE");
+                OnESTADOS_DETALLE_ENABLE_DETALLEChanged();
+            }
+        }
+        private global::System.Boolean _ESTADOS_DETALLE_ENABLE_DETALLE;
+        partial void OnESTADOS_DETALLE_ENABLE_DETALLEChanging(global::System.Boolean value);
+        partial void OnESTADOS_DETALLE_ENABLE_DETALLEChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS
+        {
+            get
+            {
+                return _ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS;
+            }
+            set
+            {
+                OnESTADOS_DETALLE_ENABLE_SACOS_RETENIDOSChanging(value);
+                ReportPropertyChanging("ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS");
+                _ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS");
+                OnESTADOS_DETALLE_ENABLE_SACOS_RETENIDOSChanged();
+            }
+        }
+        private global::System.Boolean _ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS;
+        partial void OnESTADOS_DETALLE_ENABLE_SACOS_RETENIDOSChanging(global::System.Boolean value);
+        partial void OnESTADOS_DETALLE_ENABLE_SACOS_RETENIDOSChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean ESTADOS_DETALLE_SHOW_DESCUENTOS
+        {
+            get
+            {
+                return _ESTADOS_DETALLE_SHOW_DESCUENTOS;
+            }
+            set
+            {
+                OnESTADOS_DETALLE_SHOW_DESCUENTOSChanging(value);
+                ReportPropertyChanging("ESTADOS_DETALLE_SHOW_DESCUENTOS");
+                _ESTADOS_DETALLE_SHOW_DESCUENTOS = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ESTADOS_DETALLE_SHOW_DESCUENTOS");
+                OnESTADOS_DETALLE_SHOW_DESCUENTOSChanged();
+            }
+        }
+        private global::System.Boolean _ESTADOS_DETALLE_SHOW_DESCUENTOS;
+        partial void OnESTADOS_DETALLE_SHOW_DESCUENTOSChanging(global::System.Boolean value);
+        partial void OnESTADOS_DETALLE_SHOW_DESCUENTOSChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean ESTADOS_DETALLE_SHOW_TOTAL
+        {
+            get
+            {
+                return _ESTADOS_DETALLE_SHOW_TOTAL;
+            }
+            set
+            {
+                OnESTADOS_DETALLE_SHOW_TOTALChanging(value);
+                ReportPropertyChanging("ESTADOS_DETALLE_SHOW_TOTAL");
+                _ESTADOS_DETALLE_SHOW_TOTAL = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ESTADOS_DETALLE_SHOW_TOTAL");
+                OnESTADOS_DETALLE_SHOW_TOTALChanged();
+            }
+        }
+        private global::System.Boolean _ESTADOS_DETALLE_SHOW_TOTAL;
+        partial void OnESTADOS_DETALLE_SHOW_TOTALChanging(global::System.Boolean value);
+        partial void OnESTADOS_DETALLE_SHOW_TOTALChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN
+        {
+            get
+            {
+                return _ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN;
+            }
+            set
+            {
+                OnESTADOS_DETALLE_ENABLE_REGISTRAR_BTNChanging(value);
+                ReportPropertyChanging("ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN");
+                _ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN");
+                OnESTADOS_DETALLE_ENABLE_REGISTRAR_BTNChanged();
+            }
+        }
+        private global::System.Boolean _ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN;
+        partial void OnESTADOS_DETALLE_ENABLE_REGISTRAR_BTNChanging(global::System.Boolean value);
+        partial void OnESTADOS_DETALLE_ENABLE_REGISTRAR_BTNChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean ESTADOS_DETALLE_ENABLE_IMPRIMIR_BTN
+        {
+            get
+            {
+                return _ESTADOS_DETALLE_ENABLE_IMPRIMIR_BTN;
+            }
+            set
+            {
+                OnESTADOS_DETALLE_ENABLE_IMPRIMIR_BTNChanging(value);
+                ReportPropertyChanging("ESTADOS_DETALLE_ENABLE_IMPRIMIR_BTN");
+                _ESTADOS_DETALLE_ENABLE_IMPRIMIR_BTN = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ESTADOS_DETALLE_ENABLE_IMPRIMIR_BTN");
+                OnESTADOS_DETALLE_ENABLE_IMPRIMIR_BTNChanged();
+            }
+        }
+        private global::System.Boolean _ESTADOS_DETALLE_ENABLE_IMPRIMIR_BTN;
+        partial void OnESTADOS_DETALLE_ENABLE_IMPRIMIR_BTNChanging(global::System.Boolean value);
+        partial void OnESTADOS_DETALLE_ENABLE_IMPRIMIR_BTNChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "DETALLES_ESTADOS_NOTA_FK", "estado_nota_de_peso")]
+        public estado_nota_de_peso estados_nota_de_peso
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<estado_nota_de_peso>("COLINASMODEL.DETALLES_ESTADOS_NOTA_FK", "estado_nota_de_peso").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<estado_nota_de_peso>("COLINASMODEL.DETALLES_ESTADOS_NOTA_FK", "estado_nota_de_peso").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<estado_nota_de_peso> estados_nota_de_pesoReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<estado_nota_de_peso>("COLINASMODEL.DETALLES_ESTADOS_NOTA_FK", "estado_nota_de_peso");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<estado_nota_de_peso>("COLINASMODEL.DETALLES_ESTADOS_NOTA_FK", "estado_nota_de_peso", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="COLINASMODEL", Name="estado_nota_de_peso")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -3114,14 +3547,16 @@ namespace COCASJOL.DATAACCESS
         /// <param name="eSTADOS_NOTA_ID">Initial value of the ESTADOS_NOTA_ID property.</param>
         /// <param name="eSTADOS_NOTA_LLAVE">Initial value of the ESTADOS_NOTA_LLAVE property.</param>
         /// <param name="eSTADOS_NOTA_NOMBRE">Initial value of the ESTADOS_NOTA_NOMBRE property.</param>
+        /// <param name="eSTADOS_NOTA_ES_CATACION">Initial value of the ESTADOS_NOTA_ES_CATACION property.</param>
         /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
         /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
-        public static estado_nota_de_peso Createestado_nota_de_peso(global::System.Int32 eSTADOS_NOTA_ID, global::System.String eSTADOS_NOTA_LLAVE, global::System.String eSTADOS_NOTA_NOMBRE, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
+        public static estado_nota_de_peso Createestado_nota_de_peso(global::System.Int32 eSTADOS_NOTA_ID, global::System.String eSTADOS_NOTA_LLAVE, global::System.String eSTADOS_NOTA_NOMBRE, global::System.Boolean eSTADOS_NOTA_ES_CATACION, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
         {
             estado_nota_de_peso estado_nota_de_peso = new estado_nota_de_peso();
             estado_nota_de_peso.ESTADOS_NOTA_ID = eSTADOS_NOTA_ID;
             estado_nota_de_peso.ESTADOS_NOTA_LLAVE = eSTADOS_NOTA_LLAVE;
             estado_nota_de_peso.ESTADOS_NOTA_NOMBRE = eSTADOS_NOTA_NOMBRE;
+            estado_nota_de_peso.ESTADOS_NOTA_ES_CATACION = eSTADOS_NOTA_ES_CATACION;
             estado_nota_de_peso.CREADO_POR = cREADO_POR;
             estado_nota_de_peso.FECHA_CREACION = fECHA_CREACION;
             return estado_nota_de_peso;
@@ -3252,6 +3687,30 @@ namespace COCASJOL.DATAACCESS
         private global::System.String _ESTADOS_NOTA_DESCRIPCION;
         partial void OnESTADOS_NOTA_DESCRIPCIONChanging(global::System.String value);
         partial void OnESTADOS_NOTA_DESCRIPCIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean ESTADOS_NOTA_ES_CATACION
+        {
+            get
+            {
+                return _ESTADOS_NOTA_ES_CATACION;
+            }
+            set
+            {
+                OnESTADOS_NOTA_ES_CATACIONChanging(value);
+                ReportPropertyChanging("ESTADOS_NOTA_ES_CATACION");
+                _ESTADOS_NOTA_ES_CATACION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ESTADOS_NOTA_ES_CATACION");
+                OnESTADOS_NOTA_ES_CATACIONChanged();
+            }
+        }
+        private global::System.Boolean _ESTADOS_NOTA_ES_CATACION;
+        partial void OnESTADOS_NOTA_ES_CATACIONChanging(global::System.Boolean value);
+        partial void OnESTADOS_NOTA_ES_CATACIONChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -3431,6 +3890,44 @@ namespace COCASJOL.DATAACCESS
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<nota_de_peso>("COLINASMODEL.notas_de_peso_estado_fk", "nota_de_peso", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "DETALLES_ESTADOS_NOTA_FK", "estados_detalles")]
+        public estado_detalle estados_detalles
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<estado_detalle>("COLINASMODEL.DETALLES_ESTADOS_NOTA_FK", "estados_detalles").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<estado_detalle>("COLINASMODEL.DETALLES_ESTADOS_NOTA_FK", "estados_detalles").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<estado_detalle> estados_detallesReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<estado_detalle>("COLINASMODEL.DETALLES_ESTADOS_NOTA_FK", "estados_detalles");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<estado_detalle>("COLINASMODEL.DETALLES_ESTADOS_NOTA_FK", "estados_detalles", value);
                 }
             }
         }
@@ -5584,44 +6081,6 @@ namespace COCASJOL.DATAACCESS
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "notas_de_peso_estado_fk", "estados_nota_de_peso")]
-        public estado_nota_de_peso estados_nota_de_peso
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<estado_nota_de_peso>("COLINASMODEL.notas_de_peso_estado_fk", "estados_nota_de_peso").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<estado_nota_de_peso>("COLINASMODEL.notas_de_peso_estado_fk", "estados_nota_de_peso").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<estado_nota_de_peso> estados_nota_de_pesoReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<estado_nota_de_peso>("COLINASMODEL.notas_de_peso_estado_fk", "estados_nota_de_peso");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<estado_nota_de_peso>("COLINASMODEL.notas_de_peso_estado_fk", "estados_nota_de_peso", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "FK_NOTA_DE_PESO_socios", "socios")]
         public socio socios
         {
@@ -5650,6 +6109,44 @@ namespace COCASJOL.DATAACCESS
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<socio>("COLINASMODEL.FK_NOTA_DE_PESO_socios", "socios", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COLINASMODEL", "notas_de_peso_estado_fk", "estados_nota_de_peso")]
+        public estado_nota_de_peso estados_nota_de_peso
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<estado_nota_de_peso>("COLINASMODEL.notas_de_peso_estado_fk", "estados_nota_de_peso").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<estado_nota_de_peso>("COLINASMODEL.notas_de_peso_estado_fk", "estados_nota_de_peso").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<estado_nota_de_peso> estados_nota_de_pesoReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<estado_nota_de_peso>("COLINASMODEL.notas_de_peso_estado_fk", "estados_nota_de_peso");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<estado_nota_de_peso>("COLINASMODEL.notas_de_peso_estado_fk", "estados_nota_de_peso", value);
                 }
             }
         }
