@@ -25,6 +25,12 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                 if (!X.IsAjaxRequest)
                 {
                     this.plantillaPrefixHdn.Text = EstadoNotaDePesoLogic.PREFIJO_PLANTILLA;
+
+                    this.EnableEstadoSt.DataSource = EstadoNotaDePesoLogic.GetHabilitarEstados();
+                    this.EnableEstadoSt.DataBind();
+
+                    this.EnableSocioSt.DataSource = COCASJOL.LOGIC.Socios.SociosLogic.GetHabilitarSocios();
+                    this.EnableSocioSt.DataBind();
                 }
 
                 string loggedUsr = Session["username"] as string;
@@ -125,7 +131,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
         }
 
         [DirectMethod(RethrowException=true)]
-        public void AddEstadosNotaPadreSt_Refresh()
+        public void AddEstadosNotaSiguienteSt_Refresh()
         {
             try
             {
@@ -140,7 +146,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
         }
 
         [DirectMethod(RethrowException = true)]
-        public void EditEstadosNotaPadreSt_Refresh()
+        public void EditEstadosNotaSiguienteSt_Refresh()
         {
             try
             {
@@ -162,8 +168,8 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
 
                 int siguiente = siguienteIdCmb.Text == "" ? 0 : Convert.ToInt32(siguienteIdCmb.Text);
 
-                this.EstadosNotaPadreSt.DataSource = estadologic.GetEstadosNotaDePesoSinAsignar(siguiente);
-                this.EstadosNotaPadreSt.DataBind();
+                this.EstadosNotaSiguienteSt.DataSource = estadologic.GetEstadosNotaDePesoSinAsignar(siguiente);
+                this.EstadosNotaSiguienteSt.DataBind();
             }
             catch (Exception ex)
             {
@@ -203,15 +209,17 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                     this.AddNombreTxt.Text,
                     this.AddDescripcionTxt.Text,
                     this.AddEsCatacionChk.Checked,
+                    this.AddEstadoChk.Checked,
                     this.AddCreatedByTxt.Text,
                     this.AddEnableFechaChk.Checked,
-                    this.AddEnableEstadoChk.Checked,
-                    this.AddEnableSocioIdChk.Checked,
+                    Convert.ToInt32(this.AddEnableEstadoCmb.Value),
+                    Convert.ToInt32(this.AddEnableSocioIdCmb.Value),
                     this.AddEnableClasificacionDeCafeChk.Checked,
                     this.AddShowInformacionSocioChk.Checked,
                     this.AddEnableFormaDeEntregaChk.Checked,
                     this.AddEnableDetalleChk.Checked,
                     this.AddEnableSacosRetenidosChk.Checked,
+                    this.AddEnableTaraChk.Checked,
                     this.AddShowDescuentosChk.Checked,
                     this.AddShowTotalesChk.Checked,
                     this.AddEnableRegistrarChk.Checked,
@@ -241,15 +249,17 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                     this.EditNombreTxt.Text,
                     this.EditDescripcionTxt.Text,
                     this.EditEsCatacionChk.Checked,
+                    this.EditEstadoChk.Checked,
                     this.EditModifiedByTxt.Text,
                     this.EditEnableFechaChk.Checked,
-                    this.EditEnableEstadoChk.Checked,
-                    this.EditEnableSocioIdChk.Checked,
+                    Convert.ToInt32(this.EditEnableEstadoCmb.Value),
+                    Convert.ToInt32(this.EditEnableSocioIdCmb.Value),
                     this.EditEnableClasificacionDeCafeChk.Checked,
                     this.EditShowInformacionSocioChk.Checked,
                     this.EditEnableFormaDeEntregaChk.Checked,
                     this.EditEnableDetalleChk.Checked,
                     this.EditEnableSacosRetenidosChk.Checked,
+                    this.EditEnableTaraChk.Checked,
                     this.EditShowDescuentosChk.Checked,
                     this.EditShowTotalesChk.Checked,
                     this.EditEnableRegistrarChk.Checked,
@@ -273,7 +283,45 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
             try
             {
                 EstadoNotaDePesoLogic estadologic = new EstadoNotaDePesoLogic();
-                estadologic.EliminarEstadoNotaDePeso(ESTADOS_NOTA_ID);
+                if (estadologic.EstadoDeNotaDePesoTieneReferencias(ESTADOS_NOTA_ID))
+                {
+                    X.Msg.Alert("Estado de Nota de Peso", "No se puede eliminar el estado de nota de peso ya que existen notas de peso para este estado.").Show();
+                } else
+                    estadologic.EliminarEstadoNotaDePeso(ESTADOS_NOTA_ID);
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al eliminar estado de nota de peso.", ex);
+                throw;
+            }
+        }
+
+        #endregion
+
+        #region Actualizar Estado
+
+        [DirectMethod(RethrowException = true)]
+        public void ActivarBtn_Click(int ESTADOS_NOTA_ID, string UsuarioActual)
+        {
+            try
+            {
+                EstadoNotaDePesoLogic estadologic = new EstadoNotaDePesoLogic();
+                estadologic.ActivarEstado(ESTADOS_NOTA_ID, UsuarioActual);
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al eliminar estado de nota de peso.", ex);
+                throw;
+            }
+        }
+
+        [DirectMethod(RethrowException = true)]
+        public void DesactivarBtn_Click(int ESTADOS_NOTA_ID, string UsuarioActual)
+        {
+            try
+            {
+                EstadoNotaDePesoLogic estadologic = new EstadoNotaDePesoLogic();
+                estadologic.DesactivarEstado(ESTADOS_NOTA_ID, UsuarioActual);
             }
             catch (Exception ex)
             {

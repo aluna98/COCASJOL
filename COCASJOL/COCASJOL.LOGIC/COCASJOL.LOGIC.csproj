@@ -73,9 +73,6 @@
     <Compile Include="Configuracion\ConfiguracionDeSistemaLogic.cs" />
     <Compile Include="Inventario\ClasificacionDeCafeLogic.cs" />
     <Compile Include="Inventario\Ingresos\EstadoNotaDePesoLogic.cs" />
-    <Compile Include="Inventario\Ingresos\NotaDePesoEnAdministracionLogic.cs" />
-    <Compile Include="Inventario\Ingresos\NotaDePesoEnCatacionLogic.cs" />
-    <Compile Include="Inventario\Ingresos\NotaDePesoEnPesajeLogic.cs" />
     <Compile Include="Inventario\Ingresos\NotaDePesoLogic.cs" />
     <Compile Include="Inventario\InventarioDeCafeLogic.cs" />
     <Compile Include="Inventario\Salidas\HojaDeLiquidacionLogic.cs">

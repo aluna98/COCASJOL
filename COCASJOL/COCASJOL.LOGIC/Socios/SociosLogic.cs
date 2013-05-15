@@ -646,6 +646,31 @@ namespace COCASJOL.LOGIC.Socios
 
         #region Metodos
 
+        public enum HabilitarSocios
+        {
+            Desactivado = 0, MostrarActivos = 1, MostrarTodos = 2
+        }
+
+        public static List<object> GetHabilitarSocios()
+        {
+            try
+            {
+                List<object> lst = new List<object>
+                {
+                    new { Text = HabilitarSocios.Desactivado.ToString(), Value = (int)HabilitarSocios.Desactivado },
+                    new { Text = HabilitarSocios.MostrarActivos.ToString(), Value = (int)HabilitarSocios.MostrarActivos },
+                    new { Text = HabilitarSocios.MostrarTodos.ToString(), Value = (int)HabilitarSocios.MostrarTodos }
+                };
+
+                return lst;
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al obtener estados para habilitar estado de nota de peso.", ex);
+                throw;
+            }
+        }
+
         /// <summary>
         /// Verfica si el socio ya existe como beneficiario para otro socio.
         /// </summary>

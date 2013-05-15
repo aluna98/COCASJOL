@@ -251,6 +251,35 @@ namespace COCASJOL.LOGIC.Seguridad
                 throw;
             }
         }
+
+        public List<privilegio> GetPrivilegiosParaNotaDePesoDeUsuario(string USR_USERNAME)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    db.privilegios.MergeOption = MergeOption.NoTracking;
+
+                    EntityKey k = new EntityKey("colinasEntities.usuarios", "USR_USERNAME", USR_USERNAME);
+
+                    var u = db.GetObjectByKey(k);
+
+                    usuario user = (usuario)u;
+
+                    var query = from r in user.roles
+                                from pr in r.privilegios
+                                where pr.PRIV_LLAVE.Contains(COCASJOL.LOGIC.Inventario.Ingresos.EstadoNotaDePesoLogic.PREFIJO_PRIVILEGIO)
+                                select pr;
+
+                    return query.ToList<privilegio>();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al obtener privilegios de usuario.", ex);
+                throw;
+            }
+        }
         
         /// <summary>
         /// Obtiene los privilegios no de usuario.

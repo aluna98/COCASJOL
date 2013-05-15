@@ -409,7 +409,7 @@
                         MonitorValid="true" 
                         LabelAlign="Right">
                     <Items>
-                        <ext:TabPanel ID="TabPanel11" runat="server">
+                        <ext:TabPanel ID="TabPanel11" runat="server" DeferredRender="false" >
                             <Items>
                                 <ext:Panel ID="PanelPer" runat="server" Title="Datos Personales" Layout="AnchorLayout" AutoHeight="True" Icon="User" LabelWidth="150" >
                                     <Items>
@@ -590,7 +590,7 @@
             <Items>
                 <ext:FormPanel ID="NuevoSocioForm" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true">
                     <Items>
-                        <ext:TabPanel ID="TabSocioAdd" runat="server" LabelAlign="Right">
+                        <ext:TabPanel ID="TabSocioAdd" runat="server" LabelAlign="Right" DeferredRender="false" >
                             <Items>
                                 <ext:Panel ID="PanelPersonal" runat="server" Title="Datos Personales" Layout="AnchorLayout" AutoHeight="True" Icon="User" LabelWidth="150">
                                     <Items>

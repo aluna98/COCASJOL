@@ -30,16 +30,14 @@
 
         <asp:ObjectDataSource ID="EstadosNotaDS" runat="server"
                 TypeName="COCASJOL.LOGIC.Inventario.Ingresos.EstadoNotaDePesoLogic"
-                SelectMethod="GetEstadosNotaDePeso"
-                InsertMethod="InsertarEstadoNotaDePeso"
-                UpdateMethod="ActualizarEstadoNotaDePeso"
-                DeleteMethod="EliminarEstadoNotaDePeso" onselecting="EstadosNotaDS_Selecting" >
+                SelectMethod="GetEstadosNotaDePeso" onselecting="EstadosNotaDS_Selecting" >
                 <SelectParameters>
                     <asp:ControlParameter Name="ESTADOS_NOTA_ID"               Type="Int32"    ControlID="f_ESTADOS_NOTA_ID"          PropertyName="Text" />
                     <asp:ControlParameter Name="ESTADOS_NOTA_SIGUIENTE"        Type="Int32"    ControlID="f_ESTADOS_NOTA_SIGUIENTE"   PropertyName="Text" />
                     <asp:ControlParameter Name="ESTADOS_NOTA_LLAVE"            Type="String"   ControlID="f_ESTADOS_NOTA_LLAVE"       PropertyName="Text" />
                     <asp:ControlParameter Name="ESTADOS_NOTA_NOMBRE"           Type="String"   ControlID="f_ESTADOS_NOTA_NOMBRE"      PropertyName="Text" />
                     <asp:ControlParameter Name="ESTADOS_NOTA_DESCRIPCION"      Type="String"   ControlID="nullHdn"                    PropertyName="Text" />
+                    <asp:ControlParameter Name="ESTADOS_NOTA_ESTADO"           Type="Boolean"  ControlID="nullHdn"                    PropertyName="Text" />
                     <asp:ControlParameter Name="CREADO_POR"                    Type="String"   ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="FECHA_CREACION"                Type="DateTime" ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="MODIFICADO_POR"                Type="String"   ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
@@ -64,7 +62,7 @@
             </Reader>
         </ext:Store>
 
-        <ext:Store ID="EstadosNotaPadreSt" runat="server" >
+        <ext:Store ID="EstadosNotaSiguienteSt" runat="server" >
             <Reader>
                 <ext:JsonReader IDProperty="ESTADOS_NOTA_ID">
                     <Fields>
@@ -93,27 +91,29 @@
                                     <Reader>
                                         <ext:JsonReader IDProperty="ESTADOS_NOTA_ID">
                                             <Fields>
-                                                <ext:RecordField Name="ESTADOS_NOTA_ID"           />
-                                                <ext:RecordField Name="ESTADOS_NOTA_SIGUIENTE"        />
+                                                <ext:RecordField Name="ESTADOS_NOTA_ID"                                                                                 />
+                                                <ext:RecordField Name="ESTADOS_NOTA_SIGUIENTE"                                                                          />
                                                 <ext:RecordField Name="ESTADOS_NOTA_SIGUIENTE_NOMBRE" ServerMapping="estados_nota_de_peso_siguiente.ESTADOS_NOTA_LLAVE" />
-                                                <ext:RecordField Name="ESTADOS_NOTA_LLAVE"        />
-                                                <ext:RecordField Name="ESTADOS_NOTA_NOMBRE"       />
-                                                <ext:RecordField Name="ESTADOS_NOTA_DESCRIPCION"  />
-                                                <ext:RecordField Name="ESTADOS_NOTA_ES_CATACION"  />
-                                                <ext:RecordField Name="CREADO_POR"                />
-                                                <ext:RecordField Name="FECHA_CREACION"            Type="Date" />
-                                                <ext:RecordField Name="MODIFICADO_POR"            />
-                                                <ext:RecordField Name="FECHA_MODIFICACION"        Type="Date" />
+                                                <ext:RecordField Name="ESTADOS_NOTA_LLAVE"                                                                              />
+                                                <ext:RecordField Name="ESTADOS_NOTA_NOMBRE"                                                                             />
+                                                <ext:RecordField Name="ESTADOS_NOTA_DESCRIPCION"                                                                        />
+                                                <ext:RecordField Name="ESTADOS_NOTA_ES_CATACION"                                                                        />
+                                                <ext:RecordField Name="ESTADOS_NOTA_ESTADO"                                                                             />
+                                                <ext:RecordField Name="CREADO_POR"                                                                                      />
+                                                <ext:RecordField Name="FECHA_CREACION"                Type="Date"                                                       />
+                                                <ext:RecordField Name="MODIFICADO_POR"                                                                                  />
+                                                <ext:RecordField Name="FECHA_MODIFICACION"            Type="Date"                                                       />
 
                                                 <ext:RecordField Name="ESTADOS_DETALLE_ENABLE_FECHA" ServerMapping="estados_detalles.ESTADOS_DETALLE_ENABLE_FECHA" />
                                                 <ext:RecordField Name="ESTADOS_DETALLE_ENABLE_ESTADO" ServerMapping="estados_detalles.ESTADOS_DETALLE_ENABLE_ESTADO" />
                                                 <ext:RecordField Name="ESTADOS_DETALLE_ENABLE_SOCIO_ID" ServerMapping="estados_detalles.ESTADOS_DETALLE_ENABLE_SOCIO_ID" />
-                                                <ext:RecordField Name="ESTADOS_DETALLE_CLASIFICACION_CAFE" ServerMapping="estados_detalles.ESTADOS_DETALLE_CLASIFICACION_CAFE" />
+                                                <ext:RecordField Name="ESTADOS_DETALLE_ENABLE_CLASIFICACION_CAFE" ServerMapping="estados_detalles.ESTADOS_DETALLE_ENABLE_CLASIFICACION_CAFE" />
                                                 <ext:RecordField Name="ESTADOS_DETALLE_SHOW_INFO_SOCIO" ServerMapping="estados_detalles.ESTADOS_DETALLE_SHOW_INFO_SOCIO" />
                                                 <ext:RecordField Name="ESTADOS_DETALLE_ENABLE_FORMA_ENTREGA" ServerMapping="estados_detalles.ESTADOS_DETALLE_ENABLE_FORMA_ENTREGA" />
                                                 <ext:RecordField Name="ESTADOS_DETALLE_ENABLE_DETALLE" ServerMapping="estados_detalles.ESTADOS_DETALLE_ENABLE_DETALLE" />
                                                 <ext:RecordField Name="ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS" ServerMapping="estados_detalles.ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS" />
                                                 <ext:RecordField Name="ESTADOS_DETALLE_SHOW_DESCUENTOS" ServerMapping="estados_detalles.ESTADOS_DETALLE_SHOW_DESCUENTOS" />
+                                                <ext:RecordField Name="ESTADOS_DETALLE_ENABLE_TARA" ServerMapping="estados_detalles.ESTADOS_DETALLE_ENABLE_TARA" />
                                                 <ext:RecordField Name="ESTADOS_DETALLE_SHOW_TOTAL" ServerMapping="estados_detalles.ESTADOS_DETALLE_SHOW_TOTAL" />
                                                 <ext:RecordField Name="ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN" ServerMapping="estados_detalles.ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN" />
                                                 <ext:RecordField Name="ESTADOS_DETALLE_ENABLE_IMPRIMIR_BTN" ServerMapping="estados_detalles.ESTADOS_DETALLE_ENABLE_IMPRIMIR_BTN" />
@@ -131,6 +131,7 @@
                                     <ext:Column DataIndex="ESTADOS_NOTA_LLAVE"        Header="Llave" Sortable="true" Width="150"></ext:Column>
                                     <ext:Column DataIndex="ESTADOS_NOTA_NOMBRE"       Header="Nombre" Sortable="true" Width="150"></ext:Column>
                                     <ext:Column DataIndex="ESTADOS_NOTA_SIGUIENTE_NOMBRE" Header="Estado Siguiente" Sortable="true"></ext:Column>
+                                    <ext:CheckColumn DataIndex="ESTADOS_NOTA_ESTADO"     Header="Activo" Sortable="false" MenuDisabled="true"/>
                                     <ext:Column DataIndex="ESTADOS_NOTA_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
                                         <Renderer Handler="return '';" />
                                     </ext:Column>
@@ -155,6 +156,17 @@
                                         <ext:Button ID="EliminarBtn" runat="server" Text="Eliminar" Icon="PageDelete">
                                             <Listeners>
                                                 <Click Handler="PageX.remove();" />
+                                            </Listeners>
+                                        </ext:Button>
+                                        <ext:ToolbarSeparator runat="server" ID="ToolbarSeparator1"></ext:ToolbarSeparator>
+                                        <ext:Button ID="ActivarBtn" runat="server" Text="Activar" Icon="Accept">
+                                            <Listeners>
+                                                <Click Handler="PageX.activate();" />
+                                            </Listeners>
+                                        </ext:Button>
+                                        <ext:Button ID="DesactivarBtn" runat="server" Text="Desactivar" Icon="Decline">
+                                            <Listeners>
+                                                <Click Handler="PageX.deactivate();" />
                                             </Listeners>
                                         </ext:Button>
                                         <ext:ToolbarFill ID="ToolbarFill1" runat="server" />
@@ -222,6 +234,11 @@
                                                         </ext:ComboBox>
                                                     </Component>
                                                 </ext:HeaderColumn>
+                                                
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                    </Component>
+                                                </ext:HeaderColumn>
                                                                
                                                 <ext:HeaderColumn AutoWidthElement="false">
                                                     <Component>
@@ -267,6 +284,28 @@
 
         <ext:Hidden runat="server" ID="plantillaPrefixHdn" />
 
+        <ext:Store ID="EnableEstadoSt" runat="server" >
+            <Reader>
+                <ext:JsonReader IDProperty="Value">
+                    <Fields>
+                        <ext:RecordField Name="Value" />
+                        <ext:RecordField Name="Text" />
+                    </Fields>
+                </ext:JsonReader>
+            </Reader>
+        </ext:Store>
+
+        <ext:Store ID="EnableSocioSt" runat="server" >
+            <Reader>
+                <ext:JsonReader IDProperty="Value">
+                    <Fields>
+                        <ext:RecordField Name="Value" />
+                        <ext:RecordField Name="Text" />
+                    </Fields>
+                </ext:JsonReader>
+            </Reader>
+        </ext:Store>
+
         <ext:Window ID="AgregarEstadosNotaWin"
             runat="server"
             Hidden="true"
@@ -282,7 +321,7 @@
             <Items>
                 <ext:FormPanel ID="AgregarEstadosNotaFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelWidth="120">
                     <Items>
-                        <ext:TabPanel ID="TabPanel1" runat="server">
+                        <ext:TabPanel ID="TabPanel1" runat="server" DeferredRender="false" >
                             <Items>
                                 <ext:Panel ID="AddPanel12" runat="server" Title="Información" Layout="AnchorLayout" AutoHeight="True"
                                     Resizable="false">
@@ -295,10 +334,10 @@
                                                         <ext:ToolTip ID="AddToolTip1" runat="server" Html="La llave de estado no debe contener espacios en blanco y solo permite simbolos alfanuméricos (letras y numeros)." Title="Llave de Estado" Width="200" TrackMouse="true" />
                                                     </ToolTips>
                                                 </ext:TextField>
-                                                <ext:TextField runat="server" ID="AddNombreTxt"        DataIndex="ESTADOS_NOTA_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" ></ext:TextField>
-                                                <ext:TextArea runat="server"  ID="AddDescripcionTxt"   DataIndex="ESTADOS_NOTA_DESCRIPCION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100" Height="50" ></ext:TextArea>
+                                                <ext:TextField runat="server" ID="AddNombreTxt"        DataIndex="ESTADOS_NOTA_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="30" ></ext:TextField>
+                                                <ext:TextArea runat="server"  ID="AddDescripcionTxt"   DataIndex="ESTADOS_NOTA_DESCRIPCION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="75" Height="50" ></ext:TextArea>
                                                 <ext:ComboBox runat="server"  ID="AddSiguienteIdCmb"       DataIndex="ESTADOS_NOTA_SIGUIENTE"   LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Estado Siguiente" MsgTarget="Side"
-                                                    StoreID="EstadosNotaPadreSt"
+                                                    StoreID="EstadosNotaSiguienteSt"
                                                     ValueField="ESTADOS_NOTA_ID" 
                                                     DisplayField="ESTADOS_NOTA_LLAVE"
                                                     ForceSelection="true"
@@ -314,6 +353,7 @@
                                                     </Listeners>
                                                 </ext:ComboBox>
                                                 <ext:Checkbox runat="server" ID="AddEsCatacionChk"       DataIndex="ESTADOS_NOTA_ES_CATACION" LabelAlign="Right"     FieldLabel="Es Catacíon" MsgTarget="Side" ></ext:Checkbox>
+                                                <ext:Checkbox runat="server" ID="AddEstadoChk"       DataIndex="ESTADOS_NOTA_ESTADO" LabelAlign="Right"     FieldLabel="Activado" MsgTarget="Side" Checked="true" ></ext:Checkbox>
                                                 <ext:TextField runat="server"   ID="AddCreatedByTxt"     DataIndex="CREADO_POR"               LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
                                                 <ext:TextField runat="server"   ID="AddCreationDateTxt"  DataIndex="FECHA_CREACION"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
                                                 <ext:TextField runat="server"   ID="AddModifiedByTxt"    DataIndex="MODIFICADO_POR"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
@@ -336,14 +376,14 @@
                                                         <ext:Panel ID="Panel5" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
                                                                 <ext:Checkbox runat="server" ID="AddEnableFechaChk"                 DataIndex="ESTADOS_DETALLE_ENABLE_FECHA" LabelWidth="200" LabelAlign="Left" FieldLabel="Habilitar Fecha" MsgTarget="Side" ></ext:Checkbox>
-                                                                <ext:Checkbox runat="server" ID="AddEnableSocioIdChk"               DataIndex="ESTADOS_DETALLE_ENABLE_SOCIO_ID" LabelWidth="200" LabelAlign="Left" FieldLabel="Habilitar Código de Socio" MsgTarget="Side" ></ext:Checkbox>
+                                                                <ext:Checkbox runat="server" ID="AddEnableClasificacionDeCafeChk"   DataIndex="ESTADOS_DETALLE_ENABLE_CLASIFICACION_CAFE" LabelWidth="200" LabelAlign="Left" FieldLabel="Habilitar Clasificación de Café" MsgTarget="Side" ></ext:Checkbox>
                                                                 <ext:Checkbox runat="server" ID="AddShowInformacionSocioChk"        DataIndex="ESTADOS_DETALLE_SHOW_INFO_SOCIO" LabelWidth="200" LabelAlign="Left" FieldLabel="Mostrar Información de Socio" MsgTarget="Side" ></ext:Checkbox>
                                                             </Items>
                                                         </ext:Panel>
                                                         <ext:Panel ID="Panel6" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
-                                                                <ext:Checkbox runat="server" ID="AddEnableEstadoChk"                DataIndex="ESTADOS_DETALLE_ENABLE_ESTADO"             LabelWidth="200" LabelAlign="Left" FieldLabel="Habilitar Estado" MsgTarget="Side" ></ext:Checkbox>
-                                                                <ext:Checkbox runat="server" ID="AddEnableClasificacionDeCafeChk"   DataIndex="ESTADOS_DETALLE_CLASIFICACION_CAFE" LabelWidth="200" LabelAlign="Left" FieldLabel="Habilitar Clasificación de Café" MsgTarget="Side" ></ext:Checkbox>
+                                                                <ext:ComboBox runat="server" ID="AddEnableEstadoCmb"                DataIndex="ESTADOS_DETALLE_ENABLE_ESTADO"             LabelAlign="Left" AnchorHorizontal="100%" FieldLabel="Habilitar Estado" MsgTarget="Side" ForceSelection="true" StoreID="EnableEstadoSt" ValueField="Value" DisplayField="Text" ></ext:ComboBox>
+                                                                <ext:ComboBox runat="server" ID="AddEnableSocioIdCmb"               DataIndex="ESTADOS_DETALLE_ENABLE_SOCIO_ID"             LabelAlign="Left" AnchorHorizontal="100%" FieldLabel="Habilitar Código de Socio" MsgTarget="Side" ForceSelection="true" StoreID="EnableSocioSt" ValueField="Value" DisplayField="Text" ></ext:ComboBox>
                                                             </Items>
                                                         </ext:Panel>
                                                     </Items>
@@ -376,6 +416,7 @@
                                                             <Items>
                                                                 <ext:Checkbox runat="server" ID="AddEnableSacosRetenidosChk"        DataIndex="ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS" LabelWidth="200" LabelAlign="Left" FieldLabel="Habilitar Sacos Retenidos" MsgTarget="Side" ></ext:Checkbox>
                                                                 <ext:Checkbox runat="server" ID="AddShowDescuentosChk"              DataIndex="ESTADOS_DETALLE_SHOW_DESCUENTOS" LabelWidth="200" LabelAlign="Left" FieldLabel="Mostrar Descuentos" MsgTarget="Side" ></ext:Checkbox>
+                                                                <ext:Checkbox runat="server" ID="AddEnableTaraChk"                  DataIndex="ESTADOS_DETALLE_ENABLE_TARA"		 LabelWidth="200" LabelAlign="Left" FieldLabel="Habilitar Tara" MsgTarget="Side" ></ext:Checkbox>
                                                                 <ext:Checkbox runat="server" ID="AddShowTotalesChk"                 DataIndex="ESTADOS_DETALLE_SHOW_TOTAL" LabelWidth="200" LabelAlign="Left" FieldLabel="Mostrar Total en Numeros y Letras" MsgTarget="Side" ></ext:Checkbox>
                                                                 <ext:Checkbox runat="server" ID="AddEnableRegistrarChk"             DataIndex="ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN" LabelWidth="200" LabelAlign="Left" FieldLabel="Habilitar Registro en Inventario" MsgTarget="Side" ></ext:Checkbox>
                                                                 <ext:Checkbox runat="server" ID="AddEnableImprimirChk"              DataIndex="ESTADOS_DETALLE_ENABLE_IMPRIMIR_BTN" LabelWidth="200" LabelAlign="Left" FieldLabel="Habilitar Version para Imprimir" MsgTarget="Side" ></ext:Checkbox>
@@ -415,7 +456,7 @@
                                                 </ext:ComboBox>
                                                 <ext:Container ID="Container1" runat="server" Layout="Form" >
                                                     <Items>
-                                                        <ext:HtmlEditor runat="server" ID="AddMensajeTxt" DataIndex="PLANTILLAS_MENSAJE" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Mensaje" AllowBlank="false" MsgTarget="Side" MaxLength="45" HideLabel="true" Height="300" Hidden="true" />
+                                                        <ext:HtmlEditor runat="server" ID="AddMensajeTxt" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Mensaje" AllowBlank="false" MsgTarget="Side" MaxLength="45" HideLabel="true" Height="300" Hidden="true" />
                                                     </Items>
                                                 </ext:Container>
                                             </Items>
@@ -452,7 +493,7 @@
             <Items>
                 <ext:FormPanel ID="EditarEstadosNotaFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelWidth="120">
                     <Items>
-                        <ext:TabPanel ID="TabPanel11" runat="server">
+                        <ext:TabPanel ID="TabPanel11" runat="server" DeferredRender="false" >
                             <Items>
                                 <ext:Panel ID="Panel12" runat="server" Title="Información" Layout="AnchorLayout" AutoHeight="True"
                                     Resizable="false">
@@ -465,10 +506,10 @@
                                                         <ext:ToolTip ID="ToolTip1" runat="server" Html="La llave de estado es de solo lectura." Title="Llave de Estado" Width="200" TrackMouse="true" />
                                                     </ToolTips>
                                                 </ext:TextField>
-                                                <ext:TextField runat="server" ID="EditNombreTxt"      DataIndex="ESTADOS_NOTA_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="45" ></ext:TextField>
-                                                <ext:TextArea runat="server"  ID="EditDescripcionTxt" DataIndex="ESTADOS_NOTA_DESCRIPCION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="100" Height="50" ></ext:TextArea>
+                                                <ext:TextField runat="server" ID="EditNombreTxt"      DataIndex="ESTADOS_NOTA_NOMBRE"      LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Nombre" AllowBlank="false" MsgTarget="Side" MaxLength="30" ></ext:TextField>
+                                                <ext:TextArea runat="server"  ID="EditDescripcionTxt" DataIndex="ESTADOS_NOTA_DESCRIPCION" LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Descripción" MaxLength="75" Height="50" ></ext:TextArea>
                                                 <ext:ComboBox runat="server"  ID="EditSiguienteIdCmb" DataIndex="ESTADOS_NOTA_SIGUIENTE"       LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Estado Siguiente" MsgTarget="Side"
-                                                    StoreID="EstadosNotaPadreSt"
+                                                    StoreID="EstadosNotaSiguienteSt"
                                                     ValueField="ESTADOS_NOTA_ID" 
                                                     DisplayField="ESTADOS_NOTA_LLAVE"
                                                     ForceSelection="true"
@@ -483,7 +524,12 @@
                                                         <Select Handler="this.triggers[0].show();" />
                                                     </Listeners>
                                                 </ext:ComboBox>
-                                                <ext:Checkbox runat="server"  ID="EditEsCatacionChk"  DataIndex="ESTADOS_NOTA_ES_CATACION"     LabelAlign="Right" FieldLabel="Es Catación" MsgTarget="Side" ></ext:Checkbox>
+                                                <ext:Checkbox runat="server"  ID="EditEsCatacionChk"  DataIndex="ESTADOS_NOTA_ES_CATACION" LabelAlign="Right" FieldLabel="Es Catación" MsgTarget="Side" ></ext:Checkbox>
+                                                <ext:Checkbox runat="server" ID="EditEstadoChk"       DataIndex="ESTADOS_NOTA_ESTADO" LabelAlign="Right" FieldLabel="Activado" MsgTarget="Side" ReadOnly="true" >
+                                                    <ToolTips>
+                                                        <ext:ToolTip runat="server" ID="Estado" Html="El estado esta solo en modo lectura"></ext:ToolTip>
+                                                    </ToolTips>
+                                                </ext:Checkbox>
                                                 <ext:TextField runat="server"   ID="EditCreatedByTxt"     DataIndex="CREADO_POR"               LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Creado_por" Hidden="true" ></ext:TextField>
                                                 <ext:TextField runat="server"   ID="EditCreationDateTxt"  DataIndex="FECHA_CREACION"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Fecha de Creacion" Hidden="true" ></ext:TextField>
                                                 <ext:TextField runat="server"   ID="EditModifiedByTxt"    DataIndex="MODIFICADO_POR"           LabelAlign="Right" AnchorHorizontal="90%" FieldLabel="Modificado por" Hidden="true" ></ext:TextField>
@@ -506,14 +552,14 @@
                                                         <ext:Panel ID="Panel16" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
                                                                 <ext:Checkbox runat="server" ID="EditEnableFechaChk"                DataIndex="ESTADOS_DETALLE_ENABLE_FECHA" LabelWidth="200" LabelAlign="Left" FieldLabel="Habilitar Fecha" MsgTarget="Side" ></ext:Checkbox>
-                                                                <ext:Checkbox runat="server" ID="EditEnableSocioIdChk"              DataIndex="ESTADOS_DETALLE_ENABLE_SOCIO_ID" LabelWidth="200" LabelAlign="Left" FieldLabel="Habilitar Código de Socio" MsgTarget="Side" ></ext:Checkbox>
+                                                                <ext:Checkbox runat="server" ID="EditEnableClasificacionDeCafeChk"  DataIndex="ESTADOS_DETALLE_ENABLE_CLASIFICACION_CAFE" LabelWidth="200" LabelAlign="Left" FieldLabel="Habilitar Clasificación de Café" MsgTarget="Side" ></ext:Checkbox>
                                                                 <ext:Checkbox runat="server" ID="EditShowInformacionSocioChk"       DataIndex="ESTADOS_DETALLE_SHOW_INFO_SOCIO" LabelWidth="200" LabelAlign="Left" FieldLabel="Mostrar Información de Socio" MsgTarget="Side" ></ext:Checkbox>
                                                             </Items>
                                                         </ext:Panel>
                                                         <ext:Panel ID="Panel17" runat="server" Layout="AnchorLayout" Border="false" ColumnWidth=".5">
                                                             <Items>
-                                                                <ext:Checkbox runat="server" ID="EditEnableEstadoChk"               DataIndex="ESTADOS_DETALLE_ENABLE_ESTADO" LabelWidth="200" LabelAlign="Left" FieldLabel="Habilitar Estado" MsgTarget="Side" ></ext:Checkbox>
-                                                                <ext:Checkbox runat="server" ID="EditEnableClasificacionDeCafeChk"  DataIndex="ESTADOS_DETALLE_CLASIFICACION_CAFE" LabelWidth="200" LabelAlign="Left" FieldLabel="Habilitar Clasificación de Café" MsgTarget="Side" ></ext:Checkbox>
+                                                                <ext:ComboBox runat="server" ID="EditEnableEstadoCmb"                DataIndex="ESTADOS_DETALLE_ENABLE_ESTADO"     LabelAlign="Left" AnchorHorizontal="100%" FieldLabel="Habilitar Estado" MsgTarget="Side" ForceSelection="true"  StoreID="EnableEstadoSt" ValueField="Value" DisplayField="Text" ></ext:ComboBox>
+                                                                <ext:ComboBox runat="server" ID="EditEnableSocioIdCmb"              DataIndex="ESTADOS_DETALLE_ENABLE_SOCIO_ID"             LabelAlign="Left" AnchorHorizontal="100%" FieldLabel="Habilitar Código de Socio" MsgTarget="Side" ForceSelection="true" StoreID="EnableSocioSt" ValueField="Value" DisplayField="Text" ></ext:ComboBox>
                                                             </Items>
                                                         </ext:Panel>
                                                     </Items>
@@ -546,6 +592,7 @@
                                                             <Items>
                                                                 <ext:Checkbox runat="server" ID="EditEnableSacosRetenidosChk" DataIndex="ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS" LabelWidth="200" LabelAlign="Left" FieldLabel="Habilitar Sacos Retenidos" MsgTarget="Side" ></ext:Checkbox>
                                                                 <ext:Checkbox runat="server" ID="EditShowDescuentosChk"       DataIndex="ESTADOS_DETALLE_SHOW_DESCUENTOS"		 LabelWidth="200" LabelAlign="Left" FieldLabel="Mostrar Descuentos" MsgTarget="Side" ></ext:Checkbox>
+                                                                <ext:Checkbox runat="server" ID="EditEnableTaraChk"           DataIndex="ESTADOS_DETALLE_ENABLE_TARA"		     LabelWidth="200" LabelAlign="Left" FieldLabel="Habilitar Tara" MsgTarget="Side" ></ext:Checkbox>
                                                                 <ext:Checkbox runat="server" ID="EditShowTotalesChk"          DataIndex="ESTADOS_DETALLE_SHOW_TOTAL"			 LabelWidth="200" LabelAlign="Left" FieldLabel="Mostrar Total en Numeros y Letras" MsgTarget="Side" ></ext:Checkbox>
                                                                 <ext:Checkbox runat="server" ID="EditEnableRegistrarChk"      DataIndex="ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN" 	 LabelWidth="200" LabelAlign="Left" FieldLabel="Habilitar Registro en Inventario" MsgTarget="Side" ></ext:Checkbox>
                                                                 <ext:Checkbox runat="server" ID="EditEnableImprimirChk"       DataIndex="ESTADOS_DETALLE_ENABLE_IMPRIMIR_BTN" 	 LabelWidth="200" LabelAlign="Left" FieldLabel="Habilitar Version para Imprimir" MsgTarget="Side" ></ext:Checkbox>
@@ -561,7 +608,7 @@
                                 <ext:Panel ID="Panel23" runat="server" Title="Plantilla de Notificación" Layout="AnchorLayout" AutoHeight="True"
                                     Resizable="false">
                                     <Listeners>
-                                        <Activate Handler="#{EditMensajeTxt}.show(); Ext.net.DirectMethods.LoadPlantilla();" />
+                                        <Activate Handler="#{EditMensajeTxt}.show();" />
                                     </Listeners>
                                     <Items>
                                         <ext:Panel ID="Panel24" runat="server" Title="Plantilla" Layout="FormLayout" Padding="5" Resizable="false">
@@ -585,7 +632,7 @@
                                                 </ext:ComboBox>
                                                 <ext:Container ID="Container2" runat="server" Layout="Form" >
                                                     <Items>
-                                                        <ext:HtmlEditor runat="server" ID="EditMensajeTxt" DataIndex="PLANTILLAS_MENSAJE" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Mensaje" AllowBlank="false" MsgTarget="Side" MaxLength="45" HideLabel="true" Height="300" Hidden="true" />
+                                                        <ext:HtmlEditor runat="server" ID="EditMensajeTxt" LabelAlign="Right" AnchorHorizontal="100%" FieldLabel="Mensaje" AllowBlank="false" MsgTarget="Side" MaxLength="45" HideLabel="true" Height="300" Hidden="true" />
                                                     </Items>
                                                 </ext:Container>
                                             </Items>

@@ -273,7 +273,7 @@
                 <Items>
                     <ext:FormPanel ID="EditarSolicitudFormP" runat="server" Header="false" ButtonAlign="Right" MonitorValid="true" LabelAlign="Right">
                         <Items>
-                             <ext:TabPanel ID="tabpanel1" runat="server">
+                             <ext:TabPanel ID="tabpanel1" runat="server" DeferredRender="false" >
                                 <Items>
                                      <ext:Panel ID="PanelSocio" runat="server" Title="Datos de Socio" Layout="AnchorLayout" AutoHeight="true" Icon="UserComment" LabelWidth="150">
                                         <Items>
@@ -540,7 +540,7 @@
             <Items>
                 <ext:FormPanel ID="NuevaSolicitudFormP" runat="server" Header="false" ButtonAlign="Right" MonitorValid="true">
                     <Items>
-                        <ext:TabPanel ID="TabSolicitudAdd" runat="server" LabelAlign="Right">
+                        <ext:TabPanel ID="TabSolicitudAdd" runat="server" LabelAlign="Right" DeferredRender="false" >
                             <Items>
                                 <ext:Panel ID="AddPanelDatos" runat="server" Title="Datos Solicitud" Layout="AnchorLayout" AutoHeight="true" Icon="PageEdit" LabelWidth="200">
                                     <Items>

@@ -55,6 +55,28 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
+        public List<estado_nota_de_peso> GetEstadosNotaDePesoActivos()
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    db.estados_nota_de_peso.MergeOption = MergeOption.NoTracking;
+
+                    var query = from esn in db.estados_nota_de_peso.Include("estados_detalles")
+                                where esn.ESTADOS_NOTA_ESTADO == true
+                                select esn;
+
+                    return query.ToList<estado_nota_de_peso>();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al obtener estados de nota de peso.", ex);
+                throw;
+            }
+        }
+
         /// <summary>
         /// Obtiene todos los estados de nota de peso sin asignar.
         /// </summary>
@@ -99,6 +121,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             string ESTADOS_NOTA_LLAVE,
             string ESTADOS_NOTA_NOMBRE,
             string ESTADOS_NOTA_DESCRIPCION,
+            bool ESTADOS_NOTA_ESTADO,
             string CREADO_POR,
             DateTime FECHA_CREACION,
             string MODIFICADO_POR,
@@ -129,6 +152,32 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             catch (Exception ex)
             {
                 log.Fatal("Error fatal al obtener estados de nota de peso.", ex);
+                throw;
+            }
+        }
+
+        public List<estado_nota_de_peso> GetEstadosIniciales()
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    var estadoSiguiente = (from es in db.estados_nota_de_peso
+                                           where es.ESTADOS_NOTA_SIGUIENTE != null
+                                           select (int)es.ESTADOS_NOTA_SIGUIENTE);
+
+                    var query = from esn in db.estados_nota_de_peso.Include("estados_detalles")
+                                where !estadoSiguiente.Contains(esn.ESTADOS_NOTA_ID) &&
+                                esn.ESTADOS_NOTA_SIGUIENTE != null &&
+                                esn.ESTADOS_NOTA_ESTADO == true
+                                select esn;
+
+                    return query.ToList<estado_nota_de_peso>();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al obtener estados iniciales de nota de peso.", ex);
                 throw;
             }
         }
@@ -227,15 +276,17 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             string ESTADOS_NOTA_NOMBRE,
             string ESTADOS_NOTA_DESCRIPCION,
             bool ESTADOS_NOTA_ES_CATACION,
+            bool ESTADOS_NOTA_ESTADO,
             string CREADO_POR,
             bool ESTADOS_DETALLE_ENABLE_FECHA,
-            bool ESTADOS_DETALLE_ENABLE_ESTADO,
-            bool ESTADOS_DETALLE_ENABLE_SOCIO_ID,
-            bool ESTADOS_DETALLE_CLASIFICACION_CAFE,
+            int ESTADOS_DETALLE_ENABLE_ESTADO,
+            int ESTADOS_DETALLE_ENABLE_SOCIO_ID,
+            bool ESTADOS_DETALLE_ENABLE_CLASIFICACION_CAFE,
             bool ESTADOS_DETALLE_SHOW_INFO_SOCIO,
             bool ESTADOS_DETALLE_ENABLE_FORMA_ENTREGA,
             bool ESTADOS_DETALLE_ENABLE_DETALLE,
             bool ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS,
+            bool ESTADOS_DETALLE_ENABLE_TARA,
             bool ESTADOS_DETALLE_SHOW_DESCUENTOS,
             bool ESTADOS_DETALLE_SHOW_TOTAL,
             bool ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN,
@@ -255,6 +306,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                         noteStatus.ESTADOS_NOTA_NOMBRE = ESTADOS_NOTA_NOMBRE;
                         noteStatus.ESTADOS_NOTA_DESCRIPCION = ESTADOS_NOTA_DESCRIPCION;
                         noteStatus.ESTADOS_NOTA_ES_CATACION = ESTADOS_NOTA_ES_CATACION;
+                        noteStatus.ESTADOS_NOTA_ESTADO = ESTADOS_NOTA_ESTADO;
                         noteStatus.CREADO_POR = noteStatus.MODIFICADO_POR = CREADO_POR;
                         noteStatus.FECHA_CREACION = DateTime.Today;
                         noteStatus.FECHA_MODIFICACION = noteStatus.FECHA_CREACION;
@@ -267,10 +319,12 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                         detalle.ESTADOS_DETALLE_ENABLE_FECHA = ESTADOS_DETALLE_ENABLE_FECHA;
                         detalle.ESTADOS_DETALLE_ENABLE_ESTADO = ESTADOS_DETALLE_ENABLE_ESTADO;
                         detalle.ESTADOS_DETALLE_ENABLE_SOCIO_ID = ESTADOS_DETALLE_ENABLE_SOCIO_ID;
-                        detalle.ESTADOS_DETALLE_CLASIFICACION_CAFE = ESTADOS_DETALLE_CLASIFICACION_CAFE;
+                        detalle.ESTADOS_DETALLE_ENABLE_CLASIFICACION_CAFE = ESTADOS_DETALLE_ENABLE_CLASIFICACION_CAFE;
                         detalle.ESTADOS_DETALLE_SHOW_INFO_SOCIO = ESTADOS_DETALLE_SHOW_INFO_SOCIO;
                         detalle.ESTADOS_DETALLE_ENABLE_FORMA_ENTREGA = ESTADOS_DETALLE_ENABLE_FORMA_ENTREGA;
+                        detalle.ESTADOS_DETALLE_ENABLE_DETALLE = ESTADOS_DETALLE_ENABLE_DETALLE;
                         detalle.ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS = ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS;
+                        detalle.ESTADOS_DETALLE_ENABLE_TARA = ESTADOS_DETALLE_ENABLE_TARA;
                         detalle.ESTADOS_DETALLE_SHOW_DESCUENTOS = ESTADOS_DETALLE_SHOW_DESCUENTOS;
                         detalle.ESTADOS_DETALLE_SHOW_TOTAL = ESTADOS_DETALLE_SHOW_TOTAL;
                         detalle.ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN = ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN;
@@ -282,7 +336,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                         privilegio notePrivilege = new privilegio();
                         
                         notePrivilege.PRIV_LLAVE = EstadoNotaDePesoLogic.PREFIJO_PRIVILEGIO + ESTADOS_NOTA_LLAVE;
-                        notePrivilege.PRIV_NOMBRE = "Privilegio para Notas de Peso " + ESTADOS_NOTA_NOMBRE;
+                        notePrivilege.PRIV_NOMBRE = "Notas de Peso " + ESTADOS_NOTA_NOMBRE;
                         notePrivilege.PRIV_DESCRIPCION = "Acceso a nivel de datos. " + ESTADOS_NOTA_DESCRIPCION;
                         notePrivilege.CREADO_POR = notePrivilege.MODIFICADO_POR = CREADO_POR;
                         notePrivilege.FECHA_CREACION = DateTime.Today;
@@ -294,7 +348,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                         plantilla_notificacion noteTemplate = new plantilla_notificacion();
 
                         noteTemplate.PLANTILLAS_LLAVE = EstadoNotaDePesoLogic.PREFIJO_PLANTILLA + ESTADOS_NOTA_LLAVE;
-                        noteTemplate.PLANTILLAS_NOMBRE = "Plantilla para Notas de Peso " + ESTADOS_NOTA_NOMBRE;
+                        noteTemplate.PLANTILLAS_NOMBRE = "Notas de Peso " + ESTADOS_NOTA_NOMBRE;
                         noteTemplate.PLANTILLAS_ASUNTO = "Notas de Peso " + ESTADOS_NOTA_NOMBRE;
                         noteTemplate.PLANTILLAS_MENSAJE = PLANTILLAS_MENSAJE;
                         noteTemplate.CREADO_POR = noteTemplate.MODIFICADO_POR = CREADO_POR;
@@ -330,15 +384,17 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             string ESTADOS_NOTA_NOMBRE,
             string ESTADOS_NOTA_DESCRIPCION,
             bool ESTADOS_NOTA_ES_CATACION,
+            bool ESTADOS_NOTA_ESTADO,
             string MODIFICADO_POR,
             bool ESTADOS_DETALLE_ENABLE_FECHA,
-            bool ESTADOS_DETALLE_ENABLE_ESTADO,
-            bool ESTADOS_DETALLE_ENABLE_SOCIO_ID,
-            bool ESTADOS_DETALLE_CLASIFICACION_CAFE,
+            int ESTADOS_DETALLE_ENABLE_ESTADO,
+            int ESTADOS_DETALLE_ENABLE_SOCIO_ID,
+            bool ESTADOS_DETALLE_ENABLE_CLASIFICACION_CAFE,
             bool ESTADOS_DETALLE_SHOW_INFO_SOCIO,
             bool ESTADOS_DETALLE_ENABLE_FORMA_ENTREGA,
             bool ESTADOS_DETALLE_ENABLE_DETALLE,
             bool ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS,
+            bool ESTADOS_DETALLE_ENABLE_TARA,
             bool ESTADOS_DETALLE_SHOW_DESCUENTOS,
             bool ESTADOS_DETALLE_SHOW_TOTAL,
             bool ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN,
@@ -361,6 +417,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                         noteStatus.ESTADOS_NOTA_NOMBRE = ESTADOS_NOTA_NOMBRE;
                         noteStatus.ESTADOS_NOTA_DESCRIPCION = ESTADOS_NOTA_DESCRIPCION;
                         noteStatus.ESTADOS_NOTA_ES_CATACION = ESTADOS_NOTA_ES_CATACION;
+                        noteStatus.ESTADOS_NOTA_ESTADO = ESTADOS_NOTA_ESTADO;
                         noteStatus.MODIFICADO_POR = MODIFICADO_POR;
                         noteStatus.FECHA_MODIFICACION = DateTime.Today;
 
@@ -369,10 +426,12 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                         detalle.ESTADOS_DETALLE_ENABLE_FECHA = ESTADOS_DETALLE_ENABLE_FECHA;
                         detalle.ESTADOS_DETALLE_ENABLE_ESTADO = ESTADOS_DETALLE_ENABLE_ESTADO;
                         detalle.ESTADOS_DETALLE_ENABLE_SOCIO_ID = ESTADOS_DETALLE_ENABLE_SOCIO_ID;
-                        detalle.ESTADOS_DETALLE_CLASIFICACION_CAFE = ESTADOS_DETALLE_CLASIFICACION_CAFE;
+                        detalle.ESTADOS_DETALLE_ENABLE_CLASIFICACION_CAFE = ESTADOS_DETALLE_ENABLE_CLASIFICACION_CAFE;
                         detalle.ESTADOS_DETALLE_SHOW_INFO_SOCIO = ESTADOS_DETALLE_SHOW_INFO_SOCIO;
                         detalle.ESTADOS_DETALLE_ENABLE_FORMA_ENTREGA = ESTADOS_DETALLE_ENABLE_FORMA_ENTREGA;
+                        detalle.ESTADOS_DETALLE_ENABLE_DETALLE = ESTADOS_DETALLE_ENABLE_DETALLE;
                         detalle.ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS = ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS;
+                        detalle.ESTADOS_DETALLE_ENABLE_TARA = ESTADOS_DETALLE_ENABLE_TARA;
                         detalle.ESTADOS_DETALLE_SHOW_DESCUENTOS = ESTADOS_DETALLE_SHOW_DESCUENTOS;
                         detalle.ESTADOS_DETALLE_SHOW_TOTAL = ESTADOS_DETALLE_SHOW_TOTAL;
                         detalle.ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN = ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN;
@@ -390,7 +449,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                         if (notePrivilege != null)
                         {
-                            notePrivilege.PRIV_NOMBRE = "Privilegio para Notas de Peso " + ESTADOS_NOTA_NOMBRE;
+                            notePrivilege.PRIV_NOMBRE = "Notas de Peso " + ESTADOS_NOTA_NOMBRE;
                             notePrivilege.PRIV_DESCRIPCION = "Acceso a nivel de datos. " + ESTADOS_NOTA_DESCRIPCION;
                             notePrivilege.MODIFICADO_POR = MODIFICADO_POR;
                             notePrivilege.FECHA_MODIFICACION = DateTime.Today;
@@ -410,7 +469,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                             plantilla_notificacion noteTemplate = (plantilla_notificacion)pl;
 
-                            noteTemplate.PLANTILLAS_NOMBRE = "Plantilla para Notas de Peso " + ESTADOS_NOTA_NOMBRE;
+                            noteTemplate.PLANTILLAS_NOMBRE = "Notas de Peso " + ESTADOS_NOTA_NOMBRE;
                             noteTemplate.PLANTILLAS_ASUNTO = "Notas de Peso " + ESTADOS_NOTA_NOMBRE;
                             noteTemplate.PLANTILLAS_MENSAJE = PLANTILLAS_MENSAJE;
                             noteTemplate.MODIFICADO_POR = MODIFICADO_POR;
@@ -474,13 +533,12 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
                         if (db.TryGetObjectByKey(kpl, out pl))
                         {
-
                             plantilla_notificacion plNotif = (plantilla_notificacion)pl;
 
                             db.DeleteObject(plNotif);
-
-                            db.SaveChanges();
                         }
+
+                        db.SaveChanges();
 
                         scope1.Complete();
                     }
@@ -495,7 +553,88 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
         #endregion
 
+        #region Status Update
+
+        public void ActivarEstado(int ESTADOS_NOTA_ID, string MODIFICADO_POR)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    EntityKey k = new EntityKey("colinasEntities.estados_nota_de_peso", "ESTADOS_NOTA_ID", ESTADOS_NOTA_ID);
+
+                    var esn = db.GetObjectByKey(k);
+
+                    estado_nota_de_peso noteStatus = (estado_nota_de_peso)esn;
+
+                    noteStatus.ESTADOS_NOTA_ESTADO = true;
+                    noteStatus.MODIFICADO_POR = MODIFICADO_POR;
+                    noteStatus.FECHA_MODIFICACION = DateTime.Today;
+
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al activar estado de nota de peso.", ex);
+                throw;
+            }
+        }
+
+        public void DesactivarEstado(int ESTADOS_NOTA_ID, string MODIFICADO_POR)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    EntityKey k = new EntityKey("colinasEntities.estados_nota_de_peso", "ESTADOS_NOTA_ID", ESTADOS_NOTA_ID);
+
+                    var esn = db.GetObjectByKey(k);
+
+                    estado_nota_de_peso noteStatus = (estado_nota_de_peso)esn;
+
+                    noteStatus.ESTADOS_NOTA_ESTADO = false;
+                    noteStatus.MODIFICADO_POR = MODIFICADO_POR;
+                    noteStatus.FECHA_MODIFICACION = DateTime.Today;
+
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al desactivar estado de nota de peso.", ex);
+                throw;
+            }
+        }
+
+        #endregion
+
         #region Methods
+
+        public enum HabilitarEstadosEnNotasDePeso
+        {
+            Desactivado = 0, ActivadoEnOrden = 1, ActivadoLibre = 2
+        }
+
+        public static List<object> GetHabilitarEstados()
+        {
+            try
+            {
+                List<object> lst = new List<object>
+                {
+                    new { Text = HabilitarEstadosEnNotasDePeso.Desactivado.ToString(), Value = (int)HabilitarEstadosEnNotasDePeso.Desactivado },
+                    new { Text = HabilitarEstadosEnNotasDePeso.ActivadoEnOrden.ToString(), Value = (int)HabilitarEstadosEnNotasDePeso.ActivadoEnOrden },
+                    new { Text = HabilitarEstadosEnNotasDePeso.ActivadoLibre.ToString(), Value = (int)HabilitarEstadosEnNotasDePeso.ActivadoLibre }
+                };
+
+                return lst;
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al obtener estados para habilitar estado de nota de peso.", ex);
+                throw;
+            }
+        }
 
         /// <summary>
         /// Obtiene el código de estado de nota de peso.
@@ -537,6 +676,31 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                                 select esn;
 
                     if (query.Count() > 0)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al intentar verificar estado de nota de peso.", ex);
+                throw;
+            }
+        }
+
+        public bool EstadoDeNotaDePesoTieneReferencias(int ESTADOS_NOTA_ID)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    EntityKey k = new EntityKey("colinasEntities.estados_nota_de_peso", "ESTADOS_NOTA_ID", ESTADOS_NOTA_ID);
+
+                    var esn = db.GetObjectByKey(k);
+
+                    estado_nota_de_peso noteStatus = (estado_nota_de_peso)esn;
+
+                    if (noteStatus.notas_de_peso.Count > 0)
                         return true;
                     else
                         return false;

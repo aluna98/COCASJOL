@@ -50,6 +50,13 @@
     <menuitem>EstadosNotasDePesoMenuItem</menuitem>
   </privilege>
   <privilege>
+    <key>MANT_NOTASDEPESO</key>
+    <page>NotasDePeso</page>
+    <module>NotasDePesoEnPesajeModule</module>
+    <shortcut>scNotasDePesoEnPesaje</shortcut>
+    <menuitem>NotasDePesoEnPesajeMenuItem</menuitem>
+  </privilege>
+  <privilege>
     <key>MANT_NOTASPESOENPESAJE</key>
     <page>NotasDePesoEnPesaje</page>
     <module>NotasDePesoEnPesajeModule</module>
@@ -72,6 +79,13 @@
   </privilege>
   <privilege>
     <key>MANT_NOTASPESOENADMINISTRACION</key>
+    <page>ImprimirNotasDePeso</page>
+    <module></module>
+    <shortcut></shortcut>
+    <menuitem></menuitem>
+  </privilege>
+  <privilege>
+    <key>MANT_NOTASDEPESO</key>
     <page>ImprimirNotasDePeso</page>
     <module></module>
     <shortcut></shortcut>

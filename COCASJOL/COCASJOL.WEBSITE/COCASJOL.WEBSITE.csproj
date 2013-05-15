@@ -153,9 +153,7 @@
     <Content Include="resources\js\entorno\variablesDeEntorno.js" />
     <Content Include="resources\js\inventario\clasificacionesDeCafe.js" />
     <Content Include="resources\js\inventario\ingresos\estadosNotaDePeso.js" />
-    <Content Include="resources\js\inventario\ingresos\notasDePesoEnAdministracion.js" />
-    <Content Include="resources\js\inventario\ingresos\notasDePesoEnCatacion.js" />
-    <Content Include="resources\js\inventario\ingresos\notasDePesoEnPesaje.js" />
+    <Content Include="resources\js\inventario\ingresos\notasDePeso.js" />
     <Content Include="resources\js\inventario\inventarioDeCafe.js" />
     <Content Include="resources\js\inventario\inventarioDeCafePorSocio.js" />
     <Content Include="resources\js\inventario\salidas\ajustesInventarioDeCafeDeSocio.js" />
@@ -188,9 +186,7 @@
     <Content Include="Source\Entorno\VariablesDeEntorno.aspx" />
     <Content Include="Source\Inventario\ClasificacionesDeCafe.aspx" />
     <Content Include="Source\Inventario\Ingresos\EstadosNotaDePeso.aspx" />
-    <Content Include="Source\Inventario\Ingresos\NotasDePesoEnAdministracion.aspx" />
-    <Content Include="Source\Inventario\Ingresos\NotasDePesoEnCatacion.aspx" />
-    <Content Include="Source\Inventario\Ingresos\NotasDePesoEnPesaje.aspx" />
+    <Content Include="Source\Inventario\Ingresos\NotasDePeso.aspx" />
     <Content Include="Source\Inventario\InventarioDeCafe.aspx" />
     <Content Include="Source\Inventario\InventarioDeCafePorSocio.aspx" />
     <Content Include="Source\Inventario\Salidas\HojasDeLiquidacion.aspx" />
@@ -322,26 +318,12 @@
     <Compile Include="Source\Inventario\Ingresos\EstadosNotaDePeso.aspx.designer.cs">
       <DependentUpon>EstadosNotaDePeso.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Source\Inventario\Ingresos\NotasDePesoEnAdministracion.aspx.cs">
-      <DependentUpon>NotasDePesoEnAdministracion.aspx</DependentUpon>
+    <Compile Include="Source\Inventario\Ingresos\NotasDePeso.aspx.cs">
+      <DependentUpon>NotasDePeso.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Source\Inventario\Ingresos\NotasDePesoEnAdministracion.aspx.designer.cs">
-      <DependentUpon>NotasDePesoEnAdministracion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Source\Inventario\Ingresos\NotasDePesoEnCatacion.aspx.cs">
-      <DependentUpon>NotasDePesoEnCatacion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Source\Inventario\Ingresos\NotasDePesoEnCatacion.aspx.designer.cs">
-      <DependentUpon>NotasDePesoEnCatacion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Source\Inventario\Ingresos\NotasDePesoEnPesaje.aspx.cs">
-      <DependentUpon>NotasDePesoEnPesaje.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Source\Inventario\Ingresos\NotasDePesoEnPesaje.aspx.designer.cs">
-      <DependentUpon>NotasDePesoEnPesaje.aspx</DependentUpon>
+    <Compile Include="Source\Inventario\Ingresos\NotasDePeso.aspx.designer.cs">
+      <DependentUpon>NotasDePeso.aspx</DependentUpon>
     </Compile>
     <Compile Include="Source\Inventario\InventarioDeCafe.aspx.cs">
       <DependentUpon>InventarioDeCafe.aspx</DependentUpon>

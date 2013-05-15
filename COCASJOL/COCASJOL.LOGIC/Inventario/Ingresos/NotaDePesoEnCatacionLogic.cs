@@ -164,7 +164,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                             // notificar a usuarios
                             //this.NotificarUsuarios("NOTASADMINISTRACION", "MANT_NOTASPESO", note, db);
                             string ESTADO_NOTA_LLAVE = note.estados_nota_de_peso.ESTADOS_NOTA_LLAVE;
-                            this.NotificarUsuarios("NOTAS" + ESTADO_NOTA_LLAVE, "MANT_NOTASPESOEN" + ESTADO_NOTA_LLAVE, note, db);
+                            this.NotificarUsuarios(EstadoNotaDePesoLogic.PREFIJO_PLANTILLA + ESTADO_NOTA_LLAVE, EstadoNotaDePesoLogic.PREFIJO_PRIVILEGIO + ESTADO_NOTA_LLAVE, note, db);
                         }
 
                         note.MODIFICADO_POR = MODIFICADO_POR;

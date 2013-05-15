@@ -3140,27 +3140,29 @@ namespace COCASJOL.DATAACCESS
         /// <param name="eSTADOS_DETALLE_ENABLE_FECHA">Initial value of the ESTADOS_DETALLE_ENABLE_FECHA property.</param>
         /// <param name="eSTADOS_DETALLE_ENABLE_ESTADO">Initial value of the ESTADOS_DETALLE_ENABLE_ESTADO property.</param>
         /// <param name="eSTADOS_DETALLE_ENABLE_SOCIO_ID">Initial value of the ESTADOS_DETALLE_ENABLE_SOCIO_ID property.</param>
-        /// <param name="eSTADOS_DETALLE_CLASIFICACION_CAFE">Initial value of the ESTADOS_DETALLE_CLASIFICACION_CAFE property.</param>
+        /// <param name="eSTADOS_DETALLE_ENABLE_CLASIFICACION_CAFE">Initial value of the ESTADOS_DETALLE_ENABLE_CLASIFICACION_CAFE property.</param>
         /// <param name="eSTADOS_DETALLE_SHOW_INFO_SOCIO">Initial value of the ESTADOS_DETALLE_SHOW_INFO_SOCIO property.</param>
         /// <param name="eSTADOS_DETALLE_ENABLE_FORMA_ENTREGA">Initial value of the ESTADOS_DETALLE_ENABLE_FORMA_ENTREGA property.</param>
         /// <param name="eSTADOS_DETALLE_ENABLE_DETALLE">Initial value of the ESTADOS_DETALLE_ENABLE_DETALLE property.</param>
         /// <param name="eSTADOS_DETALLE_ENABLE_SACOS_RETENIDOS">Initial value of the ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS property.</param>
+        /// <param name="eSTADOS_DETALLE_ENABLE_TARA">Initial value of the ESTADOS_DETALLE_ENABLE_TARA property.</param>
         /// <param name="eSTADOS_DETALLE_SHOW_DESCUENTOS">Initial value of the ESTADOS_DETALLE_SHOW_DESCUENTOS property.</param>
         /// <param name="eSTADOS_DETALLE_SHOW_TOTAL">Initial value of the ESTADOS_DETALLE_SHOW_TOTAL property.</param>
         /// <param name="eSTADOS_DETALLE_ENABLE_REGISTRAR_BTN">Initial value of the ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN property.</param>
         /// <param name="eSTADOS_DETALLE_ENABLE_IMPRIMIR_BTN">Initial value of the ESTADOS_DETALLE_ENABLE_IMPRIMIR_BTN property.</param>
-        public static estado_detalle Createestado_detalle(global::System.Int32 eSTADOS_NOTA_ID, global::System.Boolean eSTADOS_DETALLE_ENABLE_FECHA, global::System.Boolean eSTADOS_DETALLE_ENABLE_ESTADO, global::System.Boolean eSTADOS_DETALLE_ENABLE_SOCIO_ID, global::System.Boolean eSTADOS_DETALLE_CLASIFICACION_CAFE, global::System.Boolean eSTADOS_DETALLE_SHOW_INFO_SOCIO, global::System.Boolean eSTADOS_DETALLE_ENABLE_FORMA_ENTREGA, global::System.Boolean eSTADOS_DETALLE_ENABLE_DETALLE, global::System.Boolean eSTADOS_DETALLE_ENABLE_SACOS_RETENIDOS, global::System.Boolean eSTADOS_DETALLE_SHOW_DESCUENTOS, global::System.Boolean eSTADOS_DETALLE_SHOW_TOTAL, global::System.Boolean eSTADOS_DETALLE_ENABLE_REGISTRAR_BTN, global::System.Boolean eSTADOS_DETALLE_ENABLE_IMPRIMIR_BTN)
+        public static estado_detalle Createestado_detalle(global::System.Int32 eSTADOS_NOTA_ID, global::System.Boolean eSTADOS_DETALLE_ENABLE_FECHA, global::System.Int32 eSTADOS_DETALLE_ENABLE_ESTADO, global::System.Int32 eSTADOS_DETALLE_ENABLE_SOCIO_ID, global::System.Boolean eSTADOS_DETALLE_ENABLE_CLASIFICACION_CAFE, global::System.Boolean eSTADOS_DETALLE_SHOW_INFO_SOCIO, global::System.Boolean eSTADOS_DETALLE_ENABLE_FORMA_ENTREGA, global::System.Boolean eSTADOS_DETALLE_ENABLE_DETALLE, global::System.Boolean eSTADOS_DETALLE_ENABLE_SACOS_RETENIDOS, global::System.Boolean eSTADOS_DETALLE_ENABLE_TARA, global::System.Boolean eSTADOS_DETALLE_SHOW_DESCUENTOS, global::System.Boolean eSTADOS_DETALLE_SHOW_TOTAL, global::System.Boolean eSTADOS_DETALLE_ENABLE_REGISTRAR_BTN, global::System.Boolean eSTADOS_DETALLE_ENABLE_IMPRIMIR_BTN)
         {
             estado_detalle estado_detalle = new estado_detalle();
             estado_detalle.ESTADOS_NOTA_ID = eSTADOS_NOTA_ID;
             estado_detalle.ESTADOS_DETALLE_ENABLE_FECHA = eSTADOS_DETALLE_ENABLE_FECHA;
             estado_detalle.ESTADOS_DETALLE_ENABLE_ESTADO = eSTADOS_DETALLE_ENABLE_ESTADO;
             estado_detalle.ESTADOS_DETALLE_ENABLE_SOCIO_ID = eSTADOS_DETALLE_ENABLE_SOCIO_ID;
-            estado_detalle.ESTADOS_DETALLE_CLASIFICACION_CAFE = eSTADOS_DETALLE_CLASIFICACION_CAFE;
+            estado_detalle.ESTADOS_DETALLE_ENABLE_CLASIFICACION_CAFE = eSTADOS_DETALLE_ENABLE_CLASIFICACION_CAFE;
             estado_detalle.ESTADOS_DETALLE_SHOW_INFO_SOCIO = eSTADOS_DETALLE_SHOW_INFO_SOCIO;
             estado_detalle.ESTADOS_DETALLE_ENABLE_FORMA_ENTREGA = eSTADOS_DETALLE_ENABLE_FORMA_ENTREGA;
             estado_detalle.ESTADOS_DETALLE_ENABLE_DETALLE = eSTADOS_DETALLE_ENABLE_DETALLE;
             estado_detalle.ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS = eSTADOS_DETALLE_ENABLE_SACOS_RETENIDOS;
+            estado_detalle.ESTADOS_DETALLE_ENABLE_TARA = eSTADOS_DETALLE_ENABLE_TARA;
             estado_detalle.ESTADOS_DETALLE_SHOW_DESCUENTOS = eSTADOS_DETALLE_SHOW_DESCUENTOS;
             estado_detalle.ESTADOS_DETALLE_SHOW_TOTAL = eSTADOS_DETALLE_SHOW_TOTAL;
             estado_detalle.ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN = eSTADOS_DETALLE_ENABLE_REGISTRAR_BTN;
@@ -3227,7 +3229,7 @@ namespace COCASJOL.DATAACCESS
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Boolean ESTADOS_DETALLE_ENABLE_ESTADO
+        public global::System.Int32 ESTADOS_DETALLE_ENABLE_ESTADO
         {
             get
             {
@@ -3242,8 +3244,8 @@ namespace COCASJOL.DATAACCESS
                 OnESTADOS_DETALLE_ENABLE_ESTADOChanged();
             }
         }
-        private global::System.Boolean _ESTADOS_DETALLE_ENABLE_ESTADO;
-        partial void OnESTADOS_DETALLE_ENABLE_ESTADOChanging(global::System.Boolean value);
+        private global::System.Int32 _ESTADOS_DETALLE_ENABLE_ESTADO;
+        partial void OnESTADOS_DETALLE_ENABLE_ESTADOChanging(global::System.Int32 value);
         partial void OnESTADOS_DETALLE_ENABLE_ESTADOChanged();
     
         /// <summary>
@@ -3251,7 +3253,7 @@ namespace COCASJOL.DATAACCESS
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Boolean ESTADOS_DETALLE_ENABLE_SOCIO_ID
+        public global::System.Int32 ESTADOS_DETALLE_ENABLE_SOCIO_ID
         {
             get
             {
@@ -3266,8 +3268,8 @@ namespace COCASJOL.DATAACCESS
                 OnESTADOS_DETALLE_ENABLE_SOCIO_IDChanged();
             }
         }
-        private global::System.Boolean _ESTADOS_DETALLE_ENABLE_SOCIO_ID;
-        partial void OnESTADOS_DETALLE_ENABLE_SOCIO_IDChanging(global::System.Boolean value);
+        private global::System.Int32 _ESTADOS_DETALLE_ENABLE_SOCIO_ID;
+        partial void OnESTADOS_DETALLE_ENABLE_SOCIO_IDChanging(global::System.Int32 value);
         partial void OnESTADOS_DETALLE_ENABLE_SOCIO_IDChanged();
     
         /// <summary>
@@ -3275,24 +3277,24 @@ namespace COCASJOL.DATAACCESS
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Boolean ESTADOS_DETALLE_CLASIFICACION_CAFE
+        public global::System.Boolean ESTADOS_DETALLE_ENABLE_CLASIFICACION_CAFE
         {
             get
             {
-                return _ESTADOS_DETALLE_CLASIFICACION_CAFE;
+                return _ESTADOS_DETALLE_ENABLE_CLASIFICACION_CAFE;
             }
             set
             {
-                OnESTADOS_DETALLE_CLASIFICACION_CAFEChanging(value);
-                ReportPropertyChanging("ESTADOS_DETALLE_CLASIFICACION_CAFE");
-                _ESTADOS_DETALLE_CLASIFICACION_CAFE = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ESTADOS_DETALLE_CLASIFICACION_CAFE");
-                OnESTADOS_DETALLE_CLASIFICACION_CAFEChanged();
+                OnESTADOS_DETALLE_ENABLE_CLASIFICACION_CAFEChanging(value);
+                ReportPropertyChanging("ESTADOS_DETALLE_ENABLE_CLASIFICACION_CAFE");
+                _ESTADOS_DETALLE_ENABLE_CLASIFICACION_CAFE = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ESTADOS_DETALLE_ENABLE_CLASIFICACION_CAFE");
+                OnESTADOS_DETALLE_ENABLE_CLASIFICACION_CAFEChanged();
             }
         }
-        private global::System.Boolean _ESTADOS_DETALLE_CLASIFICACION_CAFE;
-        partial void OnESTADOS_DETALLE_CLASIFICACION_CAFEChanging(global::System.Boolean value);
-        partial void OnESTADOS_DETALLE_CLASIFICACION_CAFEChanged();
+        private global::System.Boolean _ESTADOS_DETALLE_ENABLE_CLASIFICACION_CAFE;
+        partial void OnESTADOS_DETALLE_ENABLE_CLASIFICACION_CAFEChanging(global::System.Boolean value);
+        partial void OnESTADOS_DETALLE_ENABLE_CLASIFICACION_CAFEChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -3389,6 +3391,30 @@ namespace COCASJOL.DATAACCESS
         private global::System.Boolean _ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS;
         partial void OnESTADOS_DETALLE_ENABLE_SACOS_RETENIDOSChanging(global::System.Boolean value);
         partial void OnESTADOS_DETALLE_ENABLE_SACOS_RETENIDOSChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean ESTADOS_DETALLE_ENABLE_TARA
+        {
+            get
+            {
+                return _ESTADOS_DETALLE_ENABLE_TARA;
+            }
+            set
+            {
+                OnESTADOS_DETALLE_ENABLE_TARAChanging(value);
+                ReportPropertyChanging("ESTADOS_DETALLE_ENABLE_TARA");
+                _ESTADOS_DETALLE_ENABLE_TARA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ESTADOS_DETALLE_ENABLE_TARA");
+                OnESTADOS_DETALLE_ENABLE_TARAChanged();
+            }
+        }
+        private global::System.Boolean _ESTADOS_DETALLE_ENABLE_TARA;
+        partial void OnESTADOS_DETALLE_ENABLE_TARAChanging(global::System.Boolean value);
+        partial void OnESTADOS_DETALLE_ENABLE_TARAChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -3548,15 +3574,17 @@ namespace COCASJOL.DATAACCESS
         /// <param name="eSTADOS_NOTA_LLAVE">Initial value of the ESTADOS_NOTA_LLAVE property.</param>
         /// <param name="eSTADOS_NOTA_NOMBRE">Initial value of the ESTADOS_NOTA_NOMBRE property.</param>
         /// <param name="eSTADOS_NOTA_ES_CATACION">Initial value of the ESTADOS_NOTA_ES_CATACION property.</param>
+        /// <param name="eSTADOS_NOTA_ESTADO">Initial value of the ESTADOS_NOTA_ESTADO property.</param>
         /// <param name="cREADO_POR">Initial value of the CREADO_POR property.</param>
         /// <param name="fECHA_CREACION">Initial value of the FECHA_CREACION property.</param>
-        public static estado_nota_de_peso Createestado_nota_de_peso(global::System.Int32 eSTADOS_NOTA_ID, global::System.String eSTADOS_NOTA_LLAVE, global::System.String eSTADOS_NOTA_NOMBRE, global::System.Boolean eSTADOS_NOTA_ES_CATACION, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
+        public static estado_nota_de_peso Createestado_nota_de_peso(global::System.Int32 eSTADOS_NOTA_ID, global::System.String eSTADOS_NOTA_LLAVE, global::System.String eSTADOS_NOTA_NOMBRE, global::System.Boolean eSTADOS_NOTA_ES_CATACION, global::System.Boolean eSTADOS_NOTA_ESTADO, global::System.String cREADO_POR, global::System.DateTime fECHA_CREACION)
         {
             estado_nota_de_peso estado_nota_de_peso = new estado_nota_de_peso();
             estado_nota_de_peso.ESTADOS_NOTA_ID = eSTADOS_NOTA_ID;
             estado_nota_de_peso.ESTADOS_NOTA_LLAVE = eSTADOS_NOTA_LLAVE;
             estado_nota_de_peso.ESTADOS_NOTA_NOMBRE = eSTADOS_NOTA_NOMBRE;
             estado_nota_de_peso.ESTADOS_NOTA_ES_CATACION = eSTADOS_NOTA_ES_CATACION;
+            estado_nota_de_peso.ESTADOS_NOTA_ESTADO = eSTADOS_NOTA_ESTADO;
             estado_nota_de_peso.CREADO_POR = cREADO_POR;
             estado_nota_de_peso.FECHA_CREACION = fECHA_CREACION;
             return estado_nota_de_peso;
@@ -3711,6 +3739,30 @@ namespace COCASJOL.DATAACCESS
         private global::System.Boolean _ESTADOS_NOTA_ES_CATACION;
         partial void OnESTADOS_NOTA_ES_CATACIONChanging(global::System.Boolean value);
         partial void OnESTADOS_NOTA_ES_CATACIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean ESTADOS_NOTA_ESTADO
+        {
+            get
+            {
+                return _ESTADOS_NOTA_ESTADO;
+            }
+            set
+            {
+                OnESTADOS_NOTA_ESTADOChanging(value);
+                ReportPropertyChanging("ESTADOS_NOTA_ESTADO");
+                _ESTADOS_NOTA_ESTADO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ESTADOS_NOTA_ESTADO");
+                OnESTADOS_NOTA_ESTADOChanged();
+            }
+        }
+        private global::System.Boolean _ESTADOS_NOTA_ESTADO;
+        partial void OnESTADOS_NOTA_ESTADOChanging(global::System.Boolean value);
+        partial void OnESTADOS_NOTA_ESTADOChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

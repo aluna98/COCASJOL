@@ -30,7 +30,7 @@ var PageX = {
 
     add: function () {
         AddWindow.show();
-        Ext.net.DirectMethods.AddEstadosNotaPadreSt_Refresh();
+        Ext.net.DirectMethods.AddEstadosNotaSiguienteSt_Refresh();
     },
 
     insert: function () {
@@ -102,7 +102,8 @@ var PageX = {
             EditWindow.show();
             EditForm.getForm().loadRecord(rec);
             EditForm.record = rec;
-            Ext.net.DirectMethods.EditEstadosNotaPadreSt_Refresh();
+            Ext.net.DirectMethods.EditEstadosNotaSiguienteSt_Refresh();
+            Ext.net.DirectMethods.LoadPlantilla();
         }
     },
 
@@ -146,6 +147,58 @@ var PageX = {
                         },
                         failure: function () {
                             Ext.Msg.alert('Estados de Nota de Peso', 'Error al eliminar estado.');
+                        }
+                    });
+                }
+            });
+        } else {
+            var msg = Ext.Msg;
+            Ext.Msg.alert(AlertSelMsgTitle, AlertSelMsg);
+        }
+    },
+
+    activate: function () {
+        if (Grid.getSelectionModel().hasSelection()) {
+            Ext.Msg.confirm(ConfirmMsgTitle, "Seguro desea activar el estado?", function (btn, text) {
+                if (btn == 'yes') {
+                    var record = Grid.getSelectionModel().getSelected();
+                    Ext.net.DirectMethods.ActivarBtn_Click(record.data.ESTADOS_NOTA_ID, LoggedUserHdn.getValue(),
+                    {
+                        success: function () {
+                            GridStore.reload();
+                            Ext.Msg.alert('Estados de Nota de Peso', 'Estado activado exitosamente.');
+                        },
+                        eventMask: {
+                            showMask: true, target: 'customtarget', customTarget: Grid
+                        },
+                        failure: function () {
+                            Ext.Msg.alert('Estados de Nota de Peso', 'Error al activar estado.');
+                        }
+                    });
+                }
+            });
+        } else {
+            var msg = Ext.Msg;
+            Ext.Msg.alert(AlertSelMsgTitle, AlertSelMsg);
+        }
+    },
+
+    deactivate: function () {
+        if (Grid.getSelectionModel().hasSelection()) {
+            Ext.Msg.confirm(ConfirmMsgTitle, "Seguro desea desactivar el estado?", function (btn, text) {
+                if (btn == 'yes') {
+                    var record = Grid.getSelectionModel().getSelected();
+                    Ext.net.DirectMethods.DesactivarBtn_Click(record.data.ESTADOS_NOTA_ID, LoggedUserHdn.getValue(),
+                    {
+                        success: function () {
+                            GridStore.reload();
+                            Ext.Msg.alert('Estados de Nota de Peso', 'Estado desactivado exitosamente.');
+                        },
+                        eventMask: {
+                            showMask: true, target: 'customtarget', customTarget: Grid
+                        },
+                        failure: function () {
+                            Ext.Msg.alert('Estados de Nota de Peso', 'Error al desactivar estado.');
                         }
                     });
                 }

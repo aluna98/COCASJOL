@@ -314,7 +314,7 @@
             <Items>
                 <ext:FormPanel ID="AddUsuarioFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelWidth="120">
                     <Items>
-                        <ext:TabPanel ID="TabPanel1" runat="server">
+                        <ext:TabPanel ID="TabPanel1" runat="server" DeferredRender="false" >
                             <Items>
                                 <ext:Panel ID="Panel2" runat="server" Title="Información" Layout="AnchorLayout" AutoHeight="True"
                                     Resizable="false">
@@ -374,7 +374,7 @@
             <Items>
                 <ext:FormPanel ID="EditarUsuarioFormP" runat="server" Title="Form Panel" Header="false" ButtonAlign="Right" MonitorValid="true" LabelWidth="120">
                     <Items>
-                        <ext:TabPanel ID="TabPanel11" runat="server">
+                        <ext:TabPanel ID="TabPanel11" runat="server" DeferredRender="false" >
                             <Items>
                                 <ext:Panel ID="Panel12" runat="server" Title="Información" Layout="AnchorLayout" AutoHeight="True"
                                     Resizable="false">

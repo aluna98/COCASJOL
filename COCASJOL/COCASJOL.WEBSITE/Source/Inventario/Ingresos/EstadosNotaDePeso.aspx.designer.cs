@@ -85,13 +85,13 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.Store EstadosNotaFiltrosSt;
         
         /// <summary>
-        /// EstadosNotaPadreSt control.
+        /// EstadosNotaSiguienteSt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store EstadosNotaPadreSt;
+        protected global::Ext.Net.Store EstadosNotaSiguienteSt;
         
         /// <summary>
         /// nullHdn control.
@@ -191,6 +191,33 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button EliminarBtn;
+        
+        /// <summary>
+        /// ToolbarSeparator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolbarSeparator ToolbarSeparator1;
+        
+        /// <summary>
+        /// ActivarBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button ActivarBtn;
+        
+        /// <summary>
+        /// DesactivarBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button DesactivarBtn;
         
         /// <summary>
         /// ToolbarFill1 control.
@@ -301,6 +328,24 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.Hidden plantillaPrefixHdn;
         
         /// <summary>
+        /// EnableEstadoSt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store EnableEstadoSt;
+        
+        /// <summary>
+        /// EnableSocioSt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store EnableSocioSt;
+        
+        /// <summary>
         /// AgregarEstadosNotaWin control.
         /// </summary>
         /// <remarks>
@@ -400,6 +445,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.Checkbox AddEsCatacionChk;
         
         /// <summary>
+        /// AddEstadoChk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox AddEstadoChk;
+        
+        /// <summary>
         /// AddCreatedByTxt control.
         /// </summary>
         /// <remarks>
@@ -481,13 +535,13 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.Checkbox AddEnableFechaChk;
         
         /// <summary>
-        /// AddEnableSocioIdChk control.
+        /// AddEnableClasificacionDeCafeChk control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Checkbox AddEnableSocioIdChk;
+        protected global::Ext.Net.Checkbox AddEnableClasificacionDeCafeChk;
         
         /// <summary>
         /// AddShowInformacionSocioChk control.
@@ -508,22 +562,22 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.Panel Panel6;
         
         /// <summary>
-        /// AddEnableEstadoChk control.
+        /// AddEnableEstadoCmb control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Checkbox AddEnableEstadoChk;
+        protected global::Ext.Net.ComboBox AddEnableEstadoCmb;
         
         /// <summary>
-        /// AddEnableClasificacionDeCafeChk control.
+        /// AddEnableSocioIdCmb control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Checkbox AddEnableClasificacionDeCafeChk;
+        protected global::Ext.Net.ComboBox AddEnableSocioIdCmb;
         
         /// <summary>
         /// Panel7 control.
@@ -605,6 +659,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Checkbox AddShowDescuentosChk;
+        
+        /// <summary>
+        /// AddEnableTaraChk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox AddEnableTaraChk;
         
         /// <summary>
         /// AddShowTotalesChk control.
@@ -796,6 +859,24 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.Checkbox EditEsCatacionChk;
         
         /// <summary>
+        /// EditEstadoChk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox EditEstadoChk;
+        
+        /// <summary>
+        /// Estado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolTip Estado;
+        
+        /// <summary>
         /// EditCreatedByTxt control.
         /// </summary>
         /// <remarks>
@@ -877,13 +958,13 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.Checkbox EditEnableFechaChk;
         
         /// <summary>
-        /// EditEnableSocioIdChk control.
+        /// EditEnableClasificacionDeCafeChk control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Checkbox EditEnableSocioIdChk;
+        protected global::Ext.Net.Checkbox EditEnableClasificacionDeCafeChk;
         
         /// <summary>
         /// EditShowInformacionSocioChk control.
@@ -904,22 +985,22 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::Ext.Net.Panel Panel17;
         
         /// <summary>
-        /// EditEnableEstadoChk control.
+        /// EditEnableEstadoCmb control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Checkbox EditEnableEstadoChk;
+        protected global::Ext.Net.ComboBox EditEnableEstadoCmb;
         
         /// <summary>
-        /// EditEnableClasificacionDeCafeChk control.
+        /// EditEnableSocioIdCmb control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Checkbox EditEnableClasificacionDeCafeChk;
+        protected global::Ext.Net.ComboBox EditEnableSocioIdCmb;
         
         /// <summary>
         /// Panel18 control.
@@ -1001,6 +1082,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Checkbox EditShowDescuentosChk;
+        
+        /// <summary>
+        /// EditEnableTaraChk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox EditEnableTaraChk;
         
         /// <summary>
         /// EditShowTotalesChk control.

@@ -233,7 +233,7 @@
                         <Show Handler="this.getForm().reset();" />
                     </Listeners>
                     <Items>
-                        <ext:TabPanel ID="TabPanel1" runat="server">
+                        <ext:TabPanel ID="TabPanel1" runat="server" DeferredRender="false" >
                             <Items>
                                 <ext:Panel ID="Panel2" runat="server" Title="Información" Layout="AnchorLayout" AutoHeight="True"
                                     Resizable="false">
@@ -286,7 +286,7 @@
                         <Show Handler="this.getForm().reset();" />
                     </Listeners>
                     <Items>
-                        <ext:TabPanel ID="TabPanel11" runat="server">
+                        <ext:TabPanel ID="TabPanel11" runat="server" DeferredRender="false" >
                             <Items>
                                 <ext:Panel ID="Panel12" runat="server" Title="Información" Layout="AnchorLayout" AutoHeight="True"
                                     Resizable="false">

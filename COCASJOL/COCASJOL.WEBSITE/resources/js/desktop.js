@@ -219,7 +219,7 @@ var WindowX = {
     },
 
     notasDePeso: function (app) {
-        DesktopX.createDynamicWindow(app, 'pagewhiteoffice', 'Notas de Peso', 'Inventario/Ingresos/NotasDePesoEnAdministracion.aspx', 1000, 600);
+        DesktopX.createDynamicWindow(app, 'pagewhiteoffice', 'Notas de Peso', 'Inventario/Ingresos/NotasDePeso.aspx', 1000, 600);
     },
 
     inventarioDeCafePorSocio: function (app) {
