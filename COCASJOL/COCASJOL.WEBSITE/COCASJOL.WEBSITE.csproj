@@ -122,9 +122,7 @@
     <Content Include="resources\images\mail_server_setting.png" />
     <Content Include="resources\images\mail_server_setting16.png" />
     <Content Include="resources\images\page_go.png" />
-    <Content Include="resources\images\page_white_cup.png" />
     <Content Include="resources\images\page_white_office.png" />
-    <Content Include="resources\images\page_white_put.png" />
     <Content Include="resources\images\page_white_text.png" />
     <Content Include="resources\images\page_white_text_valid.png" />
     <Content Include="resources\images\page_white_text_valid16x16.png" />

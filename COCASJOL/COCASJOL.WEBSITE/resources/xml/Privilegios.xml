@@ -52,37 +52,9 @@
   <privilege>
     <key>MANT_NOTASDEPESO</key>
     <page>NotasDePeso</page>
-    <module>NotasDePesoEnPesajeModule</module>
-    <shortcut>scNotasDePesoEnPesaje</shortcut>
-    <menuitem>NotasDePesoEnPesajeMenuItem</menuitem>
-  </privilege>
-  <privilege>
-    <key>MANT_NOTASPESOENPESAJE</key>
-    <page>NotasDePesoEnPesaje</page>
-    <module>NotasDePesoEnPesajeModule</module>
-    <shortcut>scNotasDePesoEnPesaje</shortcut>
-    <menuitem>NotasDePesoEnPesajeMenuItem</menuitem>
-  </privilege>
-  <privilege>
-    <key>MANT_NOTASPESOENCATACION</key>
-    <page>NotasDePesoEnCatacion</page>
-    <module>NotasDePesoEnCatacionModule</module>
-    <shortcut>scNotasDePesoEnCatacion</shortcut>
-    <menuitem>NotasDePesoEnCatacionMenuItem</menuitem>
-  </privilege>
-  <privilege>
-    <key>MANT_NOTASPESOENADMINISTRACION</key>
-    <page>NotasDePesoEnAdministracion</page>
     <module>NotasDePesoModule</module>
     <shortcut>scNotasDePeso</shortcut>
     <menuitem>NotasDePesoMenuItem</menuitem>
-  </privilege>
-  <privilege>
-    <key>MANT_NOTASPESOENADMINISTRACION</key>
-    <page>ImprimirNotasDePeso</page>
-    <module></module>
-    <shortcut></shortcut>
-    <menuitem></menuitem>
   </privilege>
   <privilege>
     <key>MANT_NOTASDEPESO</key>

@@ -52,18 +52,6 @@
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_go.png", sizingMethod="center");
 }
 
-.icon-notasDePesoEnPesaje
-{
-    background-image: url(../images/page_white_put.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_put.png", sizingMethod="center");
-}
-
-.icon-notasDePesoEnCatacion
-{
-    background-image: url(../images/page_white_cup.png) !important;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../resources/images/page_white_cup.png", sizingMethod="center");
-}
-
 .icon-notasDePeso
 {
     background-image: url(../images/page_white_office.png) !important;

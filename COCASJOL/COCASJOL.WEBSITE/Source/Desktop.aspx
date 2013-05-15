@@ -211,20 +211,6 @@
                         </Listeners>
                     </Launcher>
                 </ext:DesktopModule>
-                <ext:DesktopModule ModuleID="NotasDePesoEnPesajeModule">
-                    <Launcher ID="Launcher1" runat="server" Text="Notas de Peso en Area de Pesaje" Icon="PageWhitePut" >
-                        <Listeners>
-                            <Click Handler="WindowX.notasDePesoEnPesaje(#{MyDesktop});" />
-                        </Listeners>
-                    </Launcher>
-                </ext:DesktopModule>
-                <ext:DesktopModule ModuleID="NotasDePesoEnCatacionModule">
-                    <Launcher ID="Launcher2" runat="server" Text="Notas de Peso en Area de Catación" Icon="PageWhiteCup" >
-                        <Listeners>
-                            <Click Handler="WindowX.notasDePesoEnCatacion(#{MyDesktop});" />
-                        </Listeners>
-                    </Launcher>
-                </ext:DesktopModule>
                 <ext:DesktopModule ModuleID="NotasDePesoModule">
                     <Launcher ID="NotasDePesoLauncher" runat="server" Text="Notas de Peso" Icon="PageWhiteOffice" >
                         <Listeners>
@@ -417,8 +403,6 @@
                 <ext:DesktopShortcut ShortcutID="scApplicationLog"                                  Text="Bitácora de Aplicación"                                      IconCls="shortcut-icon icon-applicationLog" />
                 <ext:DesktopShortcut ShortcutID="scSocios"                                          Text="Socios"                                                      IconCls="shortcut-icon icon-socios" />
                 <ext:DesktopShortcut ShortcutID="scEstadosNotasDePeso"                              Text="Estados de Notas de Peso"                                    IconCls="shortcut-icon icon-estadosNotasDePeso" />
-                <ext:DesktopShortcut ShortcutID="scNotasDePesoEnPesaje"                             Text="Notas de Peso en Area de Pesaje"                             IconCls="shortcut-icon icon-notasDePesoEnPesaje" />
-                <ext:DesktopShortcut ShortcutID="scNotasDePesoEnCatacion"                           Text="Notas de Peso en Area de Catación"                           IconCls="shortcut-icon icon-notasDePesoEnCatacion" />
                 <ext:DesktopShortcut ShortcutID="scNotasDePeso"                                     Text="Notas de Peso"                                               IconCls="shortcut-icon icon-notasDePeso" />
                 <ext:DesktopShortcut ShortcutID="scClasificacionesDeCafe"                           Text="Clasificaciones de Café"                                     IconCls="shortcut-icon icon-clasificacionesDeCafe" />
                 <ext:DesktopShortcut ShortcutID="scInventarioDeCafePorSocio"                        Text="Inventario de Café por Socio"                                IconCls="shortcut-icon icon-inventarioDeCafePorSocio" />
@@ -552,16 +536,6 @@
                                     <ext:MenuItem ID="EstadosNotasDePesoMenuItem" Text="Estados de Notas de Peso" Icon="PageGo" >
                                         <Listeners>
                                             <click Handler="WindowX.estadosNotasDePeso(#{MyDesktop});" />
-                                        </Listeners>
-                                    </ext:MenuItem>
-                                    <ext:MenuItem ID="NotasDePesoEnPesajeMenuItem" Text="Notas De Peso en Area de Pesaje" Icon="PageWhitePut" >
-                                        <Listeners>
-                                            <click Handler="WindowX.notasDePesoEnPesaje(#{MyDesktop});" />
-                                        </Listeners>
-                                    </ext:MenuItem>
-                                    <ext:MenuItem ID="NotasDePesoEnCatacionMenuItem" Text="Notas De Peso en Area de Catacion" Icon="PageWhiteCup" >
-                                        <Listeners>
-                                            <click Handler="WindowX.notasDePesoEnCatacion(#{MyDesktop});" />
                                         </Listeners>
                                     </ext:MenuItem>
                                     <ext:MenuItem ID="NotasDePesoMenuItem" Text="Notas de Peso" Icon="PageWhiteOffice" >
@@ -970,8 +944,6 @@
         <ext:ToolTip runat="server" ID="scApplicationLogTooltip"                                  Html="Bitácora de Aplicación"                                      Target="scApplicationLog-shortcut"                                  ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scSociosTooltip"                                          Html="Socios"                                                      Target="scSocios-shortcut"                                          ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scEstadosNotasDePesoTooltip"                              Html="Estados de Notas de Peso"                                    Target="scEstadosNotasDePeso-shortcut"                              ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scNotasDePesoEnPesajeTooltip"                             Html="Notas De Peso en Area de Pesaje"                             Target="scNotasDePesoEnPesaje-shortcut"                             ></ext:ToolTip>
-        <ext:ToolTip runat="server" ID="scNotasDePesoEnCatacionTooltip"                           Html="Notas De Peso en Area de Catación"                           Target="scNotasDePesoEnCatacion-shortcut"                           ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scNotasDePesoTooltip"                                     Html="Notas de Peso"                                               Target="scNotasDePeso-shortcut"                                     ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scClasificacionesDeCafeTooltip"                           Html="Clasificaciones de Café"                                     Target="scClasificacionesDeCafe-shortcut"                           ></ext:ToolTip>
         <ext:ToolTip runat="server" ID="scInventarioDeCafePorSocioTooltip"                        Html="Inventario de Café por Socio"                                Target="scInventarioDeCafePorSocio-shortcut"                        ></ext:ToolTip>

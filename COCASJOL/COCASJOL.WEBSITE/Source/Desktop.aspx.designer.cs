@@ -328,24 +328,6 @@ namespace COCASJOL.WEBSITE {
         protected global::Ext.Net.MenuItem EstadosNotasDePesoMenuItem;
         
         /// <summary>
-        /// NotasDePesoEnPesajeMenuItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem NotasDePesoEnPesajeMenuItem;
-        
-        /// <summary>
-        /// NotasDePesoEnCatacionMenuItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.MenuItem NotasDePesoEnCatacionMenuItem;
-        
-        /// <summary>
         /// NotasDePesoMenuItem control.
         /// </summary>
         /// <remarks>
@@ -947,24 +929,6 @@ namespace COCASJOL.WEBSITE {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ToolTip scEstadosNotasDePesoTooltip;
-        
-        /// <summary>
-        /// scNotasDePesoEnPesajeTooltip control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ToolTip scNotasDePesoEnPesajeTooltip;
-        
-        /// <summary>
-        /// scNotasDePesoEnCatacionTooltip control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ToolTip scNotasDePesoEnCatacionTooltip;
         
         /// <summary>
         /// scNotasDePesoTooltip control.

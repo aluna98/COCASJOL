@@ -209,15 +209,7 @@ var WindowX = {
     estadosNotasDePeso: function (app) {
         DesktopX.createDynamicWindow(app, 'pagego', 'Estados de Notas de Peso', 'Inventario/Ingresos/EstadosNotaDePeso.aspx');
     },
-
-    notasDePesoEnPesaje: function (app) {
-        DesktopX.createDynamicWindow(app, 'pagewhiteput', 'Notas de Peso en Area de Pesaje', 'Inventario/Ingresos/NotasDePesoEnPesaje.aspx', 1000, 600);
-    },
-
-    notasDePesoEnCatacion: function (app) {
-        DesktopX.createDynamicWindow(app, 'pagewhitecup', 'Notas de Peso en Area de Catación', 'Inventario/Ingresos/NotasDePesoEnCatacion.aspx', 1000, 600);
-    },
-
+    
     notasDePeso: function (app) {
         DesktopX.createDynamicWindow(app, 'pagewhiteoffice', 'Notas de Peso', 'Inventario/Ingresos/NotasDePeso.aspx', 1000, 600);
     },
@@ -322,10 +314,6 @@ var ShorcutClickHandler = function (app, id) {
         WindowX.socios(app);
     } else if (id == 'scEstadosNotasDePeso') {
         WindowX.estadosNotasDePeso(app);
-    } else if (id == 'scNotasDePesoEnPesaje') {
-        WindowX.notasDePesoEnPesaje(app);
-    } else if (id == 'scNotasDePesoEnCatacion') {
-        WindowX.notasDePesoEnCatacion(app);
     } else if (id == 'scNotasDePeso') {
         WindowX.notasDePeso(app);
     } else if (id == 'scInventarioDeCafePorSocio') {
