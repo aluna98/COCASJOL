@@ -34,9 +34,13 @@
                 TypeName="COCASJOL.LOGIC.Aportaciones.RetiroAportacionLogic"
                 SelectMethod="GetRetirosDeAportaciones" onselecting="RetiroAportacionesDs_Selecting" >
                 <SelectParameters>
-                    <asp:ControlParameter Name="RETIROS_AP_ID"                       Type="Int32"    ControlID="f_RETIROS_AP_ID"             PropertyName="Text" DefaultValue="0" />
+                    <asp:ControlParameter Name="RETIROS_AP_ID"                       Type="Int32"    ControlID="f_RETIROS_AP_ID"             PropertyName="Text" DefaultValue="-1" />
                     <asp:ControlParameter Name="SOCIOS_ID"                           Type="String"   ControlID="f_SOCIOS_ID"                 PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="RETIROS_AP_FECHA"                    Type="DateTime" ControlID="nullHdn"                        PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="SOCIOS_PRIMER_NOMBRE"                Type="String"   ControlID="f_SOCIOS_NOMBRE_COMPLETO"    PropertyName="Text" />
+                    <asp:ControlParameter Name="SOCIOS_SEGUNDO_NOMBRE"               Type="String"   ControlID="nullHdn"                     PropertyName="Text" />
+                    <asp:ControlParameter Name="SOCIOS_PRIMER_APELLIDO"              Type="String"   ControlID="nullHdn"                     PropertyName="Text" />
+                    <asp:ControlParameter Name="SOCIOS_SEGUNDO_APELLIDO"             Type="String"   ControlID="nullHdn"                     PropertyName="Text" />
+                    <asp:ControlParameter Name="RETIROS_AP_FECHA"                    Type="DateTime" ControlID="nullHdn"                     PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="FECHA_DESDE"                         Type="DateTime" ControlID="f_DATE_FROM"                 PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="FECHA_HASTA"                         Type="DateTime" ControlID="f_DATE_TO"                   PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="RETIROS_AP_ORDINARIA"                Type="Decimal"  ControlID="nullHdn"                     PropertyName="Text" DefaultValue="-1" />
@@ -104,7 +108,7 @@
             <Items>
                 <ext:Panel ID="Panel1" runat="server" Frame="false" Header="false" Title="Aportaciones" Icon="Coins" Layout="Fit">
                     <Items>
-                        <ext:GridPanel ID="RetiroAportacionesGridP" runat="server" AutoExpandColumn="SOCIOS_ID" Height="300"
+                        <ext:GridPanel ID="RetiroAportacionesGridP" runat="server" AutoExpandColumn="SOCIOS_NOMBRE_COMPLETO" Height="300"
                             Title="Retiro de Aportaciones" Header="false" Border="false" StripeRows="true" TrackMouseOver="true">
                             <KeyMap>
                                 <ext:KeyBinding Ctrl="true" >
@@ -124,6 +128,10 @@
                                             <Fields>
                                                 <ext:RecordField Name="RETIROS_AP_ID"                       />
                                                 <ext:RecordField Name="SOCIOS_ID"                           />
+                                                <ext:RecordField Name="SOCIOS_PRIMER_NOMBRE"                ServerMapping="socios.SOCIOS_PRIMER_NOMBRE" />
+                                                <ext:RecordField Name="SOCIOS_SEGUNDO_NOMBRE"               ServerMapping="socios.SOCIOS_SEGUNDO_NOMBRE" />
+                                                <ext:RecordField Name="SOCIOS_PRIMER_APELLIDO"              ServerMapping="socios.SOCIOS_PRIMER_APELLIDO" />
+                                                <ext:RecordField Name="SOCIOS_SEGUNDO_APELLIDO"             ServerMapping="socios.SOCIOS_SEGUNDO_APELLIDO" />
                                                 <ext:RecordField Name="RETIROS_AP_FECHA"                    Type="Date" />
                                                 <ext:RecordField Name="FECHA_DESDE"                         />
                                                 <ext:RecordField Name="FECHA_HASTA"                         />
@@ -148,8 +156,11 @@
                             <ColumnModel>
                                 <Columns>
                                     <ext:Column       DataIndex="RETIROS_AP_ID"             Header="Numero de Retiro" Sortable="true"></ext:Column>
-                                    <ext:Column       DataIndex="SOCIOS_ID"                 Header="Id de Socio" Sortable="true"></ext:Column>
                                     <ext:DateColumn   DataIndex="RETIROS_AP_FECHA"          Header="Fecha" Sortable="true"></ext:DateColumn>
+                                    <ext:Column     DataIndex="SOCIOS_ID"                   Header="Código de Socio" Sortable="true"></ext:Column>
+                                    <ext:Column ColumnID="SOCIOS_NOMBRE_COMPLETO" Header="Nombre de Socio" Sortable="true">
+                                        <Renderer Fn="PageX.nameRenderer" />
+                                    </ext:Column>
                                     <ext:NumberColumn DataIndex="RETIROS_AP_TOTAL_RETIRADO" Header="Total Retirado" Sortable="true"></ext:NumberColumn>
 
                                     <ext:Column DataIndex="RETIROS_AP_FECHA" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
@@ -196,16 +207,6 @@
                                                         </ext:NumberField>
                                                     </Component>
                                                 </ext:HeaderColumn>
-                                                <ext:HeaderColumn Cls="x-small-editor">
-                                                    <Component>
-                                                        <ext:TextField ID="f_SOCIOS_ID" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="5">
-                                                            <Listeners>
-                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
-                                                            </Listeners>
-                                                        </ext:TextField>
-                                                    </Component>
-                                                </ext:HeaderColumn>
-
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
                                                         <ext:DropDownField ID="f_RETIROS_AP_FECHA" AllowBlur="true" runat="server" Editable="false"
@@ -255,6 +256,24 @@
                                                                 </ext:FormPanel>
                                                                 </Component>
                                                         </ext:DropDownField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="f_SOCIOS_ID" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="5">
+                                                            <Listeners>
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                            </Listeners>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="f_SOCIOS_NOMBRE_COMPLETO" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="5">
+                                                            <Listeners>
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                            </Listeners>
+                                                        </ext:TextField>
                                                     </Component>
                                                 </ext:HeaderColumn>
 

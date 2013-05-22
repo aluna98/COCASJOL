@@ -39,6 +39,10 @@
                 <SelectParameters>
                     <asp:ControlParameter Name="LIQUIDACIONES_ID"                                   Type="Int32"    ControlID="f_LIQUIDACIONES_ID"        PropertyName="Text" />
                     <asp:ControlParameter Name="SOCIOS_ID"                                          Type="String"   ControlID="f_SOCIOS_ID"               PropertyName="Text" />
+                    <asp:ControlParameter Name="SOCIOS_PRIMER_NOMBRE"                               Type="String"   ControlID="f_SOCIOS_NOMBRE_COMPLETO"  PropertyName="Text" />
+                    <asp:ControlParameter Name="SOCIOS_SEGUNDO_NOMBRE"                              Type="String"   ControlID="nullHdn"                   PropertyName="Text" />
+                    <asp:ControlParameter Name="SOCIOS_PRIMER_APELLIDO"                             Type="String"   ControlID="nullHdn"                   PropertyName="Text" />
+                    <asp:ControlParameter Name="SOCIOS_SEGUNDO_APELLIDO"                            Type="String"   ControlID="nullHdn"                   PropertyName="Text" />
                     <asp:ControlParameter Name="LIQUIDACIONES_FECHA"                                Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="FECHA_DESDE"                                        Type="DateTime" ControlID="f_DATE_FROM"               PropertyName="Text" />
                     <asp:ControlParameter Name="FECHA_HASTA"                                        Type="DateTime" ControlID="f_DATE_TO"                 PropertyName="Text" />
@@ -73,6 +77,10 @@
                 <InsertParameters>
                     <asp:Parameter Name="LIQUIDACIONES_ID"                                  Type="Int32"    />
                     <asp:Parameter Name="SOCIOS_ID"                                         Type="String"   />
+                    <asp:Parameter Name="SOCIOS_PRIMER_NOMBRE"                              Type="String"   />
+                    <asp:Parameter Name="SOCIOS_SEGUNDO_NOMBRE"                             Type="String"   />
+                    <asp:Parameter Name="SOCIOS_PRIMER_APELLIDO"                            Type="String"   />
+                    <asp:Parameter Name="SOCIOS_SEGUNDO_APELLIDO"                           Type="String"   />
                     <asp:Parameter Name="LIQUIDACIONES_FECHA"                               Type="DateTime" />
                     <asp:Parameter Name="FECHA_DESDE"                                       Type="DateTime" />
                     <asp:Parameter Name="FECHA_HASTA"                                       Type="DateTime" />
@@ -195,6 +203,10 @@
                                             <Fields>
                                                 <ext:RecordField Name="LIQUIDACIONES_ID"                                  />
                                                 <ext:RecordField Name="SOCIOS_ID"                                         />
+                                                <ext:RecordField Name="SOCIOS_PRIMER_NOMBRE"                              ServerMapping="socios.SOCIOS_PRIMER_NOMBRE" />
+                                                <ext:RecordField Name="SOCIOS_SEGUNDO_NOMBRE"                             ServerMapping="socios.SOCIOS_SEGUNDO_NOMBRE" />
+                                                <ext:RecordField Name="SOCIOS_PRIMER_APELLIDO"                            ServerMapping="socios.SOCIOS_PRIMER_APELLIDO" />
+                                                <ext:RecordField Name="SOCIOS_SEGUNDO_APELLIDO"                           ServerMapping="socios.SOCIOS_SEGUNDO_APELLIDO" />
                                                 <ext:RecordField Name="LIQUIDACIONES_FECHA"                               Type="Date" />
                                                 <ext:RecordField Name="FECHA_DESDE"                                       Type="Date" DefaultValue="" />
                                                 <ext:RecordField Name="FECHA_HASTA"                                       Type="Date" DefaultValue="" />
@@ -236,7 +248,10 @@
                             <ColumnModel>
                                 <Columns>
                                     <ext:Column     DataIndex="LIQUIDACIONES_ID"            Header="Numero" Sortable="true"></ext:Column>
-                                    <ext:Column     DataIndex="SOCIOS_ID"                   Header="Socio" Sortable="true"></ext:Column>
+                                    <ext:Column     DataIndex="SOCIOS_ID"                   Header="Código de Socio" Sortable="true"></ext:Column>
+                                    <ext:Column Header="Nombre de Socio" Sortable="true">
+                                        <Renderer Fn="PageX.nameRenderer" />
+                                    </ext:Column>
                                     <ext:Column     DataIndex="CLASIFICACIONES_CAFE_NOMBRE" Header="Clasificación de Café" Sortable="true"></ext:Column>
                                     <ext:DateColumn DataIndex="LIQUIDACIONES_FECHA"         Header="Fecha" Sortable="true" Width="150" ></ext:DateColumn>
 
@@ -287,6 +302,15 @@
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
                                                         <ext:TextField ID="f_SOCIOS_ID" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="5">
+                                                            <Listeners>
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                            </Listeners>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="f_SOCIOS_NOMBRE_COMPLETO" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="5">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>

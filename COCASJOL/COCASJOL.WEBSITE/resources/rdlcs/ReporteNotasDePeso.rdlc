@@ -1139,7 +1139,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -3177,7 +3176,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!DETALLES_CANTIDAD_SACOS.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!DETALLES_CANTIDAD_SACOS.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -3211,7 +3210,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!DETALLES_PESO.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!DETALLES_PESO.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -3600,7 +3599,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA.Value)</Value>
+                              <Value>=FormatNumber(Avg(Fields!NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -3670,7 +3669,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!NOTAS_PORCENTAJE_DEFECTO.Value)</Value>
+                              <Value>=FormatNumber(Avg(Fields!NOTAS_PORCENTAJE_DEFECTO.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -3708,7 +3707,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Sum(Fields!NOTAS_PESO_DEFECTO.Value) / 100, Sum(Fields!NOTAS_PESO_DEFECTO.Value))</Value>
+                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, FormatNumber(Sum(Fields!NOTAS_PESO_DEFECTO.Value) / 100), FormatNumber(Sum(Fields!NOTAS_PESO_DEFECTO.Value)))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -3746,7 +3745,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!NOTAS_PORCENTAJE_HUMEDAD.Value)</Value>
+                              <Value>=FormatNumber(Avg(Fields!NOTAS_PORCENTAJE_HUMEDAD.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -3784,7 +3783,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Sum(Fields!NOTAS_PESO_HUMEDAD.Value) / 100, Sum(Fields!NOTAS_PESO_HUMEDAD.Value))</Value>
+                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, FormatNumber(Sum(Fields!NOTAS_PESO_HUMEDAD.Value) / 100), FormatNumber(Sum(Fields!NOTAS_PESO_HUMEDAD.Value)))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -3822,7 +3821,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Sum(Fields!NOTAS_PESO_SUMA.Value) / 100, Sum(Fields!NOTAS_PESO_SUMA.Value))</Value>
+                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, FormatNumber(Sum(Fields!NOTAS_PESO_SUMA.Value) / 100), FormatNumber(Sum(Fields!NOTAS_PESO_SUMA.Value)))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -3892,7 +3891,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Sum(Fields!NOTAS_PESO_TARA.Value) / 100, Sum(Fields!NOTAS_PESO_TARA.Value))</Value>
+                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, FormatNumber(Sum(Fields!NOTAS_PESO_TARA.Value) / 100), FormatNumber(Sum(Fields!NOTAS_PESO_TARA.Value)))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -3930,7 +3929,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Sum(Fields!NOTAS_PESO_DESCUENTO.Value) / 100, Sum(Fields!NOTAS_PESO_DESCUENTO.Value))</Value>
+                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, FormatNumber(Sum(Fields!NOTAS_PESO_DESCUENTO.Value) / 100), FormatNumber(Sum(Fields!NOTAS_PESO_DESCUENTO.Value)))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -3968,7 +3967,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Sum(Fields!NOTAS_PESO_TOTAL_RECIBIDO.Value) / 100, Sum(Fields!NOTAS_PESO_TOTAL_RECIBIDO.Value))</Value>
+                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, FormatNumber(Sum(Fields!NOTAS_PESO_TOTAL_RECIBIDO.Value) / 100), FormatNumber(Sum(Fields!NOTAS_PESO_TOTAL_RECIBIDO.Value)))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -4038,7 +4037,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!DETALLES_CANTIDAD_SACOS.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!DETALLES_CANTIDAD_SACOS.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -4070,7 +4069,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!NOTAS_FEC
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Sum(Fields!DETALLES_PESO.Value) / 100, Sum(Fields!DETALLES_PESO.Value))</Value>
+                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, FormatNumber(Sum(Fields!DETALLES_PESO.Value) / 100), FormatNumber(Sum(Fields!DETALLES_PESO.Value)))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>

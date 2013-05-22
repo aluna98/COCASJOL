@@ -34,11 +34,6 @@
                 <SelectParameters>
                     <asp:ControlParameter Name="SOCIOS_ID"                                   Type="String"   ControlID="f_SOCIOS_ID"                PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="SOCIOS_NOMBRE_COMPLETO"                      Type="String"   ControlID="f_SOCIOS_NOMBRE_COMPLETO"   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="APORTACIONES_ORDINARIA_SALDO"                Type="Decimal"  ControlID="nullHdn"                    PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="APORTACIONES_EXTRAORDINARIA_SALDO"           Type="Decimal"  ControlID="nullHdn"                    PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="APORTACIONES_CAPITALIZACION_RETENCION_SALDO" Type="Decimal"  ControlID="nullHdn"                    PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="APORTACIONES_INTERESES_S_APORTACION_SALDO"   Type="Decimal"  ControlID="nullHdn"                    PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="APORTACIONES_EXCEDENTE_PERIODO_SALDO"        Type="Decimal"  ControlID="nullHdn"                    PropertyName="Text" DefaultValue="-1" />
                     <asp:ControlParameter Name="APORTACIONES_SALDO_TOTAL"                    Type="Decimal"  ControlID="f_APORTACIONES_SALDO_TOTAL" PropertyName="Text" DefaultValue="-1" />
                     <asp:ControlParameter Name="CREADO_POR"                                  Type="String"   ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
                     <asp:ControlParameter Name="FECHA_CREACION"                              Type="DateTime" ControlID="nullHdn"                    PropertyName="Text" DefaultValue="" />
@@ -114,11 +109,6 @@
                                 <Columns>
                                     <ext:Column       DataIndex="SOCIOS_ID"                                   Header="Id de Socio" Sortable="true"></ext:Column>
                                     <ext:Column       DataIndex="SOCIOS_NOMBRE_COMPLETO"                      Header="Nombre Completo de Socio" Sortable="true"></ext:Column>
-                                    <ext:NumberColumn DataIndex="APORTACIONES_ORDINARIA_SALDO"                Header="Saldo Aportación Ordinaria" Sortable="true"></ext:NumberColumn>
-                                    <ext:NumberColumn DataIndex="APORTACIONES_EXTRAORDINARIA_SALDO"           Header="Saldo Aportación Extraordinaria" Sortable="true"></ext:NumberColumn>
-                                    <ext:NumberColumn DataIndex="APORTACIONES_CAPITALIZACION_RETENCION_SALDO" Header="Saldo Capitalización por Retención" Sortable="true"></ext:NumberColumn>
-                                    <ext:NumberColumn DataIndex="APORTACIONES_INTERESES_S_APORTACION_SALDO"   Header="Saldo Intereses sobre Aportaciones" Sortable="true"></ext:NumberColumn>
-                                    <ext:NumberColumn DataIndex="APORTACIONES_EXCEDENTE_PERIODO_SALDO"        Header="Saldo Excedente de Período" Sortable="true"></ext:NumberColumn>
                                     <ext:NumberColumn DataIndex="APORTACIONES_SALDO_TOTAL"                    Header="Saldo Total" Sortable="true"></ext:NumberColumn>
 
                                     <ext:Column DataIndex="SOCIOS_ID" Width="28" Sortable="false" MenuDisabled="true" Header="&nbsp;" Fixed="true">
@@ -177,52 +167,6 @@
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>
                                                         </ext:TextField>
-                                                    </Component>
-                                                </ext:HeaderColumn>
-
-                                                <ext:HeaderColumn Cls="x-small-editor">
-                                                    <Component>
-                                                        <ext:NumberField ID="f_APORTACIONES_ORDINARIA_SALDO" runat="server" EnableKeyEvents="true" Icon="Find">
-                                                            <Listeners>
-                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
-                                                            </Listeners>
-                                                        </ext:NumberField>
-                                                    </Component>
-                                                </ext:HeaderColumn>
-                                                <ext:HeaderColumn Cls="x-small-editor">
-                                                    <Component>
-                                                        <ext:NumberField ID="f_APORTACIONES_EXTRAORDINARIA_SALDO" runat="server" EnableKeyEvents="true" Icon="Find">
-                                                            <Listeners>
-                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
-                                                            </Listeners>
-                                                        </ext:NumberField>
-                                                    </Component>
-                                                </ext:HeaderColumn>
-                                                <ext:HeaderColumn Cls="x-small-editor">
-                                                    <Component>
-                                                        <ext:NumberField ID="f_APORTACIONES_CAPITALIZACION_RETENCION_SALDO" runat="server" EnableKeyEvents="true" Icon="Find">
-                                                            <Listeners>
-                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
-                                                            </Listeners>
-                                                        </ext:NumberField>
-                                                    </Component>
-                                                </ext:HeaderColumn>
-                                                <ext:HeaderColumn Cls="x-small-editor">
-                                                    <Component>
-                                                        <ext:NumberField ID="f_APORTACIONES_INTERESES_S_APORTACION_SALDO" runat="server" EnableKeyEvents="true" Icon="Find">
-                                                            <Listeners>
-                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
-                                                            </Listeners>
-                                                        </ext:NumberField>
-                                                    </Component>
-                                                </ext:HeaderColumn>
-                                                <ext:HeaderColumn Cls="x-small-editor">
-                                                    <Component>
-                                                        <ext:NumberField ID="f_APORTACIONES_EXCEDENTE_PERIODO_SALDO" runat="server" EnableKeyEvents="true" Icon="Find">
-                                                            <Listeners>
-                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
-                                                            </Listeners>
-                                                        </ext:NumberField>
                                                     </Component>
                                                 </ext:HeaderColumn>
 

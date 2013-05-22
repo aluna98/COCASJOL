@@ -1687,7 +1687,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Max(Fields!TRANSACCION_NUMERO.Value)</Value>
+                              <Value>= Count(Fields!TRANSACCION_NUMERO.Value)</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -1721,7 +1721,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Sum(Fields!ENTRADAS_CANTIDAD.Value) / 100,Sum(Fields!ENTRADAS_CANTIDAD.Value))</Value>
+                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, FormatNumber(Sum(Fields!ENTRADAS_CANTIDAD.Value) / 100), FormatNumber(Sum(Fields!ENTRADAS_CANTIDAD.Value)))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -1755,7 +1755,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True,  Sum(Fields!SALIDAS_CANTIDAD.Value) / 100, Sum(Fields!SALIDAS_CANTIDAD.Value))</Value>
+                              <Value>=iif(Parameters!parMostrarQuintales.Value = True,  FormatNumber(Sum(Fields!SALIDAS_CANTIDAD.Value) / 100), FormatNumber(Sum(Fields!SALIDAS_CANTIDAD.Value)))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -1789,7 +1789,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!SALIDAS_COSTO.Value)</Value>
+                              <Value>=FormatNumber(Avg(Fields!SALIDAS_COSTO.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -1823,7 +1823,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!SALIDAS_MONTO.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!SALIDAS_MONTO.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -1857,7 +1857,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(iif(Parameters!parMostrarQuintales.Value = True, Fields!INVENTARIO_ENTRADAS_CANTIDAD.Value / 100, Fields!INVENTARIO_ENTRADAS_CANTIDAD.Value))</Value>
+                              <Value>=FormatNumber(Avg(iif(Parameters!parMostrarQuintales.Value = True, Fields!INVENTARIO_ENTRADAS_CANTIDAD.Value / 100, Fields!INVENTARIO_ENTRADAS_CANTIDAD.Value)))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -1891,7 +1891,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!INVENTARIO_SALIDAS_SALDO.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!INVENTARIO_SALIDAS_SALDO.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -2086,7 +2086,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Max(Fields!TRANSACCION_NUMERO.Value)</Value>
+                              <Value>= Count(Fields!TRANSACCION_NUMERO.Value)</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -2124,7 +2124,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Sum(Fields!ENTRADAS_CANTIDAD.Value) / 100,Sum(Fields!ENTRADAS_CANTIDAD.Value))</Value>
+                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, FormatNumber(Sum(Fields!ENTRADAS_CANTIDAD.Value) / 100), FormatNumber(Sum(Fields!ENTRADAS_CANTIDAD.Value)))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -2162,7 +2162,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True,  Sum(Fields!SALIDAS_CANTIDAD.Value) / 100, Sum(Fields!SALIDAS_CANTIDAD.Value))</Value>
+                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, FormatNumber(Sum(Fields!SALIDAS_CANTIDAD.Value) / 100), FormatNumber(Sum(Fields!SALIDAS_CANTIDAD.Value)))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -2200,7 +2200,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!SALIDAS_COSTO.Value)</Value>
+                              <Value>=FormatNumber(Avg(Fields!SALIDAS_COSTO.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -2238,7 +2238,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!SALIDAS_MONTO.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!SALIDAS_MONTO.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -2276,7 +2276,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(iif(Parameters!parMostrarQuintales.Value = True, Fields!INVENTARIO_ENTRADAS_CANTIDAD.Value / 100, Fields!INVENTARIO_ENTRADAS_CANTIDAD.Value))</Value>
+                              <Value>=FormatNumber(Avg(iif(Parameters!parMostrarQuintales.Value = True, Fields!INVENTARIO_ENTRADAS_CANTIDAD.Value / 100, Fields!INVENTARIO_ENTRADAS_CANTIDAD.Value)))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -2314,7 +2314,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!INVENTARIO_SALIDAS_SALDO.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!INVENTARIO_SALIDAS_SALDO.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>

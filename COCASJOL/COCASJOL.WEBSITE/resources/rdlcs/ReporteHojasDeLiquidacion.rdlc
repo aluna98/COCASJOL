@@ -3053,7 +3053,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Sum(Fields!LIQUIDACIONES_TOTAL_LIBRAS.Value) / 100, Sum(Fields!LIQUIDACIONES_TOTAL_LIBRAS.Value))</Value>
+                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, FormatNumber(Sum(Fields!LIQUIDACIONES_TOTAL_LIBRAS.Value) / 100), FormatNumber(Sum(Fields!LIQUIDACIONES_TOTAL_LIBRAS.Value)))</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
@@ -3091,7 +3091,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!LIQUIDACIONES_PRECIO_LIBRAS.Value)</Value>
+                              <Value>=FormatNumber(Avg(Fields!LIQUIDACIONES_PRECIO_LIBRAS.Value))</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
@@ -3129,7 +3129,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_VALOR_TOTAL.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_VALOR_TOTAL.Value))</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
@@ -3167,7 +3167,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_CUOTA_INGRESO.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_CUOTA_INGRESO.Value))</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
@@ -3205,7 +3205,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_GASTOS_ADMIN.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_GASTOS_ADMIN.Value))</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
@@ -3243,7 +3243,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_APORTACION_ORDINARIO.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_APORTACION_ORDINARIO.Value))</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
@@ -3281,7 +3281,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA.Value))</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
@@ -3319,7 +3319,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD.Value))</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
@@ -3357,7 +3357,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_INTERESES_S_APORTACIONES.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_INTERESES_S_APORTACIONES.Value))</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
@@ -3395,7 +3395,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_EXCEDENTE_PERIODO.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_EXCEDENTE_PERIODO.Value))</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
@@ -3433,7 +3433,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO.Value))</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
@@ -3471,7 +3471,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_FIDUCIARIO.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_FIDUCIARIO.Value))</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
@@ -3509,7 +3509,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_PRENDARIO.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_PRENDARIO.Value))</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
@@ -3547,7 +3547,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_CUENTAS_X_COBRAR.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_CUENTAS_X_COBRAR.Value))</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
@@ -3585,7 +3585,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_INTERESES_X_COBRAR.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_INTERESES_X_COBRAR.Value))</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
@@ -3623,7 +3623,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_OTRAS_DEDUCCIONES.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_OTRAS_DEDUCCIONES.Value))</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
@@ -3661,7 +3661,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_TOTAL_DEDUCCIONES.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_TOTAL_DEDUCCIONES.Value))</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
@@ -3699,7 +3699,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Avg(Fields!LIQUIDACIONES_D_AF_SOCIO.Value)</Value>
+                              <Value>=FormatNumber(Avg(Fields!LIQUIDACIONES_D_AF_SOCIO.Value))</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
@@ -3737,7 +3737,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_TOTAL.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_TOTAL.Value))</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
@@ -4066,7 +4066,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, Sum(Fields!LIQUIDACIONES_TOTAL_LIBRAS.Value) / 100, Sum(Fields!LIQUIDACIONES_TOTAL_LIBRAS.Value))</Value>
+                              <Value>=iif(Parameters!parMostrarQuintales.Value = True, FormatNumber(Sum(Fields!LIQUIDACIONES_TOTAL_LIBRAS.Value) / 100), FormatNumber(Sum(Fields!LIQUIDACIONES_TOTAL_LIBRAS.Value)))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -4104,7 +4104,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!LIQUIDACIONES_PRECIO_LIBRAS.Value)</Value>
+                              <Value>=FormatNumber(Avg(Fields!LIQUIDACIONES_PRECIO_LIBRAS.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -4142,7 +4142,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_VALOR_TOTAL.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_VALOR_TOTAL.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -4180,7 +4180,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_CUOTA_INGRESO.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_CUOTA_INGRESO.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -4218,7 +4218,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_GASTOS_ADMIN.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_GASTOS_ADMIN.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -4256,7 +4256,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_APORTACION_ORDINARIO.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_APORTACION_ORDINARIO.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -4294,7 +4294,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_APORTACION_EXTRAORDINARIA.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -4332,7 +4332,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_CAPITALIZACION_RETENCION_CANTIDAD.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -4370,7 +4370,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_INTERESES_S_APORTACIONES.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_INTERESES_S_APORTACIONES.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -4408,7 +4408,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_EXCEDENTE_PERIODO.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_EXCEDENTE_PERIODO.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -4446,7 +4446,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_PRESTAMO_HIPOTECARIO.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -4484,7 +4484,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_FIDUCIARIO.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_FIDUCIARIO.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -4522,7 +4522,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_PRENDARIO.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_PRENDARIO.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -4560,7 +4560,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_CUENTAS_X_COBRAR.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_CUENTAS_X_COBRAR.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -4598,7 +4598,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_INTERESES_X_COBRAR.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_INTERESES_X_COBRAR.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -4636,7 +4636,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_OTRAS_DEDUCCIONES.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_OTRAS_DEDUCCIONES.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -4674,7 +4674,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_TOTAL_DEDUCCIONES.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_TOTAL_DEDUCCIONES.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -4712,7 +4712,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Avg(Fields!LIQUIDACIONES_D_AF_SOCIO.Value)</Value>
+                              <Value>=FormatNumber(Avg(Fields!LIQUIDACIONES_D_AF_SOCIO.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -4750,7 +4750,7 @@ iif(Parameters!parGroupByFecha.Value = True, " - Fecha: " &amp; Fields!LIQUIDACI
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>= Sum(Fields!LIQUIDACIONES_D_TOTAL.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!LIQUIDACIONES_D_TOTAL.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -5018,7 +5018,7 @@ iif(Parameters!parGroupByFecha.Value = True, Fields!LIQUIDACIONES_FECHA.Value, "
         </TablixRowHierarchy>
         <DataSetName>HojaDeLiquidacionDataSet</DataSetName>
         <Height>1.75in</Height>
-        <Width>30in</Width>
+        <Width>29.99994in</Width>
         <Style>
           <Border>
             <Style>None</Style>

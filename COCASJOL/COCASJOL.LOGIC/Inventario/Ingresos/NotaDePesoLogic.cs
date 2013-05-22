@@ -88,6 +88,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             (int NOTAS_ID,
             int ESTADOS_NOTA_ID,
             string SOCIOS_ID,
+            string SOCIOS_NOMBRE_COMPLETO,
             int CLASIFICACIONES_CAFE_ID,
             DateTime NOTAS_FECHA,
             DateTime FECHA_DESDE,
@@ -101,7 +102,8 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                     db.notas_de_peso.MergeOption = MergeOption.NoTracking;
 
                     var queryEnPesaje = from notasPesoPesaje in db.notas_de_peso.Include("socios").Include("clasificaciones_cafe").Include("estados_nota_de_peso")
-                                        where notasPesoPesaje.estados_nota_de_peso.estados_detalles.ESTADOS_DETALLE_ENABLE_SOCIO_ID == (int)COCASJOL.LOGIC.Socios.SociosLogic.HabilitarSocios.MostrarTodos ? true : notasPesoPesaje.socios.SOCIOS_ESTATUS >= 1
+                                        where (notasPesoPesaje.estados_nota_de_peso.estados_detalles.ESTADOS_DETALLE_ENABLE_SOCIO_ID == (int)COCASJOL.LOGIC.Socios.SociosLogic.HabilitarSocios.MostrarTodos ? true : notasPesoPesaje.socios.SOCIOS_ESTATUS >= 1) &&
+                                        (string.IsNullOrEmpty(SOCIOS_NOMBRE_COMPLETO) ? true : (notasPesoPesaje.socios.SOCIOS_PRIMER_NOMBRE + notasPesoPesaje.socios.SOCIOS_SEGUNDO_NOMBRE + notasPesoPesaje.socios.SOCIOS_PRIMER_APELLIDO + notasPesoPesaje.socios.SOCIOS_SEGUNDO_APELLIDO).Contains(SOCIOS_NOMBRE_COMPLETO))
                                         select notasPesoPesaje;
 
                     if (LoggedUser != "DEVELOPER")

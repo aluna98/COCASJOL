@@ -220,15 +220,6 @@ namespace COCASJOL.WEBSITE.Source.Aportaciones {
         protected global::Ext.Net.NumberField f_RETIROS_AP_ID;
         
         /// <summary>
-        /// f_SOCIOS_ID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField f_SOCIOS_ID;
-        
-        /// <summary>
         /// f_RETIROS_AP_FECHA control.
         /// </summary>
         /// <remarks>
@@ -299,6 +290,24 @@ namespace COCASJOL.WEBSITE.Source.Aportaciones {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button Button2;
+        
+        /// <summary>
+        /// f_SOCIOS_ID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField f_SOCIOS_ID;
+        
+        /// <summary>
+        /// f_SOCIOS_NOMBRE_COMPLETO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField f_SOCIOS_NOMBRE_COMPLETO;
         
         /// <summary>
         /// f_RETIROS_AP_TOTAL_RETIRADO control.

@@ -32,40 +32,6 @@
 
         <aud:Auditoria runat="server" ID="AudWin" />
 
-        <asp:ObjectDataSource ID="NotasDS" runat="server"
-                TypeName="COCASJOL.LOGIC.Inventario.Ingresos.NotaDePesoLogic"
-                SelectMethod="GetNotasDePeso" onselecting="NotasDS_Selecting" >
-                <SelectParameters>
-                    <asp:ControlParameter Name="NOTAS_ID"                                   Type="Int32"    ControlID="f_NOTAS_ID"                PropertyName="Text" />
-                    <asp:ControlParameter Name="ESTADOS_NOTA_ID"                            Type="Int32"    ControlID="f_ESTADOS_NOTA_ID"         PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="ESTADOS_NOTA_NOMBRE"                        Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="SOCIOS_ID"                                  Type="String"   ControlID="f_SOCIOS_ID"               PropertyName="Text" />
-                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_ID"                    Type="Int32"    ControlID="f_CLASIFICACIONES_CAFE_ID" PropertyName="Text" />
-                    <asp:ControlParameter Name="CLASIFICACIONES_CAFE_NOMBRE"                Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="NOTAS_FECHA"                                Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_DESDE"                                Type="DateTime" ControlID="f_DATE_FROM"               PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_HASTA"                                Type="DateTime" ControlID="f_DATE_TO"                 PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="NOTAS_TRANSPORTE_COOPERATIVA"               Type="Boolean"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA"    Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PORCENTAJE_DEFECTO"                   Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PORCENTAJE_HUMEDAD"                   Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PESO_TRANSPORTE_COOPERATIVA"          Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PESO_DEFECTO"                         Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PESO_HUMEDAD"                         Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PESO_DESCUENTO"                       Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PESO_SUMA"                            Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PESO_TARA"                            Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PESO_TOTAL_RECIBIDO"                  Type="Decimal"  ControlID="nullHdn"                   PropertyName="Text" DefaultValue="-1" />
-                    <asp:ControlParameter Name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO"            Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="NOTAS_SACOS_RETENIDOS"                      Type="Int32"    ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="TRANSACCION_NUMERO"                         Type="Int32"    ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="CREADO_POR"                                 Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_CREACION"                             Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="MODIFICADO_POR"                             Type="String"   ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                    <asp:ControlParameter Name="FECHA_MODIFICACION"                         Type="DateTime" ControlID="nullHdn"                   PropertyName="Text" DefaultValue="" />
-                </SelectParameters>
-        </asp:ObjectDataSource>
-
         <asp:ObjectDataSource ID="SociosDS" runat="server"
                 TypeName="COCASJOL.LOGIC.Socios.SociosLogic"
                 SelectMethod="getSociosActivos" >
@@ -236,6 +202,10 @@
                                             <Fields>
                                                 <ext:RecordField Name="NOTAS_ID"                                />
                                                 <ext:RecordField Name="SOCIOS_ID"                               />
+                                                <ext:RecordField Name="SOCIOS_PRIMER_NOMBRE"                    ServerMapping="socios.SOCIOS_PRIMER_NOMBRE" />
+                                                <ext:RecordField Name="SOCIOS_SEGUNDO_NOMBRE"                   ServerMapping="socios.SOCIOS_SEGUNDO_NOMBRE" />
+                                                <ext:RecordField Name="SOCIOS_PRIMER_APELLIDO"                  ServerMapping="socios.SOCIOS_PRIMER_APELLIDO" />
+                                                <ext:RecordField Name="SOCIOS_SEGUNDO_APELLIDO"                 ServerMapping="socios.SOCIOS_SEGUNDO_APELLIDO" />
                                                 <ext:RecordField Name="ESTADOS_NOTA_ID"                         />
                                                 <ext:RecordField Name="ESTADOS_NOTA_NOMBRE"                     ServerMapping="estados_nota_de_peso.ESTADOS_NOTA_NOMBRE" />
                                                 <ext:RecordField Name="CLASIFICACIONES_CAFE_ID"                 />
@@ -270,7 +240,10 @@
                                 <Columns>
                                     <ext:Column DataIndex="NOTAS_ID"                    Header="Numero" Sortable="true"></ext:Column>
                                     <ext:Column DataIndex="ESTADOS_NOTA_NOMBRE"         Header="Estado" Sortable="true" Width="150"></ext:Column>
-                                    <ext:Column DataIndex="SOCIOS_ID"                   Header="Socio" Sortable="true"></ext:Column>
+                                    <ext:Column DataIndex="SOCIOS_ID"                   Header="Código de Socio" Sortable="true"></ext:Column>
+                                    <ext:Column Header="Nombre de Socio" Sortable="true">
+                                        <Renderer Fn="PageX.nameRenderer" />
+                                    </ext:Column>
                                     <ext:Column DataIndex="CLASIFICACIONES_CAFE_NOMBRE" Header="Clasificacion de Café" Sortable="true"></ext:Column>
                                     <ext:DateColumn DataIndex="NOTAS_FECHA"             Header="Fecha" Sortable="true" Width="150" ></ext:DateColumn>
 
@@ -350,6 +323,15 @@
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
                                                         <ext:TextField ID="f_SOCIOS_ID" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="5">
+                                                            <Listeners>
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                            </Listeners>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="f_SOCIOS_NOMBRE_COMPLETO" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="5">
                                                             <Listeners>
                                                                 <KeyUp Handler="PageX.keyUpEvent(this, e);" />
                                                             </Listeners>

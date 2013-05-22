@@ -1351,7 +1351,7 @@ iif(Parameters!parGroupByPrestamo.Value = True, " - Tipo de Prestamo: " &amp; Fi
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!SOLICITUDES_MONTO.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!SOLICITUDES_MONTO.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -1668,7 +1668,7 @@ iif(Parameters!parGroupByPrestamo.Value = True, " - Tipo de Prestamo: " &amp; Fi
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!SOLICITUDES_MONTO.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!SOLICITUDES_MONTO.Value))</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>

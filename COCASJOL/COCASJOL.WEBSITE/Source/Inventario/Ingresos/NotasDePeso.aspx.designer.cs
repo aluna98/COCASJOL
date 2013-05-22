@@ -67,15 +67,6 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         protected global::COCASJOL.WEBSITE.Source.Auditoria.Auditoria AudWin;
         
         /// <summary>
-        /// NotasDS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource NotasDS;
-        
-        /// <summary>
         /// SociosDS control.
         /// </summary>
         /// <remarks>
@@ -308,6 +299,15 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField f_SOCIOS_ID;
+        
+        /// <summary>
+        /// f_SOCIOS_NOMBRE_COMPLETO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField f_SOCIOS_NOMBRE_COMPLETO;
         
         /// <summary>
         /// f_CLASIFICACIONES_CAFE_ID control.

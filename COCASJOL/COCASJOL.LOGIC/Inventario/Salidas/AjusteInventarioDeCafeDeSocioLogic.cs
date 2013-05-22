@@ -71,6 +71,10 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
         public List<ajuste_inventario_cafe_x_socio> GetAjustesDeInventarioDeCafeDeSocio
             (int AJUSTES_INV_CAFE_ID,
             string SOCIOS_ID,
+            string SOCIOS_PRIMER_NOMBRE,
+            string SOCIOS_SEGUNDO_NOMBRE,
+            string SOCIOS_PRIMER_APELLIDO,
+            string SOCIOS_SEGUNDO_APELLIDO,
             int CLASIFICACIONES_CAFE_ID,
             string CLASIFICACIONES_CAFE_NOMBRE,
             DateTime AJUSTES_INV_CAFE_FECHA,

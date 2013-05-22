@@ -96,6 +96,10 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
         public List<liquidacion> GetHojasDeLiquidacion
             (    int LIQUIDACIONES_ID,
               string SOCIOS_ID,
+              string SOCIOS_PRIMER_NOMBRE,
+              string SOCIOS_SEGUNDO_NOMBRE,
+              string SOCIOS_PRIMER_APELLIDO,
+              string SOCIOS_SEGUNDO_APELLIDO,
             DateTime LIQUIDACIONES_FECHA,
             DateTime FECHA_DESDE,
             DateTime FECHA_HASTA,
@@ -141,6 +145,7 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
                                 where
                                 (LIQUIDACIONES_ID.Equals(0)                              ? true : hojaliq.LIQUIDACIONES_ID.Equals(LIQUIDACIONES_ID)) &&
                                 (string.IsNullOrEmpty(SOCIOS_ID)                         ? true : hojaliq.SOCIOS_ID.Contains(SOCIOS_ID)) &&
+                                (string.IsNullOrEmpty(SOCIOS_PRIMER_NOMBRE)              ? true : (hojaliq.socios.SOCIOS_PRIMER_NOMBRE + hojaliq.socios.SOCIOS_SEGUNDO_NOMBRE + hojaliq.socios.SOCIOS_PRIMER_APELLIDO + hojaliq.socios.SOCIOS_SEGUNDO_APELLIDO).Contains(SOCIOS_PRIMER_NOMBRE)) &&
                                 (default(DateTime) == FECHA_DESDE                        ? true : hojaliq.LIQUIDACIONES_FECHA >= FECHA_DESDE) &&
                                 (default(DateTime) == FECHA_HASTA                        ? true : hojaliq.LIQUIDACIONES_FECHA <= FECHA_HASTA) &&
                                 (CLASIFICACIONES_CAFE_ID.Equals(0)                       ? true : hojaliq.CLASIFICACIONES_CAFE_ID.Equals(CLASIFICACIONES_CAFE_ID)) &&
@@ -238,6 +243,10 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
         public void InsertarHojaDeLiquidacion
             (    int LIQUIDACIONES_ID,
               string SOCIOS_ID,
+              string SOCIOS_PRIMER_NOMBRE,
+              string SOCIOS_SEGUNDO_NOMBRE,
+              string SOCIOS_PRIMER_APELLIDO,
+              string SOCIOS_SEGUNDO_APELLIDO,
             DateTime LIQUIDACIONES_FECHA,
             DateTime FECHA_DESDE,
             DateTime FECHA_HASTA,

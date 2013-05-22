@@ -72,6 +72,16 @@ var ConfirmDelete = "Seguro desea eliminar la hoja de liquidación?";
 var PageX = {
     _index: 0,
 
+    nameRenderer: function (value, metadata, record) {
+        var nombre =
+        record.get('SOCIOS_PRIMER_NOMBRE') + ' ' +
+        record.get('SOCIOS_SEGUNDO_NOMBRE') + ' ' +
+        record.get('SOCIOS_PRIMER_APELLIDO') + ' ' +
+        record.get('SOCIOS_SEGUNDO_APELLIDO');
+
+        return nombre;
+    },
+
     setReferences: function () {
         Grid = HojasGridP;
         GridStore = HojasGridP.getStore();

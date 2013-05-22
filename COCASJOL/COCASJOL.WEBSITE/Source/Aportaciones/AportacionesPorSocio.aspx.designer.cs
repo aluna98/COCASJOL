@@ -229,51 +229,6 @@ namespace COCASJOL.WEBSITE.Source.Aportaciones {
         protected global::Ext.Net.TextField f_SOCIOS_NOMBRE_COMPLETO;
         
         /// <summary>
-        /// f_APORTACIONES_ORDINARIA_SALDO control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.NumberField f_APORTACIONES_ORDINARIA_SALDO;
-        
-        /// <summary>
-        /// f_APORTACIONES_EXTRAORDINARIA_SALDO control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.NumberField f_APORTACIONES_EXTRAORDINARIA_SALDO;
-        
-        /// <summary>
-        /// f_APORTACIONES_CAPITALIZACION_RETENCION_SALDO control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.NumberField f_APORTACIONES_CAPITALIZACION_RETENCION_SALDO;
-        
-        /// <summary>
-        /// f_APORTACIONES_INTERESES_S_APORTACION_SALDO control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.NumberField f_APORTACIONES_INTERESES_S_APORTACION_SALDO;
-        
-        /// <summary>
-        /// f_APORTACIONES_EXCEDENTE_PERIODO_SALDO control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.NumberField f_APORTACIONES_EXCEDENTE_PERIODO_SALDO;
-        
-        /// <summary>
         /// f_APORTACIONES_SALDO_TOTAL control.
         /// </summary>
         /// <remarks>

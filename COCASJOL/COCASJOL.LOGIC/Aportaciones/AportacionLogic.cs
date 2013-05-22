@@ -70,11 +70,6 @@ namespace COCASJOL.LOGIC.Aportaciones
         public List<reporte_total_aportaciones_por_socio> GetAportaciones
             ( string SOCIOS_ID,
               string SOCIOS_NOMBRE_COMPLETO,
-             decimal APORTACIONES_ORDINARIA_SALDO,
-             decimal APORTACIONES_EXTRAORDINARIA_SALDO,
-             decimal APORTACIONES_CAPITALIZACION_RETENCION_SALDO,
-             decimal APORTACIONES_INTERESES_S_APORTACION_SALDO,
-             decimal APORTACIONES_EXCEDENTE_PERIODO_SALDO,
              decimal APORTACIONES_SALDO_TOTAL,
               string CREADO_POR,
             DateTime FECHA_CREACION)

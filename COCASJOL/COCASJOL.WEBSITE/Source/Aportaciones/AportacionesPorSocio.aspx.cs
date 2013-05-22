@@ -69,11 +69,6 @@ namespace COCASJOL.WEBSITE.Source.Aportaciones
                 List<COCASJOL.DATAACCESS.reporte_total_aportaciones_por_socio> ReporteAportacionesDeSociosLst = reporteLogic.GetAportaciones
                     (this.f_SOCIOS_ID.Text,
                     this.f_SOCIOS_NOMBRE_COMPLETO.Text,
-                    string.IsNullOrEmpty(this.f_APORTACIONES_ORDINARIA_SALDO.Text) ? -1 : Convert.ToInt32(this.f_APORTACIONES_ORDINARIA_SALDO.Text),
-                    string.IsNullOrEmpty(this.f_APORTACIONES_EXTRAORDINARIA_SALDO.Text) ? -1 : Convert.ToInt32(this.f_APORTACIONES_EXTRAORDINARIA_SALDO.Text),
-                    string.IsNullOrEmpty(this.f_APORTACIONES_CAPITALIZACION_RETENCION_SALDO.Text) ? -1 : Convert.ToInt32(this.f_APORTACIONES_CAPITALIZACION_RETENCION_SALDO.Text),
-                    string.IsNullOrEmpty(this.f_APORTACIONES_INTERESES_S_APORTACION_SALDO.Text) ? -1 : Convert.ToInt32(this.f_APORTACIONES_INTERESES_S_APORTACION_SALDO.Text),
-                    string.IsNullOrEmpty(this.f_APORTACIONES_EXCEDENTE_PERIODO_SALDO.Text) ? -1 : Convert.ToInt32(this.f_APORTACIONES_EXCEDENTE_PERIODO_SALDO.Text),
                     string.IsNullOrEmpty(this.f_APORTACIONES_SALDO_TOTAL.Text) ? -1 : Convert.ToInt32(this.f_APORTACIONES_SALDO_TOTAL.Text),
                     "",
                     default(DateTime));
@@ -105,11 +100,6 @@ namespace COCASJOL.WEBSITE.Source.Aportaciones
                 List<COCASJOL.DATAACCESS.reporte_total_aportaciones_por_socio> ReporteAportacionesDeSociosLst = reporteLogic.GetAportaciones
                     (this.f_SOCIOS_ID.Text,
                     this.f_SOCIOS_NOMBRE_COMPLETO.Text,
-                    string.IsNullOrEmpty(this.f_APORTACIONES_ORDINARIA_SALDO.Text) ? -1 : Convert.ToInt32(this.f_APORTACIONES_ORDINARIA_SALDO.Text),
-                    string.IsNullOrEmpty(this.f_APORTACIONES_EXTRAORDINARIA_SALDO.Text) ? -1 : Convert.ToInt32(this.f_APORTACIONES_EXTRAORDINARIA_SALDO.Text),
-                    string.IsNullOrEmpty(this.f_APORTACIONES_CAPITALIZACION_RETENCION_SALDO.Text) ? -1 : Convert.ToInt32(this.f_APORTACIONES_CAPITALIZACION_RETENCION_SALDO.Text),
-                    string.IsNullOrEmpty(this.f_APORTACIONES_INTERESES_S_APORTACION_SALDO.Text) ? -1 : Convert.ToInt32(this.f_APORTACIONES_INTERESES_S_APORTACION_SALDO.Text),
-                    string.IsNullOrEmpty(this.f_APORTACIONES_EXCEDENTE_PERIODO_SALDO.Text) ? -1 : Convert.ToInt32(this.f_APORTACIONES_EXCEDENTE_PERIODO_SALDO.Text),
                     string.IsNullOrEmpty(this.f_APORTACIONES_SALDO_TOTAL.Text) ? -1 : Convert.ToInt32(this.f_APORTACIONES_SALDO_TOTAL.Text),
                     "",
                     default(DateTime));

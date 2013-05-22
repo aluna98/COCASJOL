@@ -3220,7 +3220,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!ENTRADAS_APORTACIONES_ORDINARIA.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!ENTRADAS_APORTACIONES_ORDINARIA.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -3254,7 +3254,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!ENTRADAS_APORTACIONES_EXTRAORDINARIA.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!ENTRADAS_APORTACIONES_EXTRAORDINARIA.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -3288,7 +3288,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!ENTRADAS_APORTACIONES_CAPITALIZACION_RETENCION.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!ENTRADAS_APORTACIONES_CAPITALIZACION_RETENCION.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -3322,7 +3322,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!ENTRADAS_APORTACIONES_INTERESES_S_APORTACIONES.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!ENTRADAS_APORTACIONES_INTERESES_S_APORTACIONES.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -3356,7 +3356,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!ENTRADAS_APORTACIONES_EXCEDENTE_PERIODO.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!ENTRADAS_APORTACIONES_EXCEDENTE_PERIODO.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -3390,7 +3390,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!SALIDAS_APORTACIONES_ORDINARIA.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!SALIDAS_APORTACIONES_ORDINARIA.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -3424,7 +3424,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!SALIDAS_APORTACIONES_EXTRAORDINARIA.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!SALIDAS_APORTACIONES_EXTRAORDINARIA.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -3458,7 +3458,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!SALIDAS_APORTACIONES_CAPITALIZACION_RETENCION.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!SALIDAS_APORTACIONES_CAPITALIZACION_RETENCION.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -3492,7 +3492,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!SALIDAS_APORTACIONES_INTERESES_S_APORTACIONES.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!SALIDAS_APORTACIONES_INTERESES_S_APORTACIONES.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -3526,7 +3526,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!SALIDAS_APORTACIONES_EXCEDENTE_PERIODO.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!SALIDAS_APORTACIONES_EXCEDENTE_PERIODO.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -3560,7 +3560,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!APORTACIONES_CANTIDAD.Value)</Value>
+                              <Value>=FormatNumber(Avg(Fields!APORTACIONES_CANTIDAD.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -3594,7 +3594,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!APORTACIONES_ORDINARIA_SALDO.Value)</Value>
+                              <Value>=FormatNumber(Avg(Fields!APORTACIONES_ORDINARIA_SALDO.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -3628,7 +3628,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!APORTACIONES_EXTRAORDINARIA_SALDO.Value)</Value>
+                              <Value>=FormatNumber(Avg(Fields!APORTACIONES_EXTRAORDINARIA_SALDO.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -3662,7 +3662,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!APORTACIONES_CAPITALIZACION_RETENCION_SALDO.Value)</Value>
+                              <Value>=FormatNumber(Avg(Fields!APORTACIONES_CAPITALIZACION_RETENCION_SALDO.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -3696,7 +3696,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!APORTACIONES_INTERESES_S_APORTACIONES_SALDO.Value)</Value>
+                              <Value>=FormatNumber(Avg(Fields!APORTACIONES_INTERESES_S_APORTACIONES_SALDO.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -3730,7 +3730,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!APORTACIONES_EXCEDENTE_PERIODO_SALDO.Value)</Value>
+                              <Value>=FormatNumber(Avg(Fields!APORTACIONES_EXCEDENTE_PERIODO_SALDO.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -3764,7 +3764,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!APORTACIONES_SALDO_TOTAL.Value)</Value>
+                              <Value>=FormatNumber(Avg(Fields!APORTACIONES_SALDO_TOTAL.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -4017,7 +4017,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!ENTRADAS_APORTACIONES_ORDINARIA.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!ENTRADAS_APORTACIONES_ORDINARIA.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -4051,7 +4051,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!ENTRADAS_APORTACIONES_EXTRAORDINARIA.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!ENTRADAS_APORTACIONES_EXTRAORDINARIA.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -4085,7 +4085,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!ENTRADAS_APORTACIONES_CAPITALIZACION_RETENCION.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!ENTRADAS_APORTACIONES_CAPITALIZACION_RETENCION.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -4119,7 +4119,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!ENTRADAS_APORTACIONES_INTERESES_S_APORTACIONES.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!ENTRADAS_APORTACIONES_INTERESES_S_APORTACIONES.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -4153,7 +4153,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!ENTRADAS_APORTACIONES_EXCEDENTE_PERIODO.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!ENTRADAS_APORTACIONES_EXCEDENTE_PERIODO.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -4187,7 +4187,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!SALIDAS_APORTACIONES_ORDINARIA.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!SALIDAS_APORTACIONES_ORDINARIA.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -4221,7 +4221,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!SALIDAS_APORTACIONES_EXTRAORDINARIA.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!SALIDAS_APORTACIONES_EXTRAORDINARIA.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -4255,7 +4255,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!SALIDAS_APORTACIONES_CAPITALIZACION_RETENCION.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!SALIDAS_APORTACIONES_CAPITALIZACION_RETENCION.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -4289,7 +4289,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!SALIDAS_APORTACIONES_INTERESES_S_APORTACIONES.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!SALIDAS_APORTACIONES_INTERESES_S_APORTACIONES.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -4323,7 +4323,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!SALIDAS_APORTACIONES_EXCEDENTE_PERIODO.Value)</Value>
+                              <Value>=FormatNumber(Sum(Fields!SALIDAS_APORTACIONES_EXCEDENTE_PERIODO.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -4357,7 +4357,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!APORTACIONES_CANTIDAD.Value)</Value>
+                              <Value>=FormatNumber(Avg(Fields!APORTACIONES_CANTIDAD.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -4391,7 +4391,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!APORTACIONES_ORDINARIA_SALDO.Value)</Value>
+                              <Value>=FormatNumber(Avg(Fields!APORTACIONES_ORDINARIA_SALDO.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -4425,7 +4425,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!APORTACIONES_EXTRAORDINARIA_SALDO.Value)</Value>
+                              <Value>=FormatNumber(Avg(Fields!APORTACIONES_EXTRAORDINARIA_SALDO.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -4459,7 +4459,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!APORTACIONES_CAPITALIZACION_RETENCION_SALDO.Value)</Value>
+                              <Value>=FormatNumber(Avg(Fields!APORTACIONES_CAPITALIZACION_RETENCION_SALDO.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -4493,7 +4493,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!APORTACIONES_INTERESES_S_APORTACIONES_SALDO.Value)</Value>
+                              <Value>=FormatNumber(Avg(Fields!APORTACIONES_INTERESES_S_APORTACIONES_SALDO.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -4527,7 +4527,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!APORTACIONES_EXCEDENTE_PERIODO_SALDO.Value)</Value>
+                              <Value>=FormatNumber(Avg(Fields!APORTACIONES_EXCEDENTE_PERIODO_SALDO.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>
@@ -4561,7 +4561,7 @@ iif(Parameters!parGroupByFechaCreacion.Value = True, " - Fecha de Creación: " &
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Avg(Fields!APORTACIONES_SALDO_TOTAL.Value)</Value>
+                              <Value>=FormatNumber(Avg(Fields!APORTACIONES_SALDO_TOTAL.Value))</Value>
                               <Style />
                             </TextRun>
                             <TextRun>

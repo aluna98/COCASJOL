@@ -58,6 +58,10 @@ namespace COCASJOL.LOGIC.Aportaciones
         /// </summary>
         /// <param name="RETIROS_AP_ID"></param>
         /// <param name="SOCIOS_ID"></param>
+        /// <param name="SOCIOS_PRIMER_NOMBRE"></param>
+        /// <param name="SOCIOS_SEGUNDO_NOMBRE"></param>
+        /// <param name="SOCIOS_PRIMER_APELLIDO"></param>
+        /// <param name="SOCIOS_SEGUNDO_APELLIDO"></param>
         /// <param name="RETIROS_AP_FECHA"></param>
         /// <param name="FECHA_DESDE"></param>
         /// <param name="FECHA_HASTA"></param>
@@ -75,6 +79,10 @@ namespace COCASJOL.LOGIC.Aportaciones
         public List<retiro_aportaciones> GetRetirosDeAportaciones
             (int RETIROS_AP_ID,
             string SOCIOS_ID,
+            string SOCIOS_PRIMER_NOMBRE,
+            string SOCIOS_SEGUNDO_NOMBRE,
+            string SOCIOS_PRIMER_APELLIDO,
+            string SOCIOS_SEGUNDO_APELLIDO,
             DateTime RETIROS_AP_FECHA,
             DateTime FECHA_DESDE,
             DateTime FECHA_HASTA,
@@ -95,8 +103,9 @@ namespace COCASJOL.LOGIC.Aportaciones
                 {
                     var query = from rp in db.retiros_aportaciones.Include("socios")
                                 where
+                                (RETIROS_AP_ID == -1 ? true : rp.RETIROS_AP_ID == RETIROS_AP_ID) &&
                                 (string.IsNullOrEmpty(SOCIOS_ID) ? true : rp.SOCIOS_ID.Contains(SOCIOS_ID)) &&
-
+                                (string.IsNullOrEmpty(SOCIOS_PRIMER_NOMBRE) ? true : (rp.socios.SOCIOS_PRIMER_NOMBRE + rp.socios.SOCIOS_SEGUNDO_NOMBRE + rp.socios.SOCIOS_PRIMER_APELLIDO + rp.socios.SOCIOS_SEGUNDO_APELLIDO).Contains(SOCIOS_PRIMER_NOMBRE)) &&
                                 (default(DateTime) == FECHA_DESDE ? true : rp.RETIROS_AP_FECHA >= FECHA_DESDE) &&
                                 (default(DateTime) == FECHA_HASTA ? true : rp.RETIROS_AP_FECHA <= FECHA_HASTA) &&
 

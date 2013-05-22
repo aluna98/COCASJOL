@@ -37,6 +37,10 @@
                 <SelectParameters>
                     <asp:ControlParameter Name="AJUSTES_INV_CAFE_ID"              Type="Int32"    ControlID="f_AJUSTES_INV_CAFE_ID"          PropertyName="Text" DefaultValue="0" />
                     <asp:ControlParameter Name="SOCIOS_ID"                        Type="String"   ControlID="f_SOCIOS_ID"                    PropertyName="Text" DefaultValue="" />
+                    <asp:ControlParameter Name="SOCIOS_PRIMER_NOMBRE"             Type="String"   ControlID="nullHdn"                   PropertyName="Text" />
+                    <asp:ControlParameter Name="SOCIOS_SEGUNDO_NOMBRE"            Type="String"   ControlID="nullHdn"                   PropertyName="Text" />
+                    <asp:ControlParameter Name="SOCIOS_PRIMER_APELLIDO"           Type="String"   ControlID="nullHdn"                   PropertyName="Text" />
+                    <asp:ControlParameter Name="SOCIOS_SEGUNDO_APELLIDO"          Type="String"   ControlID="nullHdn"                   PropertyName="Text" />
                     <asp:ControlParameter Name="CLASIFICACIONES_CAFE_ID"          Type="Int32"    ControlID="f_CLASIFICACIONES_CAFE_ID"      PropertyName="Text" DefaultValue="0" />
                     <asp:ControlParameter Name="CLASIFICACIONES_CAFE_NOMBRE"      Type="String"   ControlID="nullHdn"                        PropertyName="Text" DefaultValue="0" />
                     <asp:ControlParameter Name="AJUSTES_INV_CAFE_FECHA"           Type="DateTime" ControlID="nullHdn"                        PropertyName="Text" DefaultValue="" />
@@ -134,6 +138,10 @@
                                             <Fields>
                                                 <ext:RecordField Name="AJUSTES_INV_CAFE_ID"              />
                                                 <ext:RecordField Name="SOCIOS_ID"                        />
+                                                <ext:RecordField Name="SOCIOS_PRIMER_NOMBRE"             ServerMapping="socios.SOCIOS_PRIMER_NOMBRE" />
+                                                <ext:RecordField Name="SOCIOS_SEGUNDO_NOMBRE"            ServerMapping="socios.SOCIOS_SEGUNDO_NOMBRE" />
+                                                <ext:RecordField Name="SOCIOS_PRIMER_APELLIDO"           ServerMapping="socios.SOCIOS_PRIMER_APELLIDO" />
+                                                <ext:RecordField Name="SOCIOS_SEGUNDO_APELLIDO"          ServerMapping="socios.SOCIOS_SEGUNDO_APELLIDO" />
                                                 <ext:RecordField Name="CLASIFICACIONES_CAFE_ID"          />
                                                 <ext:RecordField Name="CLASIFICACIONES_CAFE_NOMBRE"      ServerMapping="clasificaciones_cafe.CLASIFICACIONES_CAFE_NOMBRE"/>
                                                 <ext:RecordField Name="AJUSTES_INV_CAFE_FECHA"           Type="Date" />
@@ -157,7 +165,10 @@
                             <ColumnModel>
                                 <Columns>
                                     <ext:Column       DataIndex="AJUSTES_INV_CAFE_ID"          Header="Numero de Ajuste" Sortable="true"></ext:Column>
-                                    <ext:Column       DataIndex="SOCIOS_ID"                   Header="Id de Socio" Sortable="true"></ext:Column>
+                                    <ext:Column       DataIndex="SOCIOS_ID"                   Header="Código de Socio" Sortable="true"></ext:Column>
+                                    <ext:Column Header="Nombre de Socio" Sortable="true">
+                                        <Renderer Fn="PageX.nameRenderer" />
+                                    </ext:Column>
                                     <ext:Column       DataIndex="CLASIFICACIONES_CAFE_NOMBRE" Header="Clasificación de Café" Sortable="true"></ext:Column>
                                     <ext:DateColumn   DataIndex="AJUSTES_INV_CAFE_FECHA"       Header="Fecha" Sortable="true"></ext:DateColumn>
                                     <ext:NumberColumn DataIndex="AJUSTES_INV_CAFE_SALDO_TOTAL" Header="Saldo Total" Sortable="true"></ext:NumberColumn>
@@ -215,7 +226,15 @@
                                                         </ext:TextField>
                                                     </Component>
                                                 </ext:HeaderColumn>
-
+                                                <ext:HeaderColumn Cls="x-small-editor">
+                                                    <Component>
+                                                        <ext:TextField ID="f_SOCIOS_NOMBRE_COMPLETO" runat="server" EnableKeyEvents="true" Icon="Find" MaxLength="5">
+                                                            <Listeners>
+                                                                <KeyUp Handler="PageX.keyUpEvent(this, e);" />
+                                                            </Listeners>
+                                                        </ext:TextField>
+                                                    </Component>
+                                                </ext:HeaderColumn>
                                                 <ext:HeaderColumn Cls="x-small-editor">
                                                     <Component>
                                                         <ext:ComboBox

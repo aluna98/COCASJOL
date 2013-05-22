@@ -160,6 +160,7 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
                     (Convert.ToInt32(string.IsNullOrEmpty(this.f_NOTAS_ID.Text) ? "0" : this.f_NOTAS_ID.Text),
                     Convert.ToInt32(string.IsNullOrEmpty(this.f_ESTADOS_NOTA_ID.Text) ? "0" : this.f_ESTADOS_NOTA_ID.Text),
                     this.f_SOCIOS_ID.Text,
+                    this.f_SOCIOS_NOMBRE_COMPLETO.Text,
                     Convert.ToInt32(string.IsNullOrEmpty(this.f_CLASIFICACIONES_CAFE_ID.Text) ? "0" : this.f_CLASIFICACIONES_CAFE_ID.Text),
                     default(DateTime),
                     this.f_DATE_FROM.SelectedDate,

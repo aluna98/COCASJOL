@@ -20,7 +20,13 @@
 <body>
     <script type="text/javascript">
         function CheckNotifications() {
-            Ext.net.DirectMethods.CheckForNotifications();
+            Ext.net.DirectMethods.CheckForNotifications(
+            {
+                failure: function () {
+                    window.clearInterval(DesktopintervalVariable);
+                    Ext.Msg.alert('Notificaciones', 'Las notificaciones han sido desactivadas debido a un error. Cuando la pagina se recargue volveran a estar disponibles. Para Refrescar la página presione la tecla F5.');
+                }
+            });
         }
 
         var DesktopintervalVariable = setInterval(CheckNotifications, 10000);
