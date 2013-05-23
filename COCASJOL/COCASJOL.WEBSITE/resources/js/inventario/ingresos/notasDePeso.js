@@ -340,8 +340,6 @@ var PageX = {
                     {
                         success: function () {
                             GridStore.reload();
-                            Ext.Msg.alert('Eliminar Nota de Peso', 'Nota de peso eliminada exitosamente.');
-                            EditWindow.hide();
                         },
                         eventMask: {
                             showMask: true, target: 'customtarget', customTarget: Grid

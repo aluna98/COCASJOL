@@ -58,11 +58,6 @@ namespace COCASJOL.LOGIC.Aportaciones
         /// </summary>
         /// <param name="SOCIOS_ID"></param>
         /// <param name="SOCIOS_NOMBRE_COMPLETO"></param>
-        /// <param name="APORTACIONES_ORDINARIA_SALDO"></param>
-        /// <param name="APORTACIONES_EXTRAORDINARIA_SALDO"></param>
-        /// <param name="APORTACIONES_CAPITALIZACION_RETENCION_SALDO"></param>
-        /// <param name="APORTACIONES_INTERESES_S_APORTACION_SALDO"></param>
-        /// <param name="APORTACIONES_EXCEDENTE_PERIODO_SALDO"></param>
         /// <param name="APORTACIONES_SALDO_TOTAL"></param>
         /// <param name="CREADO_POR"></param>
         /// <param name="FECHA_CREACION"></param>

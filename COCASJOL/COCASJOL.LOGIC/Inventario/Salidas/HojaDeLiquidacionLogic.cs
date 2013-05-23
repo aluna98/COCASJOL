@@ -62,6 +62,10 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
         /// </summary>
         /// <param name="LIQUIDACIONES_ID"></param>
         /// <param name="SOCIOS_ID"></param>
+        /// <param name="SOCIOS_PRIMER_NOMBRE"></param>
+        /// <param name="SOCIOS_SEGUNDO_NOMBRE"></param>
+        /// <param name="SOCIOS_PRIMER_APELLIDO"></param>
+        /// <param name="SOCIOS_SEGUNDO_APELLIDO"></param>
         /// <param name="LIQUIDACIONES_FECHA"></param>
         /// <param name="FECHA_DESDE"></param>
         /// <param name="FECHA_HASTA"></param>
@@ -210,6 +214,10 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
         /// </summary>
         /// <param name="LIQUIDACIONES_ID"></param>
         /// <param name="SOCIOS_ID"></param>
+        /// <param name="SOCIOS_PRIMER_NOMBRE"></param>
+        /// <param name="SOCIOS_SEGUNDO_NOMBRE"></param>
+        /// <param name="SOCIOS_PRIMER_APELLIDO"></param>
+        /// <param name="SOCIOS_SEGUNDO_APELLIDO"></param>
         /// <param name="LIQUIDACIONES_FECHA"></param>
         /// <param name="FECHA_DESDE"></param>
         /// <param name="FECHA_HASTA"></param>

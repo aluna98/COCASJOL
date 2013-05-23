@@ -55,6 +55,10 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
+        /// <summary>
+        /// Obtiene los estados activos.
+        /// </summary>
+        /// <returns></returns>
         public List<estado_nota_de_peso> GetEstadosNotaDePesoActivos()
         {
             try
@@ -110,6 +114,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
         /// <param name="ESTADOS_NOTA_LLAVE"></param>
         /// <param name="ESTADOS_NOTA_NOMBRE"></param>
         /// <param name="ESTADOS_NOTA_DESCRIPCION"></param>
+        /// <param name="ESTADOS_NOTA_ESTADO"></param>
         /// <param name="CREADO_POR"></param>
         /// <param name="FECHA_CREACION"></param>
         /// <param name="MODIFICADO_POR"></param>
@@ -156,6 +161,10 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
+        /// <summary>
+        /// Obtiene los estados iniciales de notas de peso.
+        /// </summary>
+        /// <returns></returns>
         public List<estado_nota_de_peso> GetEstadosIniciales()
         {
             try
@@ -178,36 +187,6 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             catch (Exception ex)
             {
                 log.Fatal("Error fatal al obtener estados iniciales de nota de peso.", ex);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Obtiene todos los estados de nota de peso para notas en area de pesaje.
-        /// </summary>
-        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
-        /// <returns>Lista de estados de nota de peso.</returns>
-        public List<estado_nota_de_peso> GetEstadosNotaDePesoEnPesaje(int CLASIFICACIONES_CAFE_ID)
-        {
-            try
-            {
-                List<estado_nota_de_peso> estadosList = null;
-
-                ClasificacionDeCafeLogic clasificaciondecafelogic = new ClasificacionDeCafeLogic();
-                bool catacionFlag = clasificaciondecafelogic.ClasificacionDeCafePasaPorCatacion(CLASIFICACIONES_CAFE_ID);
-                
-                estadosList = GetEstadosNotaDePeso();
-
-                if (catacionFlag == true)
-                    estadosList = estadosList.Where(esn => esn.ESTADOS_NOTA_LLAVE == "CATACION" || esn.ESTADOS_NOTA_LLAVE == "PESAJE").ToList<estado_nota_de_peso>();
-                else
-                    estadosList = estadosList.Where(esn => esn.ESTADOS_NOTA_LLAVE != "CATACION").ToList<estado_nota_de_peso>();
-
-                return estadosList;
-            }
-            catch (Exception ex)
-            {
-                log.Fatal("Error fatal al obtener estados de nota de peso en area de pesaje.", ex);
                 throw;
             }
         }
@@ -270,6 +249,30 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
         #region Insert
 
+        /// <summary>
+        /// Inserta el estado de nota de peso con su detalle. Crea privilegio y notificacion para nota de peso.
+        /// </summary>
+        /// <param name="ESTADOS_NOTA_SIGUIENTE"></param>
+        /// <param name="ESTADOS_NOTA_LLAVE"></param>
+        /// <param name="ESTADOS_NOTA_NOMBRE"></param>
+        /// <param name="ESTADOS_NOTA_DESCRIPCION"></param>
+        /// <param name="ESTADOS_NOTA_ES_CATACION"></param>
+        /// <param name="ESTADOS_NOTA_ESTADO"></param>
+        /// <param name="CREADO_POR"></param>
+        /// <param name="ESTADOS_DETALLE_ENABLE_FECHA"></param>
+        /// <param name="ESTADOS_DETALLE_ENABLE_ESTADO"></param>
+        /// <param name="ESTADOS_DETALLE_ENABLE_SOCIO_ID"></param>
+        /// <param name="ESTADOS_DETALLE_ENABLE_CLASIFICACION_CAFE"></param>
+        /// <param name="ESTADOS_DETALLE_SHOW_INFO_SOCIO"></param>
+        /// <param name="ESTADOS_DETALLE_ENABLE_FORMA_ENTREGA"></param>
+        /// <param name="ESTADOS_DETALLE_ENABLE_DETALLE"></param>
+        /// <param name="ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS"></param>
+        /// <param name="ESTADOS_DETALLE_ENABLE_TARA"></param>
+        /// <param name="ESTADOS_DETALLE_SHOW_DESCUENTOS"></param>
+        /// <param name="ESTADOS_DETALLE_SHOW_TOTAL"></param>
+        /// <param name="ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN"></param>
+        /// <param name="ESTADOS_DETALLE_ENABLE_IMPRIMIR_BTN"></param>
+        /// <param name="PLANTILLAS_MENSAJE"></param>
         public void InsertarEstadoNotaDePeso
             (int? ESTADOS_NOTA_SIGUIENTE,
             string ESTADOS_NOTA_LLAVE,
@@ -375,9 +378,29 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
         #region Update
 
         /// <summary>
-        /// Actualiza estado de nota de peso.
+        /// Actualiza estado de nota de peso con su detalle. Actualiza privilegio y notificacion.
         /// </summary>
-
+        /// <param name="ESTADOS_NOTA_ID"></param>
+        /// <param name="ESTADOS_NOTA_SIGUIENTE"></param>
+        /// <param name="ESTADOS_NOTA_NOMBRE"></param>
+        /// <param name="ESTADOS_NOTA_DESCRIPCION"></param>
+        /// <param name="ESTADOS_NOTA_ES_CATACION"></param>
+        /// <param name="ESTADOS_NOTA_ESTADO"></param>
+        /// <param name="MODIFICADO_POR"></param>
+        /// <param name="ESTADOS_DETALLE_ENABLE_FECHA"></param>
+        /// <param name="ESTADOS_DETALLE_ENABLE_ESTADO"></param>
+        /// <param name="ESTADOS_DETALLE_ENABLE_SOCIO_ID"></param>
+        /// <param name="ESTADOS_DETALLE_ENABLE_CLASIFICACION_CAFE"></param>
+        /// <param name="ESTADOS_DETALLE_SHOW_INFO_SOCIO"></param>
+        /// <param name="ESTADOS_DETALLE_ENABLE_FORMA_ENTREGA"></param>
+        /// <param name="ESTADOS_DETALLE_ENABLE_DETALLE"></param>
+        /// <param name="ESTADOS_DETALLE_ENABLE_SACOS_RETENIDOS"></param>
+        /// <param name="ESTADOS_DETALLE_ENABLE_TARA"></param>
+        /// <param name="ESTADOS_DETALLE_SHOW_DESCUENTOS"></param>
+        /// <param name="ESTADOS_DETALLE_SHOW_TOTAL"></param>
+        /// <param name="ESTADOS_DETALLE_ENABLE_REGISTRAR_BTN"></param>
+        /// <param name="ESTADOS_DETALLE_ENABLE_IMPRIMIR_BTN"></param>
+        /// <param name="PLANTILLAS_MENSAJE"></param>
         public void ActualizarEstadoNotaDePeso
             (int ESTADOS_NOTA_ID,
             int? ESTADOS_NOTA_SIGUIENTE,
@@ -493,6 +516,10 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
         #region Delete
 
+        /// <summary>
+        /// Elimina estados de nota de peso con su detalle. Elimina el privilegio y notificacion si existen.
+        /// </summary>
+        /// <param name="ESTADOS_NOTA_ID"></param>
         public void EliminarEstadoNotaDePeso(int ESTADOS_NOTA_ID)
         {
             try
@@ -555,6 +582,11 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
         #region Status Update
 
+        /// <summary>
+        /// Activa el estado de nota de peso.
+        /// </summary>
+        /// <param name="ESTADOS_NOTA_ID"></param>
+        /// <param name="MODIFICADO_POR"></param>
         public void ActivarEstado(int ESTADOS_NOTA_ID, string MODIFICADO_POR)
         {
             try
@@ -581,6 +613,11 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
+        /// <summary>
+        /// Desactiva el estado de nota de peso.
+        /// </summary>
+        /// <param name="ESTADOS_NOTA_ID"></param>
+        /// <param name="MODIFICADO_POR"></param>
         public void DesactivarEstado(int ESTADOS_NOTA_ID, string MODIFICADO_POR)
         {
             try
@@ -611,11 +648,18 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
 
         #region Methods
 
+        /// <summary>
+        /// Valores para tipos de datasource de estados de notas de peso.
+        /// </summary>
         public enum HabilitarEstadosEnNotasDePeso
         {
             Desactivado = 0, ActivadoEnOrden = 1, ActivadoLibre = 2
         }
 
+        /// <summary>
+        /// Obtiene todos los tipos de datasource de estados de nota de peso.
+        /// </summary>
+        /// <returns></returns>
         public static List<object> GetHabilitarEstados()
         {
             try
@@ -663,6 +707,11 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
+        /// <summary>
+        /// Verifica la existencia del estado de nota de peso con la llave específica.
+        /// </summary>
+        /// <param name="ESTADOS_NOTA_LLAVE"></param>
+        /// <returns>True si existe el estado. False si no existe el estado.</returns>
         public bool EstadoDeNotaDePesoExiste(string ESTADOS_NOTA_LLAVE)
         {
             try
@@ -688,6 +737,11 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
+        /// <summary>
+        /// Verifica si el estado de nota de peso esta siendo utilizado en notas de peso. Si hay notas de peso en el estado especificado.
+        /// </summary>
+        /// <param name="ESTADOS_NOTA_ID"></param>
+        /// <returns>True si hay notas de peso en estado. False si no hay notas de peso en estado.</returns>
         public bool EstadoDeNotaDePesoTieneReferencias(int ESTADOS_NOTA_ID)
         {
             try

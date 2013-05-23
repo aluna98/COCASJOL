@@ -292,7 +292,16 @@ namespace COCASJOL.WEBSITE.Source.Inventario.Ingresos
 
                 int NOTAS_ID = Convert.ToInt32(strNOTAS_ID);
                 NotaDePesoLogic notadepesologic = new NotaDePesoLogic();
-                notadepesologic.EliminarNotaDePeso(NOTAS_ID);
+
+                if (!notadepesologic.NotaDePesoRegistrada(NOTAS_ID))
+                {
+                    notadepesologic.EliminarNotaDePeso(NOTAS_ID);
+                    X.Msg.Alert("Eliminar Nota de Peso","Nota de peso eliminada exitosamente.").Show();
+                }
+                else
+                {
+                    X.Msg.Alert("Eliminar Nota de Peso", "No se puede eliminar la nota de peso registrada.").Show();
+                }
             }
             catch (Exception ex)
             {

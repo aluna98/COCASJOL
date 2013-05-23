@@ -55,6 +55,10 @@ namespace COCASJOL.LOGIC.Inventario.Salidas
         /// </summary>
         /// <param name="AJUSTES_INV_CAFE_ID"></param>
         /// <param name="SOCIOS_ID"></param>
+        /// <param name="SOCIOS_PRIMER_NOMBRE"></param>
+        /// <param name="SOCIOS_SEGUNDO_NOMBRE"></param>
+        /// <param name="SOCIOS_PRIMER_APELLIDO"></param>
+        /// <param name="SOCIOS_SEGUNDO_APELLIDO"></param>
         /// <param name="CLASIFICACIONES_CAFE_ID"></param>
         /// <param name="CLASIFICACIONES_CAFE_NOMBRE"></param>
         /// <param name="AJUSTES_INV_CAFE_FECHA"></param>

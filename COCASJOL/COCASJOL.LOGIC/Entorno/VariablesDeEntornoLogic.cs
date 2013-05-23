@@ -90,10 +90,12 @@ namespace COCASJOL.LOGIC.Entorno
             }
         }
 
+
         /// <summary>
         /// Obtiene variable de entorno específica.
         /// </summary>
         /// <param name="VARIABLES_LLAVE"></param>
+        /// <param name="db"></param>
         /// <returns>Variable de entorno.</returns>
         public variable_de_entorno GetVariableDeEntorno(string VARIABLES_LLAVE, colinasEntities db)
         {

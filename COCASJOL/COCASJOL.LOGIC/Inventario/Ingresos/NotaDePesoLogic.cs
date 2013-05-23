@@ -84,6 +84,19 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
+        /// <summary>
+        /// Obtiene todas las notas de peso.
+        /// </summary>
+        /// <param name="NOTAS_ID"></param>
+        /// <param name="ESTADOS_NOTA_ID"></param>
+        /// <param name="SOCIOS_ID"></param>
+        /// <param name="SOCIOS_NOMBRE_COMPLETO"></param>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <param name="NOTAS_FECHA"></param>
+        /// <param name="FECHA_DESDE"></param>
+        /// <param name="FECHA_HASTA"></param>
+        /// <param name="LoggedUser"></param>
+        /// <returns>Lista de notas de peso.</returns>
         public List<nota_de_peso> GetNotasDePeso
             (int NOTAS_ID,
             int ESTADOS_NOTA_ID,
@@ -154,112 +167,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
         }
 
         /// <summary>
-        /// Obtiene todas las notas de peso de socios activos.
+        /// Obtiene los estados para la nota de peso.
         /// </summary>
-        /// <param name="NOTAS_ID"></param>
-        /// <param name="ESTADOS_NOTA_ID"></param>
-        /// <param name="ESTADOS_NOTA_NOMBRE"></param>
-        /// <param name="SOCIOS_ID"></param>
-        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
-        /// <param name="CLASIFICACIONES_CAFE_NOMBRE"></param>
-        /// <param name="NOTAS_FECHA"></param>
-        /// <param name="FECHA_DESDE"></param>
-        /// <param name="FECHA_HASTA"></param>
-        /// <param name="NOTAS_TRANSPORTE_COOPERATIVA"></param>
-        /// <param name="NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA"></param>
-        /// <param name="NOTAS_PORCENTAJE_DEFECTO"></param>
-        /// <param name="NOTAS_PORCENTAJE_HUMEDAD"></param>
-        /// <param name="NOTAS_PESO_TRANSPORTE_COOPERATIVA"></param>
-        /// <param name="NOTAS_PESO_DEFECTO"></param>
-        /// <param name="NOTAS_PESO_HUMEDAD"></param>
-        /// <param name="NOTAS_PESO_DESCUENTO"></param>
-        /// <param name="NOTAS_PESO_SUMA"></param>
-        /// <param name="NOTAS_PESO_TARA"></param>
-        /// <param name="NOTAS_PESO_TOTAL_RECIBIDO"></param>
-        /// <param name="NOTAS_PESO_TOTAL_RECIBIDO_TEXTO"></param>
-        /// <param name="NOTAS_SACOS_RETENIDOS"></param>
-        /// <param name="TRANSACCION_NUMERO"></param>
-        /// <param name="CREADO_POR"></param>
-        /// <param name="FECHA_CREACION"></param>
-        /// <param name="MODIFICADO_POR"></param>
-        /// <param name="FECHA_MODIFICACION"></param>
-        /// <returns>Lista de notas de peso de socios activos.</returns>
-        public List<nota_de_peso> GetNotasDePeso
-            (    int NOTAS_ID,
-                 int ESTADOS_NOTA_ID,
-              string ESTADOS_NOTA_NOMBRE,
-              string SOCIOS_ID,
-                 int CLASIFICACIONES_CAFE_ID,
-              string CLASIFICACIONES_CAFE_NOMBRE,
-            DateTime NOTAS_FECHA,
-            DateTime FECHA_DESDE,
-            DateTime FECHA_HASTA,
-            Boolean? NOTAS_TRANSPORTE_COOPERATIVA,
-             decimal NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA,
-             decimal NOTAS_PORCENTAJE_DEFECTO,
-             decimal NOTAS_PORCENTAJE_HUMEDAD,
-             decimal NOTAS_PESO_TRANSPORTE_COOPERATIVA,
-             decimal NOTAS_PESO_DEFECTO,
-             decimal NOTAS_PESO_HUMEDAD,
-             decimal NOTAS_PESO_DESCUENTO,
-             decimal NOTAS_PESO_SUMA,
-             decimal NOTAS_PESO_TARA,
-             decimal NOTAS_PESO_TOTAL_RECIBIDO,
-              string NOTAS_PESO_TOTAL_RECIBIDO_TEXTO,
-                 int NOTAS_SACOS_RETENIDOS,
-                 int TRANSACCION_NUMERO,
-              string CREADO_POR,
-            DateTime FECHA_CREACION,
-              string MODIFICADO_POR,
-            DateTime FECHA_MODIFICACION)
-        {
-            try
-            {
-                using (var db = new colinasEntities())
-                {
-                    db.notas_de_peso.MergeOption = MergeOption.NoTracking;
-
-                    var queryEnPesaje = from notasPesoPesaje in db.notas_de_peso.Include("socios").Include("clasificaciones_cafe").Include("estados_nota_de_peso")
-                                        where notasPesoPesaje.estados_nota_de_peso.estados_detalles.ESTADOS_DETALLE_ENABLE_SOCIO_ID == (int)COCASJOL.LOGIC.Socios.SociosLogic.HabilitarSocios.MostrarTodos ? true : notasPesoPesaje.socios.SOCIOS_ESTATUS >= 1
-                                        select notasPesoPesaje;
-
-                    var query = from notasPeso in queryEnPesaje
-                                where
-                                (NOTAS_ID.Equals(0) ? true : notasPeso.NOTAS_ID.Equals(NOTAS_ID)) &&
-                                (ESTADOS_NOTA_ID.Equals(0) ? true : notasPeso.ESTADOS_NOTA_ID.Equals(ESTADOS_NOTA_ID)) &&
-                                (string.IsNullOrEmpty(SOCIOS_ID) ? true : notasPeso.SOCIOS_ID.Contains(SOCIOS_ID)) &&
-                                (CLASIFICACIONES_CAFE_ID.Equals(0) ? true : notasPeso.CLASIFICACIONES_CAFE_ID.Equals(CLASIFICACIONES_CAFE_ID)) &&
-                                (default(DateTime) == FECHA_DESDE ? true : notasPeso.NOTAS_FECHA >= FECHA_DESDE) &&
-                                (default(DateTime) == FECHA_HASTA ? true : notasPeso.NOTAS_FECHA <= FECHA_HASTA) &&
-                                (NOTAS_TRANSPORTE_COOPERATIVA == null ? true : notasPeso.NOTAS_TRANSPORTE_COOPERATIVA == NOTAS_TRANSPORTE_COOPERATIVA) &&
-                                (NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA.Equals(-1) ? true : notasPeso.NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA.Equals(NOTAS_PORCENTAJE_TRANSPORTE_COOPERATIVA)) &&
-                                (NOTAS_PORCENTAJE_DEFECTO.Equals(-1) ? true : notasPeso.NOTAS_PORCENTAJE_DEFECTO.Equals(NOTAS_PORCENTAJE_DEFECTO)) &&
-                                (NOTAS_PORCENTAJE_HUMEDAD.Equals(-1) ? true : notasPeso.NOTAS_PORCENTAJE_HUMEDAD.Equals(NOTAS_PORCENTAJE_HUMEDAD)) &&
-                                (NOTAS_PESO_TRANSPORTE_COOPERATIVA.Equals(-1) ? true : notasPeso.NOTAS_PESO_TRANSPORTE_COOPERATIVA.Equals(NOTAS_PESO_TRANSPORTE_COOPERATIVA)) &&
-                                (NOTAS_PESO_DEFECTO.Equals(-1) ? true : notasPeso.NOTAS_PESO_DEFECTO.Equals(NOTAS_PESO_DEFECTO)) &&
-                                (NOTAS_PESO_DESCUENTO.Equals(-1) ? true : notasPeso.NOTAS_PESO_DESCUENTO.Equals(NOTAS_PESO_DESCUENTO)) &&
-                                (NOTAS_PESO_HUMEDAD.Equals(-1) ? true : notasPeso.NOTAS_PESO_HUMEDAD.Equals(NOTAS_PESO_HUMEDAD)) &&
-                                (NOTAS_PESO_TARA.Equals(-1) ? true : notasPeso.NOTAS_PESO_TARA.Equals(NOTAS_PESO_TARA)) &&
-                                (NOTAS_PESO_SUMA.Equals(-1) ? true : notasPeso.NOTAS_PESO_SUMA.Equals(NOTAS_PESO_SUMA)) &&
-                                (NOTAS_PESO_TOTAL_RECIBIDO.Equals(-1) ? true : notasPeso.NOTAS_PESO_TOTAL_RECIBIDO.Equals(NOTAS_PESO_TOTAL_RECIBIDO)) &&
-                                (string.IsNullOrEmpty(NOTAS_PESO_TOTAL_RECIBIDO_TEXTO) ? true : notasPeso.SOCIOS_ID.Contains(NOTAS_PESO_TOTAL_RECIBIDO_TEXTO)) &&
-                                (NOTAS_SACOS_RETENIDOS.Equals(-1) ? true : notasPeso.NOTAS_SACOS_RETENIDOS.Equals(NOTAS_SACOS_RETENIDOS)) &&
-                                (string.IsNullOrEmpty(CREADO_POR) ? true : notasPeso.CREADO_POR.Contains(CREADO_POR)) &&
-                                (default(DateTime) == FECHA_CREACION ? true : notasPeso.FECHA_CREACION == FECHA_CREACION) &&
-                                (string.IsNullOrEmpty(MODIFICADO_POR) ? true : notasPeso.MODIFICADO_POR.Contains(MODIFICADO_POR)) &&
-                                (default(DateTime) == FECHA_MODIFICACION ? true : notasPeso.FECHA_MODIFICACION == FECHA_MODIFICACION)
-                                select notasPeso;
-
-                    return query.OrderBy(n => n.SOCIOS_ID).OrderByDescending(n => n.FECHA_MODIFICACION).OrderByDescending(n => n.NOTAS_FECHA).ToList<nota_de_peso>();
-                }
-            }
-            catch (Exception ex)
-            {
-                log.Fatal("Error fatal al obtener notas de peso.", ex);
-                throw;
-            }
-        }
-
+        /// <returns>Lista de estados de nota de peso.</returns>
         public List<estado_nota_de_peso> GetEstadosNotaDePeso()
         {
             try
@@ -275,9 +185,9 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
         }
 
         /// <summary>
-        /// Obtiene los estados de la nota de peso.
+        /// Obtiene los estados de la nota de peso siguientes.
         /// </summary>
-        /// <returns>Lista estados de la nota de peso.</returns>
+        /// <returns>Lista estados de la nota de peso siguientes.</returns>
         public List<estado_nota_de_peso> GetEstadosNotaDePeso(int ESTADOS_NOTA_ID)
         {
             try
@@ -317,6 +227,12 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             }
         }
 
+        /// <summary>
+        /// Obtiene los estados de la nota de peso siguientes. Segun clasificacion de café.
+        /// </summary>
+        /// <param name="ESTADOS_NOTA_ID"></param>
+        /// <param name="CLASIFICACIONES_CAFE_ID"></param>
+        /// <returns>Lista estados de la nota de peso siguientes. Segun clasificacion de café.</returns>
         public List<estado_nota_de_peso> GetEstadosNotaDePeso(int ESTADOS_NOTA_ID, int CLASIFICACIONES_CAFE_ID)
         {
             try
@@ -361,7 +277,8 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
         /// <summary>
         /// Obtiene los estados de nota de peso siguientes.
         /// </summary>
-        /// <param name="padre"></param>
+        /// <param name="siguiente"></param>
+        /// <param name="db"></param>
         /// <returns>Lista de estados de nota de peso siguientes.</returns>
         public List<estado_nota_de_peso> GetEstadosSiguiente(estado_nota_de_peso siguiente, colinasEntities db)
         {
@@ -385,7 +302,12 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
                 throw;
             }
         }
-
+        
+        /// <summary>
+        /// Obtiene los socios segun estado de nota de peso.
+        /// </summary>
+        /// <param name="ESTADOS_NOTA_ID"></param>
+        /// <returns>Los socios segun estado de nota de peso.</returns>
         public List<socio> GetSocios(int ESTADOS_NOTA_ID)
         {
             try
@@ -1030,7 +952,7 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
         /// <param name="PRIVS_LLAVE"></param>
         /// <param name="note"></param>
         /// <param name="db"></param>
-        protected void NotificarUsuarios(string PLANTILLAS_LLAVE, string PRIVS_LLAVE, nota_de_peso note, colinasEntities db)
+        private void NotificarUsuarios(string PLANTILLAS_LLAVE, string PRIVS_LLAVE, nota_de_peso note, colinasEntities db)
         {
             try
             {
@@ -1047,6 +969,31 @@ namespace COCASJOL.LOGIC.Inventario.Ingresos
             catch (Exception ex)
             {
                 log.Fatal("Error fatal al notificar usuarios.", ex);
+                throw;
+            }
+        }
+
+        public bool NotaDePesoRegistrada(int NOTAS_ID)
+        {
+            try
+            {
+                using (var db = new colinasEntities())
+                {
+                    EntityKey k = new EntityKey("colinasEntities.notas_de_peso", "NOTAS_ID", NOTAS_ID);
+
+                    var n = db.GetObjectByKey(k);
+
+                    nota_de_peso note = (nota_de_peso)n;
+
+                    if (note.TRANSACCION_NUMERO != null)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("Error fatal al eliminar nota de peso.", ex);
                 throw;
             }
         }
